@@ -136,7 +136,6 @@
         self.index = 1;
     }
     self.pageControl.currentPage = self.scrollView.contentOffset.x / ZQWWIDTH - 1;
-    NSLog(@"%.f",_scrollView.contentOffset.x);
     if (_scrollView.contentOffset.x <= ZQWWIDTH * _pictureArray.count) {
         
         _titleLabel.text = _titleArray[(NSInteger)self.scrollView.contentOffset.x / (NSInteger)ZQWWIDTH - 1];

@@ -414,6 +414,7 @@
 		189447161BEC3BC5006249F0 /* LocalUserInfoModelClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 189447121BEC3BC5006249F0 /* LocalUserInfoModelClass.m */; };
 		189447171BEC3BC5006249F0 /* RESTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 189447141BEC3BC5006249F0 /* RESTError.m */; };
 		1894471A1BEC3F02006249F0 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189447191BEC3F02006249F0 /* CommonViewController.m */; };
+		18D2CB0B1BEF39BD00B8DD72 /* ShareOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2CB091BEF39BD00B8DD72 /* ShareOrderViewController.m */; };
 		18DD071E1BEC53E5003C8160 /* HomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD071A1BEC53E5003C8160 /* HomePageViewController.m */; };
 		18DD071F1BEC53E5003C8160 /* HomePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18DD071B1BEC53E5003C8160 /* HomePageViewController.xib */; };
 		18DD073B1BED931F003C8160 /* CAAnimation+PagesViewBarShake.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD07231BED931F003C8160 /* CAAnimation+PagesViewBarShake.m */; };
@@ -1169,6 +1170,8 @@
 		189447141BEC3BC5006249F0 /* RESTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTError.m; sourceTree = "<group>"; };
 		189447181BEC3F02006249F0 /* CommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViewController.h; sourceTree = "<group>"; };
 		189447191BEC3F02006249F0 /* CommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
+		18D2CB081BEF39BD00B8DD72 /* ShareOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareOrderViewController.h; sourceTree = "<group>"; };
+		18D2CB091BEF39BD00B8DD72 /* ShareOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareOrderViewController.m; sourceTree = "<group>"; };
 		18DD07191BEC53E5003C8160 /* HomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageViewController.h; sourceTree = "<group>"; };
 		18DD071A1BEC53E5003C8160 /* HomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageViewController.m; sourceTree = "<group>"; };
 		18DD071B1BEC53E5003C8160 /* HomePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageViewController.xib; sourceTree = "<group>"; };
@@ -2650,6 +2653,8 @@
 				18DD071B1BEC53E5003C8160 /* HomePageViewController.xib */,
 				182110331BEDFFB300C32E23 /* CarefulSelectViewController.h */,
 				182110341BEDFFB300C32E23 /* CarefulSelectViewController.m */,
+				18D2CB081BEF39BD00B8DD72 /* ShareOrderViewController.h */,
+				18D2CB091BEF39BD00B8DD72 /* ShareOrderViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3225,6 +3230,7 @@
 				189442DA1BEAF65A006249F0 /* UIResponder+Router.m in Sources */,
 				1894458D1BEB0774006249F0 /* MJRefreshFooterView.m in Sources */,
 				189445C71BEB0774006249F0 /* NSString+MJExtension.m in Sources */,
+				18D2CB0B1BEF39BD00B8DD72 /* ShareOrderViewController.m in Sources */,
 				182EB81A1BEDC267004EA19C /* DiscountCell.m in Sources */,
 				18DD07481BED93BB003C8160 /* YBImageView.m in Sources */,
 				189442CB1BEAF65A006249F0 /* NSFileManager+ Addition.m in Sources */,
