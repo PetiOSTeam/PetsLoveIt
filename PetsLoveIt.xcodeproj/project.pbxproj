@@ -429,6 +429,7 @@
 		18DD074B1BED9790003C8160 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD074A1BED9790003C8160 /* BaseNavigationController.m */; };
 		18DD074E1BED9DCC003C8160 /* TopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD074D1BED9DCC003C8160 /* TopicModel.m */; };
 		18DD07501BEDAE91003C8160 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DD074F1BEDAE91003C8160 /* Launch Screen.storyboard */; };
+		76AF7FED1BEF7F1F0066659E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AF7FEC1BEF7F1F0066659E /* OrderModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1197,6 +1198,8 @@
 		18DD074C1BED9DCC003C8160 /* TopicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicModel.h; sourceTree = "<group>"; };
 		18DD074D1BED9DCC003C8160 /* TopicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicModel.m; sourceTree = "<group>"; };
 		18DD074F1BEDAE91003C8160 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		76AF7FEB1BEF7F1F0066659E /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
+		76AF7FEC1BEF7F1F0066659E /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2669,6 +2672,8 @@
 				18DD074D1BED9DCC003C8160 /* TopicModel.m */,
 				182110501BEF1B6500C32E23 /* GoodsModel.h */,
 				182110511BEF1B6500C32E23 /* GoodsModel.m */,
+				76AF7FEB1BEF7F1F0066659E /* OrderModel.h */,
+				76AF7FEC1BEF7F1F0066659E /* OrderModel.m */,
 				18D2CB131BEF64C300B8DD72 /* ArticleModel.h */,
 				18D2CB141BEF64C300B8DD72 /* ArticleModel.m */,
 			);
@@ -3087,6 +3092,7 @@
 				189446DF1BEB0A80006249F0 /* YYAnimatedImageView.m in Sources */,
 				189446E41BEB0A80006249F0 /* YYImageCache.m in Sources */,
 				189445D41BEB0774006249F0 /* PSTCollectionViewUpdateItem.m in Sources */,
+				76AF7FED1BEF7F1F0066659E /* OrderModel.m in Sources */,
 				1821104F1BEEE89800C32E23 /* ZQW_ScrollView.m in Sources */,
 				189446E51BEB0A80006249F0 /* YYWebImageManager.m in Sources */,
 				189445B61BEB0774006249F0 /* CoreRefreshView.m in Sources */,

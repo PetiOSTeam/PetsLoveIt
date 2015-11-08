@@ -7,6 +7,7 @@
 //
 
 #import "ShareOrderCell.h"
+#import "OrderModel.h"
 
 @implementation ShareOrderCell
 
@@ -17,8 +18,15 @@
 /*
  *  数据填充
  */
--(void)dataFill{
-    
+- (void)dataFill {
+    OrderModel *order = (OrderModel *)self.model;
+    [self.orderPictureImageView sd_setImageWithURL:[NSURL URLWithString:order.orderPictureUrl] placeholderImage:kImagePlaceHolder ];
+    self.ordeerTitleLabel.text = order.orderTitle;
+    [self.userIconImageView sd_setImageWithURL:[NSURL URLWithString:order.userIconUrl] placeholderImage:kImagePlaceHolder];
+    self.userNameLabel.text = order.userName;
+    self.shareTimeLabel.text = order.shareTime;
+    self.commentNumLabel.text = order.commentNum;
+    self.likeNumLabel.text = order.likeNum;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

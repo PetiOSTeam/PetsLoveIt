@@ -10,6 +10,7 @@
 #import "CorePagesView.h"
 #import "NewsListTVC.h"
 #import "CarefulSelectViewController.h"
+#import "ShareOrderViewController.h"
 #import "DiscountViewController.h"
 #import "MassTaoViewController.h"
 #import "ExperienceViewController.h"
@@ -47,7 +48,9 @@
             vc = [DiscountViewController new];
         }else if (i==2){
             vc = [MassTaoViewController new];
-        }else if (i==5){
+        } else if (i == 4) {
+            vc = [ShareOrderViewController new];
+        } else if (i==5){
             vc = [ExperienceViewController new];
         }else if (i==6){
             vc = [NewsViewController new];

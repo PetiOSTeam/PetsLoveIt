@@ -11,4 +11,19 @@
 
 @interface ShareOrderCell : LTCell
 
+
+
+@property (weak, nonatomic) IBOutlet UIImageView *orderPictureImageView;
+@property (weak, nonatomic) IBOutlet UILabel *ordeerTitleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userIconImageView;
+@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *shareTimeLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *commentImageView;
+@property (weak, nonatomic) IBOutlet UILabel *commentNumLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *likeImageView;
+@property (weak, nonatomic) IBOutlet UILabel *likeNumLabel;
+
+
+
+
 @end
