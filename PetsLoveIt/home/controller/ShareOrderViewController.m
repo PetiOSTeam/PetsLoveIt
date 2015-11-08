@@ -28,7 +28,7 @@
 
 - (void)prepareViewsAndData{
     self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH;
-    self.tableView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     [self config];
     dataArray = [NSMutableArray new];
     for (int i =0 ; i<20; i++) {
