@@ -10,6 +10,11 @@
 #import "CorePagesView.h"
 #import "NewsListTVC.h"
 #import "CarefulSelectViewController.h"
+#import "DiscountViewController.h"
+#import "MassTaoViewController.h"
+#import "ExperienceViewController.h"
+#import "NewsViewController.h"
+
 @interface HomePageViewController ()
 @property (nonatomic,strong) CorePagesView *pagesView;
 
@@ -31,8 +36,6 @@
 
 - (void)setPageViews{
     
-    
-    
     NSMutableArray *pageModels = [NSMutableArray new];
     NSArray *topicArray = @[@"精选",@"优惠",@"海淘",@"淘宠",@"晒单",@"经验",@"资讯"];
     for (int i=0; i<topicArray.count; i++) {
@@ -40,10 +43,17 @@
         if (i==0) {
             vc = [CarefulSelectViewController new];
             
-        }else{
+        }else if (i==1){
+            vc = [DiscountViewController new];
+        }else if (i==2){
+            vc = [MassTaoViewController new];
+        }else if (i==5){
+            vc = [ExperienceViewController new];
+        }else if (i==6){
+            vc = [NewsViewController new];
+        }
+        else{
             vc = [NewsListTVC new];
-            
-            
         }
         CorePageModel *pageModel=[CorePageModel model:vc pageBarName:topicArray[i]];
         [pageModels addObject:pageModel];

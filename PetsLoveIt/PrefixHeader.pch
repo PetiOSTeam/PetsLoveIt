@@ -30,6 +30,8 @@
 #import "YYWebImage.h"
 #import "UIImageView+WebCache.h"
 #import "LTCell.h"
+#import "CorePagesViewConst.h"
+
 
 
 #endif /* PrefixHeader_pch */
