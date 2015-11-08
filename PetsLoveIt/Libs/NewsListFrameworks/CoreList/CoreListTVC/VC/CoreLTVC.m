@@ -26,7 +26,7 @@
 -(void)viewDidLoad{
     
     [super viewDidLoad];
-    [self.view setBackgroundColor:kAppDefaultColor];
+    //[self.view setBackgroundColor:kAppDefaultColor];
     self.tableView.tableFooterView=[[UIView alloc] init];
 }
 

@@ -257,6 +257,9 @@ static int kCacheMemoryLimit;
     [memoryCache removeAllObjects];
     [[YYImageCache sharedCache].memoryCache removeAllObjects];
     [[YYImageCache sharedCache].diskCache removeAllObjectsWithBlock:nil];
+    
+    [[SDImageCache sharedImageCache] cleanDisk];
+    [[SDImageCache sharedImageCache] clearMemory];
 //    //清除userDefault下的cache
     [mUserDefaults removeObjectForKey:HLocalUserInfo];//个人登录信息
     [mUserDefaults synchronize];

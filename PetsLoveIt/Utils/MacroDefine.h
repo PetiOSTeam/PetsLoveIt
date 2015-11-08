@@ -131,15 +131,16 @@ otherButtonTitles:nil]; \
 
 //默认头像
 #define kDefaultAppImage [UIImage imageNamed:@"timeline_image_loading"]
+#define kImagePlaceHolder [UIImage imageNamed:@"timeline_image_loading"]
 #define kDefaultHeadImage [UIImage imageNamed:@"Image_defaultPerson"]
 #define kDefaultPersonAvatar @"Image_defaultPerson"
 //字体基本色
 #define kDefaultFontColor mRGBToColor(0xd0bc91)
 #define kNaviTitleColor mRGBToColor(0x222222)
 #define kThemeColor mRGBToColor(0xC4232D) //app使用的主题色（navi的背景）
-#define kCellBgColor mRGBToColor(0xF6F2E9)//cell背景色
+#define kCellBgColor mRGBToColor(0xffffff)//cell背景色
 //app基本色
-#define kAppDefaultColor mRGBToColor(0xF6F2E9)//app的页面背景色
+#define kAppDefaultColor mRGBToColor(0xffffff)//app的页面背景色
 
 #define mSystemVersion   ([[UIDevice currentDevice] systemVersion])
 #define mCurrentLanguage ([[NSLocale preferredLanguages] objectAtIndex:0])

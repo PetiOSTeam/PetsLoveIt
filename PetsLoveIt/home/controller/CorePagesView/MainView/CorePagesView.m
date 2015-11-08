@@ -11,7 +11,7 @@
 #import "CorePagesViewConst.h"
 
 
-@interface CorePagesView ()<UIScrollViewDelegate>
+@interface CorePagesView ()<UIScrollViewDelegate,UIGestureRecognizerDelegate>
 
 
 @property (nonatomic,assign) CGFloat width;
@@ -108,8 +108,6 @@
     
     return pagesView;
 }
-
-
 
 
 

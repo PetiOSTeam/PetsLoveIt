@@ -9,8 +9,7 @@
 #import "HomePageViewController.h"
 #import "CorePagesView.h"
 #import "NewsListTVC.h"
-#import "TopicModel.h"
-
+#import "CarefulSelectViewController.h"
 @interface HomePageViewController ()
 @property (nonatomic,strong) CorePagesView *pagesView;
 
@@ -29,6 +28,7 @@
     [self setPageViews];
 }
 
+
 - (void)setPageViews{
     
     
@@ -36,13 +36,18 @@
     NSMutableArray *pageModels = [NSMutableArray new];
     NSArray *topicArray = @[@"精选",@"优惠",@"海淘",@"淘宠",@"晒单",@"经验",@"资讯"];
     for (int i=0; i<topicArray.count; i++) {
-        NewsListTVC *vc = [NewsListTVC new];
-        
-        TopicModel *topic = [TopicModel new];
-        vc.topic = topic;
-        topic.name = [topicArray objectAtIndex:i];
-        CorePageModel *pageModel=[CorePageModel model:vc pageBarName:topic.name];
+        id vc ;
+        if (i==0) {
+            vc = [CarefulSelectViewController new];
+            
+        }else{
+            vc = [NewsListTVC new];
+            
+            
+        }
+        CorePageModel *pageModel=[CorePageModel model:vc pageBarName:topicArray[i]];
         [pageModels addObject:pageModel];
+        
     }
     _pagesView=[CorePagesView viewWithOwnerVC:self pageModels:pageModels];
     [self.pagesView.pagesBarView setBackgroundColor:mRGBToColor(0xfeffff)];

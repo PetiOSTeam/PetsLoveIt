@@ -92,7 +92,7 @@
     
     //设置路径属性
     //1.设置颜色
-    [[UIColor colorWithRed:.5f green:.5f blue:.5f alpha:.5f] setStroke];
+    [mRGBToColor(0xff4401) setStroke];
     //2.设置线宽
     CGContextSetLineWidth(context, 2.0f);
     

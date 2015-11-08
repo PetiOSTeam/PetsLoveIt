@@ -327,7 +327,6 @@ typedef enum{
 }
 
 
-
 /**
  *  处理成功
  *  顶部刷新：直接取当前服务器第1页的数据，所以顶部刷新一定会有数据,如果没有数据，则是表示整个列表一条数据都没有。或者是page起始值不对。
@@ -339,10 +338,23 @@ typedef enum{
     if ([self respondsToSelector:@selector(dealWithResponseData:)]) {
         [self dealWithResponseData:obj];
     }
+    
+#warning delete those code when has right data
+    if ([self respondsToSelector:@selector(testdealWithResponseData:)]) {
+        [self testdealWithResponseData:obj];
+        //隐藏视图指示器
+        [CoreViewNetWorkStausManager dismiss:self.view];
+        //状态指示
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.scrollView headerSetState:CoreHeaderViewRefreshStateSuccessedResultDataShowing];
+        });
+    
+        return;
+    }
     //出现error
     if (![obj[@"code"] isEqualToString:@"0"]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [mAppUtils showHint:obj[@"error"]];
+            //[mAppUtils showHint:obj[@"error"]];
 
         });
         [self.scrollView headerSetState:CoreHeaderViewRefreshStateSuccessedResultNoMoreData];
@@ -641,6 +653,10 @@ typedef enum{
 -(void)dealWithResponseData:(id)obj{
     
 }
+-(void)testdealWithResponseData:(id)obj{
+    
+}
+
 
 /**
  *  刷新获取最新数据：此方法会触发顶部刷新控件，并且scrollView会回到顶部

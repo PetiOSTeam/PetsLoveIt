@@ -32,7 +32,6 @@
 +(instancetype)cellPrepare{
 
     LTCell *cell = [[[NSBundle mainBundle] loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil] firstObject];
-    [cell setBackgroundColor:mRGBToColor(0xF6F2E9)];
     return cell;
 }
 

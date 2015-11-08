@@ -10,6 +10,7 @@
 #import "BaseTabBarViewController.h"
 #import "HomePageViewController.h"
 #import "BaseNavigationController.h"
+#import "SortViewController.h"
 
 @interface AppDelegate ()
 
@@ -43,7 +44,7 @@
     BaseNavigationController *navi1 = [[BaseNavigationController alloc] initWithRootViewController:c1];
     
     
-    UIViewController *c2=[[UIViewController alloc]init];
+    SortViewController *c2=[[SortViewController alloc]init];
     c2.view.backgroundColor=[UIColor whiteColor];
     c2.tabBarItem.title=@"分类";
     c2.tabBarItem.image=[UIImage imageNamed:@"sortTabIcon"];

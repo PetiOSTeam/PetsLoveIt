@@ -1,0 +1,38 @@
+//
+//  selectGoodModel.h
+//  PetsLoveIt
+//
+//  Created by kongjun on 15/11/8.
+//  Copyright © 2015年 kongjun. All rights reserved.
+//
+
+#import "JSONModel.h"
+#import "CoreListCommonModel.h"
+
+@interface GoodsModel : CoreListCommonModel
+@property (nonatomic,strong) NSString *appMall;
+@property (nonatomic,strong) NSString *appMinpic;
+@property (nonatomic,strong) NSString *appPic;
+@property (nonatomic,strong) NSString *appSort;
+@property (nonatomic,strong) NSString *appType;
+@property (nonatomic,strong) NSString *area;
+@property (nonatomic,strong) NSString *city;
+@property (nonatomic,strong) NSString *desc;
+@property (nonatomic,strong) NSString *isCheap;
+@property (nonatomic,strong) NSString *isGoods;
+@property (nonatomic,strong) NSString *isLimitedTime;
+@property (nonatomic,strong) NSString *isShake;
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,strong) NSString *order;
+@property (nonatomic,strong) NSString *price;
+@property (nonatomic,strong) NSString *prodDetail;
+@property (nonatomic,strong) NSString *prodId;
+@property (nonatomic,strong) NSString *province;
+@property (nonatomic,strong) NSString *state;
+
+@property (nonatomic,strong) NSString *imageUrl;
+@property (nonatomic,strong) NSString *commentNum;
+@property (nonatomic,strong) NSString *favorNum;
+@property (nonatomic,strong) NSString *dateDesc;
+
+@end

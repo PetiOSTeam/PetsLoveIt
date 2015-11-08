@@ -24,7 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //[self.view setBackgroundColor:mRGBToColor(0xf6f2e9)];
     //模型配置
     //[self config];
     self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-44;

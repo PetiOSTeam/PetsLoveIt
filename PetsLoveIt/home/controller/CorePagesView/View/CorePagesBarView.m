@@ -67,6 +67,8 @@
     
     //注册通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(screenRotate) name:UIDeviceOrientationDidChangeNotification object:nil];
+    
+    
 }
 
 -(void)screenRotate{
@@ -91,6 +93,7 @@
     if(!res) return;
     
     [self btnsPrepare];
+    
 }
 
 
@@ -223,9 +226,9 @@
     self.pageChangeMax=ABS(_selectedBtn.tag - selectedBtn.tag)>1;
     
     if(self.pageChangeMax){
-        NSLog(@"跨度大");
+        //NSLog(@"跨度大");
     }else{
-        NSLog(@"跨度小");
+       // NSLog(@"跨度小");
     }
     
     //根据btn显示正确的lineView的frame
@@ -297,6 +300,8 @@
     
     if(isFirstBtn){
         self.lineView.frame=frame;
+        self.lineView.width = 28;
+        self.lineView.left = 30;
     }else{
         
         [UIView animateWithDuration:CorePagesAnimDuration animations:^{
