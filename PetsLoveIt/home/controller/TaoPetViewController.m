@@ -1,21 +1,24 @@
 //
-//  ExperienceViewController.m
+//  TaoPetViewController.m
 //  PetsLoveIt
 //
-//  Created by kongjun on 15/11/8.
+//  Created by kongjun on 15/11/9.
 //  Copyright © 2015年 kongjun. All rights reserved.
 //
 
-#import "ExperienceViewController.h"
-#import "ArticleModel.h"
-#import "ArticleTableCell.h"
+#import "TaoPetViewController.h"
+#import "GoodsModel.h"
+#import "GoodsCell.h"
 
-@interface ExperienceViewController ()
-
+@interface TaoPetViewController ()
+@property (nonatomic,strong) UIView *tableHeaderView;
+@property (nonatomic,strong) UIButton *cityButton;
+@property (nonatomic,strong) UIButton *regionButton;
 @end
 
-@implementation ExperienceViewController{
-        NSMutableArray *dataArray;
+@implementation TaoPetViewController
+{
+    NSMutableArray *dataArray;
 }
 
 - (void)viewDidLoad {
@@ -36,21 +39,30 @@
     self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
     dataArray = [NSMutableArray new];
     for (int i =0 ; i<20; i++) {
-        ArticleModel *model = [ArticleModel new];
-        model.imageUrl = @"http://a.zdmimg.com/201511/06/563c802c1fd044044.jpg_d320.jpg";
-        model.name = @"实时心率监测：小米手环光感版将于双11上市 定价99元";
-        model.title = @"京东精选";
-        model.content = @"还记得去年小米发布的那款79元的智能手环一下将高高在上的智能可穿戴设备拉低到了百元以下，这一举动也让小米一举攻占智能手环市场。而从去年开始已经有不少国内厂商推出带有光学心率计的智能手环和手表，由此可以推测下一代小米手环也将会集成心率监测功能。果不其然小米今天宣布将在双11当天在小米官网和天猫旗舰店开卖全新的小米手环光感版，定价99元";
-        model.commentNum = @"10";
-        model.favorNum = @"80%";
-        model.dateDesc = @"11-11";
-        [dataArray addObject:model];
+        GoodsModel *good = [GoodsModel new];
+        good.imageUrl = @"http://y.zdmimg.com/201510/19/5624cb70a9728.jpeg_d320.jpg";
+        good.name = @"天猫狗粮优惠活动开始了";
+        good.desc = @"双十一天猫优惠活动开始了，小样儿快行动吧...";
+        good.prodDetail = @"100元包邮";
+        good.commentNum = @"10";
+        good.favorNum = @"80%";
+        good.dateDesc = @"11-11";
+        [dataArray addObject:good];
     }
     self.dataList = dataArray;
     [self.tableView reloadData];
     
     
 }
+
+
+-(UIView *)tableHeaderView{
+    if (!_tableHeaderView) {
+        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 31)];
+    }
+    return _tableHeaderView;
+}
+
 
 -(void)testdealWithResponseData:(id)obj{
     
@@ -73,9 +85,9 @@
                            @"sort_id":@"1"
                            };
     //模型类
-    configModel.ModelClass=[ArticleModel class];
+    configModel.ModelClass=[GoodsModel class];
     //cell类
-    configModel.ViewForCellClass=[ArticleTableCell class];
+    configModel.ViewForCellClass=[GoodsCell class];
     //标识
     configModel.lid=NSStringFromClass(self.class);
     //pageName第几页的参数名
@@ -88,7 +100,7 @@
     //起始页码
     configModel.pageStartValue=1;
     //行高
-    configModel.rowHeight=136;
+    configModel.rowHeight=110;
     configModel.hiddenNetWorkStausManager = YES;
     
     //移除返回顶部:(默认开启)
@@ -99,11 +111,10 @@
     //配置完毕
     self.configModel=configModel;
 }
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

@@ -26,6 +26,10 @@
     [self prepareViewsAndData];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH ;
+}
+
 - (void)prepareViewsAndData{
     self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH;
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
@@ -88,6 +92,9 @@
     
     //配置完毕
     self.configModel=configModel;
+}
+-(void)testdealWithResponseData:(id)obj{
+    
 }
 
 

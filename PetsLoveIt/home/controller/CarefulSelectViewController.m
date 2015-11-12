@@ -19,18 +19,22 @@
 @property (nonatomic,strong) NSMutableArray *imageURLs;
 
 @property (nonatomic,strong) UIView *displayView;
-
+@property (nonatomic,strong) UIView *displayView1;
+@property (nonatomic,strong) UIView *displayView2;
+@property (nonatomic,strong) UIView *displayView3;
 
 
 @property (nonatomic,strong) UIImageView *urlImageView1;
-
-@property (nonatomic,strong) UIView *displayView2;
+@property (nonatomic,strong) UILabel *titleLabel1;
+@property (nonatomic,strong) UILabel *descLabel1;
 
 @property (nonatomic,strong) UIImageView *urlImageView2;
-
-@property (nonatomic,strong) UIView *displayView3;
+@property (nonatomic,strong) UILabel *titleLabel2;
+@property (nonatomic,strong) UILabel *descLabel2;
 
 @property (nonatomic,strong) UIImageView *urlImageView3;
+@property (nonatomic,strong) UILabel *titleLabel3;
+@property (nonatomic,strong) UILabel *descLabel3;
 @end
 
 @implementation CarefulSelectViewController{
@@ -134,26 +138,77 @@
         [_tableHeaderView addSubview:_zqw];
         
         _displayView = [[UIView alloc] initWithFrame:CGRectMake(0, _zqw.bottom+10, mScreenWidth, 160)];
+        [_displayView setBackgroundColor:[UIColor whiteColor]];
         
-       
+        _displayView1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth/2, _displayView.height)];
+        _titleLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, mScreenWidth/2-20, 18)];
+        [_titleLabel1 setTextColor:mRGBToColor(0xff4401)];
+        [_titleLabel1 setFont:[UIFont systemFontOfSize:16]];
+        [_titleLabel1 setText:@"今日白菜"];
         
-        _urlImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 240, _displayView.height)];
-        [_displayView addBorderWithFrame:CGRectMake(_urlImageView1.right, 0, kLayerBorderWidth, _displayView.height) andColor:kLayerBorderColor andWidth:kLayerBorderWidth];
-        [_displayView addBorderWithFrame:CGRectMake(240, _displayView.height/2, mScreenWidth-_urlImageView1.width, kLayerBorderWidth) andColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+        _descLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel1.bottom+10, mScreenWidth/2-20, 14)];
+        [_descLabel1 setTextColor:mRGBToColor(0x666666)];
+        [_descLabel1 setFont:[UIFont systemFontOfSize:12]];
+        [_descLabel1 setText:@"今日白菜今日白菜今日白菜"];
+        _urlImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(15, _descLabel1.bottom+5, 130, 95)];
+        [_displayView1 addSubview:_titleLabel1];
+        [_displayView1 addSubview:_descLabel1];
+        [_displayView1 addSubview:_urlImageView1];
+        
+        
+        [_displayView addBorderWithFrame:CGRectMake(mScreenWidth/2, 0, kLayerBorderWidth, _displayView.height) andColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+        [_displayView addBorderWithFrame:CGRectMake(mScreenWidth/2, _displayView.height/2, mScreenWidth/2, kLayerBorderWidth) andColor:kLayerBorderColor andWidth:kLayerBorderWidth];
         [_urlImageView1 yy_setImageWithURL:[NSURL URLWithString:@"http://eimg.smzdm.com/201511/07/563d8527b7dad7297.jpg"] placeholder:kImagePlaceHolder options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
             if (!error) {
 
             }
         }];
         
-        _urlImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(_urlImageView1.right, 0, mScreenWidth-_urlImageView1.width, _displayView.height/2)];
+        _displayView2 = [[UIView alloc] initWithFrame:CGRectMake(_displayView1.right, 0, mScreenWidth/2, _displayView.height/2)];
+        _urlImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 100, _descLabel2.bottom+5, 90, 60)];
+        _titleLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, _displayView2.width-_urlImageView2.width-20, 18)];
+        _descLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel2.bottom+10, _displayView2.width-90-20, 14)];
+        [_titleLabel2 setTextColor:mRGBToColor(0xff4401)];
+        [_titleLabel2 setFont:[UIFont systemFontOfSize:16]];
+        [_titleLabel2 setText:@"限时优惠"];
+        [_descLabel2 setTextColor:mRGBToColor(0x666666)];
+        [_descLabel2 setFont:[UIFont systemFontOfSize:12]];
+        [_descLabel2 setText:@"满99元减30"];
+        
+        [_displayView2 addSubview:_titleLabel2];
+        [_displayView2 addSubview:_descLabel2];
+        [_displayView2 addSubview:_urlImageView2];
+        
+        
         [_urlImageView2 yy_setImageWithURL:[NSURL URLWithString:@"http://eimg.smzdm.com/201511/08/563ea8e9c46a79304.png"] placeholder:kImagePlaceHolder options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation completion:NULL];
+        
+        
         _urlImageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(_urlImageView1.right, _urlImageView2.bottom+0.5, mScreenWidth-_urlImageView1.width, _displayView.height/2)];
+        
+        
+        _displayView3 = [[UIView alloc] initWithFrame:CGRectMake(_displayView1.right, _displayView2.bottom, mScreenWidth/2, _displayView.height/2)];
+        _urlImageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 100, _descLabel3.bottom+5, 90, 60)];
+        _titleLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, _displayView3.width-_urlImageView3.width-20, 18)];
+        _descLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel3.bottom+10, _displayView3.width-90-20, 14)];
+        [_titleLabel3 setTextColor:mRGBToColor(0xff4401)];
+        [_titleLabel3 setFont:[UIFont systemFontOfSize:16]];
+        [_titleLabel3 setText:@"高端尖货"];
+        [_descLabel3 setTextColor:mRGBToColor(0x666666)];
+        [_descLabel3 setFont:[UIFont systemFontOfSize:12]];
+        [_descLabel3 setText:@"限时抢购"];
+        
+        
         [_urlImageView3 yy_setImageWithURL:[NSURL URLWithString:@"http://eimg.smzdm.com/201511/08/563ea991a4da52095.png"] placeholder:kImagePlaceHolder options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation completion:NULL];
         
-        [_displayView addSubview:_urlImageView1];
-        [_displayView addSubview:_urlImageView2];
-        [_displayView addSubview:_urlImageView3];
+        [_displayView3 addSubview:_titleLabel3];
+        [_displayView3 addSubview:_descLabel3];
+        [_displayView3 addSubview:_urlImageView3];
+        
+        
+        
+        [_displayView addSubview:_displayView1];
+        [_displayView addSubview:_displayView2];
+        [_displayView addSubview:_displayView3];
         
         [_tableHeaderView addSubview:_displayView];
         

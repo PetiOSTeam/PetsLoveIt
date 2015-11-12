@@ -15,6 +15,8 @@
 #import "MassTaoViewController.h"
 #import "ExperienceViewController.h"
 #import "NewsViewController.h"
+#import "TaoPetViewController.h"
+#import "TaoPetViewController.h"
 
 @interface HomePageViewController ()
 @property (nonatomic,strong) CorePagesView *pagesView;
@@ -48,7 +50,10 @@
             vc = [DiscountViewController new];
         }else if (i==2){
             vc = [MassTaoViewController new];
-        } else if (i == 4) {
+        }else if (i==3){
+            vc = [TaoPetViewController new];
+        }
+        else if (i == 4) {
             vc = [ShareOrderViewController new];
         } else if (i==5){
             vc = [ExperienceViewController new];

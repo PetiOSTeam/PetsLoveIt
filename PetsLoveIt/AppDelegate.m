@@ -45,10 +45,10 @@
     
     
     SortViewController *c2=[[SortViewController alloc]init];
-    c2.view.backgroundColor=[UIColor whiteColor];
     c2.tabBarItem.title=@"分类";
     c2.tabBarItem.image=[UIImage imageNamed:@"sortTabIcon"];
     c2.tabBarItem.selectedImage = [UIImage imageNamed:@"sortTabIcon_highlighted"];
+    BaseNavigationController *navi2 = [[BaseNavigationController alloc] initWithRootViewController:c2];
     
     UIViewController *c3=[[UIViewController alloc]init];
     c3.view.backgroundColor=[UIColor whiteColor];
@@ -56,7 +56,7 @@
     c3.tabBarItem.image=[UIImage imageNamed:@"meTabIcon"];
     c3.tabBarItem.selectedImage = [UIImage imageNamed:@"meTabIcon_highlighted"];
     
-    tabVC.viewControllers = @[navi1,c2,c3];
+    tabVC.viewControllers = @[navi1,navi2,c3];
   
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [self.window makeKeyAndVisible];

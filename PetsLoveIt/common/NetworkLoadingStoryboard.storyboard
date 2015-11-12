@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <scenes>
+        <!--Network Loading View Controller-->
+        <scene sceneID="DCz-57-71e">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="JhB-fX-X2G" customClass="KMNetworkLoadingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3V2-dN-r5R"/>
+                        <viewControllerLayoutGuide type="bottom" id="dX4-Zl-jIP"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4XB-cd-zwE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="61H-DJ-Ria" userLabel="LoadingView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGQ-oJ-Ijo" customClass="KMActivityIndicator">
+                                        <rect key="frame" x="132" y="229" width="56" height="56"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="CJT-9I-LoQ"/>
+                                            <constraint firstAttribute="width" constant="56" id="WA0-rv-7Pp"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFb-8R-HqW" userLabel="Loading Label">
+                                        <rect key="frame" x="78" y="293" width="165" height="18"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="165" id="Bzp-Xj-DEe"/>
+                                            <constraint firstAttribute="height" constant="18" id="ZCf-3Y-5zG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="textColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="XGQ-oJ-Ijo" secondAttribute="centerX" id="ALm-lM-7ah"/>
+                                    <constraint firstAttribute="centerX" secondItem="LFb-8R-HqW" secondAttribute="centerX" id="CjF-TX-8GU"/>
+                                    <constraint firstAttribute="centerY" secondItem="XGQ-oJ-Ijo" secondAttribute="centerY" constant="27" id="RFw-uh-2bO"/>
+                                    <constraint firstItem="LFb-8R-HqW" firstAttribute="top" secondItem="XGQ-oJ-Ijo" secondAttribute="bottom" constant="8" id="Ugb-bv-2ta"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tld-2Z-mg1" userLabel="ErrorView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBa-cN-chL" userLabel="RefreshButton">
+                                        <rect key="frame" x="135" y="233" width="50" height="48"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="aNf-OW-ktS"/>
+                                            <constraint firstAttribute="height" constant="48" id="taf-ND-uYA"/>
+                                        </constraints>
+                                        <state key="normal" image="refresh_button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="retryRequest:" destination="JhB-fX-X2G" eventType="touchUpInside" id="IEK-ar-wtf"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Retry!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fH6-59-B6s" userLabel="Error Label">
+                                        <rect key="frame" x="121" y="293" width="78" height="18"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="18" id="58w-Lt-UtO"/>
+                                            <constraint firstAttribute="width" constant="78" id="DTy-8C-JKh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="textColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="NBa-cN-chL" secondAttribute="centerX" id="bjA-e8-IL1"/>
+                                    <constraint firstAttribute="centerX" secondItem="fH6-59-B6s" secondAttribute="centerX" id="iaR-Vs-NuB"/>
+                                    <constraint firstAttribute="centerY" secondItem="NBa-cN-chL" secondAttribute="centerY" constant="27" id="jdy-aG-UkC"/>
+                                    <constraint firstItem="fH6-59-B6s" firstAttribute="top" secondItem="NBa-cN-chL" secondAttribute="bottom" constant="12" id="pOa-fg-beT"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ycj-jH-Z3A" userLabel="No Content View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sorry, there are no shots around you yet. Go out and take some! \o/" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="213" translatesAutoresizingMaskIntoConstraints="NO" id="PMl-kR-ZyC" userLabel="No content Label">
+                                        <rect key="frame" x="54" y="256" width="213" height="61"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="61" id="XFL-Ii-qYp"/>
+                                            <constraint firstAttribute="width" constant="213" id="cEr-sg-f6V"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="textColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yD8-q6-HIc">
+                                        <rect key="frame" x="135" y="206" width="50" height="50"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="2r8-Gb-uf4"/>
+                                            <constraint firstAttribute="height" constant="50" id="gRA-kh-PwF"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="yD8-q6-HIc" secondAttribute="centerX" id="EXk-kI-cPU"/>
+                                    <constraint firstAttribute="centerY" secondItem="yD8-q6-HIc" secondAttribute="centerY" constant="53" id="Lph-W9-bLP"/>
+                                    <constraint firstAttribute="centerY" secondItem="PMl-kR-ZyC" secondAttribute="centerY" constant="-2.5" id="mlV-ls-ral"/>
+                                    <constraint firstAttribute="centerX" secondItem="PMl-kR-ZyC" secondAttribute="centerX" id="pgl-8A-Nzn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Ycj-jH-Z3A" secondAttribute="trailing" id="4tY-g5-Cel"/>
+                            <constraint firstItem="dX4-Zl-jIP" firstAttribute="top" secondItem="Ycj-jH-Z3A" secondAttribute="bottom" id="Fxf-Gi-kDi"/>
+                            <constraint firstAttribute="trailing" secondItem="Tld-2Z-mg1" secondAttribute="trailing" id="PdS-cd-diI"/>
+                            <constraint firstItem="61H-DJ-Ria" firstAttribute="leading" secondItem="4XB-cd-zwE" secondAttribute="leading" id="Tnx-94-5rG"/>
+                            <constraint firstItem="dX4-Zl-jIP" firstAttribute="top" secondItem="Tld-2Z-mg1" secondAttribute="bottom" id="VPN-U5-73W"/>
+                            <constraint firstAttribute="trailing" secondItem="61H-DJ-Ria" secondAttribute="trailing" id="XVV-O8-HL5"/>
+                            <constraint firstItem="61H-DJ-Ria" firstAttribute="top" secondItem="3V2-dN-r5R" secondAttribute="bottom" id="dph-Al-GtX"/>
+                            <constraint firstItem="Tld-2Z-mg1" firstAttribute="leading" secondItem="4XB-cd-zwE" secondAttribute="leading" id="hju-4u-EY7"/>
+                            <constraint firstItem="Ycj-jH-Z3A" firstAttribute="top" secondItem="3V2-dN-r5R" secondAttribute="bottom" id="r6I-Zh-lhe"/>
+                            <constraint firstItem="Ycj-jH-Z3A" firstAttribute="leading" secondItem="4XB-cd-zwE" secondAttribute="leading" id="slf-fI-rj4"/>
+                            <constraint firstItem="Tld-2Z-mg1" firstAttribute="top" secondItem="3V2-dN-r5R" secondAttribute="bottom" id="tUA-FE-1tL"/>
+                            <constraint firstItem="dX4-Zl-jIP" firstAttribute="top" secondItem="61H-DJ-Ria" secondAttribute="bottom" id="tX3-zz-9GR"/>
+                        </constraints>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="XGQ-oJ-Ijo" id="ttQ-qt-oxJ"/>
+                        <outlet property="errorView" destination="Tld-2Z-mg1" id="1y6-Ke-TF7"/>
+                        <outlet property="loadingView" destination="61H-DJ-Ria" id="mlP-DE-0QD"/>
+                        <outlet property="noContentView" destination="Ycj-jH-Z3A" id="9og-cz-yQS"/>
+                        <outlet property="refreshButton" destination="NBa-cN-chL" id="RUR-CD-KqQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u6d-BU-xGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="437.86666666666667" y="240.45333333333332"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="refresh_button" width="160" height="48"/>
+    </resources>
+</document>

@@ -21,6 +21,8 @@
 - (void)dataFill {
     OrderModel *order = (OrderModel *)self.model;
     [self.orderPictureImageView sd_setImageWithURL:[NSURL URLWithString:order.orderPictureUrl] placeholderImage:kImagePlaceHolder ];
+    [self.orderPictureImageView setContentMode:UIViewContentModeScaleAspectFill];
+    [self.orderPictureImageView setClipsToBounds:YES];
     self.ordeerTitleLabel.text = order.orderTitle;
     [self.userIconImageView sd_setImageWithURL:[NSURL URLWithString:order.userIconUrl] placeholderImage:kImagePlaceHolder];
     self.userNameLabel.text = order.userName;
