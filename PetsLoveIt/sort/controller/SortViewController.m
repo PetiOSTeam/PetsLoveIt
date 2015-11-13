@@ -35,8 +35,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-<<<<<<< Updated upstream
-=======
 }
 
 - (void)setupNavigationUI
@@ -56,7 +54,6 @@
     [screenStoreView addTopBorderWithColor:kLineColor andWidth:.5];
     
     self.scrollView.contentSize = CGSizeMake(self.view.width * 2, 0);
->>>>>>> Stashed changes
 }
 
 - (void)didReceiveMemoryWarning {
@@ -64,7 +61,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-<<<<<<< Updated upstream
 /*
 #pragma mark - Navigation
 
@@ -74,7 +70,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-=======
 #pragma mark - *** XLSlideBar Delegate ***
 
 - (void)selectItemWithPage:(int)page withObject:(XLSlideBarView *)slideBar
@@ -157,6 +152,5 @@
     }
     return _scrollView;
 }
->>>>>>> Stashed changes
 
 @end

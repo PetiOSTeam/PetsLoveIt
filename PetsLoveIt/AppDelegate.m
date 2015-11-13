@@ -65,10 +65,6 @@
     c2.tabBarItem.image=[UIImage imageNamed:@"sortTabIcon"];
     c2.tabBarItem.selectedImage = [UIImage imageNamed:@"sortTabIcon_highlighted"];
     BaseNavigationController *navi2 = [[BaseNavigationController alloc] initWithRootViewController:c2];
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     
     UIViewController *c3=[[UIViewController alloc]init];
     c3.view.backgroundColor=[UIColor whiteColor];
