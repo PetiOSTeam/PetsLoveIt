@@ -142,6 +142,8 @@ otherButtonTitles:nil]; \
 //app基本色
 #define kAppDefaultColor mRGBToColor(0xffffff)//app的页面背景色
 
+#define kLineColor mRGBToColor(0xCECECB)//line背景色
+
 #define mSystemVersion   ([[UIDevice currentDevice] systemVersion])
 #define mCurrentLanguage ([[NSLocale preferredLanguages] objectAtIndex:0])
 //用于版本升级的判断

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="SoretedHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5i7-Il-Ulp">
+                    <rect key="frame" x="8" y="4" width="56" height="56"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.80784313730000001" green="0.80784313730000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="A2k-iZ-MAX"/>
+                        <constraint firstAttribute="width" constant="56" id="S93-Bj-jtz"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="狗狗" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ze-m1-gdp">
+                    <rect key="frame" x="74" y="21" width="138" height="21"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="cZ2-3D-v35"/>
+                        <constraint firstAttribute="width" constant="138" id="vx4-w3-zDb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <animations/>
+            <constraints>
+                <constraint firstItem="5i7-Il-Ulp" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="71z-LK-iU2"/>
+                <constraint firstItem="6Ze-m1-gdp" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="cbh-0q-Ez4"/>
+                <constraint firstItem="6Ze-m1-gdp" firstAttribute="leading" secondItem="5i7-Il-Ulp" secondAttribute="trailing" constant="10" id="rDd-P9-vSZ"/>
+                <constraint firstItem="5i7-Il-Ulp" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="8" id="uSe-If-jby"/>
+            </constraints>
+            <connections>
+                <outlet property="headerImageView" destination="5i7-Il-Ulp" id="nVG-R5-Svu"/>
+                <outlet property="titleLabel" destination="6Ze-m1-gdp" id="7p4-jQ-wbR"/>
+            </connections>
+        </collectionReusableView>
+    </objects>
+</document>

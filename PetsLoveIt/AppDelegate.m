@@ -18,10 +18,26 @@
 
 @implementation AppDelegate
 
+- (void)setupNavigationStyle
+{
+    UIApplication *application = [UIApplication sharedApplication];
+    [[UINavigationBar appearance] setBackgroundImage:[AppUtils imageFromColor:[UIColor whiteColor]]
+                                       forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleDefault];
+//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];  //定制返回按钮的颜色
+//    [application setStatusBarHidden:NO];  //tabbar不隐藏
+    
+    [[UINavigationBar appearance] setShadowImage:[AppUtils imageFromColor:kLineColor]];
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];  //tabbar线条
+    
+}
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [self loadMainViews];
+    [self setupNavigationStyle];
     
     return YES;
 }
@@ -49,6 +65,10 @@
     c2.tabBarItem.image=[UIImage imageNamed:@"sortTabIcon"];
     c2.tabBarItem.selectedImage = [UIImage imageNamed:@"sortTabIcon_highlighted"];
     BaseNavigationController *navi2 = [[BaseNavigationController alloc] initWithRootViewController:c2];
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     
     UIViewController *c3=[[UIViewController alloc]init];
     c3.view.backgroundColor=[UIColor whiteColor];

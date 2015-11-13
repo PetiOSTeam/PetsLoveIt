@@ -9,6 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#define weakify(...) \
+rac_keywordify \
+metamacro_foreach_cxt(rac_weakify_,, __weak, __VA_ARGS__)
+
+#define strongify(...) \
+rac_keywordify \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Wshadow\"") \
+metamacro_foreach(rac_strongify_,, __VA_ARGS__) \
+_Pragma("clang diagnostic pop")
+
+
 @class LocalUserInfoModelClass;
 @class TaskMapClass;
 @class TWFriendInfo;
@@ -55,5 +67,6 @@
 // 屏幕分辨率,根据isWidth判断是返回宽还是高
 - (NSString *)getResolution:(BOOL)isWidth;
 
++ (UIImage *)imageFromColor:(UIColor *)color;
 
 @end
