@@ -79,6 +79,8 @@
 //rgb颜色转换（16进制->10进制）
 #define mRGBToColor(rgb) [UIColor colorWithRed:((float)((rgb & 0xFF0000) >> 16))/255.0 green:((float)((rgb & 0xFF00) >> 8))/255.0 blue:((float)(rgb & 0xFF))/255.0 alpha:1.0]
 
+#define kCellSeparatorColor mRGBToColor(0xe5e5e5)
+
 
 //简单的以AlertView显示提示信息
 #define mAlertView(title, msg) \

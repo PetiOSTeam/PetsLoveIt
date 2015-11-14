@@ -43,7 +43,6 @@
     [[UINavigationBar appearance] setTintColor:kNaviTitleColor];
     
     if (mIos7) {
-        [[UINavigationBar appearance] setBackgroundColor:mRGBColor(202, 0, 11)];
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"image_navi_bg_iOS7_or_greater"] forBarMetrics:UIBarMetricsDefault];
     }else{
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"image_navi_bg"] forBarMetrics:UIBarMetricsDefault];

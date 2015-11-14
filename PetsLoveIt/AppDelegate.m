@@ -11,6 +11,7 @@
 #import "HomePageViewController.h"
 #import "BaseNavigationController.h"
 #import "SortViewController.h"
+#import "MLTransition.h"
 
 @interface AppDelegate ()
 
@@ -44,6 +45,8 @@
 
 - (void)loadMainViews{
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //左滑手势开启
+    [MLTransition validatePanPackWithMLTransitionGestureRecognizerType:MLTransitionGestureRecognizerTypePan];
     
     BaseTabBarViewController *tabVC = [BaseTabBarViewController new];
     [[UITabBar appearance] setTintColor:mRGBToColor(0xfa6532)];//字体选中的颜色
@@ -58,6 +61,7 @@
     c1.tabBarItem.image=[UIImage imageNamed:@"homeIndexIcon"];
     c1.tabBarItem.selectedImage = [UIImage imageNamed:@"homeIndexIcon_highlighted"];
     BaseNavigationController *navi1 = [[BaseNavigationController alloc] initWithRootViewController:c1];
+    [navi1.navigationBar setHidden:YES];
     
     
     SortViewController *c2=[[SortViewController alloc]init];

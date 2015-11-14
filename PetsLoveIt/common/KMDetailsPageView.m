@@ -8,15 +8,18 @@
 
 #import "KMDetailsPageView.h"
 
-#define kDefaultImagePagerHeight 375.0f
+
+#define kDefaultImagePagerHeight 210.0f
 #define kDefaultTableViewHeaderMargin 95.0f
 #define kDefaultImageAlpha 500.0f
 #define kDefaultImageScalingFactor 300.0f
 
-@interface KMDetailsPageView ()
+@interface KMDetailsPageView ()<UIWebViewDelegate>
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIButton* imageButton;
+@property (nonatomic, strong) UIView* headerView;
+
 
 @end
 
@@ -38,6 +41,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
         [self initialize];
     }
     return self;
@@ -58,9 +62,32 @@
     _imageScalingFactor = kDefaultImageScalingFactor;
     _headerImageAlpha = kDefaultImageAlpha;
     _backgroundViewColor = [UIColor clearColor];
-    self.autoresizesSubviews = YES;
-    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
-    self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleTopMargin;
+    
+    _navBarFadingOffset = _imageHeaderViewHeight - (CGRectGetHeight(_navBarView.frame) + kDefaultTableViewHeaderMargin);
+    _navBarFadingOffset = 64;
+    
+    if(!self.imageView)
+        [self setupImageView];
+    if (!self.tableView)
+        [self setupTableView];
+    
+    [self addSubview:self.tableView2];
+
+    
+    if (!self.tableView.tableHeaderView)
+        [self setupTableViewHeader];
+    
+    if (self.backgroundColor)
+        [self setupBackgroundColor];
+    
+    [self setupImageButton];
+}
+
+-(PLTableView *)tableView2{
+    if (!_tableView2) {
+        _tableView2 = [[PLTableView alloc] initWithFrame:CGRectMake(0, _tableView.bottom, mScreenWidth, mScreenHeight-64-49)];
+    }
+    return _tableView2;
 }
 
 - (void)dealloc
@@ -74,20 +101,37 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    _navBarFadingOffset = _imageHeaderViewHeight - (CGRectGetHeight(_navBarView.frame) + kDefaultTableViewHeaderMargin);
-    if (!self.tableView)
-        [self setupTableView];
-    if (!self.tableView.tableHeaderView)
-        [self setupTableViewHeader];
     
-    if(!self.imageView)
-        [self setupImageView];
-    
-    if (self.backgroundColor)
-        [self setupBackgroundColor];
-    
-    [self setupImageButton];
-    
+}
+
+-(UIView *)headerView{
+    if (!_headerView) {
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 510)];
+        [_headerView addSubview:_imageView];
+        [_headerView addSubview:self.webView];
+        _headerView.clipsToBounds = YES;
+    }
+    return _headerView;
+}
+
+-(UIWebView *)webView{
+    if (!_webView) {
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0,_imageView.bottom, mScreenWidth, 300)];
+        _webView.scrollView.scrollEnabled = NO;
+        _webView.delegate = self;
+    }
+    return _webView;
+}
+
+- (void) loadHtmlString:(NSString *)html{
+    [self.webView loadHTMLString:html baseURL:nil];
+}
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    CGFloat contentHeight = webView.scrollView.contentSize.height;
+    self.webView.height = contentHeight;
+    self.headerView.height = self.webView.bottom;
+    self.tableView.tableHeaderView.height = self.headerView.height;
+    self.tableView.contentSize = CGSizeMake(mScreenWidth, self.tableView.tableHeaderView.height);
 }
 
 #pragma mark -
@@ -99,7 +143,7 @@
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.delegate = self.tableViewDelegate;
     self.tableView.dataSource = self.tableViewDataSource;
-    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    
     if (self.tableViewSeparatorColor)
         self.tableView.separatorColor = self.tableViewSeparatorColor;
     
@@ -117,33 +161,26 @@
 
 - (void)setupTableViewHeader
 {
-    CGRect tableHeaderViewFrame = CGRectMake(0.0, 0.0, self.tableView.frame.size.width, self.imageHeaderViewHeight - kDefaultTableViewHeaderMargin);
-    UIView *tableHeaderView = [[UIView alloc] initWithFrame:tableHeaderViewFrame];
-    tableHeaderView.backgroundColor = [UIColor clearColor];
-    self.tableView.tableHeaderView = tableHeaderView;
+    self.tableView.tableHeaderView = self.headerView;
 }
 
 - (void)setupImageButton
 {
     if (!self.imageButton)
-        self.imageButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, self.imageHeaderViewHeight)];
+        self.imageButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, self.imageHeaderViewHeight)];
     [self.imageButton addTarget:self action:@selector(imageButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.tableView.tableHeaderView addSubview:self.imageButton];
 }
 
 - (void)setupImageView
 {
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0, self.tableView.frame.size.width, self.imageHeaderViewHeight)];
-    self.imageView.backgroundColor = [UIColor blackColor];
-    self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0, mScreenWidth, kDefaultImagePagerHeight)];
     self.imageView.clipsToBounds = YES;
     self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     if ([self.delegate respondsToSelector:@selector(contentModeForImage:)])
         self.imageView.contentMode = [self.delegate contentModeForImage:self.imageView];
-    
-    [self insertSubview:self.imageView belowSubview:self.tableView];
-    
+
     if ([self.delegate respondsToSelector:@selector(detailsPage:imageDataForImageView:)])
         [self.delegate detailsPage:self imageDataForImageView:self.imageView];
     
@@ -260,9 +297,9 @@
     CGPoint scrollViewDragPoint = [self.delegate detailsPage:self tableViewWillBeginDragging:self.tableView];
     
     if (scrollOffset < 0)
-        self.imageView.transform = CGAffineTransformMakeScale(1 - (scrollOffset / self.imageScalingFactor), 1 - (scrollOffset / self.imageScalingFactor));
+        self.tableView.transform = CGAffineTransformMakeScale(1 - (scrollOffset / self.imageScalingFactor), 1 - (scrollOffset / self.imageScalingFactor));
     else
-        self.imageView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+        self.tableView.transform = CGAffineTransformMakeScale(1.0, 1.0);
     
     [self animateImageView:scrollOffset draggingPoint:scrollViewDragPoint alpha:self.headerImageAlpha];
 }

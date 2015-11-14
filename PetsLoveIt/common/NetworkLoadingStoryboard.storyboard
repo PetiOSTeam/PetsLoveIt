@@ -8,7 +8,7 @@
         <!--Network Loading View Controller-->
         <scene sceneID="DCz-57-71e">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="JhB-fX-X2G" customClass="KMNetworkLoadingViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KMNetworkLoadingViewController" automaticallyAdjustsScrollViewInsets="NO" id="JhB-fX-X2G" customClass="KMNetworkLoadingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3V2-dN-r5R"/>
                         <viewControllerLayoutGuide type="bottom" id="dX4-Zl-jIP"/>

@@ -29,7 +29,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+
     [self showLoadingView];
+   
 	// Do any additional setup after loading the view.
 }
 
@@ -37,6 +40,7 @@
 {
     [super viewWillAppear:animated];
     [self.activityIndicatorView startAnimating];
+
 }
 
 - (void)didReceiveMemoryWarning

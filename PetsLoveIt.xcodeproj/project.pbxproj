@@ -436,6 +436,12 @@
 		18DD074B1BED9790003C8160 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD074A1BED9790003C8160 /* BaseNavigationController.m */; };
 		18DD074E1BED9DCC003C8160 /* TopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DD074D1BED9DCC003C8160 /* TopicModel.m */; };
 		18DD07501BEDAE91003C8160 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DD074F1BEDAE91003C8160 /* Launch Screen.storyboard */; };
+		18F632871BF6215600FD98B1 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */; };
+		18F632881BF6215600FD98B1 /* GoodsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */; };
+		18F6328E1BF6DDFF00FD98B1 /* UIView+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F6328D1BF6DDFF00FD98B1 /* UIView+Effects.m */; };
+		18F632941BF6F34B00FD98B1 /* MLTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F632931BF6F34B00FD98B1 /* MLTransition.m */; };
+		18F6329A1BF72CBB00FD98B1 /* UIViewController+ZJExchange.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F632981BF72CBB00FD98B1 /* UIViewController+ZJExchange.m */; };
+		18F6329D1BF72D1900FD98B1 /* PLTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F6329C1BF72D1900FD98B1 /* PLTableView.m */; };
 		76AF7FED1BEF7F1F0066659E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AF7FEC1BEF7F1F0066659E /* OrderModel.m */; };
 		F98E92101BF4E1BA004B2D19 /* ScreenStoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = F98E920F1BF4E1BA004B2D19 /* ScreenStoreView.m */; };
 		F99B56CA1BF4AE12008E18A2 /* ALView+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B56C21BF4AE12008E18A2 /* ALView+PureLayout.m */; };
@@ -1236,6 +1242,17 @@
 		18DD074C1BED9DCC003C8160 /* TopicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicModel.h; sourceTree = "<group>"; };
 		18DD074D1BED9DCC003C8160 /* TopicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicModel.m; sourceTree = "<group>"; };
 		18DD074F1BEDAE91003C8160 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		18F632841BF6215600FD98B1 /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
+		18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
+		18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailViewController.xib; sourceTree = "<group>"; };
+		18F6328C1BF6DDFF00FD98B1 /* UIView+Effects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Effects.h"; sourceTree = "<group>"; };
+		18F6328D1BF6DDFF00FD98B1 /* UIView+Effects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Effects.m"; sourceTree = "<group>"; };
+		18F632921BF6F34B00FD98B1 /* MLTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLTransition.h; sourceTree = "<group>"; };
+		18F632931BF6F34B00FD98B1 /* MLTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLTransition.m; sourceTree = "<group>"; };
+		18F632981BF72CBB00FD98B1 /* UIViewController+ZJExchange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZJExchange.m"; sourceTree = "<group>"; };
+		18F632991BF72CBB00FD98B1 /* UIViewController+ZJExchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZJExchange.h"; sourceTree = "<group>"; };
+		18F6329B1BF72D1900FD98B1 /* PLTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTableView.h; sourceTree = "<group>"; };
+		18F6329C1BF72D1900FD98B1 /* PLTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTableView.m; sourceTree = "<group>"; };
 		76AF7FEB1BEF7F1F0066659E /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		76AF7FEC1BEF7F1F0066659E /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
 		F98E920E1BF4E1BA004B2D19 /* ScreenStoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScreenStoreView.h; path = PetsLoveIt/sort/View/ScreenStoreView.h; sourceTree = SOURCE_ROOT; };
@@ -1388,6 +1405,10 @@
 			isa = PBXGroup;
 			children = (
 				189442781BEAF65A006249F0 /* CategoryUtils.h */,
+				18F632981BF72CBB00FD98B1 /* UIViewController+ZJExchange.m */,
+				18F632991BF72CBB00FD98B1 /* UIViewController+ZJExchange.h */,
+				18F6328C1BF6DDFF00FD98B1 /* UIView+Effects.h */,
+				18F6328D1BF6DDFF00FD98B1 /* UIView+Effects.m */,
 				189442791BEAF65A006249F0 /* NSData+Base64.h */,
 				1894427A1BEAF65A006249F0 /* NSData+Base64.m */,
 				1894427B1BEAF65A006249F0 /* NSDate+Addition.h */,
@@ -2610,6 +2631,8 @@
 		189446E81BEB859D006249F0 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				18F632921BF6F34B00FD98B1 /* MLTransition.h */,
+				18F632931BF6F34B00FD98B1 /* MLTransition.m */,
 				18DB0D891BF2EA2B003F3743 /* KMActivityIndicator.h */,
 				18DB0D8A1BF2EA2B003F3743 /* KMActivityIndicator.m */,
 				18DB0D8B1BF2EA2B003F3743 /* KMDetailsPageView.h */,
@@ -2769,6 +2792,9 @@
 				18DB0D801BEF69B5003F3743 /* NewsViewController.m */,
 				18DB0D821BF03442003F3743 /* TaoPetViewController.h */,
 				18DB0D831BF03442003F3743 /* TaoPetViewController.m */,
+				18F632841BF6215600FD98B1 /* GoodsDetailViewController.h */,
+				18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */,
+				18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2802,6 +2828,8 @@
 				182EB8301BEDC374004EA19C /* ArticleTableCell.h */,
 				182EB8311BEDC374004EA19C /* ArticleTableCell.m */,
 				182EB8321BEDC374004EA19C /* ArticleTableCell.xib */,
+				18F6329B1BF72D1900FD98B1 /* PLTableView.h */,
+				18F6329C1BF72D1900FD98B1 /* PLTableView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -2938,7 +2966,7 @@
 				TargetAttributes = {
 					189442531BE9DEC3006249F0 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = P83R7NS33U;
+						DevelopmentTeam = DPES7PQARA;
 					};
 				};
 			};
@@ -3136,6 +3164,7 @@
 				189445FA1BEB0774006249F0 /* e_34@2x.png in Resources */,
 				189446441BEB0774006249F0 /* chatBar_faceSelected@2x.png in Resources */,
 				189445EC1BEB0774006249F0 /* e_21@2x.png in Resources */,
+				18F632881BF6215600FD98B1 /* GoodsDetailViewController.xib in Resources */,
 				189445EB1BEB0774006249F0 /* e_20@2x.png in Resources */,
 				189445ED1BEB0774006249F0 /* e_22@2x.png in Resources */,
 				189446A01BEB0774006249F0 /* iOS-social-releasenote.html in Resources */,
@@ -3165,6 +3194,7 @@
 				189445D71BEB0774006249F0 /* PSTGridLayoutRow.m in Sources */,
 				189446841BEB0774006249F0 /* SVProgressHUD.m in Sources */,
 				189442CE1BEAF65A006249F0 /* NSString+Addition.m in Sources */,
+				18F6329A1BF72CBB00FD98B1 /* UIViewController+ZJExchange.m in Sources */,
 				189442E81BEAF65A006249F0 /* PhotoUtils.m in Sources */,
 				189445CA1BEB0774006249F0 /* OpenSSLRSAWrapper.m in Sources */,
 				189445C61BEB0774006249F0 /* NSObject+MJProperty.m in Sources */,
@@ -3210,6 +3240,7 @@
 				18DD07401BED931F003C8160 /* CorePagesBarBtn.m in Sources */,
 				189445B41BEB0774006249F0 /* CoreRefreshConst.m in Sources */,
 				189446401BEB0774006249F0 /* DXRecordView.m in Sources */,
+				18F632941BF6F34B00FD98B1 /* MLTransition.m in Sources */,
 				189442D01BEAF65A006249F0 /* NSString+MD5Addition.m in Sources */,
 				18DD073F1BED931F003C8160 /* CorePageModel.m in Sources */,
 				18D2CB151BEF64C300B8DD72 /* ArticleModel.m in Sources */,
@@ -3328,6 +3359,7 @@
 				182110351BEDFFB300C32E23 /* CarefulSelectViewController.m in Sources */,
 				1894459B1BEB0774006249F0 /* MWZoomingScrollView.m in Sources */,
 				189446861BEB0774006249F0 /* SWCellScrollView.m in Sources */,
+				18F632871BF6215600FD98B1 /* GoodsDetailViewController.m in Sources */,
 				189445C11BEB0774006249F0 /* MJFoundation.m in Sources */,
 				189445A11BEB0774006249F0 /* NSData+Param.m in Sources */,
 				189445721BEB0774006249F0 /* AFURLRequestSerialization.m in Sources */,
@@ -3342,6 +3374,7 @@
 				189445911BEB0774006249F0 /* UIView+MJExtension.m in Sources */,
 				189446DD1BEB0A80006249F0 /* UIImage+YYWebImage.m in Sources */,
 				1894463D1BEB0774006249F0 /* ZBFaceView.m in Sources */,
+				18F6329D1BF72D1900FD98B1 /* PLTableView.m in Sources */,
 				189445CB1BEB0774006249F0 /* OpenUDID.m in Sources */,
 				1894456D1BEB0774006249F0 /* AFHTTPRequestOperationManager.m in Sources */,
 				189442C41BEAF65A006249F0 /* AppCache.m in Sources */,
@@ -3393,6 +3426,7 @@
 				1894456E1BEB0774006249F0 /* AFHTTPSessionManager.m in Sources */,
 				189445941BEB0774006249F0 /* MWCaptionView.m in Sources */,
 				189442591BE9DEC3006249F0 /* main.m in Sources */,
+				18F6328E1BF6DDFF00FD98B1 /* UIView+Effects.m in Sources */,
 				189446FC1BEB8A42006249F0 /* CustomeTextField.m in Sources */,
 				182110521BEF1B6500C32E23 /* GoodsModel.m in Sources */,
 				189445D21BEB0774006249F0 /* PSTCollectionViewItemKey.m in Sources */,
@@ -3527,7 +3561,7 @@
 					"$(PROJECT_DIR)/PetsLoveIt/Libs/umeng_ios_social_sdk_4.2.3_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/PetsLoveIt/Libs/UMessage_Sdk_1.1.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = maoyi.xrzStock.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pet.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -3557,7 +3591,7 @@
 					"$(PROJECT_DIR)/PetsLoveIt/Libs/umeng_ios_social_sdk_4.2.3_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/PetsLoveIt/Libs/UMessage_Sdk_1.1.0",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = maoyi.xrzStock.com;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pet.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

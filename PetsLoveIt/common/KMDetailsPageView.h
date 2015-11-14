@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImageView+WebCache.h"
+#import "PLTableView.h"
 
 @class KMDetailsPageView;
 
@@ -33,6 +34,12 @@
 ///-------------------------------
 
 @interface KMDetailsPageView : UIView
+
+@property (nonatomic, strong) UIWebView *webView;
+
+@property (nonatomic, strong) PLTableView *tableView2;
+
+
 
 /**
  Image header height value will set the height of the image pager header. Default value is 375.0f.
@@ -108,6 +115,8 @@
  Call this method to reload data. This will refresh the tableview and the header imageview.
  */
 - (void)reloadData;
+
+- (void) loadHtmlString:(NSString *)html;
 
 /*
  Use this method if you need to hide the header imageview.

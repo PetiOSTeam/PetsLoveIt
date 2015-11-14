@@ -7,7 +7,6 @@
 //
 
 #import "ArticleTableCell.h"
-#import "ArticleModel.h"
 
 @implementation ArticleTableCell
 
@@ -20,6 +19,16 @@
  */
 -(void)dataFill{
     ArticleModel *article = (ArticleModel *)self.model;
+    [self.goodsImageView sd_setImageWithURL:[NSURL URLWithString:article.imageUrl] placeholderImage:kImagePlaceHolder];
+    self.nameLabel.text = article.name;
+    self.titleLabel.text = article.title;
+    self.contentLabel.text = article.content;
+    self.dateLabel.text = article.dateDesc;
+    self.commentLabel.text = article.commentNum;
+    self.favorNumLabel.text = article.favorNum;
+}
+
+- (void)loadCellWithModel:(ArticleModel*)article{
     [self.goodsImageView sd_setImageWithURL:[NSURL URLWithString:article.imageUrl] placeholderImage:kImagePlaceHolder];
     self.nameLabel.text = article.name;
     self.titleLabel.text = article.title;

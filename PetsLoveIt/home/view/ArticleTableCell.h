@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "LTCell.h"
+#import "ArticleModel.h"
+
 
 @interface ArticleTableCell : LTCell
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -19,5 +21,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *favorImageView;
 @property (weak, nonatomic) IBOutlet UILabel *favorNumLabel;
+
+
+- (void)loadCellWithModel:(ArticleModel*)article;
 
 @end

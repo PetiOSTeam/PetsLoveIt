@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LTCell.h"
+#import "GoodsModel.h"
 
 @interface GoodsCell : LTCell
 @property (weak, nonatomic) IBOutlet UIImageView *goodImageView;
@@ -19,5 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *commentNumLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *favorImageView;
 @property (weak, nonatomic) IBOutlet UILabel *favorNumLabel;
+
+- (void)loadCellWithGoodsModel:(GoodsModel *)good;
 
 @end

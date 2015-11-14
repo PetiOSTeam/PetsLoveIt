@@ -7,7 +7,6 @@
 //
 
 #import "GoodsCell.h"
-#import "GoodsModel.h"
 
 @implementation GoodsCell
 
@@ -20,6 +19,16 @@
  */
 -(void)dataFill{
     GoodsModel *good = (GoodsModel *)self.model;
+    [self.goodImageView sd_setImageWithURL:[NSURL URLWithString:good.imageUrl] placeholderImage:kImagePlaceHolder ];
+    self.nameLabel.text = good.name;
+    self.descLabel.text = good.desc;
+    self.prodLabel.text = good.prodDetail;
+    self.commentNumLabel.text = good.commentNum;
+    self.favorNumLabel.text = good.favorNum;
+    self.dateLabel.text = good.dateDesc;
+}
+
+- (void)loadCellWithGoodsModel:(GoodsModel *)good{
     [self.goodImageView sd_setImageWithURL:[NSURL URLWithString:good.imageUrl] placeholderImage:kImagePlaceHolder ];
     self.nameLabel.text = good.name;
     self.descLabel.text = good.desc;

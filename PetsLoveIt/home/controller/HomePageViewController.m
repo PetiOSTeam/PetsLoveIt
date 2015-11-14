@@ -20,6 +20,8 @@
 
 @interface HomePageViewController ()
 @property (nonatomic,strong) CorePagesView *pagesView;
+@property (nonatomic,strong) UIView *headerView;
+@property (strong, nonatomic)  UILabel *navBarTitleLabel;
 
 @end
 
@@ -31,11 +33,26 @@
     [self loadViewsAndData];
 }
 
+
 - (void)loadViewsAndData{
-    self.title = @"宠物爱这个";
+    [self.view addSubview:self.headerView];
     [self setPageViews];
 }
 
+-(UIView *)headerView{
+    if (!_headerView) {
+        _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 64)];
+        [_headerView setBackgroundColor:[UIColor whiteColor]];
+        _navBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, mScreenWidth, 44)];
+        [_navBarTitleLabel setText:@"宠物爱这个"];
+        [_navBarTitleLabel setTextAlignment:NSTextAlignmentCenter];
+        [_navBarTitleLabel setFont:[UIFont systemFontOfSize:18]];
+        [_navBarTitleLabel setTextColor:kNaviTitleColor];
+        [_headerView addSubview:_navBarTitleLabel];
+        
+    }
+    return _headerView;
+}
 
 - (void)setPageViews{
     
@@ -68,6 +85,7 @@
         
     }
     _pagesView=[CorePagesView viewWithOwnerVC:self pageModels:pageModels];
+    _pagesView.top = 64;
     [self.pagesView.pagesBarView setBackgroundColor:mRGBToColor(0xfeffff)];
     [self.pagesView.scrollView setBackgroundColor:mRGBToColor(0xffffff)];
     [self.view addSubview:self.pagesView];

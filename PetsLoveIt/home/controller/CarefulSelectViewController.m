@@ -11,6 +11,7 @@
 #import "GoodsModel.h"
 #import "GoodsCell.h"
 #import "CoreViewNetWorkStausManager.h"
+#import "GoodsDetailViewController.h"
 
 @interface CarefulSelectViewController ()<ZQWScrollViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic,strong) UIView *tableHeaderView;
@@ -48,6 +49,7 @@
 }
 
 - (void)prepareViewsAndData{
+    
     self.imageURLs = @[@"http://eimg.smzdm.com/201511/07/563d5aafb4b5a7775.jpg",
                        @"http://eimg.smzdm.com/201511/06/563c106d4c8a7502.png",
                        @"http://eimg.smzdm.com/201511/07/563d5fb8cb2a47852.jpg"];
@@ -165,9 +167,14 @@
         }];
         
         _displayView2 = [[UIView alloc] initWithFrame:CGRectMake(_displayView1.right, 0, mScreenWidth/2, _displayView.height/2)];
-        _urlImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 100, _descLabel2.bottom+5, 90, 60)];
+        if (mIsiP5) {
+            _urlImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 80, _descLabel2.bottom+5, 70, 60)];
+        }else{
+            _urlImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 100, _descLabel2.bottom+5, 90, 60)];
+        }
+                
         _titleLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, _displayView2.width-_urlImageView2.width-20, 18)];
-        _descLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel2.bottom+10, _displayView2.width-90-20, 14)];
+        _descLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel2.bottom+10, _displayView2.width-_urlImageView2.width-20, 14)];
         [_titleLabel2 setTextColor:mRGBToColor(0xff4401)];
         [_titleLabel2 setFont:[UIFont systemFontOfSize:16]];
         [_titleLabel2 setText:@"限时优惠"];
@@ -183,13 +190,17 @@
         [_urlImageView2 yy_setImageWithURL:[NSURL URLWithString:@"http://eimg.smzdm.com/201511/08/563ea8e9c46a79304.png"] placeholder:kImagePlaceHolder options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation completion:NULL];
         
         
-        _urlImageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(_urlImageView1.right, _urlImageView2.bottom+0.5, mScreenWidth-_urlImageView1.width, _displayView.height/2)];
         
         
         _displayView3 = [[UIView alloc] initWithFrame:CGRectMake(_displayView1.right, _displayView2.bottom, mScreenWidth/2, _displayView.height/2)];
-        _urlImageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 100, _descLabel3.bottom+5, 90, 60)];
+        if (mIsiP5) {
+            _urlImageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 80, _descLabel3.bottom+5, 70, 60)];
+        }else{
+            _urlImageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 100, _descLabel3.bottom+5, 90, 60)];
+        }
+        
         _titleLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, _displayView3.width-_urlImageView3.width-20, 18)];
-        _descLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel3.bottom+10, _displayView3.width-90-20, 14)];
+        _descLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel3.bottom+10, _displayView3.width-_urlImageView2.width-20, 14)];
         [_titleLabel3 setTextColor:mRGBToColor(0xff4401)];
         [_titleLabel3 setFont:[UIFont systemFontOfSize:16]];
         [_titleLabel3 setText:@"高端尖货"];
@@ -214,6 +225,13 @@
         
     }
     return _tableHeaderView;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
