@@ -17,6 +17,7 @@
 #import "NewsViewController.h"
 #import "TaoPetViewController.h"
 #import "TaoPetViewController.h"
+#import "ShakeViewController.h"
 
 @interface HomePageViewController ()
 @property (nonatomic,strong) CorePagesView *pagesView;
@@ -36,7 +37,32 @@
 
 - (void)loadViewsAndData{
     [self.view addSubview:self.headerView];
+    [self setupNaviButton];
     [self setPageViews];
+}
+
+-(void)setupNaviButton{
+    UIButton *shakeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    shakeButton.frame = CGRectMake(10, 30, 64, 34);
+    [shakeButton setImage:[UIImage imageNamed:@"shakeIcon"] forState:UIControlStateNormal];
+    [shakeButton addTarget:self action:@selector(showShakeVC) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    searchButton.frame = CGRectMake(mScreenWidth-64-10, 30, 64, 34);
+    [searchButton setImage:[UIImage imageNamed:@"searchGoodsIcon"] forState:UIControlStateNormal];
+    [searchButton addTarget:self action:@selector(showSearchVC) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.headerView addSubview:shakeButton];
+    [self.headerView addSubview:searchButton];
+}
+
+- (void)showShakeVC{
+    ShakeViewController *vc = [ShakeViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)showSearchVC{
+    
 }
 
 -(UIView *)headerView{
