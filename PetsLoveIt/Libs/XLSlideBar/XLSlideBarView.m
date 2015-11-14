@@ -47,7 +47,7 @@
         
         _kItemWidth = self.width / items.count;
         
-//        [self addBottomBorderWithColor:mRGBToColor(0xeeeeee) andWidth:.5];
+        //        [self addBottomBorderWithColor:mRGBToColor(0xeeeeee) andWidth:.5];
         [self createWithItems:items];
     }
     return self;
@@ -116,8 +116,35 @@
 {
     float xx = x * (_kItemWidth / self.frame.size.width);
     float pStartX = xx;
-    
     int sT = (x)/self.slideView.frame.size.width;
+    if (sT < 0 || sT > self.labelItems.count - 1) {
+        return;
+    }
+    UILabel *label = [_labelItems objectAtIndex:sT];
+    float percent = (pStartX - _kItemWidth * sT)/_kItemWidth;
+    //    float value = [QHCommonUtil lerp:(1 - percent) min:1.0f max:1.1f];
+    //    [self scaleLabelFromItem:label scale:value];
+    [self changeColorForItem:label red:(1 - percent)];
+    
+    if((int)xx % _kItemWidth == 0) {
+        return;
+    }
+    if (sT + 1 > self.labelItems.count - 1) {
+        return;
+    }
+    UILabel *label1 = [_labelItems objectAtIndex:sT + 1];
+    //float value1 = [QHCommonUtil lerp:percent min:1.0f max:1.1f];
+    //[self scaleLabelFromItem:label1 scale:value1];
+    [self changeColorForItem:label1 red:percent];
+    
+    [self equalLineOffsetX:xx];
+}
+
+- (void)changeItemWithScale:(float)s
+{
+    float xx = s * self.frame.size.width;
+    float pStartX = xx;
+    int sT = s;//(x)/self.slideView.frame.size.width;
     if (sT < 0 || sT > self.labelItems.count - 1) {
         return;
     }
@@ -143,16 +170,17 @@
 
 - (void)changeColorForItem:(UILabel *)label red:(float)nRedPercent
 {
-    CGFloat redColorValue = [QHCommonUtil lerp:nRedPercent min:101 max:228];
-    CGFloat greenColorValue = [QHCommonUtil lerp:nRedPercent min:101 max:77];
-    CGFloat blueColorValue = [QHCommonUtil lerp:nRedPercent min:101 max:66];
+    CGFloat redColorValue = [QHCommonUtil lerp:nRedPercent min:101 max:217];
+    CGFloat greenColorValue = [QHCommonUtil lerp:nRedPercent min:101 max:71];
+    CGFloat blueColorValue = [QHCommonUtil lerp:nRedPercent min:101 max:25];
     
     label.textColor = mRGBAColor(redColorValue,greenColorValue,blueColorValue,1);
 }
 
 - (void)equalLineOffsetX:(CGFloat)offsetX
 {
-    self.selectImageView.left = 15 + offsetX;
+    NSLog(@"offsetX:%f", offsetX);
+    self.selectImageView.left = offsetX;
 }
 
 - (void)changeSelectedItemWithOffsetX:(float)x
@@ -174,11 +202,19 @@
 {
     if (!_selectImageView) {
         _selectImageView = [[UIImageView alloc] init];
-        _selectImageView.backgroundColor = kDefaultColor;
-        _selectImageView.width = 70;
+        _selectImageView.backgroundColor = [UIColor whiteColor];
+        _selectImageView.width = self.width / self.titles.count;
         _selectImageView.height = 2;
         _selectImageView.bottom = self.height - 5;
         [self addSubview:_selectImageView];
+        
+        
+        UIView *redColorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 70, 2)];
+        redColorView.backgroundColor = kDefaultColor;
+        [_selectImageView addSubview:redColorView];
+        redColorView.translatesAutoresizingMaskIntoConstraints = NO;
+        [redColorView autoCenterInSuperview];
+        [redColorView autoSetDimensionsToSize:CGSizeMake(70, 2)];
     }
     return _selectImageView;
 }

@@ -29,4 +29,6 @@
 
 - (void)changeSelectedItemWithOffsetX:(float)x;
 
+- (void)changeItemWithScale:(float)s;
+
 @end

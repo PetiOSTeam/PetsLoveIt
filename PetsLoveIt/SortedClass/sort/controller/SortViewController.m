@@ -10,6 +10,7 @@
 #import "XLSlideBarView.h"
 #import "ScreenStoreView.h"
 #import "ScreenSoretedView.h"
+#import "SearchViewController.h"
 
 @interface SortViewController ()<XLSlideBarDelegate, UIScrollViewDelegate>
 
@@ -34,7 +35,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)setupNavigationUI
@@ -47,7 +47,7 @@
     ScreenSoretedView *soretedView = [[ScreenSoretedView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - CGRectGetMaxY(self.slideBarView.frame))];
     [self.scrollView addSubview:soretedView];
     [soretedView addTopBorderWithColor:kLineColor andWidth:.5];
-
+    
     ScreenStoreView *screenStoreView = [[ScreenStoreView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - CGRectGetMaxY(self.slideBarView.frame))];
     screenStoreView.left = self.view.width;
     [self.scrollView addSubview:screenStoreView];
@@ -62,26 +62,41 @@
 }
 
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)selectedWithSorePage:(int)page
+{
+    [self.scrollView setContentOffset:CGPointMake(page * self.scrollView.width, 0) animated:YES];
 }
-*/
+
 #pragma mark - *** XLSlideBar Delegate ***
 
 - (void)selectItemWithPage:(int)page withObject:(XLSlideBarView *)slideBar
 {
-    
+    [self selectedWithSorePage:page];
 }
 
 #pragma mark - *** UIScrollView Delegate ***
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self.slideBarView changeItem:scrollView.contentOffset.x];
+    [self.slideBarView changeItemWithScale:scrollView.contentOffset.x / scrollView.contentSize.width];
+}
+
+#pragma mark - *** Push search action ***
+
+- (void)clickSearchAction
+{
+    SearchViewController *searchVC = [[SearchViewController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchVC];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark - *** getter ***
@@ -92,7 +107,7 @@
         _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_searchButton setBackgroundImage:[AppUtils imageFromColor:kLineColor] forState:UIControlStateNormal];
         [_searchButton setBackgroundImage:[AppUtils imageFromColor:kLineColor] forState:UIControlStateHighlighted];
-
+        
         _searchButton.width = self.view.width - 20;
         _searchButton.height = 30;
         _searchButton.layer.cornerRadius = 4.f;
@@ -100,6 +115,10 @@
         UIImageView *searchIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"search_icon"]];
         [searchIcon sizeToFit];
         [_searchButton addSubview:searchIcon];
+        [_searchButton addTarget:self
+                          action:@selector(clickSearchAction)
+                forControlEvents:UIControlEventTouchUpInside];
+        
         searchIcon.translatesAutoresizingMaskIntoConstraints = NO;
         [searchIcon autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:10];
         [searchIcon autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
@@ -132,7 +151,7 @@
         [line autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_slideBarView];
         [line autoPinEdgeToSuperviewEdge:ALEdgeLeft];
         [line autoPinEdgeToSuperviewEdge:ALEdgeRight];
-
+        
     }
     return _slideBarView;
 }
@@ -144,6 +163,8 @@
         _scrollView.delegate = self;
         _scrollView.pagingEnabled = YES;
         _scrollView.bounces = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.showsVerticalScrollIndicator = NO;
         [self.view addSubview:_scrollView];
         [_scrollView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.slideBarView];
         [_scrollView autoPinEdgeToSuperviewEdge:ALEdgeBottom];
@@ -154,4 +175,3 @@
 }
 
 @end
-
