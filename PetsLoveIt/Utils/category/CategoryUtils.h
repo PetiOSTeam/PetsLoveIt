@@ -37,6 +37,5 @@
 #import "UIViewController+HUD.h"
 #import "UITableViewCell+Addition.h"
 #import "UIView+Effects.h"
-#import "UINavigationBar+Awesome.h"
 #import "UIViewController+ZJExchange.h"
 
