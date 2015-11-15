@@ -124,7 +124,7 @@ static const char kBottomFrameKey = 'g';
         self.bottomScrollView.frame = [self.displayFrameValue CGRectValue];
         //fix tableView2 height and top
         self.bottomScrollView.top =  self.bottomScrollView.frame.origin.y + 64;
-        self.bottomScrollView.height =self.bottomScrollView.frame.size.height - 64-49;
+        self.bottomScrollView.height =self.bottomScrollView.frame.size.height - 64;
     }];
 }
 

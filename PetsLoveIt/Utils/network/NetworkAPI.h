@@ -9,17 +9,20 @@
 #ifndef iOSAppFramework_NetworkAPI_h
 #define iOSAppFramework_NetworkAPI_h
 #define kBaseURL                    @"http://www.youbicaifu.com"
-#define UMENG_APPKEY                @"560603b6e0f55a557c00450e"
+#define UMENG_APPKEY                @"56484222e0f55ad4db009b90"
+#define UMENG_channelId             @"petiOSAppStore"
 
 static NSString *const iVersioniOSAppStoreURLFormat = @"https://itunes.apple.com/us/app/you-bi-cai-fu/id1043407423?mt=8&uo=4";
 static NSString *const appStoreID = @"1043407423";
 
-#define QQSDKAppID @"1104747343"
-#define WXAppId    @"wx48000a55fa8aab5d"
-#define WXAppSecret @"fef3e591dbb0a7ea9f5740a7d3cb4e06"
+#define QQSDKAppID @"1104902660"
+#define QQAppKey   @"DE1hR1uJxDpFAQ9c"
 
-#define SinaAppId @"2983639920"
-#define SinaAppSecret @"149ff6096df921fcb7829872601322c3"
+#define WXAppId    @"wxf89553206e1e0280"
+#define WXAppSecret @"7da19cc88065e0460b111994491f28c9"
+
+#define SinaAppId @"3440491783"
+#define SinaAppSecret @"ed3df3d26e9a609a3c2e93bc4d929fb5"
 
 
 

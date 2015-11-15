@@ -12,6 +12,12 @@
 #import "BaseNavigationController.h"
 #import "SortViewController.h"
 #import "MLTransition.h"
+#import <TencentOpenAPI/TencentOAuth.h>
+#import "UMSocial.h"
+#import "UMSocialWechatHandler.h"
+#import "UMSocialQQHandler.h"
+#import "UMSocialSinaHandler.h"
+#import "MobClick.h"
 
 @interface AppDelegate ()
 
@@ -39,6 +45,7 @@
 
     [self loadMainViews];
     [self setupNavigationStyle];
+    [self setupUmengSDK];
     
     return YES;
 }
@@ -83,6 +90,40 @@
     
 }
 
+- (void)setupUmengSDK{
+    [self umengTrack];
+    [self registerUmengShare];
+}
+
+- (void)umengTrack {
+    
+    [MobClick setLogEnabled:NO];  // 打开友盟sdk调试，注意Release发布时需要注释掉此行,减少io消耗
+    [MobClick setAppVersion:XcodeAppVersion]; 
+    [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:(ReportPolicy) REALTIME channelId:nil];
+    
+    [MobClick updateOnlineConfig];  //在线参数配置
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onlineConfigCallBack:) name:UMOnlineConfigDidFinishedNotification object:nil];
+}
+
+- (void)registerUmengShare{
+    //设置友盟社会化组件appkey
+    [UMSocialData setAppKey:UMENG_APPKEY];
+    //设置微信AppId、appSecret，分享url
+    [UMSocialWechatHandler setWXAppId:WXAppId appSecret:WXAppSecret url:@"http://www.pets.com"];
+    //QQ 分享
+    [UMSocialQQHandler setQQWithAppId:QQSDKAppID appKey:QQAppKey url:@"http://www.pets.com"];
+    //打开新浪微博的SSO开关，设置新浪微博回调地址，这里必须要和你在新浪微博后台设置的回调地址一致。若在新浪后台设置我们的回调地址，“http://sns.whalecloud.com/sina2/callback”，这里可以传nil ,需要 #import "UMSocialSinaHandler.h"
+    [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    //由于苹果审核政策需求，建议大家对未安装客户端平台进行隐藏，在设置QQ、微信AppID之后调用下面的方法
+    [UMSocialConfig hiddenNotInstallPlatforms:@[UMShareToQQ, UMShareToQzone, UMShareToWechatSession, UMShareToWechatTimeline]];
+}
+
+- (void)onlineConfigCallBack:(NSNotification *)note {
+    
+    NSLog(@"online config has fininshed and note = %@", note.userInfo);
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -103,6 +144,24 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        result = [TencentOAuth HandleOpenURL:url];
+    }
+    return  result;
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        result = [TencentOAuth HandleOpenURL:url];
+    }
+    return  result;
 }
 
 @end

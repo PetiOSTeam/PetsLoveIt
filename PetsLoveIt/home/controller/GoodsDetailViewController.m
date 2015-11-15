@@ -10,12 +10,16 @@
 #import "KMDetailsPageView.h"
 #import "KMNetworkLoadingViewController.h"
 #import "StoryBoardUtilities.h"
+#import "BottomMenuView.h"
+
 
 @interface GoodsDetailViewController ()<UITableViewDataSource, UITableViewDelegate,  KMNetworkLoadingViewDelegate, KMDetailsPageDelegate>
 @property (strong, nonatomic)  UIView *navigationBarView;
 @property (strong, nonatomic)  UIView *networkLoadingContainerView;
 @property (strong, nonatomic)  KMDetailsPageView* detailsPageView;
 @property (strong, nonatomic)  UILabel *navBarTitleLabel;
+@property (nonatomic,strong) BottomMenuView *menuView;
+
 
 @property (assign) CGPoint scrollViewDragPoint;
 @property (nonatomic, strong) KMNetworkLoadingViewController* networkLoadingViewController;
@@ -47,6 +51,13 @@
  
 }
 
+-(BottomMenuView *)menuView{
+    if (!_menuView) {
+        _menuView = [[BottomMenuView alloc] initWithFrame:CGRectMake(0, mScreenHeight-49, mScreenWidth, 49) menuType:GoodsType];
+    }
+    return _menuView;
+}
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -59,6 +70,10 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
+
+}
+
+-(void)dealloc{
     [self removeZJExchangeObserver];
 
 }
@@ -103,6 +118,7 @@
     self.detailsPageView.tableViewSeparatorColor = [UIColor clearColor];
     self.detailsPageView.tableView.tableFooterView = [UIView new];
     [self.view addSubview:self.detailsPageView];
+    [self.view addSubview:self.menuView];
     [self.detailsPageView reloadData];
 
 }

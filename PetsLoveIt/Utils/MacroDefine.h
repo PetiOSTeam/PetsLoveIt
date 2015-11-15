@@ -191,6 +191,13 @@ UIKIT_STATIC_INLINE AppDelegate *appDelegate()
 #define kPhotoUtilsThumbImage @"ThumbImage"
 #define kPhotoUtilsAsset @"Asset"
 
+//详情页类型
+typedef NS_ENUM(NSInteger, DetailPageType) {
+    GoodsType,
+    RelatedPersonType,
+    NewsType
+};
+
 
 //通知notification
 #define changeHeadImageNotify  @"changeHeadImageNotify"

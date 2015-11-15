@@ -7,6 +7,7 @@
 //
 
 #import "CommonViewController.h"
+#import "MobClick.h"
 
 @interface CommonViewController ()<UIAlertViewDelegate>
 
@@ -66,61 +67,7 @@
     [button addTarget:self action:@selector(clickedBarButtonItemAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     switch (style) {
-        case TWBarButtonItemStylePublish:{
-            [button setImage:nil forState:UIControlStateNormal];
-            [button setTitle:@"发表" forState:UIControlStateNormal];
-            //[button.titleLabel setFont:[UIFont systemFontOfSize:13]];
-            break;
-        }
-        case TWBarButtonItemStyleSubmit:{
-            [button setImage:nil forState:UIControlStateNormal];
-            [button setTitle:@"提交" forState:UIControlStateNormal];
-            break;
-        }
-        case TWBarbuttonItemStyleShare:{
-            [button setImage:[UIImage imageNamed:@"Image_share"] forState:UIControlStateNormal];
-            [button setTitle:@"分享" forState:UIControlStateNormal];
-            [button setWidth:60];
-            break;
-        }
-        case TWBarbuttonItemStyleSendMsg:{
-            [button setImage:nil forState:UIControlStateNormal];
-            [button setTitle:@"发送" forState:UIControlStateNormal];
-            break;
-        }
-        case TWBarButtonItemStyleRecommendUser:{
-            [button setTitle:@"圈友" forState:UIControlStateNormal];
-            break;
-        }
-        case TWBarbuttonItemStyleSearchUser:{
-            [button setTitle:@"查找圈友" forState:UIControlStateNormal];
-            button.width = 60;
-            button.height = 25;
-            [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
-            button.layer.borderColor = kLayerBorderColor.CGColor;
-            button.layer.borderWidth = kLayerBorderWidth;
-            button.layer.cornerRadius = 5;
-            break;
-        }
-        case TWBarbuttonItemStyleAllRead:{
-            [button setTitle:@"全部已读" forState:UIControlStateNormal];
-            button.width = 60;
-            button.height = 25;
-            [button.titleLabel setFont:[UIFont systemFontOfSize:13]];
-            button.layer.borderColor = kLayerBorderColor.CGColor;
-            button.layer.borderWidth = kLayerBorderWidth;
-            button.layer.cornerRadius = 5;
-
-            break;
-        }
-        case TWBarbuttonItemStyleNone: {
-            self.navigationItem.rightBarButtonItem = nil;
-            break;
-        }
-        case TWBarbuttonItemStyleSearch:{
-            [button setTitle:@"🔍" forState:UIControlStateNormal];
-            break;
-        }
+        
         default:
             break;
     }
@@ -207,6 +154,8 @@
 
 - (void)TWViewWillAppear:(BOOL)animated
 {
+    [MobClick beginLogPageView:NSStringFromClass(self.class)];
+
 }
 
 - (void)TWViewWillDisappear:(BOOL)animated
@@ -245,6 +194,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+    [MobClick endLogPageView:NSStringFromClass(self.class)];
     [SVProgressHUD dismiss];
     [SVIndicator dismiss];
 }
