@@ -146,6 +146,8 @@ otherButtonTitles:nil]; \
 
 #define kLineColor mRGBToColor(0xCECECB)//line背景色
 
+#define kOrangeColor mRGBToColor(0xff4401)  //橘黄色
+
 #define mSystemVersion   ([[UIDevice currentDevice] systemVersion])
 #define mCurrentLanguage ([[NSLocale preferredLanguages] objectAtIndex:0])
 //用于版本升级的判断

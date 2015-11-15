@@ -58,6 +58,29 @@
         viewController.hidesBottomBarWhenPushed = YES;
     }
     [super pushViewController:viewController animated:animated];
+    
+    // 添加返回
+    if ([self.viewControllers count] > 1){
+        if (viewController.navigationItem.leftBarButtonItem == nil){
+            
+            UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            leftBtn.width = 35;
+            leftBtn.height = 40;
+            [leftBtn setImage:[UIImage imageNamed:@"backBarButtonIcon"] forState:UIControlStateNormal];
+            [leftBtn addTarget:self action:@selector(popViewController) forControlEvents:UIControlEventTouchUpInside];
+            UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
+            UIBarButtonItem *leftSpacer        =
+            [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                                          target:nil action:nil];
+            leftSpacer.width = -8;
+            viewController.navigationItem.leftBarButtonItems = @[leftSpacer, leftBarButtonItem];
+        }
+    }
+}
+
+- (void)popViewController
+{
+    [self popViewControllerAnimated:YES];
 }
 
 #pragma mark - View rotation
