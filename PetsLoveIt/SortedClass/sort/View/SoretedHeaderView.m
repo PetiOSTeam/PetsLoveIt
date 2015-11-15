@@ -20,6 +20,8 @@
 
 - (void)awakeFromNib
 {
+    self.width = mScreenWidth;
+
     [self addTopBorderWithColor:kLineColor andWidth:.5f];
     self.headerImageView.layer.cornerRadius = self.headerImageView.height / 2;
     self.headerImageView.layer.masksToBounds = YES;

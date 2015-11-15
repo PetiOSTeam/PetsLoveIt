@@ -151,6 +151,7 @@
                                              reuseIdentifier:CellIdentifierKeyWords];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.height = [SearchKeyWordsCell heightFromArray:keywords];
+            cell.width = mScreenWidth;
             [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
         }
         cell.keywords = keywords;
