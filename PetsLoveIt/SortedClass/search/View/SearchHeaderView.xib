@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SearchHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="热门关键字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcg-g1-rCC">
+                    <rect key="frame" x="10" y="12" width="197" height="21"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="TLk-wM-2lR"/>
+                        <constraint firstAttribute="width" constant="197" id="Ueq-WP-4rf"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.30588235289999999" green="0.31372549020000001" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHW-Dn-sVR">
+                    <rect key="frame" x="265" y="8" width="46" height="30"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="0Ol-ME-1AR"/>
+                        <constraint firstAttribute="width" constant="46" id="L78-hk-tjg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <state key="normal" title="换一批">
+                        <color key="titleColor" red="0.039215686270000001" green="0.20784313730000001" blue="0.79215686269999996" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="changekeywordsAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ecv-QD-OgX"/>
+                    </connections>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="jcg-g1-rCC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="4LM-AZ-JA7"/>
+                <constraint firstItem="jcg-g1-rCC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="FqW-e1-cBk"/>
+                <constraint firstItem="oHW-Dn-sVR" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hEY-jx-8Vw"/>
+                <constraint firstAttribute="trailing" secondItem="oHW-Dn-sVR" secondAttribute="trailing" constant="9" id="mCY-tU-jNq"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="changeKeyworksButton" destination="oHW-Dn-sVR" id="zya-h7-2WJ"/>
+                <outlet property="titleLabel" destination="jcg-g1-rCC" id="bom-q8-c3a"/>
+            </connections>
+        </view>
+    </objects>
+</document>

@@ -11,6 +11,7 @@
 #import "ScreenStoreView.h"
 #import "ScreenSoretedView.h"
 #import "SearchViewController.h"
+#import "BaseNavigationController.h"
 
 @interface SortViewController ()<XLSlideBarDelegate, UIScrollViewDelegate>
 
@@ -95,7 +96,7 @@
 - (void)clickSearchAction
 {
     SearchViewController *searchVC = [[SearchViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searchVC];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:searchVC];
     [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
@@ -105,8 +106,8 @@
 {
     if (!_searchButton) {
         _searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_searchButton setBackgroundImage:[AppUtils imageFromColor:kLineColor] forState:UIControlStateNormal];
-        [_searchButton setBackgroundImage:[AppUtils imageFromColor:kLineColor] forState:UIControlStateHighlighted];
+        [_searchButton setBackgroundImage:[AppUtils imageFromColor:mRGBToColor(0xeeeeee)] forState:UIControlStateNormal];
+        [_searchButton setBackgroundImage:[AppUtils imageFromColor:mRGBToColor(0xeeeeee)] forState:UIControlStateHighlighted];
         
         _searchButton.width = self.view.width - 20;
         _searchButton.height = 30;
