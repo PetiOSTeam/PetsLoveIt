@@ -32,7 +32,6 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setupNavigationUI];
     [self setupSubviews];
     // Do any additional setup after loading the view from its nib.
 }
