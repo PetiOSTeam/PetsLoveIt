@@ -9,6 +9,7 @@
 #import "ExperienceViewController.h"
 #import "ArticleModel.h"
 #import "ArticleTableCell.h"
+#import "GoodsDetailViewController.h"
 
 @interface ExperienceViewController ()
 
@@ -54,6 +55,12 @@
 
 -(void)testdealWithResponseData:(id)obj{
     
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**

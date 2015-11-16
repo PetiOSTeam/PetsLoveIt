@@ -9,6 +9,7 @@
 #import "DiscountViewController.h"
 #import "GoodsModel.h"
 #import "GoodsCell.h"
+#import "GoodsDetailViewController.h"
 
 @interface DiscountViewController ()
 
@@ -48,6 +49,12 @@
     }
     self.dataList = dataArray;
     [self.tableView reloadData];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**

@@ -11,6 +11,7 @@
 #import "CorePagesView/Config/CorePagesViewConst.h"
 #import "OrderModel.h"
 #import "ShareOrderCell.h"
+#import "GoodsDetailViewController.h"
 
 @interface ShareOrderViewController () {
     NSMutableArray *dataArray;
@@ -48,6 +49,12 @@
     }
     self.dataList = dataArray;
     [self.tableView reloadData];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**

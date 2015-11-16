@@ -105,6 +105,31 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
     SoretedHeaderView *headerView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                                           withReuseIdentifier:ScreenStoreHeaderCellIdentifier
                                                                                  forIndexPath:indexPath];
+    
+    switch (indexPath.section) {
+        case 0:
+        {
+            headerView.titleLabel.text = @"狗狗";
+            headerView.headerImageView.image = [UIImage imageNamed:@"dogSortIcon"];
+        }
+            break;
+        case 1:
+        {
+            headerView.titleLabel.text = @"猫猫";
+            headerView.headerImageView.image = [UIImage imageNamed:@"catSortIcon"];
+        }
+            break;
+        case 2:
+        {
+            headerView.titleLabel.text = @"小宠";
+            headerView.headerImageView.image = [UIImage imageNamed:@"otherPetSortIcon"];
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
 //    if (indexPath.section == 0) {
 //        headerView.title = @"国内商城";
 //    }else {
