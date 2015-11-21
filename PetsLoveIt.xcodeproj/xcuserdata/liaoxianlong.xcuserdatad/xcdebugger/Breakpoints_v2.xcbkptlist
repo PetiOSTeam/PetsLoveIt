@@ -19,29 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PetsLoveIt/SortedClass/sort/View/ScreenStoreView.m"
-            timestampString = "469777952.950075"
+            filePath = "PetsLoveIt/SortedClass/search/View/Cell/SearchKeyWordsCell.m"
+            timestampString = "469801222.86129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "-loadDataFromSever"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PetsLoveIt/SortedClass/sort/View/ScreenStoreView.m"
-            timestampString = "469777953.521271"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "-loadDataFromSever"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "-tagView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

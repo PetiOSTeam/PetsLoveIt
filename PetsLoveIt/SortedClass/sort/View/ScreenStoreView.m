@@ -44,22 +44,39 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 
 - (void)loadDataFromSever
 {
-//    http://pic.qiantucdn.com/58pic/18/02/41/33558PIC8ik_1024.jpg
+    //    http://pic.qiantucdn.com/58pic/18/02/41/33558PIC8ik_1024.jpg
     
-    
-    [APIOperation GET:@"http://121.42.51.60:8088/petweb/actions/getSource.action?uid=getprodMall"
-           parameters:nil onCompletion:^(id responseData, NSError *error) {
-               if (!error) {
-                   
-               }else {
-                   
-               }
-           }];
-    for (int i = 0; i < 20; i++) {
-        StoreModel *storeModel = [[StoreModel alloc] init];
-        //        storeModel.mallIcon
-        [self.dataSource addObject:storeModel];
-    }
+    WEAKSELF
+    [APIOperation GET:kSortClassAPI
+           parameters:@{@"uid": @"getprodMall"}
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  NSDictionary *jsonDict = responseObject[@"beans"];
+                  if (jsonDict) {
+                      [weakSelf handerDataSourceFromJsonDict:jsonDict];
+                  }
+              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  
+              }];
+}
+
+- (void)handerDataSourceFromJsonDict:(NSDictionary *)jsonDict
+{
+    NSArray *abroadMall = jsonDict[@"abroadMall"];
+    NSArray *chinalMall = jsonDict[@"chinalMall"];
+    NSMutableArray *abroadMalls = [NSMutableArray new];
+    NSMutableArray *chinalMalls = [NSMutableArray new];
+    [abroadMall enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        StoreModel *model = [[StoreModel alloc] initWithJson:obj];
+        model.mallIcon = @"http://pic.qiantucdn.com/58pic/18/02/41/33558PIC8ik_1024.jpg";
+        [abroadMalls addObject:model];
+    }];
+    [chinalMall enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        StoreModel *model = [[StoreModel alloc] initWithJson:obj];
+        model.mallIcon = @"http://pic.qiantucdn.com/58pic/18/02/41/33558PIC8ik_1024.jpg";
+        [chinalMalls addObject:model];
+    }];
+    [self.dataSource addObject:abroadMalls];
+    [self.dataSource addObject:chinalMalls];
     [self.collectionView reloadData];
 }
 
@@ -67,17 +84,26 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    NSArray *tempArray = self.dataSource[section];
     if (section == 0) {
-        NSInteger num = (self.dataSource.count - 1) % 3;
-        return !_moreStoreInter ? DefaultNum : self.dataSource.count + num;
+        if (tempArray.count > DefaultNum) {
+            //            NSInteger num = (self.dataSource.count - 1) % 3;
+            return !_moreStoreInter ? DefaultNum : tempArray.count;
+        }else {
+            return tempArray.count;
+        }
     }
-    NSInteger num = (self.dataSource.count - 1) % 3;
-    return !_moreStoreOuter ? DefaultNum : self.dataSource.count + num;
+    if (tempArray.count > DefaultNum) {
+        //        NSInteger num = (self.dataSource.count - 1) % 3;
+        return !_moreStoreOuter ? DefaultNum : tempArray.count;
+    }else {
+        return tempArray.count;
+    }
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 2;
+    return self.dataSource.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
@@ -87,7 +113,8 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
-    if (self.dataSource.count <= DefaultNum) {
+    NSArray *tempArray = self.dataSource[section];
+    if (tempArray.count <= DefaultNum) {
         return CGSizeMake(self.width, 1);
     }
     return CGSizeMake(self.width, 45);
@@ -106,11 +133,15 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PLStoreCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    if (indexPath.row == 1 || indexPath.row % 3 == 1) {
-        cell.isLandscapeLine = YES;
-    }else {
-        cell.isLandscapeLine = NO;
-    }
+//    if (indexPath.row == 1 || indexPath.row % 3 == 1) {
+//        cell.isLandscapeLine = YES;
+//    }else {
+//        cell.isLandscapeLine = NO;
+//    }
+//    NSLog(@"row:%ld", indexPath.row);
+    NSArray *tempData = self.dataSource[indexPath.section];
+    StoreModel *model = tempData[indexPath.row];
+    cell.model = model;
     return cell;
 }
 
@@ -148,8 +179,17 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 - (UICollectionReusableView *)footerFromIndexPath:(NSIndexPath *)indexPath
 {
     StoreFooterView *footerView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
-                                                                     withReuseIdentifier:ScreenStoreFooterCellIdentifier
-                                                                            forIndexPath:indexPath];
+                                                                          withReuseIdentifier:ScreenStoreFooterCellIdentifier
+                                                                                 forIndexPath:indexPath];
+    NSArray *tempArray = self.dataSource[indexPath.section];
+    if (tempArray.count <= DefaultNum) {
+        if (indexPath.section == 0) {
+            footerView.title = @"";
+        }else {
+            footerView.title = @"";
+        }
+        return footerView;
+    }
     if (indexPath.section == 0) {
         if (_moreStoreInter) {
             footerView.title = @"收起";

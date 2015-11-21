@@ -502,6 +502,8 @@
 		18F633BC1BF8898000FD98B1 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F633BA1BF8898000FD98B1 /* libSocialSina.a */; };
 		18F633BF1BF88E6400FD98B1 /* KMDetailsPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */; };
 		76AF7FED1BEF7F1F0066659E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AF7FEC1BEF7F1F0066659E /* OrderModel.m */; };
+		F92EE5261C0068DA00DEC5D0 /* KeywordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F92EE5251C0068DA00DEC5D0 /* KeywordsModel.m */; };
+		F92EE52A1C006D9700DEC5D0 /* XLLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F92EE5291C006D9700DEC5D0 /* XLLoadingView.m */; };
 		F99742581BF865C70062A37F /* SearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F99742571BF865C70062A37F /* SearchHeaderView.m */; };
 		F997425A1BF865E20062A37F /* SearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99742591BF865E20062A37F /* SearchHeaderView.xib */; };
 		F997428C1BF8A4420062A37F /* SearchHistoryFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F997428B1BF8A4420062A37F /* SearchHistoryFooterView.m */; };
@@ -1409,6 +1411,10 @@
 		18F633BE1BF88E6400FD98B1 /* KMDetailsPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDetailsPageView.h; sourceTree = "<group>"; };
 		76AF7FEB1BEF7F1F0066659E /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		76AF7FEC1BEF7F1F0066659E /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		F92EE5241C0068DA00DEC5D0 /* KeywordsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeywordsModel.h; sourceTree = "<group>"; };
+		F92EE5251C0068DA00DEC5D0 /* KeywordsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeywordsModel.m; sourceTree = "<group>"; };
+		F92EE5281C006D9700DEC5D0 /* XLLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLLoadingView.h; sourceTree = "<group>"; };
+		F92EE5291C006D9700DEC5D0 /* XLLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLLoadingView.m; sourceTree = "<group>"; };
 		F99742561BF865C70062A37F /* SearchHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchHeaderView.h; sourceTree = "<group>"; };
 		F99742571BF865C70062A37F /* SearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHeaderView.m; sourceTree = "<group>"; };
 		F99742591BF865E20062A37F /* SearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHeaderView.xib; sourceTree = "<group>"; };
@@ -1712,6 +1718,7 @@
 		189442EA1BEB0773006249F0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				F92EE5271C006D9700DEC5D0 /* XLLoadingView */,
 				18E21E871C00229C007059F3 /* YYText */,
 				1848588D1BF8DD3C001FF521 /* SKTagView */,
 				18F633061BF87C7700FD98B1 /* UMeng */,
@@ -3164,6 +3171,15 @@
 			path = UMSocial_Sdk_Instructions;
 			sourceTree = "<group>";
 		};
+		F92EE5271C006D9700DEC5D0 /* XLLoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				F92EE5281C006D9700DEC5D0 /* XLLoadingView.h */,
+				F92EE5291C006D9700DEC5D0 /* XLLoadingView.m */,
+			);
+			path = XLLoadingView;
+			sourceTree = "<group>";
+		};
 		F99B56C01BF4AE12008E18A2 /* PureLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -3224,6 +3240,8 @@
 		F9EAB7671BF75A1B00BD0D6B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F92EE5241C0068DA00DEC5D0 /* KeywordsModel.h */,
+				F92EE5251C0068DA00DEC5D0 /* KeywordsModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3579,6 +3597,7 @@
 				189446841BEB0774006249F0 /* SVProgressHUD.m in Sources */,
 				189442CE1BEAF65A006249F0 /* NSString+Addition.m in Sources */,
 				18F6329A1BF72CBB00FD98B1 /* UIViewController+ZJExchange.m in Sources */,
+				F92EE5261C0068DA00DEC5D0 /* KeywordsModel.m in Sources */,
 				189442E81BEAF65A006249F0 /* PhotoUtils.m in Sources */,
 				189445CA1BEB0774006249F0 /* OpenSSLRSAWrapper.m in Sources */,
 				189445C61BEB0774006249F0 /* NSObject+MJProperty.m in Sources */,
@@ -3723,6 +3742,7 @@
 				18E21ED31C00229C007059F3 /* YYTextView.m in Sources */,
 				189442DF1BEAF65A006249F0 /* UIView+Animation.m in Sources */,
 				18E21ED11C00229C007059F3 /* YYTextWeakProxy.m in Sources */,
+				F92EE52A1C006D9700DEC5D0 /* XLLoadingView.m in Sources */,
 				18A1AEF61BF9DA2F00966478 /* PetWebViewController.m in Sources */,
 				189445A31BEB0774006249F0 /* NSURL+File.m in Sources */,
 				189445D91BEB0774006249F0 /* RECommonFunctions.m in Sources */,

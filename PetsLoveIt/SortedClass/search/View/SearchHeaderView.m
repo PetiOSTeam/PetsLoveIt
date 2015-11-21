@@ -30,7 +30,11 @@
     self.titleLabel.text = title;
 }
 
-- (IBAction)changekeywordsAction:(id)sender {
+- (IBAction)changekeywordsAction:(id)sender
+{
+    if (self.changeAction) {
+        self.changeAction();
+    }
 }
 
 /*

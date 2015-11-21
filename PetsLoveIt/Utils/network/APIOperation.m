@@ -369,4 +369,46 @@ onCompletion:(void (^)(id responseData, NSError* error,NSInteger indexNum))compl
     }];
 }
 
++ (void)GET:(NSString *)apiName
+ parameters:(id)parameters
+    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSString *path = [NSString stringWithFormat:@"%@%@", kBaseURL, apiName];
+    if (parameters) {
+        NSMutableString *urlString = [NSMutableString stringWithString:path];
+        [urlString appendString:@"?"];
+        NSDictionary *kParameters = parameters;
+        if (kParameters) {
+            for (int i = 0; i < kParameters.count; i++) {
+                NSString *key = [kParameters allKeys][i];
+                NSString *value = [kParameters objectForKey:key];
+                [urlString appendFormat:@"%@=%@", key, value];
+                if (i < kParameters.count - 1) {
+                    [urlString appendString:@"&"];
+                }
+            }
+        }
+        path = urlString;
+    }
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    //3.请求
+    [manager GET:path parameters:nil success:success failure:failure];
+}
+
+
++ (void)POST:(NSString *)apiName
+  parameters:(id)parameters
+     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSString *path = [NSString stringWithFormat:@"%@%@", kBaseURL, apiName];
+    [manager POST:path parameters:parameters success:success failure:failure];
+}
+
 @end

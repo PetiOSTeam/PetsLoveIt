@@ -12,68 +12,45 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 
-@property (nonatomic, strong) UIView *leftLine;
-
-@property (nonatomic, strong) UIView *rightLine;
-
 @end
 
 @implementation PLStoreCell
 
 - (void)awakeFromNib {
-    // Initialization code
-    CALayer *border = [CALayer layer];
-    border.backgroundColor = kLineColor.CGColor;
-    border.frame = CGRectMake(0, 0, mScreenWidth, .5);
-    [self.layer  addSublayer:border];
+    
+    UIView *line1 = [[UIView alloc] initForAutoLayout];
+    UIView *line2 = [[UIView alloc] initForAutoLayout];
+    UIView *line3 = [[UIView alloc] initForAutoLayout];
 
+    line1.backgroundColor = kLineColor;
+    line2.backgroundColor = kLineColor;
+    line3.backgroundColor = kLineColor;
+
+    [self.contentView addSubview:line1];
+    [self.contentView addSubview:line2];
+    [self.contentView addSubview:line3];
+
+    [line1 autoPinEdgeToSuperviewEdge:ALEdgeRight];
+    [line1 autoPinEdgeToSuperviewEdge:ALEdgeLeft];
+    [line1 autoSetDimension:ALDimensionHeight toSize:.5];
+    [line1 autoPinEdgeToSuperviewEdge:ALEdgeBottom];
+
+    [line2 autoPinEdgeToSuperviewEdge:ALEdgeLeft];
+    [line2 autoPinEdgeToSuperviewEdge:ALEdgeRight];
+    [line2 autoSetDimension:ALDimensionHeight toSize:.5];
+    [line2 autoPinEdgeToSuperviewEdge:ALEdgeTop];
+    
+    [line3 autoPinEdgeToSuperviewEdge:ALEdgeTop];
+    [line3 autoPinEdgeToSuperviewEdge:ALEdgeBottom];
+    [line3 autoSetDimension:ALDimensionWidth toSize:.5];
+    [line3 autoPinEdgeToSuperviewEdge:ALEdgeRight];
 }
 
-- (void)setIsLandscapeLine:(BOOL)isLandscapeLine
+- (void)setModel:(StoreModel *)model
 {
-    _isLandscapeLine = isLandscapeLine;
-    if (isLandscapeLine) {
-        [self leftLine];
-        [self rightLine];
-    }else {
-        if (_leftLine) {
-            [_leftLine removeFromSuperview];
-            _leftLine = nil;
-        }
-        if (_rightLine) {
-            [_rightLine removeFromSuperview];
-            _rightLine = nil;
-        }
-    }
+    _model = model;
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"icon_test"]];
 }
 
-- (UIView *)leftLine
-{
-    if (!_leftLine) {
-        _leftLine = [[UIView alloc] initForAutoLayout];
-        _leftLine.backgroundColor = kLineColor;
-        [self.contentView addSubview:_leftLine];
-        [_leftLine autoPinEdgeToSuperviewEdge:ALEdgeLeft];
-        [_leftLine autoSetDimension:ALDimensionWidth toSize:.5];
-        [_leftLine autoPinEdgeToSuperviewEdge:ALEdgeTop];
-        [_leftLine autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:.5];
-    }
-    return _leftLine;
-}
-
-
-- (UIView *)rightLine
-{
-    if (!_rightLine) {
-        _rightLine = [[UIView alloc] initForAutoLayout];
-        _rightLine.backgroundColor = kLineColor;
-        [self.contentView addSubview:_rightLine];
-        [_rightLine autoPinEdgeToSuperviewEdge:ALEdgeRight];
-        [_rightLine autoSetDimension:ALDimensionWidth toSize:.5];
-        [_rightLine autoPinEdgeToSuperviewEdge:ALEdgeTop];
-        [_rightLine autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:.5];
-    }
-    return _leftLine;
-}
 
 @end

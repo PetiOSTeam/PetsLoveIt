@@ -45,14 +45,12 @@
 
 - (void)setupUI
 {
-    ScreenSoretedView *soretedView = [[ScreenSoretedView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - CGRectGetMaxY(self.slideBarView.frame))];
+    ScreenSoretedView *soretedView = [[ScreenSoretedView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - CGRectGetMaxY(self.slideBarView.frame) - 0.5)];
     [self.scrollView addSubview:soretedView];
-    [soretedView addTopBorderWithColor:kLineColor andWidth:.5];
     
-    ScreenStoreView *screenStoreView = [[ScreenStoreView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height - CGRectGetMaxY(self.slideBarView.frame))];
+    ScreenStoreView *screenStoreView = [[ScreenStoreView alloc] initWithFrame:soretedView.frame];
     screenStoreView.left = self.view.width;
     [self.scrollView addSubview:screenStoreView];
-    [screenStoreView addTopBorderWithColor:kLineColor andWidth:.5];
     
     self.scrollView.contentSize = CGSizeMake(self.view.width * 2, 0);
 }
@@ -145,14 +143,6 @@
         [_slideBarView autoPinEdgeToSuperviewEdge:ALEdgeTop];
         [_slideBarView autoAlignAxisToSuperviewAxis:ALAxisVertical];
         
-        UIView *line = [[UIView alloc] initForAutoLayout];
-        line.backgroundColor = kLineColor;
-        [self.view addSubview:line];
-        [line autoSetDimension:ALDimensionHeight toSize:.5];
-        [line autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_slideBarView];
-        [line autoPinEdgeToSuperviewEdge:ALEdgeLeft];
-        [line autoPinEdgeToSuperviewEdge:ALEdgeRight];
-        
     }
     return _slideBarView;
 }
@@ -171,6 +161,16 @@
         [_scrollView autoPinEdgeToSuperviewEdge:ALEdgeBottom];
         [_scrollView autoPinEdgeToSuperviewEdge:ALEdgeLeft];
         [_scrollView autoPinEdgeToSuperviewEdge:ALEdgeRight];
+        
+//        UIView *line = [[UIView alloc] init];
+//        line.top = 0;
+//        line.width = mScreenWidth;
+//        line.backgroundColor = kLineColor;
+//        [self.view addSubview:line];
+//        [line autoSetDimension:ALDimensionHeight toSize:.5];
+//        [line autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_slideBarView];
+//        [line autoPinEdgeToSuperviewEdge:ALEdgeLeft];
+//        [line autoPinEdgeToSuperviewEdge:ALEdgeRight];
     }
     return _scrollView;
 }

@@ -17,7 +17,7 @@
 @implementation StoreHeaderView
 
 - (void)awakeFromNib {
-//    [self addBottomBorderWithColor:kLineColor andWidth:.5f];
+    [self addTopBorderWithColor:kLineColor andWidth:.5f];
 }
 
 - (void)setTitle:(NSString *)title

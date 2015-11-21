@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^ChangeKeyWordsAction)(void);
+
 @interface SearchHeaderView : UIView
 
 @property (weak, nonatomic) IBOutlet UIButton *changeKeyworksButton;
 
 @property (nonatomic, strong) NSString *title;
+
+@property (nonatomic, copy) ChangeKeyWordsAction changeAction;
 
 @end

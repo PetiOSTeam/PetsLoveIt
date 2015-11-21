@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "StoreModel.h"
 
 @interface PLStoreCell : UICollectionViewCell
 
-@property (nonatomic, assign) BOOL isLandscapeLine;
-
+@property (nonatomic, strong) StoreModel *model;
 
 @end

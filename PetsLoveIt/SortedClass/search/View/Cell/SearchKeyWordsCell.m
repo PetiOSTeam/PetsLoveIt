@@ -8,10 +8,13 @@
 
 #import "SearchKeyWordsCell.h"
 #import <Masonry/Masonry.h>
+#import "XLLoadingView.h"
 
 @interface SearchKeyWordsCell ()
 
 @property (nonatomic, strong) SKTagView *tagView;
+
+@property (nonatomic, strong) XLLoadingView *loadingView;
 
 @end
 
@@ -30,7 +33,8 @@
     _keywords = keywords;
     [self.tagView removeAllTags];
     [keywords enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        SKTag *tag = [SKTag tagWithText:obj];
+        KeywordsModel *model = obj;
+        SKTag *tag = [SKTag tagWithText:model.name];
         tag.textColor = kOrangeColor;
         tag.fontSize = 14;
         tag.padding = UIEdgeInsetsMake(6, 10, 6, 12);
@@ -39,11 +43,56 @@
         tag.cornerRadius = 14;
         
         [self.tagView addTag:tag];
-        NSLog(@"frame:%@", NSStringFromCGRect(self.contentView.frame));
-        
     }];
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    if (_loadingView) {
+        _loadingView.left = (self.width - _loadingView.width) / 2;
+        _loadingView.top = (self.height - _loadingView.height) / 2;
+        NSLog(@"frame:%@", NSStringFromCGRect(_loadingView.frame));
+    }
+}
+
+#pragma mark - *** request ***
+
+- (void)startLoading
+{
+    [self.loadingView setTitle:@"正在加载关键词..." active:YES];
+    [self setNeedsLayout];
+    if (_tagView) {
+        [_tagView removeFromSuperview];
+        _tagView = nil;
+    }
+    if ([self.delegate respondsToSelector:@selector(reloadKeywordsWithCell:)]) {
+        [self.delegate reloadKeywordsWithCell:self];
+    }
+}
+
+- (void)stopTitle:(NSString *)title
+{
+    if (title) {
+        [self.loadingView setTitle:title active:NO];
+        [self setNeedsLayout];
+    }else {
+        if (_loadingView) {
+            [_loadingView removeFromSuperview];
+            _loadingView = nil;
+        }
+    }
+}
+
+- (void)failLoading
+{
+    [self.loadingView setTitle:@"加载失败，点击重载" active:NO];
+    [self setNeedsLayout];
+    WEAKSELF
+    self.loadingView.actionBlock = ^{
+        [weakSelf startLoading];
+    };
+}
 
 #pragma mark - *** getter ***
 
@@ -66,6 +115,15 @@
         }];
     }
     return _tagView;
+}
+
+- (XLLoadingView *)loadingView
+{
+    if (!_loadingView) {
+        _loadingView = [[XLLoadingView alloc] init];
+        [self.contentView addSubview:_loadingView];
+    }
+    return _loadingView;
 }
 
 #pragma mark - *** class
@@ -102,5 +160,6 @@
     CGSize size = [tagView intrinsicContentSize];
     return size.height;//[contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 }
+
 
 @end

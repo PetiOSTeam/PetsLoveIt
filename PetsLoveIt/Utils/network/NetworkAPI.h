@@ -28,4 +28,18 @@ static NSString *const appStoreID = @"1043407423";
 #define testUrl  @"getPraiseInfo"
 #define FeaturedTopicsList @""
 
+/**
+ *  分类筛选
+ *
+ *  @return json
+ */
+#define kSortClassAPI   @"getSource.action"
+
+/**
+ *  热门关键词
+ *
+ *  @return json
+ */
+#define kHotwordsAPI    @"getSource.action"
+
 #endif

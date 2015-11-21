@@ -30,4 +30,14 @@ onCompletion:(void (^)(id responseData, NSError *error))completionBlock;
 + (void)SEARCHGET:(NSInteger)indexForNum url:(NSString*)URLString
        parameters:(id)parameters
      onCompletion:(void (^)(id responseData, NSError* error,NSInteger indexNum))completionBlock;
+
++ (void)GET:(NSString *)apiName
+ parameters:(id)parameters
+    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
++ (void)POST:(NSString *)apiName
+  parameters:(id)parameters
+     success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+     failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 @end

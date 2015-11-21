@@ -12,7 +12,7 @@
 #import "SearchHistoryFooterView.h"
 #import "SearchResultsViewController.h"
 
-@interface SearchViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface SearchViewController () <UITableViewDelegate, UITableViewDataSource, SearchKeyWordsCellDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -30,9 +30,11 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    NSArray *keywords = @[@"零食", @"美容器材", @"妙鲜包", @"保健品", @"狗罐头", @"香波沐浴"];
+    /**
+     *  初始化数据
+     */
     NSArray *historys = @[@"冠能狗粮", @"狗链", @"ipad mini", @"iPhone6S", @"德玛西亚"];
-    [self.dataSource addObject:keywords];
+    [self.dataSource addObject:[NSArray new]];
     [self.dataSource addObject:historys];
     
     [self setupNavigationUI];
@@ -86,6 +88,35 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - *** SearchKeywords delegate ***
+/**
+ *  获取热门关键词
+ */
+- (void)reloadKeywordsWithCell:(SearchKeyWordsCell *)cell
+{
+    WEAKSELF
+    [APIOperation GET:kHotwordsAPI
+           parameters:@{@"uid": @"getHotWords"}
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  NSDictionary *jsonDict = responseObject[@"datas"];
+                  if (jsonDict) {
+                      NSArray *keywords = jsonDict[@"datas"];
+                      if (keywords.count == 0) {
+                          [cell stopTitle:@"暂无关键词"];
+                      }else {
+                          [cell stopTitle:nil];
+                          NSMutableArray *tempData = [NSMutableArray new];
+                          [keywords enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                              [tempData addObject:[[KeywordsModel alloc] initWithJson:obj]];
+                          }];
+                          [weakSelf.dataSource replaceObjectAtIndex:0 withObject:keywords];
+                      }
+                  }
+              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  [cell failLoading];
+              }];
+}
+
 #pragma mark - *** delegate && dataSource ****
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,6 +150,9 @@
 {
     if (indexPath.section == 0) {
         NSArray *keywords = self.dataSource[indexPath.section];
+        if (keywords.count == 0) {
+            return 100;
+        }
         return [SearchKeyWordsCell heightFromArray:keywords];
     }
     return 45;
@@ -132,6 +166,11 @@
     headerView.width = self.view.width;
     if (section == 0) {
         headerView.changeKeyworksButton.hidden = NO;
+        WEAKSELF
+        headerView.changeAction = ^{
+            SearchKeyWordsCell *cell = [weakSelf.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            [cell startLoading];
+        };
         headerView.title= @"热门关键词";
     }else {
         headerView.changeKeyworksButton.hidden = YES;
@@ -150,11 +189,20 @@
             cell = [[SearchKeyWordsCell alloc] initWithStyle:UITableViewCellStyleDefault
                                              reuseIdentifier:CellIdentifierKeyWords];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.height = [SearchKeyWordsCell heightFromArray:keywords];
+            if (keywords.count == 0) {
+                cell.height = 100;
+            }else {
+                cell.height = [SearchKeyWordsCell heightFromArray:keywords];
+            }
             cell.width = mScreenWidth;
+            cell.delegate = self;
             [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
         }
-        cell.keywords = keywords;
+        if (cell.keywords.count == 0) {
+            [cell startLoading];
+        }else {
+            cell.keywords = keywords;
+        }
         return cell;
     }
     static NSString *CellIdentifier = @"CellIdentifier";
@@ -171,6 +219,16 @@
     return cell;
 }
 
+
+#pragma mark - **** SearchDelegate ***
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    SearchResultsViewController *searchResultsVC = [[SearchResultsViewController alloc] init];
+    searchResultsVC.searchText = searchBar.text;
+    [self.navigationController pushViewController:searchResultsVC animated:YES];
+}
+
 #pragma mark - **** getter ***
 
 - (UISearchBar *)searchBar
@@ -183,6 +241,8 @@
         UIView *searchTextField = nil;
         _searchBar.barTintColor = [UIColor whiteColor];
         _searchBar.tintColor=[UIColor blueColor];
+        
+        _searchBar.delegate = self;
         
         searchTextField = [[[_searchBar.subviews firstObject] subviews] lastObject];
         searchTextField.backgroundColor = mRGBToColor(0xeeeeee);
