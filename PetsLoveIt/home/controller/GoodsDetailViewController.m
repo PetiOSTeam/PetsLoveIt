@@ -11,9 +11,11 @@
 #import "KMNetworkLoadingViewController.h"
 #import "StoryBoardUtilities.h"
 #import "BottomMenuView.h"
+#import "BaseNavigationController.h"
+#import "PetWebViewController.h"
 
 
-@interface GoodsDetailViewController ()<UITableViewDataSource, UITableViewDelegate,  KMNetworkLoadingViewDelegate, KMDetailsPageDelegate>
+@interface GoodsDetailViewController ()<UITableViewDataSource, UITableViewDelegate,  KMNetworkLoadingViewDelegate, KMDetailsPageDelegate,BottomMenuViewDelegate>
 @property (strong, nonatomic)  UIView *navigationBarView;
 @property (strong, nonatomic)  UIView *networkLoadingContainerView;
 @property (strong, nonatomic)  KMDetailsPageView* detailsPageView;
@@ -54,8 +56,31 @@
 -(BottomMenuView *)menuView{
     if (!_menuView) {
         _menuView = [[BottomMenuView alloc] initWithFrame:CGRectMake(0, mScreenHeight-49, mScreenWidth, 49) menuType:GoodsType];
+        _menuView.delegate = self;
     }
     return _menuView;
+}
+
+-(void)lastMenuAction:(DetailPageType)type{
+    switch (type) {
+        case GoodsType:
+        {
+            PetWebViewController *vc = [PetWebViewController new];
+            BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:navi animated:YES completion:NULL];
+        }
+            break;
+        case RelatedPersonType:{
+            
+            break;
+        }
+        case NewsType:{
+            break;
+        }
+            
+        default:
+            break;
+    }
 }
 
 

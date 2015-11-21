@@ -79,7 +79,8 @@
 
 
 -(void)selectScrollView:(NSInteger)index{
-    
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
@@ -215,7 +216,16 @@
         [_displayView3 addSubview:_descLabel3];
         [_displayView3 addSubview:_urlImageView3];
         
+        _urlImageView1.userInteractionEnabled = YES;
+        _urlImageView2.userInteractionEnabled = YES;
+        _urlImageView3.userInteractionEnabled = YES;
         
+        UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnImageView1)];
+        UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnImageView2)];
+        UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnImageView3)];
+        [_displayView1 addGestureRecognizer:tap1];
+        [_displayView2 addGestureRecognizer:tap2];
+        [_displayView3 addGestureRecognizer:tap3];
         
         [_displayView addSubview:_displayView1];
         [_displayView addSubview:_displayView2];
@@ -227,6 +237,18 @@
     return _tableHeaderView;
 }
 
+- (void)tapOnImageView1{
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)tapOnImageView2{
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+- (void)tapOnImageView3{
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

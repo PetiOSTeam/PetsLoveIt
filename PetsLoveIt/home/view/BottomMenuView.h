@@ -12,7 +12,7 @@
 
 @optional
 - (void) showPersonInfoVC;
-- (void) lastMenuAction;
+- (void) lastMenuAction:(DetailPageType) type;
 - (void) showCommentVC;
 - (void) showLoginVC;
 

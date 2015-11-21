@@ -405,6 +405,8 @@
 		189447161BEC3BC5006249F0 /* LocalUserInfoModelClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 189447121BEC3BC5006249F0 /* LocalUserInfoModelClass.m */; };
 		189447171BEC3BC5006249F0 /* RESTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 189447141BEC3BC5006249F0 /* RESTError.m */; };
 		1894471A1BEC3F02006249F0 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189447191BEC3F02006249F0 /* CommonViewController.m */; };
+		18A1AEF51BF9DA2F00966478 /* PetWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A1AEF31BF9DA2F00966478 /* PetWebViewController.xib */; };
+		18A1AEF61BF9DA2F00966478 /* PetWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1AEF41BF9DA2F00966478 /* PetWebViewController.m */; };
 		18D2CB0B1BEF39BD00B8DD72 /* ShareOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2CB091BEF39BD00B8DD72 /* ShareOrderViewController.m */; };
 		18D2CB0F1BEF453300B8DD72 /* DiscountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2CB0E1BEF453300B8DD72 /* DiscountViewController.m */; };
 		18D2CB121BEF47F400B8DD72 /* MassTaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2CB111BEF47F400B8DD72 /* MassTaoViewController.m */; };
@@ -1206,6 +1208,9 @@
 		189447141BEC3BC5006249F0 /* RESTError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTError.m; sourceTree = "<group>"; };
 		189447181BEC3F02006249F0 /* CommonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonViewController.h; sourceTree = "<group>"; };
 		189447191BEC3F02006249F0 /* CommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
+		18A1AEF21BF9DA0C00966478 /* PetWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PetWebViewController.h; sourceTree = "<group>"; };
+		18A1AEF31BF9DA2F00966478 /* PetWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PetWebViewController.xib; sourceTree = "<group>"; };
+		18A1AEF41BF9DA2F00966478 /* PetWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetWebViewController.m; sourceTree = "<group>"; };
 		18D2CB081BEF39BD00B8DD72 /* ShareOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareOrderViewController.h; sourceTree = "<group>"; };
 		18D2CB091BEF39BD00B8DD72 /* ShareOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareOrderViewController.m; sourceTree = "<group>"; };
 		18D2CB0D1BEF453300B8DD72 /* DiscountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountViewController.h; sourceTree = "<group>"; };
@@ -2745,6 +2750,9 @@
 				18F6329E1BF7550300FD98B1 /* ShakeViewController.h */,
 				18F6329F1BF7550300FD98B1 /* ShakeViewController.m */,
 				18F632A01BF7550300FD98B1 /* ShakeViewController.xib */,
+				18A1AEF31BF9DA2F00966478 /* PetWebViewController.xib */,
+				18A1AEF41BF9DA2F00966478 /* PetWebViewController.m */,
+				18A1AEF21BF9DA0C00966478 /* PetWebViewController.h */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3161,6 +3169,7 @@
 				TargetAttributes = {
 					189442531BE9DEC3006249F0 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 28K5H5KYEY;
 					};
 				};
 			};
@@ -3331,6 +3340,7 @@
 				189445B11BEB0774006249F0 /* CoreHeaderShowView.xib in Resources */,
 				189445FE1BEB0774006249F0 /* e_38@2x.png in Resources */,
 				18F633B41BF883C800FD98B1 /* ios-social-sdk-login-quick.html in Resources */,
+				18A1AEF51BF9DA2F00966478 /* PetWebViewController.xib in Resources */,
 				189446281BEB0774006249F0 /* e_76@2x.png in Resources */,
 				189446581BEB0774006249F0 /* chat_card_select@2x.png in Resources */,
 				189446121BEB0774006249F0 /* e_56@2x.png in Resources */,
@@ -3542,6 +3552,7 @@
 				182EB8291BEDC30E004EA19C /* ShareOrderCell.m in Sources */,
 				189446D51BEB0A80006249F0 /* YYCache.m in Sources */,
 				189442DF1BEAF65A006249F0 /* UIView+Animation.m in Sources */,
+				18A1AEF61BF9DA2F00966478 /* PetWebViewController.m in Sources */,
 				189445A31BEB0774006249F0 /* NSURL+File.m in Sources */,
 				189445D91BEB0774006249F0 /* RECommonFunctions.m in Sources */,
 				F99B56D01BF4B71B008E18A2 /* XLSlideBarView.m in Sources */,
@@ -3776,7 +3787,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: du jia (JW7CW892P3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3820,7 +3831,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: du jia (JW7CW892P3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

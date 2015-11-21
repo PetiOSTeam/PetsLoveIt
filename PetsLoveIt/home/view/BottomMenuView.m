@@ -19,12 +19,15 @@
 @property (strong, nonatomic)  UIButton *menuButton5;
 
 @property (nonatomic, strong) UIImageView *headerImageView;
+@property (nonatomic, assign) DetailPageType detailType;
 @end
 
 @implementation BottomMenuView
 
 -(instancetype)initWithFrame:(CGRect)frame menuType:(DetailPageType)type{
     self = [super initWithFrame:frame];
+    
+    self.detailType = type;
     
     [self setBackgroundColor:[UIColor whiteColor]];
     [self addTopBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
@@ -170,8 +173,8 @@
 }
 
 - (void) didClickOnMenu5{
-    if ([self.delegate respondsToSelector:@selector(lastMenuAction)]) {
-        [self.delegate lastMenuAction];
+    if ([self.delegate respondsToSelector:@selector(lastMenuAction:)]) {
+        [self.delegate lastMenuAction:self.detailType];
     }
 }
 

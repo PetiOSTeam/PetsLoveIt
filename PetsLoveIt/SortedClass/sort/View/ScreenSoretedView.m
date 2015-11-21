@@ -110,6 +110,7 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
     SoretedHeaderView *headerView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                                           withReuseIdentifier:ScreenStoreHeaderCellIdentifier
                                                                                  forIndexPath:indexPath];
+    
     headerView.titleLabel.text = self.titles[indexPath.section];
     headerView.headerImageView.image = [UIImage imageNamed:self.iconDict[self.titles[indexPath.section]]];
     return headerView;

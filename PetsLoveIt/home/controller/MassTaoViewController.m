@@ -9,6 +9,7 @@
 #import "MassTaoViewController.h"
 #import "GoodsModel.h"
 #import "GoodsCell.h"
+#import "GoodsDetailViewController.h"
 
 @interface MassTaoViewController ()
 
@@ -54,6 +55,12 @@
 
 -(void)testdealWithResponseData:(id)obj{
     
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
