@@ -91,7 +91,7 @@
     LTConfigModel *configModel=[[LTConfigModel alloc] init];
     //url,分为公告和话题
     
-    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,FeaturedTopicsList];
+    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,testUrl];
     
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;

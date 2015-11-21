@@ -26,6 +26,9 @@
     self.commentNumLabel.text = good.commentNum;
     self.favorNumLabel.text = good.favorNum;
     self.dateLabel.text = good.dateDesc;
+    
+    self.commentImageView.image = [UIImage imageNamed:@"listcommentIcon"];
+    self.favorImageView.image = [UIImage imageNamed:@"listfavorIcon"];
 }
 
 - (void)loadCellWithGoodsModel:(GoodsModel *)good{
@@ -36,6 +39,9 @@
     self.commentNumLabel.text = good.commentNum;
     self.favorNumLabel.text = good.favorNum;
     self.dateLabel.text = good.dateDesc;
+    
+    self.commentImageView.image = [UIImage imageNamed:@"listcommentIcon"];
+    self.favorImageView.image = [UIImage imageNamed:@"listfavorIcon"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

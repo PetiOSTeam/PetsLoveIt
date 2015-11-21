@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *favorImageView;
 @property (weak, nonatomic) IBOutlet UILabel *favorNumLabel;
 
+
 - (void)loadCellWithGoodsModel:(GoodsModel *)good;
 
 @end

@@ -9,5 +9,5 @@
 #import "CommonViewController.h"
 
 @interface GoodsDetailViewController : CommonViewController
-
+@property (nonatomic,assign) DetailPageType pageType;
 @end

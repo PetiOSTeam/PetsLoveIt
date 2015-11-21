@@ -121,7 +121,8 @@ otherButtonTitles:nil]; \
 #define kTableCellSelectedBGColor [UIColor colorWithRed:235.0/255.0 green:236.0/255.0 blue:238.0/255.0 alpha:1]
 //layer border
 #define kLayerBorderWidth 0.5f
-#define kLayerBorderColor mRGBColor(200, 199, 204)
+//#define kLayerBorderColor mRGBColor(200, 199, 204)
+#define kLayerBorderColor mRGBToColor(0xdcdcdc)
 
 #define HLocalUserInfo @"HLocalUserInfo"
 #define ReloadUserInfoNotify @"ReloadUserInfoNotify"

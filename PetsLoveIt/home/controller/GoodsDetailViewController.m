@@ -55,7 +55,10 @@
 
 -(BottomMenuView *)menuView{
     if (!_menuView) {
-        _menuView = [[BottomMenuView alloc] initWithFrame:CGRectMake(0, mScreenHeight-49, mScreenWidth, 49) menuType:GoodsType];
+        _menuView = [[BottomMenuView alloc] initWithFrame:CGRectMake(0, mScreenHeight-49, mScreenWidth, 49) menuType:self.pageType];
+        if (self.pageType == RelatedPersonType) {
+            [_menuView loadAvatarImage:@"http://res-c1.smzdm.com/smzdm_user_manager/data/avatar/719/60/44/38_avatar_small.jpg?v=10"];
+        }
         _menuView.delegate = self;
     }
     return _menuView;
@@ -75,6 +78,7 @@
             break;
         }
         case NewsType:{
+            [self.navigationController popViewControllerAnimated:YES];
             break;
         }
             
@@ -106,8 +110,20 @@
 -(UIView *)navigationBarView{
     if (!_navigationBarView) {
         _navigationBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 64)];
-        [_navigationBarView blur];
-        [_navigationBarView setBackgroundColor:[UIColor whiteColor]];
+        
+        if (CURRENT_SYS_VERSION >= 8.0) {
+            UIImageView *blurImageView = [[UIImageView alloc] initWithFrame:_navigationBarView.bounds];
+            
+            UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+            
+            UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+            
+            visualEffectView.frame = blurImageView.bounds;
+            
+            [blurImageView addSubview:visualEffectView];
+            [_navigationBarView addSubview:blurImageView];
+        }
+        
         _navBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 30, mScreenWidth-60, 24)];
         [_navBarTitleLabel setTextAlignment:NSTextAlignmentCenter];
         [_navigationBarView addSubview:_navBarTitleLabel];

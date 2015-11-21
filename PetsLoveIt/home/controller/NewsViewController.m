@@ -62,6 +62,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    vc.pageType = NewsType;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

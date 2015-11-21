@@ -77,6 +77,25 @@
     [self addSubview:self.menuButton3];
     [self addSubview:self.menuButton4];
     [self addSubview:self.menuButton5];
+    
+    [self.menuButton1 setTitleColor:mRGBToColor(0x999999) forState:UIControlStateNormal];
+    [self.menuButton1.titleLabel setFont:[UIFont systemFontOfSize:11]];
+
+    [self.menuButton2.titleLabel setFont:[UIFont systemFontOfSize:11]];
+    [self.menuButton2 setTitleColor:mRGBToColor(0x999999) forState:UIControlStateNormal];
+    
+    [self.menuButton3.titleLabel setFont:[UIFont systemFontOfSize:11]];
+    [self.menuButton3 setTitleColor:mRGBToColor(0x999999) forState:UIControlStateNormal];
+    
+    [self.menuButton4.titleLabel setFont:[UIFont systemFontOfSize:11]];
+    [self.menuButton4 setTitleColor:mRGBToColor(0x999999) forState:UIControlStateNormal];
+    
+    [self.menuButton1.titleLabel setFont:[UIFont systemFontOfSize:11]];
+    [self.menuButton1 setTitle:@"80%" forState:UIControlStateNormal];
+    [self.menuButton2 setTitle:@"15" forState:UIControlStateNormal];
+    [self.menuButton3 setTitle:@"分享" forState:UIControlStateNormal];
+    [self.menuButton4 setTitle:@"18" forState:UIControlStateNormal];
+    
     if (self) {
         switch (type) {
             case GoodsType:
@@ -87,15 +106,15 @@
                 break;
             case RelatedPersonType:
             {
-                _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(mScreenWidth-55-30, 20, 24, 24)];
+                _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(mScreenWidth-55+15, 15, 24, 24)];
                 _headerImageView.userInteractionEnabled = YES;
                 UITapGestureRecognizer *tapOnHeaderImageViewGesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showPersonInfoVC)];
                 [_headerImageView addGestureRecognizer:tapOnHeaderImageViewGesture];
                 CALayer* headerImageViewLayer = _headerImageView.layer;
                 [headerImageViewLayer setMasksToBounds:YES];
-                [headerImageViewLayer setCornerRadius:14];
+                [headerImageViewLayer setCornerRadius:12];
                 
-                UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(mScreenWidth-55, 20, 1, 24)];
+                UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(mScreenWidth-55, 15, 1, 24)];
                 [lineView setBackgroundColor:kCellSeparatorColor];
                 [self addSubview:lineView];
                 [self addSubview:_headerImageView];
@@ -103,8 +122,8 @@
                 break;
             case NewsType:
             {
-                [self.menuButton5 setBackgroundColor:mRGBToColor(0xf4401)];
-                [self.menuButton5 setTitle:@"特快直达" forState:UIControlStateNormal];
+                [self.menuButton5 setBackgroundColor:mRGBToColor(0xff4401)];
+                [self.menuButton5 setTitle:@"资讯中心" forState:UIControlStateNormal];
             }
                 break;
             default:
@@ -113,6 +132,12 @@
     }
     return self;
 }
+
+- (void) loadAvatarImage:(NSString *)avatar{
+    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:kImagePlaceHolder];
+}
+
+
 - (void) didClickOnMenu1{
     UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"喜欢", @"不喜欢", nil];
     [sheet showInView:[UIApplication sharedApplication].keyWindow];
@@ -120,9 +145,10 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
-        
+        self.menuButton1.selected = YES;
     }else if (buttonIndex == 1){
-        
+        self.menuButton1.selected = NO;
+
     }else{
         
     }

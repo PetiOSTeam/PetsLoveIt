@@ -6,9 +6,6 @@
 //  Copyright © 2015年 Joon. All rights reserved.
 //
 
-
-#define mScreenWidth [UIScreen mainScreen].bounds.size.width
-#define mScreenHeight [UIScreen mainScreen].bounds.size.height
 #define mChangeViewBg [UIColor clearColor]
 
 

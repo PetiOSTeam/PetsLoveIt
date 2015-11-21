@@ -21,5 +21,7 @@
 
 @property (nonatomic,weak) id<BottomMenuViewDelegate> delegate;
 -(instancetype)initWithFrame:(CGRect)frame menuType:(DetailPageType)type;
+@property (nonatomic,strong) NSString *avatarUrl;
 
+- (void) loadAvatarImage:(NSString *)avatar;
 @end

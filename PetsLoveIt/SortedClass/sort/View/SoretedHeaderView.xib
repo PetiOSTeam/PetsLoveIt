@@ -14,7 +14,6 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5i7-Il-Ulp">
                     <rect key="frame" x="8" y="4" width="56" height="56"/>
                     <animations/>
-                    <color key="backgroundColor" red="0.80784313730000001" green="0.80784313730000001" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="A2k-iZ-MAX"/>
                         <constraint firstAttribute="width" constant="56" id="S93-Bj-jtz"/>
