@@ -54,7 +54,8 @@
     id AFHttpClient=kAFHttpClient;
     //加token，deviceId,userId
     NSMutableDictionary *kParameters = [APIOperation paramsWithToken:parameters];
-    [AFHttpClient GET:URLString parameters:kParameters success:^(id operation, id responseObject) {
+    [kParameters setObject:URLString forKey:@"uid"];
+    [AFHttpClient GET:@"common.action" parameters:kParameters success:^(id operation, id responseObject) {
         
         NSString *code = [responseObject objectForKey:@"code"];
         NSDictionary *dataDict=[responseObject objectForKey:@"data"];
@@ -113,7 +114,8 @@
     id AFHttpClient=kAFHttpClient;
     //加token，deviceId,userId
     NSMutableDictionary *kParameters = [APIOperation paramsWithToken:parameters];
-    [AFHttpClient POST:URLString parameters:kParameters success:^(id operation, id responseObject) {
+    [kParameters setObject:URLString forKey:@"uid"];
+    [AFHttpClient POST:@"common.action" parameters:kParameters success:^(id operation, id responseObject) {
         
         NSString *code = [responseObject objectForKey:@"code"];
         NSDictionary *dataDict=[responseObject objectForKey:@"data"];
@@ -258,7 +260,8 @@
     id AFHttpClient=kAFHttpClient;
     //加token，deviceId,userId
     NSMutableDictionary *kParameters = [APIOperation paramsWithToken:params];
-    [AFHttpClient POST:URLString parameters:kParameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [kParameters setObject:URLString forKey:@"uid"];
+    [AFHttpClient POST:@"common.action" parameters:kParameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         for (NSDictionary *dict in mediaArray) {
             [formData appendPartWithFileData:[dict objectForKey:@"data"]
                                         name:[dict objectForKey:@"name"]
