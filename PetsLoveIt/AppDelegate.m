@@ -18,6 +18,7 @@
 #import "UMSocialQQHandler.h"
 #import "UMSocialSinaHandler.h"
 #import "MobClick.h"
+#import "MeViewController.h"
 
 @interface AppDelegate ()
 
@@ -77,7 +78,7 @@
     c2.tabBarItem.selectedImage = [UIImage imageNamed:@"sortTabIcon_highlighted"];
     BaseNavigationController *navi2 = [[BaseNavigationController alloc] initWithRootViewController:c2];
     
-    UIViewController *c3=[[UIViewController alloc]init];
+    MeViewController *c3=[[MeViewController alloc]init];
     c3.view.backgroundColor=[UIColor whiteColor];
     c3.tabBarItem.title=@"我的";
     c3.tabBarItem.image=[UIImage imageNamed:@"meTabIcon"];
