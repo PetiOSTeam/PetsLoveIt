@@ -10,4 +10,8 @@
 
 @interface SoretedHeaderView : UICollectionReusableView
 
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 @end

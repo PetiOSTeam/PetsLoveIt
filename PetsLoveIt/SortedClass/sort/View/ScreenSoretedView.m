@@ -20,6 +20,10 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
+@property (nonatomic, strong) NSArray *titles;
+
+@property (nonatomic, strong) NSDictionary *iconDict;
+
 @end
 
 @implementation ScreenSoretedView
@@ -35,6 +39,7 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
 
 - (void)loadDataFromSever
 {
+    
     for (int i = 0; i < 20; i++) {
         StoreModel *storeModel = [[StoreModel alloc] init];
         //        storeModel.mallIcon
@@ -52,7 +57,7 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 3;
+    return 4;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
@@ -105,11 +110,8 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
     SoretedHeaderView *headerView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                                           withReuseIdentifier:ScreenStoreHeaderCellIdentifier
                                                                                  forIndexPath:indexPath];
-//    if (indexPath.section == 0) {
-//        headerView.title = @"国内商城";
-//    }else {
-//        headerView.title = @"国外商城";
-//    }
+    headerView.titleLabel.text = self.titles[indexPath.section];
+    headerView.headerImageView.image = [UIImage imageNamed:self.iconDict[self.titles[indexPath.section]]];
     return headerView;
 }
 
@@ -146,6 +148,25 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
         _dataSource = [NSMutableArray new];
     }
     return _dataSource;
+}
+
+- (NSArray *)titles
+{
+    if (!_titles) {
+        _titles = @[@"狗狗", @"猫猫", @"小宠", @"水族"];
+    }
+    return _titles;
+}
+
+- (NSDictionary *)iconDict
+{
+    if (!_iconDict) {
+        _iconDict = @{@"狗狗": @"dog_icon",
+                      @"猫猫": @"cat_icon",
+                      @"小宠": @"rabbit_icon",
+                      @"水族": @"fish_icon"};
+    }
+    return _iconDict;
 }
 
 

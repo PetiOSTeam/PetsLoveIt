@@ -44,6 +44,17 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 
 - (void)loadDataFromSever
 {
+//    http://pic.qiantucdn.com/58pic/18/02/41/33558PIC8ik_1024.jpg
+    
+    
+    [APIOperation GET:@"http://121.42.51.60:8088/petweb/actions/getSource.action?uid=getprodMall"
+           parameters:nil onCompletion:^(id responseData, NSError *error) {
+               if (!error) {
+                   
+               }else {
+                   
+               }
+           }];
     for (int i = 0; i < 20; i++) {
         StoreModel *storeModel = [[StoreModel alloc] init];
         //        storeModel.mallIcon
