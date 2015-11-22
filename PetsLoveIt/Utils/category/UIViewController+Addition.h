@@ -10,6 +10,10 @@
 
 @interface UIViewController (Addition)
 
+@property (strong, nonatomic)  UIView *navigationBarView;
+@property (strong, nonatomic)  UILabel *navBarTitleLabel;
+
+- (void)showNaviBarView;
 - (void)adjustForIOS7;
 
 -(CGSize)autoAjustedSizeAccordingToString:(NSString *)str font:(UIFont *)font  constrainedSize:(CGSize) contrainedSize;

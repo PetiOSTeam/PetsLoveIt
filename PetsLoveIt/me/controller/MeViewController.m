@@ -8,6 +8,7 @@
 
 #import "MeViewController.h"
 #import "YYText.h"
+#import "LoginViewController.h"
 
 @interface MeViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerContainerView;
@@ -35,6 +36,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *menuImageView6;
 
 
+@property (strong, nonatomic)  UIView *navigationBarView;
+@property (strong, nonatomic)  UILabel *navBarTitleLabel;
+
+
 @end
 
 @implementation MeViewController
@@ -45,6 +50,7 @@
 }
 
 - (void) prepareViewAndData{
+    
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     [self.headerView setBackgroundColor:mRGBToColor(0xf5f5f5)];
     
@@ -89,14 +95,19 @@
     self.headerView.height = self.menuContainerView.bottom +10;
     self.tableView.tableHeaderView = self.headerView;
     
+    [self.view addSubview:self.navigationBarView];
+    self.navigationBarView.alpha = 0;
     
     if (![AppCache getUserInfo]) {
         self.nameLabel.text = @"Hi 你好";
+        self.navBarTitleLabel.text = @"Hi 你好";
         self.levelLabel.text = @"登录签到抽大奖";
         [self.signButton setTitle:@"登录" forState:UIControlStateNormal];
         [self.signButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
     }else{
         self.nameLabel.text = [AppCache getUserName];
+        self.navBarTitleLabel.text = [AppCache getUserName];
+
         self.levelLabel.text = @"";
         [self.signButton setTitle:@"签到送金币" forState:UIControlStateNormal];
         [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
@@ -104,8 +115,36 @@
     
 }
 
+-(UIView *)navigationBarView{
+    if (!_navigationBarView) {
+        _navigationBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 64)];
+        
+        [_navigationBarView setBackgroundColor:mRGBToColor(0xff4401)];
+        
+        _navBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 30, mScreenWidth-60, 24)];
+        [_navBarTitleLabel setTextColor:[UIColor whiteColor]];
+        [_navBarTitleLabel setTextAlignment:NSTextAlignmentCenter];
+        [_navigationBarView addSubview:_navBarTitleLabel];
+    }
+    return _navigationBarView;
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    CGFloat offsetY = scrollView.contentOffset.y;
+    if (offsetY > 20 ) {
+        if (offsetY > 100) {
+            self.navigationBarView.alpha = 1;
+        }else{
+            self.navigationBarView.alpha = offsetY/100;
+        }
+    }else{
+        self.navigationBarView.alpha = 0;
+    }
+}
+
 - (void) loginAction{
-    
+    LoginViewController *vc = [LoginViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) signAction{

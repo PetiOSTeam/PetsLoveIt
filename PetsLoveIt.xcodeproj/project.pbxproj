@@ -462,6 +462,8 @@
 		18E21ED11C00229C007059F3 /* YYTextWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EB61C00229C007059F3 /* YYTextWeakProxy.m */; };
 		18E21ED21C00229C007059F3 /* YYLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EB81C00229C007059F3 /* YYLabel.m */; };
 		18E21ED31C00229C007059F3 /* YYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EBB1C00229C007059F3 /* YYTextView.m */; };
+		18E21EDF1C01B672007059F3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EDD1C01B672007059F3 /* LoginViewController.m */; };
+		18E21EE01C01B672007059F3 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21EDE1C01B672007059F3 /* LoginViewController.xib */; };
 		18F632871BF6215600FD98B1 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */; };
 		18F632881BF6215600FD98B1 /* GoodsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */; };
 		18F6328E1BF6DDFF00FD98B1 /* UIView+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F6328D1BF6DDFF00FD98B1 /* UIView+Effects.m */; };
@@ -1343,6 +1345,9 @@
 		18E21EB91C00229C007059F3 /* YYText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYText.h; sourceTree = "<group>"; };
 		18E21EBA1C00229C007059F3 /* YYTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextView.h; sourceTree = "<group>"; };
 		18E21EBB1C00229C007059F3 /* YYTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextView.m; sourceTree = "<group>"; };
+		18E21EDC1C01B672007059F3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		18E21EDD1C01B672007059F3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		18E21EDE1C01B672007059F3 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		18F632841BF6215600FD98B1 /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
 		18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
 		18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailViewController.xib; sourceTree = "<group>"; };
@@ -2770,6 +2775,9 @@
 				18E21E821C001E0F007059F3 /* MeViewController.h */,
 				18E21E831C001E0F007059F3 /* MeViewController.m */,
 				18E21E841C001E0F007059F3 /* MeViewController.xib */,
+				18E21EDC1C01B672007059F3 /* LoginViewController.h */,
+				18E21EDD1C01B672007059F3 /* LoginViewController.m */,
+				18E21EDE1C01B672007059F3 /* LoginViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3346,7 +3354,6 @@
 				TargetAttributes = {
 					189442531BE9DEC3006249F0 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = DPES7PQARA;
 					};
 				};
 			};
@@ -3552,6 +3559,7 @@
 				189445ED1BEB0774006249F0 /* e_22@2x.png in Resources */,
 				189445811BEB0774006249F0 /* MBProgressHUD.bundle in Resources */,
 				189445F41BEB0774006249F0 /* e_29@2x.png in Resources */,
+				18E21EE01C01B672007059F3 /* LoginViewController.xib in Resources */,
 				18F633B51BF883C800FD98B1 /* ios-social-sdk-shake.html in Resources */,
 				F9EAB78C1BF75A1B00BD0D6B /* PLStoreCell.xib in Resources */,
 				189446641BEB0774006249F0 /* chatBar_more_photoSelected@2x.png in Resources */,
@@ -3674,6 +3682,7 @@
 				189442D61BEAF65A006249F0 /* UIImage+Addition.m in Sources */,
 				189442E11BEAF65A006249F0 /* UIView+Layer.m in Sources */,
 				189445C21BEB0774006249F0 /* MJProperty.m in Sources */,
+				18E21EDF1C01B672007059F3 /* LoginViewController.m in Sources */,
 				189447151BEC3BC5006249F0 /* JSONModel.m in Sources */,
 				1894466F1BEB0774006249F0 /* SDWebImageCompat.m in Sources */,
 				189442E91BEAF65A006249F0 /* TWImagePicker.m in Sources */,
@@ -4031,7 +4040,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pets.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "77e15ea8-a97b-4412-bade-a33c7fa2704d";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -4080,7 +4089,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pets.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "77e15ea8-a97b-4412-bade-a33c7fa2704d";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

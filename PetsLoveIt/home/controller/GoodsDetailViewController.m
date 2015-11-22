@@ -16,10 +16,12 @@
 
 
 @interface GoodsDetailViewController ()<UITableViewDataSource, UITableViewDelegate,  KMNetworkLoadingViewDelegate, KMDetailsPageDelegate,BottomMenuViewDelegate>
+
 @property (strong, nonatomic)  UIView *navigationBarView;
+@property (strong, nonatomic)  UILabel *navBarTitleLabel;
+
 @property (strong, nonatomic)  UIView *networkLoadingContainerView;
 @property (strong, nonatomic)  KMDetailsPageView* detailsPageView;
-@property (strong, nonatomic)  UILabel *navBarTitleLabel;
 @property (nonatomic,strong) BottomMenuView *menuView;
 
 

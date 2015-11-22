@@ -45,7 +45,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
     [self loadMainViews];
-    [self setupNavigationStyle];
+    //[self setupNavigationStyle];
     [self setupUmengSDK];
     
     return YES;
@@ -79,12 +79,13 @@
     BaseNavigationController *navi2 = [[BaseNavigationController alloc] initWithRootViewController:c2];
     
     MeViewController *c3=[[MeViewController alloc]init];
-    c3.view.backgroundColor=[UIColor whiteColor];
     c3.tabBarItem.title=@"我的";
     c3.tabBarItem.image=[UIImage imageNamed:@"meTabIcon"];
     c3.tabBarItem.selectedImage = [UIImage imageNamed:@"meTabIcon_highlighted"];
+    BaseNavigationController *navi3 = [[BaseNavigationController alloc] initWithRootViewController:c3];
+    navi3.navigationBarHidden = YES;
     
-    tabVC.viewControllers = @[navi1,navi2,c3];
+    tabVC.viewControllers = @[navi1,navi2,navi3];
   
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [self.window makeKeyAndVisible];

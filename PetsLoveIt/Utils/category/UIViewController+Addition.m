@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+Addition.h"
+#import <objc/runtime.h>
 
 @implementation UIViewController (Addition)
 
@@ -18,6 +19,72 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
 }
+
+
+static const void *kNavigationBarView = &kNavigationBarView;
+static const void *kNavBarTitleLabel = &kNavBarTitleLabel;
+
+- (UIView *)navigationBarView
+{
+    return objc_getAssociatedObject(self, kNavigationBarView);
+}
+
+- (void)setNavigationBarView:(UIView *)navigationBarView
+{
+    objc_setAssociatedObject(self, kNavigationBarView, navigationBarView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UILabel *)navBarTitleLabel
+{
+    return objc_getAssociatedObject(self, kNavBarTitleLabel);
+}
+
+- (void)setNavBarTitleLabel:(UILabel *)navBarTitleLabel
+{
+    objc_setAssociatedObject(self, kNavBarTitleLabel, navBarTitleLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+
+-(void)showNaviBarView{
+    if (!self.navigationBarView) {
+        self.navigationBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 64)];
+        
+        if (CURRENT_SYS_VERSION >= 8.0) {
+            UIImageView *blurImageView = [[UIImageView alloc] initWithFrame:self.navigationBarView.bounds];
+            
+            UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+            
+            UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+            
+            visualEffectView.frame = blurImageView.bounds;
+            
+            [blurImageView addSubview:visualEffectView];
+            [self.navigationBarView addSubview:blurImageView];
+        }
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, self.navigationBarView.height-1, mScreenWidth, 1)];
+        [line setBackgroundColor:mRGBToColor(0xdcdcdc)];
+        [self.navigationBarView addSubview:line];
+        
+        UIButton *buttonBack = [UIButton buttonWithType:UIButtonTypeCustom];
+        buttonBack.frame = CGRectMake(0, 30, 44, 34);
+        [buttonBack setImage:[UIImage imageNamed:@"backBarButtonIcon"] forState:UIControlStateNormal];
+        [buttonBack addTarget:self action:@selector(popViewController:) forControlEvents:UIControlEventTouchUpInside];
+        [self.navigationBarView addSubview:buttonBack];
+        
+        self.navBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 30, mScreenWidth-60, 24)];
+        [self.navBarTitleLabel setTextAlignment:NSTextAlignmentCenter];
+        [self.navigationBarView addSubview:self.navBarTitleLabel];
+    }
+    
+    [self.view addSubview:self.navigationBarView];
+}
+
+- (void)popViewController:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 /**
  @pragma str:文字内容
