@@ -31,6 +31,7 @@
 #import "UIImageView+WebCache.h"
 #import "LTCell.h"
 #import "CorePagesViewConst.h"
+#import "3Des.h"
 
 // 廖先龙的常用库
 #import "PureLayout.h"

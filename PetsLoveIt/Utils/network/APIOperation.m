@@ -54,23 +54,22 @@
     id AFHttpClient=kAFHttpClient;
     //加token，deviceId,userId
     NSMutableDictionary *kParameters = [APIOperation paramsWithToken:parameters];
-    [kParameters setObject:URLString forKey:@"uid"];
-    [AFHttpClient GET:@"common.action" parameters:kParameters success:^(id operation, id responseObject) {
+    [AFHttpClient GET:URLString parameters:kParameters success:^(id operation, id responseObject) {
         
-        NSString *code = [responseObject objectForKey:@"code"];
+        NSString *code = [responseObject objectForKey:@"rtnCode"];
         NSDictionary *dataDict=[responseObject objectForKey:@"data"];
         RESTError *restError = nil;
         //业务逻辑错误
-        if(![[code uppercaseString] isEqualToString:@"0"])
+        if(![[code uppercaseString] isEqualToString:@"1"])
         {
             #if defined (CONFIGURATION_DEBUG)
             restError = [[RESTError alloc] initWithDomain:kBusinessErrorDomain
                                                      code:0
-                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@,%@",URLString,[responseObject objectForKey:kMessage]], ERRORMSG,[responseObject objectForKey:@"code"], ERRORCODE, nil]];
+                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@,%@",URLString,[responseObject objectForKey:kMessage]], ERRORMSG,[responseObject objectForKey:@"rtnCode"], ERRORCODE, nil]];
             #else
             restError = [[RESTError alloc] initWithDomain:kBusinessErrorDomain
                                                      code:0
-                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[responseObject objectForKey:kMessage]], ERRORMSG,[responseObject objectForKey:@"code"], ERRORCODE, nil]];
+                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@",[responseObject objectForKey:kMessage]], ERRORMSG,[responseObject objectForKey:@"rtnCode"], ERRORCODE, nil]];
             #endif
             
         }
@@ -114,24 +113,23 @@
     id AFHttpClient=kAFHttpClient;
     //加token，deviceId,userId
     NSMutableDictionary *kParameters = [APIOperation paramsWithToken:parameters];
-    [kParameters setObject:URLString forKey:@"uid"];
-    [AFHttpClient POST:@"common.action" parameters:kParameters success:^(id operation, id responseObject) {
+    [AFHttpClient POST:URLString parameters:kParameters success:^(id operation, id responseObject) {
         
-        NSString *code = [responseObject objectForKey:@"code"];
+        NSString *code = [responseObject objectForKey:@"rtnCode"];
         NSDictionary *dataDict=[responseObject objectForKey:@"data"];
         RESTError *restError = nil;
         //业务逻辑错误
-        if(![[code uppercaseString] isEqualToString:@"0"])
+        if(![[code uppercaseString] isEqualToString:@"1"])
         {
             
 #if defined (CONFIGURATION_DEBUG)
             restError = [[RESTError alloc] initWithDomain:kBusinessErrorDomain
                                                      code:0
-                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@,%@",URLString,[responseObject objectForKey:kMessage]], ERRORMSG,[responseObject objectForKey:@"code"], ERRORCODE, nil]];
+                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@,%@",URLString,[responseObject objectForKey:kMessage]], ERRORMSG,[responseObject objectForKey:@"rtnCode"], ERRORCODE, nil]];
 #else
             restError = [[RESTError alloc] initWithDomain:kBusinessErrorDomain
                                                      code:0
-                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[responseObject objectForKey:kMessage], ERRORMSG,[responseObject objectForKey:@"code"], ERRORCODE, nil]];
+                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[responseObject objectForKey:kMessage], ERRORMSG,[responseObject objectForKey:@"rtnCode"], ERRORCODE, nil]];
 #endif
         }
         //token异常重新登录
@@ -183,16 +181,16 @@
         
     } success:^(id operation, id responseObject) {
         
-        NSString *code = [responseObject objectForKey:@"code"];
+        NSString *code = [responseObject objectForKey:@"rtnCode"];
         NSDictionary *dataDict=[responseObject objectForKey:@"data"];
         RESTError *restError = nil;
         //业务逻辑错误
-        if(![[code uppercaseString] isEqualToString:@"0"])
+        if(![[code uppercaseString] isEqualToString:@"1"])
         {
             
             restError = [[RESTError alloc] initWithDomain:kBusinessErrorDomain
                                                      code:0
-                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[responseObject objectForKey:kMessage], ERRORMSG,[responseObject objectForKey:@"code"], ERRORCODE, nil]];
+                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[responseObject objectForKey:kMessage], ERRORMSG,[responseObject objectForKey:@"rtnCode"], ERRORCODE, nil]];
         }
         //token异常重新登录
         [APIOperation tokenFailed:[responseObject objectForKey:kMessage]];
@@ -260,8 +258,7 @@
     id AFHttpClient=kAFHttpClient;
     //加token，deviceId,userId
     NSMutableDictionary *kParameters = [APIOperation paramsWithToken:params];
-    [kParameters setObject:URLString forKey:@"uid"];
-    [AFHttpClient POST:@"common.action" parameters:kParameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [AFHttpClient POST:URLString parameters:kParameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         for (NSDictionary *dict in mediaArray) {
             [formData appendPartWithFileData:[dict objectForKey:@"data"]
                                         name:[dict objectForKey:@"name"]
@@ -271,16 +268,16 @@
         
     } success:^(id operation, id responseObject) {
         
-        NSString *code = [responseObject objectForKey:@"code"];
+        NSString *code = [responseObject objectForKey:@"rtnCode"];
         NSDictionary *dataDict=[responseObject objectForKey:@"data"];
         RESTError *restError = nil;
         //业务逻辑错误
-        if(![[code uppercaseString] isEqualToString:@"0"])
+        if(![[code uppercaseString] isEqualToString:@"1"])
         {
             
             restError = [[RESTError alloc] initWithDomain:kBusinessErrorDomain
                                                      code:0
-                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[responseObject objectForKey:kMessage], ERRORMSG,[responseObject objectForKey:@"code"], ERRORCODE, nil]];
+                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[responseObject objectForKey:kMessage], ERRORMSG,[responseObject objectForKey:@"rtnCode"], ERRORCODE, nil]];
         }
         //token异常重新登录
         [APIOperation tokenFailed:[responseObject objectForKey:kMessage]];
@@ -319,20 +316,20 @@ onCompletion:(void (^)(id responseData, NSError* error,NSInteger indexNum))compl
     NSMutableDictionary *kParameters = [APIOperation paramsWithToken:parameters];
     [AFHttpClient GET:URLString parameters:kParameters success:^(id operation, id responseObject) {
         
-        NSString *code = [responseObject objectForKey:@"code"];
+        NSString *code = [responseObject objectForKey:@"rtnCode"];
         NSDictionary *dataDict=[responseObject objectForKey:@"payload"];
         RESTError *restError = nil;
         //业务逻辑错误
-        if(![[code uppercaseString] isEqualToString:@"0"])
+        if(![[code uppercaseString] isEqualToString:@"1"])
         {
 #if defined (CONFIGURATION_DEBUG)
             restError = [[RESTError alloc] initWithDomain:kBusinessErrorDomain
                                                      code:0
-                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@,%@",URLString,[responseObject objectForKey:kMessage]], ERRORMSG,[responseObject objectForKey:@"code"], ERRORCODE, nil]];
+                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%@,%@",URLString,[responseObject objectForKey:kMessage]], ERRORMSG,[responseObject objectForKey:@"rtnCode"], ERRORCODE, nil]];
 #else
             restError = [[RESTError alloc] initWithDomain:kBusinessErrorDomain
                                                      code:0
-                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[responseObject objectForKey:kMessage], ERRORMSG,[responseObject objectForKey:@"code"], ERRORCODE, nil]];
+                                                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[responseObject objectForKey:kMessage], ERRORMSG,[responseObject objectForKey:@"rtnCode"], ERRORCODE, nil]];
 #endif
             
         }

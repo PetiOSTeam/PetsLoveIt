@@ -29,7 +29,7 @@
 
 #define kBundleId   [[NSBundle mainBundle] bundleIdentifier]
 //接口返回的错误消息的key
-#define kMessage @"error"
+#define kMessage @"rtnMsg"
 
 #define RSA_PUBLICK_KEY                 @"RSA_PUBLICK_KEY"
 #define kAppDeviceToken         @"AppDeviceToken"
@@ -209,4 +209,7 @@ typedef NS_ENUM(NSInteger, DetailPageType) {
 #define kDefaultDesKey @"FhXXyeXDqxzfvy4jRdg4PbizmwwkCQQD"
 #define mDefaultDesKey [mAppUtils calculateDefaultDESKEY]
 #define mDefaultDesIV  [mAppUtils calculateDefaultDESIV]
+
+#define AESKey @"SHPetXwwm4i3w8j2"
+#define AESIV @"2015428636499153"
 
