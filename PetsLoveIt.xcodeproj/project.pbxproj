@@ -464,6 +464,8 @@
 		18E21ED31C00229C007059F3 /* YYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EBB1C00229C007059F3 /* YYTextView.m */; };
 		18E21EDF1C01B672007059F3 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EDD1C01B672007059F3 /* LoginViewController.m */; };
 		18E21EE01C01B672007059F3 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21EDE1C01B672007059F3 /* LoginViewController.xib */; };
+		18E21EE41C01CC53007059F3 /* RegViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EE21C01CC53007059F3 /* RegViewController.m */; };
+		18E21EE51C01CC53007059F3 /* RegViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21EE31C01CC53007059F3 /* RegViewController.xib */; };
 		18F632871BF6215600FD98B1 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */; };
 		18F632881BF6215600FD98B1 /* GoodsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */; };
 		18F6328E1BF6DDFF00FD98B1 /* UIView+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F6328D1BF6DDFF00FD98B1 /* UIView+Effects.m */; };
@@ -1348,6 +1350,9 @@
 		18E21EDC1C01B672007059F3 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		18E21EDD1C01B672007059F3 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		18E21EDE1C01B672007059F3 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		18E21EE11C01CC53007059F3 /* RegViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegViewController.h; sourceTree = "<group>"; };
+		18E21EE21C01CC53007059F3 /* RegViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegViewController.m; sourceTree = "<group>"; };
+		18E21EE31C01CC53007059F3 /* RegViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegViewController.xib; sourceTree = "<group>"; };
 		18F632841BF6215600FD98B1 /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
 		18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
 		18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailViewController.xib; sourceTree = "<group>"; };
@@ -2778,6 +2783,9 @@
 				18E21EDC1C01B672007059F3 /* LoginViewController.h */,
 				18E21EDD1C01B672007059F3 /* LoginViewController.m */,
 				18E21EDE1C01B672007059F3 /* LoginViewController.xib */,
+				18E21EE11C01CC53007059F3 /* RegViewController.h */,
+				18E21EE21C01CC53007059F3 /* RegViewController.m */,
+				18E21EE31C01CC53007059F3 /* RegViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3384,6 +3392,7 @@
 				189445F81BEB0774006249F0 /* e_32@2x.png in Resources */,
 				1894462A1BEB0774006249F0 /* e_78@2x.png in Resources */,
 				189445F21BEB0774006249F0 /* e_27@2x.png in Resources */,
+				18E21EE51C01CC53007059F3 /* RegViewController.xib in Resources */,
 				189446051BEB0774006249F0 /* e_44@2x.png in Resources */,
 				1894464D1BEB0774006249F0 /* chatBar_record.png in Resources */,
 				1894467F1BEB0774006249F0 /* sr_refresh@2X.png in Resources */,
@@ -3613,6 +3622,7 @@
 				18E21EBC1C00229C007059F3 /* YYTextContainerView.m in Sources */,
 				189445B01BEB0774006249F0 /* CoreHeaderShowView.m in Sources */,
 				189445CD1BEB0774006249F0 /* PSTCollectionView.m in Sources */,
+				18E21EE41C01CC53007059F3 /* RegViewController.m in Sources */,
 				189445DF1BEB0774006249F0 /* DXFaceView.m in Sources */,
 				189445B91BEB0774006249F0 /* UIView+MJExtension.m in Sources */,
 				1894466B1BEB0774006249F0 /* XHMessageTextView.m in Sources */,

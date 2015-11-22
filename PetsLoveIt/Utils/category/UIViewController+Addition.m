@@ -45,6 +45,7 @@ static const void *kNavBarTitleLabel = &kNavBarTitleLabel;
 }
 
 
+
 -(void)showNaviBarView{
     if (!self.navigationBarView) {
         self.navigationBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 64)];
@@ -73,6 +74,8 @@ static const void *kNavBarTitleLabel = &kNavBarTitleLabel;
         [self.navigationBarView addSubview:buttonBack];
         
         self.navBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 30, mScreenWidth-60, 24)];
+        [self.navBarTitleLabel setTextColor:kNaviTitleColor];
+        [self.navBarTitleLabel setFont:[UIFont systemFontOfSize:18]];
         [self.navBarTitleLabel setTextAlignment:NSTextAlignmentCenter];
         [self.navigationBarView addSubview:self.navBarTitleLabel];
     }

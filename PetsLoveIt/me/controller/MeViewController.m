@@ -50,7 +50,7 @@
 }
 
 - (void) prepareViewAndData{
-    
+    self.title = @"99";
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     [self.headerView setBackgroundColor:mRGBToColor(0xf5f5f5)];
     
