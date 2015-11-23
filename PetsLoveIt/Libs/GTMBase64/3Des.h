@@ -13,7 +13,8 @@
 
 }
 
-+(NSString *)AES128Encrypt:(NSString *)plainText;
++ (NSString*)AES128Encrypt:(NSString *)plainText;
+
 +(NSString *)AES128Decrypt:(NSString *)encryptText;
 
 +(NSString*)TripleDES:(NSString*)plainText encryptOrDecrypt:(CCOperation)encryptOrDecrypt key:(NSString*)key;

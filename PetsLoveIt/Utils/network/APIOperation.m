@@ -57,7 +57,7 @@
     [AFHttpClient GET:URLString parameters:kParameters success:^(id operation, id responseObject) {
         
         NSString *code = [responseObject objectForKey:@"rtnCode"];
-        NSDictionary *dataDict=[responseObject objectForKey:@"data"];
+        NSDictionary *dataDict= responseObject;
         RESTError *restError = nil;
         //业务逻辑错误
         if(![[code uppercaseString] isEqualToString:@"1"])
@@ -116,7 +116,7 @@
     [AFHttpClient POST:URLString parameters:kParameters success:^(id operation, id responseObject) {
         
         NSString *code = [responseObject objectForKey:@"rtnCode"];
-        NSDictionary *dataDict=[responseObject objectForKey:@"data"];
+        NSDictionary *dataDict = responseObject;
         RESTError *restError = nil;
         //业务逻辑错误
         if(![[code uppercaseString] isEqualToString:@"1"])

@@ -59,18 +59,47 @@
 }
 
 - (IBAction)forgotAction:(id)sender {
+    
 }
 - (IBAction)loginAction:(id)sender {
+    [self.view endEditing:YES];
+    NSString  *mobile = self.accountTextField.text;
+    NSString  *pwd = self.pwdTextField.text;
+    NSString *encryptedPwd = [[_Des AES128Encrypt:[pwd appendAESKeyAndTimeStamp]] uppercaseString];
+    if ([mobile length]==0) {
+        mAlertView(@"提示", @"手机号不能为空");
+        return;
+    }
+    if ([pwd length] == 0) {
+        mAlertView(@"提示", @"密码不能为空");
+        return;
+    }
+    NSDictionary *params = @{
+                             @"uid":@"login",
+                             @"type":@"1",
+                             @"userName":mobile,
+                             @"userPwd":encryptedPwd
+                             };
+    [APIOperation GET:@"userLogin.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            
+        }else{
+            mAlertAPIErrorInfo(error);
+        }
+    }];
 }
 - (IBAction)regAction:(id)sender {
     RegViewController *vc = [RegViewController new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)weiboAction:(id)sender {
+    
 }
 - (IBAction)wxAction:(id)sender {
+    
 }
 - (IBAction)qqAction:(id)sender {
+    
 }
 
 - (void)didReceiveMemoryWarning {

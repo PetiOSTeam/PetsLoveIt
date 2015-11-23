@@ -10,6 +10,8 @@
 
 @interface NSString (Addition)
 
+
+- (NSString *) appendAESKeyAndTimeStamp;
 /**
  *  计算字符串的字数。
  *  @param  string:输入字符串。

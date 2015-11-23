@@ -168,10 +168,8 @@
     NSString  *code = self.codeTextField.text;
     NSString  *nickName = self.nickTextField.text;
     NSString  *pwd = self.pwdTextField.text;
-    NSString *encryptedPwd = [_Des AES128Encrypt:pwd];
-    //encryptedPwd = @"VtuUXet2AyaNHqdohWCn4g==";
-    NSLog(@"%@",encryptedPwd);
-    //return;
+    NSString *encryptedPwd = [[_Des AES128Encrypt:[pwd appendAESKeyAndTimeStamp]] uppercaseString];
+    
     if ([mobile length]==0) {
         mAlertView(@"提示", @"手机号不能为空");
         return;
@@ -202,6 +200,8 @@
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             NSLog(@"%@",responseData);
+            [SVProgressHUD showSuccessWithStatus:@"注册成功，请登录"];
+            [self.navigationController popViewControllerAnimated:YES];
         }else{
             mAlertAPIErrorInfo(error);
         }
@@ -210,26 +210,6 @@
     
 }
 
-- (NSString *)hexStringFromString:(NSString *)string{
-    NSData *myD = [string dataUsingEncoding:NSUTF8StringEncoding];
-    Byte *bytes = (Byte *)[myD bytes];
-    //下面是Byte 转换为16进制。
-    NSString *hexStr=@"";
-    for(int i=0;i<[myD length];i++)
-        
-    {
-        NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff];///16进制数
-        
-        if([newHexStr length]==1)
-            
-            hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
-        
-        else
-            
-            hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
-    }
-    return hexStr;
-}
 - (IBAction)regEmailAction:(id)sender {
     
 }

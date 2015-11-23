@@ -10,6 +10,16 @@
 
 @implementation NSString (Addition)
 
+
+- (NSString *) appendAESKeyAndTimeStamp{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMddHHmmss";
+    NSString *nowDateStr = [formatter stringFromDate:[NSDate date]];
+    NSString *result = [self stringByAppendingFormat:@",%@,%@",AESKey,nowDateStr];
+    return result;
+    
+}
+
 - (int)wordsCount
 {
     int i,n =(int) [self length], l = 0, a = 0, b = 0;
