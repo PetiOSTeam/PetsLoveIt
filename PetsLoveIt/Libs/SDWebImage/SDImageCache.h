@@ -58,6 +58,10 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
  */
 + (SDImageCache *)sharedImageCache;
 
+
+//获取缓存大小
+- (float)checkTmpSize;
+
 /**
  * Init a new cache store with a specific namespace
  *

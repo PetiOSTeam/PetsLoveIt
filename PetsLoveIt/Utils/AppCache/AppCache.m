@@ -97,7 +97,7 @@ static int kCacheMemoryLimit;
 }
 ////将Object 缓存到userDefault中
 +(void) cacheObject:(id) object forKey:(NSString *)key {
-    //对LocalUserInfoModelClass 的qrcode,TWToken,IMToken做处理，因为改变个人信息后服务端未返回qrcode,TWToken,IMToken
+    
     if ([key isEqualToString:HLocalUserInfo]) {
         LocalUserInfoModelClass *kNewlocalUserInfo = (LocalUserInfoModelClass *)object;
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:kNewlocalUserInfo];
@@ -115,7 +115,7 @@ static int kCacheMemoryLimit;
 
 +(NSString *) getMobile {
     LocalUserInfoModelClass *userInfo = [self getUserInfo];
-    NSString *mobile = [NSString stringWithFormat:@"%@",userInfo.user_account];
+    NSString *mobile = [NSString stringWithFormat:@"%@",userInfo.mobile];
     if (!mobile) {
         mobile = @"";
     }
@@ -124,7 +124,7 @@ static int kCacheMemoryLimit;
 
 +(NSString *) getUserId {
     LocalUserInfoModelClass *userInfo = [self getUserInfo];
-    NSString *userId = [NSString stringWithFormat:@"%@",userInfo.user_id];
+    NSString *userId = [NSString stringWithFormat:@"%@",userInfo.uId];
     if (!userId) {
         userId = @"";
     }
@@ -132,19 +132,15 @@ static int kCacheMemoryLimit;
 }
 +(NSString *) getToken{
     LocalUserInfoModelClass *userInfo = [self getUserInfo];
-    NSString *token = [NSString stringWithFormat:@"%@",userInfo.token];
-    if (!userInfo.token) {
-        token = @"";
-    }
-    return token;
+//    NSString *token = [NSString stringWithFormat:@"%@",userInfo.token];
+//    if (!userInfo.token) {
+//        token = @"";
+//    }
+//    return token;
+    return @"";
 }
 
-//获取用户tag
-+ (NSArray *)getUserTags{
-    LocalUserInfoModelClass *userInfo = [self getUserInfo];
-    NSArray *tagArray = userInfo.tagList;
-    return tagArray;
-}
+
 
 +(NSString *) getUserAvatar {
     LocalUserInfoModelClass *userInfo = [self getUserInfo];
@@ -154,15 +150,11 @@ static int kCacheMemoryLimit;
 
 +(NSString *) getUserName {
     LocalUserInfoModelClass *userInfo = [self getUserInfo];
-    NSString *username = [NSString stringWithFormat:@"%@",userInfo.nick_name];
+    NSString *username = [NSString stringWithFormat:@"%@",userInfo.nickName];
     return username;
 }
 
-+(NSString *) getUserPoint {
-    LocalUserInfoModelClass *userInfo = [self getUserInfo];
-    NSString *point = [NSString stringWithFormat:@"%@",userInfo.point];
-    return point;
-}
+
 
 
 +(void) initialize

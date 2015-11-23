@@ -12,7 +12,7 @@
 #define UMENG_APPKEY                @"56484222e0f55ad4db009b90"
 #define UMENG_channelId             @"petiOSAppStore"
 
-static NSString *const iVersioniOSAppStoreURLFormat = @"https://itunes.apple.com/us/app/you-bi-cai-fu/id1043407423?mt=8&uo=4";
+static NSString *const iVersioniOSAppStoreURLFormat = @"https://itunes.apple.com/us/app/xxxx/id1043407423?mt=8&uo=4";
 static NSString *const appStoreID = @"1043407423";
 
 #define QQSDKAppID @"1104902660"

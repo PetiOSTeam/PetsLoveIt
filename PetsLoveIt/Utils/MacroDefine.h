@@ -125,6 +125,7 @@ otherButtonTitles:nil]; \
 #define kLayerBorderColor mRGBToColor(0xdcdcdc)
 
 #define HLocalUserInfo @"HLocalUserInfo"
+#define HLoginAccount @"HLoginAccount"
 #define ReloadUserInfoNotify @"ReloadUserInfoNotify"
 
 #define StockObjSortId @"1"     //股票
@@ -200,6 +201,8 @@ typedef NS_ENUM(NSInteger, DetailPageType) {
     RelatedPersonType,
     NewsType
 };
+
+#define kImageQualityKey @"ImageQualityKey"
 
 
 //通知notification

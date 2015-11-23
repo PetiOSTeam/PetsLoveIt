@@ -9,8 +9,13 @@
 #import "MeViewController.h"
 #import "YYText.h"
 #import "LoginViewController.h"
+#import "MoreViewController.h"
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
+#import "TWImagePicker.h"
+#import "LoginViewController.h"
 
-@interface MeViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerContainerView;
 @property (weak, nonatomic) IBOutlet UIView *menuContainerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -39,6 +44,13 @@
 @property (strong, nonatomic)  UIView *navigationBarView;
 @property (strong, nonatomic)  UILabel *navBarTitleLabel;
 
+@property (nonatomic,strong) UIPickerView *imageQualityPickerView;
+@property (nonatomic,strong) UIView *pickerView;
+
+@property (strong,nonatomic) NSString * imageQualityStr;
+@property (strong,nonatomic) NSString * sdImageCacheSize;
+
+
 
 @end
 
@@ -49,8 +61,24 @@
     [self prepareViewAndData];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self loadUserInfoViewAndData];
+    
+    float tmpSize = [[SDImageCache sharedImageCache] checkTmpSize];
+    NSString *cacheSize = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];
+    _sdImageCacheSize = cacheSize;
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 - (void) prepareViewAndData{
-    self.title = @"99";
+    
+    _imageQualityStr = [mUserDefaults objectForKey:kImageQualityKey];
+    if (!_imageQualityStr) {
+        _imageQualityStr = @"标清";
+    }
+    
+    
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     [self.headerView setBackgroundColor:mRGBToColor(0xf5f5f5)];
     
@@ -62,6 +90,8 @@
     
     self.avatarImageView.center = CGPointMake(mScreenWidth/2, self.avatarImageView.center.y);
     self.avatarImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapOnAvatar = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAvatar)];
+    [self.avatarImageView addGestureRecognizer:tapOnAvatar];
     self.avatarImageView.layer.cornerRadius = 30;
     self.signButton.center =  CGPointMake(mScreenWidth/2, self.signButton.center.y);
     self.signButton.layer.cornerRadius = 18;
@@ -94,24 +124,188 @@
     
     self.headerView.height = self.menuContainerView.bottom +10;
     self.tableView.tableHeaderView = self.headerView;
+    self.tableView.tableFooterView = [UIView new];
+    
+    //[self.view addSubview:self.pickerView];
     
     [self.view addSubview:self.navigationBarView];
     self.navigationBarView.alpha = 0;
+    [self loadUserInfoViewAndData];
     
+}
+
+-(UIView *)pickerView{
+    if (!_pickerView) {
+        _pickerView = [[UIView alloc] initWithFrame:CGRectMake(0, mScreenHeight, mScreenWidth, 170)];
+        [_pickerView setBackgroundColor:[UIColor whiteColor]];
+        _imageQualityPickerView = [[UIPickerView alloc] init];
+        _imageQualityPickerView.top = 0;
+        _imageQualityPickerView.width = mScreenWidth;
+        _imageQualityPickerView.dataSource = self;
+        _imageQualityPickerView.delegate = self;
+        [_imageQualityPickerView reloadAllComponents];
+        [_pickerView addSubview:_imageQualityPickerView];
+
+        UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [cancelBtn setFrame:CGRectMake(0, 0, 50, 44)];
+        [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [cancelBtn setTitleColor:mRGBToColor(0x999999) forState:UIControlStateNormal];
+        [cancelBtn addTarget:self action:@selector(hidePickerView) forControlEvents:UIControlEventTouchUpInside];
+        [_pickerView addSubview:cancelBtn];
+        UIButton *okBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [okBtn setFrame:CGRectMake(mScreenWidth-50, 0, 50, 44)];
+        [okBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [okBtn setTitleColor:mRGBToColor(0x333333) forState:UIControlStateNormal];
+        [okBtn addTarget:self action:@selector(okPickerView) forControlEvents:UIControlEventTouchUpInside];
+        [_pickerView addSubview:okBtn];
+        [_pickerView addTopBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+    }
+    return _pickerView;
+}
+
+-(void)okPickerView{
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self hidePickerView];
+}
+
+-(void)showPickerView{
+    [UIView animateWithDuration:0.3 animations:^{
+        _pickerView.top = mScreenHeight - _pickerView.height - 49;
+    }];
+}
+
+-(void)hidePickerView{
+    [UIView animateWithDuration:0.3 animations:^{
+        _pickerView.top = mScreenHeight ;
+    }];
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return 2;
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    switch (row) {
+        case 0:
+            return @"标清";
+            break;
+        case 1:
+            return @"高清";
+            break;
+        default:
+            break;
+    }
+    return nil;
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    if (row == 0) {
+        _imageQualityStr = @"标清";
+    }else{
+        _imageQualityStr = @"高清";
+    }
+}
+
+-(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return  40;
+}
+
+
+- (void) chooseAvatar{
     if (![AppCache getUserInfo]) {
-        self.nameLabel.text = @"Hi 你好";
-        self.navBarTitleLabel.text = @"Hi 你好";
+        LoginViewController *vc = [LoginViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    [self setHeadImage];
+    
+}
+
+-(void)setHeadImage
+{
+    UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"拍照", @"从手机相册选择", nil];
+    [actionSheet showInView:mWindow];
+}
+
+- (void)uploadAvatar:(NSDictionary*) params{
+    [SVProgressHUD showWithStatus:@"正在上传头像，请稍后" maskType:SVProgressHUDMaskTypeClear];
+    NSString *urlString = @"getSrvcore.action";
+    WEAKSELF
+    [APIOperation uploadMedia:urlString parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+            NSString *userAvatar = [responseData objectForKey:@"user_icon"];
+            LocalUserInfoModelClass *localUserInfo = [AppCache getUserInfo];
+            localUserInfo.user_icon = userAvatar;
+            [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+            [weakSelf.avatarImageView sd_setImageWithURL:[NSURL URLWithString:userAvatar] placeholderImage:kDefaultHeadImage];
+            
+        }else{
+            [SVProgressHUD dismiss];
+            mAlertAPIErrorInfo(error);
+        }
+    }];
+}
+
+#pragma mark - action Sheet
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        TWImagePicker *picker = [[TWImagePicker alloc]initWithDelegate:self];
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        picker.allowEditing = YES;
+        [picker executeInViewController:self];
+    } else if (buttonIndex == 1) {
+        TWImagePicker *picker = [[TWImagePicker alloc]initWithDelegate:self];
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        picker.maximumNumberOfSelection = 1;
+        picker.allowEditing = YES;
+        [picker executeInViewController:self];
+    }
+}
+
+- (void)imagePicker:(TWImagePicker *)picker successed:(NSArray *)infos
+{
+    NSDictionary *item = [infos firstObject];
+    NSString *imagePath = [item objectForKey:kPhotoUtilsImagePath];
+    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    
+    NSDictionary* params = @{
+                             @"uid":@"bindUser",
+                             @"file" : image
+                             };
+    
+    [self performSelector:@selector(uploadAvatar:) withObject:params afterDelay:0.5f];
+    //    [self uploadAvatar:params];
+}
+
+
+- (void) loadUserInfoViewAndData{
+    if (![AppCache getUserInfo]) {
+        self.nameLabel.text = @"Hi , 你好";
+        self.navBarTitleLabel.text = @"Hi , 你好";
         self.levelLabel.text = @"登录签到抽大奖";
+        self.avatarImageView.image = [UIImage imageNamed:@"defaultUserAvatar"];
         [self.signButton setTitle:@"登录" forState:UIControlStateNormal];
         [self.signButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
     }else{
-        self.nameLabel.text = [AppCache getUserName];
-        self.navBarTitleLabel.text = [AppCache getUserName];
-
+        self.nameLabel.text = [NSString stringWithFormat:@"Hi , %@",[AppCache getUserName]];
+        self.navBarTitleLabel.text =[NSString stringWithFormat:@"Hi , %@",[AppCache getUserName]] ;
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[AppCache getUserAvatar]] placeholderImage:[UIImage imageNamed:@"defaultUserAvatar"]];
         self.levelLabel.text = @"";
         [self.signButton setTitle:@"签到送金币" forState:UIControlStateNormal];
         [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
     }
+    
     
 }
 
@@ -140,6 +334,10 @@
     }else{
         self.navigationBarView.alpha = 0;
     }
+
+    if (self.pickerView.top < mScreenHeight) {
+        [self hidePickerView];
+    }
 }
 
 - (void) loginAction{
@@ -161,7 +359,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 8;
+    return 7;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -177,48 +375,96 @@
         {
             cell.textLabel.text = @"每日精选推送";
             cell.imageView.image= [UIImage imageNamed:@"mrjxts_my_icon"];
+            UISwitch *switchBtn = [[UISwitch alloc] init];
+            switchBtn.right = mScreenWidth - 10;
+            switchBtn.center = CGPointMake(switchBtn.center.x, 22);
+            [switchBtn addTarget:self action:@selector(pushSwitchAction:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:switchBtn];
         }
             break;
         case 1:
         {
             cell.textLabel.text = @"推送设置";
-            cell.imageView.image= [UIImage imageNamed:@"grsz_my_icon"];
+            cell.imageView.image= [UIImage imageNamed:@"tssz_my_icon"];
+            UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+            arrow.image = [UIImage imageNamed:@"rightArrowIcon"];
+            arrow.right = mScreenWidth - 10;
+            arrow.center = CGPointMake(arrow.center.x, 22);
+            [cell.contentView addSubview:arrow];
+
         }
             break;
         case 2:
         {
             cell.textLabel.text = @"签到提醒";
-            cell.imageView.image= [UIImage imageNamed:@"grsz_my_icon"];
+            cell.imageView.image= [UIImage imageNamed:@"qdtx_my_icon"];
+            UISwitch *switchBtn = [[UISwitch alloc] init];
+            switchBtn.right = mScreenWidth - 10;
+            switchBtn.center = CGPointMake(switchBtn.center.x, 22);
+            [switchBtn addTarget:self action:@selector(signSwitchAction:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:switchBtn];
+            
         }
+            break;
+//        case 3:
+//        {
+//            cell.textLabel.text = @"移动网络图片质量";
+//            cell.imageView.image= [UIImage imageNamed:@"tpzl_my_icon"];
+//            UILabel *imageQualityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 15)];
+//            [imageQualityLabel setTextColor:mRGBToColor(0x497fbf)];
+//            [imageQualityLabel setFont:[UIFont systemFontOfSize:13]];
+//            [imageQualityLabel setTextAlignment:NSTextAlignmentRight];
+//            [imageQualityLabel setText:_imageQualityStr];
+//            imageQualityLabel.right = mScreenWidth - 10;
+//            imageQualityLabel.center = CGPointMake(imageQualityLabel.center.x, 22);
+//            [cell.contentView addSubview:imageQualityLabel];
+//        }
             break;
         case 3:
         {
-            cell.textLabel.text = @"移动网络图片质量";
-            cell.imageView.image= [UIImage imageNamed:@"tpzl_my_icon"];
+            cell.textLabel.text = @"清除缓存";
+            cell.imageView.image= [UIImage imageNamed:@"qchc_my_icon"];
+            UILabel *imageCacheLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 15)];
+            [imageCacheLabel setTextColor:mRGBToColor(0x999999)];
+            [imageCacheLabel setFont:[UIFont systemFontOfSize:13]];
+            [imageCacheLabel setTextAlignment:NSTextAlignmentRight];
+            [imageCacheLabel setText:_sdImageCacheSize];
+            imageCacheLabel.right = mScreenWidth - 10;
+            imageCacheLabel.center = CGPointMake(imageCacheLabel.center.x, 22);
+            [cell.contentView addSubview:imageCacheLabel];
         }
             break;
         case 4:
         {
-            cell.textLabel.text = @"清除缓存";
-            cell.imageView.image= [UIImage imageNamed:@"qchc_my_icon"];
+            cell.textLabel.text = @"个人设置";
+            cell.imageView.image= [UIImage imageNamed:@"grsz_my_icon"];
+            UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+            arrow.image = [UIImage imageNamed:@"rightArrowIcon"];
+            arrow.right = mScreenWidth - 10;
+            arrow.center = CGPointMake(arrow.center.x, 22);
+            [cell.contentView addSubview:arrow];
         }
             break;
         case 5:
         {
-            cell.textLabel.text = @"个人设置";
-            cell.imageView.image= [UIImage imageNamed:@"grsz_my_icon"];
+            cell.textLabel.text = @"有奖建议";
+            cell.imageView.image= [UIImage imageNamed:@"yjjy_my_icon"];
+            UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+            arrow.image = [UIImage imageNamed:@"rightArrowIcon"];
+            arrow.right = mScreenWidth - 10;
+            arrow.center = CGPointMake(arrow.center.x, 22);
+            [cell.contentView addSubview:arrow];
         }
             break;
         case 6:
         {
-            cell.textLabel.text = @"有奖建议";
-            cell.imageView.image= [UIImage imageNamed:@"yjjy_my_icon"];
-        }
-            break;
-        case 7:
-        {
             cell.textLabel.text = @"更多";
             cell.imageView.image= [UIImage imageNamed:@"gd_my_icon"];
+            UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+            arrow.image = [UIImage imageNamed:@"rightArrowIcon"];
+            arrow.right = mScreenWidth - 10;
+            arrow.center = CGPointMake(arrow.center.x, 22);
+            [cell.contentView addSubview:arrow];
         }
             break;
             
@@ -226,6 +472,63 @@
             break;
     }
     return cell;
+}
+
+- (void) pushSwitchAction:(id)sender{
+    
+}
+
+- (void) signSwitchAction:(id)sender{
+    
+}
+
+- (void) cleanSDImageCache{
+    
+    float tmpSize = [[SDImageCache sharedImageCache] checkTmpSize];
+    NSString *clearCacheName = tmpSize >= 1 ? [NSString stringWithFormat:@"清理缓存(%.2fM)",tmpSize] : [NSString stringWithFormat:@"清理缓存(%.2fK)",tmpSize * 1024];
+    [mAppUtils showHint:clearCacheName];
+    
+    [[SDImageCache sharedImageCache] clearDisk];
+    
+    _sdImageCacheSize = @"0.00K";
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    switch (indexPath.row) {
+        case 0:
+            
+            break;
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+//        case 3:
+//            [self showPickerView];
+//            break;
+        case 3:
+            [self cleanSDImageCache];
+            break;
+        case 4:
+            
+            break;
+        case 5:
+            
+            break;
+        case 6:
+        {
+            MoreViewController *vc  = [MoreViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -74,6 +74,8 @@
         mAlertView(@"提示", @"密码不能为空");
         return;
     }
+    
+    [SVProgressHUD showWithStatus:@"登录中..." maskType:SVProgressHUDMaskTypeClear];
     NSDictionary *params = @{
                              @"uid":@"login",
                              @"type":@"1",
@@ -81,9 +83,23 @@
                              @"userPwd":encryptedPwd
                              };
     [APIOperation GET:@"userLogin.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+
         if (!error) {
+            NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
+            LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
             
+            //将userinfo记录下来
+            mAppDelegate.loginUser = localUserInfo;
+            [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+            
+            [mUserDefaults setObject:_accountTextField.text forKey:HLoginAccount];
+            [mUserDefaults synchronize];
+            
+            //登录成功
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [self.navigationController popViewControllerAnimated:YES];
         }else{
+            [SVProgressHUD dismiss];
             mAlertAPIErrorInfo(error);
         }
     }];
