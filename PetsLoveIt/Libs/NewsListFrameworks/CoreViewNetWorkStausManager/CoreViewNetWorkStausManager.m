@@ -21,9 +21,14 @@
         
         //创建CMView
         CMView *myCmView=[CMView cmViewWithType:type msg:msg subMsg:subMsg offsetY:offsetY failClickBlock:failClickBlock];
-        
+      
+        if ([msg isEqualToString:kNoNetWorkTip]) {
+            myCmView.imageView.image = [UIImage imageNamed:@"noNetWorkIcon"];
+        }else if ([msg isEqualToString:kNoNetWorkTip]){
+            myCmView.imageView.image = [UIImage imageNamed:@"noContentIcon"];
+        }
+        view.width = mScreenWidth;
         [view addSubview:myCmView];
-        
         myCmView.alpha=0;
         [UIView animateWithDuration:.25f animations:^{
             myCmView.alpha=1.0f;

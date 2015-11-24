@@ -126,8 +126,14 @@
         btn.titleLabel.font=self.barFont;
         
         CGFloat btnW=fontSize.width + CorePagesBarBtnExtraWidth;
+        if (!self.useAutoResizeWidth) {
+            if(CorePagesBarBtnUseCustomWidth) btnW = CorePagesBarBtnWidth + CorePagesBarBtnExtraWidth;
+        }else{
+            btnW = mScreenWidth / _pageModels.count;
+        }
         
-        if(CorePagesBarBtnUseCustomWidth) btnW = CorePagesBarBtnWidth + CorePagesBarBtnExtraWidth;
+        
+        
         
         CGSize size=CGSizeMake(btnW, CorePagesBarViewH);
         
@@ -300,8 +306,9 @@
     
     if(isFirstBtn){
         self.lineView.frame=frame;
-        self.lineView.width = 28;
-        self.lineView.left = 30;
+        CGSize fontSize=[btn.titleLabel.text sizeWithFont:self.barFont];
+        self.lineView.width = fontSize.width ;
+        self.lineView.left = (btn.width-fontSize.width)/2 + CorePagesBarScrollMargin;
     }else{
         
         [UIView animateWithDuration:CorePagesAnimDuration animations:^{

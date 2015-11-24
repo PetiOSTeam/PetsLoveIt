@@ -468,6 +468,10 @@
 		18E21EE51C01CC53007059F3 /* RegViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21EE31C01CC53007059F3 /* RegViewController.xib */; };
 		18E21EE91C02F7BE007059F3 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EE71C02F7BE007059F3 /* MoreViewController.m */; };
 		18E21EEA1C02F7BE007059F3 /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21EE81C02F7BE007059F3 /* MoreViewController.xib */; };
+		18E21EEE1C040400007059F3 /* MyCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EEC1C040400007059F3 /* MyCommentViewController.m */; };
+		18E21EF21C04065D007059F3 /* ReceivedCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EF11C04065D007059F3 /* ReceivedCommentViewController.m */; };
+		18E21EF51C040674007059F3 /* SentCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EF41C040674007059F3 /* SentCommentViewController.m */; };
+		18E21EF71C040B21007059F3 /* MyCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21EF61C040B21007059F3 /* MyCommentViewController.xib */; };
 		18F632871BF6215600FD98B1 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */; };
 		18F632881BF6215600FD98B1 /* GoodsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */; };
 		18F6328E1BF6DDFF00FD98B1 /* UIView+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F6328D1BF6DDFF00FD98B1 /* UIView+Effects.m */; };
@@ -1358,6 +1362,13 @@
 		18E21EE61C02F7BE007059F3 /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
 		18E21EE71C02F7BE007059F3 /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
 		18E21EE81C02F7BE007059F3 /* MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreViewController.xib; sourceTree = "<group>"; };
+		18E21EEB1C040400007059F3 /* MyCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentViewController.h; sourceTree = "<group>"; };
+		18E21EEC1C040400007059F3 /* MyCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentViewController.m; sourceTree = "<group>"; };
+		18E21EF01C04065D007059F3 /* ReceivedCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceivedCommentViewController.h; sourceTree = "<group>"; };
+		18E21EF11C04065D007059F3 /* ReceivedCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceivedCommentViewController.m; sourceTree = "<group>"; };
+		18E21EF31C040674007059F3 /* SentCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentCommentViewController.h; sourceTree = "<group>"; };
+		18E21EF41C040674007059F3 /* SentCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SentCommentViewController.m; sourceTree = "<group>"; };
+		18E21EF61C040B21007059F3 /* MyCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCommentViewController.xib; sourceTree = "<group>"; };
 		18F632841BF6215600FD98B1 /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
 		18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
 		18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailViewController.xib; sourceTree = "<group>"; };
@@ -2794,6 +2805,13 @@
 				18E21EE61C02F7BE007059F3 /* MoreViewController.h */,
 				18E21EE71C02F7BE007059F3 /* MoreViewController.m */,
 				18E21EE81C02F7BE007059F3 /* MoreViewController.xib */,
+				18E21EEB1C040400007059F3 /* MyCommentViewController.h */,
+				18E21EEC1C040400007059F3 /* MyCommentViewController.m */,
+				18E21EF61C040B21007059F3 /* MyCommentViewController.xib */,
+				18E21EF01C04065D007059F3 /* ReceivedCommentViewController.h */,
+				18E21EF11C04065D007059F3 /* ReceivedCommentViewController.m */,
+				18E21EF31C040674007059F3 /* SentCommentViewController.h */,
+				18E21EF41C040674007059F3 /* SentCommentViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3533,6 +3551,7 @@
 				F9EAB7901BF75A1B00BD0D6B /* SoretedHeaderView.xib in Resources */,
 				189445F31BEB0774006249F0 /* e_28@2x.png in Resources */,
 				189446381BEB0774006249F0 /* e_9@2x.png in Resources */,
+				18E21EF71C040B21007059F3 /* MyCommentViewController.xib in Resources */,
 				189446181BEB0774006249F0 /* e_61@2x.png in Resources */,
 				189445B31BEB0774006249F0 /* CoreHeaderView.xib in Resources */,
 				189446191BEB0774006249F0 /* e_62@2x.png in Resources */,
@@ -3621,6 +3640,7 @@
 				18DD071E1BEC53E5003C8160 /* HomePageViewController.m in Sources */,
 				189445D71BEB0774006249F0 /* PSTGridLayoutRow.m in Sources */,
 				189446841BEB0774006249F0 /* SVProgressHUD.m in Sources */,
+				18E21EEE1C040400007059F3 /* MyCommentViewController.m in Sources */,
 				189442CE1BEAF65A006249F0 /* NSString+Addition.m in Sources */,
 				18F6329A1BF72CBB00FD98B1 /* UIViewController+ZJExchange.m in Sources */,
 				F92EE5261C0068DA00DEC5D0 /* KeywordsModel.m in Sources */,
@@ -3670,6 +3690,7 @@
 				1894463B1BEB0774006249F0 /* FacialView.m in Sources */,
 				189445AD1BEB0774006249F0 /* CAAnimation+CoreRefresh.m in Sources */,
 				1894459C1BEB0774006249F0 /* NSString+ArcFile.m in Sources */,
+				18E21EF21C04065D007059F3 /* ReceivedCommentViewController.m in Sources */,
 				189446E61BEB0A80006249F0 /* YYWebImageOperation.m in Sources */,
 				189445C01BEB0774006249F0 /* MJConst.m in Sources */,
 				189442D41BEAF65A006249F0 /* UIColor+Addition.m in Sources */,
@@ -3889,6 +3910,7 @@
 				189442DA1BEAF65A006249F0 /* UIResponder+Router.m in Sources */,
 				F99B56D31BF4B75F008E18A2 /* QHCommonUtil.m in Sources */,
 				1894458D1BEB0774006249F0 /* MJRefreshFooterView.m in Sources */,
+				18E21EF51C040674007059F3 /* SentCommentViewController.m in Sources */,
 				F99742581BF865C70062A37F /* SearchHeaderView.m in Sources */,
 				184858B21BF8DD3C001FF521 /* NSArray+MASAdditions.m in Sources */,
 				189445C71BEB0774006249F0 /* NSString+MJExtension.m in Sources */,

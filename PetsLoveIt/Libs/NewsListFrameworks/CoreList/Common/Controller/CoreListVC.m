@@ -359,8 +359,8 @@ typedef enum{
         });
         [self.scrollView headerSetState:CoreHeaderViewRefreshStateSuccessedResultNoMoreData];
         //第一次来就没有数据：提示没有数据
-        NSString *msg =_configModel.hiddenNetWorkStausManager?@"":@"暂无数据";
-        NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"没有新数据，点击屏幕获取试试";
+        NSString *msg =_configModel.hiddenNetWorkStausManager?@"":kNoContentTip;
+        NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"点击屏幕重新加载";
         if (_configModel.customNoResultMsg) {
             subMsg = _configModel.customNoResultMsg;
         }
@@ -388,7 +388,7 @@ typedef enum{
             NSLog(@"顶部刷新没有任何数据，可能是列表没有任何数据或者page起始页设置有问题。");
             if (!_configModel.hiddenNetWorkStausManager) {
                 //第一次来就没有数据：提示没有数据
-                NSString *msg =_configModel.hiddenNetWorkStausManager?@"":@"暂无数据";
+                NSString *msg =_configModel.hiddenNetWorkStausManager?@"":kNoContentTip;
                 NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"没有新数据，点击屏幕获取试试";
                 [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
                     if (!_configModel.hiddenNetWorkStausManager) {
@@ -580,7 +580,7 @@ typedef enum{
     //界面指示(仅限网络错误)
 
     if(!_hasData){
-        [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:@"网络错误" subMsg:@"当前网络出错，请点击屏幕重新加载。" offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
+        [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:kNoNetWorkTip subMsg:@"点击屏幕重新加载" offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
             
             //使用当前的请求方式，再次请求
             [self requestWithRequestType:requestType];

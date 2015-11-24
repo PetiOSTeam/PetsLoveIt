@@ -13,6 +13,7 @@
 
 
 
+@property (nonatomic,assign) BOOL useAutoResizeWidth;//自动计算顶部按钮宽度
 /**
  *  分页模型数组
  */

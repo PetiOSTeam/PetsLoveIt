@@ -14,7 +14,6 @@
 /**
  *  控件
  */
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *idv;
 

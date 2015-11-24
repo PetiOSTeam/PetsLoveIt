@@ -11,6 +11,7 @@
 
 @interface CMView : UIView
 
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 
 +(instancetype)cmViewWithType:(CMType)type msg:(NSString *)msg subMsg:(NSString *)subMsg offsetY:(CGFloat)offsetY failClickBlock:(void(^)())failClickBlock;

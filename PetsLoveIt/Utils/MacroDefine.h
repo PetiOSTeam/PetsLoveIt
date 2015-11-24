@@ -195,6 +195,9 @@ UIKIT_STATIC_INLINE AppDelegate *appDelegate()
 #define kPhotoUtilsThumbImage @"ThumbImage"
 #define kPhotoUtilsAsset @"Asset"
 
+#define kNoNetWorkTip @"好像没网了"
+#define kNoContentTip @"这里什么都没有，去看看别的吧"
+
 //详情页类型
 typedef NS_ENUM(NSInteger, DetailPageType) {
     GoodsType,

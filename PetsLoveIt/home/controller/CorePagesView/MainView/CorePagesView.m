@@ -109,6 +109,23 @@
     return pagesView;
 }
 
++(instancetype)viewWithOwnerVC:(UIViewController *)ownerVC pageModels:(NSArray *)pageModels useAutoResizeWidth:(BOOL) useAutoResizeWidth{
+    
+    CorePagesView *pagesView=[[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:nil options:nil].firstObject;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //记录所属控制器
+        pagesView.ownerVC=ownerVC;
+        
+        pagesView.useAutoResizeWidth = useAutoResizeWidth;
+        //模型数组
+        pagesView.pageModels=pageModels;
+        
+    });
+    
+    return pagesView;
+}
+
 
 
 -(void)awakeFromNib{
@@ -131,7 +148,6 @@
     
     //初始化
     self.lastCalWidth=self.width;
-    
     //事件处理
     [self event];
     
@@ -192,7 +208,7 @@
         return;
     }
     
-    
+    self.pagesBarView.useAutoResizeWidth = self.useAutoResizeWidth;
     //数据传递
     self.pagesBarView.pageModels=pageModels;
     
@@ -250,7 +266,7 @@
 -(void)layoutSubviews{
     
     [super layoutSubviews];
-    
+
     self.originalFrame=self.bounds;
     
     NSArray *subViews=self.scrollView.subviews;
@@ -264,7 +280,9 @@
         UIView *subView=subViews[i];
 
         //非我们的子控件不需要处理
-        if([subView isKindOfClass:[UIImageView class]]) continue;
+        if([subView isKindOfClass:[UIImageView class]]){
+            continue;
+        }
         
         index=[self findIndex:subView];
  
@@ -293,10 +311,10 @@
         }
         
         
-
         frame.origin.x= frame.size.width * index;
-        
+       
         subView.frame=frame;
+        subView.width = mScreenWidth;
     }
 }
 

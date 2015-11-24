@@ -14,6 +14,7 @@
 #import "MJPhoto.h"
 #import "TWImagePicker.h"
 #import "LoginViewController.h"
+#import "MyCommentViewController.h"
 
 @interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerContainerView;
@@ -114,6 +115,30 @@
     self.menuView5.top = self.menuView2.bottom;
     self.menuView6.top = self.menuView3.bottom;
     
+    self.menuView1.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapOnMenuView1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showCommentVC)];
+    [self.menuView1 addGestureRecognizer:tapOnMenuView1];
+    
+    self.menuView2.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapOnMenuView2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showCollectVC)];
+    [self.menuView2 addGestureRecognizer:tapOnMenuView2];
+    
+    self.menuView3.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapOnMenuView3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showGradeVC)];
+    [self.menuView3 addGestureRecognizer:tapOnMenuView3];
+    
+    self.menuView4.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapOnMenuView4 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showBLVC)];
+    [self.menuView4 addGestureRecognizer:tapOnMenuView4];
+    
+    self.menuView5.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapOnMenuView5 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showArticleVC)];
+    [self.menuView5 addGestureRecognizer:tapOnMenuView5];
+    
+    self.menuView6.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapOnMenuView6 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMsgVC)];
+    [self.menuView6 addGestureRecognizer:tapOnMenuView6];
+    
     [self.headerContainerView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     self.menuContainerView.layer.borderColor = kLayerBorderColor.CGColor;
     self.menuContainerView.layer.borderWidth = kLayerBorderWidth;
@@ -131,6 +156,27 @@
     [self.view addSubview:self.navigationBarView];
     self.navigationBarView.alpha = 0;
     [self loadUserInfoViewAndData];
+    
+}
+
+-(void) showCommentVC{
+    MyCommentViewController *vc = [MyCommentViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+-(void) showCollectVC{
+    
+}
+-(void) showGradeVC{
+    
+}
+-(void) showBLVC{
+    
+}
+-(void) showArticleVC{
+    
+}
+
+- (void) showMsgVC{
     
 }
 
