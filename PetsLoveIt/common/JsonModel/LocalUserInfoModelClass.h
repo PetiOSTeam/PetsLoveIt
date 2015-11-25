@@ -18,5 +18,7 @@
 @property (strong, nonatomic) NSString *status;
 @property (strong, nonatomic) NSString *nickName;
 @property (strong, nonatomic) NSString *user_icon;
-
+@property (strong, nonatomic) NSString *userGrade;
+@property (strong, nonatomic) NSString *userIntegral;
+@property (strong, nonatomic) NSString *userToken;
 @end

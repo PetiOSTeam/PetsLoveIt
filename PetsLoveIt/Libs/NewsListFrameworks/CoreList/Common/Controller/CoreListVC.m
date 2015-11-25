@@ -339,20 +339,20 @@ typedef enum{
         [self dealWithResponseData:obj];
     }
     
-#warning delete those code when has right data
-    if ([self respondsToSelector:@selector(testdealWithResponseData:)]) {
-        [self testdealWithResponseData:obj];
-        //隐藏视图指示器
-        [CoreViewNetWorkStausManager dismiss:self.view];
-        //状态指示
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.scrollView headerSetState:CoreHeaderViewRefreshStateSuccessedResultDataShowing];
-        });
-    
-        return;
-    }
+//#warning delete those code when has right data
+//    if ([self respondsToSelector:@selector(testdealWithResponseData:)]) {
+//        [self testdealWithResponseData:obj];
+//        //隐藏视图指示器
+//        [CoreViewNetWorkStausManager dismiss:self.view];
+//        //状态指示
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.scrollView headerSetState:CoreHeaderViewRefreshStateSuccessedResultDataShowing];
+//        });
+//    
+//        return;
+//    }
     //出现error
-    if (![obj[@"code"] isEqualToString:@"0"]) {
+    if (![obj[@"rtnCode"] isEqualToString:@"1"]) {
         dispatch_async(dispatch_get_main_queue(), ^{
             //[mAppUtils showHint:obj[@"error"]];
 
@@ -389,7 +389,7 @@ typedef enum{
             if (!_configModel.hiddenNetWorkStausManager) {
                 //第一次来就没有数据：提示没有数据
                 NSString *msg =_configModel.hiddenNetWorkStausManager?@"":kNoContentTip;
-                NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"没有新数据，点击屏幕获取试试";
+                NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"点击屏幕重新加载";
                 [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
                     if (!_configModel.hiddenNetWorkStausManager) {
                         [self reloadDataWithheaderViewStateRefresh];

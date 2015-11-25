@@ -120,7 +120,7 @@
     configModel.rowHeight=67;
     
     //移除返回顶部:(默认开启)
-    configModel.removeBackToTopBtn=NO;
+    configModel.removeBackToTopBtn=YES;
     
     configModel.refreshControlType = LTConfigModelRefreshControlTypeBoth;
     

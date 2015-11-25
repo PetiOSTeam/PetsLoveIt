@@ -53,8 +53,13 @@
     self.imageURLs = @[@"http://eimg.smzdm.com/201511/07/563d5aafb4b5a7775.jpg",
                        @"http://eimg.smzdm.com/201511/06/563c106d4c8a7502.png",
                        @"http://eimg.smzdm.com/201511/07/563d5fb8cb2a47852.jpg"];
-    self.tableView.tableHeaderView = self.tableHeaderView;
-    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH;
+    if (self.isCollect) {
+        self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
+    }else{
+        self.tableView.tableHeaderView = self.tableHeaderView;
+
+        self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH;
+    }
     [self config];
     dataArray = [NSMutableArray new];
     for (int i =0 ; i<20; i++) {
@@ -119,7 +124,7 @@
     configModel.hiddenNetWorkStausManager = YES;
     
     //移除返回顶部:(默认开启)
-    configModel.removeBackToTopBtn=NO;
+    configModel.removeBackToTopBtn=YES;
     
     configModel.refreshControlType = LTConfigModelRefreshControlTypeBoth;
     

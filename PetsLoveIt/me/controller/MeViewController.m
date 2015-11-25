@@ -15,6 +15,11 @@
 #import "TWImagePicker.h"
 #import "LoginViewController.h"
 #import "MyCommentViewController.h"
+#import "MyCollectViewController.h"
+#import "MyGradeViewController.h"
+#import "MyBLViewController.h"
+#import "MyArticleViewController.h"
+#import "MyMsgViewController.h"
 
 @interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerContainerView;
@@ -159,25 +164,63 @@
     
 }
 
+-(void) showLoginVC{
+        LoginViewController *vc = [LoginViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 -(void) showCommentVC{
+    if (![AppCache getUserInfo]) {
+        [self showLoginVC];
+        return;
+    }
+
     MyCommentViewController *vc = [MyCommentViewController new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 -(void) showCollectVC{
-    
+    if (![AppCache getUserInfo]) {
+        [self showLoginVC];
+        return;
+    }
+    MyCollectViewController *vc = [MyCollectViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 -(void) showGradeVC{
-    
+    if (![AppCache getUserInfo]) {
+        [self showLoginVC];
+        return;
+    }
+    MyGradeViewController *vc = [MyGradeViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void) showBLVC{
-    
+    if (![AppCache getUserInfo]) {
+        [self showLoginVC];
+        return;
+    }
+    MyBLViewController *vc = [MyBLViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 -(void) showArticleVC{
-    
+    if (![AppCache getUserInfo]) {
+        [self showLoginVC];
+        return;
+    }
+    MyArticleViewController *vc = [MyArticleViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) showMsgVC{
-    
+    if (![AppCache getUserInfo]) {
+        [self showLoginVC];
+        return;
+    }
+    MyMsgViewController *vc  =[MyMsgViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 -(UIView *)pickerView{

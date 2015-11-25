@@ -1,29 +1,56 @@
 //
-//  SentCommentViewController.m
+//  MyBLViewController.m
 //  PetsLoveIt
 //
-//  Created by kongjun on 15/11/24.
+//  Created by kongjun on 15/11/25.
 //  Copyright © 2015年 kongjun. All rights reserved.
 //
 
-#import "SentCommentViewController.h"
+#import "MyBLViewController.h"
+#import "BLLinkViewController.h"
 
-@interface SentCommentViewController ()
+@interface MyBLViewController ()
+@property (nonatomic, strong)  UIButton *blBtn;
 
 @end
 
-@implementation SentCommentViewController
+@implementation MyBLViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self prepareViewAndData];
 }
 
-- (void)prepareViewAndData{
-    [self config];
-    self.tableView.width = mScreenWidth;
+-(UIButton *)blBtn{
+    if (!_blBtn) {
+        _blBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_blBtn setBackgroundColor:mRGBToColor(0xff4401)];
+        [_blBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_blBtn setTitle:@"我要爆料" forState:UIControlStateNormal];
+        [_blBtn.titleLabel setFont:[UIFont systemFontOfSize:17]];
+        _blBtn.frame = CGRectMake(50, mScreenHeight-68, mScreenWidth-100, 48);
+        _blBtn.layer.cornerRadius = 25;
+        [_blBtn addTarget:self action:@selector(blAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _blBtn;
+}
 
+-(void)viewWillAppear:(BOOL)animated{
+    self.tableView.top = mNavBarHeight + mStatusBarHeight;
+    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight - 78;
+    [self.view bringSubviewToFront:self.blBtn];
+
+}
+
+- (void)prepareViewAndData{
+    [self showNaviBarView];
+    self.navBarTitleLabel.text = @"我的爆料";
+    [self.view addSubview:self.blBtn];
+    [self config];
+}
+- (void)blAction:(id)sender {
+    BLLinkViewController *vc = [BLLinkViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
@@ -42,7 +69,6 @@
                            @"uid":@"getHotWords",
                            @"userToken":[AppCache getToken]
                            };
-
     //模型类
     //    configModel.ModelClass=[GoodsModel class];
     //    //cell类
@@ -75,14 +101,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

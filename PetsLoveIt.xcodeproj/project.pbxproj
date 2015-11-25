@@ -472,6 +472,20 @@
 		18E21EF21C04065D007059F3 /* ReceivedCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EF11C04065D007059F3 /* ReceivedCommentViewController.m */; };
 		18E21EF51C040674007059F3 /* SentCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EF41C040674007059F3 /* SentCommentViewController.m */; };
 		18E21EF71C040B21007059F3 /* MyCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21EF61C040B21007059F3 /* MyCommentViewController.xib */; };
+		18E21F141C046E15007059F3 /* MyCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F121C046E15007059F3 /* MyCollectViewController.m */; };
+		18E21F151C046E15007059F3 /* MyCollectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21F131C046E15007059F3 /* MyCollectViewController.xib */; };
+		18E21F241C047C91007059F3 /* MyGradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21F211C047C91007059F3 /* MyGradeViewController.xib */; };
+		18E21F251C047C91007059F3 /* MyGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F221C047C91007059F3 /* MyGradeViewController.m */; };
+		18E21F2F1C058627007059F3 /* MyBLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F2D1C058627007059F3 /* MyBLViewController.m */; };
+		18E21F301C058627007059F3 /* MyBLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21F2E1C058627007059F3 /* MyBLViewController.xib */; };
+		18E21F341C058B3B007059F3 /* BLLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F321C058B3B007059F3 /* BLLinkViewController.m */; };
+		18E21F351C058B3B007059F3 /* BLLinkViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21F331C058B3B007059F3 /* BLLinkViewController.xib */; };
+		18E21F3F1C05AE6A007059F3 /* MyArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F3D1C05AE6A007059F3 /* MyArticleViewController.m */; };
+		18E21F401C05AE6A007059F3 /* MyArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21F3E1C05AE6A007059F3 /* MyArticleViewController.xib */; };
+		18E21F4B1C05B361007059F3 /* MyMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F491C05B361007059F3 /* MyMsgViewController.m */; };
+		18E21F4C1C05B361007059F3 /* MyMsgViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21F4A1C05B361007059F3 /* MyMsgViewController.xib */; };
+		18E21F4F1C05B3D4007059F3 /* SysMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F4E1C05B3D4007059F3 /* SysMsgViewController.m */; };
+		18E21F521C05B3F6007059F3 /* MsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F511C05B3F6007059F3 /* MsgViewController.m */; };
 		18F632871BF6215600FD98B1 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */; };
 		18F632881BF6215600FD98B1 /* GoodsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */; };
 		18F6328E1BF6DDFF00FD98B1 /* UIView+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F6328D1BF6DDFF00FD98B1 /* UIView+Effects.m */; };
@@ -1369,6 +1383,28 @@
 		18E21EF31C040674007059F3 /* SentCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentCommentViewController.h; sourceTree = "<group>"; };
 		18E21EF41C040674007059F3 /* SentCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SentCommentViewController.m; sourceTree = "<group>"; };
 		18E21EF61C040B21007059F3 /* MyCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCommentViewController.xib; sourceTree = "<group>"; };
+		18E21F111C046E15007059F3 /* MyCollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectViewController.h; sourceTree = "<group>"; };
+		18E21F121C046E15007059F3 /* MyCollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectViewController.m; sourceTree = "<group>"; };
+		18E21F131C046E15007059F3 /* MyCollectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCollectViewController.xib; sourceTree = "<group>"; };
+		18E21F211C047C91007059F3 /* MyGradeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyGradeViewController.xib; sourceTree = "<group>"; };
+		18E21F221C047C91007059F3 /* MyGradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGradeViewController.m; sourceTree = "<group>"; };
+		18E21F231C047C91007059F3 /* MyGradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGradeViewController.h; sourceTree = "<group>"; };
+		18E21F2C1C058627007059F3 /* MyBLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBLViewController.h; sourceTree = "<group>"; };
+		18E21F2D1C058627007059F3 /* MyBLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBLViewController.m; sourceTree = "<group>"; };
+		18E21F2E1C058627007059F3 /* MyBLViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyBLViewController.xib; sourceTree = "<group>"; };
+		18E21F311C058B3B007059F3 /* BLLinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLLinkViewController.h; sourceTree = "<group>"; };
+		18E21F321C058B3B007059F3 /* BLLinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLLinkViewController.m; sourceTree = "<group>"; };
+		18E21F331C058B3B007059F3 /* BLLinkViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BLLinkViewController.xib; sourceTree = "<group>"; };
+		18E21F3C1C05AE6A007059F3 /* MyArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyArticleViewController.h; sourceTree = "<group>"; };
+		18E21F3D1C05AE6A007059F3 /* MyArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyArticleViewController.m; sourceTree = "<group>"; };
+		18E21F3E1C05AE6A007059F3 /* MyArticleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyArticleViewController.xib; sourceTree = "<group>"; };
+		18E21F481C05B361007059F3 /* MyMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMsgViewController.h; sourceTree = "<group>"; };
+		18E21F491C05B361007059F3 /* MyMsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMsgViewController.m; sourceTree = "<group>"; };
+		18E21F4A1C05B361007059F3 /* MyMsgViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyMsgViewController.xib; sourceTree = "<group>"; };
+		18E21F4D1C05B3D4007059F3 /* SysMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SysMsgViewController.h; sourceTree = "<group>"; };
+		18E21F4E1C05B3D4007059F3 /* SysMsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SysMsgViewController.m; sourceTree = "<group>"; };
+		18E21F501C05B3F6007059F3 /* MsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgViewController.h; sourceTree = "<group>"; };
+		18E21F511C05B3F6007059F3 /* MsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgViewController.m; sourceTree = "<group>"; };
 		18F632841BF6215600FD98B1 /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
 		18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
 		18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailViewController.xib; sourceTree = "<group>"; };
@@ -2793,25 +2829,19 @@
 		189446EE1BEB859D006249F0 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				18E21F471C05B34E007059F3 /* MyMsg */,
+				18E21F461C05B340007059F3 /* MyArticle */,
+				18E21F451C05B32E007059F3 /* MyCollect */,
+				18E21F441C05B31D007059F3 /* MyBL */,
+				18E21F431C05B304007059F3 /* MyGrade */,
+				18E21F421C05B2F4007059F3 /* MyComment */,
+				18E21F411C05B2D0007059F3 /* Login&Reg */,
 				18E21E821C001E0F007059F3 /* MeViewController.h */,
 				18E21E831C001E0F007059F3 /* MeViewController.m */,
 				18E21E841C001E0F007059F3 /* MeViewController.xib */,
-				18E21EDC1C01B672007059F3 /* LoginViewController.h */,
-				18E21EDD1C01B672007059F3 /* LoginViewController.m */,
-				18E21EDE1C01B672007059F3 /* LoginViewController.xib */,
-				18E21EE11C01CC53007059F3 /* RegViewController.h */,
-				18E21EE21C01CC53007059F3 /* RegViewController.m */,
-				18E21EE31C01CC53007059F3 /* RegViewController.xib */,
 				18E21EE61C02F7BE007059F3 /* MoreViewController.h */,
 				18E21EE71C02F7BE007059F3 /* MoreViewController.m */,
 				18E21EE81C02F7BE007059F3 /* MoreViewController.xib */,
-				18E21EEB1C040400007059F3 /* MyCommentViewController.h */,
-				18E21EEC1C040400007059F3 /* MyCommentViewController.m */,
-				18E21EF61C040B21007059F3 /* MyCommentViewController.xib */,
-				18E21EF01C04065D007059F3 /* ReceivedCommentViewController.h */,
-				18E21EF11C04065D007059F3 /* ReceivedCommentViewController.m */,
-				18E21EF31C040674007059F3 /* SentCommentViewController.h */,
-				18E21EF41C040674007059F3 /* SentCommentViewController.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3076,6 +3106,90 @@
 				18E21EB61C00229C007059F3 /* YYTextWeakProxy.m */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		18E21F411C05B2D0007059F3 /* Login&Reg */ = {
+			isa = PBXGroup;
+			children = (
+				18E21EDC1C01B672007059F3 /* LoginViewController.h */,
+				18E21EDD1C01B672007059F3 /* LoginViewController.m */,
+				18E21EDE1C01B672007059F3 /* LoginViewController.xib */,
+				18E21EE11C01CC53007059F3 /* RegViewController.h */,
+				18E21EE21C01CC53007059F3 /* RegViewController.m */,
+				18E21EE31C01CC53007059F3 /* RegViewController.xib */,
+			);
+			name = "Login&Reg";
+			sourceTree = "<group>";
+		};
+		18E21F421C05B2F4007059F3 /* MyComment */ = {
+			isa = PBXGroup;
+			children = (
+				18E21EEB1C040400007059F3 /* MyCommentViewController.h */,
+				18E21EEC1C040400007059F3 /* MyCommentViewController.m */,
+				18E21EF61C040B21007059F3 /* MyCommentViewController.xib */,
+				18E21EF01C04065D007059F3 /* ReceivedCommentViewController.h */,
+				18E21EF11C04065D007059F3 /* ReceivedCommentViewController.m */,
+				18E21EF31C040674007059F3 /* SentCommentViewController.h */,
+				18E21EF41C040674007059F3 /* SentCommentViewController.m */,
+			);
+			name = MyComment;
+			sourceTree = "<group>";
+		};
+		18E21F431C05B304007059F3 /* MyGrade */ = {
+			isa = PBXGroup;
+			children = (
+				18E21F221C047C91007059F3 /* MyGradeViewController.m */,
+				18E21F231C047C91007059F3 /* MyGradeViewController.h */,
+				18E21F211C047C91007059F3 /* MyGradeViewController.xib */,
+			);
+			name = MyGrade;
+			sourceTree = "<group>";
+		};
+		18E21F441C05B31D007059F3 /* MyBL */ = {
+			isa = PBXGroup;
+			children = (
+				18E21F2C1C058627007059F3 /* MyBLViewController.h */,
+				18E21F2D1C058627007059F3 /* MyBLViewController.m */,
+				18E21F2E1C058627007059F3 /* MyBLViewController.xib */,
+				18E21F311C058B3B007059F3 /* BLLinkViewController.h */,
+				18E21F321C058B3B007059F3 /* BLLinkViewController.m */,
+				18E21F331C058B3B007059F3 /* BLLinkViewController.xib */,
+			);
+			name = MyBL;
+			sourceTree = "<group>";
+		};
+		18E21F451C05B32E007059F3 /* MyCollect */ = {
+			isa = PBXGroup;
+			children = (
+				18E21F111C046E15007059F3 /* MyCollectViewController.h */,
+				18E21F121C046E15007059F3 /* MyCollectViewController.m */,
+				18E21F131C046E15007059F3 /* MyCollectViewController.xib */,
+			);
+			name = MyCollect;
+			sourceTree = "<group>";
+		};
+		18E21F461C05B340007059F3 /* MyArticle */ = {
+			isa = PBXGroup;
+			children = (
+				18E21F3C1C05AE6A007059F3 /* MyArticleViewController.h */,
+				18E21F3D1C05AE6A007059F3 /* MyArticleViewController.m */,
+				18E21F3E1C05AE6A007059F3 /* MyArticleViewController.xib */,
+			);
+			name = MyArticle;
+			sourceTree = "<group>";
+		};
+		18E21F471C05B34E007059F3 /* MyMsg */ = {
+			isa = PBXGroup;
+			children = (
+				18E21F481C05B361007059F3 /* MyMsgViewController.h */,
+				18E21F491C05B361007059F3 /* MyMsgViewController.m */,
+				18E21F4A1C05B361007059F3 /* MyMsgViewController.xib */,
+				18E21F4D1C05B3D4007059F3 /* SysMsgViewController.h */,
+				18E21F4E1C05B3D4007059F3 /* SysMsgViewController.m */,
+				18E21F501C05B3F6007059F3 /* MsgViewController.h */,
+				18E21F511C05B3F6007059F3 /* MsgViewController.m */,
+			);
+			name = MyMsg;
 			sourceTree = "<group>";
 		};
 		18F633061BF87C7700FD98B1 /* UMeng */ = {
@@ -3415,6 +3529,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E21F301C058627007059F3 /* MyBLViewController.xib in Resources */,
 				189445F81BEB0774006249F0 /* e_32@2x.png in Resources */,
 				1894462A1BEB0774006249F0 /* e_78@2x.png in Resources */,
 				189445F21BEB0774006249F0 /* e_27@2x.png in Resources */,
@@ -3428,6 +3543,7 @@
 				189446461BEB0774006249F0 /* chatBar_keyboard@2x.png in Resources */,
 				189446271BEB0774006249F0 /* e_75@2x.png in Resources */,
 				189446411BEB0774006249F0 /* chatBar_face.png in Resources */,
+				18E21F351C058B3B007059F3 /* BLLinkViewController.xib in Resources */,
 				1894462E1BEB0774006249F0 /* e_81@2x.png in Resources */,
 				18F633A51BF883C800FD98B1 /* UMSLoginViewController.xib in Resources */,
 				189446471BEB0774006249F0 /* chatBar_keyboardSelected.png in Resources */,
@@ -3465,6 +3581,7 @@
 				1894461F1BEB0774006249F0 /* e_68@2x.png in Resources */,
 				1894462C1BEB0774006249F0 /* e_7@2x.png in Resources */,
 				1894461D1BEB0774006249F0 /* e_66@2x.png in Resources */,
+				18E21F241C047C91007059F3 /* MyGradeViewController.xib in Resources */,
 				189445E21BEB0774006249F0 /* e_12@2x.png in Resources */,
 				189446561BEB0774006249F0 /* DeleteEmoticonBtnHL@2x.png in Resources */,
 				189446511BEB0774006249F0 /* chatBar_recordSelected.png in Resources */,
@@ -3480,6 +3597,7 @@
 				189442671BE9DEC3006249F0 /* Assets.xcassets in Resources */,
 				189445E71BEB0774006249F0 /* e_17@2x.png in Resources */,
 				1894462D1BEB0774006249F0 /* e_80@2x.png in Resources */,
+				18E21F4C1C05B361007059F3 /* MyMsgViewController.xib in Resources */,
 				1894457C1BEB0774006249F0 /* Images.xcassets in Resources */,
 				189446211BEB0774006249F0 /* e_6@2x.png in Resources */,
 				189446341BEB0774006249F0 /* e_87@2x.png in Resources */,
@@ -3549,6 +3667,7 @@
 				1894465D1BEB0774006249F0 /* chatBar_more_location.png in Resources */,
 				189446171BEB0774006249F0 /* e_60@2x.png in Resources */,
 				F9EAB7901BF75A1B00BD0D6B /* SoretedHeaderView.xib in Resources */,
+				18E21F151C046E15007059F3 /* MyCollectViewController.xib in Resources */,
 				189445F31BEB0774006249F0 /* e_28@2x.png in Resources */,
 				189446381BEB0774006249F0 /* e_9@2x.png in Resources */,
 				18E21EF71C040B21007059F3 /* MyCommentViewController.xib in Resources */,
@@ -3601,6 +3720,7 @@
 				F9EAB78C1BF75A1B00BD0D6B /* PLStoreCell.xib in Resources */,
 				189446641BEB0774006249F0 /* chatBar_more_photoSelected@2x.png in Resources */,
 				1894464C1BEB0774006249F0 /* chatBar_moreSelected@2x.png in Resources */,
+				18E21F401C05AE6A007059F3 /* MyArticleViewController.xib in Resources */,
 				189446651BEB0774006249F0 /* messageToolbarBg@2x.png in Resources */,
 				1894462F1BEB0774006249F0 /* e_82@2x.png in Resources */,
 				18F633A41BF883C800FD98B1 /* UMShareEditViewControlleriPad.xib in Resources */,
@@ -3618,6 +3738,7 @@
 				184858D21BF8DDE4001FF521 /* SearchKeyWordsCell.h in Sources */,
 				184858C61BF8DD72001FF521 /* SKTag.h in Sources */,
 				184858C71BF8DD72001FF521 /* SKTagButton.h in Sources */,
+				18E21F3F1C05AE6A007059F3 /* MyArticleViewController.m in Sources */,
 				184858C81BF8DD72001FF521 /* SKTagView.h in Sources */,
 				184858B81BF8DD4B001FF521 /* MASCompositeConstraint.h in Sources */,
 				184858B91BF8DD4B001FF521 /* MASConstraint+Private.h in Sources */,
@@ -3674,9 +3795,11 @@
 				1894459A1BEB0774006249F0 /* MWTapDetectingView.m in Sources */,
 				189446E31BEB0A80006249F0 /* YYSpriteSheetImage.m in Sources */,
 				189445BC1BEB0774006249F0 /* CoreViewNetWorkStausManager.m in Sources */,
+				18E21F521C05B3F6007059F3 /* MsgViewController.m in Sources */,
 				1894457E1BEB0774006249F0 /* 3Des.m in Sources */,
 				189445921BEB0774006249F0 /* MLEmojiLabel.m in Sources */,
 				18F633BF1BF88E6400FD98B1 /* KMDetailsPageView.m in Sources */,
+				18E21F4B1C05B361007059F3 /* MyMsgViewController.m in Sources */,
 				189445A71BEB0774006249F0 /* LTConfigModel.m in Sources */,
 				189446F71BEB86A4006249F0 /* BaseTabBarViewController.m in Sources */,
 				18D2CB121BEF47F400B8DD72 /* MassTaoViewController.m in Sources */,
@@ -3729,11 +3852,13 @@
 				189442DD1BEAF65A006249F0 /* UIView+AddBorder.m in Sources */,
 				189446761BEB0774006249F0 /* UIButton+WebCache.m in Sources */,
 				18DD07411BED931F003C8160 /* CorePagesBarView.m in Sources */,
+				18E21F2F1C058627007059F3 /* MyBLViewController.m in Sources */,
 				189445A41BEB0774006249F0 /* UploadFile.m in Sources */,
 				189446DF1BEB0A80006249F0 /* YYAnimatedImageView.m in Sources */,
 				18F632A51BF84EC300FD98B1 /* BottomMenuView.m in Sources */,
 				189446E41BEB0A80006249F0 /* YYImageCache.m in Sources */,
 				189445D41BEB0774006249F0 /* PSTCollectionViewUpdateItem.m in Sources */,
+				18E21F141C046E15007059F3 /* MyCollectViewController.m in Sources */,
 				18E21EE91C02F7BE007059F3 /* MoreViewController.m in Sources */,
 				76AF7FED1BEF7F1F0066659E /* OrderModel.m in Sources */,
 				1821104F1BEEE89800C32E23 /* ZQW_ScrollView.m in Sources */,
@@ -3741,6 +3866,7 @@
 				189445B61BEB0774006249F0 /* CoreRefreshView.m in Sources */,
 				189442CC1BEAF65A006249F0 /* NSNumber+Addition.m in Sources */,
 				189445931BEB0774006249F0 /* TTTAttributedLabel.m in Sources */,
+				18E21F4F1C05B3D4007059F3 /* SysMsgViewController.m in Sources */,
 				F9EAB78D1BF75A1B00BD0D6B /* ScreenSoretedView.m in Sources */,
 				189442E61BEAF65A006249F0 /* AFHTTPClientUtil.m in Sources */,
 				189445BB1BEB0774006249F0 /* Reachability.m in Sources */,
@@ -3865,6 +3991,7 @@
 				1894456D1BEB0774006249F0 /* AFHTTPRequestOperationManager.m in Sources */,
 				189442C41BEAF65A006249F0 /* AppCache.m in Sources */,
 				18DB0D961BF2EA2B003F3743 /* KMNetworkLoadingViewController.m in Sources */,
+				18E21F341C058B3B007059F3 /* BLLinkViewController.m in Sources */,
 				189442C61BEAF65A006249F0 /* NSData+Base64.m in Sources */,
 				18DD073D1BED931F003C8160 /* CorePagesView.m in Sources */,
 				1894458C1BEB0774006249F0 /* MJRefreshConst.m in Sources */,
@@ -3925,6 +4052,7 @@
 				189445941BEB0774006249F0 /* MWCaptionView.m in Sources */,
 				189442591BE9DEC3006249F0 /* main.m in Sources */,
 				18F6328E1BF6DDFF00FD98B1 /* UIView+Effects.m in Sources */,
+				18E21F251C047C91007059F3 /* MyGradeViewController.m in Sources */,
 				189446FC1BEB8A42006249F0 /* CustomeTextField.m in Sources */,
 				182110521BEF1B6500C32E23 /* GoodsModel.m in Sources */,
 				189445D21BEB0774006249F0 /* PSTCollectionViewItemKey.m in Sources */,

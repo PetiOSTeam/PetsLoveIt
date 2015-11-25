@@ -24,7 +24,7 @@
       
         if ([msg isEqualToString:kNoNetWorkTip]) {
             myCmView.imageView.image = [UIImage imageNamed:@"noNetWorkIcon"];
-        }else if ([msg isEqualToString:kNoNetWorkTip]){
+        }else if ([msg isEqualToString:kNoContentTip]){
             myCmView.imageView.image = [UIImage imageNamed:@"noContentIcon"];
         }
         view.width = mScreenWidth;

@@ -23,9 +23,10 @@
 
 - (void)prepareViewAndData{
     [self config];
-    self.view.width = mScreenWidth;
-    self.tableView.width = mScreenWidth;
+  
+    
 }
+
 
 /**
  *  模型配置
@@ -35,13 +36,13 @@
     LTConfigModel *configModel=[[LTConfigModel alloc] init];
     //url,分为公告和话题
     
-    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,testUrl];
+    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getSource.action"];
     
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
-                           @"udid":@"403",
-                           @"sort_id":@"1"
+                           @"uid":@"getHotWords",
+                           @"userToken":[AppCache getToken]
                            };
     //模型类
 //    configModel.ModelClass=[GoodsModel class];
@@ -62,7 +63,7 @@
     configModel.rowHeight=110;
     
     //移除返回顶部:(默认开启)
-    configModel.removeBackToTopBtn=NO;
+    configModel.removeBackToTopBtn=YES;
     
     configModel.refreshControlType = LTConfigModelRefreshControlTypeBoth;
     

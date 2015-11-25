@@ -28,11 +28,21 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH ;
+    [super viewWillAppear:animated];
+    if (self.isCollect || self.isMyArticle) {
+        self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
+    }else{
+        self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH ;
+    }
 }
 
 - (void)prepareViewsAndData{
-    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH;
+
+    if (self.isCollect || self.isMyArticle) {
+        self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
+    }else{
+        self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH ;
+    }
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     [self config];
     dataArray = [NSMutableArray new];

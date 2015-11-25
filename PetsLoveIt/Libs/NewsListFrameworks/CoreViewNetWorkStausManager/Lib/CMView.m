@@ -179,7 +179,7 @@
         metrics=@{@"y":@(_offsetY)};
         
         vfl_H=@"H:|-0-[selfView]-0-|";
-        vfl_V=@"V:|-y-[selfView]-0-|";
+        vfl_V=@"V:|-y-[selfView]-100-|";
     }
     
     [superView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:vfl_H options:0 metrics:metrics views:views]];

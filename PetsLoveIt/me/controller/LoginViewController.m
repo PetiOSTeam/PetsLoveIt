@@ -87,7 +87,7 @@
         if (!error) {
             NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
             LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
-            
+            localUserInfo.userToken = [responseData objectForKey:@"userToken"];
             //将userinfo记录下来
             mAppDelegate.loginUser = localUserInfo;
             [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];

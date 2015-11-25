@@ -132,12 +132,12 @@ static int kCacheMemoryLimit;
 }
 +(NSString *) getToken{
     LocalUserInfoModelClass *userInfo = [self getUserInfo];
-//    NSString *token = [NSString stringWithFormat:@"%@",userInfo.token];
-//    if (!userInfo.token) {
-//        token = @"";
-//    }
-//    return token;
-    return @"";
+    NSString *token = [NSString stringWithFormat:@"%@",userInfo.userToken];
+    if (!userInfo.userToken) {
+        token = @"";
+    }
+    return token;
+
 }
 
 

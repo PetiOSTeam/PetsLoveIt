@@ -12,12 +12,13 @@
 
 -(void) setValue:(id)value forKey:(NSString *)key
 {
-    if ([key isEqualToString:@"tags"]){
-        
+    if ([key isEqualToString:@"userIcon"]){
+        self.user_icon = value;
     }
     else
         [super setValue:value forKey:key];
 }
+
 
 
 //===========================================================
@@ -33,6 +34,10 @@
     [encoder encodeObject:self.email forKey:@"email"];
     [encoder encodeObject:self.status forKey:@"status"];
     [encoder encodeObject:self.nickName forKey:@"nickName"];
+    [encoder encodeObject:self.user_icon forKey:@"user_icon"];
+    [encoder encodeObject:self.userGrade forKey:@"userGrade"];
+    [encoder encodeObject:self.userIntegral forKey:@"userIntegral"];
+    [encoder encodeObject:self.userToken forKey:@"userToken"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -46,6 +51,10 @@
         self.email = [decoder decodeObjectForKey:@"email"];
         self.status = [decoder decodeObjectForKey:@"status"];
         self.nickName = [decoder decodeObjectForKey:@"nickName"];
+        self.user_icon = [decoder decodeObjectForKey:@"user_icon"];
+        self.userGrade = [decoder decodeObjectForKey:@"userGrade"];
+        self.userIntegral = [decoder decodeObjectForKey:@"userIntegral"];
+        self.userToken = [decoder decodeObjectForKey:@"userToken"];
     }
     return self;
 }
@@ -61,6 +70,10 @@
     [theCopy setEmail:[self.email copy]];
     [theCopy setStatus:[self.status copy]];
     [theCopy setNickName:[self.nickName copy]];
+    [theCopy setUser_icon:[self.user_icon copy]];
+    [theCopy setUserGrade:[self.userGrade copy]];
+    [theCopy setUserIntegral:[self.userIntegral copy]];
+    [theCopy setUserToken:[self.userToken copy]];
     
     return theCopy;
 }

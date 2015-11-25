@@ -26,7 +26,11 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
+    if (self.isCollect) {
+        self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
+    }else{
+        self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
+    }
 }
 
 - (void)prepareViewsAndData{
@@ -34,7 +38,11 @@
     [self config];
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     self.tableView.top = 5;
-    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
+    if (self.isCollect) {
+        self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
+    }else{
+        self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
+    }
     dataArray = [NSMutableArray new];
     for (int i =0 ; i<20; i++) {
         GoodsModel *good = [GoodsModel new];
@@ -93,7 +101,7 @@
     configModel.hiddenNetWorkStausManager = YES;
     
     //移除返回顶部:(默认开启)
-    configModel.removeBackToTopBtn=NO;
+    configModel.removeBackToTopBtn=YES;
     
     configModel.refreshControlType = LTConfigModelRefreshControlTypeBoth;
     

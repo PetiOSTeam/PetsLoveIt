@@ -23,7 +23,7 @@
     if (serverUdid && [serverUdid length]>0)
        [kParameters setObject:serverUdid forKey:@"udid"];
     if ([[AppCache getToken] length]>0) {
-        [kParameters setObject:[AppCache getToken] forKey:@"token"];
+        [kParameters setObject:[AppCache getToken] forKey:@"userToken"];
     }
     return kParameters;
 }

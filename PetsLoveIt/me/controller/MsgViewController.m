@@ -1,30 +1,31 @@
 //
-//  SentCommentViewController.m
+//  MsgViewController.m
 //  PetsLoveIt
 //
-//  Created by kongjun on 15/11/24.
+//  Created by kongjun on 15/11/25.
 //  Copyright © 2015年 kongjun. All rights reserved.
 //
 
-#import "SentCommentViewController.h"
+#import "MsgViewController.h"
 
-@interface SentCommentViewController ()
+@interface MsgViewController ()
 
 @end
 
-@implementation SentCommentViewController
+@implementation MsgViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     [self prepareViewAndData];
+    
 }
 
 - (void)prepareViewAndData{
     [self config];
-    self.tableView.width = mScreenWidth;
-
+    
+    
 }
+
 
 /**
  *  模型配置
@@ -42,7 +43,6 @@
                            @"uid":@"getHotWords",
                            @"userToken":[AppCache getToken]
                            };
-
     //模型类
     //    configModel.ModelClass=[GoodsModel class];
     //    //cell类
