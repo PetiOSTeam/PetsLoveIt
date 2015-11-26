@@ -49,6 +49,7 @@
 		184858D01BF8DDC9001FF521 /* SearchResultCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184858CD1BF8DDC9001FF521 /* SearchResultCell.m */; };
 		184858D21BF8DDE4001FF521 /* SearchKeyWordsCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 184858CA1BF8DDC9001FF521 /* SearchKeyWordsCell.h */; };
 		184858D61BF8DEDC001FF521 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184858D51BF8DEDC001FF521 /* SearchResultCell.xib */; };
+		185767551C07068F000A044D /* AdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 185767541C07068F000A044D /* AdModel.m */; };
 		189442591BE9DEC3006249F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 189442581BE9DEC3006249F0 /* main.m */; };
 		1894425C1BE9DEC3006249F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894425B1BE9DEC3006249F0 /* AppDelegate.m */; };
 		189442671BE9DEC3006249F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189442661BE9DEC3006249F0 /* Assets.xcassets */; };
@@ -606,6 +607,8 @@
 		184858CC1BF8DDC9001FF521 /* SearchResultCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResultCell.h; sourceTree = "<group>"; };
 		184858CD1BF8DDC9001FF521 /* SearchResultCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultCell.m; sourceTree = "<group>"; };
 		184858D51BF8DEDC001FF521 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		185767531C07068F000A044D /* AdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdModel.h; sourceTree = "<group>"; };
+		185767541C07068F000A044D /* AdModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdModel.m; sourceTree = "<group>"; };
 		189442541BE9DEC3006249F0 /* PetsLoveIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetsLoveIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		189442581BE9DEC3006249F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1894425A1BE9DEC3006249F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2926,6 +2929,8 @@
 				76AF7FEC1BEF7F1F0066659E /* OrderModel.m */,
 				18D2CB131BEF64C300B8DD72 /* ArticleModel.h */,
 				18D2CB141BEF64C300B8DD72 /* ArticleModel.m */,
+				185767531C07068F000A044D /* AdModel.h */,
+				185767541C07068F000A044D /* AdModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3843,6 +3848,7 @@
 				F9EAB7911BF75A1B00BD0D6B /* StoreFooterView.m in Sources */,
 				189446E21BEB0A80006249F0 /* YYImageCoder.m in Sources */,
 				189442D61BEAF65A006249F0 /* UIImage+Addition.m in Sources */,
+				185767551C07068F000A044D /* AdModel.m in Sources */,
 				189442E11BEAF65A006249F0 /* UIView+Layer.m in Sources */,
 				189445C21BEB0774006249F0 /* MJProperty.m in Sources */,
 				18E21EDF1C01B672007059F3 /* LoginViewController.m in Sources */,

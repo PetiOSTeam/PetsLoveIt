@@ -12,12 +12,14 @@
 #import "GoodsCell.h"
 #import "CoreViewNetWorkStausManager.h"
 #import "GoodsDetailViewController.h"
+#import "AdModel.h"
 
 @interface CarefulSelectViewController ()<ZQWScrollViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic,strong) UIView *tableHeaderView;
 @property(nonatomic,strong)  ZQW_ScrollView *zqw;
 
 @property (nonatomic,strong) NSMutableArray *imageURLs;
+@property (nonatomic,strong) NSMutableArray *adArray;
 
 @property (nonatomic,strong) UIView *displayView;
 @property (nonatomic,strong) UIView *displayView1;
@@ -36,6 +38,10 @@
 @property (nonatomic,strong) UIImageView *urlImageView3;
 @property (nonatomic,strong) UILabel *titleLabel3;
 @property (nonatomic,strong) UILabel *descLabel3;
+
+@property (nonatomic,strong) GoodsModel *cheapProduct;//白菜价产品
+@property (nonatomic,strong) GoodsModel *limittedTimeProduct;//限时优惠
+@property (nonatomic,strong) GoodsModel *jdProduct;//尖端产品
 @end
 
 @implementation CarefulSelectViewController{
@@ -50,9 +56,15 @@
 
 - (void)prepareViewsAndData{
     
-    self.imageURLs = @[@"http://eimg.smzdm.com/201511/07/563d5aafb4b5a7775.jpg",
-                       @"http://eimg.smzdm.com/201511/06/563c106d4c8a7502.png",
-                       @"http://eimg.smzdm.com/201511/07/563d5fb8cb2a47852.jpg"];
+    self.imageURLs = [NSMutableArray new];
+    self.adArray = [NSMutableArray new];
+    //获取广告数据
+    [self getAdData];
+    //获取白菜价,限时，尖端商品
+    [self getCheapProduct];
+    [self getLimittedTimeProduct];
+    [self getJdProduct];
+    
     if (self.isCollect) {
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
     }else{
@@ -61,31 +73,85 @@
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH;
     }
     [self config];
-    dataArray = [NSMutableArray new];
-    for (int i =0 ; i<20; i++) {
-        GoodsModel *good = [GoodsModel new];
-        good.imageUrl = @"http://am.zdmimg.com/201511/01/56362f724a9535919.jpg_d320.jpg";
-        good.name = @"天猫狗粮优惠活动开始了";
-        good.desc = @"双十一天猫优惠活动开始了，小样儿快行动吧...";
-        good.prodDetail = @"100元包邮";
-        good.commentNum = @"10";
-        good.favorNum = @"80%";
-        good.dateDesc = @"11-11";
-        [dataArray addObject:good];
-    }
-    self.dataList = dataArray;
+    
     [self.tableView reloadData];
 }
 
-
--(void)testdealWithResponseData:(id)obj{
+-(void)getAdData{
+    [self.imageURLs removeAllObjects];
+    NSDictionary *params = @{@"uid":@"getAdvertising"};
+    [APIOperation GET:@"getSource.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+            [jsonArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                AdModel *adModel = [[AdModel alloc] initWithDictionary:obj];
+                [self.adArray addObject:adModel];
+                [self.imageURLs addObject:adModel.adpic];
+            }];
+            self.zqw.pictureArray = self.imageURLs;
+        }
+    }];
     
 }
 
+-(void)getCheapProduct{
+    NSDictionary *params = @{@"uid":@"getCheapProduct",
+                             @"startNum":@"0",
+                             @"limit":@"5"
+                             };
+    [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+            _cheapProduct = [[GoodsModel alloc] initWithDictionary:jsonArray[0]];
+            _descLabel1.text = _cheapProduct.name;
+            [_urlImageView1 sd_setImageWithURL:[NSURL URLWithString:_cheapProduct.appMinpic] placeholderImage:kImagePlaceHolder];
+        }
+    }];
+}
+
+-(void)getLimittedTimeProduct{
+    NSDictionary *params = @{@"uid":@"getLimitedTimeProduct",
+                             @"startNum":@"0",
+                             @"limit":@"5"
+                             };
+    [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+            _limittedTimeProduct = [[GoodsModel alloc] initWithDictionary:jsonArray[0]];
+            _descLabel2.text = _limittedTimeProduct.name;
+            [_urlImageView2 sd_setImageWithURL:[NSURL URLWithString:_limittedTimeProduct.appMinpic] placeholderImage:kImagePlaceHolder];
+        }
+    }];
+}
+
+
+-(void)getJdProduct{
+    NSDictionary *params = @{@"uid":@"getGoodsProduct",
+                             @"startNum":@"0",
+                             @"limit":@"5"
+                             };
+    [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+            _jdProduct = [[GoodsModel alloc] initWithDictionary:jsonArray[0]];
+            [_urlImageView3 sd_setImageWithURL:[NSURL URLWithString:_jdProduct.appMinpic] placeholderImage:kImagePlaceHolder];
+            _descLabel3.text = _jdProduct.name;
+        }
+    }];
+}
 
 -(void)selectScrollView:(NSInteger)index{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    AdModel *adModel = [self.adArray objectAtIndex:index];
+    vc.goodsId = adModel.prodId;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)dealWithResponseData:(id)obj{
+    [self getAdData];
+    [self getCheapProduct];
+    [self getLimittedTimeProduct];
+    [self getJdProduct];
 }
 
 /**
@@ -96,13 +162,13 @@
     LTConfigModel *configModel=[[LTConfigModel alloc] init];
     //url,分为公告和话题
     
-    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,testUrl];
+    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getCoreSv.action"];
     
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
-                               @"udid":@"403",
-                               @"sort_id":@"1"
+                               @"uid":@"getProductByType",
+                               @"appType":@"m01"
                                };
     //模型类
     configModel.ModelClass=[GoodsModel class];
@@ -111,14 +177,14 @@
     //标识
     configModel.lid=NSStringFromClass(self.class);
     //pageName第几页的参数名
-    configModel.pageName=@"page_flag";
+    configModel.pageName=@"startNum";
     
     //pageSizeName
-    configModel.pageSizeName=@"req_num";
+    configModel.pageSizeName=@"limit";
     //pageSize
-    configModel.pageSize = 10;
+    configModel.pageSize = 5;
     //起始页码
-    configModel.pageStartValue=1;
+    configModel.pageStartValue=0;
     //行高
     configModel.rowHeight=110;
     configModel.hiddenNetWorkStausManager = YES;
@@ -142,7 +208,6 @@
         _zqw.allColor = [UIColor whiteColor];
         _zqw.autoScrollTimeInterval = 5;
         _zqw.Delegate = self;
-        _zqw.pictureArray = _imageURLs;
         [_tableHeaderView addSubview:_zqw];
         
         _displayView = [[UIView alloc] initWithFrame:CGRectMake(0, _zqw.bottom+10, mScreenWidth, 160)];
@@ -166,11 +231,8 @@
         
         [_displayView addBorderWithFrame:CGRectMake(mScreenWidth/2, 0, kLayerBorderWidth, _displayView.height) andColor:kLayerBorderColor andWidth:kLayerBorderWidth];
         [_displayView addBorderWithFrame:CGRectMake(mScreenWidth/2, _displayView.height/2, mScreenWidth/2, kLayerBorderWidth) andColor:kLayerBorderColor andWidth:kLayerBorderWidth];
-        [_urlImageView1 yy_setImageWithURL:[NSURL URLWithString:@"http://eimg.smzdm.com/201511/07/563d8527b7dad7297.jpg"] placeholder:kImagePlaceHolder options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
-            if (!error) {
-
-            }
-        }];
+        [_urlImageView1 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:kImagePlaceHolder];
+       
         
         _displayView2 = [[UIView alloc] initWithFrame:CGRectMake(_displayView1.right, 0, mScreenWidth/2, _displayView.height/2)];
         if (mIsiP5) {
@@ -180,20 +242,20 @@
         }
                 
         _titleLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, _displayView2.width-_urlImageView2.width-20, 18)];
-        _descLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel2.bottom+10, _displayView2.width-_urlImageView2.width-20, 14)];
+        _descLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel2.bottom+10, _displayView2.width-_urlImageView2.width-20, 30)];
+        _descLabel2.numberOfLines = 0;
         [_titleLabel2 setTextColor:mRGBToColor(0xff4401)];
         [_titleLabel2 setFont:[UIFont systemFontOfSize:16]];
         [_titleLabel2 setText:@"限时优惠"];
         [_descLabel2 setTextColor:mRGBToColor(0x666666)];
         [_descLabel2 setFont:[UIFont systemFontOfSize:12]];
-        [_descLabel2 setText:@"满99元减30"];
         
         [_displayView2 addSubview:_titleLabel2];
         [_displayView2 addSubview:_descLabel2];
         [_displayView2 addSubview:_urlImageView2];
         
         
-        [_urlImageView2 yy_setImageWithURL:[NSURL URLWithString:@"http://eimg.smzdm.com/201511/08/563ea8e9c46a79304.png"] placeholder:kImagePlaceHolder options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation completion:NULL];
+        [_urlImageView2 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:kImagePlaceHolder];
         
         
         
@@ -206,16 +268,17 @@
         }
         
         _titleLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, _displayView3.width-_urlImageView3.width-20, 18)];
-        _descLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel3.bottom+10, _displayView3.width-_urlImageView2.width-20, 14)];
+        _descLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel3.bottom+10, _displayView3.width-_urlImageView2.width-20, 30)];
+        _descLabel3.numberOfLines = 2;
         [_titleLabel3 setTextColor:mRGBToColor(0xff4401)];
         [_titleLabel3 setFont:[UIFont systemFontOfSize:16]];
         [_titleLabel3 setText:@"高端尖货"];
         [_descLabel3 setTextColor:mRGBToColor(0x666666)];
         [_descLabel3 setFont:[UIFont systemFontOfSize:12]];
-        [_descLabel3 setText:@"限时抢购"];
         
         
-        [_urlImageView3 yy_setImageWithURL:[NSURL URLWithString:@"http://eimg.smzdm.com/201511/08/563ea991a4da52095.png"] placeholder:kImagePlaceHolder options:YYWebImageOptionProgressiveBlur | YYWebImageOptionShowNetworkActivity | YYWebImageOptionSetImageWithFadeAnimation completion:NULL];
+        [_urlImageView3 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:kImagePlaceHolder];
+        
         
         [_displayView3 addSubview:_titleLabel3];
         [_displayView3 addSubview:_descLabel3];
@@ -244,20 +307,26 @@
 
 - (void)tapOnImageView1{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    vc.goods = _cheapProduct;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)tapOnImageView2{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    vc.goods = _limittedTimeProduct;
+
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)tapOnImageView3{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    vc.goods = _jdProduct;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    vc.goods = model;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

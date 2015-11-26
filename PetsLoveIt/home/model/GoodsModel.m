@@ -11,8 +11,16 @@
 @implementation GoodsModel
 +(NSArray *)modelPrepare:(id)obj{
     
-    return obj[@"data"][@"data_article_list"];
+    return obj[@"beans"][@"beans"];
 }
+
++(NSDictionary *)replacedKeyFromPropertyName{
+    return @{
+             @"commentNum":@"commentnum",
+             @"favorNum":@"praisenum"
+             };
+}
+
 -(void)setValue:(id)value forKey:(NSString *)key{
     if ([key isEqualToString:@"commentnum"]){
         self.commentNum = value;

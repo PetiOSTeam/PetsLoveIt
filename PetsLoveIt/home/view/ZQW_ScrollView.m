@@ -26,7 +26,11 @@
 -(void)setPictureArray:(NSMutableArray *)pictureArray
 {
     
+    if (pictureArray.count == 0) {
+        return;
+    }
     _pictureArray = pictureArray;
+    [self.time invalidate];
         self.time=[NSTimer scheduledTimerWithTimeInterval:_autoScrollTimeInterval target:self selector:@selector(Action) userInfo:nil repeats:YES];
         self.index = 1;
         [self creatScrollView];
@@ -46,9 +50,9 @@
         
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(ZQWWIDTH * (i+1), 0, self.scrollView.frame.size.width,self.scrollView.frame.size.height )];
         
-        [imageView yy_setImageWithURL:[NSURL URLWithString:_pictureArray[i]] placeholder:kImagePlaceHolder];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:_pictureArray[i]] placeholderImage:kImagePlaceHolder];
         [imageView setClipsToBounds:YES];
-        [imageView setContentMode:UIViewContentModeScaleAspectFill];
+        //[imageView setContentMode:UIViewContentModeScaleAspectFill];
         [self.scrollView setClipsToBounds:YES];
         [self.scrollView addSubview:imageView];
         imageView.tag = 10000+i;
@@ -61,7 +65,7 @@
     UIImageView *imageView1 = [[UIImageView alloc]init];
     [imageView1 yy_setImageWithURL:[NSURL URLWithString:_pictureArray[_pictureArray.count - 1]] placeholder:kImagePlaceHolder];
     [imageView1 setClipsToBounds:YES];
-    [imageView1 setContentMode:UIViewContentModeScaleAspectFill];
+    //[imageView1 setContentMode:UIViewContentModeScaleAspectFill];
 
     [self.scrollView addSubview:imageView1];
     imageView1.frame = CGRectMake(0, 0, _scrollView.frame.size.width,_scrollView.frame.size.height );
@@ -70,7 +74,7 @@
     UIImageView *imageView2 = [[UIImageView alloc]init];
     [imageView2 yy_setImageWithURL:[NSURL URLWithString:_pictureArray[0]] placeholder:kImagePlaceHolder];
     [imageView2 setClipsToBounds:YES];
-    [imageView2 setContentMode:UIViewContentModeScaleAspectFill];
+    //[imageView2 setContentMode:UIViewContentModeScaleAspectFill];
 
     [self.scrollView addSubview:imageView2];
     imageView2.frame = CGRectMake(ZQWWIDTH * (_pictureArray.count + 1), 0, self.scrollView.frame.size.width,_scrollView.frame.size.height );
@@ -187,8 +191,9 @@
 //手势方法
 -(void)tapAction:(UITapGestureRecognizer *)tap
 {
-    UIImageView *imageView = (UIImageView *)[self viewWithTag:tap.view.tag - 10000];
-    [self.Delegate selectScrollView:imageView.tag];
+   // NSLog(@"999999----%d",tap.view.tag);
+    
+    [self.Delegate selectScrollView:(tap.view.tag - 10000)];
 }
 
 

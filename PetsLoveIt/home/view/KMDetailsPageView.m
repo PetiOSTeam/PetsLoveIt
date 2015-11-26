@@ -9,7 +9,7 @@
 #import "KMDetailsPageView.h"
 
 
-#define kDefaultImagePagerHeight 210.0f
+#define kDefaultImagePagerHeight 300.0f
 #define kDefaultTableViewHeaderMargin 95.0f
 #define kDefaultImageAlpha 500.0f
 #define kDefaultImageScalingFactor 300.0f
@@ -174,9 +174,9 @@
 
 - (void)setupImageView
 {
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0, mScreenWidth, kDefaultImagePagerHeight)];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 20, mScreenWidth, kDefaultImagePagerHeight)];
     self.imageView.clipsToBounds = YES;
-    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    //self.imageView.contentMode = UIViewContentModeScaleAspectFit;
     
     if ([self.delegate respondsToSelector:@selector(contentModeForImage:)])
         self.imageView.contentMode = [self.delegate contentModeForImage:self.imageView];

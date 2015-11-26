@@ -34,5 +34,11 @@
 @property (nonatomic,strong) NSString *commentNum;
 @property (nonatomic,strong) NSString *favorNum;
 @property (nonatomic,strong) NSString *dateDesc;
+@property (nonatomic,strong) NSString *usercollectnum;
+@property (nonatomic,strong) NSString *cheapPeriods;
+@property (nonatomic,strong) NSString *dateTime;
+@property (nonatomic,strong) NSString *isTop;
+@property (nonatomic,strong) NSString *nodeUid;
+@property (nonatomic,strong) NSString *collectnum;
 
 @end

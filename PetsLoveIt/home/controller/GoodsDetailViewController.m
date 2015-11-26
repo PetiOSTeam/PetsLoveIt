@@ -38,6 +38,10 @@
 
 -(void)prepareViewsAndData{
     
+    if (self.goodsId) {
+        [self getProductDetailById:self.goodsId];
+    }
+    
     NSString *html = @"<!DOCTYPE html>\r\n<html>\r\n<head lang=\"en\">\r\n    <meta charset=\"UTF-8\">\r\n    <title>app_detail</title>\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no\" />\r\n    <link rel=\"stylesheet\" href=\"http://res.smzdm.com/phone/app_details_6_0.css\" type=\"text/css\"/>\r\n        <script type=\"text/javascript\">\r\n    if (/iP(hone|od|ad)/.test(navigator.userAgent)) {\r\n        var v = (navigator.appVersion).match(/OS (\\d+)_(\\d+)_?(\\d+)?/),\r\n            version = parseInt(v[1], 10);\r\n        if(version >= 8){\r\n            document.documentElement.classList.add('hairlines')\r\n        }\r\n    }\r\n    </script>\r\n</head>\r\n<body>\r\n\n<article>\n \n\n<p>天猫精选 16:10</p> \r\n<h1 class=\"title-box\">SNOW FLYING 雪中飞  中长款女士羽绒服 XR9102</h1> \n<h1 class=\"title-box\" style='color:#ff0000'>79元包邮</h1>  <h2 class=\"title-box\">优惠力度</h2>\n    <p><p><a href=\"http://www.smzdm.com/URL/AC/YH/F06FAC9B51EDC3EB\" target=\"_blank\" cls_link=\"lianjie\" link=\"http://www.smzdm.com/URL/AC/YH/F06FAC9B51EDC3EB\" link_type=\"other\" sub_type=\"tmall\" link_val=\"AAEJlb-tABqcX7XqkVgWXrXs\" link_title=\"\" b2c=\"tmall\"  product_id=\"AAEJlb-tABqcX7XqkVgWXrXs\" >天猫精选</a>目前报价89元，可使用<a href=\"http://www.smzdm.com/URL/AC/YH/17408A480F0726E8\" target=\"_blank\" cls_link=\"lianjie\" link=\"http://www.smzdm.com/URL/AC/YH/17408A480F0726E8\" link_type=\"other\" sub_type=\"\" link_val=\"\" link_title=\"\">10元无门槛优惠券</a>，实际下单79元包邮，两色可选，尺码较为齐全，有需要的朋友可以入手。</p></p>\n        <blockquote>\n        <p>领取10元优惠券后，79元包邮，价格还可以。</p>    </blockquote>\n    \n        <!--author-box-->\n    <div class=\"author-box clearfix\">\n        <div>\n        <span class=\"nickname\">\n            maoleigepu        </span>\n        </div>\n        \n            <em>来自爆料人：</em>\n        </div>\n    <!--author-box end-->\n    \n    \n        <h2 class=\"title-box\">商品详情</h2>\n    <!-- card-wrap -->\n    <div class=\"card-wrap\">\n        \n                                      <div class=\"card-info\">\n                          此款女士羽绒服，中长款设计，含绒量90%，亮面材质，易于搭配。                      </div>\n                      </div>\n    <!-- card-wrap end-->\n    </article>\n\n<h2 class=\"title-box\">相关标签</h2>\r\n<div class=\"tags-box\">\r\n                    <a href=\"javascript:void(0);\" cls=\"dingyue_tag\" data=\"category_1029_女士羽绒服\">分类：女士羽绒服</a>\r\n                            <a href=\"javascript:void(0);\" cls=\"dingyue_tag\" data=\"mall_247_天猫精选_0\">商城：天猫精选</a>\r\n                            <a href=\"javascript:void(0);\" cls=\"dingyue_tag\" data=\"brand_10537_SNOW FLYING/雪中飞\">品牌：SNOW FLYING/雪中飞</a>\r\n            </div>\r\n\r\n<script type=\"text/javascript\">\r\nvar _article = document.getElementsByTagName(\"article\"),\r\n    _img = _article[0].getElementsByTagName(\"img\"),\r\n    _length = _img.length,\r\n    winWidth = document.body.offsetWidth,\r\n    width;\r\n\r\nif(_length){\r\n    for(var j=0;j<_length;j++){\r\n        var parent_class = _img[j].parentNode.getAttribute(\"class\"),\r\n            img_class = _img[j].getAttribute(\"class\");\r\n        if( img_class==null && parent_class==null ){//排除商品卡片、视频默认图片\r\n            _img[j].onload = function () {\r\n                width = this.width;\r\n                if(width<winWidth){\r\n                    this.setAttribute(\"class\",\"small-img\");\r\n                }\r\n            }\r\n        }\r\n    }\r\n}\r\n</script>\r\n</body>\r\n</html>";
     
     [self setupDetailsPageView];
@@ -107,6 +111,21 @@
 -(void)dealloc{
     [self removeZJExchangeObserver];
 
+}
+
+- (void) getProductDetailById:(NSString *)proId{
+    NSDictionary *params = @{
+                             @"uid":@"getProductByNodeId",
+                             @"prodId":proId
+                             };
+    [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            self.goods = [[GoodsModel alloc] initWithDictionary:[responseData objectForKey:@"data"]] ;
+            [self.detailsPageView reloadData];
+        }else{
+            mAlertAPIErrorInfo(error);
+        }
+    }];
 }
 
 -(UIView *)navigationBarView{
@@ -219,14 +238,14 @@
 
 - (UIViewContentMode)contentModeForImage:(UIImageView *)imageView
 {
-    return UIViewContentModeTop;
+    return UIViewContentModeScaleToFill;
 }
 
 - (UIImageView*)detailsPage:(KMDetailsPageView*)detailsPageView imageDataForImageView:(UIImageView*)imageView;
 {
     __block UIImageView* blockImageView = imageView;
     
-    [imageView sd_setImageWithURL:[NSURL URLWithString:@"http://am.zdmimg.com/201511/08/563e2c80d55dd.jpg_c640.jpg"] completed:^ (UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [imageView sd_setImageWithURL:[NSURL URLWithString:self.goods.appPic] completed:^ (UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if ([detailsPageView.delegate respondsToSelector:@selector(headerImageViewFinishedLoading:)])
             [detailsPageView.delegate headerImageViewFinishedLoading:blockImageView];
     }];

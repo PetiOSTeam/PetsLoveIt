@@ -19,7 +19,7 @@
  */
 -(void)dataFill{
     GoodsModel *good = (GoodsModel *)self.model;
-    [self.goodImageView sd_setImageWithURL:[NSURL URLWithString:good.imageUrl] placeholderImage:kImagePlaceHolder ];
+    [self.goodImageView sd_setImageWithURL:[NSURL URLWithString:good.appMinpic] placeholderImage:kImagePlaceHolder ];
     self.nameLabel.text = good.name;
     self.descLabel.text = good.desc;
     self.prodLabel.text = good.prodDetail;
