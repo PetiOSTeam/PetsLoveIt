@@ -173,9 +173,12 @@
     //加token，deviceId,userId
     NSMutableDictionary *kParameters = [APIOperation paramsWithToken:parameters];
     [AFHttpClient POST:URLString parameters:kParameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
+        id fileParamKeyName = [parameters objectForKey:@"fileParamKeyName"];
+        if (!fileParamKeyName) {
+            fileParamKeyName = @"file";
+        }
         [formData appendPartWithFileData:fileData
-                                    name:@"file"
+                                    name:fileParamKeyName
                                 fileName:@"picture.jpg"
                                 mimeType:@"image/jpeg"];
         

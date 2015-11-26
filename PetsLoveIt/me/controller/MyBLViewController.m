@@ -86,6 +86,7 @@
     configModel.pageStartValue=1;
     //行高
     configModel.rowHeight=110;
+    configModel.CoreViewNetWorkStausManagerOffsetY = 64;
     
     //移除返回顶部:(默认开启)
     configModel.removeBackToTopBtn=YES;

@@ -99,6 +99,7 @@
     UITapGestureRecognizer *tapOnAvatar = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAvatar)];
     [self.avatarImageView addGestureRecognizer:tapOnAvatar];
     self.avatarImageView.layer.cornerRadius = 30;
+    self.avatarImageView.clipsToBounds = YES;
     self.signButton.center =  CGPointMake(mScreenWidth/2, self.signButton.center.y);
     self.signButton.layer.cornerRadius = 18;
     self.ruleButton.left = self.ruleLabel.left = self.signButton.right + 36;
@@ -325,6 +326,22 @@
     [actionSheet showInView:mWindow];
 }
 
+- (void)imagePicker:(TWImagePicker *)picker successed:(NSArray *)infos
+{
+    NSDictionary *item = [infos firstObject];
+    NSString *imagePath = [item objectForKey:kPhotoUtilsImagePath];
+    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
+    
+    NSDictionary* params = @{
+                             @"uid":@"bindUserIcon",
+                             @"fileParamKeyName":@"userIcon",
+                             @"file" : image
+                             };
+    
+    [self performSelector:@selector(uploadAvatar:) withObject:params afterDelay:0.5f];
+    //    [self uploadAvatar:params];
+}
+
 - (void)uploadAvatar:(NSDictionary*) params{
     [SVProgressHUD showWithStatus:@"正在上传头像，请稍后" maskType:SVProgressHUDMaskTypeClear];
     NSString *urlString = @"getSrvcore.action";
@@ -336,6 +353,7 @@
             LocalUserInfoModelClass *localUserInfo = [AppCache getUserInfo];
             localUserInfo.user_icon = userAvatar;
             [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+
             [weakSelf.avatarImageView sd_setImageWithURL:[NSURL URLWithString:userAvatar] placeholderImage:kDefaultHeadImage];
             
         }else{
@@ -362,20 +380,7 @@
     }
 }
 
-- (void)imagePicker:(TWImagePicker *)picker successed:(NSArray *)infos
-{
-    NSDictionary *item = [infos firstObject];
-    NSString *imagePath = [item objectForKey:kPhotoUtilsImagePath];
-    UIImage *image = [UIImage imageWithContentsOfFile:imagePath];
-    
-    NSDictionary* params = @{
-                             @"uid":@"bindUser",
-                             @"file" : image
-                             };
-    
-    [self performSelector:@selector(uploadAvatar:) withObject:params afterDelay:0.5f];
-    //    [self uploadAvatar:params];
-}
+
 
 
 - (void) loadUserInfoViewAndData{

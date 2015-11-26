@@ -13,4 +13,15 @@
     
     return obj[@"data"][@"data_article_list"];
 }
+-(void)setValue:(id)value forKey:(NSString *)key{
+    if ([key isEqualToString:@"commentnum"]){
+        self.commentNum = value;
+    }
+    else if ([key isEqualToString:@"praisenum"]){
+        self.favorNum = value;
+    }
+    else
+        [super setValue:value forKey:key];
+
+}
 @end

@@ -136,7 +136,7 @@ otherButtonTitles:nil]; \
 //默认头像
 #define kDefaultAppImage [UIImage imageNamed:@"timeline_image_loading"]
 #define kImagePlaceHolder [UIImage imageNamed:@"timeline_image_loading"]
-#define kDefaultHeadImage [UIImage imageNamed:@"Image_defaultPerson"]
+#define kDefaultHeadImage [UIImage imageNamed:@"defaultUserAvatar"]
 #define kDefaultPersonAvatar @"Image_defaultPerson"
 //字体基本色
 #define kDefaultFontColor mRGBToColor(0xd0bc91)
