@@ -21,4 +21,10 @@
 @property (strong, nonatomic) NSString *userGrade;
 @property (strong, nonatomic) NSString *userIntegral;
 @property (strong, nonatomic) NSString *userToken;
+@property (strong, nonatomic) NSString *todaySigned;//今天是否签到
+
+//用作自动登录用的
+@property (strong, nonatomic) NSString *loginType;
+@property (strong, nonatomic) NSString *password;
+@property (strong, nonatomic) NSString *accountName;
 @end

@@ -20,6 +20,7 @@
 #import "MyBLViewController.h"
 #import "MyArticleViewController.h"
 #import "MyMsgViewController.h"
+#import "AwardRulesViewController.h"
 
 @interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerContainerView;
@@ -385,6 +386,9 @@
 
 - (void) loadUserInfoViewAndData{
     if (![AppCache getUserInfo]) {
+        [self.signButton removeTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
+        self.ruleLabel.hidden = YES;
+        self.ruleButton.hidden = YES;
         self.nameLabel.text = @"Hi , 你好";
         self.navBarTitleLabel.text = @"Hi , 你好";
         self.levelLabel.text = @"登录签到抽大奖";
@@ -392,12 +396,24 @@
         [self.signButton setTitle:@"登录" forState:UIControlStateNormal];
         [self.signButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
     }else{
+        [self.signButton removeTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
+        self.ruleLabel.hidden = NO;
+        self.ruleButton.hidden = NO;
         self.nameLabel.text = [NSString stringWithFormat:@"Hi , %@",[AppCache getUserName]];
         self.navBarTitleLabel.text =[NSString stringWithFormat:@"Hi , %@",[AppCache getUserName]] ;
         [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[AppCache getUserAvatar]] placeholderImage:[UIImage imageNamed:@"defaultUserAvatar"]];
         self.levelLabel.text = @"";
-        [self.signButton setTitle:@"签到送金币" forState:UIControlStateNormal];
-        [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
+        LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
+        NSString *todaySined = userInfo.todaySigned;
+        if ([todaySined isEqualToString:@"1"]) {
+            [self.signButton setTitle:@"已签到" forState:UIControlStateNormal];
+ 
+        }else{
+            [self.signButton setTitle:@"签到送金币" forState:UIControlStateNormal];
+            [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
+
+        }
+        
     }
     
     
@@ -440,11 +456,38 @@
 }
 
 - (void) signAction{
-    
+    NSDictionary *params = @{
+                             @"uid":@"saveUserSign",
+                             @"signClien":@"iOS"
+                             };
+    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            [self.signButton setTitle:@"已签到" forState:UIControlStateNormal];
+            [self.signButton removeTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
+            LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
+            userInfo.todaySigned = @"1";
+            mAppDelegate.loginUser = userInfo;
+            [AppCache cacheObject:userInfo forKey:HLocalUserInfo];
+            
+            
+        }else{
+            mAlertAPIErrorInfo(error);
+            if ([[error.userInfo objectForKey:ERRORMSG] isEqualToString:@"今天已经签过到."]) {
+                [self.signButton setTitle:@"已签到" forState:UIControlStateNormal];
+                [self.signButton removeTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
+
+                LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
+                userInfo.todaySigned = @"1";
+                mAppDelegate.loginUser = userInfo;
+                [AppCache cacheObject:userInfo forKey:HLocalUserInfo];
+            }
+        }
+    }];
 }
 
 - (IBAction)showRuleVC:(id)sender {
-    
+    AwardRulesViewController *vc  = [AwardRulesViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark -

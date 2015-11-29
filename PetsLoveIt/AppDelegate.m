@@ -90,7 +90,37 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [self.window makeKeyAndVisible];
     
+    [self autoLogin];
 }
+
+- (void)autoLogin{
+    LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
+    if (!userInfo || !userInfo.loginType) {
+        return;
+    }
+    NSDictionary *params = @{
+                             @"uid":@"login",
+                             @"type":userInfo.loginType,
+                             @"userName":userInfo.accountName,
+                             @"userPwd":userInfo.password
+                             };
+    [APIOperation GET:@"userLogin.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
+            LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
+            localUserInfo.userToken = [responseData objectForKey:@"userToken"];
+            localUserInfo.loginType = userInfo.loginType;
+            localUserInfo.accountName = userInfo.accountName;
+            localUserInfo.password = userInfo.password;
+            //将userinfo记录下来
+            mAppDelegate.loginUser = localUserInfo;
+            [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+    
+           
+        }
+    }];
+}
+
 
 - (void)setupUmengSDK{
     [self umengTrack];
@@ -138,6 +168,7 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [self autoLogin];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

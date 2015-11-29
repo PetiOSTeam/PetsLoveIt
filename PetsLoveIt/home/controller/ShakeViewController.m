@@ -11,17 +11,21 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "GoodsModel.h"
 #import "GoodsDetailViewController.h"
+#import "UMSocialSnsService.h"
+#import "UMSocialSnsPlatformManager.h"
+#import "UMSocialWechatHandler.h"
 
-
-@interface ShakeViewController ()
+@interface ShakeViewController ()<UMSocialUIDelegate>
 @property (nonatomic,strong)   UIView *bgView;
 @property (nonatomic,strong)   UIImageView*        imgUp;
 @property (nonatomic,strong)   UIImageView*        imgDown;
 
 @property (nonatomic,strong)   UIView *maskView;
 @property (nonatomic,strong)   UIView *goodsView;
+@property (nonatomic,strong)   UIView *noOpView;
 @property (nonatomic,assign)   BOOL showPopViewFlag;
 @property (nonatomic,strong) NSString *goodsId;
+
 
 @end
 
@@ -131,6 +135,41 @@
     return _maskView;
 }
 
+-(UIView *)noOpView{
+    if (!_noOpView) {
+        _noOpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 230, 160)];
+        _noOpView.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
+        _noOpView.backgroundColor = [UIColor whiteColor];
+        _noOpView.clipsToBounds = YES;
+        
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, _noOpView.width, 30)];
+        [titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [titleLabel setFont:[UIFont systemFontOfSize:15]];
+        [titleLabel setTextColor:mRGBToColor(0x333333)];
+        [titleLabel setText:@"机会用光啦"];
+        [_noOpView addSubview:titleLabel];
+        
+        
+        UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, titleLabel.bottom + 15, _noOpView.width, 30)];
+        [tipLabel setTextAlignment:NSTextAlignmentCenter];
+        [tipLabel setFont:[UIFont systemFontOfSize:14]];
+        [tipLabel setTextColor:mRGBToColor(0xff4401)];
+        [tipLabel setText:@"分享可再获取一次机会"];
+        [_noOpView addSubview:tipLabel];
+        
+        UIButton *shareButtton = [UIButton buttonWithType:UIButtonTypeCustom];
+        shareButtton.frame = CGRectMake(0, tipLabel.bottom+8, 150, 35);
+        shareButtton.center = CGPointMake(_noOpView.width/2, shareButtton.center.y);
+        [shareButtton setTitle:@"立即分享" forState:UIControlStateNormal];
+        [shareButtton addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
+        shareButtton.layer.cornerRadius = 5;
+        [shareButtton setBackgroundColor:mRGBToColor(0xff4401)];
+        [_noOpView addSubview:shareButtton];
+        
+    }
+    return _noOpView;
+}
+
 -(UIView *)goodsView{
     if (!_goodsView) {
         _goodsView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 230, 280)];
@@ -198,6 +237,27 @@
     return _goodsView;
 }
 
+- (void)shareAction{
+    [self hidePopView];
+    //点击分享查看详情url
+    NSString *detailUrl = iVersioniOSAppStoreURLFormat;
+    [UMSocialData defaultData].extConfig.qqData.url = detailUrl;
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = detailUrl;
+    [UMSocialData defaultData].extConfig.wechatTimelineData.url = detailUrl;
+    
+    NSString *title = @"我在宠物爱这个摇到好多积分和白菜价商品";
+    [UMSocialData defaultData].extConfig.title = title;
+    //微博分享内容单独设置
+    
+    //    [UMSocialData defaultData].extConfig.sinaData.shareText = [NSString stringWithFormat:@"%@",@""];
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:UMENG_APPKEY
+                                      shareText:@"宠物爱这个，爱Ta就给Ta不一样的宠爱，拉近您与爱宠的距离"
+                                     shareImage:[UIImage imageNamed:@"ImageAppIcon"]
+                                shareToSnsNames:@[UMShareToWechatSession,UMShareToQQ,UMShareToQzone,UMShareToWechatTimeline,UMShareToSina]
+                                       delegate:self];
+}
+
 - (void)showGoodsDetail{
     [self hidePopView];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
@@ -206,18 +266,40 @@
 }
 
 - (void)getRandomProduct{
-    //SVProgressHUD showWithStatus:@"正在搜索" maskType:<#(SVProgressHUDMaskType)#>
+    [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeNone];
     NSDictionary *params = @{
                              @"uid":@"getRandomProduct"
                              };
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        [SVProgressHUD dismiss];
         if (!error) {
+            //只允许摇3次
+            NSInteger canShakeNum = [[[responseData objectForKey:@"data"]  objectForKey:@"sharenum"] integerValue];
+       
+            if (canShakeNum ==0) {
+                [self showNoOpView];
+                return ;
+            }
+            
             id jsonDict = [responseData objectForKey:@"data"];
             GoodsModel *goods = [[GoodsModel alloc] initWithDictionary:jsonDict];
             self.goodsId = goods.prodId;
             [self showGoodsView:goods];
+        }else{
+            self.showPopViewFlag = NO;
         }
     }];
+}
+
+- (void)showNoOpView{
+    self.maskView.alpha = 0;
+    self.noOpView.bottom = 0;
+   [UIView animateWithDuration:0.5 animations:^{
+       [self.view addSubview:self.maskView];
+       [self.view addSubview:self.noOpView];
+       self.noOpView.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
+       self.maskView.alpha = 0.7;
+   }];
 }
 
 - (void)showGoodsView:(GoodsModel *)goods{
@@ -246,6 +328,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         [self.maskView removeFromSuperview];
         [self.goodsView removeFromSuperview];
+        [self.noOpView removeFromSuperview];
     }];
 }
 

@@ -50,6 +50,8 @@
 		184858D21BF8DDE4001FF521 /* SearchKeyWordsCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 184858CA1BF8DDC9001FF521 /* SearchKeyWordsCell.h */; };
 		184858D61BF8DEDC001FF521 /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184858D51BF8DEDC001FF521 /* SearchResultCell.xib */; };
 		185767551C07068F000A044D /* AdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 185767541C07068F000A044D /* AdModel.m */; };
+		185767591C0AF8AF000A044D /* AwardRulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185767571C0AF8AF000A044D /* AwardRulesViewController.m */; };
+		1857675A1C0AF8AF000A044D /* AwardRulesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185767581C0AF8AF000A044D /* AwardRulesViewController.xib */; };
 		189442591BE9DEC3006249F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 189442581BE9DEC3006249F0 /* main.m */; };
 		1894425C1BE9DEC3006249F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894425B1BE9DEC3006249F0 /* AppDelegate.m */; };
 		189442671BE9DEC3006249F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189442661BE9DEC3006249F0 /* Assets.xcassets */; };
@@ -609,6 +611,9 @@
 		184858D51BF8DEDC001FF521 /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		185767531C07068F000A044D /* AdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdModel.h; sourceTree = "<group>"; };
 		185767541C07068F000A044D /* AdModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdModel.m; sourceTree = "<group>"; };
+		185767561C0AF8AF000A044D /* AwardRulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwardRulesViewController.h; sourceTree = "<group>"; };
+		185767571C0AF8AF000A044D /* AwardRulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwardRulesViewController.m; sourceTree = "<group>"; };
+		185767581C0AF8AF000A044D /* AwardRulesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AwardRulesViewController.xib; sourceTree = "<group>"; };
 		189442541BE9DEC3006249F0 /* PetsLoveIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetsLoveIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		189442581BE9DEC3006249F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1894425A1BE9DEC3006249F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2845,6 +2850,9 @@
 				18E21EE61C02F7BE007059F3 /* MoreViewController.h */,
 				18E21EE71C02F7BE007059F3 /* MoreViewController.m */,
 				18E21EE81C02F7BE007059F3 /* MoreViewController.xib */,
+				185767561C0AF8AF000A044D /* AwardRulesViewController.h */,
+				185767571C0AF8AF000A044D /* AwardRulesViewController.m */,
+				185767581C0AF8AF000A044D /* AwardRulesViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3507,6 +3515,7 @@
 				TargetAttributes = {
 					189442531BE9DEC3006249F0 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = 28K5H5KYEY;
 					};
 				};
 			};
@@ -3694,6 +3703,7 @@
 				1894460A1BEB0774006249F0 /* e_49@2x.png in Resources */,
 				1894460C1BEB0774006249F0 /* e_50@2x.png in Resources */,
 				18F633A21BF883C800FD98B1 /* UMSCommentInputControlleriPad.xib in Resources */,
+				1857675A1C0AF8AF000A044D /* AwardRulesViewController.xib in Resources */,
 				1894458A1BEB0774006249F0 /* MJRefresh.bundle in Resources */,
 				189446501BEB0774006249F0 /* chatBar_recordBg@2x.png in Resources */,
 				189446251BEB0774006249F0 /* e_73@2x.png in Resources */,
@@ -4022,6 +4032,7 @@
 				1894456C1BEB0774006249F0 /* AFHTTPRequestOperation.m in Sources */,
 				189442D81BEAF65A006249F0 /* UIImageView+LBBlurredImage.m in Sources */,
 				189445C41BEB0774006249F0 /* NSObject+MJCoding.m in Sources */,
+				185767591C0AF8AF000A044D /* AwardRulesViewController.m in Sources */,
 				189446711BEB0774006249F0 /* SDWebImageDownloader.m in Sources */,
 				1894468A1BEB0774006249F0 /* SWUtilityButtonView.m in Sources */,
 				189445A51BEB0774006249F0 /* CoreListVC.m in Sources */,

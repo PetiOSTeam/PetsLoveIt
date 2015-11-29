@@ -88,6 +88,9 @@
             NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
             LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
             localUserInfo.userToken = [responseData objectForKey:@"userToken"];
+            localUserInfo.loginType = [params objectForKey:@"type"];
+            localUserInfo.accountName = [params objectForKey:@"userName"];
+            localUserInfo.password = encryptedPwd;
             //将userinfo记录下来
             mAppDelegate.loginUser = localUserInfo;
             [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];

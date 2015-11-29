@@ -15,6 +15,6 @@
 
 @property (strong, nonatomic) UINavigationController *rootNavigationController;
 @property (strong, nonatomic) LocalUserInfoModelClass *loginUser;
-
+- (void)autoLogin;
 @end
 

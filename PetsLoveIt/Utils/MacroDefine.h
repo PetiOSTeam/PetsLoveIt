@@ -68,6 +68,9 @@
 #define kNetWorkUnReachableDesc  @"服务出错或者当前网络连接失败"
 
 
+#define kShakeNumKey @"ShakeNumKey"
+
+
 
 // block self
 #define WEAKSELF typeof(self) __weak weakSelf = self;
