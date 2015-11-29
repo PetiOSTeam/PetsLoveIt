@@ -52,7 +52,6 @@
     if (_loadingView) {
         _loadingView.left = (self.width - _loadingView.width) / 2;
         _loadingView.top = (self.height - _loadingView.height) / 2;
-        NSLog(@"frame:%@", NSStringFromCGRect(_loadingView.frame));
     }
 }
 
@@ -113,6 +112,13 @@
             make.leading.equalTo(superView.mas_leading).with.offset(0);
             make.trailing.equalTo(superView.mas_trailing);
         }];
+        WEAKSELF
+        [_tagView setDidClickTagAtIndex:^(NSUInteger index) {
+            KeywordsModel *model = weakSelf.keywords[index];
+            if ([weakSelf.delegate respondsToSelector:@selector(didClickWithText:)]) {
+                [weakSelf.delegate didClickWithText:model.name];
+            }
+        }];
     }
     return _tagView;
 }
@@ -150,7 +156,8 @@
     //Add Tags
     [keyWords enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
      {
-         SKTag *tag = [SKTag tagWithText:obj];
+         KeywordsModel *model = obj;
+         SKTag *tag = [SKTag tagWithText:model.name];
          tag.fontSize = 14;
          tag.padding = UIEdgeInsetsMake(6, 10, 6, 12);
          tag.enable = NO;

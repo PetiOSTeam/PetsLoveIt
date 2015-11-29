@@ -14,12 +14,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="55"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈士奇" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKy-uN-AfA">
-                        <rect key="frame" x="0.0" y="17" width="50" height="21"/>
+                        <rect key="frame" x="-1" y="-1" width="51" height="56"/>
                         <animations/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="FTS-QN-rsb"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.32941176470588235" green="0.32941176470588235" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -29,10 +26,14 @@
             </view>
             <animations/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="VKy-uN-AfA" secondAttribute="trailing" id="J7e-Jv-UyY"/>
-                <constraint firstItem="VKy-uN-AfA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ezU-xp-ntv"/>
-                <constraint firstItem="VKy-uN-AfA" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="twG-yh-nXf"/>
+                <constraint firstItem="VKy-uN-AfA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="-1" id="02c-7S-NKp"/>
+                <constraint firstItem="VKy-uN-AfA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="-1" id="Q8b-aE-2x8"/>
+                <constraint firstAttribute="trailing" secondItem="VKy-uN-AfA" secondAttribute="trailing" id="Tvw-au-HjQ"/>
+                <constraint firstAttribute="bottom" secondItem="VKy-uN-AfA" secondAttribute="bottom" id="wnT-aa-Pa9"/>
             </constraints>
+            <connections>
+                <outlet property="classNameLabel" destination="VKy-uN-AfA" id="Nnd-lA-iaU"/>
+            </connections>
         </collectionViewCell>
     </objects>
 </document>

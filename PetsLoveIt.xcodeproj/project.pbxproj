@@ -531,6 +531,11 @@
 		76AF7FED1BEF7F1F0066659E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AF7FEC1BEF7F1F0066659E /* OrderModel.m */; };
 		F92EE5261C0068DA00DEC5D0 /* KeywordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F92EE5251C0068DA00DEC5D0 /* KeywordsModel.m */; };
 		F92EE52A1C006D9700DEC5D0 /* XLLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F92EE5291C006D9700DEC5D0 /* XLLoadingView.m */; };
+		F9332A7A1C05E5BD00E322F0 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F9332A791C05E5BD00E322F0 /* UIScrollView+EmptyDataSet.m */; };
+		F960FFD61C0B003800281547 /* BeansEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F960FFD11C0B003800281547 /* BeansEntity.m */; };
+		F960FFD71C0B003800281547 /* ScreecSoretedEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F960FFD31C0B003800281547 /* ScreecSoretedEntity.m */; };
+		F960FFD81C0B003800281547 /* SubsortsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F960FFD51C0B003800281547 /* SubsortsEntity.m */; };
+		F960FFDB1C0B38EB00281547 /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F960FFDA1C0B38EB00281547 /* ProductModel.m */; };
 		F99742581BF865C70062A37F /* SearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F99742571BF865C70062A37F /* SearchHeaderView.m */; };
 		F997425A1BF865E20062A37F /* SearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99742591BF865E20062A37F /* SearchHeaderView.xib */; };
 		F997428C1BF8A4420062A37F /* SearchHistoryFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F997428B1BF8A4420062A37F /* SearchHistoryFooterView.m */; };
@@ -1485,6 +1490,16 @@
 		F92EE5251C0068DA00DEC5D0 /* KeywordsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeywordsModel.m; sourceTree = "<group>"; };
 		F92EE5281C006D9700DEC5D0 /* XLLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLLoadingView.h; sourceTree = "<group>"; };
 		F92EE5291C006D9700DEC5D0 /* XLLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLLoadingView.m; sourceTree = "<group>"; };
+		F9332A781C05E5BD00E322F0 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		F9332A791C05E5BD00E322F0 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
+		F960FFD01C0B003800281547 /* BeansEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeansEntity.h; sourceTree = "<group>"; };
+		F960FFD11C0B003800281547 /* BeansEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeansEntity.m; sourceTree = "<group>"; };
+		F960FFD21C0B003800281547 /* ScreecSoretedEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreecSoretedEntity.h; sourceTree = "<group>"; };
+		F960FFD31C0B003800281547 /* ScreecSoretedEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreecSoretedEntity.m; sourceTree = "<group>"; };
+		F960FFD41C0B003800281547 /* SubsortsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubsortsEntity.h; sourceTree = "<group>"; };
+		F960FFD51C0B003800281547 /* SubsortsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubsortsEntity.m; sourceTree = "<group>"; };
+		F960FFD91C0B38EB00281547 /* ProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductModel.h; sourceTree = "<group>"; };
+		F960FFDA1C0B38EB00281547 /* ProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductModel.m; sourceTree = "<group>"; };
 		F99742561BF865C70062A37F /* SearchHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchHeaderView.h; sourceTree = "<group>"; };
 		F99742571BF865C70062A37F /* SearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHeaderView.m; sourceTree = "<group>"; };
 		F99742591BF865E20062A37F /* SearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHeaderView.xib; sourceTree = "<group>"; };
@@ -1788,6 +1803,7 @@
 		189442EA1BEB0773006249F0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				F9332A771C05E5BD00E322F0 /* EmptyDataSet */,
 				F92EE5271C006D9700DEC5D0 /* XLLoadingView */,
 				18E21E871C00229C007059F3 /* YYText */,
 				1848588D1BF8DD3C001FF521 /* SKTagView */,
@@ -3349,6 +3365,15 @@
 			path = XLLoadingView;
 			sourceTree = "<group>";
 		};
+		F9332A771C05E5BD00E322F0 /* EmptyDataSet */ = {
+			isa = PBXGroup;
+			children = (
+				F9332A781C05E5BD00E322F0 /* UIScrollView+EmptyDataSet.h */,
+				F9332A791C05E5BD00E322F0 /* UIScrollView+EmptyDataSet.m */,
+			);
+			path = EmptyDataSet;
+			sourceTree = "<group>";
+		};
 		F99B56C01BF4AE12008E18A2 /* PureLayout */ = {
 			isa = PBXGroup;
 			children = (
@@ -3409,6 +3434,8 @@
 		F9EAB7671BF75A1B00BD0D6B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F960FFD91C0B38EB00281547 /* ProductModel.h */,
+				F960FFDA1C0B38EB00281547 /* ProductModel.m */,
 				F92EE5241C0068DA00DEC5D0 /* KeywordsModel.h */,
 				F92EE5251C0068DA00DEC5D0 /* KeywordsModel.m */,
 			);
@@ -3452,6 +3479,12 @@
 		F9EAB76E1BF75A1B00BD0D6B /* model */ = {
 			isa = PBXGroup;
 			children = (
+				F960FFD01C0B003800281547 /* BeansEntity.h */,
+				F960FFD11C0B003800281547 /* BeansEntity.m */,
+				F960FFD21C0B003800281547 /* ScreecSoretedEntity.h */,
+				F960FFD31C0B003800281547 /* ScreecSoretedEntity.m */,
+				F960FFD41C0B003800281547 /* SubsortsEntity.h */,
+				F960FFD51C0B003800281547 /* SubsortsEntity.m */,
 				F9EAB76F1BF75A1B00BD0D6B /* StoreModel.h */,
 				F9EAB7701BF75A1B00BD0D6B /* StoreModel.m */,
 			);
@@ -3796,6 +3829,7 @@
 				189445A01BEB0774006249F0 /* NSData+MimeType.m in Sources */,
 				189445801BEB0774006249F0 /* MBProgressHUD+Add.m in Sources */,
 				189445DC1BEB0774006249F0 /* DXMessageToolBar.m in Sources */,
+				F960FFD61C0B003800281547 /* BeansEntity.m in Sources */,
 				189445A21BEB0774006249F0 /* NSString+File.m in Sources */,
 				189445951BEB0774006249F0 /* MWGridCell.m in Sources */,
 				189446871BEB0774006249F0 /* SWLongPressGestureRecognizer.m in Sources */,
@@ -3825,6 +3859,7 @@
 				189445C51BEB0774006249F0 /* NSObject+MJKeyValue.m in Sources */,
 				189442E71BEAF65A006249F0 /* APIOperation.m in Sources */,
 				189442DE1BEAF65A006249F0 /* UIView+Addition.m in Sources */,
+				F960FFDB1C0B38EB00281547 /* ProductModel.m in Sources */,
 				1894463B1BEB0774006249F0 /* FacialView.m in Sources */,
 				189445AD1BEB0774006249F0 /* CAAnimation+CoreRefresh.m in Sources */,
 				1894459C1BEB0774006249F0 /* NSString+ArcFile.m in Sources */,
@@ -3881,6 +3916,7 @@
 				189446E51BEB0A80006249F0 /* YYWebImageManager.m in Sources */,
 				189445B61BEB0774006249F0 /* CoreRefreshView.m in Sources */,
 				189442CC1BEAF65A006249F0 /* NSNumber+Addition.m in Sources */,
+				F9332A7A1C05E5BD00E322F0 /* UIScrollView+EmptyDataSet.m in Sources */,
 				189445931BEB0774006249F0 /* TTTAttributedLabel.m in Sources */,
 				18E21F4F1C05B3D4007059F3 /* SysMsgViewController.m in Sources */,
 				F9EAB78D1BF75A1B00BD0D6B /* ScreenSoretedView.m in Sources */,
@@ -3902,6 +3938,7 @@
 				F99B56CB1BF4AE12008E18A2 /* NSArray+PureLayout.m in Sources */,
 				18E21ECC1C00229C007059F3 /* UIPasteboard+YYText.m in Sources */,
 				F9EAB78F1BF75A1B00BD0D6B /* SoretedHeaderView.m in Sources */,
+				F960FFD71C0B003800281547 /* ScreecSoretedEntity.m in Sources */,
 				189445871BEB0774006249F0 /* MJPhotoProgressView.m in Sources */,
 				18DD074B1BED9790003C8160 /* BaseNavigationController.m in Sources */,
 				189446E01BEB0A80006249F0 /* YYFrameImage.m in Sources */,
@@ -4037,6 +4074,7 @@
 				1894468A1BEB0774006249F0 /* SWUtilityButtonView.m in Sources */,
 				189445A51BEB0774006249F0 /* CoreListVC.m in Sources */,
 				182EB8331BEDC374004EA19C /* ArticleTableCell.m in Sources */,
+				F960FFD81C0B003800281547 /* SubsortsEntity.m in Sources */,
 				1894459F1BEB0774006249F0 /* NSString+CoreHttp.m in Sources */,
 				184858B71BF8DD3C001FF521 /* SKTagView.m in Sources */,
 				18E21ECD1C00229C007059F3 /* UIView+YYText.m in Sources */,

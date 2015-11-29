@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SubsortsEntity.h"
 
 @interface PLSoretedCell : UICollectionViewCell
 
-- (void)addLineWithLeft:(BOOL)isLeft withRight:(BOOL)isRight;
+@property (nonatomic, strong) SubsortsEntity *subsortsEntity;
+
 
 @end

@@ -15,6 +15,8 @@
 
 - (void)reloadKeywordsWithCell:(SearchKeyWordsCell *)cell;
 
+- (void)didClickWithText:(NSString *)hotwordText;
+
 @end
 
 @interface SearchKeyWordsCell : UITableViewCell

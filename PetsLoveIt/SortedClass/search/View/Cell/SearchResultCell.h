@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductModel.h"
 
 @interface SearchResultCell : UITableViewCell
 

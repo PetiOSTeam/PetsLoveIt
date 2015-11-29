@@ -9,11 +9,19 @@
 #import "SearchResultsViewController.h"
 #import "SearchResultCell.h"
 
+typedef enum : NSUInteger {
+    SearchResultsStyleNone,
+    SearchResultsStyleFail,
+    SearchResultsStyleNotData,
+} SearchResultsStyle;
+
 #define kCellHeight 110
 
 static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
-@interface SearchResultsViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface SearchResultsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+
+@property (nonatomic, assign) SearchResultsStyle resultsStyle;
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -32,7 +40,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self setupSubviews];
+    [self searchRequest:NO];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -40,28 +48,67 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 {
     self.navigationItem.titleView = self.searchBar;
     
-//    UIButton *buttonBack = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [buttonBack setImage:[UIImage imageNamed:@"backBarButtonIcon"] forState:UIControlStateNormal];
-//    [buttonBack addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-//    [buttonBack sizeToFit];
-//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:buttonBack];
-//    self.navigationItem.leftBarButtonItems = @[backItem];
-
-}
-
-- (void)setupSubviews
-{
-    [self.tableView reloadData];
-}
-
-- (void)back
-{
-    [self.navigationController popViewControllerAnimated:YES];
+    self.searchBar.text = self.searchText;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)searchRequest:(BOOL)isMore
+{
+    NSDictionary *parameters = @{@"uid": @"queryProduct",
+                                 @"startNum": @0,
+                                 @"limit": @"15",
+                                 @"keywords": self.searchText};
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"正在搜索";
+    WEAKSELF
+    [APIOperation GET:kSearchHotWordsAPI
+           parameters:parameters
+         onCompletion:^(id responseData, NSError *error) {
+             [hud hide:YES];
+             if (!error) {
+                 NSDictionary *jsonDict = responseData[@"beans"];
+                 NSArray *beans = jsonDict[@"beans"];
+                 [weakSelf handerSearchResultsFromDatas:beans more:isMore];
+             }else {
+                 if (weakSelf.dataSource.count == 0) {
+                     weakSelf.resultsStyle = SearchResultsStyleFail;
+                     [weakSelf.tableView reloadEmptyDataSet];
+
+                 }
+             }
+         }];
+}
+
+- (void)handerSearchResultsFromDatas:(NSArray *)data more:(BOOL)isMore
+{
+    if (self.dataSource.count == 0 && data.count == 0) {
+        self.resultsStyle = SearchResultsStyleNotData;
+        [self.tableView reloadEmptyDataSet];
+    }else {
+        NSMutableArray *tempArray = [NSMutableArray new];
+        [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            ProductModel *model = [[ProductModel alloc] initWithJson:obj];
+            [tempArray addObject:model];
+        }];
+        if (isMore) {
+            [self.dataSource addObjectsFromArray:tempArray];
+        }else {
+            self.dataSource = tempArray;
+        }
+        [self.tableView reloadData];
+    }
+}
+
+#pragma mark - *** search delegate ***
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    self.searchText = searchBar.text;
+    [self searchRequest:NO];
 }
 
 #pragma mark - *** getter ***
@@ -73,7 +120,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;//self.dataSource.count;
+    return self.dataSource.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -85,6 +132,37 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 {
     SearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     return cell;
+}
+
+
+#pragma mark - *** DZNEmptyDataSetSource && Delegate ***
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSString *alertString = @"";
+    switch (self.resultsStyle) {
+        case SearchResultsStyleNotData:
+            alertString = @"没有搜索到商品";
+            break;
+        case SearchResultsStyleFail:
+            alertString = @"点击屏幕，重新加载";
+            break;
+    
+        default:
+            break;
+    }
+    NSAttributedString *str = [[NSAttributedString alloc] initWithString:alertString attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}];
+    return str;
+}
+
+- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView
+{
+    return self.resultsStyle == SearchResultsStyleFail;
+}
+
+- (void)emptyDataSetDidTapView:(UIScrollView *)scrollView
+{
+    [self searchRequest:NO];
 }
 
 
@@ -100,7 +178,11 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
         [_tableView registerNib:[UINib nibWithNibName:@"SearchResultCell"
                                                bundle:nil]
          forCellReuseIdentifier:CellIdentifier];
+        _tableView.emptyDataSetSource = self;
+        _tableView.emptyDataSetDelegate = self;
         [self.view addSubview:_tableView];
+
+        setExtraCellLineHidden(_tableView);
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
         [_tableView autoPinEdgesToSuperviewEdges];
     }
@@ -118,10 +200,19 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
         _searchBar.barTintColor = [UIColor whiteColor];
         _searchBar.tintColor=[UIColor blueColor];
         
+        _searchBar.delegate = self;
         searchTextField = [[[_searchBar.subviews firstObject] subviews] lastObject];
         searchTextField.backgroundColor = mRGBToColor(0xeeeeee);
     }
     return _searchBar;
+}
+
+- (NSMutableArray *)dataSource
+{
+    if (!_dataSource) {
+        _dataSource = [NSMutableArray new];
+    }
+    return _dataSource;
 }
 
 @end

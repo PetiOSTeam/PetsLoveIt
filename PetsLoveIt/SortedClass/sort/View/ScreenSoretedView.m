@@ -10,19 +10,19 @@
 #import "StoreModel.h"
 #import "SoretedHeaderView.h"
 #import "PLSoretedCell.h"
+#import "ScreecSoretedEntity.h"
 
 static NSString * CellIdentifier = @"GradientCell";
 static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
+static NSString * ScreenStoreFooterIdentifier = @"ScreenStoreFooterIdentifier";
 
-@interface ScreenSoretedView() <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ScreenSoretedView() <UICollectionViewDataSource, UICollectionViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) ScreecSoretedEntity *screecSoretedModel;
 
-@property (nonatomic, strong) NSArray *titles;
-
-@property (nonatomic, strong) NSDictionary *iconDict;
+@property (nonatomic, strong) UIActivityIndicatorView *activityView;
 
 @end
 
@@ -39,12 +39,23 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
 
 - (void)loadDataFromSever
 {
-    
-    for (int i = 0; i < 20; i++) {
-        StoreModel *storeModel = [[StoreModel alloc] init];
-        //        storeModel.mallIcon
-        [self.dataSource addObject:storeModel];
-    }
+    [self.activityView startAnimating];
+    WEAKSELF
+    [APIOperation GET:kDefaultAPI parameters:@{@"uid": kClassInfosAPI}
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  [weakSelf.activityView stopAnimating];
+                  [weakSelf handerDataFromJsonDict:responseObject];
+
+              }
+              failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  [weakSelf.activityView stopAnimating];
+                  [weakSelf.collectionView reloadEmptyDataSet];
+              }];
+}
+
+- (void)handerDataFromJsonDict:(NSDictionary *)jsonDict
+{
+    self.screecSoretedModel = [[ScreecSoretedEntity alloc] initWithJson:jsonDict];
     [self.collectionView reloadData];
 }
 
@@ -52,12 +63,13 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.dataSource.count;
+    BeansEntity *beansEntity = self.screecSoretedModel.beans[section];
+    return beansEntity.subsorts.count;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 4;
+    return self.screecSoretedModel.beans.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
@@ -65,25 +77,33 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
     return CGSizeMake(self.width, 64);
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+    return CGSizeMake(self.width, 1);
+}
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     if ([kind isEqual:UICollectionElementKindSectionHeader]) {
         return [self headerFromIndexPath:indexPath];
+    }else if ([kind isEqual:UICollectionElementKindSectionFooter]) {
+        SoretedHeaderView *footer = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter
+                                                                                withReuseIdentifier:ScreenStoreFooterIdentifier
+                                                                                       forIndexPath:indexPath];
+        [footer addTopBorderWithColor:kLineColor andWidth:.5];
+        return footer;
     }
     return nil;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    PLSoretedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    PLSoretedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier
+                                                                    forIndexPath:indexPath];
     
-    if (indexPath.row == 1 || indexPath.row % 4 == 1) {
-        [cell addLineWithLeft:YES withRight:YES];
-    }else if (indexPath.row == 2 || indexPath.row % 4 == 2) {
-        [cell addLineWithLeft:NO withRight:YES];
-    }else {
-        [cell addLineWithLeft:NO withRight:NO];
-    }
+    BeansEntity *beansEntity = self.screecSoretedModel.beans[indexPath.section];
+    SubsortsEntity *subsortsEntity = beansEntity.subsorts[indexPath.row];
+    cell.subsortsEntity = subsortsEntity;
     return cell;
 }
 
@@ -110,12 +130,29 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
     SoretedHeaderView *headerView = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                                                                           withReuseIdentifier:ScreenStoreHeaderCellIdentifier
                                                                                  forIndexPath:indexPath];
-    
-    headerView.titleLabel.text = self.titles[indexPath.section];
-    headerView.headerImageView.image = [UIImage imageNamed:self.iconDict[self.titles[indexPath.section]]];
+    BeansEntity *beansEntity = self.screecSoretedModel.beans[indexPath.section];
+    headerView.titleLabel.text = beansEntity.name;
+    [headerView.headerImageView sd_setImageWithURL:[NSURL URLWithString:beansEntity.sortIcon] placeholderImage:[UIImage imageNamed:@"timeline_image_loading"]];
     return headerView;
 }
 
+#pragma mark - *** DZNEmptyDataSetSource && Delegate ***
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSAttributedString *str = [[NSAttributedString alloc] initWithString:@"点击屏幕，重新加载" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}];
+    return str;
+}
+
+- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (void)emptyDataSetDidTapView:(UIScrollView *)scrollView
+{
+    [self loadDataFromSever];
+}
 
 #pragma mark - *** getter ***
 
@@ -135,6 +172,10 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
         [_collectionView registerNib:[UINib nibWithNibName:@"SoretedHeaderView" bundle:nil]
           forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                  withReuseIdentifier:ScreenStoreHeaderCellIdentifier];
+        [_collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:ScreenStoreFooterIdentifier];
+        
+        _collectionView.emptyDataSetSource = self;
+        _collectionView.emptyDataSetDelegate = self;
         
         [self addSubview:_collectionView];
         _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -143,32 +184,15 @@ static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
     return _collectionView;
 }
 
-- (NSMutableArray *)dataSource
+- (UIActivityIndicatorView *)activityView
 {
-    if (!_dataSource) {
-        _dataSource = [NSMutableArray new];
+    if (!_activityView) {
+        _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [self addSubview:_activityView];
+        _activityView.translatesAutoresizingMaskIntoConstraints = NO;
+        [_activityView autoCenterInSuperview];
     }
-    return _dataSource;
+    return _activityView;
 }
-
-- (NSArray *)titles
-{
-    if (!_titles) {
-        _titles = @[@"狗狗", @"猫猫", @"小宠", @"水族"];
-    }
-    return _titles;
-}
-
-- (NSDictionary *)iconDict
-{
-    if (!_iconDict) {
-        _iconDict = @{@"狗狗": @"dog_icon",
-                      @"猫猫": @"cat_icon",
-                      @"小宠": @"rabbit_icon",
-                      @"水族": @"fish_icon"};
-    }
-    return _iconDict;
-}
-
 
 @end

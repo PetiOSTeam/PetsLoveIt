@@ -1,5 +1,5 @@
 //
-//  
+//
 //  AutomaticCoder
 //
 //  Created by 张玺自动代码生成器  http://zhangxi.me
@@ -15,13 +15,13 @@
     self = [super init];
     if(self)
     {
-    if(json != nil)
-    {
-       self.ishot  = [json objectForKey:@"ishot"];
- self.name  = [json objectForKey:@"name"];
- self.order  = [json objectForKey:@"order"];
- 
-    }
+        if(json != nil)
+        {
+            self.ishot  = [json objectForKey:@"ishot"];
+            self.name  = [json objectForKey:@"name"];
+            self.order  = [json objectForKey:@"order"];
+            
+        }
     }
     return self;
 }
@@ -29,9 +29,9 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.ishot forKey:@"zx_ishot"];
-[aCoder encodeObject:self.name forKey:@"zx_name"];
-[aCoder encodeObject:self.order forKey:@"zx_order"];
-
+    [aCoder encodeObject:self.name forKey:@"zx_name"];
+    [aCoder encodeObject:self.order forKey:@"zx_order"];
+    
 }
 
 
@@ -41,9 +41,9 @@
     if(self)
     {
         self.ishot = [aDecoder decodeObjectForKey:@"zx_ishot"];
- self.name = [aDecoder decodeObjectForKey:@"zx_name"];
- self.order = [aDecoder decodeObjectForKey:@"zx_order"];
- 
+        self.name = [aDecoder decodeObjectForKey:@"zx_name"];
+        self.order = [aDecoder decodeObjectForKey:@"zx_order"];
+        
     }
     return self;
 }
@@ -52,9 +52,9 @@
 {
     NSString *result = @"";
     result = [result stringByAppendingFormat:@"ishot : %@\n",self.ishot];
-result = [result stringByAppendingFormat:@"name : %@\n",self.name];
-result = [result stringByAppendingFormat:@"order : %@\n",self.order];
-
+    result = [result stringByAppendingFormat:@"name : %@\n",self.name];
+    result = [result stringByAppendingFormat:@"order : %@\n",self.order];
+    
     return result;
 }
 

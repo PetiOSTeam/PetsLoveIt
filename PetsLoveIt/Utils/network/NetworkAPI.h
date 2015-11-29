@@ -30,17 +30,38 @@ static NSString *const appStoreID = @"1043407423";
 
 
 /**
+ *  默认接口参数
+ */
+#define kDefaultAPI   @"getSource.action"
+
+
+/**
  *  分类筛选
  *
  *  @return json
  */
-#define kSortClassAPI   @"getSource.action"
+#define kSortChinaprodAPI       @"getChianprodMall" //国内
+#define kSortAbroadprodAPI      @"getAbroadprodMall" //国外
 
 /**
- *  热门关键词
+ *  分类信息
  *
  *  @return json
  */
-#define kHotwordsAPI    @"getSource.action"
+#define kClassInfosAPI  @"getSortInfos"
+
+/**
+ *  获取热门关键词
+ *
+ *  @return json
+ */
+#define kHotWordsAPI    @"getHotWords"
+
+/**
+ *  搜索
+ *
+ *  @return json
+ */
+#define kSearchHotWordsAPI  @"getCoreSv.action"
 
 #endif

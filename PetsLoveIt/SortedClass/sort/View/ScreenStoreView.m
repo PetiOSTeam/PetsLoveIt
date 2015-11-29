@@ -18,7 +18,7 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 
 #define DefaultNum 9
 
-@interface ScreenStoreView ()<UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ScreenStoreView ()<UICollectionViewDataSource, UICollectionViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 {
     BOOL _moreStoreInter;
     BOOL _moreStoreOuter;
@@ -28,6 +28,7 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
+@property (nonatomic, strong) UIActivityIndicatorView *activityView;
 
 @end
 
@@ -44,38 +45,60 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 
 - (void)loadDataFromSever
 {
-    //    http://pic.qiantucdn.com/58pic/18/02/41/33558PIC8ik_1024.jpg
-    
+    [self.activityView startAnimating];
     WEAKSELF
-    [APIOperation GET:kSortClassAPI
-           parameters:@{@"uid": @"getprodMall"}
+    [APIOperation GET:kDefaultAPI
+           parameters:@{@"uid": kSortChinaprodAPI}
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
                   NSDictionary *jsonDict = responseObject[@"beans"];
                   if (jsonDict) {
                       [weakSelf handerDataSourceFromJsonDict:jsonDict];
                   }
               } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  
+                  [weakSelf.activityView stopAnimating];
+                  [weakSelf.collectionView reloadEmptyDataSet];
               }];
 }
 
 - (void)handerDataSourceFromJsonDict:(NSDictionary *)jsonDict
 {
-    NSArray *abroadMall = jsonDict[@"abroadMall"];
-    NSArray *chinalMall = jsonDict[@"chinalMall"];
-    NSMutableArray *abroadMalls = [NSMutableArray new];
+    NSArray *abroadMall = jsonDict[@"beans"];
     NSMutableArray *chinalMalls = [NSMutableArray new];
     [abroadMall enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         StoreModel *model = [[StoreModel alloc] initWithJson:obj];
-        model.mallIcon = @"http://pic.qiantucdn.com/58pic/18/02/41/33558PIC8ik_1024.jpg";
-        [abroadMalls addObject:model];
-    }];
-    [chinalMall enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        StoreModel *model = [[StoreModel alloc] initWithJson:obj];
-        model.mallIcon = @"http://pic.qiantucdn.com/58pic/18/02/41/33558PIC8ik_1024.jpg";
         [chinalMalls addObject:model];
     }];
-    [self.dataSource addObject:abroadMalls];
+    [self.dataSource addObject:chinalMalls];
+    [self loadAbroadprodData];
+}
+
+- (void)loadAbroadprodData
+{
+    WEAKSELF
+    [APIOperation GET:kDefaultAPI
+           parameters:@{@"uid": kSortAbroadprodAPI}
+              success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                  [weakSelf.activityView stopAnimating];
+                  NSDictionary *jsonDict = responseObject[@"beans"];
+                  if (jsonDict) {
+                      [weakSelf handerAbroadprodData:jsonDict];
+                  }else {
+                      [self.collectionView reloadData];
+                  }
+              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                  [weakSelf.activityView stopAnimating];
+                  [weakSelf.collectionView reloadEmptyDataSet];
+              }];
+}
+
+- (void)handerAbroadprodData:(NSDictionary *)jsonDict
+{
+    NSArray *abroadMall = jsonDict[@"beans"];
+    NSMutableArray *chinalMalls = [NSMutableArray new];
+    [abroadMall enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        StoreModel *model = [[StoreModel alloc] initWithJson:obj];
+        [chinalMalls addObject:model];
+    }];
     [self.dataSource addObject:chinalMalls];
     [self.collectionView reloadData];
 }
@@ -108,7 +131,7 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(self.width, 48);
+    return CGSizeMake(self.width, 45);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
@@ -133,12 +156,6 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     PLStoreCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-//    if (indexPath.row == 1 || indexPath.row % 3 == 1) {
-//        cell.isLandscapeLine = YES;
-//    }else {
-//        cell.isLandscapeLine = NO;
-//    }
-//    NSLog(@"row:%ld", indexPath.row);
     NSArray *tempData = self.dataSource[indexPath.section];
     StoreModel *model = tempData[indexPath.row];
     cell.model = model;
@@ -217,6 +234,23 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
     return footerView;
 }
 
+#pragma mark - *** DZNEmptyDataSetSource && Delegate ***
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
+{
+    NSAttributedString *str = [[NSAttributedString alloc] initWithString:@"点击屏幕，重新加载" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}];
+    return str;
+}
+
+- (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
+- (void)emptyDataSetDidTapView:(UIScrollView *)scrollView
+{
+    [self loadDataFromSever];
+}
 
 #pragma mark - *** getter ***
 
@@ -240,6 +274,9 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
           forSupplementaryViewOfKind:UICollectionElementKindSectionFooter
                  withReuseIdentifier:ScreenStoreFooterCellIdentifier];
         
+        _collectionView.emptyDataSetSource = self;
+        _collectionView.emptyDataSetDelegate = self;
+
         [self addSubview:_collectionView];
         _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
         [_collectionView autoPinEdgesToSuperviewEdges];
@@ -253,6 +290,17 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
         _dataSource = [NSMutableArray new];
     }
     return _dataSource;
+}
+
+- (UIActivityIndicatorView *)activityView
+{
+    if (!_activityView) {
+        _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        [self addSubview:_activityView];
+        _activityView.translatesAutoresizingMaskIntoConstraints = NO;
+        [_activityView autoCenterInSuperview];
+    }
+    return _activityView;
 }
 
 @end

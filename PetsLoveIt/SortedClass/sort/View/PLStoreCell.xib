@@ -12,28 +12,13 @@
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="120" height="55"/>
-                <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="D3v-2k-R7A">
-                        <rect key="frame" x="0.0" y="0.0" width="120" height="55"/>
-                        <animations/>
-                    </imageView>
-                </subviews>
                 <animations/>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-            <constraints>
-                <constraint firstItem="D3v-2k-R7A" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="AAZ-Xt-wHj"/>
-                <constraint firstAttribute="bottom" secondItem="D3v-2k-R7A" secondAttribute="bottom" id="G3L-Yo-DV2"/>
-                <constraint firstAttribute="trailing" secondItem="D3v-2k-R7A" secondAttribute="trailing" id="UKc-mc-dDO"/>
-                <constraint firstItem="D3v-2k-R7A" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="z2n-MR-9ea"/>
-            </constraints>
             <size key="customSize" width="120" height="55"/>
-            <connections>
-                <outlet property="iconImageView" destination="D3v-2k-R7A" id="Jqm-0t-ZVc"/>
-            </connections>
-            <point key="canvasLocation" x="180" y="206.5"/>
+            <point key="canvasLocation" x="34" y="219.5"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -95,8 +95,8 @@
 - (void)reloadKeywordsWithCell:(SearchKeyWordsCell *)cell
 {
     WEAKSELF
-    [APIOperation GET:kHotwordsAPI
-           parameters:@{@"uid": @"getHotWords"}
+    [APIOperation GET:kDefaultAPI
+           parameters:@{@"uid": kHotWordsAPI}
               success:^(AFHTTPRequestOperation *operation, id responseObject) {
                   NSDictionary *jsonDict = responseObject[@"datas"];
                   if (jsonDict) {
@@ -109,7 +109,8 @@
                           [keywords enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                               [tempData addObject:[[KeywordsModel alloc] initWithJson:obj]];
                           }];
-                          [weakSelf.dataSource replaceObjectAtIndex:0 withObject:keywords];
+                          [weakSelf.dataSource replaceObjectAtIndex:0 withObject:tempData];
+                          [weakSelf.tableView reloadData];
                       }
                   }
               } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -196,9 +197,9 @@
             }
             cell.width = mScreenWidth;
             cell.delegate = self;
-            [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
         }
-        if (cell.keywords.count == 0) {
+        [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
+        if (keywords.count == 0) {
             [cell startLoading];
         }else {
             cell.keywords = keywords;
@@ -226,6 +227,13 @@
 {
     SearchResultsViewController *searchResultsVC = [[SearchResultsViewController alloc] init];
     searchResultsVC.searchText = searchBar.text;
+    [self.navigationController pushViewController:searchResultsVC animated:YES];
+}
+
+- (void)didClickWithText:(NSString *)hotwordText
+{
+    SearchResultsViewController *searchResultsVC = [[SearchResultsViewController alloc] init];
+    searchResultsVC.searchText = hotwordText;
     [self.navigationController pushViewController:searchResultsVC animated:YES];
 }
 
