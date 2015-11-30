@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1802A1E71C0C3BB9009BC2F8 /* BindEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802A1E51C0C3BB9009BC2F8 /* BindEmailViewController.m */; };
+		1802A1E81C0C3BB9009BC2F8 /* BindEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1802A1E61C0C3BB9009BC2F8 /* BindEmailViewController.xib */; };
+		1802A1EC1C0C4451009BC2F8 /* BindMobileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802A1EA1C0C4451009BC2F8 /* BindMobileViewController.m */; };
+		1802A1ED1C0C4451009BC2F8 /* BindMobileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1802A1EB1C0C4451009BC2F8 /* BindMobileViewController.xib */; };
+		1802A1F61C0C53B1009BC2F8 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802A1F41C0C53B1009BC2F8 /* AddressViewController.m */; };
+		1802A1F71C0C53B1009BC2F8 /* AddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1802A1F51C0C53B1009BC2F8 /* AddressViewController.xib */; };
+		1802A1FB1C0C5DF1009BC2F8 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802A1FA1C0C5DF1009BC2F8 /* AddressModel.m */; };
+		1802A1FF1C0C6042009BC2F8 /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802A1FD1C0C6042009BC2F8 /* AddAddressViewController.m */; };
+		1802A2001C0C6042009BC2F8 /* AddAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1802A1FE1C0C6042009BC2F8 /* AddAddressViewController.xib */; };
+		1802A2051C0C7D32009BC2F8 /* AdviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802A2031C0C7D32009BC2F8 /* AdviceViewController.m */; };
+		1802A2061C0C7D32009BC2F8 /* AdviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1802A2041C0C7D32009BC2F8 /* AdviceViewController.xib */; };
 		182110351BEDFFB300C32E23 /* CarefulSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182110341BEDFFB300C32E23 /* CarefulSelectViewController.m */; };
 		1821104F1BEEE89800C32E23 /* ZQW_ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1821104E1BEEE89800C32E23 /* ZQW_ScrollView.m */; };
 		182110521BEF1B6500C32E23 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182110511BEF1B6500C32E23 /* GoodsModel.m */; };
@@ -52,6 +63,10 @@
 		185767551C07068F000A044D /* AdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 185767541C07068F000A044D /* AdModel.m */; };
 		185767591C0AF8AF000A044D /* AwardRulesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 185767571C0AF8AF000A044D /* AwardRulesViewController.m */; };
 		1857675A1C0AF8AF000A044D /* AwardRulesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185767581C0AF8AF000A044D /* AwardRulesViewController.xib */; };
+		1857675F1C0AFD47000A044D /* PushSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1857675D1C0AFD47000A044D /* PushSettingViewController.m */; };
+		185767601C0AFD47000A044D /* PushSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1857675E1C0AFD47000A044D /* PushSettingViewController.xib */; };
+		185767651C0B0794000A044D /* UserSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185767631C0B0794000A044D /* UserSettingVC.m */; };
+		185767661C0B0794000A044D /* UserSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185767641C0B0794000A044D /* UserSettingVC.xib */; };
 		189442591BE9DEC3006249F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 189442581BE9DEC3006249F0 /* main.m */; };
 		1894425C1BE9DEC3006249F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894425B1BE9DEC3006249F0 /* AppDelegate.m */; };
 		189442671BE9DEC3006249F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189442661BE9DEC3006249F0 /* Assets.xcassets */; };
@@ -565,6 +580,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1802A1E41C0C3BB9009BC2F8 /* BindEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindEmailViewController.h; sourceTree = "<group>"; };
+		1802A1E51C0C3BB9009BC2F8 /* BindEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindEmailViewController.m; sourceTree = "<group>"; };
+		1802A1E61C0C3BB9009BC2F8 /* BindEmailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindEmailViewController.xib; sourceTree = "<group>"; };
+		1802A1E91C0C4451009BC2F8 /* BindMobileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindMobileViewController.h; sourceTree = "<group>"; };
+		1802A1EA1C0C4451009BC2F8 /* BindMobileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindMobileViewController.m; sourceTree = "<group>"; };
+		1802A1EB1C0C4451009BC2F8 /* BindMobileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindMobileViewController.xib; sourceTree = "<group>"; };
+		1802A1F31C0C53B1009BC2F8 /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		1802A1F41C0C53B1009BC2F8 /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
+		1802A1F51C0C53B1009BC2F8 /* AddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressViewController.xib; sourceTree = "<group>"; };
+		1802A1F91C0C5DF1009BC2F8 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressModel.h; path = PetsLoveIt/me/controller/AddressModel.h; sourceTree = SOURCE_ROOT; };
+		1802A1FA1C0C5DF1009BC2F8 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressModel.m; path = PetsLoveIt/me/controller/AddressModel.m; sourceTree = SOURCE_ROOT; };
+		1802A1FC1C0C6042009BC2F8 /* AddAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAddressViewController.h; sourceTree = "<group>"; };
+		1802A1FD1C0C6042009BC2F8 /* AddAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAddressViewController.m; sourceTree = "<group>"; };
+		1802A1FE1C0C6042009BC2F8 /* AddAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAddressViewController.xib; sourceTree = "<group>"; };
+		1802A2021C0C7D32009BC2F8 /* AdviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdviceViewController.h; sourceTree = "<group>"; };
+		1802A2031C0C7D32009BC2F8 /* AdviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdviceViewController.m; sourceTree = "<group>"; };
+		1802A2041C0C7D32009BC2F8 /* AdviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviceViewController.xib; sourceTree = "<group>"; };
 		182110331BEDFFB300C32E23 /* CarefulSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarefulSelectViewController.h; sourceTree = "<group>"; };
 		182110341BEDFFB300C32E23 /* CarefulSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarefulSelectViewController.m; sourceTree = "<group>"; };
 		1821104D1BEEE89800C32E23 /* ZQW_ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZQW_ScrollView.h; sourceTree = "<group>"; };
@@ -619,6 +651,12 @@
 		185767561C0AF8AF000A044D /* AwardRulesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AwardRulesViewController.h; sourceTree = "<group>"; };
 		185767571C0AF8AF000A044D /* AwardRulesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AwardRulesViewController.m; sourceTree = "<group>"; };
 		185767581C0AF8AF000A044D /* AwardRulesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AwardRulesViewController.xib; sourceTree = "<group>"; };
+		1857675C1C0AFD47000A044D /* PushSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushSettingViewController.h; sourceTree = "<group>"; };
+		1857675D1C0AFD47000A044D /* PushSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushSettingViewController.m; sourceTree = "<group>"; };
+		1857675E1C0AFD47000A044D /* PushSettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PushSettingViewController.xib; sourceTree = "<group>"; };
+		185767621C0B0794000A044D /* UserSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingVC.h; sourceTree = "<group>"; };
+		185767631C0B0794000A044D /* UserSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingVC.m; sourceTree = "<group>"; };
+		185767641C0B0794000A044D /* UserSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingVC.xib; sourceTree = "<group>"; };
 		189442541BE9DEC3006249F0 /* PetsLoveIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetsLoveIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		189442581BE9DEC3006249F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1894425A1BE9DEC3006249F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1578,6 +1616,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1802A1F21C0C5394009BC2F8 /* address */ = {
+			isa = PBXGroup;
+			children = (
+				1802A1F31C0C53B1009BC2F8 /* AddressViewController.h */,
+				1802A1F41C0C53B1009BC2F8 /* AddressViewController.m */,
+				1802A1F51C0C53B1009BC2F8 /* AddressViewController.xib */,
+				1802A1FC1C0C6042009BC2F8 /* AddAddressViewController.h */,
+				1802A1FD1C0C6042009BC2F8 /* AddAddressViewController.m */,
+				1802A1FE1C0C6042009BC2F8 /* AddAddressViewController.xib */,
+			);
+			name = address;
+			sourceTree = "<group>";
+		};
+		1802A2011C0C7D1A009BC2F8 /* Advice */ = {
+			isa = PBXGroup;
+			children = (
+				1802A2021C0C7D32009BC2F8 /* AdviceViewController.h */,
+				1802A2031C0C7D32009BC2F8 /* AdviceViewController.m */,
+				1802A2041C0C7D32009BC2F8 /* AdviceViewController.xib */,
+			);
+			name = Advice;
+			sourceTree = "<group>";
+		};
 		1848588D1BF8DD3C001FF521 /* SKTagView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1632,6 +1693,33 @@
 				184858D51BF8DEDC001FF521 /* SearchResultCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		1857675B1C0AFCE4000A044D /* pushSetting */ = {
+			isa = PBXGroup;
+			children = (
+				1857675C1C0AFD47000A044D /* PushSettingViewController.h */,
+				1857675D1C0AFD47000A044D /* PushSettingViewController.m */,
+				1857675E1C0AFD47000A044D /* PushSettingViewController.xib */,
+			);
+			name = pushSetting;
+			sourceTree = "<group>";
+		};
+		185767611C0B0725000A044D /* userSetting */ = {
+			isa = PBXGroup;
+			children = (
+				1802A1F21C0C5394009BC2F8 /* address */,
+				185767621C0B0794000A044D /* UserSettingVC.h */,
+				185767631C0B0794000A044D /* UserSettingVC.m */,
+				185767641C0B0794000A044D /* UserSettingVC.xib */,
+				1802A1E41C0C3BB9009BC2F8 /* BindEmailViewController.h */,
+				1802A1E51C0C3BB9009BC2F8 /* BindEmailViewController.m */,
+				1802A1E61C0C3BB9009BC2F8 /* BindEmailViewController.xib */,
+				1802A1E91C0C4451009BC2F8 /* BindMobileViewController.h */,
+				1802A1EA1C0C4451009BC2F8 /* BindMobileViewController.m */,
+				1802A1EB1C0C4451009BC2F8 /* BindMobileViewController.xib */,
+			);
+			name = userSetting;
 			sourceTree = "<group>";
 		};
 		1894424B1BE9DEC3006249F0 = {
@@ -2853,6 +2941,9 @@
 		189446EE1BEB859D006249F0 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				1802A2011C0C7D1A009BC2F8 /* Advice */,
+				185767611C0B0725000A044D /* userSetting */,
+				1857675B1C0AFCE4000A044D /* pushSetting */,
 				18E21F471C05B34E007059F3 /* MyMsg */,
 				18E21F461C05B340007059F3 /* MyArticle */,
 				18E21F451C05B32E007059F3 /* MyCollect */,
@@ -2876,6 +2967,8 @@
 		189446EF1BEB859D006249F0 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				1802A1F91C0C5DF1009BC2F8 /* AddressModel.h */,
+				1802A1FA1C0C5DF1009BC2F8 /* AddressModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3576,6 +3669,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185767661C0B0794000A044D /* UserSettingVC.xib in Resources */,
 				18E21F301C058627007059F3 /* MyBLViewController.xib in Resources */,
 				189445F81BEB0774006249F0 /* e_32@2x.png in Resources */,
 				1894462A1BEB0774006249F0 /* e_78@2x.png in Resources */,
@@ -3587,6 +3681,7 @@
 				184858D61BF8DEDC001FF521 /* SearchResultCell.xib in Resources */,
 				189445E51BEB0774006249F0 /* e_15@2x.png in Resources */,
 				189446531BEB0774006249F0 /* chatBar_recordSelectedBg.png in Resources */,
+				1802A1ED1C0C4451009BC2F8 /* BindMobileViewController.xib in Resources */,
 				189446461BEB0774006249F0 /* chatBar_keyboard@2x.png in Resources */,
 				189446271BEB0774006249F0 /* e_75@2x.png in Resources */,
 				189446411BEB0774006249F0 /* chatBar_face.png in Resources */,
@@ -3627,6 +3722,7 @@
 				189446521BEB0774006249F0 /* chatBar_recordSelected@2x.png in Resources */,
 				1894461F1BEB0774006249F0 /* e_68@2x.png in Resources */,
 				1894462C1BEB0774006249F0 /* e_7@2x.png in Resources */,
+				1802A2001C0C6042009BC2F8 /* AddAddressViewController.xib in Resources */,
 				1894461D1BEB0774006249F0 /* e_66@2x.png in Resources */,
 				18E21F241C047C91007059F3 /* MyGradeViewController.xib in Resources */,
 				189445E21BEB0774006249F0 /* e_12@2x.png in Resources */,
@@ -3659,6 +3755,7 @@
 				189445E11BEB0774006249F0 /* e_11@2x.png in Resources */,
 				189446371BEB0774006249F0 /* e_8@2x.png in Resources */,
 				1894464A1BEB0774006249F0 /* chatBar_more@2x.png in Resources */,
+				1802A1F71C0C53B1009BC2F8 /* AddressViewController.xib in Resources */,
 				189446091BEB0774006249F0 /* e_48@2x.png in Resources */,
 				18F633B01BF883C800FD98B1 /* ios-social-sdk-comment-detail.html in Resources */,
 				1894465C1BEB0774006249F0 /* chatBar_more_cameraSelected@2x.png in Resources */,
@@ -3679,6 +3776,7 @@
 				18DD07501BEDAE91003C8160 /* Launch Screen.storyboard in Resources */,
 				18DD073E1BED931F003C8160 /* CorePagesView.xib in Resources */,
 				189445EA1BEB0774006249F0 /* e_1@2x.png in Resources */,
+				185767601C0AFD47000A044D /* PushSettingViewController.xib in Resources */,
 				189446621BEB0774006249F0 /* chatBar_more_photo@2x.png in Resources */,
 				189445F11BEB0774006249F0 /* e_26@2x.png in Resources */,
 				F9EAB7871BF75A1B00BD0D6B /* SortViewController.xib in Resources */,
@@ -3726,6 +3824,7 @@
 				189446031BEB0774006249F0 /* e_42@2x.png in Resources */,
 				189445B11BEB0774006249F0 /* CoreHeaderShowView.xib in Resources */,
 				189445FE1BEB0774006249F0 /* e_38@2x.png in Resources */,
+				1802A1E81C0C3BB9009BC2F8 /* BindEmailViewController.xib in Resources */,
 				18F633B41BF883C800FD98B1 /* ios-social-sdk-login-quick.html in Resources */,
 				18A1AEF51BF9DA2F00966478 /* PetWebViewController.xib in Resources */,
 				189446281BEB0774006249F0 /* e_76@2x.png in Resources */,
@@ -3742,6 +3841,7 @@
 				189446251BEB0774006249F0 /* e_73@2x.png in Resources */,
 				F9EAB78A1BF75A1B00BD0D6B /* PLSoretedCell.xib in Resources */,
 				189445EE1BEB0774006249F0 /* e_23@2x.png in Resources */,
+				1802A2061C0C7D32009BC2F8 /* AdviceViewController.xib in Resources */,
 				1894464B1BEB0774006249F0 /* chatBar_moreSelected.png in Resources */,
 				189446101BEB0774006249F0 /* e_54@2x.png in Resources */,
 				189446151BEB0774006249F0 /* e_59@2x.png in Resources */,
@@ -3790,6 +3890,7 @@
 				184858C81BF8DD72001FF521 /* SKTagView.h in Sources */,
 				184858B81BF8DD4B001FF521 /* MASCompositeConstraint.h in Sources */,
 				184858B91BF8DD4B001FF521 /* MASConstraint+Private.h in Sources */,
+				185767651C0B0794000A044D /* UserSettingVC.m in Sources */,
 				184858BA1BF8DD4B001FF521 /* MASConstraint.h in Sources */,
 				184858BB1BF8DD4B001FF521 /* MASConstraintMaker.h in Sources */,
 				184858BC1BF8DD4B001FF521 /* MASLayoutConstraint.h in Sources */,
@@ -3851,6 +3952,7 @@
 				18E21F4B1C05B361007059F3 /* MyMsgViewController.m in Sources */,
 				189445A71BEB0774006249F0 /* LTConfigModel.m in Sources */,
 				189446F71BEB86A4006249F0 /* BaseTabBarViewController.m in Sources */,
+				1857675F1C0AFD47000A044D /* PushSettingViewController.m in Sources */,
 				18D2CB121BEF47F400B8DD72 /* MassTaoViewController.m in Sources */,
 				189442DC1BEAF65A006249F0 /* UITextField+LimitLength.m in Sources */,
 				184858B41BF8DD3C001FF521 /* View+MASAdditions.m in Sources */,
@@ -3901,6 +4003,7 @@
 				1894466F1BEB0774006249F0 /* SDWebImageCompat.m in Sources */,
 				189442E91BEAF65A006249F0 /* TWImagePicker.m in Sources */,
 				189442DD1BEAF65A006249F0 /* UIView+AddBorder.m in Sources */,
+				1802A1FB1C0C5DF1009BC2F8 /* AddressModel.m in Sources */,
 				189446761BEB0774006249F0 /* UIButton+WebCache.m in Sources */,
 				18DD07411BED931F003C8160 /* CorePagesBarView.m in Sources */,
 				18E21F2F1C058627007059F3 /* MyBLViewController.m in Sources */,
@@ -3918,6 +4021,7 @@
 				189442CC1BEAF65A006249F0 /* NSNumber+Addition.m in Sources */,
 				F9332A7A1C05E5BD00E322F0 /* UIScrollView+EmptyDataSet.m in Sources */,
 				189445931BEB0774006249F0 /* TTTAttributedLabel.m in Sources */,
+				1802A1EC1C0C4451009BC2F8 /* BindMobileViewController.m in Sources */,
 				18E21F4F1C05B3D4007059F3 /* SysMsgViewController.m in Sources */,
 				F9EAB78D1BF75A1B00BD0D6B /* ScreenSoretedView.m in Sources */,
 				189442E61BEAF65A006249F0 /* AFHTTPClientUtil.m in Sources */,
@@ -3962,6 +4066,7 @@
 				18E21ECA1C00229C007059F3 /* NSAttributedString+YYText.m in Sources */,
 				189445B21BEB0774006249F0 /* CoreHeaderView.m in Sources */,
 				1894463C1BEB0774006249F0 /* ZBExpressionSectionBar.m in Sources */,
+				1802A1E71C0C3BB9009BC2F8 /* BindEmailViewController.m in Sources */,
 				189445901BEB0774006249F0 /* UIScrollView+MJRefresh.m in Sources */,
 				189442D31BEAF65A006249F0 /* UIApplication+NetworkActivityIndicator.m in Sources */,
 				18DB0D811BEF69B5003F3743 /* NewsViewController.m in Sources */,
@@ -3990,6 +4095,7 @@
 				189442D71BEAF65A006249F0 /* UIImage+ImageWithColor.m in Sources */,
 				189446DE1BEB0A80006249F0 /* UIImageView+YYWebImage.m in Sources */,
 				189446701BEB0774006249F0 /* SDWebImageDecoder.m in Sources */,
+				1802A2051C0C7D32009BC2F8 /* AdviceViewController.m in Sources */,
 				18E21ECB1C00229C007059F3 /* NSParagraphStyle+YYText.m in Sources */,
 				189446DB1BEB0A80006249F0 /* MKAnnotationView+YYWebImage.m in Sources */,
 				18E21EC51C00229C007059F3 /* YYTextArchiver.m in Sources */,
@@ -4001,6 +4107,7 @@
 				1894463F1BEB0774006249F0 /* DXChatBarMoreView.m in Sources */,
 				189446721BEB0774006249F0 /* SDWebImageDownloaderOperation.m in Sources */,
 				1894457F1BEB0774006249F0 /* GTMBase64.m in Sources */,
+				1802A1FF1C0C6042009BC2F8 /* AddAddressViewController.m in Sources */,
 				1894425C1BE9DEC3006249F0 /* AppDelegate.m in Sources */,
 				189442D21BEAF65A006249F0 /* UIAlertView+Addition.m in Sources */,
 				189445DD1BEB0774006249F0 /* Emoji.m in Sources */,
@@ -4031,6 +4138,7 @@
 				189442CA1BEAF65A006249F0 /* NSDictionary+Addition.m in Sources */,
 				189442C81BEAF65A006249F0 /* NSDate+Category.m in Sources */,
 				189446D61BEB0A80006249F0 /* YYDiskCache.m in Sources */,
+				1802A1F61C0C53B1009BC2F8 /* AddressViewController.m in Sources */,
 				189445A61BEB0774006249F0 /* CoreListCommonModel.m in Sources */,
 				18DB0D971BF2EA2B003F3743 /* StoryBoardUtilities.m in Sources */,
 				189445DB1BEB0774006249F0 /* UIViewController+RESideMenu.m in Sources */,

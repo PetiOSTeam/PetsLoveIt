@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSString *userIntegral;
 @property (strong, nonatomic) NSString *userToken;
 @property (strong, nonatomic) NSString *todaySigned;//今天是否签到
+@property (strong, nonatomic) NSString *deliveryAddress;//收货地址
 
 //用作自动登录用的
 @property (strong, nonatomic) NSString *loginType;

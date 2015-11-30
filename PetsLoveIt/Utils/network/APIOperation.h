@@ -14,6 +14,10 @@
 + (NSString *) urlGET:(NSString*)URLString
            parameters:(id)parameters;
 
++ (void)GET_2:(NSString*)URLString
+   parameters:(id)parameters
+ onCompletion:(void (^)(id responseData, NSError* error))completionBlock;
+
 + (void )GET:(NSString *)URLString
   parameters:(id)parameters
 onCompletion:(void (^)(id responseData, NSError *error))completionBlock;
