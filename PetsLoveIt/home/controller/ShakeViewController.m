@@ -150,7 +150,7 @@
         [tipLabel setFont:[UIFont systemFontOfSize:14]];
         [tipLabel setTextColor:mRGBToColor(0x333333)];
         [tipLabel setNumberOfLines:2];
-        [tipLabel setText:@"亲，每天最多额外获得5次机会，请明天再来吧"];
+        [tipLabel setText:@"亲，您今天的机会用完了，请明天再来吧"];
         [_noShareNumView addSubview:tipLabel];
         
         

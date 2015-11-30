@@ -97,6 +97,9 @@ onCompletion:(void (^)(id responseData, NSError* error))completionBlock
         NSString *code = [responseObject objectForKey:@"rtnCode"];
         NSDictionary *dataDict= responseObject;
         RESTError *restError = nil;
+        if (![code isKindOfClass:[NSString class]]) {
+            code = [NSString stringWithFormat:@"%@",code];
+        }
         //业务逻辑错误
         if(![[code uppercaseString] isEqualToString:@"1"])
         {

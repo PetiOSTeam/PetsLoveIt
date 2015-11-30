@@ -125,6 +125,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1) {
         SearchResultsViewController *resultsVC = [[SearchResultsViewController alloc] init];
+        resultsVC.searchText = @"";
         [self.navigationController pushViewController:resultsVC animated:YES];
     }
 }

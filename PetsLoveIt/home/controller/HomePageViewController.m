@@ -18,6 +18,8 @@
 #import "TaoPetViewController.h"
 #import "TaoPetViewController.h"
 #import "ShakeViewController.h"
+#import "SearchViewController.h"
+#import "BaseNavigationController.h"
 
 @interface HomePageViewController ()
 @property (nonatomic,strong) CorePagesView *pagesView;
@@ -56,13 +58,17 @@
     [self.headerView addSubview:searchButton];
 }
 
+
+
 - (void)showShakeVC{
     ShakeViewController *vc = [ShakeViewController new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)showSearchVC{
-    
+    SearchViewController *searchVC = [[SearchViewController alloc] init];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:searchVC];
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
 }
 
 -(UIView *)headerView{
