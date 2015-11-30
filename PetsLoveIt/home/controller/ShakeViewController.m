@@ -23,6 +23,7 @@
 @property (nonatomic,strong)   UIView *maskView;
 @property (nonatomic,strong)   UIView *goodsView;
 @property (nonatomic,strong)   UIView *noOpView;
+@property (nonatomic,strong)   UIView *noShareNumView;
 @property (nonatomic,assign)   BOOL showPopViewFlag;
 @property (nonatomic,strong) NSString *goodsId;
 
@@ -135,12 +136,47 @@
     return _maskView;
 }
 
+-(UIView *)noShareNumView{
+    if (!_noShareNumView) {
+        _noShareNumView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 230, 160)];
+        _noShareNumView.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
+        _noShareNumView.backgroundColor = [UIColor whiteColor];
+        _noShareNumView.clipsToBounds = YES;
+        _noShareNumView.layer.cornerRadius = 5;
+        
+        UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, _noShareNumView.width-20, 60)];
+        tipLabel.center = CGPointMake(_noShareNumView.width/2, _noShareNumView.height/2-15);
+        [tipLabel setTextAlignment:NSTextAlignmentCenter];
+        [tipLabel setFont:[UIFont systemFontOfSize:14]];
+        [tipLabel setTextColor:mRGBToColor(0x333333)];
+        [tipLabel setNumberOfLines:2];
+        [tipLabel setText:@"亲，每天最多额外获得5次机会，请明天再来吧"];
+        [_noShareNumView addSubview:tipLabel];
+        
+        
+        UIButton *shareButtton = [UIButton buttonWithType:UIButtonTypeCustom];
+        shareButtton.frame = CGRectMake(0, tipLabel.bottom+8, 150, 35);
+        shareButtton.center = CGPointMake(_noShareNumView.width/2, shareButtton.center.y);
+        [shareButtton setTitle:@"取消" forState:UIControlStateNormal];
+        [shareButtton addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
+        shareButtton.layer.cornerRadius = 5;
+        [shareButtton setBackgroundColor:mRGBToColor(0xff4401)];
+        [_noShareNumView addSubview:shareButtton];
+    }
+    return _noShareNumView;
+}
+
+- (void) cancelAction{
+    [self hidePopView];
+}
+
 -(UIView *)noOpView{
     if (!_noOpView) {
         _noOpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 230, 160)];
         _noOpView.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
         _noOpView.backgroundColor = [UIColor whiteColor];
         _noOpView.clipsToBounds = YES;
+        _noOpView.layer.cornerRadius = 5;
         
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, _noOpView.width, 30)];
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
@@ -176,6 +212,7 @@
         _goodsView.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
         _goodsView.backgroundColor = [UIColor whiteColor];
         _goodsView.clipsToBounds = YES;
+        _goodsView.layer.cornerRadius = 5;
         UIImageView *topBgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 75, 30)];
         topBgImageView.image = [UIImage imageNamed:@"shakeTopBgImage"];
         topBgImageView.center = CGPointMake(_goodsView.width/2, topBgImageView.height/2);
@@ -256,6 +293,28 @@
                                      shareImage:[UIImage imageNamed:@"ImageAppIcon"]
                                 shareToSnsNames:@[UMShareToWechatSession,UMShareToQQ,UMShareToQzone,UMShareToWechatTimeline,UMShareToSina]
                                        delegate:self];
+    //shareNum 加1
+    [self updateShareNum];
+}
+
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+        
+    }
+}
+
+- (void)updateShareNum{
+    NSDictionary *params = @{
+                             @"uid":@"updShareNum"
+                             };
+    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        
+    }];
 }
 
 - (void)showGoodsDetail{
@@ -270,14 +329,20 @@
     NSDictionary *params = @{
                              @"uid":@"getRandomProduct"
                              };
-    [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+    [APIOperation GET_2:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         [SVProgressHUD dismiss];
         if (!error) {
-            //只允许摇3次
-            NSInteger canShakeNum = [[[responseData objectForKey:@"data"]  objectForKey:@"sharenum"] integerValue];
-       
-            if (canShakeNum ==0) {
+            //只允许摇3次,code为0表示不能再摇了
+            NSString *code = [responseData objectForKey:@"rtnCode"];
+            if ([code isEqualToString:@"0"]) {
                 [self showNoOpView];
+                return ;
+            }
+            //只允许分享5次
+            NSInteger canShareNum = [[[responseData objectForKey:@"data"]  objectForKey:@"sharenum"] integerValue];
+       
+            if (canShareNum > 5) {
+                [self showNoShareNumView];
                 return ;
             }
             
@@ -288,6 +353,17 @@
         }else{
             self.showPopViewFlag = NO;
         }
+    }];
+}
+
+- (void)showNoShareNumView{
+    self.maskView.alpha = 0;
+    self.noShareNumView.bottom = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.view addSubview:self.maskView];
+        [self.view addSubview:self.noShareNumView];
+        self.noShareNumView.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
+        self.maskView.alpha = 0.7;
     }];
 }
 
@@ -329,6 +405,7 @@
         [self.maskView removeFromSuperview];
         [self.goodsView removeFromSuperview];
         [self.noOpView removeFromSuperview];
+        [self.noShareNumView removeFromSuperview];
     }];
 }
 

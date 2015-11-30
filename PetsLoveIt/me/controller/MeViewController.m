@@ -21,6 +21,8 @@
 #import "MyArticleViewController.h"
 #import "MyMsgViewController.h"
 #import "AwardRulesViewController.h"
+#import "PushSettingViewController.h"
+#import "UserSettingVC.h"
 
 @interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerContainerView;
@@ -350,12 +352,20 @@
     [APIOperation uploadMedia:urlString parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             [SVProgressHUD showSuccessWithStatus:@"上传成功"];
-            NSString *userAvatar = [responseData objectForKey:@"user_icon"];
+            NSString *userAvatar = [[responseData objectForKey:@"bean"] objectForKey:@"userIcon"];
             LocalUserInfoModelClass *localUserInfo = [AppCache getUserInfo];
             localUserInfo.user_icon = userAvatar;
             [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
-
-            [weakSelf.avatarImageView sd_setImageWithURL:[NSURL URLWithString:userAvatar] placeholderImage:kDefaultHeadImage];
+            
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[SDImageCache sharedImageCache] clearMemory];
+                [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
+                    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:userAvatar] placeholderImage:kDefaultHeadImage];
+                }];
+                
+            });
+            
             
         }else{
             [SVProgressHUD dismiss];
@@ -561,7 +571,7 @@
         {
             cell.textLabel.text = @"清除缓存";
             cell.imageView.image= [UIImage imageNamed:@"qchc_my_icon"];
-            UILabel *imageCacheLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 15)];
+            UILabel *imageCacheLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 15)];
             [imageCacheLabel setTextColor:mRGBToColor(0x999999)];
             [imageCacheLabel setFont:[UIFont systemFontOfSize:13]];
             [imageCacheLabel setTextAlignment:NSTextAlignmentRight];
@@ -640,7 +650,10 @@
             
             break;
         case 1:
-            
+        {
+            PushSettingViewController *vc = [PushSettingViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
         case 2:
             
@@ -652,7 +665,10 @@
             [self cleanSDImageCache];
             break;
         case 4:
-            
+        {
+            UserSettingVC *vc = [UserSettingVC new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
         case 5:
             

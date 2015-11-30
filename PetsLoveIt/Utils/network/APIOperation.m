@@ -44,7 +44,45 @@
     NSString *urlString = [AFHttpClient urlGET:URLString parameters:kParameters];
     return  urlString;
 }
+//备用的get方法，去除了rtnCode处理
++ (void)GET_2:(NSString*)URLString
+ parameters:(id)parameters
+onCompletion:(void (^)(id responseData, NSError* error))completionBlock
+{
+    
+    id AFHttpClient=kAFHttpClient;
+    //加token，deviceId,userId
+    NSMutableDictionary *kParameters = [APIOperation paramsWithToken:parameters];
+    [AFHttpClient GET:URLString parameters:kParameters success:^(id operation, id responseObject) {
+        
+        NSDictionary *dataDict= responseObject;
+        RESTError *restError = nil;
 
+        //token异常重新登录
+        [APIOperation tokenFailed:[responseObject objectForKey:kMessage]];
+        if (completionBlock) {
+            completionBlock(dataDict,restError);
+        }
+    } failure:^(id operation, NSError* error) {
+        
+        if (![mAppUtils hasConnectivity]) {
+            [mAppUtils showHint:kNetWorkUnReachableDesc];
+            if (completionBlock) {
+                completionBlock(nil,error);
+            }
+            return ;
+        }
+
+        RESTError *restError = [[RESTError alloc] initWithDomain:kRequestErrorDomain
+                                                            code:[error code]
+                                                        userInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                  kServerErrorTip, ERRORMSG,
+                                                                  [NSString stringWithFormat:@"%ld",(long)[error code]],ERRORCODE , nil]];
+        if (completionBlock) {
+            completionBlock (nil,restError);
+        }
+    }];
+}
 
 + (void)GET:(NSString*)URLString
       parameters:(id)parameters
