@@ -23,6 +23,7 @@
 #import "AwardRulesViewController.h"
 #import "PushSettingViewController.h"
 #import "UserSettingVC.h"
+#import "AdviceViewController.h"
 
 @interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerContainerView;
@@ -666,12 +667,24 @@
             break;
         case 4:
         {
+            if (![AppCache getUserInfo]) {
+                [self showLoginVC];
+                return;
+            }
+            
             UserSettingVC *vc = [UserSettingVC new];
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 5:
-            
+        {
+            if (![AppCache getUserInfo]) {
+                [self showLoginVC];
+                return;
+            }
+            AdviceViewController *vc = [AdviceViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
             break;
         case 6:
         {

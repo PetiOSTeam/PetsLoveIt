@@ -42,6 +42,7 @@
     [encoder encodeObject:self.password forKey:@"password"];
     [encoder encodeObject:self.accountName forKey:@"accountName"];
     [encoder encodeObject:self.todaySigned forKey:@"todaySigned"];
+    [encoder encodeObject:self.deliveryAddress forKey:@"deliveryAddress"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -63,6 +64,7 @@
         self.password = [decoder decodeObjectForKey:@"password"];
         self.accountName = [decoder decodeObjectForKey:@"accountName"];
         self.todaySigned = [decoder decodeObjectForKey:@"todaySigned"];
+        self.deliveryAddress = [decoder decodeObjectForKey:@"deliveryAddress"];
     }
     return self;
 }
@@ -86,6 +88,7 @@
     [theCopy setPassword:[self.password copy]];
     [theCopy setAccountName:[self.accountName copy]];
     [theCopy setTodaySigned:[self.todaySigned copy]];
+    [theCopy setDeliveryAddress:[self.deliveryAddress copy]];
     
     return theCopy;
 }

@@ -102,6 +102,9 @@
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+            if ([jsonArray count] ==0) {
+                return ;
+            }
             _cheapProduct = [[GoodsModel alloc] initWithDictionary:jsonArray[0]];
             _descLabel1.text = _cheapProduct.name;
             [_urlImageView1 sd_setImageWithURL:[NSURL URLWithString:_cheapProduct.appMinpic] placeholderImage:kImagePlaceHolder];

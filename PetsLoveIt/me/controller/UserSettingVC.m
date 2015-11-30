@@ -7,8 +7,11 @@
 //
 
 #import "UserSettingVC.h"
+#import "BindEmailViewController.h"
+#import "BindMobileViewController.h"
+#import "AddressViewController.h"
 
-@interface UserSettingVC ()
+@interface UserSettingVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -48,21 +51,47 @@
         case 0:
         {
             cell.textLabel.text = @"绑定邮箱";
-            UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-            arrow.image = [UIImage imageNamed:@"rightArrowIcon"];
-            arrow.right = mScreenWidth - 10;
-            arrow.center = CGPointMake(arrow.center.x, 27);
-            [cell.contentView addSubview:arrow];
+            LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
+            if ([userInfo.email length]>0) {
+                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 15)];
+                [label setTextColor:mRGBToColor(0x999999)];
+                [label setFont:[UIFont systemFontOfSize:13]];
+                [label setTextAlignment:NSTextAlignmentRight];
+                [label setText:@"已绑定"];
+                label.right = mScreenWidth - 10;
+                label.center = CGPointMake(label.center.x, 27);
+                [cell.contentView addSubview:label];
+            }else{
+                UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+                arrow.image = [UIImage imageNamed:@"rightArrowIcon"];
+                arrow.right = mScreenWidth - 10;
+                arrow.center = CGPointMake(arrow.center.x, 27);
+                [cell.contentView addSubview:arrow];
+            }
+            
         }
             break;
         case 1:
         {
             cell.textLabel.text = @"绑定手机";
-            UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-            arrow.image = [UIImage imageNamed:@"rightArrowIcon"];
-            arrow.right = mScreenWidth - 10;
-            arrow.center = CGPointMake(arrow.center.x, 27);
-            [cell.contentView addSubview:arrow];
+            LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
+            if ([userInfo.mobile length]>0) {
+                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 15)];
+                [label setTextColor:mRGBToColor(0x999999)];
+                [label setFont:[UIFont systemFontOfSize:13]];
+                [label setTextAlignment:NSTextAlignmentRight];
+                [label setText:@"已绑定"];
+                label.right = mScreenWidth - 10;
+                label.center = CGPointMake(label.center.x, 27);
+                [cell.contentView addSubview:label];
+            }else{
+                UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+                arrow.image = [UIImage imageNamed:@"rightArrowIcon"];
+                arrow.right = mScreenWidth - 10;
+                arrow.center = CGPointMake(arrow.center.x, 27);
+                [cell.contentView addSubview:arrow];
+            }
+            
         }
             break;
         case 2:
@@ -82,5 +111,22 @@
     }
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
+    if (indexPath.row ==0  && [userInfo.email length]==0) {
+        BindEmailViewController *vc = [BindEmailViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (indexPath.row == 1 && [userInfo.mobile length]==0){
+        BindMobileViewController *vc = [BindMobileViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
+
+    }else if (indexPath.row == 2){
+        AddressViewController *vc = [AddressViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
 
 @end
