@@ -334,14 +334,13 @@
         if (!error) {
             //只允许摇3次,code为0表示不能再摇了
             NSString *code = [responseData objectForKey:@"rtnCode"];
-            if ([code isEqualToString:@"0"]) {
+            //只允许分享5次
+            NSInteger canShareNum = [[[responseData objectForKey:@"data"]  objectForKey:@"sharenum"] integerValue];
+            if ([code isEqualToString:@"0"] && canShareNum<5) {
                 [self showNoOpView];
                 return ;
             }
-            //只允许分享5次
-            NSInteger canShareNum = [[[responseData objectForKey:@"data"]  objectForKey:@"sharenum"] integerValue];
-       
-            if (canShareNum > 5) {
+            else if (canShareNum >=5) {
                 [self showNoShareNumView];
                 return ;
             }

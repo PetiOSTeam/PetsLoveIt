@@ -18,6 +18,7 @@
 
 - (void)awakeFromNib
 {
+    self.width = mScreenWidth;
     [self addBottomBorderWithColor:kLineColor andWidth:.5f];
 }
 
