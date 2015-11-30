@@ -11,4 +11,6 @@
 
 @interface SearchResultCell : UITableViewCell
 
+@property (nonatomic, strong) ProductModel *productModel;
+
 @end

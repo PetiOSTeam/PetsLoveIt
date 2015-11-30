@@ -1625,11 +1625,11 @@
 		184858C91BF8DDC9001FF521 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				184858D51BF8DEDC001FF521 /* SearchResultCell.xib */,
 				184858CA1BF8DDC9001FF521 /* SearchKeyWordsCell.h */,
 				184858CB1BF8DDC9001FF521 /* SearchKeyWordsCell.m */,
 				184858CC1BF8DDC9001FF521 /* SearchResultCell.h */,
 				184858CD1BF8DDC9001FF521 /* SearchResultCell.m */,
+				184858D51BF8DEDC001FF521 /* SearchResultCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

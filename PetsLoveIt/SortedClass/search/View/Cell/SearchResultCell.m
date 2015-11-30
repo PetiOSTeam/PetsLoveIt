@@ -8,6 +8,26 @@
 
 #import "SearchResultCell.h"
 
+@interface SearchResultCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *productImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *fromWebName;
+
+@property (weak, nonatomic) IBOutlet UILabel *productTitleLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *commentNumLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *likesNumLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *collectNumLabel;
+
+@end
+
 @implementation SearchResultCell
 
 - (void)awakeFromNib {
@@ -18,6 +38,24 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setProductModel:(ProductModel *)productModel
+{
+    _productModel = productModel;
+    [self.productImageView sd_setImageWithURL:[NSURL URLWithString:productModel.appMinpic]
+                             placeholderImage:[UIImage imageNamed:@"timeline_image_loading"]];
+    self.productTitleLabel.text = productModel.name;
+    self.fromWebName.text = productModel.mallName;
+    NSDate *date = [[NSDate alloc] convertStringToDate:productModel.dateTime format:@"yyyy-MM-dd HH:mm:ss"];
+    self.timeLabel.text = [date convertDateToStringWithFormat:@"MM-dd"];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@元", productModel.price];
+    self.commentNumLabel.text = productModel.commentnum;
+    self.likesNumLabel.text = productModel.cheapPeriods;
+    self.collectNumLabel.text = productModel.collectnum;
+    [self.commentNumLabel sizeToFit];
+    [self.likesNumLabel sizeToFit];
+    [self.collectNumLabel sizeToFit];
 }
 
 @end

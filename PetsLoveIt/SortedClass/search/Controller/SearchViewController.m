@@ -26,6 +26,16 @@
 
 @implementation SearchViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (_tableView) {
+        NSArray *historys = [NSArray arrayWithArray:loadArrayFromDocument(@"hotwords.plist")];
+        [self.dataSource replaceObjectAtIndex:1 withObject:historys];
+    }
+    [self.tableView reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -33,7 +43,7 @@
     /**
      *  初始化数据
      */
-    NSArray *historys = @[@"冠能狗粮", @"狗链", @"ipad mini", @"iPhone6S", @"德玛西亚"];
+    NSArray *historys = [NSArray arrayWithArray:loadArrayFromDocument(@"hotwords.plist")];
     [self.dataSource addObject:[NSArray new]];
     [self.dataSource addObject:historys];
     
@@ -61,8 +71,6 @@
 
 - (void)setupSubviews
 {
-    [self tableView];
-    
     self.tableView.tableFooterView = self.footerView;
     NSArray *historys = [self.dataSource lastObject];
     if (historys.count != 0) {
@@ -124,7 +132,9 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1) {
+        NSArray *tempArray = self.dataSource[indexPath.section];
         SearchResultsViewController *resultsVC = [[SearchResultsViewController alloc] init];
+        resultsVC.searchText = tempArray[indexPath.row];
         [self.navigationController pushViewController:resultsVC animated:YES];
     }
 }
@@ -139,7 +149,8 @@
     if (section == 0) {
         return 1;
     }
-    return 5;
+    NSArray *historySearchs = self.dataSource[section];
+    return historySearchs.count > 15 ? 15 : historySearchs.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
