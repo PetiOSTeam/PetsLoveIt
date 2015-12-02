@@ -103,7 +103,17 @@ static NSString * ScreenStoreFooterIdentifier = @"ScreenStoreFooterIdentifier";
     
     BeansEntity *beansEntity = self.screecSoretedModel.beans[indexPath.section];
     SubsortsEntity *subsortsEntity = beansEntity.subsorts[indexPath.row];
+    
+    BOOL bottom = YES;
+    NSInteger num = beansEntity.subsorts.count % 4;
+    if (num == 0) {
+        num = 4;
+    }
+    if ([beansEntity.subsorts indexOfObject:subsortsEntity] >= beansEntity.subsorts.count - num) {
+        bottom = NO;
+    }
     cell.subsortsEntity = subsortsEntity;
+    cell.isBottom = bottom;
     return cell;
 }
 

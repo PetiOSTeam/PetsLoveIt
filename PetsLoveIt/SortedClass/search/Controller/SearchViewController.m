@@ -34,6 +34,7 @@
         [self.dataSource replaceObjectAtIndex:1 withObject:historys];
     }
     [self.tableView reloadData];
+    [self setupSubviews];
 }
 
 - (void)viewDidLoad {
@@ -48,7 +49,6 @@
     [self.dataSource addObject:historys];
     
     [self setupNavigationUI];
-    [self setupSubviews];
 }
 
 - (void)setupNavigationUI
@@ -284,6 +284,13 @@
 {
     if (!_footerView) {
         _footerView = [[NSBundle mainBundle] loadNibNamed:@"SearchHistoryFooterView" owner:self options:nil][0];
+        WEAKSELF
+        _footerView.clearCompletion = ^{
+            NSArray *historys = [NSArray arrayWithArray:loadArrayFromDocument(@"hotwords.plist")];
+            [weakSelf.dataSource replaceObjectAtIndex:1 withObject:historys];
+            [weakSelf.tableView reloadData];
+            [weakSelf setupSubviews];
+        };
         _footerView.width = self.view.width;
     }
     return _footerView;

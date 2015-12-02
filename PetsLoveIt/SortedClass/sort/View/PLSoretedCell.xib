@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="50" height="55"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈士奇" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VKy-uN-AfA">
-                        <rect key="frame" x="-1" y="-1" width="51" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="50" height="55"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.32941176470588235" green="0.32941176470588235" blue="0.32941176470588235" alpha="1" colorSpace="calibratedRGB"/>
@@ -26,8 +26,8 @@
             </view>
             <animations/>
             <constraints>
-                <constraint firstItem="VKy-uN-AfA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="-1" id="02c-7S-NKp"/>
-                <constraint firstItem="VKy-uN-AfA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="-1" id="Q8b-aE-2x8"/>
+                <constraint firstItem="VKy-uN-AfA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="02c-7S-NKp"/>
+                <constraint firstItem="VKy-uN-AfA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Q8b-aE-2x8"/>
                 <constraint firstAttribute="trailing" secondItem="VKy-uN-AfA" secondAttribute="trailing" id="Tvw-au-HjQ"/>
                 <constraint firstAttribute="bottom" secondItem="VKy-uN-AfA" secondAttribute="bottom" id="wnT-aa-Pa9"/>
             </constraints>
