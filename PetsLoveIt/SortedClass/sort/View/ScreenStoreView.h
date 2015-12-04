@@ -10,4 +10,6 @@
 
 @interface ScreenStoreView : UIView
 
+@property (nonatomic, weak) UINavigationController *navigation;
+
 @end

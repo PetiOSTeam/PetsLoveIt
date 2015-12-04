@@ -11,6 +11,7 @@
 #import "SoretedHeaderView.h"
 #import "PLSoretedCell.h"
 #import "ScreecSoretedEntity.h"
+#import "SearchResultsViewController.h"
 
 static NSString * CellIdentifier = @"GradientCell";
 static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
@@ -60,6 +61,16 @@ static NSString * ScreenStoreFooterIdentifier = @"ScreenStoreFooterIdentifier";
 }
 
 #pragma mark - *** collectionView Delegate ***
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BeansEntity *beansEntity = self.screecSoretedModel.beans[indexPath.section];
+    SubsortsEntity *subsortsEntity = beansEntity.subsorts[indexPath.row];
+    SearchResultsViewController *resultsVC = [[SearchResultsViewController alloc] init];
+    resultsVC.resyltStyle = ResultStyle_Sift;
+    resultsVC.searchText = subsortsEntity.name;
+    [self.navigation pushViewController:resultsVC animated:YES];
+}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -120,12 +131,6 @@ static NSString * ScreenStoreFooterIdentifier = @"ScreenStoreFooterIdentifier";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(self.width / 4, 56);
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath

@@ -11,6 +11,7 @@
 #import "StoreHeaderView.h"
 #import "StoreFooterView.h"
 #import "PLStoreCell.h"
+#import "SearchResultsViewController.h"
 
 static NSString * CellIdentifier = @"GradientCell";
 static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
@@ -108,6 +109,18 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 
 #pragma mark - *** collectionView Delegate ***
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *tempData = self.dataSource[indexPath.section];
+    StoreModel *model = tempData[indexPath.row];
+
+    SearchResultsViewController *resultsVC = [[SearchResultsViewController alloc] init];
+    resultsVC.resyltStyle = ResultStyle_Sift;
+    resultsVC.searchText = model.name;
+    [self.navigation pushViewController:resultsVC animated:YES];
+
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     NSArray *tempArray = self.dataSource[section];
@@ -192,12 +205,6 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(self.width / 3, 56);
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath

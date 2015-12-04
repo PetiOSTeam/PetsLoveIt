@@ -179,7 +179,6 @@
 
 - (void)equalLineOffsetX:(CGFloat)offsetX
 {
-    NSLog(@"offsetX:%f", offsetX);
     self.selectImageView.left = offsetX;
 }
 
