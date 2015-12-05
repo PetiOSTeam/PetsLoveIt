@@ -18,6 +18,14 @@
 		1802A2001C0C6042009BC2F8 /* AddAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1802A1FE1C0C6042009BC2F8 /* AddAddressViewController.xib */; };
 		1802A2051C0C7D32009BC2F8 /* AdviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802A2031C0C7D32009BC2F8 /* AdviceViewController.m */; };
 		1802A2061C0C7D32009BC2F8 /* AdviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1802A2041C0C7D32009BC2F8 /* AdviceViewController.xib */; };
+		1808BE441C131A06002A029B /* CommentGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808BE421C131A06002A029B /* CommentGoodsViewController.m */; };
+		1808BE451C131A06002A029B /* CommentGoodsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1808BE431C131A06002A029B /* CommentGoodsViewController.xib */; };
+		1808BE481C131AA2002A029B /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808BE471C131AA2002A029B /* CommentModel.m */; };
+		1808BE4F1C1320A2002A029B /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808BE4D1C1320A2002A029B /* CommentCell.m */; };
+		1808BE501C1320A2002A029B /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1808BE4E1C1320A2002A029B /* CommentCell.xib */; };
+		1808BE541C132746002A029B /* CommentSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808BE521C132746002A029B /* CommentSubCell.m */; };
+		1808BE551C132746002A029B /* CommentSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1808BE531C132746002A029B /* CommentSubCell.xib */; };
+		1808BE581C132A43002A029B /* CommentTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808BE571C132A43002A029B /* CommentTableView.m */; };
 		182110351BEDFFB300C32E23 /* CarefulSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182110341BEDFFB300C32E23 /* CarefulSelectViewController.m */; };
 		1821104F1BEEE89800C32E23 /* ZQW_ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1821104E1BEEE89800C32E23 /* ZQW_ScrollView.m */; };
 		182110521BEF1B6500C32E23 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182110511BEF1B6500C32E23 /* GoodsModel.m */; };
@@ -599,6 +607,19 @@
 		1802A2021C0C7D32009BC2F8 /* AdviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdviceViewController.h; sourceTree = "<group>"; };
 		1802A2031C0C7D32009BC2F8 /* AdviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdviceViewController.m; sourceTree = "<group>"; };
 		1802A2041C0C7D32009BC2F8 /* AdviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviceViewController.xib; sourceTree = "<group>"; };
+		1808BE411C131A06002A029B /* CommentGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentGoodsViewController.h; sourceTree = "<group>"; };
+		1808BE421C131A06002A029B /* CommentGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentGoodsViewController.m; sourceTree = "<group>"; };
+		1808BE431C131A06002A029B /* CommentGoodsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentGoodsViewController.xib; sourceTree = "<group>"; };
+		1808BE461C131AA2002A029B /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		1808BE471C131AA2002A029B /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
+		1808BE4C1C1320A2002A029B /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		1808BE4D1C1320A2002A029B /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		1808BE4E1C1320A2002A029B /* CommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
+		1808BE511C132746002A029B /* CommentSubCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentSubCell.h; sourceTree = "<group>"; };
+		1808BE521C132746002A029B /* CommentSubCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentSubCell.m; sourceTree = "<group>"; };
+		1808BE531C132746002A029B /* CommentSubCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentSubCell.xib; sourceTree = "<group>"; };
+		1808BE561C132A43002A029B /* CommentTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableView.h; sourceTree = "<group>"; };
+		1808BE571C132A43002A029B /* CommentTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableView.m; sourceTree = "<group>"; };
 		182110331BEDFFB300C32E23 /* CarefulSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarefulSelectViewController.h; sourceTree = "<group>"; };
 		182110341BEDFFB300C32E23 /* CarefulSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarefulSelectViewController.m; sourceTree = "<group>"; };
 		1821104D1BEEE89800C32E23 /* ZQW_ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZQW_ScrollView.h; sourceTree = "<group>"; };
@@ -3039,6 +3060,9 @@
 				18A1AEF31BF9DA2F00966478 /* PetWebViewController.xib */,
 				18A1AEF41BF9DA2F00966478 /* PetWebViewController.m */,
 				18A1AEF21BF9DA0C00966478 /* PetWebViewController.h */,
+				1808BE411C131A06002A029B /* CommentGoodsViewController.h */,
+				1808BE421C131A06002A029B /* CommentGoodsViewController.m */,
+				1808BE431C131A06002A029B /* CommentGoodsViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3056,6 +3080,8 @@
 				18D2CB141BEF64C300B8DD72 /* ArticleModel.m */,
 				185767531C07068F000A044D /* AdModel.h */,
 				185767541C07068F000A044D /* AdModel.m */,
+				1808BE461C131AA2002A029B /* CommentModel.h */,
+				1808BE471C131AA2002A029B /* CommentModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3080,6 +3106,14 @@
 				18F6329C1BF72D1900FD98B1 /* PLTableView.m */,
 				18F632A31BF84EC300FD98B1 /* BottomMenuView.h */,
 				18F632A41BF84EC300FD98B1 /* BottomMenuView.m */,
+				1808BE4C1C1320A2002A029B /* CommentCell.h */,
+				1808BE4D1C1320A2002A029B /* CommentCell.m */,
+				1808BE4E1C1320A2002A029B /* CommentCell.xib */,
+				1808BE511C132746002A029B /* CommentSubCell.h */,
+				1808BE521C132746002A029B /* CommentSubCell.m */,
+				1808BE531C132746002A029B /* CommentSubCell.xib */,
+				1808BE561C132A43002A029B /* CommentTableView.h */,
+				1808BE571C132A43002A029B /* CommentTableView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3694,6 +3728,7 @@
 				189446461BEB0774006249F0 /* chatBar_keyboard@2x.png in Resources */,
 				189446271BEB0774006249F0 /* e_75@2x.png in Resources */,
 				189446411BEB0774006249F0 /* chatBar_face.png in Resources */,
+				1808BE451C131A06002A029B /* CommentGoodsViewController.xib in Resources */,
 				18E21F351C058B3B007059F3 /* BLLinkViewController.xib in Resources */,
 				1894462E1BEB0774006249F0 /* e_81@2x.png in Resources */,
 				18F633A51BF883C800FD98B1 /* UMSLoginViewController.xib in Resources */,
@@ -3826,6 +3861,7 @@
 				189446381BEB0774006249F0 /* e_9@2x.png in Resources */,
 				18E21EF71C040B21007059F3 /* MyCommentViewController.xib in Resources */,
 				189446181BEB0774006249F0 /* e_61@2x.png in Resources */,
+				1808BE501C1320A2002A029B /* CommentCell.xib in Resources */,
 				189445B31BEB0774006249F0 /* CoreHeaderView.xib in Resources */,
 				189446191BEB0774006249F0 /* e_62@2x.png in Resources */,
 				189445FD1BEB0774006249F0 /* e_37@2x.png in Resources */,
@@ -3851,6 +3887,7 @@
 				F9EAB78A1BF75A1B00BD0D6B /* PLSoretedCell.xib in Resources */,
 				189445EE1BEB0774006249F0 /* e_23@2x.png in Resources */,
 				1802A2061C0C7D32009BC2F8 /* AdviceViewController.xib in Resources */,
+				1808BE551C132746002A029B /* CommentSubCell.xib in Resources */,
 				1894464B1BEB0774006249F0 /* chatBar_moreSelected.png in Resources */,
 				189446101BEB0774006249F0 /* e_54@2x.png in Resources */,
 				189446151BEB0774006249F0 /* e_59@2x.png in Resources */,
@@ -4069,6 +4106,7 @@
 				18E21EC41C00229C007059F3 /* YYTextSelectionView.m in Sources */,
 				184858AE1BF8DD3C001FF521 /* MASConstraintMaker.m in Sources */,
 				189445AC1BEB0774006249F0 /* LTCell.m in Sources */,
+				1808BE441C131A06002A029B /* CommentGoodsViewController.m in Sources */,
 				18E21EC61C00229C007059F3 /* YYTextAttribute.m in Sources */,
 				189445C31BEB0774006249F0 /* MJType.m in Sources */,
 				1894458E1BEB0774006249F0 /* MJRefreshHeaderView.m in Sources */,
@@ -4078,6 +4116,7 @@
 				1894463C1BEB0774006249F0 /* ZBExpressionSectionBar.m in Sources */,
 				1802A1E71C0C3BB9009BC2F8 /* BindEmailViewController.m in Sources */,
 				189445901BEB0774006249F0 /* UIScrollView+MJRefresh.m in Sources */,
+				1808BE4F1C1320A2002A029B /* CommentCell.m in Sources */,
 				189442D31BEAF65A006249F0 /* UIApplication+NetworkActivityIndicator.m in Sources */,
 				18DB0D811BEF69B5003F3743 /* NewsViewController.m in Sources */,
 				189442C91BEAF65A006249F0 /* NSDateFormatter+Category.m in Sources */,
@@ -4167,6 +4206,7 @@
 				18DD073D1BED931F003C8160 /* CorePagesView.m in Sources */,
 				1894458C1BEB0774006249F0 /* MJRefreshConst.m in Sources */,
 				189445851BEB0774006249F0 /* MJPhotoBrowser.m in Sources */,
+				1808BE581C132A43002A029B /* CommentTableView.m in Sources */,
 				F997428C1BF8A4420062A37F /* SearchHistoryFooterView.m in Sources */,
 				189445D61BEB0774006249F0 /* PSTGridLayoutItem.m in Sources */,
 				18E21EC11C00229C007059F3 /* YYTextLayout.m in Sources */,
@@ -4214,6 +4254,7 @@
 				F99742581BF865C70062A37F /* SearchHeaderView.m in Sources */,
 				184858B21BF8DD3C001FF521 /* NSArray+MASAdditions.m in Sources */,
 				189445C71BEB0774006249F0 /* NSString+MJExtension.m in Sources */,
+				1808BE541C132746002A029B /* CommentSubCell.m in Sources */,
 				18D2CB0B1BEF39BD00B8DD72 /* ShareOrderViewController.m in Sources */,
 				18DD07481BED93BB003C8160 /* YBImageView.m in Sources */,
 				189442CB1BEAF65A006249F0 /* NSFileManager+ Addition.m in Sources */,
@@ -4236,6 +4277,7 @@
 				189445731BEB0774006249F0 /* AFURLResponseSerialization.m in Sources */,
 				F99B56CC1BF4AE12008E18A2 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				18E21ED21C00229C007059F3 /* YYLabel.m in Sources */,
+				1808BE481C131AA2002A029B /* CommentModel.m in Sources */,
 				18E21EBE1C00229C007059F3 /* YYTextEffectWindow.m in Sources */,
 				1894466A1BEB0774006249F0 /* RichEditView.m in Sources */,
 				189442C51BEAF65A006249F0 /* AppUtils.m in Sources */,
