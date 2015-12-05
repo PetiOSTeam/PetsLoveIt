@@ -183,14 +183,14 @@
     [UMSocialData defaultData].extConfig.wechatSessionData.url = detailUrl;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = detailUrl;
     
-    NSString *title = @"我在宠物爱这个摇到好多积分和白菜价商品";
+    NSString *title = @"《宠物爱这个》专注宠物生活，拉近您与爱宠的距离。";
     [UMSocialData defaultData].extConfig.title = title;
     //微博分享内容单独设置
     
     //    [UMSocialData defaultData].extConfig.sinaData.shareText = [NSString stringWithFormat:@"%@",@""];
     [UMSocialSnsService presentSnsIconSheetView:[self viewController]
                                          appKey:UMENG_APPKEY
-                                      shareText:@"宠物爱这个，爱Ta就给Ta不一样的宠爱，拉近您与爱宠的距离"
+                                      shareText:@"海量品牌商品，为您提供物美价廉的多重选择，更有白菜价、海外购等优质商品一站直达，快去无忧剁手爽购吧！"
                                      shareImage:[UIImage imageNamed:@"ImageAppIcon"]
                                 shareToSnsNames:@[UMShareToWechatSession,UMShareToQQ,UMShareToQzone,UMShareToWechatTimeline,UMShareToSina]
                                        delegate:self];
