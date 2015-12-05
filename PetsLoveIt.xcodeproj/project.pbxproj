@@ -563,6 +563,9 @@
 		F99B56CC1BF4AE12008E18A2 /* NSLayoutConstraint+PureLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B56C61BF4AE12008E18A2 /* NSLayoutConstraint+PureLayout.m */; };
 		F99B56D01BF4B71B008E18A2 /* XLSlideBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B56CF1BF4B71B008E18A2 /* XLSlideBarView.m */; };
 		F99B56D31BF4B75F008E18A2 /* QHCommonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F99B56D21BF4B75F008E18A2 /* QHCommonUtil.m */; };
+		F9BE498A1C1316CF002E47CC /* SysMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE49891C1316CF002E47CC /* SysMsgModel.m */; };
+		F9BE498E1C1317D5002E47CC /* SysMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE498D1C1317D5002E47CC /* SysMsgCell.m */; };
+		F9BE49901C1318C5002E47CC /* SysMsgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE498F1C1318C5002E47CC /* SysMsgCell.xib */; };
 		F9EAB7851BF75A1B00BD0D6B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAB7661BF75A1B00BD0D6B /* SearchViewController.m */; };
 		F9EAB7861BF75A1B00BD0D6B /* SortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAB76C1BF75A1B00BD0D6B /* SortViewController.m */; };
 		F9EAB7871BF75A1B00BD0D6B /* SortViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9EAB76D1BF75A1B00BD0D6B /* SortViewController.xib */; };
@@ -1564,6 +1567,11 @@
 		F99B56CF1BF4B71B008E18A2 /* XLSlideBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLSlideBarView.m; sourceTree = "<group>"; };
 		F99B56D11BF4B75F008E18A2 /* QHCommonUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QHCommonUtil.h; sourceTree = "<group>"; };
 		F99B56D21BF4B75F008E18A2 /* QHCommonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QHCommonUtil.m; sourceTree = "<group>"; };
+		F9BE49881C1316CF002E47CC /* SysMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SysMsgModel.h; sourceTree = "<group>"; };
+		F9BE49891C1316CF002E47CC /* SysMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SysMsgModel.m; sourceTree = "<group>"; };
+		F9BE498C1C1317D5002E47CC /* SysMsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SysMsgCell.h; sourceTree = "<group>"; };
+		F9BE498D1C1317D5002E47CC /* SysMsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SysMsgCell.m; sourceTree = "<group>"; };
+		F9BE498F1C1318C5002E47CC /* SysMsgCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SysMsgCell.xib; sourceTree = "<group>"; };
 		F9EAB7651BF75A1B00BD0D6B /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		F9EAB7661BF75A1B00BD0D6B /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		F9EAB76B1BF75A1B00BD0D6B /* SortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortViewController.h; sourceTree = "<group>"; };
@@ -3268,8 +3276,8 @@
 		18E21F431C05B304007059F3 /* MyGrade */ = {
 			isa = PBXGroup;
 			children = (
-				18E21F221C047C91007059F3 /* MyGradeViewController.m */,
 				18E21F231C047C91007059F3 /* MyGradeViewController.h */,
+				18E21F221C047C91007059F3 /* MyGradeViewController.m */,
 				18E21F211C047C91007059F3 /* MyGradeViewController.xib */,
 			);
 			name = MyGrade;
@@ -3311,6 +3319,8 @@
 		18E21F471C05B34E007059F3 /* MyMsg */ = {
 			isa = PBXGroup;
 			children = (
+				F9BE498B1C1317A9002E47CC /* View */,
+				F9BE49871C131534002E47CC /* Model */,
 				18E21F481C05B361007059F3 /* MyMsgViewController.h */,
 				18E21F491C05B361007059F3 /* MyMsgViewController.m */,
 				18E21F4A1C05B361007059F3 /* MyMsgViewController.xib */,
@@ -3502,6 +3512,25 @@
 			path = XLSlideBar;
 			sourceTree = "<group>";
 		};
+		F9BE49871C131534002E47CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F9BE49881C1316CF002E47CC /* SysMsgModel.h */,
+				F9BE49891C1316CF002E47CC /* SysMsgModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F9BE498B1C1317A9002E47CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F9BE498C1C1317D5002E47CC /* SysMsgCell.h */,
+				F9BE498D1C1317D5002E47CC /* SysMsgCell.m */,
+				F9BE498F1C1318C5002E47CC /* SysMsgCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		F9EAB7621BF75A1B00BD0D6B /* SortedClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -3684,6 +3713,7 @@
 				1894462A1BEB0774006249F0 /* e_78@2x.png in Resources */,
 				189445F21BEB0774006249F0 /* e_27@2x.png in Resources */,
 				18E21EE51C01CC53007059F3 /* RegViewController.xib in Resources */,
+				F9BE49901C1318C5002E47CC /* SysMsgCell.xib in Resources */,
 				189446051BEB0774006249F0 /* e_44@2x.png in Resources */,
 				1894464D1BEB0774006249F0 /* chatBar_record.png in Resources */,
 				1894467F1BEB0774006249F0 /* sr_refresh@2X.png in Resources */,
@@ -3956,6 +3986,7 @@
 				189446E31BEB0A80006249F0 /* YYSpriteSheetImage.m in Sources */,
 				189445BC1BEB0774006249F0 /* CoreViewNetWorkStausManager.m in Sources */,
 				18E21F521C05B3F6007059F3 /* MsgViewController.m in Sources */,
+				F9BE498E1C1317D5002E47CC /* SysMsgCell.m in Sources */,
 				1894457E1BEB0774006249F0 /* 3Des.m in Sources */,
 				189445921BEB0774006249F0 /* MLEmojiLabel.m in Sources */,
 				18F633BF1BF88E6400FD98B1 /* KMDetailsPageView.m in Sources */,
@@ -4055,6 +4086,7 @@
 				F960FFD71C0B003800281547 /* ScreecSoretedEntity.m in Sources */,
 				189445871BEB0774006249F0 /* MJPhotoProgressView.m in Sources */,
 				18DD074B1BED9790003C8160 /* BaseNavigationController.m in Sources */,
+				F9BE498A1C1316CF002E47CC /* SysMsgModel.m in Sources */,
 				189446E01BEB0A80006249F0 /* YYFrameImage.m in Sources */,
 				189446731BEB0774006249F0 /* SDWebImageManager+MJ.m in Sources */,
 				189445961BEB0774006249F0 /* MWGridViewController.m in Sources */,
