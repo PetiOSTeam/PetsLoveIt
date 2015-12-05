@@ -203,6 +203,7 @@
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             NSLog(@"%@",responseData);
+            
             [SVProgressHUD showSuccessWithStatus:@"注册成功，请登录"];
             [self.navigationController popViewControllerAnimated:YES];
         }else{

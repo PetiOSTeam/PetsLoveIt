@@ -72,8 +72,11 @@
     
     //设置最后一张图片
     UIImageView *imageView2 = [[UIImageView alloc]init];
-    [imageView2 yy_setImageWithURL:[NSURL URLWithString:_pictureArray[0]] placeholder:kImagePlaceHolder];
-    [imageView2 setClipsToBounds:YES];
+    if (_pictureArray.count>0) {
+        [imageView2 yy_setImageWithURL:[NSURL URLWithString:_pictureArray[0]] placeholder:kImagePlaceHolder];
+
+    }
+        [imageView2 setClipsToBounds:YES];
     //[imageView2 setContentMode:UIViewContentModeScaleAspectFill];
 
     [self.scrollView addSubview:imageView2];
