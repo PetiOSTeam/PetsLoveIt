@@ -7,6 +7,7 @@
 //
 
 #import "SysMsgViewController.h"
+#import "SysMsgCell.h"
 
 @interface SysMsgViewController ()
 
@@ -22,10 +23,16 @@
 
 - (void)prepareViewAndData{
     [self config];
-    
-    
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (IOS_VERSION_8_OR_ABOVE) {
+        tableView.layoutMargins = UIEdgeInsetsZero;
+    }
+    tableView.separatorInset = UIEdgeInsetsZero;
+}
 
 /**
  *  模型配置
@@ -35,31 +42,31 @@
     LTConfigModel *configModel=[[LTConfigModel alloc] init];
     //url,分为公告和话题
     
-    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getSource.action"];
+    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"common.action"];
     
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
-                           @"uid":@"getHotWords",
+                           @"uid":@"getUserSystemMsg",
                            @"userToken":[AppCache getToken]
                            };
     //模型类
-    //    configModel.ModelClass=[GoodsModel class];
+        configModel.ModelClass=[SysMsgModel class];
     //    //cell类
-    //    configModel.ViewForCellClass=[GoodsCell class];
+        configModel.ViewForCellClass=[SysMsgCell class];
     //标识
     configModel.lid=NSStringFromClass(self.class);
     //pageName第几页的参数名
-    configModel.pageName=@"page_flag";
+    configModel.pageName=@"startNum";
     
     //pageSizeName
-    configModel.pageSizeName=@"req_num";
+    configModel.pageSizeName=@"limit";
     //pageSize
-    configModel.pageSize = 10;
+    configModel.pageSize = 15;
     //起始页码
-    configModel.pageStartValue=1;
+    configModel.pageStartValue=0;
     //行高
-    configModel.rowHeight=110;
+    configModel.rowHeight=84;
     
     //移除返回顶部:(默认开启)
     configModel.removeBackToTopBtn=YES;
