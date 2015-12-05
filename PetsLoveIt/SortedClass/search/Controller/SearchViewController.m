@@ -236,6 +236,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    [searchBar resignFirstResponder];
     SearchResultsViewController *searchResultsVC = [[SearchResultsViewController alloc] init];
     searchResultsVC.searchText = searchBar.text;
     [self.navigationController pushViewController:searchResultsVC animated:YES];

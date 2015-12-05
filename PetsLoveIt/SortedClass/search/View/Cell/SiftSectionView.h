@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^didSelectSiftWithIndex)(NSInteger index);
+
 @interface SiftSectionView : UIView
+
+@property (nonatomic, copy) didSelectSiftWithIndex selectSiftIndex;
 
 @end
