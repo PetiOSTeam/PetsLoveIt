@@ -11,49 +11,91 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yg-ye-a7t">
-                    <rect key="frame" x="0.0" y="0.0" width="108" height="50"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yg-ye-a7t">
+                    <rect key="frame" x="0.0" y="0.0" width="107" height="50"/>
                     <animations/>
-                    <state key="normal" title="销量">
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="喜爱度">
                         <color key="titleColor" red="0.46666666670000001" green="0.46666666670000001" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aab-NJ-QUG">
-                    <rect key="frame" x="106" y="0.0" width="108" height="50"/>
-                    <animations/>
-                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                    <state key="normal" title="价格">
-                        <color key="titleColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="selected">
+                        <color key="titleColor" red="0.96470588235294119" green="0.28235294117647058" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkQ-j8-PJS">
-                    <rect key="frame" x="212" y="0.0" width="108" height="50"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aab-NJ-QUG">
+                    <rect key="frame" x="107" y="0.0" width="107" height="50"/>
                     <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="时间">
+                        <color key="titleColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.96470588235294119" green="0.28235294117647058" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vkQ-j8-PJS">
+                    <rect key="frame" x="214" y="0.0" width="107" height="50"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="评论">
                         <color key="titleColor" red="0.46666666670000001" green="0.46666666670000001" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <state key="selected">
+                        <color key="titleColor" red="0.96470588235294119" green="0.28235294117647058" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="check_up_nor" highlightedImage="check_up_sel" translatesAutoresizingMaskIntoConstraints="NO" id="Mm6-Ou-Rlr">
-                    <rect key="frame" x="171" y="16" width="10" height="10"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dla-rE-bkb" userLabel="line1">
+                    <rect key="frame" x="107" y="10" width="1" height="30"/>
                     <animations/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="check_down_nor" highlightedImage="check_down_sel" translatesAutoresizingMaskIntoConstraints="NO" id="Fyr-Rg-dKg">
-                    <rect key="frame" x="171" y="24" width="10" height="10"/>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="fkO-yC-JnA"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6L3-dX-Q9S" userLabel="line2">
+                    <rect key="frame" x="213" y="10" width="1" height="30"/>
                     <animations/>
-                </imageView>
+                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="1" id="dJb-Y5-eJx"/>
+                    </constraints>
+                </view>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vkQ-j8-PJS" firstAttribute="width" secondItem="1Yg-ye-a7t" secondAttribute="width" id="1mU-M2-ot1"/>
+                <constraint firstItem="aab-NJ-QUG" firstAttribute="height" secondItem="1Yg-ye-a7t" secondAttribute="height" id="3F4-1S-Off"/>
+                <constraint firstItem="aab-NJ-QUG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5jP-l6-nie"/>
+                <constraint firstItem="aab-NJ-QUG" firstAttribute="leading" secondItem="1Yg-ye-a7t" secondAttribute="trailing" id="5vx-a1-xBG"/>
+                <constraint firstItem="vkQ-j8-PJS" firstAttribute="leading" secondItem="aab-NJ-QUG" secondAttribute="trailing" id="9cO-S8-xYr"/>
+                <constraint firstItem="vkQ-j8-PJS" firstAttribute="leading" secondItem="6L3-dX-Q9S" secondAttribute="trailing" id="DcG-01-KFb"/>
+                <constraint firstItem="vkQ-j8-PJS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Eel-dK-obA"/>
+                <constraint firstAttribute="bottom" secondItem="dla-rE-bkb" secondAttribute="bottom" constant="10" id="Fo2-Am-n0p"/>
+                <constraint firstItem="dla-rE-bkb" firstAttribute="leading" secondItem="1Yg-ye-a7t" secondAttribute="trailing" id="N16-7F-xND"/>
+                <constraint firstAttribute="trailing" secondItem="vkQ-j8-PJS" secondAttribute="trailing" constant="-1" id="Njf-Iy-OTk"/>
+                <constraint firstItem="6L3-dX-Q9S" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="OIH-Xt-4ik"/>
+                <constraint firstAttribute="bottom" secondItem="vkQ-j8-PJS" secondAttribute="bottom" id="OX5-63-35A"/>
+                <constraint firstItem="1Yg-ye-a7t" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SoB-2B-DxW"/>
+                <constraint firstItem="aab-NJ-QUG" firstAttribute="leading" secondItem="1Yg-ye-a7t" secondAttribute="trailing" id="Uwc-M0-s1W"/>
+                <constraint firstAttribute="bottom" secondItem="6L3-dX-Q9S" secondAttribute="bottom" constant="10" id="X1j-cY-w5q"/>
+                <constraint firstItem="aab-NJ-QUG" firstAttribute="width" secondItem="1Yg-ye-a7t" secondAttribute="width" id="bDR-AK-u0j"/>
+                <constraint firstAttribute="bottom" secondItem="aab-NJ-QUG" secondAttribute="bottom" id="byY-lo-jS9"/>
+                <constraint firstItem="vkQ-j8-PJS" firstAttribute="leading" secondItem="aab-NJ-QUG" secondAttribute="trailing" id="etF-Jd-c2h"/>
+                <constraint firstItem="dla-rE-bkb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="f5e-gF-tsd"/>
+                <constraint firstAttribute="bottom" secondItem="1Yg-ye-a7t" secondAttribute="bottom" id="k2F-4z-NP0"/>
+                <constraint firstItem="vkQ-j8-PJS" firstAttribute="height" secondItem="1Yg-ye-a7t" secondAttribute="height" id="t3L-fR-03S"/>
+                <constraint firstItem="1Yg-ye-a7t" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uZE-8g-RAs"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="208" y="244"/>
+            <connections>
+                <outlet property="commentBtn" destination="vkQ-j8-PJS" id="ft2-HX-5g8"/>
+                <outlet property="priceBtn" destination="aab-NJ-QUG" id="N2l-em-svr"/>
+                <outlet property="salesVolumeBtn" destination="1Yg-ye-a7t" id="zbm-Zm-xyP"/>
+            </connections>
+            <point key="canvasLocation" x="184" y="215"/>
         </view>
     </objects>
-    <resources>
-        <image name="check_down_nor" width="10" height="10"/>
-        <image name="check_down_sel" width="10" height="10"/>
-        <image name="check_up_nor" width="10" height="10"/>
-        <image name="check_up_sel" width="10" height="10"/>
-    </resources>
 </document>

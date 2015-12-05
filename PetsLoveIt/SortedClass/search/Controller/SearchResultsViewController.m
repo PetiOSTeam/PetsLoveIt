@@ -9,6 +9,7 @@
 #import "SearchResultsViewController.h"
 #import "SearchResultCell.h"
 #import "SiftSectionView.h"
+#import "MJRefresh.h"
 
 typedef enum : NSUInteger {
     SearchResultsStyleNone,
@@ -22,6 +23,10 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 @interface SearchResultsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
+@property (nonatomic, assign) NSInteger siftIndex;
+
+@property (nonatomic, assign) NSInteger page;
+
 @property (nonatomic, assign) SearchResultsStyle resultsStyle;
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -34,6 +39,11 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 @implementation SearchResultsViewController
 
+- (void)dealloc
+{
+    
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -42,15 +52,16 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _page = 0;
     self.view.backgroundColor = [UIColor whiteColor];
     [self searchRequest:NO];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)setupNavigationUI
 {
     self.navigationItem.titleView = self.searchBar;
-    
     self.searchBar.text = self.searchText;
 }
 
@@ -61,32 +72,50 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 - (void)searchRequest:(BOOL)isMore
 {
+    [self.searchBar resignFirstResponder];
+    WEAKSELF
+    [self.tableView addFooterWithCallback:^{
+        [weakSelf searchRequest:YES];
+    }];
+
     NSMutableArray *tempArray = [NSMutableArray arrayWithArray:loadArrayFromDocument(@"hotwords.plist")];
     if (![tempArray containsObject:self.searchText]) {
         [tempArray insertObject:self.searchText atIndex:0];
-        saveArrayToDocument(@"hotwords.plist", tempArray);
+    }else {
+        NSInteger index = [tempArray indexOfObject:self.searchText];
+        id obj = [[tempArray objectAtIndex:index] mutableCopy];
+        [tempArray removeObjectAtIndex:index];
+        [tempArray insertObject:obj atIndex:0];
     }
+    saveArrayToDocument(@"hotwords.plist", tempArray);
     
     NSDictionary *parameters = @{@"uid": @"queryProduct",
-                                 @"startNum": @0,
+                                 @"startNum": @(_page),
                                  @"limit": @"15",
                                  @"keywords": self.searchText};
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    if (self.resyltStyle == ResultStyle_Sift) {
+        [dict setObject:@(self.siftIndex) forKey:@"order"];
+    }
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"正在搜索";
-    WEAKSELF
     [APIOperation GET:kSearchHotWordsAPI
-           parameters:parameters
+           parameters:dict
          onCompletion:^(id responseData, NSError *error) {
              [hud hide:YES];
+             [weakSelf.tableView footerEndRefreshing];
              if (!error) {
                  NSDictionary *jsonDict = responseData[@"beans"];
                  NSArray *beans = jsonDict[@"beans"];
                  [weakSelf handerSearchResultsFromDatas:beans more:isMore];
+                 weakSelf.page++;
              }else {
+                 [weakSelf.tableView footerEndRefreshing];
                  if (weakSelf.dataSource.count == 0) {
                      weakSelf.resultsStyle = SearchResultsStyleFail;
                      [weakSelf.tableView reloadEmptyDataSet];
-
                  }
              }
          }];
@@ -98,6 +127,12 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
         self.resultsStyle = SearchResultsStyleNotData;
         [self.tableView reloadEmptyDataSet];
     }else {
+        if (data.count < 15) {
+            if (self.tableView.footer) {
+                [self.tableView.footer removeFromSuperview];
+                self.tableView.footer = nil;
+            }
+        }
         NSMutableArray *tempArray = [NSMutableArray new];
         [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             ProductModel *model = [[ProductModel alloc] initWithJson:obj];
@@ -213,7 +248,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
         _tableView.emptyDataSetSource = self;
         _tableView.emptyDataSetDelegate = self;
         [self.view addSubview:_tableView];
-
+        
         setExtraCellLineHidden(_tableView);
         _tableView.translatesAutoresizingMaskIntoConstraints = NO;
         [_tableView autoPinEdgesToSuperviewEdges];
@@ -245,6 +280,12 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
         _siftSectionView = [[NSBundle mainBundle] loadNibNamed:@"SiftSectionView"
                                                          owner:self
                                                        options:nil][0];
+        WEAKSELF
+        _siftSectionView.selectSiftIndex = ^(NSInteger index) {
+            weakSelf.siftIndex = index;
+            weakSelf.page = 0;
+            [weakSelf searchRequest:NO];
+        };
     }
     return _siftSectionView;
 }

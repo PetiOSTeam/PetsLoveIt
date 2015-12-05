@@ -102,7 +102,7 @@
                         <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unStoreIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ylr-22-AFA">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="collectIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Ylr-22-AFA">
                         <rect key="frame" x="220" y="79" width="20" height="20"/>
                         <animations/>
                         <constraints>
@@ -167,8 +167,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="collectIcon" width="25" height="25"/>
         <image name="listcommentIcon" width="25" height="25"/>
         <image name="listfavorIcon" width="25" height="25"/>
-        <image name="unStoreIcon" width="25" height="25"/>
     </resources>
 </document>
