@@ -10,6 +10,7 @@
 #import "SearchResultCell.h"
 #import "SiftSectionView.h"
 #import "MJRefresh.h"
+#import "GoodsDetailViewController.h"
 
 typedef enum : NSUInteger {
     SearchResultsStyleNone,
@@ -22,6 +23,9 @@ typedef enum : NSUInteger {
 static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 @interface SearchResultsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+{
+    BOOL _isPush;
+}
 
 @property (nonatomic, assign) NSInteger siftIndex;
 
@@ -41,13 +45,24 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 - (void)dealloc
 {
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    _isPush = NO;
+    if (self.navigationController.navigationBarHidden) {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
     [self setupNavigationUI];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (_isPush) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }
 }
 
 - (void)viewDidLoad {
@@ -160,6 +175,12 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ProductModel *model = self.dataSource[indexPath.row];
+
+    GoodsDetailViewController *goodsDetailVC = [[GoodsDetailViewController alloc] init];
+    goodsDetailVC.goodsId = model.prodId;
+    [self.navigationController pushViewController:goodsDetailVC animated:YES];
+    _isPush = YES;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
