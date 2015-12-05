@@ -18,22 +18,25 @@
  *  数据填充
  */
 -(void)dataFill{
-    ArticleModel *article = (ArticleModel *)self.model;
-    [self.goodsImageView sd_setImageWithURL:[NSURL URLWithString:article.imageUrl] placeholderImage:kImagePlaceHolder];
-    self.nameLabel.text = article.name;
-    self.titleLabel.text = article.title;
-    self.contentLabel.text = article.content;
-    self.dateLabel.text = article.dateDesc;
-    self.commentLabel.text = article.commentNum;
-    self.favorNumLabel.text = article.favorNum;
+    GoodsModel *article = (GoodsModel *)self.model;
+    [self loadInfo:article];
 }
 
-- (void)loadCellWithModel:(ArticleModel*)article{
-    [self.goodsImageView sd_setImageWithURL:[NSURL URLWithString:article.imageUrl] placeholderImage:kImagePlaceHolder];
+- (void)loadCellWithModel:(GoodsModel*)article{
+    [self loadInfo:article];
+}
+
+- (void)loadInfo:(GoodsModel *)article{
+    [self.goodsImageView sd_setImageWithURL:[NSURL URLWithString:article.appMinpic] placeholderImage:kImagePlaceHolder];
     self.nameLabel.text = article.name;
-    self.titleLabel.text = article.title;
-    self.contentLabel.text = article.content;
-    self.dateLabel.text = article.dateDesc;
+    if ([article.mallName length]>0) {
+        self.titleLabel.text = [NSString stringWithFormat:@"%@-%@",article.typeName,article.mallName];
+    }else{
+        self.titleLabel.text = [NSString stringWithFormat:@"%@",article.typeName];
+    }
+    self.titleLabel.text = [NSString stringWithFormat:@"%@-%@",article.typeName,article.mallName];
+    self.contentLabel.text = article.desc;
+    self.dateLabel.text = article.dateTime;
     self.commentLabel.text = article.commentNum;
     self.favorNumLabel.text = article.favorNum;
 }

@@ -44,5 +44,7 @@
 @property (nonatomic,strong) NSString *isTop;
 @property (nonatomic,strong) NSString *nodeUid;
 @property (nonatomic,strong) NSString *collectnum;
+@property (nonatomic,strong) NSString *publisher;
+@property (nonatomic,strong) NSString *publisherIcon;
 
 @end

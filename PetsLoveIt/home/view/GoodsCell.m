@@ -19,21 +19,21 @@
  */
 -(void)dataFill{
     GoodsModel *good = (GoodsModel *)self.model;
-    [self.goodImageView sd_setImageWithURL:[NSURL URLWithString:good.appMinpic] placeholderImage:kImagePlaceHolder ];
-    self.nameLabel.text = good.mallName;
-    self.descLabel.text = good.name;
-    self.prodLabel.text = good.desc;
-    self.commentNumLabel.text = good.commentNum;
-    self.favorNumLabel.text = good.favorNum;
-    self.dateLabel.text = good.dateDesc;
-    
-    self.commentImageView.image = [UIImage imageNamed:@"listcommentIcon"];
-    self.favorImageView.image = [UIImage imageNamed:@"listfavorIcon"];
+    [self loadInfo:good];
 }
 
 - (void)loadCellWithGoodsModel:(GoodsModel *)good{
+    [self loadInfo:good];
+}
+
+- (void)loadInfo:(GoodsModel *)good{
     [self.goodImageView sd_setImageWithURL:[NSURL URLWithString:good.appMinpic] placeholderImage:kImagePlaceHolder ];
-    self.nameLabel.text = good.mallName;
+    if ([good.mallName length]>0)
+    {
+      self.nameLabel.text = [NSString stringWithFormat:@"%@-%@",good.typeName,good.mallName];
+    }else{
+       self.nameLabel.text = [NSString stringWithFormat:@"%@",good.typeName];
+    }
     self.descLabel.text = good.name;
     self.prodLabel.text = good.desc;
     self.commentNumLabel.text = good.commentNum;

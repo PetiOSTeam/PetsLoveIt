@@ -92,7 +92,7 @@
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil] firstObject];
     }
-    ArticleModel *article = self.dataArray2[indexPath.row];
+    GoodsModel *article = self.dataArray2[indexPath.row];
     [cell loadCellWithModel:article];
     return cell;
 }

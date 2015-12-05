@@ -72,7 +72,7 @@
                            @"appType":@"m06"
                            };
     //模型类
-    configModel.ModelClass=[ArticleModel class];
+    configModel.ModelClass=[GoodsModel class];
     //cell类
     configModel.ViewForCellClass=[ArticleTableCell class];
     //标识

@@ -24,8 +24,8 @@
     [self.orderPictureImageView setContentMode:UIViewContentModeScaleAspectFill];
     [self.orderPictureImageView setClipsToBounds:YES];
     self.ordeerTitleLabel.text = order.name;
-    [self.userIconImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:kImagePlaceHolder];
-    self.userNameLabel.text = order.nickName;
+    [self.userIconImageView sd_setImageWithURL:[NSURL URLWithString:order.publisherIcon] placeholderImage:kDefaultHeadImage];
+    self.userNameLabel.text = order.publisher;
     self.shareTimeLabel.text = order.dateTime;
     self.commentNumLabel.text = order.commentNum;
     self.likeNumLabel.text = order.favorNum;

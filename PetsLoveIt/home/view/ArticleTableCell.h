@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LTCell.h"
-#import "ArticleModel.h"
+#import "GoodsModel.h"
 
 
 @interface ArticleTableCell : LTCell
@@ -23,6 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *favorNumLabel;
 
 
-- (void)loadCellWithModel:(ArticleModel*)article;
+- (void)loadCellWithModel:(GoodsModel*)article;
 
 @end

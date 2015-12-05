@@ -52,6 +52,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.pageType = NewsType;
+    GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
+    vc.goodsId = model.prodId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -72,7 +74,7 @@
                            @"appType":@"m07"
                            };
     //模型类
-    configModel.ModelClass=[ArticleModel class];
+    configModel.ModelClass=[GoodsModel class];
     //cell类
     configModel.ViewForCellClass=[ArticleTableCell class];
     //标识
