@@ -50,9 +50,6 @@
     if (self.goodsId) {
         [self getProductDetailById:self.goodsId];
 
-    }else if (self.goods){
-        NSString *html = self.goods.prodDetail;
-        [self.detailsPageView loadHtmlString:html];
     }
     
 }
@@ -64,6 +61,8 @@
 -(void)detailWebViewDidFinishLoad{
     [self hideLoadingView];
 }
+
+
 
 
 -(BottomMenuView *)menuView{
@@ -213,21 +212,37 @@
         //[self hideLoadingView];
         if (!error) {
             self.goods = [[GoodsModel alloc] initWithDictionary:[responseData objectForKey:@"data"]] ;
-            NSString *html = self.goods.prodDetail;
-            [self.detailsPageView loadHtmlString:html];
-            [self.menuView.menuButton1 setTitle:self.goods.favorNum forState:UIControlStateNormal];
-            [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
-            [self.menuView.menuButton4 setTitle:self.goods.commentNum forState:UIControlStateNormal];
-            if ([self.goods.usercollectnum isEqualToString:@"1"]) {
-                self.menuView.menuButton2.selected = YES;
-            }
-            [self.detailsPageView reloadData];
+            [self loadViewAndData];
+            //获取猜你喜欢数据
             [self getRelatedInfoById:self.goods.appSort];
         }else{
             [self hideLoadingView];
             mAlertAPIErrorInfo(error);
         }
     }];
+}
+
+-(void) loadViewAndData{
+    NSString *html = self.goods.prodDetail;
+    NSString *css = [NSString stringWithFormat:
+                     @"<html><head><style>body{ background-color: transparent; text-align: %@; font-size: %ipx; color: #666666;} a { color: #0663b3; } </style></head><body>",
+                     @"justify",
+                     16];
+    
+    NSMutableString *desc = [NSMutableString stringWithFormat:@"%@%@%@",
+                             css,
+                             html,
+                             @"</body></html>"];
+    [self.detailsPageView loadHtmlString:desc];
+    [self.menuView.menuButton1 setTitle:self.goods.favorNum forState:UIControlStateNormal];
+    [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
+    [self.menuView.menuButton4 setTitle:self.goods.commentNum forState:UIControlStateNormal];
+    if ([self.goods.usercollectnum isEqualToString:@"1"]) {
+        self.menuView.menuButton2.selected = YES;
+    }
+    [self.detailsPageView loadGoodsInfo:self.goods];
+    [self.detailsPageView reloadData];
+
 }
 
 -(UIView *)navigationBarView{

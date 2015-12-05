@@ -20,6 +20,9 @@
 @property (nonatomic, strong) UIButton* imageButton;
 @property (nonatomic, strong) UIView* headerView;
 
+@property (nonatomic, strong) UILabel *label1;
+@property (nonatomic, strong) UILabel *label2;
+@property (nonatomic, strong) UILabel *label3;
 
 @end
 
@@ -108,15 +111,52 @@
     if (!_headerView) {
         _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 510)];
         [_headerView addSubview:_imageView];
+        [_headerView addSubview:self.label1];
+        [_headerView addSubview:self.label2];
+        [_headerView addSubview:self.label3];
         [_headerView addSubview:self.webView];
         _headerView.clipsToBounds = YES;
     }
     return _headerView;
 }
 
+-(UILabel *)label1{
+    if (!_label1) {
+        _label1 = [[UILabel alloc] initWithFrame:CGRectMake(20, _imageView.bottom+10, mScreenWidth-40, 14)];
+        [_label1 setTextColor:mRGBToColor(0x999999)];
+        [_label1 setFont:[UIFont systemFontOfSize:12]];
+    }
+    return _label1;
+}
+
+-(UILabel *)label2{
+    if (!_label2) {
+        _label2 = [[UILabel alloc] initWithFrame:CGRectMake(20, _label1.bottom+15, mScreenWidth-40, 21)];
+        [_label2 setTextColor:mRGBToColor(0x333333)];
+        [_label2 setFont:[UIFont boldSystemFontOfSize:19]];
+    }
+    return _label2;
+}
+
+-(UILabel *)label3{
+    if (!_label3) {
+        _label3 = [[UILabel alloc] initWithFrame:CGRectMake(20, _label2.bottom+10, mScreenWidth-40, 19)];
+        [_label3 setTextColor:mRGBToColor(0xff4401)];
+        [_label3 setFont:[UIFont boldSystemFontOfSize:17]];
+    }
+    return _label3;
+}
+
+
+-(void) loadGoodsInfo:(GoodsModel *)goods{
+    self.label1.text = [NSString stringWithFormat:@"%@  %@",goods.typeName,goods.dateTime] ;
+    self.label2.text = goods.name;
+    self.label3.text = goods.desc;
+}
+
 -(UIWebView *)webView{
     if (!_webView) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0,_imageView.bottom, mScreenWidth, 300)];
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(12,_label3.bottom+12, mScreenWidth-24, 300)];
         _webView.scrollView.scrollEnabled = NO;
         _webView.delegate = self;
     }

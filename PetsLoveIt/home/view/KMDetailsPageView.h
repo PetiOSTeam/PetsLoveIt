@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIImageView+WebCache.h"
 #import "PLTableView.h"
+#import "GoodsModel.h"
 
 @class KMDetailsPageView;
 
@@ -118,6 +119,7 @@
 - (void)reloadData;
 
 - (void) loadHtmlString:(NSString *)html;
+-(void) loadGoodsInfo:(GoodsModel *)goods;
 
 /*
  Use this method if you need to hide the header imageview.
