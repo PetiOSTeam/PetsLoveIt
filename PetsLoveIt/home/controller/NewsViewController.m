@@ -41,21 +41,6 @@
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     self.tableView.top = 5;
     self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
-    dataArray = [NSMutableArray new];
-    for (int i =0 ; i<20; i++) {
-        ArticleModel *model = [ArticleModel new];
-        model.imageUrl = @"http://a.zdmimg.com/201511/07/563d7a093f6d36649.png_d320.jpg";
-        model.name = @"实时心率监测：小米手环光感版将于双11上市 定价99元";
-        model.title = @"京东精选";
-        model.content = @"还记得去年小米发布的那款79元的智能手环一下将高高在上的智能可穿戴设备拉低到了百元以下，这一举动也让小米一举攻占智能手环市场。而从去年开始已经有不少国内厂商推出带有光学心率计的智能手环和手表，由此可以推测下一代小米手环也将会集成心率监测功能。果不其然小米今天宣布将在双11当天在小米官网和天猫旗舰店开卖全新的小米手环光感版，定价99元";
-        model.commentNum = @"10";
-        model.favorNum = @"80%";
-        model.dateDesc = @"11-11";
-        [dataArray addObject:model];
-    }
-    self.dataList = dataArray;
-    [self.tableView reloadData];
-    
     
 }
 
@@ -78,13 +63,13 @@
     LTConfigModel *configModel=[[LTConfigModel alloc] init];
     //url,分为公告和话题
     
-    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,FeaturedTopicsList];
+    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getCoreSv.action"];
     
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
-                           @"udid":@"403",
-                           @"sort_id":@"1"
+                           @"uid":@"getProductByType",
+                           @"appType":@"m07"
                            };
     //模型类
     configModel.ModelClass=[ArticleModel class];
@@ -93,14 +78,14 @@
     //标识
     configModel.lid=NSStringFromClass(self.class);
     //pageName第几页的参数名
-    configModel.pageName=@"page_flag";
+    configModel.pageName=@"startNum";
     
     //pageSizeName
-    configModel.pageSizeName=@"req_num";
+    configModel.pageSizeName=@"limit";
     //pageSize
     configModel.pageSize = 10;
     //起始页码
-    configModel.pageStartValue=1;
+    configModel.pageStartValue=0;
     //行高
     configModel.rowHeight=136;
     configModel.hiddenNetWorkStausManager = YES;

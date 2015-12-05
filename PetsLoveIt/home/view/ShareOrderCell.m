@@ -7,7 +7,7 @@
 //
 
 #import "ShareOrderCell.h"
-#import "OrderModel.h"
+#import "GoodsModel.h"
 
 @implementation ShareOrderCell
 
@@ -19,16 +19,16 @@
  *  数据填充
  */
 - (void)dataFill {
-    OrderModel *order = (OrderModel *)self.model;
-    [self.orderPictureImageView sd_setImageWithURL:[NSURL URLWithString:order.orderPictureUrl] placeholderImage:kImagePlaceHolder ];
+    GoodsModel *order = (GoodsModel *)self.model;
+    [self.orderPictureImageView sd_setImageWithURL:[NSURL URLWithString:order.appMinpic] placeholderImage:kImagePlaceHolder ];
     [self.orderPictureImageView setContentMode:UIViewContentModeScaleAspectFill];
     [self.orderPictureImageView setClipsToBounds:YES];
-    self.ordeerTitleLabel.text = order.orderTitle;
-    [self.userIconImageView sd_setImageWithURL:[NSURL URLWithString:order.userIconUrl] placeholderImage:kImagePlaceHolder];
-    self.userNameLabel.text = order.userName;
-    self.shareTimeLabel.text = order.shareTime;
+    self.ordeerTitleLabel.text = order.name;
+    [self.userIconImageView sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:kImagePlaceHolder];
+    self.userNameLabel.text = order.nickName;
+    self.shareTimeLabel.text = order.dateTime;
     self.commentNumLabel.text = order.commentNum;
-    self.likeNumLabel.text = order.likeNum;
+    self.likeNumLabel.text = order.favorNum;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

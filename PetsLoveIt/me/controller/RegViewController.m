@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
+@property (strong,nonatomic) NSString *token;
+
 @end
 
 @implementation RegViewController
@@ -144,7 +146,7 @@
                              };
     [APIOperation GET:@"smsathcode.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
-
+            self.token = [responseData objectForKey:@"userToken"];
         }else{
             mAlertAPIErrorInfo(error);
         }
@@ -195,7 +197,8 @@
                              @"account":mobile,
                              @"athcode":code,
                              @"nickName":nickName,
-                             @"userPwd":encryptedPwd
+                             @"userPwd":encryptedPwd,
+                             @"userToken":self.token
                              };
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
