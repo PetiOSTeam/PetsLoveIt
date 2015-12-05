@@ -11,6 +11,7 @@
 #import "SoretedHeaderView.h"
 #import "PLSoretedCell.h"
 #import "ScreecSoretedEntity.h"
+#import "SearchResultsViewController.h"
 
 static NSString * CellIdentifier = @"GradientCell";
 static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
@@ -61,6 +62,16 @@ static NSString * ScreenStoreFooterIdentifier = @"ScreenStoreFooterIdentifier";
 
 #pragma mark - *** collectionView Delegate ***
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BeansEntity *beansEntity = self.screecSoretedModel.beans[indexPath.section];
+    SubsortsEntity *subsortsEntity = beansEntity.subsorts[indexPath.row];
+    SearchResultsViewController *resultsVC = [[SearchResultsViewController alloc] init];
+    resultsVC.resyltStyle = ResultStyle_Sift;
+    resultsVC.searchText = subsortsEntity.name;
+    [self.navigation pushViewController:resultsVC animated:YES];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     BeansEntity *beansEntity = self.screecSoretedModel.beans[section];
@@ -103,19 +114,23 @@ static NSString * ScreenStoreFooterIdentifier = @"ScreenStoreFooterIdentifier";
     
     BeansEntity *beansEntity = self.screecSoretedModel.beans[indexPath.section];
     SubsortsEntity *subsortsEntity = beansEntity.subsorts[indexPath.row];
+    
+    BOOL bottom = YES;
+    NSInteger num = beansEntity.subsorts.count % 4;
+    if (num == 0) {
+        num = 4;
+    }
+    if ([beansEntity.subsorts indexOfObject:subsortsEntity] >= beansEntity.subsorts.count - num) {
+        bottom = NO;
+    }
     cell.subsortsEntity = subsortsEntity;
+    cell.isBottom = bottom;
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(self.width / 4, 56);
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath

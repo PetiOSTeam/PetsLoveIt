@@ -52,6 +52,8 @@
     screenStoreView.left = self.view.width;
     [self.scrollView addSubview:screenStoreView];
     
+    soretedView.navigation = screenStoreView.navigation = self.navigationController;
+    
     self.scrollView.contentSize = CGSizeMake(self.view.width * 2, 0);
 }
 

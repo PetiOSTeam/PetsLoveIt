@@ -10,4 +10,6 @@
 
 @interface ScreenSoretedView : UIView
 
+@property (nonatomic, weak) UINavigationController *navigation;
+
 @end

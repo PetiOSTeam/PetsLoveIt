@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^ClearHistoryActionCompletion)(void);
+
 @interface SearchHistoryFooterView : UIView
 
 @property (weak, nonatomic) IBOutlet UIButton *clearButton;
+
+@property (nonatomic, copy) ClearHistoryActionCompletion clearCompletion;
 
 @end

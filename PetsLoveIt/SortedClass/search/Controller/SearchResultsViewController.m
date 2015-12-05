@@ -8,6 +8,7 @@
 
 #import "SearchResultsViewController.h"
 #import "SearchResultCell.h"
+#import "SiftSectionView.h"
 
 typedef enum : NSUInteger {
     SearchResultsStyleNone,
@@ -26,6 +27,8 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) UISearchBar *searchBar;
+
+@property (nonatomic, strong) SiftSectionView *siftSectionView;
 
 @end
 
@@ -58,6 +61,12 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 - (void)searchRequest:(BOOL)isMore
 {
+    NSMutableArray *tempArray = [NSMutableArray arrayWithArray:loadArrayFromDocument(@"hotwords.plist")];
+    if (![tempArray containsObject:self.searchText]) {
+        [tempArray insertObject:self.searchText atIndex:0];
+        saveArrayToDocument(@"hotwords.plist", tempArray);
+    }
+    
     NSDictionary *parameters = @{@"uid": @"queryProduct",
                                  @"startNum": @0,
                                  @"limit": @"15",
@@ -111,11 +120,32 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
     [self searchRequest:NO];
 }
 
-#pragma mark - *** getter ***
+#pragma mark - *** tableView Delegate && DataSource ***
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (self.resyltStyle == ResultStyle_Sift) {
+        return 50;
+    }
+    return 1;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (self.resyltStyle == ResultStyle_Sift) {
+        return self.siftSectionView;
+    }
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -130,7 +160,10 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    SearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+                                                             forIndexPath:indexPath];
+    ProductModel *model = self.dataSource[indexPath.row];
+    cell.productModel = model;
     return cell;
 }
 
@@ -164,7 +197,6 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 {
     [self searchRequest:NO];
 }
-
 
 #pragma mark - *** getter ***
 
@@ -205,6 +237,16 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
         searchTextField.backgroundColor = mRGBToColor(0xeeeeee);
     }
     return _searchBar;
+}
+
+- (SiftSectionView *)siftSectionView
+{
+    if (!_siftSectionView) {
+        _siftSectionView = [[NSBundle mainBundle] loadNibNamed:@"SiftSectionView"
+                                                         owner:self
+                                                       options:nil][0];
+    }
+    return _siftSectionView;
 }
 
 - (NSMutableArray *)dataSource

@@ -11,6 +11,7 @@
 #import "StoreHeaderView.h"
 #import "StoreFooterView.h"
 #import "PLStoreCell.h"
+#import "SearchResultsViewController.h"
 
 static NSString * CellIdentifier = @"GradientCell";
 static NSString * ScreenStoreHeaderCellIdentifier = @"GradientHeader";
@@ -22,6 +23,9 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 {
     BOOL _moreStoreInter;
     BOOL _moreStoreOuter;
+    
+    NSInteger _interSectionNum;
+    NSInteger _outerSectionNum;
 }
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -105,22 +109,36 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 
 #pragma mark - *** collectionView Delegate ***
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *tempData = self.dataSource[indexPath.section];
+    StoreModel *model = tempData[indexPath.row];
+
+    SearchResultsViewController *resultsVC = [[SearchResultsViewController alloc] init];
+    resultsVC.resyltStyle = ResultStyle_Sift;
+    resultsVC.searchText = model.name;
+    [self.navigation pushViewController:resultsVC animated:YES];
+
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     NSArray *tempArray = self.dataSource[section];
     if (section == 0) {
         if (tempArray.count > DefaultNum) {
-            //            NSInteger num = (self.dataSource.count - 1) % 3;
-            return !_moreStoreInter ? DefaultNum : tempArray.count;
+            _interSectionNum = !_moreStoreInter ? DefaultNum : tempArray.count;
+            return _interSectionNum;
         }else {
-            return tempArray.count;
+            _interSectionNum = tempArray.count;
+            return _interSectionNum;
         }
     }
     if (tempArray.count > DefaultNum) {
-        //        NSInteger num = (self.dataSource.count - 1) % 3;
-        return !_moreStoreOuter ? DefaultNum : tempArray.count;
+        _outerSectionNum = !_moreStoreOuter ? DefaultNum : tempArray.count;
+        return _outerSectionNum;
     }else {
-        return tempArray.count;
+        _outerSectionNum = tempArray.count;
+        return _outerSectionNum;
     }
 }
 
@@ -157,20 +175,36 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
 {
     PLStoreCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     NSArray *tempData = self.dataSource[indexPath.section];
+    BOOL bottom = YES;
+    
+    NSInteger num = 0;
+    if (indexPath.section == 0) {
+        num = _interSectionNum % 3;
+    }else {
+        num = _outerSectionNum % 3;
+    }
     StoreModel *model = tempData[indexPath.row];
+    if (num == 0) {
+        num = 3;
+    }
+    if (indexPath.section == 0) {
+        if ([tempData indexOfObject:model] >= _interSectionNum - num) {
+            bottom = NO;
+        }
+    }else {
+        if ([tempData indexOfObject:model] >= _outerSectionNum - num) {
+            bottom = NO;
+        }
+
+    }
     cell.model = model;
+    cell.isBottom = bottom;
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(self.width / 3, 56);
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath

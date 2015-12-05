@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    ResultStyle_Search,
+    ResultStyle_Sift,
+} ResultStyle;
+
 @interface SearchResultsViewController : UIViewController
+
+@property (nonatomic, assign) ResultStyle resyltStyle;
 
 @property (nonatomic, copy) NSString *searchText;
 

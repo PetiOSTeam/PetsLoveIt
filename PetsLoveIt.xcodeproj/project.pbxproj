@@ -551,6 +551,8 @@
 		F960FFD71C0B003800281547 /* ScreecSoretedEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F960FFD31C0B003800281547 /* ScreecSoretedEntity.m */; };
 		F960FFD81C0B003800281547 /* SubsortsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F960FFD51C0B003800281547 /* SubsortsEntity.m */; };
 		F960FFDB1C0B38EB00281547 /* ProductModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F960FFDA1C0B38EB00281547 /* ProductModel.m */; };
+		F96DCD1F1C11CB77005D53D5 /* SiftSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F96DCD1E1C11CB77005D53D5 /* SiftSectionView.m */; };
+		F96DCD211C11CB96005D53D5 /* SiftSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96DCD201C11CB96005D53D5 /* SiftSectionView.xib */; };
 		F99742581BF865C70062A37F /* SearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F99742571BF865C70062A37F /* SearchHeaderView.m */; };
 		F997425A1BF865E20062A37F /* SearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99742591BF865E20062A37F /* SearchHeaderView.xib */; };
 		F997428C1BF8A4420062A37F /* SearchHistoryFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F997428B1BF8A4420062A37F /* SearchHistoryFooterView.m */; };
@@ -1538,6 +1540,9 @@
 		F960FFD51C0B003800281547 /* SubsortsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubsortsEntity.m; sourceTree = "<group>"; };
 		F960FFD91C0B38EB00281547 /* ProductModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductModel.h; sourceTree = "<group>"; };
 		F960FFDA1C0B38EB00281547 /* ProductModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductModel.m; sourceTree = "<group>"; };
+		F96DCD1D1C11CB77005D53D5 /* SiftSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiftSectionView.h; sourceTree = "<group>"; };
+		F96DCD1E1C11CB77005D53D5 /* SiftSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiftSectionView.m; sourceTree = "<group>"; };
+		F96DCD201C11CB96005D53D5 /* SiftSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SiftSectionView.xib; sourceTree = "<group>"; };
 		F99742561BF865C70062A37F /* SearchHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchHeaderView.h; sourceTree = "<group>"; };
 		F99742571BF865C70062A37F /* SearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchHeaderView.m; sourceTree = "<group>"; };
 		F99742591BF865E20062A37F /* SearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchHeaderView.xib; sourceTree = "<group>"; };
@@ -1686,11 +1691,14 @@
 		184858C91BF8DDC9001FF521 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				184858D51BF8DEDC001FF521 /* SearchResultCell.xib */,
 				184858CA1BF8DDC9001FF521 /* SearchKeyWordsCell.h */,
 				184858CB1BF8DDC9001FF521 /* SearchKeyWordsCell.m */,
 				184858CC1BF8DDC9001FF521 /* SearchResultCell.h */,
 				184858CD1BF8DDC9001FF521 /* SearchResultCell.m */,
+				184858D51BF8DEDC001FF521 /* SearchResultCell.xib */,
+				F96DCD1D1C11CB77005D53D5 /* SiftSectionView.h */,
+				F96DCD1E1C11CB77005D53D5 /* SiftSectionView.m */,
+				F96DCD201C11CB96005D53D5 /* SiftSectionView.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -3672,6 +3680,7 @@
 				185767661C0B0794000A044D /* UserSettingVC.xib in Resources */,
 				18E21F301C058627007059F3 /* MyBLViewController.xib in Resources */,
 				189445F81BEB0774006249F0 /* e_32@2x.png in Resources */,
+				F96DCD211C11CB96005D53D5 /* SiftSectionView.xib in Resources */,
 				1894462A1BEB0774006249F0 /* e_78@2x.png in Resources */,
 				189445F21BEB0774006249F0 /* e_27@2x.png in Resources */,
 				18E21EE51C01CC53007059F3 /* RegViewController.xib in Resources */,
@@ -3893,6 +3902,7 @@
 				185767651C0B0794000A044D /* UserSettingVC.m in Sources */,
 				184858BA1BF8DD4B001FF521 /* MASConstraint.h in Sources */,
 				184858BB1BF8DD4B001FF521 /* MASConstraintMaker.h in Sources */,
+				F96DCD1F1C11CB77005D53D5 /* SiftSectionView.m in Sources */,
 				184858BC1BF8DD4B001FF521 /* MASLayoutConstraint.h in Sources */,
 				184858BD1BF8DD4B001FF521 /* Masonry.h in Sources */,
 				184858BE1BF8DD4B001FF521 /* MASUtilities.h in Sources */,

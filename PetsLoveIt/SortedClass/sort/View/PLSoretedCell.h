@@ -13,5 +13,6 @@
 
 @property (nonatomic, strong) SubsortsEntity *subsortsEntity;
 
+@property (nonatomic, assign) BOOL isBottom;
 
 @end

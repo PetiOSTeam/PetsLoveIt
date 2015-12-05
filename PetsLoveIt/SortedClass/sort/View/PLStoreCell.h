@@ -11,6 +11,8 @@
 
 @interface PLStoreCell : UICollectionViewCell
 
+@property (nonatomic, assign) BOOL isBottom;
+
 @property (nonatomic, strong) StoreModel *model;
 
 @end
