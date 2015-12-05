@@ -27,6 +27,8 @@
 - (void)detailsPage:(KMDetailsPageView *)detailsPageView headerViewDidLoad:(UIView *)headerView;
 - (void)detailsPage:(KMDetailsPageView *)detailsPageView imageViewWasSelected:(UIImageView *)imageView;
 
+- (void)detailWebViewDidFinishLoad;
+
 @end
 
 ///-------------------------------

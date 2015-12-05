@@ -99,7 +99,7 @@
             [mUserDefaults synchronize];
             
             //登录成功
-            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];            
             [self.navigationController popViewControllerAnimated:YES];
         }else{
             [SVProgressHUD dismiss];
@@ -107,6 +107,7 @@
         }
     }];
 }
+
 - (IBAction)regAction:(id)sender {
     RegViewController *vc = [RegViewController new];
     [self.navigationController pushViewController:vc animated:YES];

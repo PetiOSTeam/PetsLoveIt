@@ -12,10 +12,7 @@
 #import "UMSocialWechatHandler.h"
 
 @interface BottomMenuView()<UIActionSheetDelegate,UMSocialUIDelegate>
-@property (strong, nonatomic)  UIButton *menuButton1;
-@property (strong, nonatomic)  UIButton *menuButton2;
-@property (strong, nonatomic)  UIButton *menuButton3;
-@property (strong, nonatomic)  UIButton *menuButton4;
+
 @property (strong, nonatomic)  UIButton *menuButton5;
 
 @property (nonatomic, strong) UIImageView *headerImageView;
@@ -91,10 +88,10 @@
     [self.menuButton4 setTitleColor:mRGBToColor(0x999999) forState:UIControlStateNormal];
     
     [self.menuButton1.titleLabel setFont:[UIFont systemFontOfSize:11]];
-    [self.menuButton1 setTitle:@"80%" forState:UIControlStateNormal];
-    [self.menuButton2 setTitle:@"15" forState:UIControlStateNormal];
+    [self.menuButton1 setTitle:@"0" forState:UIControlStateNormal];
+    [self.menuButton2 setTitle:@"0" forState:UIControlStateNormal];
     [self.menuButton3 setTitle:@"分享" forState:UIControlStateNormal];
-    [self.menuButton4 setTitle:@"18" forState:UIControlStateNormal];
+    [self.menuButton4 setTitle:@"0" forState:UIControlStateNormal];
     
     if (self) {
         switch (type) {
@@ -146,13 +143,19 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
         self.menuButton1.selected = YES;
+        if ([self.delegate respondsToSelector:@selector(praiseProduct:)]) {
+            [self.delegate praiseProduct:YES];
+        }
     }else if (buttonIndex == 1){
         self.menuButton1.selected = NO;
-
+        if ([self.delegate respondsToSelector:@selector(praiseProduct:)]) {
+            [self.delegate praiseProduct:NO];
+        }
     }else{
         
     }
 }
+
 
 - (void) didClickOnMenu2{
     if (![AppCache getUserInfo]) {
@@ -160,23 +163,34 @@
             [self.delegate showLoginVC];
         }
         return;
+    }else{
+        self.menuButton2.selected = !self.menuButton2.selected;
+        BOOL selected = self.menuButton2.selected;
+        //收藏
+        self.menuButton2.selected = selected;
+        if ([self.delegate respondsToSelector:@selector(collectProduct:)]) {
+            [self.delegate collectProduct:selected];
+        }
     }
-    //收藏
-    self.menuButton2.selected = YES;
+    
     
 }
 
 - (void) didClickOnMenu3{
     //点击分享查看详情url
-    NSString *detailUrl = @"http://www.pets.com";
+    NSString *detailUrl = iVersioniOSAppStoreURLFormat;
+    [UMSocialData defaultData].extConfig.qqData.url = detailUrl;
     [UMSocialData defaultData].extConfig.wechatSessionData.url = detailUrl;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = detailUrl;
+    
+    NSString *title = @"我在宠物爱这个摇到好多积分和白菜价商品";
+    [UMSocialData defaultData].extConfig.title = title;
     //微博分享内容单独设置
-   
-//    [UMSocialData defaultData].extConfig.sinaData.shareText = [NSString stringWithFormat:@"%@",@""];
+    
+    //    [UMSocialData defaultData].extConfig.sinaData.shareText = [NSString stringWithFormat:@"%@",@""];
     [UMSocialSnsService presentSnsIconSheetView:[self viewController]
                                          appKey:UMENG_APPKEY
-                                      shareText:@"测试分享"
+                                      shareText:@"宠物爱这个，爱Ta就给Ta不一样的宠爱，拉近您与爱宠的距离"
                                      shareImage:[UIImage imageNamed:@"ImageAppIcon"]
                                 shareToSnsNames:@[UMShareToWechatSession,UMShareToQQ,UMShareToQzone,UMShareToWechatTimeline,UMShareToSina]
                                        delegate:self];

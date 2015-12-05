@@ -16,8 +16,8 @@
 #define mGestureStateKeyPath @"state"
 #define mContentSizeKeyPath @"contentSize"
 
-#define mBottomChangeText @"继续滑动查看相似商品"
-#define mTopChangeText @"继续滑动回到商品详情"
+#define mBottomChangeText @"继续拖动，查看相关推荐"
+#define mTopChangeText @"下拉，返回文章详情"
 
 
 #import <UIKit/UIKit.h>

@@ -20,9 +20,9 @@
 -(void)dataFill{
     GoodsModel *good = (GoodsModel *)self.model;
     [self.goodImageView sd_setImageWithURL:[NSURL URLWithString:good.appMinpic] placeholderImage:kImagePlaceHolder ];
-    self.nameLabel.text = good.name;
-    self.descLabel.text = good.desc;
-    self.prodLabel.text = good.prodDetail;
+    self.nameLabel.text = good.mallName;
+    self.descLabel.text = good.name;
+    self.prodLabel.text = good.desc;
     self.commentNumLabel.text = good.commentNum;
     self.favorNumLabel.text = good.favorNum;
     self.dateLabel.text = good.dateDesc;
@@ -32,10 +32,10 @@
 }
 
 - (void)loadCellWithGoodsModel:(GoodsModel *)good{
-    [self.goodImageView sd_setImageWithURL:[NSURL URLWithString:good.imageUrl] placeholderImage:kImagePlaceHolder ];
-    self.nameLabel.text = good.name;
-    self.descLabel.text = good.desc;
-    self.prodLabel.text = good.prodDetail;
+    [self.goodImageView sd_setImageWithURL:[NSURL URLWithString:good.appMinpic] placeholderImage:kImagePlaceHolder ];
+    self.nameLabel.text = good.mallName;
+    self.descLabel.text = good.name;
+    self.prodLabel.text = good.desc;
     self.commentNumLabel.text = good.commentNum;
     self.favorNumLabel.text = good.favorNum;
     self.dateLabel.text = good.dateDesc;

@@ -15,9 +15,16 @@
 - (void) lastMenuAction:(DetailPageType) type;
 - (void) showCommentVC;
 - (void) showLoginVC;
+- (void) praiseProduct:(BOOL)praiseFlag;
+- (void) collectProduct:(BOOL)collectFlag;
 
 @end
 @interface BottomMenuView : UIView
+
+@property (strong, nonatomic)  UIButton *menuButton1;
+@property (strong, nonatomic)  UIButton *menuButton2;
+@property (strong, nonatomic)  UIButton *menuButton3;
+@property (strong, nonatomic)  UIButton *menuButton4;
 
 @property (nonatomic,weak) id<BottomMenuViewDelegate> delegate;
 -(instancetype)initWithFrame:(CGRect)frame menuType:(DetailPageType)type;

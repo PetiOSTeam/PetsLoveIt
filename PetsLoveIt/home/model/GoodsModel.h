@@ -29,7 +29,11 @@
 @property (nonatomic,strong) NSString *prodId;
 @property (nonatomic,strong) NSString *province;
 @property (nonatomic,strong) NSString *state;
-
+@property (nonatomic,strong) NSString *mallName;
+@property (nonatomic,strong) NSString *goUrl;
+@property (nonatomic,strong) NSString *nickName;
+@property (nonatomic,strong) NSString *typeName;
+@property (nonatomic,strong) NSString *isUserShare;
 @property (nonatomic,strong) NSString *imageUrl;
 @property (nonatomic,strong) NSString *commentNum;
 @property (nonatomic,strong) NSString *favorNum;

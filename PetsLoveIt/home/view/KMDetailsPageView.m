@@ -132,6 +132,10 @@
     self.headerView.height = self.webView.bottom;
     self.tableView.tableHeaderView.height = self.headerView.height;
     self.tableView.contentSize = CGSizeMake(mScreenWidth, self.tableView.tableHeaderView.height);
+    
+    if ([self.delegate respondsToSelector:@selector(detailWebViewDidFinishLoad)]) {
+        [self.delegate detailWebViewDidFinishLoad];
+    }
 }
 
 #pragma mark -
@@ -296,10 +300,10 @@
 {
     CGPoint scrollViewDragPoint = [self.delegate detailsPage:self tableViewWillBeginDragging:self.tableView];
     
-    if (scrollOffset < 0)
-        self.tableView.transform = CGAffineTransformMakeScale(1 - (scrollOffset / self.imageScalingFactor), 1 - (scrollOffset / self.imageScalingFactor));
-    else
-        self.tableView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+//    if (scrollOffset < 0)
+//        self.tableView.transform = CGAffineTransformMakeScale(1 - (scrollOffset / self.imageScalingFactor), 1 - (scrollOffset / self.imageScalingFactor));
+//    else
+//        self.tableView.transform = CGAffineTransformMakeScale(1.0, 1.0);
     
     [self animateImageView:scrollOffset draggingPoint:scrollViewDragPoint alpha:self.headerImageAlpha];
 }

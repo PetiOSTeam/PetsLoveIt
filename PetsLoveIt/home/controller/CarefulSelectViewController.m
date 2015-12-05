@@ -120,6 +120,9 @@
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+            if ([jsonArray count] ==0) {
+                return ;
+            }
             _limittedTimeProduct = [[GoodsModel alloc] initWithDictionary:jsonArray[0]];
             _descLabel2.text = _limittedTimeProduct.name;
             [_urlImageView2 sd_setImageWithURL:[NSURL URLWithString:_limittedTimeProduct.appMinpic] placeholderImage:kImagePlaceHolder];
@@ -329,7 +332,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.goods = model;
+    vc.goodsId = model.prodId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

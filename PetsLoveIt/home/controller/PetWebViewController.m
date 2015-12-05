@@ -20,7 +20,7 @@
 }
 - (void)prepareViewAndData{
     self.title = @"特快直达";
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://m.kaola.com/product/12639.html?tag=280df79997466a23721b62ba2d51c0b3&__da_hQ7qPI_hJPsVS"]]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.htmlUrl]]];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:nil style:UIBarButtonItemStyleBordered target:self action:@selector(clickedLeftBarButtonItemAction)];
     self.navigationItem.leftBarButtonItem.title = @"取消";
 }
