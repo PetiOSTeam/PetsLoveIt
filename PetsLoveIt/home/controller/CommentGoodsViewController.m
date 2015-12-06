@@ -11,6 +11,7 @@
 #import "CommentCell.h"
 #import "RichEditView.h"
 #import "DXPopover.h"
+#import "LoginViewController.h"
 
 #define kPlaceHolderTip @"请输入评论内容"
 
@@ -104,6 +105,10 @@
     [moreMenuContainerView addSubview:popButton5];
     [moreMenuContainerView addSubview:popButton6];
 }
+-(void)showLoginVC{
+    LoginViewController *vc = [LoginViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 -(void)replyAction{
     isReply = YES;
@@ -114,6 +119,7 @@
 }
 
 -(void)atAction{
+    
     [[DXPopover sharedView] dismiss];
     isReply = YES;
     [[DXPopover sharedView] dismiss];
@@ -166,6 +172,10 @@
 
 #pragma mark - 发表评论
 -(void)didSendText:(NSString *)text{
+    if (![AppCache getUserInfo]) {
+        [self showLoginVC];
+        return;
+    }
     [self.view endEditing:YES];
     [self.editToolBar.inputTextView resignFirstResponder];
     self.editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
