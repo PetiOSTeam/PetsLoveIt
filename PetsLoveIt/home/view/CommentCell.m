@@ -48,17 +48,25 @@
         self.tableView.height = 0;
     }
     self.commentLabel.top = self.tableView.bottom + 10;
+    self.commentLabel.emojiText = comment.content;
+    //自适应titleLabel的高度
+    [self.commentLabel setWidth:(mScreenWidth-self.commentLabel.left-10)];
+    [self.commentLabel sizeToFit];
+    if (self.commentLabel.height < 21) {
+        self.commentLabel.height = 21;
+    }
+
+
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:comment.userIcon] placeholderImage:kDefaultHeadImage];
     self.nameLabel.text = comment.nickName;
-    self.dateLabel.text = comment.commentTime;
+    self.dateLabel.text = comment.timeFlag;
     self.floorLabel.text = [NSString stringWithFormat:@"%@楼",comment.orderNo];
-    self.commentLabel.emojiText = comment.content;
-}
+    }
 
 +(CGFloat)heightForCellWithObject:(CommentModel *)object
 {
     MLEmojiLabel *_textLabel = [[MLEmojiLabel alloc]init];
-    _textLabel.font = [UIFont systemFontOfSize:13];
+    _textLabel.font = [UIFont systemFontOfSize:14];
     _textLabel.customEmojiRegex = kEmojiReg;
     _textLabel.customEmojiPlistName = @"expression.plist";
     [_textLabel setEmojiText:object.content];
@@ -66,7 +74,7 @@
     _textLabel.isNeedAtAndPoundSign = YES;
     _textLabel.numberOfLines = 0;
     _textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize rSize = [_textLabel preferredSizeWithMaxWidth:mScreenWidth-12-12];
+    CGSize rSize = [_textLabel preferredSizeWithMaxWidth:mScreenWidth-10-56];
     
    __block CGFloat tableHeight = 0;
 
@@ -74,7 +82,7 @@
         [object.parent_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CommentModel *parentComment = [[CommentModel alloc] initWithDictionary:obj];
             MLEmojiLabel *_textLabel = [[MLEmojiLabel alloc]init];
-            _textLabel.font = [UIFont systemFontOfSize:13];
+            _textLabel.font = [UIFont systemFontOfSize:14];
             _textLabel.customEmojiRegex = kEmojiReg;
             _textLabel.customEmojiPlistName = @"expression.plist";
             [_textLabel setEmojiText:parentComment.content];

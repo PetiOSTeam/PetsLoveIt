@@ -22,6 +22,7 @@
     _commentLabel.customEmojiRegex = kEmojiReg;
     _commentLabel.customEmojiPlistName = @"expression.plist";
     [self setBackgroundColor:mRGBToColor(0xf5f5f5)];
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 -(void)loadCellWithModel:(CommentModel*)comment{
@@ -50,7 +51,7 @@
 +(CGFloat)heightForCellWithObject:(CommentModel *)object
 {
     MLEmojiLabel *_textLabel = [[MLEmojiLabel alloc]init];
-    _textLabel.font = [UIFont systemFontOfSize:13];
+    _textLabel.font = [UIFont systemFontOfSize:14];
     _textLabel.customEmojiRegex = kEmojiReg;
     _textLabel.customEmojiPlistName = @"expression.plist";
     [_textLabel setEmojiText:object.content];

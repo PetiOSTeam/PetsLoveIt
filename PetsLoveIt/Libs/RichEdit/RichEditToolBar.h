@@ -30,13 +30,16 @@
 @interface RichEditToolBar : UIView
 
 - (instancetype)initWithFrame:(CGRect)frame hideInputView:(BOOL)hidden;
+- (instancetype)initWithFrame:(CGRect)frame hideFaceBtn:(BOOL)hidden;
 - (void)willShowInputTextViewToHeight:(CGFloat)toHeight;
 
 @property (nonatomic,assign) BOOL hideInputView;
+@property (nonatomic,assign) BOOL hideFaceBtn;
+
 @property (nonatomic, weak) id <DXMessageToolBarDelegate> delegate;
 
 @property (strong, nonatomic) UIButton *faceButton;
-
+@property (strong, nonatomic) UIButton *sendBtn;
 /**
  *  操作栏背景图片
  */
@@ -109,6 +112,7 @@
  *  @param text 文字消息
  */
 - (void)didSendText:(NSString *)text;
+
 
 /**
  *  发送第三方表情，不会添加到文字输入框中

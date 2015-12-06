@@ -142,6 +142,8 @@
             _jdProduct = [[GoodsModel alloc] initWithDictionary:jsonArray[0]];
             [_urlImageView3 sd_setImageWithURL:[NSURL URLWithString:_jdProduct.appMinpic] placeholderImage:kImagePlaceHolder];
             _descLabel3.text = _jdProduct.name;
+        }else{
+            NSLog(@"rtnCode:%@",[responseData objectForKey:@"rtnCode"]);
         }
     }];
 }

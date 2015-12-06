@@ -21,6 +21,7 @@
         _dataArray = [NSMutableArray new];
         self.dataSource = self;
         self.delegate = self;
+        self.scrollEnabled = NO;
     }
     return _dataArray;
 }

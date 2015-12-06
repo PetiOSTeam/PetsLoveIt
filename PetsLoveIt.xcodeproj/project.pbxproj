@@ -433,6 +433,7 @@
 		1894471A1BEC3F02006249F0 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 189447191BEC3F02006249F0 /* CommonViewController.m */; };
 		18A1AEF51BF9DA2F00966478 /* PetWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A1AEF31BF9DA2F00966478 /* PetWebViewController.xib */; };
 		18A1AEF61BF9DA2F00966478 /* PetWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1AEF41BF9DA2F00966478 /* PetWebViewController.m */; };
+		18B37C341C13E6B000762980 /* DXPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B37C331C13E6B000762980 /* DXPopover.m */; };
 		18D2CB0B1BEF39BD00B8DD72 /* ShareOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2CB091BEF39BD00B8DD72 /* ShareOrderViewController.m */; };
 		18D2CB0F1BEF453300B8DD72 /* DiscountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2CB0E1BEF453300B8DD72 /* DiscountViewController.m */; };
 		18D2CB121BEF47F400B8DD72 /* MassTaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2CB111BEF47F400B8DD72 /* MassTaoViewController.m */; };
@@ -1339,6 +1340,8 @@
 		18A1AEF21BF9DA0C00966478 /* PetWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PetWebViewController.h; sourceTree = "<group>"; };
 		18A1AEF31BF9DA2F00966478 /* PetWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PetWebViewController.xib; sourceTree = "<group>"; };
 		18A1AEF41BF9DA2F00966478 /* PetWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetWebViewController.m; sourceTree = "<group>"; };
+		18B37C321C13E6B000762980 /* DXPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXPopover.h; sourceTree = "<group>"; };
+		18B37C331C13E6B000762980 /* DXPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXPopover.m; sourceTree = "<group>"; };
 		18D2CB081BEF39BD00B8DD72 /* ShareOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareOrderViewController.h; sourceTree = "<group>"; };
 		18D2CB091BEF39BD00B8DD72 /* ShareOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareOrderViewController.m; sourceTree = "<group>"; };
 		18D2CB0D1BEF453300B8DD72 /* DiscountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountViewController.h; sourceTree = "<group>"; };
@@ -1928,6 +1931,7 @@
 		189442EA1BEB0773006249F0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				18B37C311C13E6B000762980 /* DXPopover */,
 				F9332A771C05E5BD00E322F0 /* EmptyDataSet */,
 				F92EE5271C006D9700DEC5D0 /* XLLoadingView */,
 				18E21E871C00229C007059F3 /* YYText */,
@@ -3028,6 +3032,15 @@
 			path = JsonModel;
 			sourceTree = "<group>";
 		};
+		18B37C311C13E6B000762980 /* DXPopover */ = {
+			isa = PBXGroup;
+			children = (
+				18B37C321C13E6B000762980 /* DXPopover.h */,
+				18B37C331C13E6B000762980 /* DXPopover.m */,
+			);
+			path = DXPopover;
+			sourceTree = "<group>";
+		};
 		18DD07171BEC53E5003C8160 /* home */ = {
 			isa = PBXGroup;
 			children = (
@@ -4072,6 +4085,7 @@
 				18DB0D931BF2EA2B003F3743 /* KMActivityIndicator.m in Sources */,
 				F9EAB7911BF75A1B00BD0D6B /* StoreFooterView.m in Sources */,
 				189446E21BEB0A80006249F0 /* YYImageCoder.m in Sources */,
+				18B37C341C13E6B000762980 /* DXPopover.m in Sources */,
 				189442D61BEAF65A006249F0 /* UIImage+Addition.m in Sources */,
 				185767551C07068F000A044D /* AdModel.m in Sources */,
 				189442E11BEAF65A006249F0 /* UIView+Layer.m in Sources */,
