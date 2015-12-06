@@ -434,6 +434,10 @@
 		18A1AEF51BF9DA2F00966478 /* PetWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A1AEF31BF9DA2F00966478 /* PetWebViewController.xib */; };
 		18A1AEF61BF9DA2F00966478 /* PetWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1AEF41BF9DA2F00966478 /* PetWebViewController.m */; };
 		18B37C341C13E6B000762980 /* DXPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B37C331C13E6B000762980 /* DXPopover.m */; };
+		18B37C381C1429A700762980 /* ForgotPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B37C361C1429A700762980 /* ForgotPwdViewController.m */; };
+		18B37C391C1429A700762980 /* ForgotPwdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B37C371C1429A700762980 /* ForgotPwdViewController.xib */; };
+		18B37C3D1C142C4600762980 /* ChangeMobilePwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B37C3B1C142C4600762980 /* ChangeMobilePwdViewController.m */; };
+		18B37C3E1C142C4600762980 /* ChangeMobilePwdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B37C3C1C142C4600762980 /* ChangeMobilePwdViewController.xib */; };
 		18D2CB0B1BEF39BD00B8DD72 /* ShareOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2CB091BEF39BD00B8DD72 /* ShareOrderViewController.m */; };
 		18D2CB0F1BEF453300B8DD72 /* DiscountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2CB0E1BEF453300B8DD72 /* DiscountViewController.m */; };
 		18D2CB121BEF47F400B8DD72 /* MassTaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D2CB111BEF47F400B8DD72 /* MassTaoViewController.m */; };
@@ -1342,6 +1346,12 @@
 		18A1AEF41BF9DA2F00966478 /* PetWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PetWebViewController.m; sourceTree = "<group>"; };
 		18B37C321C13E6B000762980 /* DXPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXPopover.h; sourceTree = "<group>"; };
 		18B37C331C13E6B000762980 /* DXPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXPopover.m; sourceTree = "<group>"; };
+		18B37C351C1429A700762980 /* ForgotPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPwdViewController.h; sourceTree = "<group>"; };
+		18B37C361C1429A700762980 /* ForgotPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPwdViewController.m; sourceTree = "<group>"; };
+		18B37C371C1429A700762980 /* ForgotPwdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPwdViewController.xib; sourceTree = "<group>"; };
+		18B37C3A1C142C4600762980 /* ChangeMobilePwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeMobilePwdViewController.h; sourceTree = "<group>"; };
+		18B37C3B1C142C4600762980 /* ChangeMobilePwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeMobilePwdViewController.m; sourceTree = "<group>"; };
+		18B37C3C1C142C4600762980 /* ChangeMobilePwdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeMobilePwdViewController.xib; sourceTree = "<group>"; };
 		18D2CB081BEF39BD00B8DD72 /* ShareOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareOrderViewController.h; sourceTree = "<group>"; };
 		18D2CB091BEF39BD00B8DD72 /* ShareOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareOrderViewController.m; sourceTree = "<group>"; };
 		18D2CB0D1BEF453300B8DD72 /* DiscountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountViewController.h; sourceTree = "<group>"; };
@@ -3302,6 +3312,12 @@
 				18E21EE11C01CC53007059F3 /* RegViewController.h */,
 				18E21EE21C01CC53007059F3 /* RegViewController.m */,
 				18E21EE31C01CC53007059F3 /* RegViewController.xib */,
+				18B37C351C1429A700762980 /* ForgotPwdViewController.h */,
+				18B37C361C1429A700762980 /* ForgotPwdViewController.m */,
+				18B37C371C1429A700762980 /* ForgotPwdViewController.xib */,
+				18B37C3A1C142C4600762980 /* ChangeMobilePwdViewController.h */,
+				18B37C3B1C142C4600762980 /* ChangeMobilePwdViewController.m */,
+				18B37C3C1C142C4600762980 /* ChangeMobilePwdViewController.xib */,
 			);
 			name = "Login&Reg";
 			sourceTree = "<group>";
@@ -3757,6 +3773,7 @@
 				18E21F301C058627007059F3 /* MyBLViewController.xib in Resources */,
 				189445F81BEB0774006249F0 /* e_32@2x.png in Resources */,
 				F96DCD211C11CB96005D53D5 /* SiftSectionView.xib in Resources */,
+				18B37C3E1C142C4600762980 /* ChangeMobilePwdViewController.xib in Resources */,
 				1894462A1BEB0774006249F0 /* e_78@2x.png in Resources */,
 				189445F21BEB0774006249F0 /* e_27@2x.png in Resources */,
 				18E21EE51C01CC53007059F3 /* RegViewController.xib in Resources */,
@@ -3806,6 +3823,7 @@
 				189446301BEB0774006249F0 /* e_83@2x.png in Resources */,
 				189445EF1BEB0774006249F0 /* e_24@2x.png in Resources */,
 				18F633AE1BF883C800FD98B1 /* iOS-social-analytics-releasenote.html in Resources */,
+				18B37C391C1429A700762980 /* ForgotPwdViewController.xib in Resources */,
 				189446521BEB0774006249F0 /* chatBar_recordSelected@2x.png in Resources */,
 				1894461F1BEB0774006249F0 /* e_68@2x.png in Resources */,
 				1894462C1BEB0774006249F0 /* e_7@2x.png in Resources */,
@@ -4175,6 +4193,7 @@
 				18A1AEF61BF9DA2F00966478 /* PetWebViewController.m in Sources */,
 				189445A31BEB0774006249F0 /* NSURL+File.m in Sources */,
 				189445D91BEB0774006249F0 /* RECommonFunctions.m in Sources */,
+				18B37C381C1429A700762980 /* ForgotPwdViewController.m in Sources */,
 				F99B56D01BF4B71B008E18A2 /* XLSlideBarView.m in Sources */,
 				189446741BEB0774006249F0 /* SDWebImageManager.m in Sources */,
 				189446FD1BEB8A42006249F0 /* HeadImageView.m in Sources */,
@@ -4265,6 +4284,7 @@
 				1894457D1BEB0774006249F0 /* NSDate+TimeInterval.m in Sources */,
 				18E21EBF1C00229C007059F3 /* YYTextInput.m in Sources */,
 				189445741BEB0774006249F0 /* AFURLSessionManager.m in Sources */,
+				18B37C3D1C142C4600762980 /* ChangeMobilePwdViewController.m in Sources */,
 				189446E11BEB0A80006249F0 /* YYImage.m in Sources */,
 				189445AB1BEB0774006249F0 /* CoreLTVC.m in Sources */,
 				189446D91BEB0A80006249F0 /* _YYWebImageSetter.m in Sources */,

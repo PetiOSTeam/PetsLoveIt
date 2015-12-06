@@ -29,8 +29,8 @@
 }
 
 + (void)tokenFailed:(NSString *) tokenFailInfo{
-    if ([tokenFailInfo isEqualToString:@"token缺失"]||[tokenFailInfo isEqualToString:@"缺失userId或deviceId"]||[tokenFailInfo  isEqualToString:@"token不正确"]) {
-        [mAppUtils appLogoutAction];
+    if ([tokenFailInfo integerValue] == -1 ) {
+        [mAppDelegate autoLogin];
     }
     
 }
@@ -59,7 +59,7 @@ onCompletion:(void (^)(id responseData, NSError* error))completionBlock
         RESTError *restError = nil;
 
         //token异常重新登录
-        [APIOperation tokenFailed:[responseObject objectForKey:kMessage]];
+        [APIOperation tokenFailed:[responseObject objectForKey:@"rtnCode"]];
         if (completionBlock) {
             completionBlock(dataDict,restError);
         }
@@ -115,7 +115,7 @@ onCompletion:(void (^)(id responseData, NSError* error))completionBlock
             
         }
         //token异常重新登录
-        [APIOperation tokenFailed:[responseObject objectForKey:kMessage]];
+        [APIOperation tokenFailed:[responseObject objectForKey:@"rtnCode"]];
         if (completionBlock) {
             completionBlock(dataDict,restError);
         }
@@ -177,7 +177,7 @@ onCompletion:(void (^)(id responseData, NSError* error))completionBlock
 #endif
         }
         //token异常重新登录
-        [APIOperation tokenFailed:[responseObject objectForKey:kMessage]];
+        [APIOperation tokenFailed:[responseObject objectForKey:@"rtnCode"]];
         if (completionBlock) {
             completionBlock(dataDict,restError);
         }
@@ -240,7 +240,7 @@ onCompletion:(void (^)(id responseData, NSError* error))completionBlock
                                                  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[responseObject objectForKey:kMessage], ERRORMSG,[responseObject objectForKey:@"rtnCode"], ERRORCODE, nil]];
         }
         //token异常重新登录
-        [APIOperation tokenFailed:[responseObject objectForKey:kMessage]];
+        [APIOperation tokenFailed:[responseObject objectForKey:@"rtnCode"]];
         if (completionBlock) {
             completionBlock(dataDict,restError);
         }
@@ -327,7 +327,7 @@ onCompletion:(void (^)(id responseData, NSError* error))completionBlock
                                                  userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[responseObject objectForKey:kMessage], ERRORMSG,[responseObject objectForKey:@"rtnCode"], ERRORCODE, nil]];
         }
         //token异常重新登录
-        [APIOperation tokenFailed:[responseObject objectForKey:kMessage]];
+        [APIOperation tokenFailed:[responseObject objectForKey:@"rtnCode"]];
         if (completionBlock) {
             completionBlock(dataDict,restError);
         }
@@ -381,7 +381,7 @@ onCompletion:(void (^)(id responseData, NSError* error,NSInteger indexNum))compl
             
         }
         //token异常重新登录
-        [APIOperation tokenFailed:[responseObject objectForKey:kMessage]];
+        [APIOperation tokenFailed:[responseObject objectForKey:@"rtnCode"]];
         if (completionBlock) {
             completionBlock(dataDict,restError,indexForNum);
         }

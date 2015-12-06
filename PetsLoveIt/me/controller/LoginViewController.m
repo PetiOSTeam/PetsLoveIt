@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "RegViewController.h"
+#import "ForgotPwdViewController.h"
 
 @interface LoginViewController ()
 
@@ -59,7 +60,8 @@
 }
 
 - (IBAction)forgotAction:(id)sender {
-    
+    ForgotPwdViewController *vc = [ForgotPwdViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)loginAction:(id)sender {
     [self.view endEditing:YES];
