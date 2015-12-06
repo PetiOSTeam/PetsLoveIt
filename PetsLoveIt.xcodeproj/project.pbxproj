@@ -75,6 +75,7 @@
 		185767601C0AFD47000A044D /* PushSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1857675E1C0AFD47000A044D /* PushSettingViewController.xib */; };
 		185767651C0B0794000A044D /* UserSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185767631C0B0794000A044D /* UserSettingVC.m */; };
 		185767661C0B0794000A044D /* UserSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185767641C0B0794000A044D /* UserSettingVC.xib */; };
+		186EA8831C148C73009876BD /* GradeDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */; };
 		189442591BE9DEC3006249F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 189442581BE9DEC3006249F0 /* main.m */; };
 		1894425C1BE9DEC3006249F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894425B1BE9DEC3006249F0 /* AppDelegate.m */; };
 		189442671BE9DEC3006249F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189442661BE9DEC3006249F0 /* Assets.xcassets */; };
@@ -586,7 +587,6 @@
 		F9BE49A11C14542A002E47CC /* GradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE499F1C14542A002E47CC /* GradeDetailViewController.m */; };
 		F9BE49A21C14542A002E47CC /* GradeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE49A01C14542A002E47CC /* GradeDetailViewController.xib */; };
 		F9BE49A51C1477C7002E47CC /* GradeDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE49A41C1477C7002E47CC /* GradeDetailHeaderView.m */; };
-		F9BE49A71C1477D8002E47CC /* GradeDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE49A61C1477D8002E47CC /* GradeDetailHeaderView.xib */; };
 		F9BE49AA1C147F3C002E47CC /* MyHistoryGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE49A91C147F3C002E47CC /* MyHistoryGradeViewController.m */; };
 		F9EAB7851BF75A1B00BD0D6B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAB7661BF75A1B00BD0D6B /* SearchViewController.m */; };
 		F9EAB7861BF75A1B00BD0D6B /* SortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAB76C1BF75A1B00BD0D6B /* SortViewController.m */; };
@@ -697,6 +697,7 @@
 		185767621C0B0794000A044D /* UserSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingVC.h; sourceTree = "<group>"; };
 		185767631C0B0794000A044D /* UserSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingVC.m; sourceTree = "<group>"; };
 		185767641C0B0794000A044D /* UserSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingVC.xib; sourceTree = "<group>"; };
+		186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeDetailHeaderView.xib; sourceTree = "<group>"; };
 		189442541BE9DEC3006249F0 /* PetsLoveIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetsLoveIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		189442581BE9DEC3006249F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1894425A1BE9DEC3006249F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1627,7 +1628,6 @@
 		F9BE49A01C14542A002E47CC /* GradeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeDetailViewController.xib; sourceTree = "<group>"; };
 		F9BE49A31C1477C7002E47CC /* GradeDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradeDetailHeaderView.h; sourceTree = "<group>"; };
 		F9BE49A41C1477C7002E47CC /* GradeDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradeDetailHeaderView.m; sourceTree = "<group>"; };
-		F9BE49A61C1477D8002E47CC /* GradeDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeDetailHeaderView.xib; sourceTree = "<group>"; };
 		F9BE49A81C147F3C002E47CC /* MyHistoryGradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHistoryGradeViewController.h; sourceTree = "<group>"; };
 		F9BE49A91C147F3C002E47CC /* MyHistoryGradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyHistoryGradeViewController.m; sourceTree = "<group>"; };
 		F9EAB7651BF75A1B00BD0D6B /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
@@ -3635,7 +3635,7 @@
 				F9BE49981C1331E3002E47CC /* MyGradeListView.m */,
 				F9BE49A31C1477C7002E47CC /* GradeDetailHeaderView.h */,
 				F9BE49A41C1477C7002E47CC /* GradeDetailHeaderView.m */,
-				F9BE49A61C1477D8002E47CC /* GradeDetailHeaderView.xib */,
+				186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3878,7 +3878,7 @@
 				189446301BEB0774006249F0 /* e_83@2x.png in Resources */,
 				189445EF1BEB0774006249F0 /* e_24@2x.png in Resources */,
 				18F633AE1BF883C800FD98B1 /* iOS-social-analytics-releasenote.html in Resources */,
-			18B37C391C1429A700762980 /* ForgotPwdViewController.xib in Resources */,
+				18B37C391C1429A700762980 /* ForgotPwdViewController.xib in Resources */,
 				189446521BEB0774006249F0 /* chatBar_recordSelected@2x.png in Resources */,
 				1894461F1BEB0774006249F0 /* e_68@2x.png in Resources */,
 				1894462C1BEB0774006249F0 /* e_7@2x.png in Resources */,
@@ -3948,6 +3948,7 @@
 				189445BD1BEB0774006249F0 /* CM.bundle in Resources */,
 				189446201BEB0774006249F0 /* e_69@2x.png in Resources */,
 				189446261BEB0774006249F0 /* e_74@2x.png in Resources */,
+				186EA8831C148C73009876BD /* GradeDetailHeaderView.xib in Resources */,
 				18F633A61BF883C800FD98B1 /* UMSnsAccountViewController.xib in Resources */,
 				189446291BEB0774006249F0 /* e_77@2x.png in Resources */,
 				189445A81BEB0774006249F0 /* CoreList.bundle in Resources */,
