@@ -142,6 +142,8 @@
             _jdProduct = [[GoodsModel alloc] initWithDictionary:jsonArray[0]];
             [_urlImageView3 sd_setImageWithURL:[NSURL URLWithString:_jdProduct.appMinpic] placeholderImage:kImagePlaceHolder];
             _descLabel3.text = _jdProduct.name;
+        }else{
+            NSLog(@"rtnCode:%@",[responseData objectForKey:@"rtnCode"]);
         }
     }];
 }
@@ -313,18 +315,18 @@
 
 - (void)tapOnImageView1{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.goods = _cheapProduct;
+    vc.goodsId = _cheapProduct.prodId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)tapOnImageView2{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.goods = _limittedTimeProduct;
+    vc.goodsId = _limittedTimeProduct.prodId;
 
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)tapOnImageView3{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.goods = _jdProduct;
+    vc.goodsId = _jdProduct.prodId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

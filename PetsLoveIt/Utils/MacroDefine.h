@@ -142,6 +142,8 @@ otherButtonTitles:nil]; \
 #define kImagePlaceHolder [UIImage imageNamed:@"timeline_image_loading"]
 #define kDefaultHeadImage [UIImage imageNamed:@"defaultUserAvatar"]
 #define kDefaultPersonAvatar @"Image_defaultPerson"
+
+#define kEmojiReg @"\\[#&\\d{0,3}\\]+"
 //字体基本色
 #define kDefaultFontColor mRGBToColor(0xd0bc91)
 #define kNaviTitleColor mRGBToColor(0x222222)

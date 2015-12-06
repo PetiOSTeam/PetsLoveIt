@@ -14,6 +14,7 @@
 #import "BaseNavigationController.h"
 #import "PetWebViewController.h"
 #import "LoginViewController.h"
+#import "CommentGoodsViewController.h"
 
 @interface GoodsDetailViewController ()<UIWebViewDelegate,UITableViewDataSource, UITableViewDelegate,  KMNetworkLoadingViewDelegate, KMDetailsPageDelegate,BottomMenuViewDelegate>
 
@@ -68,9 +69,7 @@
 -(BottomMenuView *)menuView{
     if (!_menuView) {
         _menuView = [[BottomMenuView alloc] initWithFrame:CGRectMake(0, mScreenHeight-49, mScreenWidth, 49) menuType:self.pageType];
-        if (self.pageType == RelatedPersonType) {
-            [_menuView loadAvatarImage:@"http://res-c1.smzdm.com/smzdm_user_manager/data/avatar/719/60/44/38_avatar_small.jpg?v=10"];
-        }
+        
         _menuView.delegate = self;
     }
     return _menuView;
@@ -134,6 +133,12 @@
 
 -(void)showLoginVC{
     LoginViewController *vc = [LoginViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)showCommentVC{
+    CommentGoodsViewController *vc = [CommentGoodsViewController new];
+    vc.goodsId = self.goodsId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -234,6 +239,10 @@
                              html,
                              @"</body></html>"];
     [self.detailsPageView loadHtmlString:desc];
+    
+    if (self.pageType == RelatedPersonType) {
+        [_menuView loadAvatarImage:self.goods.publisherIcon];
+    }
     [self.menuView.menuButton1 setTitle:self.goods.favorNum forState:UIControlStateNormal];
     [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
     [self.menuView.menuButton4 setTitle:self.goods.commentNum forState:UIControlStateNormal];

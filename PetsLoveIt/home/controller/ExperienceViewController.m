@@ -71,6 +71,15 @@
                            @"uid":@"getProductByType",
                            @"appType":@"m06"
                            };
+    configModel.hiddenNetWorkStausManager = YES;
+    if (self.isMyArticle) {
+        configModel.params = @{
+                               @"uid":@"getProductByType",
+                               @"appType":@""
+                               };
+        configModel.hiddenNetWorkStausManager = NO;
+        
+    }
     //模型类
     configModel.ModelClass=[GoodsModel class];
     //cell类
@@ -88,7 +97,6 @@
     configModel.pageStartValue=0;
     //行高
     configModel.rowHeight=136;
-    configModel.hiddenNetWorkStausManager = YES;
     
     //移除返回顶部:(默认开启)
     configModel.removeBackToTopBtn=YES;

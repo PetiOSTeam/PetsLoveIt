@@ -147,7 +147,7 @@
                                 <action selector="regAction:" destination="-1" eventType="touchUpInside" id="Tie-si-Ew9"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="B3D-qf-irq">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="B3D-qf-irq">
                             <rect key="frame" x="189" y="378" width="91" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                             <animations/>

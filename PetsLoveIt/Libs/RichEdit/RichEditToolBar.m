@@ -75,6 +75,18 @@
     }
     return self;
 }
+- (instancetype)initWithFrame:(CGRect)frame hideFaceBtn:(BOOL)hidden{
+    if (frame.size.height < (kVerticalPadding * 2 + kInputTextViewMinHeight)) {
+        frame.size.height = kVerticalPadding * 2 + kInputTextViewMinHeight;
+    }
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        self.hideFaceBtn = hidden;
+        [self setupConfigure];
+    }
+    return self;
+}
 
 - (void)setFrame:(CGRect)frame
 {
@@ -183,11 +195,11 @@
 - (void)keyboardWillChangeFrame:(NSNotification *)notification
 {
     //push出来的vc
-    id pushedVc = [mAppDelegate.rootNavigationController.viewControllers lastObject];
+    id pushedVc = [self.viewController.navigationController.viewControllers lastObject];
     //present出来的vc
-    UINavigationController *naviVC = (UINavigationController *)mAppDelegate.rootNavigationController.presentedViewController;
+    UINavigationController *naviVC = (UINavigationController *)self.viewController.navigationController.presentedViewController;
      id presentedVc = [naviVC.viewControllers lastObject];
-    if (![NSStringFromClass([presentedVc class]) isEqualToString:@"AddDynamicViewController"]&&![NSStringFromClass([presentedVc class]) isEqualToString:@"ForwardDynamicViewController"]&&![NSStringFromClass([pushedVc class]) isEqualToString:@"DynamicDetailViewController"]) {
+    if (![NSStringFromClass([pushedVc class]) isEqualToString:@"CommentGoodsViewController"]&&![NSStringFromClass([presentedVc class]) isEqualToString:@"ForwardDynamicViewController"]&&![NSStringFromClass([pushedVc class]) isEqualToString:@"DynamicDetailViewController"]) {
         return;
     }
     
@@ -259,16 +271,31 @@
     CGFloat allButtonWidth = 0.0;
     CGFloat textViewLeftMargin = 6.0;
     self.backgroundColor = [UIColor clearColor];
+    if (self.hideFaceBtn) {
+        self.sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.sendBtn.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
+        self.sendBtn.frame = CGRectMake(CGRectGetWidth(self.bounds) - 2*kHorizontalPadding - kInputTextViewMinHeight+5, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight);
+        [self.sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+        [self.sendBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
+        [self.sendBtn setTitleColor:mRGBToColor(0xff4401) forState:UIControlStateNormal];
+        [self.sendBtn addTarget:self action:@selector(sendBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.toolbarView addSubview:self.sendBtn];
+
+        allButtonWidth += CGRectGetWidth(self.sendBtn.frame) + kHorizontalPadding * 1.5;
+    }else{
+        //表情
+        self.faceButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - 2*kHorizontalPadding - kInputTextViewMinHeight, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight)];
+        self.faceButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
+        [self.faceButton setImage:[UIImage imageNamed:@"chatBar_face"] forState:UIControlStateNormal];
+        [self.faceButton setImage:[UIImage imageNamed:@"chatBar_faceSelected"] forState:UIControlStateHighlighted];
+        [self.faceButton setImage:[UIImage imageNamed:@"chatBar_keyboard"] forState:UIControlStateSelected];
+        [self.faceButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        self.faceButton.tag = 1;
+        allButtonWidth += CGRectGetWidth(self.faceButton.frame) + kHorizontalPadding * 1.5;
+        [self.toolbarView addSubview:self.faceButton];
+
+    }
     
-    //表情
-    self.faceButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - 2*kHorizontalPadding - kInputTextViewMinHeight, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight)];
-    self.faceButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
-    [self.faceButton setImage:[UIImage imageNamed:@"chatBar_face"] forState:UIControlStateNormal];
-    [self.faceButton setImage:[UIImage imageNamed:@"chatBar_faceSelected"] forState:UIControlStateHighlighted];
-    [self.faceButton setImage:[UIImage imageNamed:@"chatBar_keyboard"] forState:UIControlStateSelected];
-    [self.faceButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    self.faceButton.tag = 1;
-    allButtonWidth += CGRectGetWidth(self.faceButton.frame) + kHorizontalPadding * 1.5;
     
     
     // 输入框的高度和宽度
@@ -302,10 +329,24 @@
     
     
 
-    [self.toolbarView addSubview:self.faceButton];
     [self.toolbarView addSubview:self.inputTextView];
    //判断是否隐藏文本输入框
     self.inputTextView.hidden = self.hideInputView;
+}
+
+-(void)sendBtnAction{
+
+    NSString *chatText = self.inputTextView.text;
+    if (chatText.length > 0) {
+        if ([self.delegate respondsToSelector:@selector(didSendText:)]) {
+            NSString *sendMsg = chatText;   // 处理AtFriend
+            sendMsg = [TWEmojHelper encodeEmojChineseToCodeWithText:sendMsg];                           // 处理表情
+            [self.delegate didSendText:sendMsg];
+            self.inputTextView.text = @"";
+            
+            [self willShowInputTextViewToHeight:[self getTextViewContentH:self.inputTextView]];
+        }
+    }
 }
 
 - (void)selectedFacialView:(NSString *)str isDelete:(BOOL)isDelete

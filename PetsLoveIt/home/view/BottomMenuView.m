@@ -49,7 +49,7 @@
     self.menuButton4 = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuButton4.height = frame.size.height;
     [self.menuButton4 setImage:[UIImage imageNamed:@"commentIcon"] forState:UIControlStateNormal];
-    [self.menuButton5 addTarget:self action:@selector(didClickOnMenu4) forControlEvents:UIControlEventTouchUpInside];
+    [self.menuButton4 addTarget:self action:@selector(didClickOnMenu4) forControlEvents:UIControlEventTouchUpInside];
     
     self.menuButton5 = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuButton5.height = frame.size.height;
@@ -131,7 +131,7 @@
 }
 
 - (void) loadAvatarImage:(NSString *)avatar{
-    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:kImagePlaceHolder];
+    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:avatar] placeholderImage:kDefaultHeadImage];
 }
 
 

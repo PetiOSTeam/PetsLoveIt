@@ -352,7 +352,7 @@ typedef enum{
 //        return;
 //    }
     //出现error
-    if (![obj[@"rtnCode"] isEqualToString:@"1"]) {
+    if (!([obj[@"rtnCode"] integerValue] ==1)) {
         dispatch_async(dispatch_get_main_queue(), ^{
             //[mAppUtils showHint:obj[@"error"]];
 
