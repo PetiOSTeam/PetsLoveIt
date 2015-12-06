@@ -3878,11 +3878,7 @@
 				189446301BEB0774006249F0 /* e_83@2x.png in Resources */,
 				189445EF1BEB0774006249F0 /* e_24@2x.png in Resources */,
 				18F633AE1BF883C800FD98B1 /* iOS-social-analytics-releasenote.html in Resources */,
-<<<<<<< HEAD
-				F9BE49A71C1477D8002E47CC /* GradeDetailHeaderView.xib in Resources */,
-=======
-				18B37C391C1429A700762980 /* ForgotPwdViewController.xib in Resources */,
->>>>>>> origin/master
+			18B37C391C1429A700762980 /* ForgotPwdViewController.xib in Resources */,
 				189446521BEB0774006249F0 /* chatBar_recordSelected@2x.png in Resources */,
 				1894461F1BEB0774006249F0 /* e_68@2x.png in Resources */,
 				1894462C1BEB0774006249F0 /* e_7@2x.png in Resources */,
