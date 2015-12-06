@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GradeCell">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="225"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="225"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Hf-D7-19Z">
+                        <rect key="frame" x="8" y="10" width="134" height="62"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="62" id="1fF-pg-Xq8"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="京东全品类券抽奖100减10元" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KXS-3u-Shc">
+                        <rect key="frame" x="14" y="79" width="122" height="40"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="Phb-uh-rGm"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ajl-3X-nT3">
+                        <rect key="frame" x="0.0" y="129" width="150" height="1"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="T0b-RG-9ad"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50 积分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2V-AY-dop">
+                        <rect key="frame" x="14" y="144" width="122" height="21"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="ftS-L1-zow"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" red="0.61960784313725492" green="0.61960784313725492" blue="0.61960784313725492" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iKV-hr-Qza">
+                        <rect key="frame" x="35" y="180" width="80" height="28"/>
+                        <animations/>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.1803921568627451" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="gln-0c-hGu"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="立即兑换"/>
+                        <connections>
+                            <action selector="exchangeAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="PYQ-21-GeJ"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="p2V-AY-dop" secondAttribute="trailing" constant="14" id="8fF-dM-qix"/>
+                <constraint firstItem="p2V-AY-dop" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="14" id="BDJ-ZD-8jj"/>
+                <constraint firstItem="p2V-AY-dop" firstAttribute="top" secondItem="ajl-3X-nT3" secondAttribute="bottom" constant="14" id="ELV-N4-7IR"/>
+                <constraint firstAttribute="bottom" secondItem="iKV-hr-Qza" secondAttribute="bottom" constant="17" id="HSc-hF-cMX"/>
+                <constraint firstItem="iKV-hr-Qza" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="35" id="KUs-Nd-Z19"/>
+                <constraint firstAttribute="trailing" secondItem="iKV-hr-Qza" secondAttribute="trailing" constant="35" id="NdU-Nc-iQM"/>
+                <constraint firstItem="ajl-3X-nT3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="PJQ-ge-xJd"/>
+                <constraint firstAttribute="trailing" secondItem="7Hf-D7-19Z" secondAttribute="trailing" constant="8" id="Ru1-Di-Mpu"/>
+                <constraint firstAttribute="trailing" secondItem="ajl-3X-nT3" secondAttribute="trailing" id="aYE-UC-194"/>
+                <constraint firstItem="7Hf-D7-19Z" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="dTi-tz-F0v"/>
+                <constraint firstItem="KXS-3u-Shc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="14" id="gun-JQ-noH"/>
+                <constraint firstItem="7Hf-D7-19Z" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="itQ-oe-gth"/>
+                <constraint firstItem="ajl-3X-nT3" firstAttribute="top" secondItem="KXS-3u-Shc" secondAttribute="bottom" constant="10" id="oPv-jH-tpA"/>
+                <constraint firstItem="KXS-3u-Shc" firstAttribute="top" secondItem="7Hf-D7-19Z" secondAttribute="bottom" constant="7" id="yKX-bO-83f"/>
+                <constraint firstAttribute="trailing" secondItem="KXS-3u-Shc" secondAttribute="trailing" constant="14" id="znt-Ni-QmT"/>
+            </constraints>
+            <connections>
+                <outlet property="exchangeButton" destination="iKV-hr-Qza" id="ExJ-w9-XCU"/>
+                <outlet property="gradeLabel" destination="p2V-AY-dop" id="zCc-Jb-Sih"/>
+                <outlet property="iconImageView" destination="7Hf-D7-19Z" id="601-gI-c3i"/>
+                <outlet property="titleLabel" destination="KXS-3u-Shc" id="EEC-Iz-xc7"/>
+            </connections>
+            <point key="canvasLocation" x="-182" y="230.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

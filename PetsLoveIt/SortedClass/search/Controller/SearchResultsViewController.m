@@ -121,7 +121,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
          onCompletion:^(id responseData, NSError *error) {
              [hud hide:YES];
              [weakSelf.tableView footerEndRefreshing];
-             if (!error) {
+             if (responseData) {
                  NSDictionary *jsonDict = responseData[@"beans"];
                  NSArray *beans = jsonDict[@"beans"];
                  [weakSelf handerSearchResultsFromDatas:beans more:isMore];

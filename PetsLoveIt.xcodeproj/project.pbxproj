@@ -566,6 +566,15 @@
 		F9BE498A1C1316CF002E47CC /* SysMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE49891C1316CF002E47CC /* SysMsgModel.m */; };
 		F9BE498E1C1317D5002E47CC /* SysMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE498D1C1317D5002E47CC /* SysMsgCell.m */; };
 		F9BE49901C1318C5002E47CC /* SysMsgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE498F1C1318C5002E47CC /* SysMsgCell.xib */; };
+		F9BE49951C132C8B002E47CC /* GradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE49931C132C8B002E47CC /* GradeCell.m */; };
+		F9BE49961C132C8B002E47CC /* GradeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE49941C132C8B002E47CC /* GradeCell.xib */; };
+		F9BE49991C1331E3002E47CC /* MyGradeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE49981C1331E3002E47CC /* MyGradeListView.m */; };
+		F9BE499D1C133758002E47CC /* GradeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE499C1C133757002E47CC /* GradeModel.m */; };
+		F9BE49A11C14542A002E47CC /* GradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE499F1C14542A002E47CC /* GradeDetailViewController.m */; };
+		F9BE49A21C14542A002E47CC /* GradeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE49A01C14542A002E47CC /* GradeDetailViewController.xib */; };
+		F9BE49A51C1477C7002E47CC /* GradeDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE49A41C1477C7002E47CC /* GradeDetailHeaderView.m */; };
+		F9BE49A71C1477D8002E47CC /* GradeDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9BE49A61C1477D8002E47CC /* GradeDetailHeaderView.xib */; };
+		F9BE49AA1C147F3C002E47CC /* MyHistoryGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BE49A91C147F3C002E47CC /* MyHistoryGradeViewController.m */; };
 		F9EAB7851BF75A1B00BD0D6B /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAB7661BF75A1B00BD0D6B /* SearchViewController.m */; };
 		F9EAB7861BF75A1B00BD0D6B /* SortViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9EAB76C1BF75A1B00BD0D6B /* SortViewController.m */; };
 		F9EAB7871BF75A1B00BD0D6B /* SortViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9EAB76D1BF75A1B00BD0D6B /* SortViewController.xib */; };
@@ -1572,6 +1581,21 @@
 		F9BE498C1C1317D5002E47CC /* SysMsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SysMsgCell.h; sourceTree = "<group>"; };
 		F9BE498D1C1317D5002E47CC /* SysMsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SysMsgCell.m; sourceTree = "<group>"; };
 		F9BE498F1C1318C5002E47CC /* SysMsgCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SysMsgCell.xib; sourceTree = "<group>"; };
+		F9BE49921C132C8B002E47CC /* GradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradeCell.h; sourceTree = "<group>"; };
+		F9BE49931C132C8B002E47CC /* GradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradeCell.m; sourceTree = "<group>"; };
+		F9BE49941C132C8B002E47CC /* GradeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeCell.xib; sourceTree = "<group>"; };
+		F9BE49971C1331E3002E47CC /* MyGradeListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGradeListView.h; sourceTree = "<group>"; };
+		F9BE49981C1331E3002E47CC /* MyGradeListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGradeListView.m; sourceTree = "<group>"; };
+		F9BE499B1C133757002E47CC /* GradeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradeModel.h; path = Model/GradeModel.h; sourceTree = "<group>"; };
+		F9BE499C1C133757002E47CC /* GradeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradeModel.m; path = Model/GradeModel.m; sourceTree = "<group>"; };
+		F9BE499E1C14542A002E47CC /* GradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradeDetailViewController.h; sourceTree = "<group>"; };
+		F9BE499F1C14542A002E47CC /* GradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradeDetailViewController.m; sourceTree = "<group>"; };
+		F9BE49A01C14542A002E47CC /* GradeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeDetailViewController.xib; sourceTree = "<group>"; };
+		F9BE49A31C1477C7002E47CC /* GradeDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradeDetailHeaderView.h; sourceTree = "<group>"; };
+		F9BE49A41C1477C7002E47CC /* GradeDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradeDetailHeaderView.m; sourceTree = "<group>"; };
+		F9BE49A61C1477D8002E47CC /* GradeDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeDetailHeaderView.xib; sourceTree = "<group>"; };
+		F9BE49A81C147F3C002E47CC /* MyHistoryGradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHistoryGradeViewController.h; sourceTree = "<group>"; };
+		F9BE49A91C147F3C002E47CC /* MyHistoryGradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyHistoryGradeViewController.m; sourceTree = "<group>"; };
 		F9EAB7651BF75A1B00BD0D6B /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		F9EAB7661BF75A1B00BD0D6B /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		F9EAB76B1BF75A1B00BD0D6B /* SortViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SortViewController.h; sourceTree = "<group>"; };
@@ -3276,9 +3300,16 @@
 		18E21F431C05B304007059F3 /* MyGrade */ = {
 			isa = PBXGroup;
 			children = (
+				F9BE499A1C133639002E47CC /* Model */,
+				F9BE49911C132C57002E47CC /* View */,
 				18E21F231C047C91007059F3 /* MyGradeViewController.h */,
 				18E21F221C047C91007059F3 /* MyGradeViewController.m */,
 				18E21F211C047C91007059F3 /* MyGradeViewController.xib */,
+				F9BE499E1C14542A002E47CC /* GradeDetailViewController.h */,
+				F9BE499F1C14542A002E47CC /* GradeDetailViewController.m */,
+				F9BE49A01C14542A002E47CC /* GradeDetailViewController.xib */,
+				F9BE49A81C147F3C002E47CC /* MyHistoryGradeViewController.h */,
+				F9BE49A91C147F3C002E47CC /* MyHistoryGradeViewController.m */,
 			);
 			name = MyGrade;
 			sourceTree = "<group>";
@@ -3531,6 +3562,30 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		F9BE49911C132C57002E47CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F9BE49921C132C8B002E47CC /* GradeCell.h */,
+				F9BE49931C132C8B002E47CC /* GradeCell.m */,
+				F9BE49941C132C8B002E47CC /* GradeCell.xib */,
+				F9BE49971C1331E3002E47CC /* MyGradeListView.h */,
+				F9BE49981C1331E3002E47CC /* MyGradeListView.m */,
+				F9BE49A31C1477C7002E47CC /* GradeDetailHeaderView.h */,
+				F9BE49A41C1477C7002E47CC /* GradeDetailHeaderView.m */,
+				F9BE49A61C1477D8002E47CC /* GradeDetailHeaderView.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		F9BE499A1C133639002E47CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F9BE499B1C133757002E47CC /* GradeModel.h */,
+				F9BE499C1C133757002E47CC /* GradeModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		F9EAB7621BF75A1B00BD0D6B /* SortedClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -3758,6 +3813,7 @@
 				189446301BEB0774006249F0 /* e_83@2x.png in Resources */,
 				189445EF1BEB0774006249F0 /* e_24@2x.png in Resources */,
 				18F633AE1BF883C800FD98B1 /* iOS-social-analytics-releasenote.html in Resources */,
+				F9BE49A71C1477D8002E47CC /* GradeDetailHeaderView.xib in Resources */,
 				189446521BEB0774006249F0 /* chatBar_recordSelected@2x.png in Resources */,
 				1894461F1BEB0774006249F0 /* e_68@2x.png in Resources */,
 				1894462C1BEB0774006249F0 /* e_7@2x.png in Resources */,
@@ -3862,6 +3918,7 @@
 				189445F61BEB0774006249F0 /* e_30@2x.png in Resources */,
 				189446031BEB0774006249F0 /* e_42@2x.png in Resources */,
 				189445B11BEB0774006249F0 /* CoreHeaderShowView.xib in Resources */,
+				F9BE49961C132C8B002E47CC /* GradeCell.xib in Resources */,
 				189445FE1BEB0774006249F0 /* e_38@2x.png in Resources */,
 				1802A1E81C0C3BB9009BC2F8 /* BindEmailViewController.xib in Resources */,
 				18F633B41BF883C800FD98B1 /* ios-social-sdk-login-quick.html in Resources */,
@@ -3884,6 +3941,7 @@
 				1894464B1BEB0774006249F0 /* chatBar_moreSelected.png in Resources */,
 				189446101BEB0774006249F0 /* e_54@2x.png in Resources */,
 				189446151BEB0774006249F0 /* e_59@2x.png in Resources */,
+				F9BE49A21C14542A002E47CC /* GradeDetailViewController.xib in Resources */,
 				189446041BEB0774006249F0 /* e_43@2x.png in Resources */,
 				189446571BEB0774006249F0 /* chat_card_normal@2x.png in Resources */,
 				1894461A1BEB0774006249F0 /* e_63@2x.png in Resources */,
@@ -3961,6 +4019,7 @@
 				18E21EBC1C00229C007059F3 /* YYTextContainerView.m in Sources */,
 				189445B01BEB0774006249F0 /* CoreHeaderShowView.m in Sources */,
 				189445CD1BEB0774006249F0 /* PSTCollectionView.m in Sources */,
+				F9BE499D1C133758002E47CC /* GradeModel.m in Sources */,
 				18E21EE41C01CC53007059F3 /* RegViewController.m in Sources */,
 				189445DF1BEB0774006249F0 /* DXFaceView.m in Sources */,
 				189445B91BEB0774006249F0 /* UIView+MJExtension.m in Sources */,
@@ -4017,6 +4076,7 @@
 				F9EAB7851BF75A1B00BD0D6B /* SearchViewController.m in Sources */,
 				18E21ECE1C00229C007059F3 /* YYTextAsyncLayer.m in Sources */,
 				F9EAB7881BF75A1B00BD0D6B /* StoreModel.m in Sources */,
+				F9BE49AA1C147F3C002E47CC /* MyHistoryGradeViewController.m in Sources */,
 				189446401BEB0774006249F0 /* DXRecordView.m in Sources */,
 				18F632941BF6F34B00FD98B1 /* MLTransition.m in Sources */,
 				18E21EC21C00229C007059F3 /* YYTextLine.m in Sources */,
@@ -4028,6 +4088,7 @@
 				184858CF1BF8DDC9001FF521 /* SearchKeyWordsCell.m in Sources */,
 				189446851BEB0774006249F0 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				189446881BEB0774006249F0 /* SWTableViewCell.m in Sources */,
+				F9BE49A11C14542A002E47CC /* GradeDetailViewController.m in Sources */,
 				189442DB1BEAF65A006249F0 /* UITableViewCell+Addition.m in Sources */,
 				184858AF1BF8DD3C001FF521 /* MASLayoutConstraint.m in Sources */,
 				189445AA1BEB0774006249F0 /* LCCell.m in Sources */,
@@ -4052,6 +4113,7 @@
 				189446DF1BEB0A80006249F0 /* YYAnimatedImageView.m in Sources */,
 				18F632A51BF84EC300FD98B1 /* BottomMenuView.m in Sources */,
 				189446E41BEB0A80006249F0 /* YYImageCache.m in Sources */,
+				F9BE49A51C1477C7002E47CC /* GradeDetailHeaderView.m in Sources */,
 				189445D41BEB0774006249F0 /* PSTCollectionViewUpdateItem.m in Sources */,
 				18E21F141C046E15007059F3 /* MyCollectViewController.m in Sources */,
 				18E21EE91C02F7BE007059F3 /* MoreViewController.m in Sources */,
@@ -4100,6 +4162,7 @@
 				184858AC1BF8DD3C001FF521 /* MASCompositeConstraint.m in Sources */,
 				18E21EC41C00229C007059F3 /* YYTextSelectionView.m in Sources */,
 				184858AE1BF8DD3C001FF521 /* MASConstraintMaker.m in Sources */,
+				F9BE49991C1331E3002E47CC /* MyGradeListView.m in Sources */,
 				189445AC1BEB0774006249F0 /* LTCell.m in Sources */,
 				18E21EC61C00229C007059F3 /* YYTextAttribute.m in Sources */,
 				189445C31BEB0774006249F0 /* MJType.m in Sources */,
@@ -4187,6 +4250,7 @@
 				189446671BEB0774006249F0 /* XLUtil.m in Sources */,
 				F9EAB78B1BF75A1B00BD0D6B /* PLStoreCell.m in Sources */,
 				189445911BEB0774006249F0 /* UIView+MJExtension.m in Sources */,
+				F9BE49951C132C8B002E47CC /* GradeCell.m in Sources */,
 				189446DD1BEB0A80006249F0 /* UIImage+YYWebImage.m in Sources */,
 				1894463D1BEB0774006249F0 /* ZBFaceView.m in Sources */,
 				18F6329D1BF72D1900FD98B1 /* PLTableView.m in Sources */,
