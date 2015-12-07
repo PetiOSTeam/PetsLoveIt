@@ -13,6 +13,15 @@ class XRZAlertControl: UIView {
     /// 定制的内容View
     var contentView: UIView!
     
+    var touchDismiss: Bool = false {
+        didSet{
+            if touchDismiss {
+                let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("dismiss"))
+                self.backgroundView.addGestureRecognizer(tap)
+            }
+        }
+    }
+    
     /// 背景View，半透明背景
     lazy var backgroundView: UIView = {
         let _backgroundView = UIView(frame: self.bounds)

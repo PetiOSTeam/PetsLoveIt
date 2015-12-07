@@ -8,8 +8,15 @@
 
 #import "GradeDetailViewController.h"
 #import "GradeDetailHeaderView.h"
+#import "MBProgressHUD+Add.h"
+#import "GradePopView.h"
+#import "PetsLoveIt-swift.h"
+#import "MyHistoryGradeViewController.h"
+#import "UserSettingVC.h"
 
 @interface GradeDetailViewController ()
+
+@property (nonatomic, assign) BOOL isPushOldExchange;
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 
@@ -28,13 +35,18 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    if (!self.isPushOldExchange) {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+    self.isPushOldExchange = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    if (!self.isPushOldExchange) {
+        [self.navigationController setNavigationBarHidden:YES animated:YES];
+    }
 }
 
 - (void)viewDidLoad
@@ -45,7 +57,7 @@
 
 - (void)configUI
 {
-    [self.headerView removeFromSuperview];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"我的积分";
     [self.webView loadHTMLString:self.gradeModel.instructions baseURL:nil];
     self.webView.scrollView.contentInset = UIEdgeInsetsMake(self.headerView.height, 0, 0, 0);
@@ -100,7 +112,46 @@
 
 - (IBAction)exchangeAction:(id)sender
 {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"兑换中...";
+    NSDictionary *parameter = @{@"uid": @"saveUserChangeIntegral"};
+    WEAKSELF
+    [APIOperation GET:@"common.action"
+           parameters:parameter
+         onCompletion:^(id responseData, NSError *error) {
+             [hud hide:YES];
+             if (responseData) {
+                 [weakSelf exchangeSucceessfulWithJsonDict:responseData];
+             }else {
+                 [MBProgressHUD showError:@"兑换失败，请重试" toView:weakSelf.view];
+             }
+         }];
+}
+
+- (void)exchangeSucceessfulWithJsonDict:(NSDictionary *)resp
+{
+    GradeExchangeModel *model = [[GradeExchangeModel alloc] initWithJson:resp];
+    GradePopView *popView = [[NSBundle mainBundle] loadNibNamed:@"GradePopView"
+                                                          owner:self
+                                                        options:nil][0];
+    popView.model = model;
+    WEAKSELF
+    XRZAlertControl *alertControl = [[XRZAlertControl alloc] initWithContentView:popView];
+    alertControl.touchDismiss = YES;
+    [alertControl show];
     
+    popView.cellbackAction = ^(NSInteger index){
+        [alertControl dismiss];
+        if (index == 0) {
+            weakSelf.isPushOldExchange = YES;
+            MyHistoryGradeViewController *historyVC = [[MyHistoryGradeViewController alloc] init];
+            historyVC.isFlog = YES;
+            [weakSelf.navigationController pushViewController:historyVC animated:YES];
+        }else {
+            UserSettingVC *userSetVC = [[UserSettingVC alloc] initWithNibName:@"UserSettingVC" bundle:nil];
+            [weakSelf.navigationController pushViewController:userSetVC animated:YES];
+        }
+    };
 }
 
 #pragma mark - *** getter ***

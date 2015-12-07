@@ -13,6 +13,8 @@ static NSString * CellIdentifier = @"GradientCell";
 
 @interface MyGradeListView () <UICollectionViewDataSource, UICollectionViewDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
+@property (nonatomic, assign) BOOL isNotData;
+
 @property (nonatomic, strong) NSMutableArray *gradeModels;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -38,11 +40,12 @@ static NSString * CellIdentifier = @"GradientCell";
 
 - (void)loadDataFromSever
 {
+    _isNotData = NO;
     NSString *uid;
     if (self.gradeStyle == GradeStyleNew) {
         uid = @"getIntegralChanges";
     }else {
-        uid = @"getIntegralChanges";//@"getUserIntegralChanges";
+        uid = @"getUserIntegralChanges";
     }
     
     NSDictionary *parameter = @{@"uid": uid,
@@ -61,6 +64,7 @@ static NSString * CellIdentifier = @"GradientCell";
                  NSArray *beans = jsonData[@"beans"];
                  [weakSelf handerDataFromJsonData:beans];
              }else {
+                 weakSelf.isNotData = NO;
                  [weakSelf.collectionView reloadEmptyDataSet];
              }
          }];
@@ -72,6 +76,9 @@ static NSString * CellIdentifier = @"GradientCell";
         GradeModel *model = [[GradeModel alloc] initWithJson:obj];
         [self.gradeModels addObject:model];
     }];
+    if (self.gradeModels.count == 0) {
+        self.isNotData = YES;
+    }
     [self.collectionView reloadData];
 }
 
@@ -125,13 +132,13 @@ static NSString * CellIdentifier = @"GradientCell";
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
 {
-    NSAttributedString *str = [[NSAttributedString alloc] initWithString:@"点击屏幕，重新加载" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}];
+    NSAttributedString *str = [[NSAttributedString alloc] initWithString:_isNotData ? @"暂无兑换记录" : @"点击屏幕，重新加载" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}];
     return str;
 }
 
 - (BOOL)emptyDataSetShouldAllowTouch:(UIScrollView *)scrollView
 {
-    return YES;
+    return !_isNotData;
 }
 
 - (void)emptyDataSetDidTapView:(UIScrollView *)scrollView
