@@ -41,6 +41,11 @@
     [self.pwdView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     [self.confirmPwdView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     
+    UIView *line1 = [[UIView alloc] initWithFrame:CGRectMake(self.msgCodeBtn.left -8, 0, 1, 28)];
+    [line1 setBackgroundColor:mRGBToColor(0xdcdcdc)];
+    line1.center = CGPointMake(line1.center.x, self.codeView.height/2) ;
+    [self.codeView addSubview:line1];
+    
     self.okBtn.layer.cornerRadius = 25;
     [self.scrollView setContentSize:CGSizeMake(mScreenWidth, self.okBtn.bottom + 20)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];

@@ -95,9 +95,24 @@
 
 - (void)autoLogin{
     LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
-    if (!userInfo || !userInfo.loginType) {
+    if (!userInfo ) {
         return;
     }
+    //三方登录，通过是否绑定帐号接口登录
+    if (userInfo.otherAccount && [userInfo.otherAccount length]>0) {
+        [self otherAccountLogin:userInfo.otherType otherAccount:userInfo.otherAccount];
+        
+    }else{
+        if (!userInfo.loginType) {
+            return;
+        }
+        [self loginByAccount:userInfo];
+    }
+    
+    
+}
+
+- (void)loginByAccount:(LocalUserInfoModelClass *)userInfo{
     NSDictionary *params = @{
                              @"uid":@"login",
                              @"type":userInfo.loginType,
@@ -115,8 +130,32 @@
             //将userinfo记录下来
             mAppDelegate.loginUser = localUserInfo;
             [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
-    
-           
+            
+            
+        }
+    }];
+}
+
+- (void)otherAccountLogin:(NSString *)otherType otherAccount:(NSString *)otherAccount{
+    NSDictionary *params = @{
+                             @"uid":@"isBindOtherUser",
+                             @"othertype":otherType,
+                             @"otheraccount":otherAccount                          };
+    [APIOperation GET:@"isBindUser.action"  parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            //绑定过三方帐号，直接登录
+            NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
+            LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
+            localUserInfo.userToken = [responseData objectForKey:@"userToken"];
+            localUserInfo.otherType = otherType;
+            localUserInfo.otherAccount = otherAccount;
+            //将userinfo记录下来
+            mAppDelegate.loginUser = localUserInfo;
+            [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+        
+            
+        }else{
+
         }
     }];
 }

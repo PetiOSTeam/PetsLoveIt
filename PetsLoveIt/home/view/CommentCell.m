@@ -23,6 +23,9 @@
     _commentLabel.customEmojiRegex = kEmojiReg;
     _commentLabel.customEmojiPlistName = @"expression.plist";
     
+    self.avatarImageView.clipsToBounds = YES;
+    self.avatarImageView.layer.cornerRadius = 18;
+    
     self.tableView.width = mScreenWidth - 56 -10;
     self.tableView.layer.borderColor = mRGBToColor(0xd2d2d2).CGColor;
     self.tableView.layer.borderWidth = kLayerBorderWidth;

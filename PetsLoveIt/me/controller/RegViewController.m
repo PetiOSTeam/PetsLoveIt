@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong,nonatomic) NSString *token;
+@property (assign,nonatomic) BOOL mobileExist;
 
 @end
 
@@ -40,7 +41,12 @@
 
 - (void)prepareViewAndData{
     [self showNaviBarView];
-    self.navBarTitleLabel.text = @"手机号注册";
+    if (self.isOtherLogin) {
+        self.navBarTitleLabel.text = @"完善个人信息";
+        [self.regBtn setTitle:@"确定" forState:UIControlStateNormal];
+    }else{
+        self.navBarTitleLabel.text = @"手机号注册";
+    }
     
     self.accountView.width = self.pwdView.width =self.codeView.width=self.nickNameView.width = mScreenWidth-80;
     [self.accountView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
@@ -140,6 +146,37 @@
         return;
     }
     [self countdownAnimation];
+    //第三方登录的完善信息
+    if (self.isOtherLogin) {
+        [self mobileExist:mobile];
+    }else{
+        [self sendSMSCode:mobile];
+    }
+    
+    
+}
+
+- (void) mobileExist:(NSString *)mobile{
+    NSDictionary *params = @{
+                             @"uid":@"mobileExists",
+                             @"mobile":mobile
+                             };
+    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        int rtnCode = [[responseData objectForKey:@"rtnCode"] intValue];
+        if (rtnCode == 1) {
+            //手机号已经注册过
+            self.pwdView.hidden = YES;
+            self.nickNameView.hidden = YES;
+            self.mobileExist = YES;
+        }else if(rtnCode == 0){
+            self.pwdView.hidden = NO;
+            self.nickNameView.hidden = NO;
+            self.mobileExist = NO;
+        }
+        [self sendSMSCode:mobile];
+    }];
+}
+- (void) sendSMSCode:(NSString *)mobile{
     NSDictionary *params = @{
                              @"uid":@"smsathcode",
                              @"mobile":mobile
@@ -166,6 +203,8 @@
 - (IBAction)regAction:(id)sender {
     [self.view endEditing:YES];
     
+    [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeNone];
+    
     NSString  *mobile = self.accountTextField.text;
     NSString  *code = self.codeTextField.text;
     NSString  *nickName = self.nickTextField.text;
@@ -185,11 +224,10 @@
         return;
 
     }
-    if (![pwd isValidatePassword]) {
+    if (![pwd isValidatePassword]&&!self.mobileExist) {
         mAlertView(@"提示", @"密码应该是6－18位的字母数字下划线组合");
         return;
     }
-    
     
     NSDictionary *params = @{
                              @"uid":@"userRegist",
@@ -200,7 +238,37 @@
                              @"userPwd":encryptedPwd,
                              @"userToken":self.token
                              };
+
+    if (self.isOtherLogin) {
+        params = @{
+                   @"uid":@"userRegist",
+                   @"type":@"1",
+                   @"account":mobile,
+                   @"athcode":code,
+                   @"nickName":nickName,
+                   @"userPwd":encryptedPwd,
+                   @"userToken":self.token,
+                   @"othertype":self.otherType,
+                   @"otheraccount":self.otherAccount
+                   };
+        
+        if (self.mobileExist) {
+            params = @{
+                       @"uid":@"userRegist",
+                       @"type":@"1",
+                       @"account":mobile,
+                       @"athcode":code,
+                       @"userToken":self.token,
+                       @"othertype":self.otherType,
+                       @"otheraccount":self.otherAccount
+                       };
+        }
+        
+
+    }
+    
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        [SVProgressHUD dismiss];
         if (!error) {
             NSLog(@"%@",responseData);
             

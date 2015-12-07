@@ -28,4 +28,7 @@
 @property (strong, nonatomic) NSString *loginType;
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *accountName;
+//三方登录
+@property (strong, nonatomic) NSString *otherType;
+@property (strong, nonatomic) NSString *otherAccount;
 @end

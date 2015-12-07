@@ -43,6 +43,8 @@
     [encoder encodeObject:self.accountName forKey:@"accountName"];
     [encoder encodeObject:self.todaySigned forKey:@"todaySigned"];
     [encoder encodeObject:self.deliveryAddress forKey:@"deliveryAddress"];
+    [encoder encodeObject:self.otherType forKey:@"otherType"];
+    [encoder encodeObject:self.otherAccount forKey:@"otherAccount"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -65,6 +67,9 @@
         self.accountName = [decoder decodeObjectForKey:@"accountName"];
         self.todaySigned = [decoder decodeObjectForKey:@"todaySigned"];
         self.deliveryAddress = [decoder decodeObjectForKey:@"deliveryAddress"];
+        self.otherType = [decoder decodeObjectForKey:@"otherType"];
+        self.otherAccount = [decoder decodeObjectForKey:@"otherAccount"];
+
     }
     return self;
 }
@@ -89,7 +94,8 @@
     [theCopy setAccountName:[self.accountName copy]];
     [theCopy setTodaySigned:[self.todaySigned copy]];
     [theCopy setDeliveryAddress:[self.deliveryAddress copy]];
-    
+    [theCopy setOtherType:[self.otherType copy]];
+    [theCopy setOtherAccount:[self.otherAccount copy]];
     return theCopy;
 }
 @end

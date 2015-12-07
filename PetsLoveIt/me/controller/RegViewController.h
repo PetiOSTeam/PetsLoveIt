@@ -9,5 +9,8 @@
 #import "CommonViewController.h"
 
 @interface RegViewController : CommonViewController
+@property (nonatomic,assign) BOOL isOtherLogin;//三方登录
+@property (nonatomic,strong) NSString *otherType;
+@property (nonatomic,strong) NSString *otherAccount;
 
 @end
