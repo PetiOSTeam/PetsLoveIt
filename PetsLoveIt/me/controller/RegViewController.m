@@ -271,9 +271,14 @@
         [SVProgressHUD dismiss];
         if (!error) {
             NSLog(@"%@",responseData);
+            [mAppUtils showHint:[responseData objectForKey:@"rtnMsg"]];
+            if (self.isOtherLogin) {
+                //用绑定帐号的接口自动登录
+                [self bindUserAccount];
+            }else{
+                [self.navigationController popViewControllerAnimated:YES];
+            }
             
-            [SVProgressHUD showSuccessWithStatus:@"注册成功，请登录"];
-            [self.navigationController popViewControllerAnimated:YES];
         }else{
             mAlertAPIErrorInfo(error);
         }
@@ -281,6 +286,39 @@
     
     
 }
+
+- (void)bindUserAccount{
+    [SVProgressHUD showWithStatus:@"请稍后" maskType:SVProgressHUDMaskTypeNone];
+    NSDictionary *params = @{
+                             @"uid":@"isBindOtherUser",
+                             @"othertype":self.otherType,
+                             @"otheraccount":self.otherAccount                          };
+    [APIOperation GET:@"isBindUser.action"  parameters:params onCompletion:^(id responseData, NSError *error) {
+        [SVProgressHUD dismiss];
+        if (!error) {
+            //绑定过三方帐号，直接登录
+            NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
+            LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
+            localUserInfo.userToken = [responseData objectForKey:@"userToken"];
+            localUserInfo.otherType = self.otherType;
+            localUserInfo.otherAccount = self.otherAccount;
+            //将userinfo记录下来
+            mAppDelegate.loginUser = localUserInfo;
+            [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+            
+            [mUserDefaults setObject:_accountTextField.text forKey:HLoginAccount];
+            [mUserDefaults synchronize];
+            
+            //登录成功
+            [mAppUtils showHint:@"登录成功"];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }else{
+        
+        }
+    }];
+}
+
+
 
 - (IBAction)regEmailAction:(id)sender {
     
