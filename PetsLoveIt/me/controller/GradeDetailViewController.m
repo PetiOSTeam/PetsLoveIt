@@ -32,22 +32,22 @@
 
 @implementation GradeDetailViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    if (!self.isPushOldExchange) {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-    }
-    self.isPushOldExchange = NO;
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    if (!self.isPushOldExchange) {
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-    }
-}
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    if (!self.isPushOldExchange) {
+//        [self.navigationController setNavigationBarHidden:NO animated:YES];
+//    }
+//    self.isPushOldExchange = NO;
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//    if (!self.isPushOldExchange) {
+//        [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    }
+//}
 
 - (void)viewDidLoad
 {
@@ -58,10 +58,26 @@
 - (void)configUI
 {
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"我的积分";
-    [self.webView loadHTMLString:self.gradeModel.instructions baseURL:nil];
-    self.webView.scrollView.contentInset = UIEdgeInsetsMake(self.headerView.height, 0, 0, 0);
-    [self.webView.scrollView addSubview:self.headerView];
+    [self showNaviBarView];
+    self.navBarTitleLabel.text = @"我的积分";
+    
+    [self.view addSubview:self.headerView];
+
+    self.webView.top = mNavBarHeight+mStatusBarHeight+self.headerView.height;
+    self.webView.height = mScreenHeight - 64- self.headerView.height - self.bottomView.height;
+    
+    NSString *html = self.gradeModel.instructions;
+    NSString *css = [NSString stringWithFormat:
+                     @"<html><head><style>body{ background-color: transparent; text-align: %@; font-size: %ipx; color: #666666;} a { color: #0663b3; } </style></head><body>",
+                     @"justify",
+                     16];
+    
+    NSMutableString *desc = [NSMutableString stringWithFormat:@"%@%@%@",
+                             css,
+                             html,
+                             @"</body></html>"];
+    [self.webView loadHTMLString:desc baseURL:nil];
+//    self.webView.scrollView.contentInset = UIEdgeInsetsMake(self.headerView.height, 0, 0, 0);
     
     [self.headerView.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.gradeModel.discountPic]
                           placeholderImage:[UIImage imageNamed:@"timeline_image_loading"]];
@@ -81,6 +97,7 @@
     [headerAttributedStr addAttributes:attributes1 range:range];
     self.headerView.timeLabel.attributedText  = headerAttributedStr;
     
+    self.bottomView.width = mScreenWidth;
     [self.bottomView addTopBorderWithColor:kLineColor andWidth:.5];
     
     NSString *totalStr = [NSString stringWithFormat:@"总计：%@ 张", self.gradeModel.totalNum];
@@ -170,10 +187,7 @@
         _headerView = [[NSBundle mainBundle] loadNibNamed:@"GradeDetailHeaderView"
                                                     owner:self
                                                   options:nil][0];
-        _headerView.width = self.view.width;
-        _headerView.height = 125;
-        _headerView.top = -125;
-        _headerView.width = mScreenWidth;
+        _headerView.frame = CGRectMake(0, 64, mScreenWidth, 125);
         [_headerView addBottomBorderWithColor:kLineColor andWidth:.5];
     }
     return _headerView;

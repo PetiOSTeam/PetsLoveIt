@@ -12,8 +12,6 @@
 
 - (void)awakeFromNib
 {
-    self.height = 125;
-    self.width = mScreenWidth;
 }
 
 /*

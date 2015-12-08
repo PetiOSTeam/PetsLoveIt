@@ -34,6 +34,8 @@
 {
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"我的积分";
+    LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
+    self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",userInfo.userIntegral];
     [self gradeListView];
 }
 
