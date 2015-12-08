@@ -10,4 +10,6 @@
 
 @interface MyHistoryGradeViewController : UIViewController
 
+@property (nonatomic, assign) BOOL isFlog;
+
 @end

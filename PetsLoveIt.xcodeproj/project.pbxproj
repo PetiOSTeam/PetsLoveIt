@@ -558,6 +558,11 @@
 		18F633BC1BF8898000FD98B1 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F633BA1BF8898000FD98B1 /* libSocialSina.a */; };
 		18F633BF1BF88E6400FD98B1 /* KMDetailsPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */; };
 		76AF7FED1BEF7F1F0066659E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AF7FEC1BEF7F1F0066659E /* OrderModel.m */; };
+		F91BA2C51C15B08C00B1C2E9 /* XRZAlertControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */; };
+		F91BA2C91C15B65A00B1C2E9 /* GradePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C81C15B65A00B1C2E9 /* GradePopView.m */; };
+		F91BA2CB1C15B66C00B1C2E9 /* GradePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91BA2CA1C15B66C00B1C2E9 /* GradePopView.xib */; };
+		F91BA2D01C15B70800B1C2E9 /* BeanEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2CD1C15B70800B1C2E9 /* BeanEntity.m */; };
+		F91BA2D11C15B70800B1C2E9 /* GradeExchangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2CF1C15B70800B1C2E9 /* GradeExchangeModel.m */; };
 		F92EE5261C0068DA00DEC5D0 /* KeywordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F92EE5251C0068DA00DEC5D0 /* KeywordsModel.m */; };
 		F92EE52A1C006D9700DEC5D0 /* XLLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F92EE5291C006D9700DEC5D0 /* XLLoadingView.m */; };
 		F9332A7A1C05E5BD00E322F0 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F9332A791C05E5BD00E322F0 /* UIScrollView+EmptyDataSet.m */; };
@@ -1573,6 +1578,15 @@
 		18F633BE1BF88E6400FD98B1 /* KMDetailsPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDetailsPageView.h; sourceTree = "<group>"; };
 		76AF7FEB1BEF7F1F0066659E /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		76AF7FEC1BEF7F1F0066659E /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XRZAlertControl.swift; sourceTree = "<group>"; };
+		F91BA2C61C15B16700B1C2E9 /* PetsLoveIt-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PetsLoveIt-Header.h"; sourceTree = "<group>"; };
+		F91BA2C71C15B65A00B1C2E9 /* GradePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradePopView.h; sourceTree = "<group>"; };
+		F91BA2C81C15B65A00B1C2E9 /* GradePopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradePopView.m; sourceTree = "<group>"; };
+		F91BA2CA1C15B66C00B1C2E9 /* GradePopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradePopView.xib; sourceTree = "<group>"; };
+		F91BA2CC1C15B70800B1C2E9 /* BeanEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeanEntity.h; path = Model/BeanEntity.h; sourceTree = "<group>"; };
+		F91BA2CD1C15B70800B1C2E9 /* BeanEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeanEntity.m; path = Model/BeanEntity.m; sourceTree = "<group>"; };
+		F91BA2CE1C15B70800B1C2E9 /* GradeExchangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradeExchangeModel.h; path = Model/GradeExchangeModel.h; sourceTree = "<group>"; };
+		F91BA2CF1C15B70800B1C2E9 /* GradeExchangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradeExchangeModel.m; path = Model/GradeExchangeModel.m; sourceTree = "<group>"; };
 		F92EE5241C0068DA00DEC5D0 /* KeywordsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeywordsModel.h; sourceTree = "<group>"; };
 		F92EE5251C0068DA00DEC5D0 /* KeywordsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeywordsModel.m; sourceTree = "<group>"; };
 		F92EE5281C006D9700DEC5D0 /* XLLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLLoadingView.h; sourceTree = "<group>"; };
@@ -1826,6 +1840,7 @@
 				189442661BE9DEC3006249F0 /* Assets.xcassets */,
 				1894426B1BE9DEC3006249F0 /* Info.plist */,
 				189442571BE9DEC3006249F0 /* Supporting Files */,
+				F91BA2C61C15B16700B1C2E9 /* PetsLoveIt-Header.h */,
 			);
 			path = PetsLoveIt;
 			sourceTree = "<group>";
@@ -1965,6 +1980,8 @@
 		189442EA1BEB0773006249F0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				F91BA2C31C15B08C00B1C2E9 /* XRZAlertControl */,
+				F91BA2C21C15B04300B1C2E9 /* XLPopViewControll */,
 				18B37C311C13E6B000762980 /* DXPopover */,
 				F9332A771C05E5BD00E322F0 /* EmptyDataSet */,
 				F92EE5271C006D9700DEC5D0 /* XLLoadingView */,
@@ -3561,6 +3578,21 @@
 			path = UMSocial_Sdk_Instructions;
 			sourceTree = "<group>";
 		};
+		F91BA2C21C15B04300B1C2E9 /* XLPopViewControll */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = XLPopViewControll;
+			sourceTree = "<group>";
+		};
+		F91BA2C31C15B08C00B1C2E9 /* XRZAlertControl */ = {
+			isa = PBXGroup;
+			children = (
+				F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */,
+			);
+			path = XRZAlertControl;
+			sourceTree = "<group>";
+		};
 		F92EE5271C006D9700DEC5D0 /* XLLoadingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3636,6 +3668,9 @@
 				F9BE49A31C1477C7002E47CC /* GradeDetailHeaderView.h */,
 				F9BE49A41C1477C7002E47CC /* GradeDetailHeaderView.m */,
 				186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */,
+				F91BA2C71C15B65A00B1C2E9 /* GradePopView.h */,
+				F91BA2C81C15B65A00B1C2E9 /* GradePopView.m */,
+				F91BA2CA1C15B66C00B1C2E9 /* GradePopView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -3643,6 +3678,10 @@
 		F9BE499A1C133639002E47CC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F91BA2CC1C15B70800B1C2E9 /* BeanEntity.h */,
+				F91BA2CD1C15B70800B1C2E9 /* BeanEntity.m */,
+				F91BA2CE1C15B70800B1C2E9 /* GradeExchangeModel.h */,
+				F91BA2CF1C15B70800B1C2E9 /* GradeExchangeModel.m */,
 				F9BE499B1C133757002E47CC /* GradeModel.h */,
 				F9BE499C1C133757002E47CC /* GradeModel.m */,
 			);
@@ -3965,6 +4004,7 @@
 				18F633B11BF883C800FD98B1 /* ios-social-sdk-comment-quick.html in Resources */,
 				F9EAB7921BF75A1B00BD0D6B /* StoreFooterView.xib in Resources */,
 				189446331BEB0774006249F0 /* e_86@2x.png in Resources */,
+				F91BA2CB1C15B66C00B1C2E9 /* GradePopView.xib in Resources */,
 				1894463A1BEB0774006249F0 /* faceDelete@2x.png in Resources */,
 				1894462B1BEB0774006249F0 /* e_79@2x.png in Resources */,
 				189446061BEB0774006249F0 /* e_45@2x.png in Resources */,
@@ -4198,6 +4238,7 @@
 				F9EAB78D1BF75A1B00BD0D6B /* ScreenSoretedView.m in Sources */,
 				189442E61BEAF65A006249F0 /* AFHTTPClientUtil.m in Sources */,
 				189445BB1BEB0774006249F0 /* Reachability.m in Sources */,
+				F91BA2D11C15B70800B1C2E9 /* GradeExchangeModel.m in Sources */,
 				18DB0D951BF2EA2B003F3743 /* KMIndexedCollectionView.m in Sources */,
 				189445991BEB0774006249F0 /* MWTapDetectingImageView.m in Sources */,
 				189446771BEB0774006249F0 /* UIImage+GIF.m in Sources */,
@@ -4298,6 +4339,7 @@
 				184858B01BF8DD3C001FF521 /* MASViewAttribute.m in Sources */,
 				189445B81BEB0774006249F0 /* UIScrollView+Refresh.m in Sources */,
 				189442CF1BEAF65A006249F0 /* NSString+Base64.m in Sources */,
+				F91BA2D01C15B70800B1C2E9 /* BeanEntity.m in Sources */,
 				189445D11BEB0774006249F0 /* PSTCollectionViewFlowLayout.m in Sources */,
 				1894466C1BEB0774006249F0 /* MKAnnotationView+WebCache.m in Sources */,
 				189445861BEB0774006249F0 /* MJPhotoLoadingView.m in Sources */,
@@ -4385,6 +4427,7 @@
 				184858B21BF8DD3C001FF521 /* NSArray+MASAdditions.m in Sources */,
 				189445C71BEB0774006249F0 /* NSString+MJExtension.m in Sources */,
 				1808BE541C132746002A029B /* CommentSubCell.m in Sources */,
+				F91BA2C51C15B08C00B1C2E9 /* XRZAlertControl.swift in Sources */,
 				18D2CB0B1BEF39BD00B8DD72 /* ShareOrderViewController.m in Sources */,
 				18DD07481BED93BB003C8160 /* YBImageView.m in Sources */,
 				189442CB1BEAF65A006249F0 /* NSFileManager+ Addition.m in Sources */,
@@ -4412,6 +4455,7 @@
 				1894466A1BEB0774006249F0 /* RichEditView.m in Sources */,
 				189442C51BEAF65A006249F0 /* AppUtils.m in Sources */,
 				18DB0D7E1BEF66DB003F3743 /* ExperienceViewController.m in Sources */,
+				F91BA2C91C15B65A00B1C2E9 /* GradePopView.m in Sources */,
 				189446801BEB0774006249F0 /* SRRefreshView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4519,6 +4563,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/PetsLoveIt/Libs/**",
@@ -4557,6 +4602,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pets.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PetsLoveIt/PetsLoveIt-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -4569,6 +4616,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/PetsLoveIt/Libs/**",
@@ -4607,6 +4655,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pets.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "PetsLoveIt/PetsLoveIt-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
