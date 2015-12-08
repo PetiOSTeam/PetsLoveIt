@@ -194,6 +194,11 @@
     [hud hide:YES afterDelay:2];
 }
 
+- (void)hideHint{
+    UIView *view = [[UIApplication sharedApplication].delegate window];
+    [MBProgressHUD hideHUDForView:view animated:YES];
+}
+
 
 -(BOOL)hasConnectivity {
     struct sockaddr_in zeroAddress;

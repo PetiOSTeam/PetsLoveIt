@@ -42,6 +42,7 @@ _Pragma("clang diagnostic pop")
 - (UIImage *)scaleHomePageCoverImage:(UIImage *)image;
 
 - (void)showHint:(NSString *)hint;
+- (void)hideHint;
 
 -(BOOL)hasConnectivity;
 

@@ -203,7 +203,7 @@
 - (IBAction)regAction:(id)sender {
     [self.view endEditing:YES];
     
-    [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeNone];
+    [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeClear];
     
     NSString  *mobile = self.accountTextField.text;
     NSString  *code = self.codeTextField.text;
@@ -288,13 +288,16 @@
 }
 
 - (void)bindUserAccount{
-    [SVProgressHUD showWithStatus:@"请稍后" maskType:SVProgressHUDMaskTypeNone];
+    [SVProgressHUD showWithStatus:@"请稍后" maskType:SVProgressHUDMaskTypeClear];
     NSDictionary *params = @{
                              @"uid":@"isBindOtherUser",
                              @"othertype":self.otherType,
-                             @"otheraccount":self.otherAccount                          };
+                             @"otheraccount":self.otherAccount,
+                             @"userToken":self.token
+                             };
     [APIOperation GET:@"isBindUser.action"  parameters:params onCompletion:^(id responseData, NSError *error) {
         [SVProgressHUD dismiss];
+        [mAppUtils hideHint];
         if (!error) {
             //绑定过三方帐号，直接登录
             NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
@@ -313,7 +316,7 @@
             [mAppUtils showHint:@"登录成功"];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
-        
+            mAlertAPIErrorInfo(error);
         }
     }];
 }
