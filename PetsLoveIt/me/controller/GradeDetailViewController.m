@@ -114,7 +114,9 @@
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"兑换中...";
-    NSDictionary *parameter = @{@"uid": @"saveUserChangeIntegral"};
+    NSDictionary *parameter = @{@"uid": @"saveUserChangeIntegral",
+                                @"userdiscountId":self.gradeModel.discountId
+                                };
     WEAKSELF
     [APIOperation GET:@"common.action"
            parameters:parameter
@@ -165,6 +167,7 @@
         _headerView.width = self.view.width;
         _headerView.height = 125;
         _headerView.top = -125;
+        _headerView.width = mScreenWidth;
         [_headerView addBottomBorderWithColor:kLineColor andWidth:.5];
     }
     return _headerView;
