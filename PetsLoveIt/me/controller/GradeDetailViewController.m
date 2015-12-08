@@ -123,7 +123,13 @@
          onCompletion:^(id responseData, NSError *error) {
              [hud hide:YES];
              if (responseData) {
-                 [weakSelf exchangeSucceessfulWithJsonDict:responseData];
+                 int rtnCode = [[responseData objectForKey:@"rtnCode"] intValue];
+                 if (rtnCode == 1) {
+                     [weakSelf exchangeSucceessfulWithJsonDict:responseData];
+                 }else if(rtnCode == 0){
+                     [mAppUtils showHint:@"你已经兑换过此优惠"];
+                 }
+                 
              }else {
                  [MBProgressHUD showError:@"兑换失败，请重试" toView:weakSelf.view];
              }
