@@ -254,6 +254,7 @@ static int kCacheMemoryLimit;
     [[SDImageCache sharedImageCache] clearMemory];
 //    //清除userDefault下的cache
     [mUserDefaults removeObjectForKey:HLocalUserInfo];//个人登录信息
+    [mUserDefaults removeObjectForKey:kSignAlarmSwitch];
     [mUserDefaults synchronize];
     mAppDelegate.loginUser = nil;
 

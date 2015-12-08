@@ -12,6 +12,9 @@
 #define UMENG_APPKEY                @"56484222e0f55ad4db009b90"
 #define UMENG_channelId             @"petiOSAppStore"
 
+//JPush
+#define JPush_APPKEY                @"0117e87033fb18bad75e61a6"
+
 static NSString *const iVersioniOSAppStoreURLFormat = @"https://itunes.apple.com/us/app/xxxx/id1043407423?mt=8&uo=4";
 static NSString *const appStoreID = @"1043407423";
 

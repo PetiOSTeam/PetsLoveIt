@@ -280,6 +280,8 @@
     //清除所有缓存
     
     [AppCache clearCache];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+
 }
 
 - (NSString *)urlEncodedString:(NSData *)src

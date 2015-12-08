@@ -31,4 +31,10 @@
 //三方登录
 @property (strong, nonatomic) NSString *otherType;
 @property (strong, nonatomic) NSString *otherAccount;
+
+//消息相关
+@property (nonatomic, copy) NSNumber *messageVibration;  // 消息振动
+@property (nonatomic, copy) NSNumber *messageVoice;  // 消息声音
+@property (nonatomic, copy) NSNumber *messageCornerMark;  // 消息角标
+
 @end

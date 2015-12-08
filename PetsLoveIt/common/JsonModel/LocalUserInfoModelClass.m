@@ -21,6 +21,7 @@
 
 
 
+
 //===========================================================
 //  Keyed Archiving
 //
@@ -38,13 +39,16 @@
     [encoder encodeObject:self.userGrade forKey:@"userGrade"];
     [encoder encodeObject:self.userIntegral forKey:@"userIntegral"];
     [encoder encodeObject:self.userToken forKey:@"userToken"];
+    [encoder encodeObject:self.todaySigned forKey:@"todaySigned"];
+    [encoder encodeObject:self.deliveryAddress forKey:@"deliveryAddress"];
     [encoder encodeObject:self.loginType forKey:@"loginType"];
     [encoder encodeObject:self.password forKey:@"password"];
     [encoder encodeObject:self.accountName forKey:@"accountName"];
-    [encoder encodeObject:self.todaySigned forKey:@"todaySigned"];
-    [encoder encodeObject:self.deliveryAddress forKey:@"deliveryAddress"];
     [encoder encodeObject:self.otherType forKey:@"otherType"];
     [encoder encodeObject:self.otherAccount forKey:@"otherAccount"];
+    [encoder encodeObject:self.messageVibration forKey:@"messageVibration"];
+    [encoder encodeObject:self.messageVoice forKey:@"messageVoice"];
+    [encoder encodeObject:self.messageCornerMark forKey:@"messageCornerMark"];
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -62,14 +66,16 @@
         self.userGrade = [decoder decodeObjectForKey:@"userGrade"];
         self.userIntegral = [decoder decodeObjectForKey:@"userIntegral"];
         self.userToken = [decoder decodeObjectForKey:@"userToken"];
+        self.todaySigned = [decoder decodeObjectForKey:@"todaySigned"];
+        self.deliveryAddress = [decoder decodeObjectForKey:@"deliveryAddress"];
         self.loginType = [decoder decodeObjectForKey:@"loginType"];
         self.password = [decoder decodeObjectForKey:@"password"];
         self.accountName = [decoder decodeObjectForKey:@"accountName"];
-        self.todaySigned = [decoder decodeObjectForKey:@"todaySigned"];
-        self.deliveryAddress = [decoder decodeObjectForKey:@"deliveryAddress"];
         self.otherType = [decoder decodeObjectForKey:@"otherType"];
         self.otherAccount = [decoder decodeObjectForKey:@"otherAccount"];
-
+        self.messageVibration = [decoder decodeObjectForKey:@"messageVibration"];
+        self.messageVoice = [decoder decodeObjectForKey:@"messageVoice"];
+        self.messageCornerMark = [decoder decodeObjectForKey:@"messageCornerMark"];
     }
     return self;
 }
@@ -89,13 +95,17 @@
     [theCopy setUserGrade:[self.userGrade copy]];
     [theCopy setUserIntegral:[self.userIntegral copy]];
     [theCopy setUserToken:[self.userToken copy]];
+    [theCopy setTodaySigned:[self.todaySigned copy]];
+    [theCopy setDeliveryAddress:[self.deliveryAddress copy]];
     [theCopy setLoginType:[self.loginType copy]];
     [theCopy setPassword:[self.password copy]];
     [theCopy setAccountName:[self.accountName copy]];
-    [theCopy setTodaySigned:[self.todaySigned copy]];
-    [theCopy setDeliveryAddress:[self.deliveryAddress copy]];
     [theCopy setOtherType:[self.otherType copy]];
     [theCopy setOtherAccount:[self.otherAccount copy]];
+    [theCopy setMessageVibration:[self.messageVibration copy]];
+    [theCopy setMessageVoice:[self.messageVoice copy]];
+    [theCopy setMessageCornerMark:[self.messageCornerMark copy]];
+    
     return theCopy;
 }
 @end

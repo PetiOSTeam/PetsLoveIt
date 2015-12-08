@@ -7,7 +7,7 @@
 //
 
 #import "PushSettingViewController.h"
-
+#import "APService.h"
 @interface PushSettingViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -48,8 +48,14 @@
             UISwitch *switchBtn = [[UISwitch alloc] init];
             switchBtn.right = mScreenWidth - 10;
             switchBtn.center = CGPointMake(switchBtn.center.x, 27);
-            [switchBtn addTarget:self action:@selector(pushSwitchAction) forControlEvents:UIControlEventTouchUpInside];
+            [switchBtn addTarget:self action:@selector(pushSwitchAction:) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:switchBtn];
+            BOOL flag = IOS_VERSION_8_OR_ABOVE ?  [[UIApplication sharedApplication].currentUserNotificationSettings types] == UIUserNotificationTypeNone : [[UIApplication sharedApplication]enabledRemoteNotificationTypes] == UIRemoteNotificationTypeNone ;
+            if (flag) {
+                [switchBtn setOn:NO];
+            }else{
+                [switchBtn setOn:YES];
+            }
         }
             break;
         case 1:
@@ -58,8 +64,15 @@
             UISwitch *switchBtn = [[UISwitch alloc] init];
             switchBtn.right = mScreenWidth - 10;
             switchBtn.center = CGPointMake(switchBtn.center.x, 27);
-            [switchBtn addTarget:self action:@selector(voiceSwitchAction) forControlEvents:UIControlEventTouchUpInside];
+            [switchBtn addTarget:self action:@selector(voiceSwitchAction:) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:switchBtn];
+            
+            NSString *switchBtnFlag = [mUserDefaults objectForKey:kPushVoice];
+            if ([switchBtnFlag intValue] == 1) {
+                [switchBtn setOn:YES];
+            }else{
+                [switchBtn setOn:NO];
+            }
         }
             break;
         case 2:
@@ -68,8 +81,15 @@
             UISwitch *switchBtn = [[UISwitch alloc] init];
             switchBtn.right = mScreenWidth - 10;
             switchBtn.center = CGPointMake(switchBtn.center.x, 27);
-            [switchBtn addTarget:self action:@selector(shakeSwitchAction) forControlEvents:UIControlEventTouchUpInside];
+            [switchBtn addTarget:self action:@selector(shakeSwitchAction:) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:switchBtn];
+            
+            NSString *switchBtnFlag = [mUserDefaults objectForKey:kPushShake];
+            if ([switchBtnFlag intValue] == 1) {
+                [switchBtn setOn:YES];
+            }else{
+                [switchBtn setOn:NO];
+            }
             
         }
             break;
@@ -81,16 +101,23 @@
     return cell;
 }
 
-- (void)pushSwitchAction{
-    
+- (void)pushSwitchAction:(id)sender{
+    UISwitch *switchBtn = sender;
+    [switchBtn setOn:!switchBtn.isOn];
+    mAlertView(@"提示", @"请在iPhone的\"设置\" － \"通知\"中进行修改");
 }
 
--(void)voiceSwitchAction{
-    
+-(void)voiceSwitchAction:(id)sender{
+    UISwitch *switchBtn = sender;
+    [mUserDefaults setObject:[NSNumber numberWithBool:switchBtn.isOn] forKey:kPushVoice];
+    [mUserDefaults synchronize];
 }
 
--(void)shakeSwitchAction{
+-(void)shakeSwitchAction:(id)sender{
+    UISwitch *switchBtn = sender;
     
+    [mUserDefaults setObject:[NSNumber numberWithBool:switchBtn.isOn] forKey:kPushShake];
+    [mUserDefaults synchronize];
 }
 
 - (void)didReceiveMemoryWarning {

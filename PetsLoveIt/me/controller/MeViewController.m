@@ -24,6 +24,7 @@
 #import "PushSettingViewController.h"
 #import "UserSettingVC.h"
 #import "AdviceViewController.h"
+#import "APService.h"
 
 @interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerContainerView;
@@ -426,7 +427,8 @@
         }
         
     }
-    
+    [self.tableView reloadData];
+
     
 }
 
@@ -528,6 +530,12 @@
             switchBtn.center = CGPointMake(switchBtn.center.x, 22);
             [switchBtn addTarget:self action:@selector(pushSwitchAction:) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:switchBtn];
+            NSString *careSelectFlag = [mUserDefaults objectForKey:kCareSelectPushSwitch];
+            if ([careSelectFlag intValue] == 1) {
+                [switchBtn setOn:YES];
+            }else{
+                [switchBtn setOn:NO];
+            }
         }
             break;
         case 1:
@@ -551,6 +559,21 @@
             switchBtn.center = CGPointMake(switchBtn.center.x, 22);
             [switchBtn addTarget:self action:@selector(signSwitchAction:) forControlEvents:UIControlEventTouchUpInside];
             [cell.contentView addSubview:switchBtn];
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(128, 17, 100, 14)];
+            [label setTextColor:[UIColor lightGrayColor]];
+            [label setFont:[UIFont systemFontOfSize:12]];
+
+            [label setText:@"(每日10点提醒)"];
+            [cell.contentView addSubview:label];
+            
+            NSString *switchBtnFlag = [mUserDefaults objectForKey:kSignAlarmSwitch];
+            if ([switchBtnFlag intValue] == 1) {
+                [switchBtn setOn:YES];
+            }else{
+                [switchBtn setOn:NO];
+            }
+
             
         }
             break;
@@ -623,11 +646,62 @@
 }
 
 - (void) pushSwitchAction:(id)sender{
+    UISwitch *switchBtn = sender;
+    if (switchBtn.isOn) {
+        [mUserDefaults setObject:@"1" forKey:kCareSelectPushSwitch];
+        [APService setTags:[NSSet setWithObject:@"m01"] alias:@"" callbackSelector:nil object:nil];
+    }else{
+        [mUserDefaults setObject:@"0" forKey:kCareSelectPushSwitch];
+        [APService setTags:nil alias:@"" callbackSelector:nil object:nil];
+    }
+    [mUserDefaults synchronize];
     
 }
 
 - (void) signSwitchAction:(id)sender{
+    UISwitch *switchBtn = sender;
+    if (![AppCache getUserInfo]) {
+        [self showLoginVC];
+        [switchBtn setOn:!switchBtn.isOn];
+        return;
+    }
+    if (switchBtn.isOn) {
+        [mUserDefaults setObject:@"1" forKey:kSignAlarmSwitch];
+        [self scheduleSignAlarm];
+    }else{
+        [mUserDefaults setObject:@"0" forKey:kSignAlarmSwitch];
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    }
+}
+- (void) scheduleSignAlarm{
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone]; // 使用本地时区
+    NSDate* nowDate = [NSDate date];
+    NSCalendar* cal = [NSCalendar currentCalendar];
+    NSDateComponents* components = [cal components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit)fromDate:nowDate];
+    [components setHour:-[components hour]];
+    [components setMinute:-[components minute]];
+    [components setSecond:-[components second]];
+    NSDate* today = [cal dateByAddingComponents:components toDate:nowDate options:0]; //This variable should now be pointing at a date object that is the start of today (midnight);
     
+    [components setHour:10];
+    [components setMinute:0];
+    [components setSecond:0];
+    NSDate* fireDate = [cal dateByAddingComponents:components toDate:today options:0];
+    if ([fireDate compare:nowDate] == NSOrderedAscending) {
+        [components setHour:10+24];
+        [components setMinute:0];
+        [components setSecond:0];
+        fireDate = [cal dateByAddingComponents:components toDate:today options:0];
+    }
+    NSLog(@"%@",fireDate);
+    localNotification.fireDate = fireDate;
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    NSString *contentStr = @"亲，签到打卡时间到了，快去赚取积分吧";
+    localNotification.alertBody = contentStr;
+    NSDictionary *infoDict = [NSDictionary dictionaryWithObjectsAndKeys:contentStr,@"content", nil];
+    localNotification.userInfo = infoDict;
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
 - (void) cleanSDImageCache{

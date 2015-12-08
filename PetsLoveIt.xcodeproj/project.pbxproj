@@ -76,6 +76,8 @@
 		185767651C0B0794000A044D /* UserSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185767631C0B0794000A044D /* UserSettingVC.m */; };
 		185767661C0B0794000A044D /* UserSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185767641C0B0794000A044D /* UserSettingVC.xib */; };
 		186EA8831C148C73009876BD /* GradeDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */; };
+		186EA8871C1691F1009876BD /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 186EA8861C1691F1009876BD /* libPushSDK-1.8.8.a */; };
+		186EA8891C169362009876BD /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 186EA8881C169362009876BD /* PushConfig.plist */; };
 		189442591BE9DEC3006249F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 189442581BE9DEC3006249F0 /* main.m */; };
 		1894425C1BE9DEC3006249F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1894425B1BE9DEC3006249F0 /* AppDelegate.m */; };
 		189442671BE9DEC3006249F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 189442661BE9DEC3006249F0 /* Assets.xcassets */; };
@@ -703,6 +705,9 @@
 		185767631C0B0794000A044D /* UserSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingVC.m; sourceTree = "<group>"; };
 		185767641C0B0794000A044D /* UserSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingVC.xib; sourceTree = "<group>"; };
 		186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeDetailHeaderView.xib; sourceTree = "<group>"; };
+		186EA8851C1691F1009876BD /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		186EA8861C1691F1009876BD /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
+		186EA8881C169362009876BD /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		189442541BE9DEC3006249F0 /* PetsLoveIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetsLoveIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		189442581BE9DEC3006249F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1894425A1BE9DEC3006249F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1677,6 +1682,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				186EA8871C1691F1009876BD /* libPushSDK-1.8.8.a in Frameworks */,
 				18F633A91BF883C800FD98B1 /* libSocialQQ.a in Frameworks */,
 				18F633AA1BF883C800FD98B1 /* TencentOpenAPI.framework in Frameworks */,
 				18F633AD1BF883C800FD98B1 /* libWeChatSDK.a in Frameworks */,
@@ -1810,6 +1816,15 @@
 			name = userSetting;
 			sourceTree = "<group>";
 		};
+		186EA8841C1691F1009876BD /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				186EA8851C1691F1009876BD /* APService.h */,
+				186EA8861C1691F1009876BD /* libPushSDK-1.8.8.a */,
+			);
+			path = JPush;
+			sourceTree = "<group>";
+		};
 		1894424B1BE9DEC3006249F0 = {
 			isa = PBXGroup;
 			children = (
@@ -1859,6 +1874,7 @@
 				189442581BE9DEC3006249F0 /* main.m */,
 				189446E71BEB0B26006249F0 /* PrefixHeader.pch */,
 				18DD074F1BEDAE91003C8160 /* Launch Screen.storyboard */,
+				186EA8881C169362009876BD /* PushConfig.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1980,6 +1996,7 @@
 		189442EA1BEB0773006249F0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				186EA8841C1691F1009876BD /* JPush */,
 				F91BA2C31C15B08C00B1C2E9 /* XRZAlertControl */,
 				F91BA2C21C15B04300B1C2E9 /* XLPopViewControll */,
 				18B37C311C13E6B000762980 /* DXPopover */,
@@ -3927,6 +3944,7 @@
 				189445E21BEB0774006249F0 /* e_12@2x.png in Resources */,
 				189446561BEB0774006249F0 /* DeleteEmoticonBtnHL@2x.png in Resources */,
 				189446511BEB0774006249F0 /* chatBar_recordSelected.png in Resources */,
+				186EA8891C169362009876BD /* PushConfig.plist in Resources */,
 				18F633A71BF883C800FD98B1 /* UMSShareListController.xib in Resources */,
 				189446541BEB0774006249F0 /* chatBar_recordSelectedBg@2x.png in Resources */,
 				189446611BEB0774006249F0 /* chatBar_more_photo.png in Resources */,
@@ -4598,6 +4616,7 @@
 					"$(PROJECT_DIR)/PetsLoveIt/Libs/UMeng/umeng_ios_social_sdk_4.3_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/PetsLoveIt/Libs/UMeng/umeng_ios_social_sdk_4.3_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/PetsLoveIt/Libs/UMeng/umeng_ios_social_sdk_4.3_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Sina",
+					"$(PROJECT_DIR)/PetsLoveIt/Libs/JPush",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pets.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4651,6 +4670,7 @@
 					"$(PROJECT_DIR)/PetsLoveIt/Libs/UMeng/umeng_ios_social_sdk_4.3_arm64_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/PetsLoveIt/Libs/UMeng/umeng_ios_social_sdk_4.3_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/PetsLoveIt/Libs/UMeng/umeng_ios_social_sdk_4.3_arm64_custom/UMSocial_Sdk_Extra_Frameworks/Sina",
+					"$(PROJECT_DIR)/PetsLoveIt/Libs/JPush",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pets.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";

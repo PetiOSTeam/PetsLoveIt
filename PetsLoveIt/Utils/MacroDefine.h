@@ -132,6 +132,12 @@ otherButtonTitles:nil]; \
 #define HLoginAccount @"HLoginAccount"
 #define ReloadUserInfoNotify @"ReloadUserInfoNotify"
 
+#define kCareSelectPushSwitch  @"kCareSelectPushSwitch"
+#define kSignAlarmSwitch @"kSignAlarmSwitch"
+
+#define kPushVoice @"kPushVoice"
+#define kPushShake @"kPushShake"
+
 #define StockObjSortId @"1"     //股票
 #define ObjSortId_Three @"3"  //评论｜动态
 #define ObjSortId_Two @"2"  //话题

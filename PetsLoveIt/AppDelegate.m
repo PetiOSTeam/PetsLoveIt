@@ -19,6 +19,9 @@
 #import "UMSocialSinaHandler.h"
 #import "MobClick.h"
 #import "MeViewController.h"
+#import "APService.h"
+
+#define kSignAlarm 1112
 
 @interface AppDelegate ()
 
@@ -47,6 +50,7 @@
     [self loadMainViews];
     //[self setupNavigationStyle];
     [self setupUmengSDK];
+    [self configJPush:launchOptions];
     
     return YES;
 }
@@ -91,6 +95,27 @@
     [self.window makeKeyAndVisible];
     
     [self autoLogin];
+}
+
+- (void)configJPush:(NSDictionary *)launchOptions{
+    [APService setLogOFF];
+    // Required
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [APService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                       UIUserNotificationTypeSound |
+                                                       UIUserNotificationTypeAlert)
+                                           categories:nil];
+    } else {
+        //categories 必须为nil
+        [APService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                       UIRemoteNotificationTypeSound |
+                                                       UIRemoteNotificationTypeAlert)
+                                           categories:nil];
+    }
+    
+    // Required
+    [APService setupWithOption:launchOptions];
 }
 
 - (void)autoLogin{
@@ -194,6 +219,58 @@
     
     NSLog(@"online config has fininshed and note = %@", note.userInfo);
 }
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    // Required
+    [APService registerDeviceToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    // Required
+    [APService handleRemoteNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    
+    // IOS 7 Support Required
+    [APService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+//本地提醒
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    NSLog(@"Local Notification Body: %@", notification.alertBody);
+    NSLog(@"Local Notification UserInfo: %@", notification.userInfo);
+    
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    if (application.applicationState == UIApplicationStateInactive) {
+
+    } else if (application.applicationState == UIApplicationStateActive){
+        [self showSignAlarm:notification];
+    }
+    [self signAlarmTomorrow:notification];
+
+}
+- (void)showSignAlarm:(UILocalNotification *)notification{
+    NSDictionary *userInfo = notification.userInfo;
+    
+    UIAlertView *alertView =[[UIAlertView alloc] initWithTitle:@"签到提醒" message:[userInfo objectForKey:@"content"] delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+    alertView.tag = kSignAlarm;
+    [alertView show];
+}
+//签到明天提醒
+- (void)signAlarmTomorrow:(UILocalNotification *)notification{
+    [[UIApplication sharedApplication] cancelLocalNotification:notification];//cancel旧的提醒
+    
+    NSDate *remindDate = notification.fireDate;
+    NSDate *addedRemindDate = [remindDate dateByAddingTimeInterval:24*60*60];
+    notification.fireDate = addedRemindDate;
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
