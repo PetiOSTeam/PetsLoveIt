@@ -72,6 +72,12 @@
                            @"uid":@"getProductByType",
                            @"appType":@"m05"
                            };
+    if (self.isCollect) {
+        configModel.params = @{
+                               @"uid":@"getUsercollect",
+                               @"appType":@"m05"
+                               };
+    }
     configModel.hiddenNetWorkStausManager = YES;
 
     if (self.isMyArticle) {

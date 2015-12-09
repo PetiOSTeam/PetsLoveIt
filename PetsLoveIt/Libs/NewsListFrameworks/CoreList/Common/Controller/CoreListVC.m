@@ -622,7 +622,7 @@ typedef enum{
         
         NSString *flag=(range.length==0)?@"?":@"&";
     if ([[AppCache getToken] length]>0) {
-        _url=[NSString stringWithFormat:@"%@%@%@=%@&token=%@&%@=",urlStr,flag,_configModel.pageSizeName,@(_configModel.pageSize),[AppCache getToken],_configModel.pageName];
+        _url=[NSString stringWithFormat:@"%@%@%@=%@&userToken=%@&%@=",urlStr,flag,_configModel.pageSizeName,@(_configModel.pageSize),[AppCache getToken],_configModel.pageName];
     }else{
        _url=[NSString stringWithFormat:@"%@%@%@=%@&%@=",urlStr,flag,_configModel.pageSizeName,@(_configModel.pageSize),_configModel.pageName]; 
     }

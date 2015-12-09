@@ -80,6 +80,12 @@
                            @"uid":@"getProductByType",
                            @"appType":@"m04"
                            };
+    if (self.isCollect) {
+        configModel.params = @{
+                               @"uid":@"getUsercollect",
+                               @"appType":@"m04"
+                               };
+    }
     //模型类
     configModel.ModelClass=[GoodsModel class];
     //cell类

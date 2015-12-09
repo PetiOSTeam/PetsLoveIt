@@ -80,6 +80,12 @@
         configModel.hiddenNetWorkStausManager = NO;
         
     }
+    if (self.isCollect) {
+        configModel.params = @{
+                               @"uid":@"getUsercollect",
+                               @"appType":@"m06"
+                               };
+    }
     //模型类
     configModel.ModelClass=[GoodsModel class];
     //cell类

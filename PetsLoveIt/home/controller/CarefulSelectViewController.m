@@ -72,6 +72,7 @@
 
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH;
     }
+    [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     [self config];
     
     [self.tableView reloadData];
@@ -156,10 +157,13 @@
 }
 
 -(void)dealWithResponseData:(id)obj{
-    [self getAdData];
-    [self getCheapProduct];
-    [self getLimittedTimeProduct];
-    [self getJdProduct];
+    if (!self.isCollect) {
+        [self getAdData];
+        [self getCheapProduct];
+        [self getLimittedTimeProduct];
+        [self getJdProduct];
+    }
+    
 }
 
 /**
@@ -175,9 +179,16 @@
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
-                               @"uid":@"getProductByType",
+                           @"uid":@"getProductByType",
+                           @"appType":@"m01"
+                           };
+    if (self.isCollect) {
+        configModel.params = @{
+                               @"uid":@"getUsercollect",
                                @"appType":@"m01"
                                };
+    }
+    
     //模型类
     configModel.ModelClass=[GoodsModel class];
     //cell类

@@ -63,10 +63,18 @@
     
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
-    configModel.params = @{
-                           @"uid":@"getProductByType",
-                           @"appType":@"m03"
-                           };
+    
+    if (self.isCollect) {
+        configModel.params = @{
+                               @"uid":@"getUsercollect",
+                               @"appType":@"m03"
+                               };
+    }else{
+        configModel.params = @{
+                               @"uid":@"getProductByType",
+                               @"appType":@"m03"
+                               };
+    }
     //模型类
     configModel.ModelClass=[GoodsModel class];
     //cell类

@@ -110,7 +110,7 @@
         params = @{
                    @"uid":@"saveUsercollect",
                    @"productId":self.goodsId,
-                   @"productSort":self.goods.appSort
+                   @"productSort":self.goods.appType
                    };
         self.goods.collectnum = [NSString stringWithFormat:@"%ld",[self.goods.collectnum integerValue]+1];
     }else{
