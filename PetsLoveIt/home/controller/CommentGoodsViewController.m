@@ -206,7 +206,7 @@
             self.page = 1;
             self.dataList = nil;
             [self reloadData];
-            [self reloadDataDerectly];
+            [self reloadDataWithheaderViewStateRefresh];
         }else{
             mAlertAPIErrorInfo(error);
         }

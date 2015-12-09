@@ -35,6 +35,10 @@
 		182EB82A1BEDC30E004EA19C /* ShareOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182EB8281BEDC30E004EA19C /* ShareOrderCell.xib */; };
 		182EB8331BEDC374004EA19C /* ArticleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182EB8311BEDC374004EA19C /* ArticleTableCell.m */; };
 		182EB8341BEDC374004EA19C /* ArticleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182EB8321BEDC374004EA19C /* ArticleTableCell.xib */; };
+		184726071C17D2EE005E0E29 /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184726051C17D2EE005E0E29 /* MyCommentCell.m */; };
+		184726081C17D2EE005E0E29 /* MyCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184726061C17D2EE005E0E29 /* MyCommentCell.xib */; };
+		1847260B1C17DECA005E0E29 /* expression-chinese.plist in Resources */ = {isa = PBXBuildFile; fileRef = 184726091C17DECA005E0E29 /* expression-chinese.plist */; };
+		1847260C1C17DECA005E0E29 /* expression.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1847260A1C17DECA005E0E29 /* expression.plist */; };
 		184858AC1BF8DD3C001FF521 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 184858901BF8DD3C001FF521 /* MASCompositeConstraint.m */; };
 		184858AD1BF8DD3C001FF521 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 184858931BF8DD3C001FF521 /* MASConstraint.m */; };
 		184858AE1BF8DD3C001FF521 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 184858951BF8DD3C001FF521 /* MASConstraintMaker.m */; };
@@ -659,6 +663,11 @@
 		182EB8301BEDC374004EA19C /* ArticleTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleTableCell.h; sourceTree = "<group>"; };
 		182EB8311BEDC374004EA19C /* ArticleTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleTableCell.m; sourceTree = "<group>"; };
 		182EB8321BEDC374004EA19C /* ArticleTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleTableCell.xib; sourceTree = "<group>"; };
+		184726041C17D2EE005E0E29 /* MyCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCommentCell.h; path = PetsLoveIt/MyCommentCell.h; sourceTree = SOURCE_ROOT; };
+		184726051C17D2EE005E0E29 /* MyCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCommentCell.m; path = PetsLoveIt/MyCommentCell.m; sourceTree = SOURCE_ROOT; };
+		184726061C17D2EE005E0E29 /* MyCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyCommentCell.xib; path = PetsLoveIt/MyCommentCell.xib; sourceTree = SOURCE_ROOT; };
+		184726091C17DECA005E0E29 /* expression-chinese.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "expression-chinese.plist"; sourceTree = "<group>"; };
+		1847260A1C17DECA005E0E29 /* expression.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = expression.plist; sourceTree = "<group>"; };
 		1848588F1BF8DD3C001FF521 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		184858901BF8DD3C001FF521 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
 		184858911BF8DD3C001FF521 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -1863,6 +1872,8 @@
 		189442571BE9DEC3006249F0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				184726091C17DECA005E0E29 /* expression-chinese.plist */,
+				1847260A1C17DECA005E0E29 /* expression.plist */,
 				1894470C1BEC34FA006249F0 /* libz.tbd */,
 				1894470A1BEC34F3006249F0 /* libstdc++.tbd */,
 				189447081BEC34E7006249F0 /* libsqlite3.tbd */,
@@ -3085,6 +3096,9 @@
 		189446F01BEB859D006249F0 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				184726041C17D2EE005E0E29 /* MyCommentCell.h */,
+				184726051C17D2EE005E0E29 /* MyCommentCell.m */,
+				184726061C17D2EE005E0E29 /* MyCommentCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3948,6 +3962,7 @@
 				18F633A71BF883C800FD98B1 /* UMSShareListController.xib in Resources */,
 				189446541BEB0774006249F0 /* chatBar_recordSelectedBg@2x.png in Resources */,
 				189446611BEB0774006249F0 /* chatBar_more_photo.png in Resources */,
+				1847260B1C17DECA005E0E29 /* expression-chinese.plist in Resources */,
 				F9EAB7941BF75A1B00BD0D6B /* StoreHeaderView.xib in Resources */,
 				189446431BEB0774006249F0 /* chatBar_faceSelected.png in Resources */,
 				1894461E1BEB0774006249F0 /* e_67@2x.png in Resources */,
@@ -3988,6 +4003,7 @@
 				18F633B81BF883C800FD98B1 /* ios-social-sdk-socialbar.html in Resources */,
 				18F633B31BF883C800FD98B1 /* ios-social-sdk-login-detail.html in Resources */,
 				189446451BEB0774006249F0 /* chatBar_keyboard.png in Resources */,
+				184726081C17D2EE005E0E29 /* MyCommentCell.xib in Resources */,
 				18F633B71BF883C800FD98B1 /* ios-social-sdk-share-quick.html in Resources */,
 				189446081BEB0774006249F0 /* e_47@2x.png in Resources */,
 				18DD07501BEDAE91003C8160 /* Launch Screen.storyboard in Resources */,
@@ -4060,6 +4076,7 @@
 				1894458A1BEB0774006249F0 /* MJRefresh.bundle in Resources */,
 				189446501BEB0774006249F0 /* chatBar_recordBg@2x.png in Resources */,
 				189446251BEB0774006249F0 /* e_73@2x.png in Resources */,
+				1847260C1C17DECA005E0E29 /* expression.plist in Resources */,
 				F9EAB78A1BF75A1B00BD0D6B /* PLSoretedCell.xib in Resources */,
 				189445EE1BEB0774006249F0 /* e_23@2x.png in Resources */,
 				1802A2061C0C7D32009BC2F8 /* AdviceViewController.xib in Resources */,
@@ -4313,6 +4330,7 @@
 				18E21ED11C00229C007059F3 /* YYTextWeakProxy.m in Sources */,
 				F92EE52A1C006D9700DEC5D0 /* XLLoadingView.m in Sources */,
 				18A1AEF61BF9DA2F00966478 /* PetWebViewController.m in Sources */,
+				184726071C17D2EE005E0E29 /* MyCommentCell.m in Sources */,
 				189445A31BEB0774006249F0 /* NSURL+File.m in Sources */,
 				189445D91BEB0774006249F0 /* RECommonFunctions.m in Sources */,
 				18B37C381C1429A700762980 /* ForgotPwdViewController.m in Sources */,

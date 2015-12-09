@@ -22,6 +22,8 @@
     _commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _commentLabel.customEmojiRegex = kEmojiReg;
     _commentLabel.customEmojiPlistName = @"expression.plist";
+    [_commentLabel setTextAlignment:NSTextAlignmentJustified];
+
     
     self.avatarImageView.clipsToBounds = YES;
     self.avatarImageView.layer.cornerRadius = 18;
@@ -88,12 +90,12 @@
             _textLabel.font = [UIFont systemFontOfSize:14];
             _textLabel.customEmojiRegex = kEmojiReg;
             _textLabel.customEmojiPlistName = @"expression.plist";
-            [_textLabel setEmojiText:parentComment.content];
+            [_textLabel setEmojiText:[NSString stringWithFormat:@"%@：%@",parentComment.nickName,parentComment.content]];
             _textLabel.backgroundColor = [UIColor clearColor];
             _textLabel.isNeedAtAndPoundSign = YES;
             _textLabel.numberOfLines = 0;
             _textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-            CGSize rSize = [_textLabel preferredSizeWithMaxWidth:mScreenWidth-12-25-56-10];
+            CGSize rSize = [_textLabel preferredSizeWithMaxWidth:mScreenWidth-56-12-25-10];
             tableHeight+=rSize.height+20;
         }];
     }

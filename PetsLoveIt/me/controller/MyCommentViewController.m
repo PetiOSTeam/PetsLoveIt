@@ -27,7 +27,6 @@
 - (void)prepareViewAndData{
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"我的评论";
-
     [self setPageViews];
     
 }

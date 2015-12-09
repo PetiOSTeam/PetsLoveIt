@@ -42,7 +42,7 @@
     NSMutableArray *pageModels = [NSMutableArray new];
     NSArray *topicArray = @[@"精选",@"优惠",@"海淘",@"淘宠",@"晒单",@"经验",@"资讯"];
     for (int i=0; i<topicArray.count; i++) {
-        CoreLTVC *vc = [CoreLTVC new];
+        CoreLTVC *vc;
         if (i==0) {
             vc = [CarefulSelectViewController new];
             

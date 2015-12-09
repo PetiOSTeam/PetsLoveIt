@@ -7,8 +7,10 @@
 //
 
 #import "SentCommentViewController.h"
-
-@interface SentCommentViewController ()
+#import "CommentModel.h"
+#import "MyCommentCell.h"
+#import "GoodsDetailViewController.h"
+@interface SentCommentViewController ()<MyCommentCellDelegate>
 
 @end
 
@@ -23,7 +25,28 @@
 - (void)prepareViewAndData{
     [self config];
     self.tableView.width = mScreenWidth;
+    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
+}
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    MyCommentCell * cell =(MyCommentCell *) [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    cell.isSentComment = YES;
+    cell.delegate = self;
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CommentModel *model = [self.dataList objectAtIndex:indexPath.row];
+    CGFloat height = [MyCommentCell heightForSentCellWithObject:model];
+    
+    return height;
+}
+
+-(void)showProductVC:(NSString *)proId{
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    vc.goodsId = proId;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 /**
@@ -34,26 +57,27 @@
     LTConfigModel *configModel=[[LTConfigModel alloc] init];
     //url,分为公告和话题
     
-    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getSource.action"];
+    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"common.action"];
     
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
-                           @"uid":@"getHotWords",
-                           @"userToken":[AppCache getToken]
+                           @"uid":@"getMyComment",
+                           @"userToken":[AppCache getToken],
+                           @"userId":[AppCache getUserId]
+                           
                            };
-
     //模型类
-    //    configModel.ModelClass=[GoodsModel class];
+    configModel.ModelClass=[CommentModel class];
     //    //cell类
-    //    configModel.ViewForCellClass=[GoodsCell class];
+    configModel.ViewForCellClass=[MyCommentCell class];
     //标识
     configModel.lid=NSStringFromClass(self.class);
     //pageName第几页的参数名
-    configModel.pageName=@"page_flag";
+    configModel.pageName=@"pageIndex";
     
     //pageSizeName
-    configModel.pageSizeName=@"req_num";
+    configModel.pageSizeName=@"pageSize";
     //pageSize
     configModel.pageSize = 10;
     //起始页码

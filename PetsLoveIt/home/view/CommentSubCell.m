@@ -21,6 +21,8 @@
     _commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _commentLabel.customEmojiRegex = kEmojiReg;
     _commentLabel.customEmojiPlistName = @"expression.plist";
+    [_commentLabel setTextAlignment:NSTextAlignmentJustified];
+
     [self setBackgroundColor:mRGBToColor(0xf5f5f5)];
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
@@ -28,23 +30,25 @@
 -(void)loadCellWithModel:(CommentModel*)comment{
     
     
-    NSString *commentStr = [NSString stringWithFormat:@"%@:%@",comment.nickName,comment.content];
-    NSMutableAttributedString *commentContent=[[NSMutableAttributedString alloc] initWithString:commentStr];
-    NSString *userNameAndBlankCharStr = [NSString stringWithFormat:@"%@:",comment.nickName];
-    
-    NSRange allRange = {0,[commentStr length]};
-    NSRange selectedRange = {0, [userNameAndBlankCharStr length]};
-    NSRange selectedRange2 = {[userNameAndBlankCharStr length],[comment.content length]};
-    [commentContent addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:allRange];
-    [commentContent addAttribute:NSForegroundColorAttributeName
-                       value:mRGBToColor(0x333333) // 添加颜色
-                       range:selectedRange];
-    [commentContent addAttribute:NSForegroundColorAttributeName
-                       value:mRGBToColor(0x666666) // 添加颜色
-                       range:selectedRange2];
-    
-    _commentLabel.attributedText = commentContent;
-    //_commentLabel.emojiText = commentStr;
+    NSString *commentStr = [NSString stringWithFormat:@"%@：%@",comment.nickName,comment.content];
+//    NSMutableAttributedString *commentContent=[[NSMutableAttributedString alloc] initWithString:commentStr];
+//    NSString *userNameAndBlankCharStr = [NSString stringWithFormat:@"%@:",comment.nickName];
+//    
+//    NSRange allRange = {0,[commentStr length]};
+//    NSRange selectedRange = {0, [userNameAndBlankCharStr length]};
+//    NSRange selectedRange2 = {[userNameAndBlankCharStr length],[comment.content length]};
+//    [commentContent addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:allRange];
+//    [commentContent addAttribute:NSForegroundColorAttributeName
+//                       value:mRGBToColor(0x333333) // 添加颜色
+//                       range:selectedRange];
+//    [commentContent addAttribute:NSForegroundColorAttributeName
+//                       value:mRGBToColor(0x666666) // 添加颜色
+//                       range:selectedRange2];
+//    
+//    _commentLabel.attributedText = commentContent;
+    _commentLabel.emojiText = commentStr;
+    [self.commentLabel setWidth:(mScreenWidth-56-12-25-10)];
+    [self.commentLabel sizeToFit];
     _floorLabel.text = comment.orderNo;
 }
 
@@ -54,7 +58,7 @@
     _textLabel.font = [UIFont systemFontOfSize:14];
     _textLabel.customEmojiRegex = kEmojiReg;
     _textLabel.customEmojiPlistName = @"expression.plist";
-    [_textLabel setEmojiText:object.content];
+    [_textLabel setEmojiText:[NSString stringWithFormat:@"%@：%@",object.nickName,object.content]];
     _textLabel.backgroundColor = [UIColor clearColor];
     _textLabel.isNeedAtAndPoundSign = YES;
     _textLabel.numberOfLines = 0;

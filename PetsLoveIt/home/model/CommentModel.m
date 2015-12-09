@@ -12,8 +12,13 @@
 
 +(NSArray *)modelPrepare:(id)obj{
     NSData *jsonData = [obj[@"page_rows"] dataUsingEncoding:NSUTF8StringEncoding];
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-    return jsonArray;
+    if (jsonData) {
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        return jsonArray;
+
+    }else{
+        return obj[@"rows"][@"rows"];
+    }
 }
 
 @end

@@ -30,4 +30,9 @@
 @property (nonatomic,strong) NSString *stepFlag;
 @property (nonatomic,strong) id parent_data;
 
+@property (nonatomic,strong) NSString *otherContent;
+@property (nonatomic,strong) NSString *otherNickName;
+@property (nonatomic,strong) NSString *otherUserName;
+@property (nonatomic,strong) NSString *prodName;
+
 @end

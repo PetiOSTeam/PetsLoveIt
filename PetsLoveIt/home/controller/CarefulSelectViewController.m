@@ -58,12 +58,15 @@
     
     self.imageURLs = [NSMutableArray new];
     self.adArray = [NSMutableArray new];
-    //获取广告数据
-    [self getAdData];
-    //获取白菜价,限时，尖端商品
-    [self getCheapProduct];
-    [self getLimittedTimeProduct];
-    [self getJdProduct];
+    if (!self.isCollect) {
+        //获取广告数据
+        [self getAdData];
+        //获取白菜价,限时，尖端商品
+        [self getCheapProduct];
+        [self getLimittedTimeProduct];
+        [self getJdProduct];
+
+    }
     
     if (self.isCollect) {
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
