@@ -8,6 +8,8 @@
 
 #import "MyBLViewController.h"
 #import "BLLinkViewController.h"
+#import "MyBlCell.h"
+#import "BLModel.h"
 
 @interface MyBLViewController ()
 @property (nonatomic, strong)  UIButton *blBtn;
@@ -61,31 +63,32 @@
     LTConfigModel *configModel=[[LTConfigModel alloc] init];
     //url,分为公告和话题
     
-    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getSource.action"];
+    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"common.action"];
     
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
-                           @"uid":@"getHotWords",
-                           @"userToken":[AppCache getToken]
+                           @"uid":@"getShareInfoList",
+                           @"type":@"1",
+                           @"userId":[AppCache getUserId]
                            };
     //模型类
-    //    configModel.ModelClass=[GoodsModel class];
+        configModel.ModelClass=[BLModel class];
     //    //cell类
-    //    configModel.ViewForCellClass=[GoodsCell class];
+        configModel.ViewForCellClass=[MyBlCell class];
     //标识
     configModel.lid=NSStringFromClass(self.class);
     //pageName第几页的参数名
-    configModel.pageName=@"page_flag";
+    configModel.pageName=@"pageIndex";
     
     //pageSizeName
-    configModel.pageSizeName=@"req_num";
+    configModel.pageSizeName=@"pageSize";
     //pageSize
     configModel.pageSize = 10;
     //起始页码
     configModel.pageStartValue=1;
     //行高
-    configModel.rowHeight=110;
+    configModel.rowHeight=224;
     configModel.CoreViewNetWorkStausManagerOffsetY = 64;
     
     //移除返回顶部:(默认开启)

@@ -7,8 +7,11 @@
 //
 
 #import "MsgViewController.h"
+#import "SysMsgCell.h"
+#import "MyMsgCell.h"
+#import "GoodsDetailViewController.h"
 
-@interface MsgViewController ()
+@interface MsgViewController ()<MyMsgCellDelegate>
 
 @end
 
@@ -26,6 +29,26 @@
     
 }
 
+-(void)showProductVC:(NSString *)proId{
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    vc.goodsId = proId;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    MyMsgCell * cell =(MyMsgCell *) [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    cell.delegate = self;
+    return cell;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SysMsgModel *model = [self.dataList objectAtIndex:indexPath.row];
+    CGFloat height = [MyMsgCell heightForCellWithObject:model];
+    
+    return height;
+}
+
 
 /**
  *  模型配置
@@ -35,25 +58,26 @@
     LTConfigModel *configModel=[[LTConfigModel alloc] init];
     //url,分为公告和话题
     
-    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getSource.action"];
+    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"common.action"];
     
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
-                           @"uid":@"getHotWords",
-                           @"userToken":[AppCache getToken]
+                           @"uid":@"getUserSystemMsg",
+                           @"userToken":[AppCache getToken],
+                           @"msyType":@"2"
                            };
     //模型类
-    //    configModel.ModelClass=[GoodsModel class];
+        configModel.ModelClass=[SysMsgModel class];
     //    //cell类
-    //    configModel.ViewForCellClass=[GoodsCell class];
+        configModel.ViewForCellClass=[MyMsgCell class];
     //标识
     configModel.lid=NSStringFromClass(self.class);
     //pageName第几页的参数名
-    configModel.pageName=@"page_flag";
+    configModel.pageName=@"startNum";
     
     //pageSizeName
-    configModel.pageSizeName=@"req_num";
+    configModel.pageSizeName=@"limit";
     //pageSize
     configModel.pageSize = 10;
     //起始页码

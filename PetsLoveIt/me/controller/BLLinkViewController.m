@@ -7,6 +7,7 @@
 //
 
 #import "BLLinkViewController.h"
+#import "FillBLViewController.h"
 
 @interface BLLinkViewController ()<UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *linkView;
@@ -40,6 +41,33 @@
         self.placeHolderLabel.hidden = NO;
     }else
         self.placeHolderLabel.hidden = YES;
+}
+- (IBAction)okAction:(id)sender {
+    [self.view endEditing:YES];
+    NSString *sourceLink = self.textView.text;
+    if ([sourceLink length]==0) {
+        mAlertView(@"提示", @"链接不能为空");
+        return;
+    }
+    [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeNone];
+    NSDictionary *params = @{@"uid":@"getShareInfo",
+                             @"sourceLink":sourceLink
+                             };
+    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            [SVProgressHUD dismiss];
+            FillBLViewController *vc = [FillBLViewController new];
+            BLModel *model = [[BLModel alloc] initWithDictionary:[responseData objectForKey:@"bean"]];
+            model.sourceLink = sourceLink;
+            vc.model = model;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            int rtnCode = [[responseData objectForKey:@"rtnCode"] intValue];
+            if (rtnCode == 0 ) {
+                mAlertAPIErrorInfo(error);
+            }
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

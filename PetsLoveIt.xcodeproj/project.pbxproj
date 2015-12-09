@@ -524,6 +524,13 @@
 		18E21F4C1C05B361007059F3 /* MyMsgViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21F4A1C05B361007059F3 /* MyMsgViewController.xib */; };
 		18E21F4F1C05B3D4007059F3 /* SysMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F4E1C05B3D4007059F3 /* SysMsgViewController.m */; };
 		18E21F521C05B3F6007059F3 /* MsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F511C05B3F6007059F3 /* MsgViewController.m */; };
+		18EAF0331C1836C900454BE2 /* MyBlCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAF0311C1836C900454BE2 /* MyBlCell.m */; };
+		18EAF0341C1836C900454BE2 /* MyBlCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAF0321C1836C900454BE2 /* MyBlCell.xib */; };
+		18EAF0371C183AE300454BE2 /* BLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAF0361C183AE300454BE2 /* BLModel.m */; };
+		18EAF03B1C185B7400454BE2 /* FillBLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAF0391C185B7400454BE2 /* FillBLViewController.m */; };
+		18EAF03C1C185B7400454BE2 /* FillBLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAF03A1C185B7400454BE2 /* FillBLViewController.xib */; };
+		18EAF0401C18720500454BE2 /* MyMsgCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EAF03E1C18720500454BE2 /* MyMsgCell.m */; };
+		18EAF0411C18720500454BE2 /* MyMsgCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EAF03F1C18720500454BE2 /* MyMsgCell.xib */; };
 		18F632871BF6215600FD98B1 /* GoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */; };
 		18F632881BF6215600FD98B1 /* GoodsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */; };
 		18F6328E1BF6DDFF00FD98B1 /* UIView+Effects.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F6328D1BF6DDFF00FD98B1 /* UIView+Effects.m */; };
@@ -1524,6 +1531,17 @@
 		18E21F4E1C05B3D4007059F3 /* SysMsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SysMsgViewController.m; sourceTree = "<group>"; };
 		18E21F501C05B3F6007059F3 /* MsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MsgViewController.h; sourceTree = "<group>"; };
 		18E21F511C05B3F6007059F3 /* MsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgViewController.m; sourceTree = "<group>"; };
+		18EAF0301C1836C900454BE2 /* MyBlCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyBlCell.h; path = PetsLoveIt/MyBlCell.h; sourceTree = SOURCE_ROOT; };
+		18EAF0311C1836C900454BE2 /* MyBlCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyBlCell.m; path = PetsLoveIt/MyBlCell.m; sourceTree = SOURCE_ROOT; };
+		18EAF0321C1836C900454BE2 /* MyBlCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MyBlCell.xib; path = PetsLoveIt/MyBlCell.xib; sourceTree = SOURCE_ROOT; };
+		18EAF0351C183AE300454BE2 /* BLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BLModel.h; path = PetsLoveIt/BLModel.h; sourceTree = SOURCE_ROOT; };
+		18EAF0361C183AE300454BE2 /* BLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BLModel.m; path = PetsLoveIt/BLModel.m; sourceTree = SOURCE_ROOT; };
+		18EAF0381C185B7400454BE2 /* FillBLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FillBLViewController.h; sourceTree = "<group>"; };
+		18EAF0391C185B7400454BE2 /* FillBLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FillBLViewController.m; sourceTree = "<group>"; };
+		18EAF03A1C185B7400454BE2 /* FillBLViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FillBLViewController.xib; sourceTree = "<group>"; };
+		18EAF03D1C18720500454BE2 /* MyMsgCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyMsgCell.h; sourceTree = "<group>"; };
+		18EAF03E1C18720500454BE2 /* MyMsgCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMsgCell.m; sourceTree = "<group>"; };
+		18EAF03F1C18720500454BE2 /* MyMsgCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyMsgCell.xib; sourceTree = "<group>"; };
 		18F632841BF6215600FD98B1 /* GoodsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailViewController.h; sourceTree = "<group>"; };
 		18F632851BF6215600FD98B1 /* GoodsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailViewController.m; sourceTree = "<group>"; };
 		18F632861BF6215600FD98B1 /* GoodsDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailViewController.xib; sourceTree = "<group>"; };
@@ -3089,6 +3107,8 @@
 			children = (
 				1802A1F91C0C5DF1009BC2F8 /* AddressModel.h */,
 				1802A1FA1C0C5DF1009BC2F8 /* AddressModel.m */,
+				18EAF0351C183AE300454BE2 /* BLModel.h */,
+				18EAF0361C183AE300454BE2 /* BLModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -3099,6 +3119,9 @@
 				184726041C17D2EE005E0E29 /* MyCommentCell.h */,
 				184726051C17D2EE005E0E29 /* MyCommentCell.m */,
 				184726061C17D2EE005E0E29 /* MyCommentCell.xib */,
+				18EAF0301C1836C900454BE2 /* MyBlCell.h */,
+				18EAF0311C1836C900454BE2 /* MyBlCell.m */,
+				18EAF0321C1836C900454BE2 /* MyBlCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3434,6 +3457,9 @@
 				18E21F311C058B3B007059F3 /* BLLinkViewController.h */,
 				18E21F321C058B3B007059F3 /* BLLinkViewController.m */,
 				18E21F331C058B3B007059F3 /* BLLinkViewController.xib */,
+				18EAF0381C185B7400454BE2 /* FillBLViewController.h */,
+				18EAF0391C185B7400454BE2 /* FillBLViewController.m */,
+				18EAF03A1C185B7400454BE2 /* FillBLViewController.xib */,
 			);
 			name = MyBL;
 			sourceTree = "<group>";
@@ -3684,6 +3710,9 @@
 				F9BE498C1C1317D5002E47CC /* SysMsgCell.h */,
 				F9BE498D1C1317D5002E47CC /* SysMsgCell.m */,
 				F9BE498F1C1318C5002E47CC /* SysMsgCell.xib */,
+				18EAF03D1C18720500454BE2 /* MyMsgCell.h */,
+				18EAF03E1C18720500454BE2 /* MyMsgCell.m */,
+				18EAF03F1C18720500454BE2 /* MyMsgCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3951,11 +3980,13 @@
 				18B37C391C1429A700762980 /* ForgotPwdViewController.xib in Resources */,
 				189446521BEB0774006249F0 /* chatBar_recordSelected@2x.png in Resources */,
 				1894461F1BEB0774006249F0 /* e_68@2x.png in Resources */,
+				18EAF0341C1836C900454BE2 /* MyBlCell.xib in Resources */,
 				1894462C1BEB0774006249F0 /* e_7@2x.png in Resources */,
 				1802A2001C0C6042009BC2F8 /* AddAddressViewController.xib in Resources */,
 				1894461D1BEB0774006249F0 /* e_66@2x.png in Resources */,
 				18E21F241C047C91007059F3 /* MyGradeViewController.xib in Resources */,
 				189445E21BEB0774006249F0 /* e_12@2x.png in Resources */,
+				18EAF03C1C185B7400454BE2 /* FillBLViewController.xib in Resources */,
 				189446561BEB0774006249F0 /* DeleteEmoticonBtnHL@2x.png in Resources */,
 				189446511BEB0774006249F0 /* chatBar_recordSelected.png in Resources */,
 				186EA8891C169362009876BD /* PushConfig.plist in Resources */,
@@ -3981,6 +4012,7 @@
 				18DD071F1BEC53E5003C8160 /* HomePageViewController.xib in Resources */,
 				189445FC1BEB0774006249F0 /* e_36@2x.png in Resources */,
 				189446491BEB0774006249F0 /* chatBar_more.png in Resources */,
+				18EAF0411C18720500454BE2 /* MyMsgCell.xib in Resources */,
 				189446391BEB0774006249F0 /* faceDelete.png in Resources */,
 				1894467E1BEB0774006249F0 /* sr_refresh.png in Resources */,
 				1894461B1BEB0774006249F0 /* e_64@2x.png in Resources */,
@@ -4286,6 +4318,7 @@
 				189445881BEB0774006249F0 /* MJPhotoToolbar.m in Sources */,
 				189446DC1BEB0A80006249F0 /* UIButton+YYWebImage.m in Sources */,
 				189445DE1BEB0774006249F0 /* EmojiEmoticons.m in Sources */,
+				18EAF0401C18720500454BE2 /* MyMsgCell.m in Sources */,
 				189442C71BEAF65A006249F0 /* NSDate+Addition.m in Sources */,
 				F99B56CB1BF4AE12008E18A2 /* NSArray+PureLayout.m in Sources */,
 				18E21ECC1C00229C007059F3 /* UIPasteboard+YYText.m in Sources */,
@@ -4358,6 +4391,7 @@
 				182110561BEF1D9A00C32E23 /* GoodsCell.m in Sources */,
 				189445981BEB0774006249F0 /* MWPhotoBrowser.m in Sources */,
 				184858AD1BF8DD3C001FF521 /* MASConstraint.m in Sources */,
+				18EAF03B1C185B7400454BE2 /* FillBLViewController.m in Sources */,
 				1894463F1BEB0774006249F0 /* DXChatBarMoreView.m in Sources */,
 				189446721BEB0774006249F0 /* SDWebImageDownloaderOperation.m in Sources */,
 				1894457F1BEB0774006249F0 /* GTMBase64.m in Sources */,
@@ -4382,6 +4416,7 @@
 				18E21EC31C00229C007059F3 /* YYTextMagnifier.m in Sources */,
 				189445831BEB0774006249F0 /* MJPhoto.m in Sources */,
 				189447171BEC3BC5006249F0 /* RESTError.m in Sources */,
+				18EAF0371C183AE300454BE2 /* BLModel.m in Sources */,
 				182110351BEDFFB300C32E23 /* CarefulSelectViewController.m in Sources */,
 				1894459B1BEB0774006249F0 /* MWZoomingScrollView.m in Sources */,
 				189446861BEB0774006249F0 /* SWCellScrollView.m in Sources */,
@@ -4397,6 +4432,7 @@
 				189445A61BEB0774006249F0 /* CoreListCommonModel.m in Sources */,
 				18DB0D971BF2EA2B003F3743 /* StoryBoardUtilities.m in Sources */,
 				189445DB1BEB0774006249F0 /* UIViewController+RESideMenu.m in Sources */,
+				18EAF0331C1836C900454BE2 /* MyBlCell.m in Sources */,
 				189446671BEB0774006249F0 /* XLUtil.m in Sources */,
 				F9EAB78B1BF75A1B00BD0D6B /* PLStoreCell.m in Sources */,
 				189445911BEB0774006249F0 /* UIView+MJExtension.m in Sources */,

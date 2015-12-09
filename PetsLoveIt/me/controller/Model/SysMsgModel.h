@@ -18,6 +18,9 @@
 @property (nonatomic,strong) NSString *sendTime;
 @property (nonatomic,strong) NSString *userId;
 @property (nonatomic,strong) NSString *msgtype;
- 
+
+@property (nonatomic,strong) NSString *productId;
+@property (nonatomic,strong) NSString *prodName;
+
 
 @end

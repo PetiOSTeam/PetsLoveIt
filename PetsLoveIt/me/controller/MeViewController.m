@@ -347,10 +347,24 @@
     //    [self uploadAvatar:params];
 }
 
+- (void) getUserInfoFromServer{
+    NSDictionary *params =@{@"uid":@"getLoginInfo"};
+    [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            NSString *userAvatar = [[responseData objectForKey:@"bean"] objectForKey:@"userIcon"];
+            LocalUserInfoModelClass *localUserInfo = [AppCache getUserInfo];
+            localUserInfo.user_icon = userAvatar;
+            [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+            
+            [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:userAvatar] placeholderImage:kDefaultHeadImage];
+        }
+    }];
+}
+
 - (void)uploadAvatar:(NSDictionary*) params{
     [SVProgressHUD showWithStatus:@"正在上传头像，请稍后" maskType:SVProgressHUDMaskTypeClear];
     NSString *urlString = @"getSrvcore.action";
-    WEAKSELF
+    //WEAKSELF
     [APIOperation uploadMedia:urlString parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             [SVProgressHUD showSuccessWithStatus:@"上传成功"];
@@ -364,6 +378,8 @@
                 [[SDImageCache sharedImageCache] clearMemory];
                 [[SDImageCache sharedImageCache] clearDiskOnCompletion:^{
                     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:userAvatar] placeholderImage:kDefaultHeadImage];
+                    //获取user详情，确保万无一失
+                    [self getUserInfoFromServer];
                 }];
                 
             });

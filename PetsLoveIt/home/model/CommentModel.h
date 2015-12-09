@@ -22,6 +22,7 @@
 @property (nonatomic,strong) NSString *commentObject;
 @property (nonatomic,strong) NSString *orderNo;
 @property (nonatomic,strong) NSString *userIcon;
+@property (nonatomic,strong) NSString *otherUserIcon;
 @property (nonatomic,strong) NSString *userGrade;
 @property (nonatomic,strong) NSString *userIntegral;
 @property (nonatomic,strong) NSString *praiseNum;

@@ -59,14 +59,14 @@
 
 -(void)dataFill{
     CommentModel *comment = (CommentModel *)self.model;
-    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:comment.userIcon] placeholderImage:kDefaultHeadImage];
+    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:comment.otherUserIcon] placeholderImage:kDefaultHeadImage];
     self.nameLabel.text = self.isSentComment==NO?comment.otherNickName:@"发出评论";
     self.dateLabel.text = comment.timeFlag;
     
     if (self.isSentComment) {
         self.myCommentView.height = 0 ;
     }else{
-        self.myCommentLabel.emojiText = [NSString stringWithFormat:@"%@：%@",[AppCache getUserName],comment.content] ;
+        self.myCommentLabel.emojiText = [NSString stringWithFormat:@"%@：%@",[AppCache getUserName],comment.otherContent] ;
         //自适应titleLabel的高度
         [self.myCommentLabel setWidth:(mScreenWidth-self.myCommentView.left-30)];
         [self.myCommentLabel sizeToFit];
@@ -82,7 +82,7 @@
 
     }else{
         self.otherCommentLabel.top = self.myCommentView.bottom + 15;
-        self.otherCommentLabel.emojiText = comment.otherContent;
+        self.otherCommentLabel.emojiText = comment.content;
 
     }
     //自适应titleLabel的高度
@@ -132,7 +132,7 @@
     _textLabel.font = [UIFont systemFontOfSize:14];
     _textLabel.customEmojiRegex = kEmojiReg;
     _textLabel.customEmojiPlistName = @"expression.plist";
-    [_textLabel setEmojiText:[NSString stringWithFormat:@"%@：%@",[AppCache getUserName],object.content]];
+    [_textLabel setEmojiText:[NSString stringWithFormat:@"%@：%@",[AppCache getUserName],object.otherContent]];
     _textLabel.backgroundColor = [UIColor clearColor];
     _textLabel.isNeedAtAndPoundSign = YES;
     _textLabel.numberOfLines = 0;
@@ -144,7 +144,7 @@
     
     MLEmojiLabel *_textLabel2 = [[MLEmojiLabel alloc]init];
     _textLabel2.font = [UIFont systemFontOfSize:14];
-    [_textLabel2 setEmojiText:object.otherContent];
+    [_textLabel2 setEmojiText:object.content];
     _textLabel2.customEmojiRegex = kEmojiReg;
     _textLabel2.customEmojiPlistName = @"expression.plist";
     _textLabel2.backgroundColor = [UIColor clearColor];

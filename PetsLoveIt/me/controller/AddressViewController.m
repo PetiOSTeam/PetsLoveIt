@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addBtn;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
+@property (nonatomic,strong) AddressModel *address;
 
 @end
 
@@ -36,6 +37,9 @@
     self.navBarTitleLabel.text = @"收货地址";
     self.addressView.width = mScreenWidth;
     [self.addressView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+    self.addressView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showUpdateAddrVC)];
+    [self.addressView addGestureRecognizer:tap];
     
     self.addBtn.layer.cornerRadius = 25;
     self.addressView.hidden = YES;
@@ -51,6 +55,7 @@
             if (jsonArray.count > 0) {
                 self.addressView.hidden = NO;
                 AddressModel *address = [[AddressModel alloc] initWithDictionary:jsonArray[0]];
+                self.address = address;
                 self.nameLabel.text = address.receiveName;
                 self.mobileLabel.text = address.receiveTel;
                 self.addressLabel.text = address.receiveAddress;
@@ -63,6 +68,13 @@
             mAlertAPIErrorInfo(error);
         }
     }];
+}
+
+- (void)showUpdateAddrVC{
+    AddAddressViewController *vc = [AddAddressViewController new];
+    vc.isUpdateAddress = YES;
+    vc.address = self.address;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

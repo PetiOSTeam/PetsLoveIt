@@ -31,7 +31,15 @@
     [super viewDidLoad];
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"设置收货地址";
-    
+    if (self.isUpdateAddress) {
+        self.navBarTitleLabel.text = @"修改收货地址";
+        [self.okBtn setTitle:@"确定" forState:UIControlStateNormal];
+        self.addressTextField.text = _address.receiveAddress ;
+        self.zipCodeTextField.text = _address.zipCode;
+        self.nameTextField.text = _address.receiveName;
+        self.mobileTextField.text = _address.receiveTel;
+        
+    }
     self.addressView.width = self.zipCodeView.width = self.nameView.width = self.mobileView.width = self.msgCodeView.width = mScreenWidth-80;
     [self.addressView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     [self.zipCodeView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
@@ -84,8 +92,20 @@
                              @"athcode":msgcode,
                              @"receiveName":name,
                              @"receiveTel":mobile,
-                             @"receiveAddress":address
+                             @"receiveAddress":address,
+                             @"zipCode":zipcode
                              };
+    if (self.isUpdateAddress) {
+        params = @{
+                   @"uid":@"updatedeliveryaddress",
+                   @"addressId":self.address.addressId,
+                   @"athcode":msgcode,
+                   @"receiveName":name,
+                   @"receiveTel":mobile,
+                   @"receiveAddress":address,
+                   @"zipCode":zipcode
+                   };
+    }
     [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeNone];
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
