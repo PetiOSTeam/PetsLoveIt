@@ -47,7 +47,7 @@
     }else{
         self.navBarTitleLabel.text = @"手机号注册";
     }
-    
+    self.token = @"";
     self.accountView.width = self.pwdView.width =self.codeView.width=self.nickNameView.width = mScreenWidth-80;
     [self.accountView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     [self.codeView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
@@ -177,6 +177,10 @@
     }];
 }
 - (void) sendSMSCode:(NSString *)mobile{
+    if ([mobile isPhoneNumber]==0) {
+        mAlertView(@"提示", @"请填写正确格式的手机号");
+        return;
+    }
     NSDictionary *params = @{
                              @"uid":@"smsathcode",
                              @"mobile":mobile
@@ -202,8 +206,6 @@
 }
 - (IBAction)regAction:(id)sender {
     [self.view endEditing:YES];
-    
-    [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeClear];
     
     NSString  *mobile = self.accountTextField.text;
     NSString  *code = self.codeTextField.text;
@@ -266,7 +268,7 @@
         
 
     }
-    
+    [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeClear];
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         [SVProgressHUD dismiss];
         if (!error) {

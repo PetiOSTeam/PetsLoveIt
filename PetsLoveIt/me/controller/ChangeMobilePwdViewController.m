@@ -35,7 +35,7 @@
 - (void)prepareViewAndData{
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"修改密码";
-    
+    self.token = @"";
     self.codeView.width = self.pwdView.width =self.confirmPwdView.width =mScreenWidth-80;
     [self.codeView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     [self.pwdView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
@@ -95,7 +95,10 @@
 
 - (IBAction)msgAction:(id)sender {
     NSString  *mobile = self.mobile;
-    
+    if ([mobile isPhoneNumber]==0) {
+        mAlertView(@"提示", @"请填写正确格式的手机号");
+        return;
+    }
     [self countdownAnimation];
     NSDictionary *params = @{
                              @"uid":@"smsathcode",

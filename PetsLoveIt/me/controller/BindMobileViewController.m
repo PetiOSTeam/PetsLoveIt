@@ -79,6 +79,10 @@
         mAlertView(@"提示", @"手机号不能为空");
         return;
     }
+    if ([mobile isPhoneNumber]==0) {
+        mAlertView(@"提示", @"请填写正确格式的手机号");
+        return;
+    }
     [self countdownAnimation];
     NSDictionary *params = @{
                              @"uid":@"smsathcode",

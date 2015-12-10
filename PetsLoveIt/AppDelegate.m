@@ -78,6 +78,7 @@
     
   
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     [self.window makeKeyAndVisible];
     
     //每次版本第一次启动显示引导页
@@ -255,7 +256,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     // Required
     [APService handleRemoteNotification:userInfo];
 }
@@ -312,11 +313,13 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     [self autoLogin];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
