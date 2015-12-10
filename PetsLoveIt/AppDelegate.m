@@ -20,30 +20,15 @@
 #import "MobClick.h"
 #import "MeViewController.h"
 #import "APService.h"
+#import "ZWIntroductionViewController.h"
 
 #define kSignAlarm 1112
 
 @interface AppDelegate ()
-
+@property (nonatomic, strong) ZWIntroductionViewController *introductionView;
 @end
 
 @implementation AppDelegate
-
-- (void)setupNavigationStyle
-{
-    UIApplication *application = [UIApplication sharedApplication];
-    [[UINavigationBar appearance] setBackgroundImage:[AppUtils imageFromColor:[UIColor whiteColor]]
-                                       forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setBarStyle:UIBarStyleDefault];
-//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];  //定制返回按钮的颜色
-//    [application setStatusBarHidden:NO];  //tabbar不隐藏
-    
-    [[UINavigationBar appearance] setShadowImage:[AppUtils imageFromColor:kLineColor]];
-    [application setStatusBarStyle:UIStatusBarStyleLightContent];  //tabbar线条
-    
-}
-
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
@@ -90,11 +75,54 @@
     navi3.navigationBarHidden = YES;
     
     tabVC.viewControllers = @[navi1,navi2,navi3];
+    
   
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [self.window makeKeyAndVisible];
     
+    //每次版本第一次启动显示引导页
+    NSString *guideViewFlag = [mUserDefaults objectForKey:kGuideView];
+    if (!guideViewFlag) {
+        [self loadIntroduceView];
+    }
+
+    
     [self autoLogin];
+}
+
+- (void)setupNavigationStyle
+{
+    UIApplication *application = [UIApplication sharedApplication];
+    [[UINavigationBar appearance] setBackgroundImage:[AppUtils imageFromColor:[UIColor whiteColor]]
+                                       forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleDefault];
+    
+    [[UINavigationBar appearance] setShadowImage:[AppUtils imageFromColor:kLineColor]];
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];  //tabbar线条
+    
+}
+
+- (void)loadIntroduceView{
+    NSArray *backgroundImageNames = @[@"guideImage01", @"guideImage02", @"guideImage03",@"guideImage04",@"guideImage05"];
+    NSArray *coverImageNames = @[@"guideImage01", @"guideImage02", @"guideImage03",@"guideImage04",@"guideImage05"];
+
+    
+    // Custom Enter Button
+    UIButton *enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [enterButton.titleLabel setTextColor:[UIColor whiteColor]];
+    [enterButton setTitle:@"立即体验" forState:UIControlStateNormal];
+    enterButton.layer.cornerRadius = 25;
+    [enterButton setBackgroundColor:mRGBToColor(0xfc6b42)];
+    enterButton.width = 190;
+    enterButton.height = 48;
+        self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:backgroundImageNames button:enterButton];
+    
+    [self.window addSubview:self.introductionView.view];
+    [mUserDefaults setObject:@"1" forKey:kGuideView];
+    __weak AppDelegate *weakSelf = self;
+    self.introductionView.didSelectedEnter = ^() {
+        weakSelf.introductionView = nil;
+    };
 }
 
 - (void)configJPush:(NSDictionary *)launchOptions{

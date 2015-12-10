@@ -48,7 +48,7 @@
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
                            @"uid":@"getUserSystemMsg",
-                           @"userToken":[AppCache getToken]
+                           @"msgType":@"1"
                            };
     //模型类
         configModel.ModelClass=[SysMsgModel class];

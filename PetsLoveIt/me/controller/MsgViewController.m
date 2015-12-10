@@ -64,8 +64,7 @@
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
                            @"uid":@"getUserSystemMsg",
-                           @"userToken":[AppCache getToken],
-                           @"msyType":@"2"
+                           @"msgType":@"2"
                            };
     //模型类
         configModel.ModelClass=[SysMsgModel class];
@@ -81,7 +80,7 @@
     //pageSize
     configModel.pageSize = 10;
     //起始页码
-    configModel.pageStartValue=1;
+    configModel.pageStartValue=0;
     //行高
     configModel.rowHeight=110;
     

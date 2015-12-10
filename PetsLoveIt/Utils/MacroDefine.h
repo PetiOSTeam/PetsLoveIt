@@ -219,6 +219,9 @@ typedef NS_ENUM(NSInteger, DetailPageType) {
 
 #define kImageQualityKey @"ImageQualityKey"
 
+#define kGuideView         [NSString stringWithFormat:@"GuideView_%@",mAPPVersionNumber]
+
+
 
 //通知notification
 #define changeHeadImageNotify  @"changeHeadImageNotify"

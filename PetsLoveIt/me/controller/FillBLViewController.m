@@ -7,8 +7,10 @@
 //
 
 #import "FillBLViewController.h"
+#import "ProductSortModel.h"
 
-@interface FillBLViewController ()
+@interface FillBLViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *titleView;
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
@@ -22,6 +24,16 @@
 @property (weak, nonatomic) IBOutlet UITextField *reasonTextField;
 @property (weak, nonatomic) IBOutlet UIButton *okBtn;
 
+
+@property (nonatomic,strong) UIPickerView *dataPickerView;
+@property (nonatomic,strong) UIView *pickerView;
+
+@property (nonatomic,strong) ProductSortModel *selectedProduct;
+
+@property(nonatomic,retain)NSMutableDictionary* dict;
+@property(nonatomic,retain)NSArray* pickerArray;
+@property(nonatomic,retain)NSArray* subPickerArray;
+
 @end
 
 @implementation FillBLViewController
@@ -30,6 +42,11 @@
     [super viewDidLoad];
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"我的爆料";
+    self.dict = [NSMutableDictionary new];
+    self.pickerArray = @[];
+    self.subPickerArray = @[];
+    [self.view addSubview:self.pickerView];
+    [self getProductSortData];
     
     if (self.model.title ) {
         self.titleTextField.text = self.model.title;
@@ -47,6 +64,8 @@
         self.reasonTextField.text = _model.shareReason;
     }
     
+    self.sortTextField.delegate = self;
+    
     self.titleView.width = self.nameView.width = self.priceView.width = self.sortView.width  = self.reasonView.width = mScreenWidth-40;
     
     [self.titleView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
@@ -55,17 +74,145 @@
     [self.sortView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     [self.reasonView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     
+    self.sortTextField.enabled = NO;
+    UITapGestureRecognizer *tapOnSort = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnSortView)];
+    [self.sortView addGestureRecognizer:tapOnSort];
+    
     self.okBtn.layer.cornerRadius = 25;
     [self.scrollView setContentSize:CGSizeMake(mScreenWidth, self.okBtn.bottom + 20)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
 }
+
+-(void)tapOnSortView{
+    [self.view endEditing:YES];
+    [self showPickerView];
+}
+
+- (void) getProductSortData{
+    NSDictionary *params = @{@"uid":@"getSortInfos"};
+    [APIOperation GET:@"getSource.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            NSArray *jsonArray = [responseData objectForKey:@"beans"];
+            [jsonArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSArray *subJsonArray = [obj objectForKey:@"subsorts"];
+                NSMutableArray *subArray = [NSMutableArray new];
+                [subJsonArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    ProductSortModel *subSortModel = [[ProductSortModel alloc] initWithDictionary:obj];
+                    [subArray addObject:subSortModel];
+                }];
+                [_dict setObject:subArray forKey:[obj objectForKey:@"name"]];
+            }];
+            self.pickerArray=[_dict allKeys];
+            self.subPickerArray=[_dict objectForKey:[[_dict allKeys] objectAtIndex:0]];
+
+            [self.dataPickerView reloadAllComponents];
+        }else{
+            mAlertAPIErrorInfo(error);
+        }
+    }];
+}
+
+-(UIView *)pickerView{
+    if (!_pickerView) {
+        _pickerView = [[UIView alloc] initWithFrame:CGRectMake(0, mScreenHeight, mScreenWidth, 170)];
+        [_pickerView setBackgroundColor:[UIColor whiteColor]];
+        _dataPickerView = [[UIPickerView alloc] init];
+        _dataPickerView.top = 0;
+        _dataPickerView.width = mScreenWidth;
+        _dataPickerView.dataSource = self;
+        _dataPickerView.delegate = self;
+        [_dataPickerView reloadAllComponents];
+        [_pickerView addSubview:_dataPickerView];
+        
+        UIButton *cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [cancelBtn setFrame:CGRectMake(0, 0, 50, 44)];
+        [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [cancelBtn setTitleColor:mRGBToColor(0x999999) forState:UIControlStateNormal];
+        [cancelBtn addTarget:self action:@selector(hidePickerView) forControlEvents:UIControlEventTouchUpInside];
+        [_pickerView addSubview:cancelBtn];
+        UIButton *okBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [okBtn setFrame:CGRectMake(mScreenWidth-50, 0, 50, 44)];
+        [okBtn setTitle:@"确定" forState:UIControlStateNormal];
+        [okBtn setTitleColor:mRGBToColor(0x333333) forState:UIControlStateNormal];
+        [okBtn addTarget:self action:@selector(okPickerView) forControlEvents:UIControlEventTouchUpInside];
+        [_pickerView addSubview:okBtn];
+        [_pickerView addTopBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+    }
+    return _pickerView;
+}
+
+-(void)okPickerView{
+    self.sortTextField.text = self.selectedProduct.name;
+    
+    [self hidePickerView];
+}
+
+-(void)showPickerView{
+    [UIView animateWithDuration:0.3 animations:^{
+        _pickerView.top = mScreenHeight - _pickerView.height - 49;
+    }];
+}
+
+-(void)hidePickerView{
+    [UIView animateWithDuration:0.3 animations:^{
+        _pickerView.top = mScreenHeight ;
+    }];
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 2;
+}
+
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    if (component == 0) {
+        return self.pickerArray.count;
+    }else{
+        return self.subPickerArray.count;
+    }
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    switch (component) {
+        case 0:
+            return [self.pickerArray objectAtIndex:row];
+            break;
+        case 1:{
+            ProductSortModel *sortModel =[self.subPickerArray objectAtIndex:row];
+            return sortModel.name;
+
+        }
+            break;
+        default:
+            break;
+    }
+    return nil;
+}
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    if (component == 0) {
+        
+        self.subPickerArray= [_dict objectForKey:[self.pickerArray objectAtIndex:row]];
+        
+        //[pickerView selectedRowInComponent:1];
+        [pickerView reloadComponent:1];
+    }else{
+        ProductSortModel *sortModel =[self.subPickerArray objectAtIndex:row];
+        self.selectedProduct = sortModel;
+    }
+}
+
+-(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{
+    return  40;
+}
+
 - (IBAction)okAction:(id)sender {
     NSString *title = self.titleTextField.text;
     NSString *name = self.nameTextField.text;
     NSString *price = self.priceTextField.text;
-    NSString *sort = self.sortTextField.text;
+    NSString *sort = self.selectedProduct.sortId;
     NSString *reason = self.reasonTextField.text;
     
     if ([title length]==0) {
@@ -81,7 +228,7 @@
         return;
     }
     if ([sort length]==0) {
-        mAlertView(@"提示", @"分类不能为空");
+        mAlertView(@"提示", @"请选择分类");
         return;
     }
     if ([reason length]==0) {

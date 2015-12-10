@@ -34,13 +34,15 @@
     [self.titleLabel setWidth:mScreenWidth-40];
     [self.titleLabel sizeToFit];
     
-    self.productView.top = self.titleLabel.bottom + 10;
     if ([msg.prodName length]>0) {
+        self.productView.top = self.titleLabel.bottom + 10;
+
         self.productLabel.text = [NSString stringWithFormat:@"原文:%@",msg.prodName];
     }else{
+        self.productView.top = self.titleLabel.bottom;
         self.productView.height = 0;
     }
-    self.dateLabel.top = self.productLabel.bottom+13;
+    self.dateLabel.top = self.productView.bottom+13;
     self.dateLabel.text = msg.sendTime;
     
 }
@@ -52,9 +54,13 @@
     [_textLabel setText:object.msgcontent];
     _textLabel.numberOfLines = 0;
     _textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    [_textLabel setWidth:mScreenWidth-40];
     [_textLabel sizeToFit];
+    if ([object.prodName length]>0){
+        return _textLabel.height + 20+10+40+13+10+13;
+    }else
+        return _textLabel.height + 20+10+10+13;
     
-    return _textLabel.height + 20+10+40+13+10;
     
 }
 

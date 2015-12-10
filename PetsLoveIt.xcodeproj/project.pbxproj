@@ -26,6 +26,8 @@
 		1808BE541C132746002A029B /* CommentSubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808BE521C132746002A029B /* CommentSubCell.m */; };
 		1808BE551C132746002A029B /* CommentSubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1808BE531C132746002A029B /* CommentSubCell.xib */; };
 		1808BE581C132A43002A029B /* CommentTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808BE571C132A43002A029B /* CommentTableView.m */; };
+		181F553F1C19366C00D96455 /* ProductSortModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 181F553E1C19366C00D96455 /* ProductSortModel.m */; };
+		181F55421C19625D00D96455 /* ZWIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 181F55411C19625D00D96455 /* ZWIntroductionViewController.m */; };
 		182110351BEDFFB300C32E23 /* CarefulSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182110341BEDFFB300C32E23 /* CarefulSelectViewController.m */; };
 		1821104F1BEEE89800C32E23 /* ZQW_ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1821104E1BEEE89800C32E23 /* ZQW_ScrollView.m */; };
 		182110521BEF1B6500C32E23 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182110511BEF1B6500C32E23 /* GoodsModel.m */; };
@@ -655,6 +657,10 @@
 		1808BE531C132746002A029B /* CommentSubCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentSubCell.xib; sourceTree = "<group>"; };
 		1808BE561C132A43002A029B /* CommentTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentTableView.h; sourceTree = "<group>"; };
 		1808BE571C132A43002A029B /* CommentTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTableView.m; sourceTree = "<group>"; };
+		181F553D1C19366C00D96455 /* ProductSortModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductSortModel.h; path = PetsLoveIt/me/controller/View/ProductSortModel.h; sourceTree = SOURCE_ROOT; };
+		181F553E1C19366C00D96455 /* ProductSortModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductSortModel.m; path = PetsLoveIt/me/controller/View/ProductSortModel.m; sourceTree = SOURCE_ROOT; };
+		181F55401C19625D00D96455 /* ZWIntroductionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWIntroductionViewController.h; sourceTree = "<group>"; };
+		181F55411C19625D00D96455 /* ZWIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWIntroductionViewController.m; sourceTree = "<group>"; };
 		182110331BEDFFB300C32E23 /* CarefulSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarefulSelectViewController.h; sourceTree = "<group>"; };
 		182110341BEDFFB300C32E23 /* CarefulSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarefulSelectViewController.m; sourceTree = "<group>"; };
 		1821104D1BEEE89800C32E23 /* ZQW_ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZQW_ScrollView.h; sourceTree = "<group>"; };
@@ -3036,6 +3042,8 @@
 		189446E81BEB859D006249F0 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				181F55401C19625D00D96455 /* ZWIntroductionViewController.h */,
+				181F55411C19625D00D96455 /* ZWIntroductionViewController.m */,
 				18F632921BF6F34B00FD98B1 /* MLTransition.h */,
 				18F632931BF6F34B00FD98B1 /* MLTransition.m */,
 				18DB0D891BF2EA2B003F3743 /* KMActivityIndicator.h */,
@@ -3109,6 +3117,8 @@
 				1802A1FA1C0C5DF1009BC2F8 /* AddressModel.m */,
 				18EAF0351C183AE300454BE2 /* BLModel.h */,
 				18EAF0361C183AE300454BE2 /* BLModel.m */,
+				181F553D1C19366C00D96455 /* ProductSortModel.h */,
+				181F553E1C19366C00D96455 /* ProductSortModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -4189,6 +4199,7 @@
 				F92EE5261C0068DA00DEC5D0 /* KeywordsModel.m in Sources */,
 				189442E81BEAF65A006249F0 /* PhotoUtils.m in Sources */,
 				189445CA1BEB0774006249F0 /* OpenSSLRSAWrapper.m in Sources */,
+				181F553F1C19366C00D96455 /* ProductSortModel.m in Sources */,
 				189445C61BEB0774006249F0 /* NSObject+MJProperty.m in Sources */,
 				18DB0D841BF03442003F3743 /* TaoPetViewController.m in Sources */,
 				18E21EBC1C00229C007059F3 /* YYTextContainerView.m in Sources */,
@@ -4525,6 +4536,7 @@
 				1808BE481C131AA2002A029B /* CommentModel.m in Sources */,
 				18E21EBE1C00229C007059F3 /* YYTextEffectWindow.m in Sources */,
 				1894466A1BEB0774006249F0 /* RichEditView.m in Sources */,
+				181F55421C19625D00D96455 /* ZWIntroductionViewController.m in Sources */,
 				189442C51BEAF65A006249F0 /* AppUtils.m in Sources */,
 				18DB0D7E1BEF66DB003F3743 /* ExperienceViewController.m in Sources */,
 				F91BA2C91C15B65A00B1C2E9 /* GradePopView.m in Sources */,
