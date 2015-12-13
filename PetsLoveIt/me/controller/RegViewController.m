@@ -212,7 +212,10 @@
     NSString  *nickName = self.nickTextField.text;
     NSString  *pwd = self.pwdTextField.text;
     NSString *encryptedPwd = [[_Des AES128Encrypt:[pwd appendAESKeyAndTimeStamp]] uppercaseString];
-    
+    if ([self.token length] ==0) {
+        mAlertView(@"提示", @"您还没有点击发送验证码");
+        return;
+    }
     if ([mobile length]==0) {
         mAlertView(@"提示", @"手机号不能为空");
         return;
@@ -270,23 +273,58 @@
     }
     [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeClear];
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-        [SVProgressHUD dismiss];
         if (!error) {
+            [SVProgressHUD dismiss];
+
             NSLog(@"%@",responseData);
             [mAppUtils showHint:[responseData objectForKey:@"rtnMsg"]];
             if (self.isOtherLogin) {
                 //用绑定帐号的接口自动登录
                 [self bindUserAccount];
             }else{
-                [self.navigationController popViewControllerAnimated:YES];
+                //登录接口
+                LocalUserInfoModelClass *userInfo = [LocalUserInfoModelClass new];
+                userInfo.loginType = @"1";
+                userInfo.accountName = mobile;
+                userInfo.password = encryptedPwd;
+                [self loginByAccount:userInfo];
             }
             
         }else{
+            [SVProgressHUD dismiss];
+
             mAlertAPIErrorInfo(error);
         }
     }];
     
     
+}
+
+- (void)loginByAccount:(LocalUserInfoModelClass *)userInfo{
+    NSDictionary *params = @{
+                             @"uid":@"login",
+                             @"type":userInfo.loginType,
+                             @"userName":userInfo.accountName,
+                             @"userPwd":userInfo.password
+                             };
+    [APIOperation GET:@"userLogin.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        [SVProgressHUD dismiss];
+
+        if (!error) {
+            NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
+            LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
+            localUserInfo.userToken = [responseData objectForKey:@"userToken"];
+            localUserInfo.loginType = userInfo.loginType;
+            localUserInfo.accountName = userInfo.accountName;
+            localUserInfo.password = userInfo.password;
+            //将userinfo记录下来
+            mAppDelegate.loginUser = localUserInfo;
+            [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+
+            
+        }
+    }];
 }
 
 - (void)bindUserAccount{

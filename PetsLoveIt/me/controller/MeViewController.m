@@ -32,7 +32,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet YYLabel *levelLabel;
+@property (strong, nonatomic)  YYLabel *levelLabel;
+
 @property (weak, nonatomic) IBOutlet UIButton *signButton;
 @property (weak, nonatomic) IBOutlet UIButton *ruleButton;
 
@@ -88,7 +89,17 @@
     if (!_imageQualityStr) {
         _imageQualityStr = @"标清";
     }
+
+    _levelLabel = [YYLabel new];
+    _levelLabel.font = [UIFont systemFontOfSize:12];
+    _levelLabel.textColor = mRGBToColor(0x333333);
+    _levelLabel.userInteractionEnabled = YES;
+    _levelLabel.numberOfLines = 0;
+    [_levelLabel setTextAlignment:NSTextAlignmentCenter];
+    _levelLabel.frame = CGRectMake(8, self.nameLabel.bottom+10, mScreenWidth-16    ,20);
     
+    [self.headerView addSubview:_levelLabel];
+
     
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     [self.headerView setBackgroundColor:mRGBToColor(0xf5f5f5)];
@@ -413,13 +424,16 @@
 
 
 - (void) loadUserInfoViewAndData{
-    if (![AppCache getUserInfo]) {
+    LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
+    if (!userInfo) {
         [self.signButton removeTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
         self.ruleLabel.hidden = YES;
         self.ruleButton.hidden = YES;
-        self.nameLabel.text = @"Hi , 你好";
+        self.nameLabel.text = @"哈喽，你还没有登录哦";
         self.navBarTitleLabel.text = @"Hi , 你好";
-        self.levelLabel.text = @"登录签到抽大奖";
+        self.levelLabel.text = @"快来登录和小伙伴们一起互动吧";
+        _levelLabel.width = 200;
+        _levelLabel.center  = CGPointMake(mScreenWidth/2, _levelLabel.center.y);
         self.avatarImageView.image = [UIImage imageNamed:@"defaultUserAvatar"];
         [self.signButton setTitle:@"登录" forState:UIControlStateNormal];
         [self.signButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
@@ -430,14 +444,59 @@
         self.nameLabel.text = [NSString stringWithFormat:@"Hi , %@",[AppCache getUserName]];
         self.navBarTitleLabel.text =[NSString stringWithFormat:@"Hi , %@",[AppCache getUserName]] ;
         [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[AppCache getUserAvatar]] placeholderImage:[UIImage imageNamed:@"defaultUserAvatar"]];
-        self.levelLabel.text = @"";
-        LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
+        //self.levelLabel.text = @"";
+        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"等级: "];
+        UIFont *font = [UIFont systemFontOfSize:12];
+        NSMutableAttributedString *attachment = nil;
+        int grade = [userInfo.userGrade intValue];
+        //grade = 121;
+        int kingNum = grade/64;
+        int sunNum = grade%64==0?0:grade%64/16;
+        int moonNum = (grade%64==0||grade%16==0)?0:grade%16/4;
+        int starNum = (grade%64==0||grade%16==0||grade%4==0)?0:grade%4;
+        //如果等级为0，显示一个星星
+
+        if (starNum == 0&&grade ==0) {
+            starNum = 1;
+        }
+        
+        for (int i=0; i<kingNum; i++) {
+            UIImage *image = [UIImage imageNamed:@"kingIcon"];
+            attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+            [text appendAttributedString: attachment];
+        }
+        for (int i=0; i<sunNum; i++) {
+            UIImage *image = [UIImage imageNamed:@"sunIcon"];
+            attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+            [text appendAttributedString: attachment];
+        }
+        for (int i=0; i<moonNum; i++) {
+            UIImage *image = [UIImage imageNamed:@"moonIcon"];
+            attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+            [text appendAttributedString: attachment];
+        }
+        for (int i=0; i<starNum; i++) {
+            // UIImage attachment
+            UIImage *image = [UIImage imageNamed:@"starIcon"];
+            attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+            [text appendAttributedString: attachment];
+        }
+        //积分
+        NSMutableAttributedString *userIntegral = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  积分: %@",userInfo.userIntegral]];
+        [text appendAttributedString:userIntegral];
+        [_levelLabel setTextAlignment:NSTextAlignmentCenter];
+        _levelLabel.attributedText = text;
+        CGSize size = CGSizeMake(mScreenWidth-16, 20);
+        YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:text];
+        _levelLabel.width = layout.textBoundingSize.width;
+        _levelLabel.center  = CGPointMake(mScreenWidth/2, _levelLabel.center.y);
+
         NSString *todaySined = userInfo.todaySigned;
         if ([todaySined isEqualToString:@"1"]) {
             [self.signButton setTitle:@"已签到" forState:UIControlStateNormal];
  
         }else{
-            [self.signButton setTitle:@"签到送金币" forState:UIControlStateNormal];
+            [self.signButton setTitle:@"签到送积分" forState:UIControlStateNormal];
             [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
 
         }

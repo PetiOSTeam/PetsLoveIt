@@ -357,6 +357,10 @@ typedef enum{
             //[mAppUtils showHint:obj[@"error"]];
 
         });
+        //token失效后自动登录
+        if ([obj[@"rtnCode"] integerValue] ==-1) {
+            [mAppDelegate autoLogin];
+        }
         [self.scrollView headerSetState:CoreHeaderViewRefreshStateSuccessedResultNoMoreData];
         //第一次来就没有数据：提示没有数据
         NSString *msg =_configModel.hiddenNetWorkStausManager?@"":kNoContentTip;
@@ -621,7 +625,8 @@ typedef enum{
         NSRange range = [urlStr rangeOfString:@"?"];
         
         NSString *flag=(range.length==0)?@"?":@"&";
-    if ([[AppCache getToken] length]>0) {
+    //首页的接口都不需要token
+    if ([[AppCache getToken] length]>0&&![[_configModel.params objectForKey:@"uid"] isEqualToString:@"getProductByType"]) {
         _url=[NSString stringWithFormat:@"%@%@%@=%@&userToken=%@&%@=",urlStr,flag,_configModel.pageSizeName,@(_configModel.pageSize),[AppCache getToken],_configModel.pageName];
     }else{
        _url=[NSString stringWithFormat:@"%@%@%@=%@&%@=",urlStr,flag,_configModel.pageSizeName,@(_configModel.pageSize),_configModel.pageName]; 

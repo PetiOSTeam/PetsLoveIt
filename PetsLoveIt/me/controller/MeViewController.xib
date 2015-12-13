@@ -10,7 +10,6 @@
                 <outlet property="avatarImageView" destination="zRa-r8-y1z" id="QxH-sj-NHH"/>
                 <outlet property="headerContainerView" destination="ryj-bt-DrL" id="26t-YU-KMR"/>
                 <outlet property="headerView" destination="gBA-2O-Fpm" id="0Gl-5b-gOb"/>
-                <outlet property="levelLabel" destination="3Zd-CN-rKy" id="IWN-s9-9wj"/>
                 <outlet property="menuContainerView" destination="nNT-pO-LlC" id="ZTc-hE-cGi"/>
                 <outlet property="menuImageView1" destination="3dP-rF-LLC" id="amA-BG-uot"/>
                 <outlet property="menuImageView2" destination="ITb-du-VVf" id="6oJ-Vv-O6b"/>
@@ -76,14 +75,6 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Zd-CN-rKy">
-                            <rect key="frame" x="8" y="168" width="304" height="15"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>

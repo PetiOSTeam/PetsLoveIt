@@ -17,7 +17,8 @@
 +(NSDictionary *)replacedKeyFromPropertyName{
     return @{
              @"commentNum":@"commentnum",
-             @"favorNum":@"praisenum"
+             @"favorNum":@"praisenum",
+             @"hostID":@"prodId"
              };
 }
 

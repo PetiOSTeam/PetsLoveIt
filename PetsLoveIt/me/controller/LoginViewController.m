@@ -35,7 +35,7 @@
 - (void)prepareViewAndData{
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"登录";
-
+    self.accountTextField.text = [mUserDefaults objectForKey:HLoginAccount];
     self.accountView.width = self.pwdView.width = mScreenWidth-80;
     [self.accountView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     [self.pwdView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
