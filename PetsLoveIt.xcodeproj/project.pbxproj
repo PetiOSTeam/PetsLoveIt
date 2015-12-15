@@ -573,6 +573,7 @@
 		18F633BC1BF8898000FD98B1 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F633BA1BF8898000FD98B1 /* libSocialSina.a */; };
 		18F633BF1BF88E6400FD98B1 /* KMDetailsPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */; };
 		76AF7FED1BEF7F1F0066659E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AF7FEC1BEF7F1F0066659E /* OrderModel.m */; };
+		9D4240AF1C20374A0047EEFD /* SigninbubbleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */; };
 		F91BA2C51C15B08C00B1C2E9 /* XRZAlertControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */; };
 		F91BA2C91C15B65A00B1C2E9 /* GradePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C81C15B65A00B1C2E9 /* GradePopView.m */; };
 		F91BA2CB1C15B66C00B1C2E9 /* GradePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91BA2CA1C15B66C00B1C2E9 /* GradePopView.xib */; };
@@ -1616,6 +1617,8 @@
 		18F633BE1BF88E6400FD98B1 /* KMDetailsPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDetailsPageView.h; sourceTree = "<group>"; };
 		76AF7FEB1BEF7F1F0066659E /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		76AF7FEC1BEF7F1F0066659E /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		9D4240AD1C20374A0047EEFD /* SigninbubbleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SigninbubbleButton.h; path = PetsLoveIt/SigninbubbleButton.h; sourceTree = SOURCE_ROOT; };
+		9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SigninbubbleButton.m; path = PetsLoveIt/SigninbubbleButton.m; sourceTree = SOURCE_ROOT; };
 		F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XRZAlertControl.swift; sourceTree = "<group>"; };
 		F91BA2C61C15B16700B1C2E9 /* PetsLoveIt-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PetsLoveIt-Header.h"; sourceTree = "<group>"; };
 		F91BA2C71C15B65A00B1C2E9 /* GradePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradePopView.h; sourceTree = "<group>"; };
@@ -3126,6 +3129,8 @@
 		189446F01BEB859D006249F0 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				9D4240AD1C20374A0047EEFD /* SigninbubbleButton.h */,
+				9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */,
 				184726041C17D2EE005E0E29 /* MyCommentCell.h */,
 				184726051C17D2EE005E0E29 /* MyCommentCell.m */,
 				184726061C17D2EE005E0E29 /* MyCommentCell.xib */,
@@ -4309,6 +4314,7 @@
 				189446E51BEB0A80006249F0 /* YYWebImageManager.m in Sources */,
 				189445B61BEB0774006249F0 /* CoreRefreshView.m in Sources */,
 				189442CC1BEAF65A006249F0 /* NSNumber+Addition.m in Sources */,
+				9D4240AF1C20374A0047EEFD /* SigninbubbleButton.m in Sources */,
 				F9332A7A1C05E5BD00E322F0 /* UIScrollView+EmptyDataSet.m in Sources */,
 				189445931BEB0774006249F0 /* TTTAttributedLabel.m in Sources */,
 				1802A1EC1C0C4451009BC2F8 /* BindMobileViewController.m in Sources */,
