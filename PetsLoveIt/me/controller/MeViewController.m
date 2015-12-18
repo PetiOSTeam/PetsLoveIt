@@ -25,7 +25,7 @@
 #import "UserSettingVC.h"
 #import "AdviceViewController.h"
 #import "APService.h"
-
+#import "SigninbubbleButton.h"
 @interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerContainerView;
 @property (weak, nonatomic) IBOutlet UIView *menuContainerView;
@@ -612,12 +612,15 @@
 }
 
 - (void) signAction{
+    
     NSDictionary *params = @{
                              @"uid":@"saveUserSign",
                              @"signClien":@"iOS"
                              };
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
+            SigninbubbleButton *signbubble = [[SigninbubbleButton alloc]initWithframe:self.signButton.frame andSigninData:responseData];
+            [self.signButton.superview addSubview:signbubble];
             [self.signButton setTitle:@"已签到" forState:UIControlStateNormal];
             [self.signButton removeTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
             LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
