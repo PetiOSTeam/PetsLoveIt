@@ -31,6 +31,7 @@
     [self setPageViews];
     
 }
+
 - (void)setPageViews{
     
     NSMutableArray *pageModels = [NSMutableArray new];

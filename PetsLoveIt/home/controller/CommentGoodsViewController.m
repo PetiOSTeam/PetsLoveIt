@@ -265,7 +265,7 @@
     configModel.pageStartValue=1;
     //行高
     configModel.rowHeight=210;
-    configModel.hiddenNetWorkStausManager = YES;
+    configModel.hiddenNetWorkStausManager = NO;
     
     //移除返回顶部:(默认开启)
     configModel.removeBackToTopBtn=YES;

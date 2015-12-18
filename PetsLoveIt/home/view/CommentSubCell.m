@@ -31,22 +31,24 @@
     
     
     NSString *commentStr = [NSString stringWithFormat:@"%@：%@",comment.nickName,comment.content];
-//    NSMutableAttributedString *commentContent=[[NSMutableAttributedString alloc] initWithString:commentStr];
-//    NSString *userNameAndBlankCharStr = [NSString stringWithFormat:@"%@:",comment.nickName];
-//    
-//    NSRange allRange = {0,[commentStr length]};
-//    NSRange selectedRange = {0, [userNameAndBlankCharStr length]};
-//    NSRange selectedRange2 = {[userNameAndBlankCharStr length],[comment.content length]};
-//    [commentContent addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:allRange];
-//    [commentContent addAttribute:NSForegroundColorAttributeName
-//                       value:mRGBToColor(0x333333) // 添加颜色
-//                       range:selectedRange];
-//    [commentContent addAttribute:NSForegroundColorAttributeName
-//                       value:mRGBToColor(0x666666) // 添加颜色
-//                       range:selectedRange2];
-//    
-//    _commentLabel.attributedText = commentContent;
+    NSMutableAttributedString *commentContent=[[NSMutableAttributedString alloc] initWithString:commentStr];
+    NSString *userNameAndBlankCharStr = [NSString stringWithFormat:@"%@:",comment.nickName];
+    
+    NSRange allRange = {0,[commentStr length]};
+    NSRange selectedRange = {0, [userNameAndBlankCharStr length]};
+    NSRange selectedRange2 = {[userNameAndBlankCharStr length],[comment.content length]};
+    [commentContent addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:allRange];
+    [commentContent addAttribute:NSForegroundColorAttributeName
+                       value:mRGBToColor(0x333333) // 添加颜色
+                       range:selectedRange];
+    [commentContent addAttribute:NSForegroundColorAttributeName
+                       value:mRGBToColor(0x666666) // 添加颜色
+                       range:selectedRange2];
+    
     _commentLabel.emojiText = commentStr;
+    _commentLabel.attributedText = commentContent;
+
+    //[_commentLabel setEmojiAddAttri:NSForegroundColorAttributeName value:mRGBToColor(0x44ff01) rang:selectedRange];
     [self.commentLabel setWidth:(mScreenWidth-56-12-25-10)];
     [self.commentLabel sizeToFit];
     _floorLabel.text = comment.orderNo;

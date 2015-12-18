@@ -69,11 +69,14 @@ static const void *kNavBarTitleLabel = &kNavBarTitleLabel;
         
         UIButton *buttonBack = [UIButton buttonWithType:UIButtonTypeCustom];
         buttonBack.frame = CGRectMake(0, 30, 44, 34);
+        buttonBack.center = CGPointMake(buttonBack.center.x, 42);
         [buttonBack setImage:[UIImage imageNamed:@"backBarButtonIcon"] forState:UIControlStateNormal];
         [buttonBack addTarget:self action:@selector(popViewController:) forControlEvents:UIControlEventTouchUpInside];
         [self.navigationBarView addSubview:buttonBack];
         
         self.navBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 30, mScreenWidth-60, 24)];
+        self.navBarTitleLabel.center = CGPointMake(self.navBarTitleLabel.center.x, 42);
+
         [self.navBarTitleLabel setTextColor:kNaviTitleColor];
         [self.navBarTitleLabel setFont:[UIFont systemFontOfSize:18]];
         [self.navBarTitleLabel setTextAlignment:NSTextAlignmentCenter];

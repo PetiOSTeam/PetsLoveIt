@@ -364,7 +364,7 @@ typedef enum{
         [self.scrollView headerSetState:CoreHeaderViewRefreshStateSuccessedResultNoMoreData];
         //第一次来就没有数据：提示没有数据
         NSString *msg =_configModel.hiddenNetWorkStausManager?@"":kNoContentTip;
-        NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"点击屏幕重新加载";
+        NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"去看看别的吧";
         if (_configModel.customNoResultMsg) {
             subMsg = _configModel.customNoResultMsg;
         }
@@ -393,7 +393,7 @@ typedef enum{
             if (!_configModel.hiddenNetWorkStausManager) {
                 //第一次来就没有数据：提示没有数据
                 NSString *msg =_configModel.hiddenNetWorkStausManager?@"":kNoContentTip;
-                NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"点击屏幕重新加载";
+                NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"去看看别的吧";
                 [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
                     if (!_configModel.hiddenNetWorkStausManager) {
                         [self reloadDataWithheaderViewStateRefresh];

@@ -48,5 +48,6 @@ typedef NS_OPTIONS(NSUInteger, MLEmojiLabelLinkType) {
 @property (nonatomic, strong) NSArray *members;
 
 - (CGSize)preferredSizeWithMaxWidth:(CGFloat)maxWidth;
+- (void)setEmojiAddAttri:(NSString *)attributes value:(id)value rang:(NSRange) range;
 
 @end

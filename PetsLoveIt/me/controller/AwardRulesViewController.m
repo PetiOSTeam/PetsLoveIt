@@ -9,6 +9,8 @@
 #import "AwardRulesViewController.h"
 
 @interface AwardRulesViewController ()
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @end
 
@@ -19,7 +21,8 @@
     // Do any additional setup after loading the view from its nib.
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"规则说明";
-    
+    self.textView.scrollEnabled = NO;
+    [self.scrollView setContentSize:CGSizeMake(mScreenWidth, self.textView.contentSize.height + self.textView.top+20)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,14 +30,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -24,6 +24,7 @@
                 <outlet property="menuView5" destination="cxD-f2-jjV" id="x2O-bf-NrZ"/>
                 <outlet property="menuView6" destination="Qeo-aI-onh" id="0b4-uH-xFg"/>
                 <outlet property="nameLabel" destination="ExO-10-PUE" id="SDe-ai-LUV"/>
+                <outlet property="photoImageView" destination="vUF-4R-lz2" id="HJR-ID-hXw"/>
                 <outlet property="ruleButton" destination="npa-Bb-jMs" id="W6W-X2-xAN"/>
                 <outlet property="ruleLabel" destination="mKV-Wi-i62" id="Zfl-5p-tfQ"/>
                 <outlet property="signButton" destination="azO-3Q-5Ri" id="xkK-G1-jkz"/>
@@ -103,6 +104,11 @@
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="签到送金币"/>
                         </button>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoIcon" id="vUF-4R-lz2">
+                            <rect key="frame" x="175" y="112" width="15" height="15"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <animations/>
+                        </imageView>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -255,5 +261,6 @@
         <image name="meJFIcon" width="50" height="50"/>
         <image name="meMsgIcon" width="50" height="50"/>
         <image name="meTGIcon" width="50" height="50"/>
+        <image name="photoIcon" width="24" height="24"/>
     </resources>
 </document>

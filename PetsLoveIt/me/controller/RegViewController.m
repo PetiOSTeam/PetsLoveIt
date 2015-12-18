@@ -282,6 +282,8 @@
                 //用绑定帐号的接口自动登录
                 [self bindUserAccount];
             }else{
+                [mUserDefaults setObject:self.accountTextField.text forKey:HLoginAccount];
+                [mUserDefaults synchronize];
                 //登录接口
                 LocalUserInfoModelClass *userInfo = [LocalUserInfoModelClass new];
                 userInfo.loginType = @"1";

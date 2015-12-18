@@ -72,6 +72,7 @@
     c3.tabBarItem.image=[UIImage imageNamed:@"meTabIcon"];
     c3.tabBarItem.selectedImage = [UIImage imageNamed:@"meTabIcon_highlighted"];
     BaseNavigationController *navi3 = [[BaseNavigationController alloc] initWithRootViewController:c3];
+    [c3 getNewMsg];
     navi3.navigationBarHidden = YES;
     
     tabVC.viewControllers = @[navi1,navi2,navi3];

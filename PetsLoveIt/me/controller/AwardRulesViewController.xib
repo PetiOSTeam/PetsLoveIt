@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AwardRulesViewController">
             <connections>
+                <outlet property="scrollView" destination="d5h-b2-TJy" id="cbX-Me-uwH"/>
+                <outlet property="textView" destination="puS-0e-Z1m" id="qbq-sT-EGv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,15 +17,41 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" id="puS-0e-Z1m">
-                    <rect key="frame" x="8" y="74" width="304" height="494"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="d5h-b2-TJy">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="justified" id="puS-0e-Z1m">
+                            <rect key="frame" x="20" y="74" width="280" height="494"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <animations/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <mutableString key="text">《宠物爱这个》注册用户，每天签到可获得积分奖励。积分可用于兑换实物奖励，相当于真金白银。连续签到，第一天+1，第二天+2，第三天+3，以此类推；以周为单位，满7天系统重置，重新循环第一天+1，第二天+2，第三天+3……连续不间断签到满30天，将有惊喜奖励。
+
+奖品发放
+
+1、签到获得的积分可用于兑换实物奖励，如实填写收货信息后；我们的客服人员会电话联系核实后，给您发放。
+
+2、虚拟类奖品所有电子码使用期限及兑换规则请参照合作方对应活动使用规范
+
+3、请保证您提供的领奖信息清晰准确，如果因领奖信息有误、不完整或不清晰而导致奖品未能及时收到而导致奖品不能正常发放的情况，视为您放弃；
+
+4、本活动快递奖品的收货地址仅限中国大陆地区；
+
+5、活动奖品以您收到的实物为准。
+
+免责说明
+
+签到、抽奖秉着公平、公正、公开、真实的原则，我司声明以下免责条款，参加活动前请用户仔细阅读条款，所有活动、奖励与苹果公司无关 。
+
+本次活动最终解释权归《宠物爱这个》所有 
+</mutableString>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
                     <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <mutableString key="text">《宠物爱这个》注册用户，每天签到可获得积分奖励。积分可用于兑换实物奖励，相当于真金白银。连续签到，第一天+1，第二天+2，第三天+3，以此类推；以周为单位，满7天系统重置，重新循环第一天+1，第二天+2，第三天+3……连续不间断签到满30天，将有惊喜奖励。奖品发放1、签到获得的积分可用于兑换实物奖励，如实填写收货信息后；我们的客服人员会电话联系核实后，给您发放。2、虚拟类奖品所有电子码使用期限及兑换规则请参照合作方对应活动使用规范3、请保证您提供的领奖信息清晰准确，如果因领奖信息有误、不完整或不清晰而导致奖品未能及时收到而导致奖品不能正常发放的情况，视为您放弃；4、本活动快递奖品的收货地址仅限中国大陆地区；5、活动奖品以您收到的实物为准。免责说明签到、抽奖秉着公平、公正、公开、真实的原则，我司声明以下免责条款，参加活动前请用户仔细阅读条款，所有活动、奖励与苹果公司无关 。本次活动最终解释权归&lt;宠物爱这个&gt;所有 </mutableString>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                </textView>
+                </scrollView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

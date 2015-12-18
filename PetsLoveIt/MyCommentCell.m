@@ -59,13 +59,15 @@
 
 -(void)dataFill{
     CommentModel *comment = (CommentModel *)self.model;
-    [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:comment.otherUserIcon] placeholderImage:kDefaultHeadImage];
+    
     self.nameLabel.text = self.isSentComment==NO?comment.otherNickName:@"发出评论";
     self.dateLabel.text = comment.timeFlag;
     
     if (self.isSentComment) {
         self.myCommentView.height = 0 ;
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[AppCache getUserAvatar]] placeholderImage:kDefaultHeadImage];
     }else{
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:comment.otherUserIcon] placeholderImage:kDefaultHeadImage];
         self.myCommentLabel.emojiText = [NSString stringWithFormat:@"%@：%@",[AppCache getUserName],comment.otherContent] ;
         //自适应titleLabel的高度
         [self.myCommentLabel setWidth:(mScreenWidth-self.myCommentView.left-30)];

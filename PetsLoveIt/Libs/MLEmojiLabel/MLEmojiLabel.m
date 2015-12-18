@@ -521,6 +521,16 @@ static inline CGFloat TTTFlushFactorForTextAlignment(NSTextAlignment textAlignme
     }
     return attrStr;
 }
+- (void)setEmojiAddAttri:(NSString *)attributes value:(id)value rang:(NSRange) range{
+    
+    if (attributes) {
+        NSMutableAttributedString *mutableAttributedString = [self.attributedText mutableCopy];
+        [mutableAttributedString addAttribute:attributes value:value range:range];
+        self.attributedText = mutableAttributedString;
+        [self setNeedsDisplay];
+    }
+    
+}
 
 
 - (void)setEmojiText:(NSString*)emojiText
@@ -550,86 +560,6 @@ static inline CGFloat TTTFlushFactorForTextAlignment(NSTextAlignment textAlignme
     }
     
     [self setText:mutableAttributedString afterInheritingLabelAttributesAndConfiguringWithBlock:nil];
-    
-    //    NSRange stringRange = NSMakeRange(0, mutableAttributedString.length);
-    //
-    //    NSRegularExpression * const regexps[] = {kURLRegularExpression(),kPhoneNumerRegularExpression(),kEmailRegularExpression()/*,kTW_AtRegularExpression()*/,kPoundSignRegularExpression()};
-    //
-    //
-    //
-    //    NSMutableArray *results = [NSMutableArray array];
-    //
-    //    NSUInteger maxIndex = /*self.isNeedAtAndPoundSign?kURLActionCount:*/kURLActionCount-2;
-    //    for (NSUInteger i = 0; i < maxIndex; i++) {
-    //        if (self.disableThreeCommon &&i < kURLActionCount-2) {
-    //            continue;
-    //        }
-    //        NSString *urlAction = kURLActions[i];
-    //        [regexps[i] enumerateMatchesInString:[mutableAttributedString string] options:0 range:stringRange usingBlock:^(NSTextCheckingResult *result, __unused NSMatchingFlags flags, __unused BOOL *stop) {
-    //
-    //            //检查是否和之前记录的有交集，有的话则忽略
-    //            for (NSTextCheckingResult *record in results){
-    //                if (NSMaxRange(NSIntersectionRange(record.range, result.range))>0){
-    //                    return;
-    //                }
-    //            }
-    //            if ([urlAction isEqualToString:@"at->"] && [[TWGroupAtFriendHandle sharedInstance] isGroupSession]) {
-    //                //这里的_lengthOffset 用来计算字符串replace之后偏移的地址
-    //                NSRange range = result.range;
-    //
-    //                range.location -= _lengthOffset;
-    //
-    //                NSString *atString = [self.text substringWithRange:range];
-    //                NSString *atFriendName = [[TWGroupAtFriendHandle sharedInstance] getAtFriendName:atString];
-    //                if (![atFriendName isEqualToString:@""]) {
-    //                    atFriendName = [NSString stringWithFormat:@"@%@", atFriendName];
-    //                }
-    //
-    //                NSMutableString *mutableText = [[NSMutableString alloc] initWithString:_emojiText];
-    //                [mutableText replaceCharactersInRange:range withString:atFriendName];
-    //                _emojiText = mutableText;
-    //                range.length = atFriendName.length;
-    //
-    //                _lengthOffset += result.range.length - range.length;
-    //
-    //                atString = [self.text substringWithRange:range];
-    //                NSString *actionString = [NSString stringWithFormat:@"%@%@",urlAction, atString];
-    //                //这里暂时用NSTextCheckingTypeCorrection类型的传递消息吧
-    //                //因为有自定义的类型出现，所以这样方便点。
-    //
-    //                NSTextCheckingResult *aResult = [NSTextCheckingResult correctionCheckingResultWithRange:range replacementString:actionString];
-    //
-    //                [results addObject:aResult];
-    //
-    //            }else {
-    //
-//                    //添加链接
-//                    NSString *atString = [self.text substringWithRange:result.range];
-//                    NSString *actionString = [NSString stringWithFormat:@"%@%@",urlAction, atString];
-//    
-//                    //这里暂时用NSTextCheckingTypeCorrection类型的传递消息吧
-//                    //因为有自定义的类型出现，所以这样方便点。
-//                    NSTextCheckingResult *aResult = [NSTextCheckingResult correctionCheckingResultWithRange:result.range replacementString:actionString];
-//    
-//                    [results addObject:aResult];
-    //            }
-    //            if (flags == NSMatchingCompleted) {
-    //                NSLog(@"结束");
-    //            }
-    //        }];
-    //        _lengthOffset = 0;
-    //    }
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-    //这里直接调用父类私有方法，好处能内部只会setNeedDisplay一次。一次更新所有添加的链接
-//    if (self.atResults.count != 0) {
-//        [super performSelector:@selector(addLinksWithTextCheckingResults:attributes:) withObject:self.atResults withObject:self.linkAttributes];
-//    }
-    
-    if ([self.urlResults count] != 0) {
-        [super performSelector:@selector(addLinksWithTextCheckingResults:attributes:) withObject:self.urlResults withObject:self.linkAttributes];
-    }
-#pragma clang diagnostic pop
     
 }
 

@@ -52,6 +52,8 @@
     
     //cellHeight
     self.rowHeight=44.0f;
+    
+    self.CoreViewNetWorkStausManagerOffsetY = 64;
 }
 
 

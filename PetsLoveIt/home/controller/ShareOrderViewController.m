@@ -78,7 +78,7 @@
                                @"appType":@"m05"
                                };
     }
-    configModel.hiddenNetWorkStausManager = YES;
+    configModel.hiddenNetWorkStausManager = NO;
 
     if (self.isMyArticle) {
         configModel.params = @{

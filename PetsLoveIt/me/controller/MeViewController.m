@@ -51,6 +51,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *menuImageView4;
 @property (weak, nonatomic) IBOutlet UIImageView *menuImageView5;
 @property (weak, nonatomic) IBOutlet UIImageView *menuImageView6;
+@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 
 
 @property (strong, nonatomic)  UIView *navigationBarView;
@@ -66,7 +67,10 @@
 
 @end
 
-@implementation MeViewController
+@implementation MeViewController{
+    UIImageView *dotImage;
+    UIImageView *dotOnMsgImage;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -81,6 +85,32 @@
     NSString *cacheSize = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];
     _sdImageCacheSize = cacheSize;
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (void) showRedDotView{
+    if (!dotImage) {
+        dotImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redDotIcon"]];
+        
+        dotImage.backgroundColor = [UIColor clearColor];
+        CGRect tabFrame = self.tabBarController.tabBar.frame;
+        
+        CGFloat x = ceilf(0.86 * tabFrame.size.width);
+        
+        CGFloat y = ceilf(0.2 * tabFrame.size.height);
+        dotImage.frame = CGRectMake(x, y, 6, 6);
+        
+        dotOnMsgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redDotIcon"]];
+        dotOnMsgImage.backgroundColor = [UIColor clearColor];
+        dotOnMsgImage.frame = CGRectMake((mScreenWidth/12)*3 , 15, 6, 6);
+        
+    }
+    [self.menuView6 addSubview:dotOnMsgImage];
+    [self.tabBarController.tabBar addSubview:dotImage];
+}
+
+- (void) hideRedDotView{
+    [dotImage removeFromSuperview];
+    [dotOnMsgImage removeFromSuperview];
 }
 
 - (void) prepareViewAndData{
@@ -99,7 +129,7 @@
     _levelLabel.frame = CGRectMake(8, self.nameLabel.bottom+10, mScreenWidth-16    ,20);
     
     [self.headerView addSubview:_levelLabel];
-
+    
     
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     [self.headerView setBackgroundColor:mRGBToColor(0xf5f5f5)];
@@ -112,13 +142,15 @@
     
     self.avatarImageView.center = CGPointMake(mScreenWidth/2, self.avatarImageView.center.y);
     self.avatarImageView.userInteractionEnabled = YES;
+    self.photoImageView.right = self.avatarImageView.right ;
     UITapGestureRecognizer *tapOnAvatar = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseAvatar)];
     [self.avatarImageView addGestureRecognizer:tapOnAvatar];
     self.avatarImageView.layer.cornerRadius = 30;
     self.avatarImageView.clipsToBounds = YES;
     self.signButton.center =  CGPointMake(mScreenWidth/2, self.signButton.center.y);
     self.signButton.layer.cornerRadius = 18;
-    self.ruleButton.left = self.ruleLabel.left = self.signButton.right + 36;
+
+    self.ruleButton.left = self.ruleLabel.left = self.signButton.right + 10;
     self.menuContainerView.top = self.headerContainerView.bottom + 10;
     self.menuView1.width = self.menuView2.width = self.menuView3.width = self.menuView4.width=self.menuView5.width = self.menuView6.width = mScreenWidth/3;
     self.menuImageView1.center = CGPointMake(self.menuView1.width/2, self.menuImageView1.center.y);
@@ -358,6 +390,31 @@
     //    [self uploadAvatar:params];
 }
 
+- (void) getNewMsg{
+    __block NSDictionary *params =@{@"uid":@"getUserSystemMsg",
+                            @"msgType":@"2"
+                            };
+    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            __block int kNewSysMsgCount = [[[responseData objectForKey:@"beans"] objectForKey:@"newNumber"] intValue];
+            params =@{@"uid":@"getUserSystemMsg",
+                      @"msgType":@"1"
+                      };
+            [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+                if (!error) {
+                    int kNewUserMsgCount = [[[responseData objectForKey:@"beans"] objectForKey:@"newNumber"] intValue];
+                    if (kNewSysMsgCount + kNewUserMsgCount >0) {
+                        [self showRedDotView];
+                    }else{
+                        [self hideRedDotView];
+                    }
+                }
+            }];
+        }
+    }];
+    
+}
+
 - (void) getUserInfoFromServer{
     NSDictionary *params =@{@"uid":@"getLoginInfo"};
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
@@ -378,6 +435,7 @@
     //WEAKSELF
     [APIOperation uploadMedia:urlString parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
+            self.photoImageView.image = [UIImage imageNamed:@"colorPhotoIcon"];
             [SVProgressHUD showSuccessWithStatus:@"上传成功"];
             NSString *userAvatar = [[responseData objectForKey:@"bean"] objectForKey:@"userIcon"];
             LocalUserInfoModelClass *localUserInfo = [AppCache getUserInfo];
@@ -432,18 +490,28 @@
         self.nameLabel.text = @"哈喽，你还没有登录哦";
         self.navBarTitleLabel.text = @"Hi , 你好";
         self.levelLabel.text = @"快来登录和小伙伴们一起互动吧";
+        self.photoImageView.hidden = YES;
         _levelLabel.width = 200;
         _levelLabel.center  = CGPointMake(mScreenWidth/2, _levelLabel.center.y);
         self.avatarImageView.image = [UIImage imageNamed:@"defaultUserAvatar"];
         [self.signButton setTitle:@"登录" forState:UIControlStateNormal];
         [self.signButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
     }else{
+        [self getNewMsg];//获取是否有新消息
         [self.signButton removeTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
         self.ruleLabel.hidden = NO;
         self.ruleButton.hidden = NO;
         self.nameLabel.text = [NSString stringWithFormat:@"Hi , %@",[AppCache getUserName]];
         self.navBarTitleLabel.text =[NSString stringWithFormat:@"Hi , %@",[AppCache getUserName]] ;
-        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[AppCache getUserAvatar]] placeholderImage:[UIImage imageNamed:@"defaultUserAvatar"]];
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[AppCache getUserAvatar]] placeholderImage:[UIImage imageNamed:@"defaultUserAvatar"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (!image) {
+                self.photoImageView.image =[UIImage imageNamed:@"photoIcon"];
+            }else{
+                self.photoImageView.image =[UIImage imageNamed:@"colorPhotoIcon"];
+            }
+        }];
+        self.photoImageView.hidden = NO;
+        
         //self.levelLabel.text = @"";
         NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"等级: "];
         UIFont *font = [UIFont systemFontOfSize:12];

@@ -25,8 +25,18 @@
 
 - (void)prepareViewAndData{
     [self config];
-    
-    
+    [self setMsgRead];
+}
+
+- (void)setMsgRead{
+    NSDictionary *params = @{@"uid":@"saveUserReadMsg",
+                             @"msgType":@"2"
+                             };
+    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            
+        }
+    }];
 }
 
 -(void)showProductVC:(NSString *)proId{

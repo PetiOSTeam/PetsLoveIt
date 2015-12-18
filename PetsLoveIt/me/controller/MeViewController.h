@@ -9,5 +9,5 @@
 #import "CommonViewController.h"
 
 @interface MeViewController : CommonViewController
-
+- (void) getNewMsg;
 @end
