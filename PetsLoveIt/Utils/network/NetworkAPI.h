@@ -8,7 +8,7 @@
 
 #ifndef iOSAppFramework_NetworkAPI_h
 #define iOSAppFramework_NetworkAPI_h
-#define kBaseURL                    @"http://121.42.51.60:8088/petweb/actions/"
+#define kBaseURL                    @"http://61.155.210.59:8088/petweb/actions/"
 #define UMENG_APPKEY                @"56484222e0f55ad4db009b90"
 #define UMENG_channelId             @"petiOSAppStore"
 
