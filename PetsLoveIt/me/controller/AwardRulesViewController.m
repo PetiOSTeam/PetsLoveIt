@@ -20,8 +20,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self showNaviBarView];
-    self.navBarTitleLabel.text = @"规则说明";
+    self.navBarTitleLabel.text = self.navTitle;
     self.textView.scrollEnabled = NO;
+    self.textView.text = self.desc;
+    self.textView.width = mScreenWidth - 40;
+    [self.textView sizeToFit];
+    
     [self.scrollView setContentSize:CGSizeMake(mScreenWidth, self.textView.contentSize.height + self.textView.top+20)];
 }
 

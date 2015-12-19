@@ -9,5 +9,6 @@
 #import "CommonViewController.h"
 
 @interface AwardRulesViewController : CommonViewController
-
+@property (nonatomic,strong) NSString *navTitle;
+@property (nonatomic,strong) NSString *desc;
 @end

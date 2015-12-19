@@ -7,8 +7,12 @@
 //
 
 #import "RegViewController.h"
+#import <CoreText/CoreText.h>
+#import "AwardRulesViewController.h"
+
 
 @interface RegViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel1;
 
 @property (weak, nonatomic) IBOutlet UITextField *accountTextField;
 @property (weak, nonatomic) IBOutlet UIButton *msgCodeBtn;
@@ -60,13 +64,33 @@
     [self.codeView addSubview:line1];
     
     self.regBtn.layer.cornerRadius = 25;
-    self.tipLabel.top = mScreenHeight-25;
     [self.scrollView setContentSize:CGSizeMake(mScreenWidth, self.tipLabel.bottom + 10)];
     
     [self createTextViewInputAccessoryView];
     
+    self.tipLabel1.frame = CGRectMake(0, mScreenHeight-35, mScreenWidth/2, 14);
+    self.tipLabel.frame = CGRectMake(self.tipLabel1.right +3, mScreenHeight-35, mScreenWidth/2, 14);
+
+    NSString *agreeString = @"宠物爱这个协议";
+    NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:agreeString];
+    [attriString addAttribute:(NSString *)kCTUnderlineStyleAttributeName
+                        value:(id)[NSNumber numberWithInt:kCTUnderlineStyleSingle]
+                        range:NSMakeRange(0, [agreeString length])];
+    self.tipLabel.attributedText = attriString;
+    self.tipLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGestureOnAgree = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAgreeVC)];
+    [self.tipLabel addGestureRecognizer:tapGestureOnAgree];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)showAgreeVC{
+    AwardRulesViewController *vc = [AwardRulesViewController new];
+    vc.navTitle = @"用户协议";
+    NSString *agreeStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"agree" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
+    vc.desc = agreeStr;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)createTextViewInputAccessoryView

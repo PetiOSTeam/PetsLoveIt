@@ -230,9 +230,9 @@
 -(void) loadViewAndData{
     NSString *html = self.goods.prodDetail;
     NSString *css = [NSString stringWithFormat:
-                     @"<html><head><style>body{ background-color: transparent; text-align: %@; font-size: %ipx; color: #666666;} a { color: #0663b3; } </style></head><body>",
+                     @"<html><head><style>body{ background-color: transparent; text-align: %@; font-size: %ipx; color: #666666;} a { color: #0663b3; }  img {max-width:%f; height:auto;}</style></head><body>",
                      @"justify",
-                     16];
+                     16,mScreenWidth-24];
     
     NSMutableString *desc = [NSMutableString stringWithFormat:@"%@%@%@",
                              css,

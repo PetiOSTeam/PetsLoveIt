@@ -33,6 +33,7 @@
 		182110521BEF1B6500C32E23 /* GoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182110511BEF1B6500C32E23 /* GoodsModel.m */; };
 		182110561BEF1D9A00C32E23 /* GoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182110541BEF1D9A00C32E23 /* GoodsCell.m */; };
 		182110571BEF1D9A00C32E23 /* GoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182110551BEF1D9A00C32E23 /* GoodsCell.xib */; };
+		1826F84B1C25593D0043B50D /* agree.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1826F84A1C25593D0043B50D /* agree.txt */; };
 		182EB8291BEDC30E004EA19C /* ShareOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182EB8271BEDC30E004EA19C /* ShareOrderCell.m */; };
 		182EB82A1BEDC30E004EA19C /* ShareOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182EB8281BEDC30E004EA19C /* ShareOrderCell.xib */; };
 		182EB8331BEDC374004EA19C /* ArticleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182EB8311BEDC374004EA19C /* ArticleTableCell.m */; };
@@ -671,6 +672,7 @@
 		182110531BEF1D9A00C32E23 /* GoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsCell.h; sourceTree = "<group>"; };
 		182110541BEF1D9A00C32E23 /* GoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsCell.m; sourceTree = "<group>"; };
 		182110551BEF1D9A00C32E23 /* GoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsCell.xib; sourceTree = "<group>"; };
+		1826F84A1C25593D0043B50D /* agree.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = agree.txt; sourceTree = "<group>"; };
 		182EB8261BEDC30E004EA19C /* ShareOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareOrderCell.h; sourceTree = "<group>"; };
 		182EB8271BEDC30E004EA19C /* ShareOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareOrderCell.m; sourceTree = "<group>"; };
 		182EB8281BEDC30E004EA19C /* ShareOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareOrderCell.xib; sourceTree = "<group>"; };
@@ -1913,6 +1915,7 @@
 				189446E71BEB0B26006249F0 /* PrefixHeader.pch */,
 				18DD074F1BEDAE91003C8160 /* Launch Screen.storyboard */,
 				186EA8881C169362009876BD /* PushConfig.plist */,
+				1826F84A1C25593D0043B50D /* agree.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -4022,6 +4025,7 @@
 				189446211BEB0774006249F0 /* e_6@2x.png in Resources */,
 				189446341BEB0774006249F0 /* e_87@2x.png in Resources */,
 				1894465E1BEB0774006249F0 /* chatBar_more_location@2x.png in Resources */,
+				1826F84B1C25593D0043B50D /* agree.txt in Resources */,
 				189446001BEB0774006249F0 /* e_3@2x.png in Resources */,
 				18DD071F1BEC53E5003C8160 /* HomePageViewController.xib in Resources */,
 				189445FC1BEB0774006249F0 /* e_36@2x.png in Resources */,

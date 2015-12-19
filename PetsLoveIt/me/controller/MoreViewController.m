@@ -7,6 +7,8 @@
 //
 
 #import "MoreViewController.h"
+#import <CoreText/CoreText.h>
+#import "AwardRulesViewController.h"
 
 @interface MoreViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *appIconImageView;
@@ -42,9 +44,27 @@
     }else{
         self.logoutBtn.hidden = NO;
     }
+    NSString *agreeString = @"用户协议";
+    NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:agreeString];
+    [attriString addAttribute:(NSString *)kCTUnderlineStyleAttributeName
+                        value:(id)[NSNumber numberWithInt:kCTUnderlineStyleSingle]
+                        range:NSMakeRange(0, [agreeString length])];
+    self.agreementLabel.attributedText = attriString;
+    self.agreementLabel.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGestureOnAgree = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAgreeVC)];
+    [self.agreementLabel addGestureRecognizer:tapGestureOnAgree];
+    
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showGrade)];
     [self.gradeView addGestureRecognizer:tapGesture];
+}
+
+- (void)showAgreeVC{
+    AwardRulesViewController *vc = [AwardRulesViewController new];
+    vc.navTitle = @"用户协议";
+    NSString *agreeStr = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"agree" ofType:@"txt"] encoding:NSUTF8StringEncoding error:nil];
+    vc.desc = agreeStr;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) showGrade{
