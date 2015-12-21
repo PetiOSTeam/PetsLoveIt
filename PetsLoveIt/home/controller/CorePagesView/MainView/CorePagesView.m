@@ -142,7 +142,7 @@
     
     //隐藏水平滚动条
     self.scrollView.showsHorizontalScrollIndicator=NO;
-    
+    self.scrollView.showsVerticalScrollIndicator = NO;//隐藏垂直滚动条
     //高度修复
     _pagesBarViewHConstraint.constant = CorePagesBarViewH;
     

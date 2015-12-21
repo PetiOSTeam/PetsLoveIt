@@ -226,13 +226,11 @@
         }
     }];
 }
-
+#pragma mark - 加载HTML页面数据，并进行图文混排
 -(void) loadViewAndData{
     NSString *html = self.goods.prodDetail;
-    NSString *css = [NSString stringWithFormat:
-                     @"<html><head><style>body{ background-color: transparent; text-align: %@; font-size: %ipx; color: #666666;} a { color: #0663b3; }  img {max-width:%f; height:auto;}</style></head><body>",
-                     @"justify",
-                     16,mScreenWidth-24];
+    CGFloat viewwidth = [UIScreen mainScreen].bounds.size.width - 24;
+    NSString *css = [NSString stringWithFormat:@"<html><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><body width=%f style=\"word-wrap:break-word;ext-align: justify; font-family:Arial\"><style>img{max-width:%f;height:auto;}</style>",viewwidth,viewwidth];
     
     NSMutableString *desc = [NSMutableString stringWithFormat:@"%@%@%@",
                              css,
@@ -286,11 +284,20 @@
         [self addChildViewController:self.networkLoadingViewController];
         [_networkLoadingContainerView setBackgroundColor:[UIColor whiteColor]];
         [_networkLoadingContainerView addSubview:self.networkLoadingViewController.view];
+         [self addbuttonBackintheSubView:_networkLoadingContainerView];
         self.networkLoadingViewController.view.top = 20;
     }
     return _networkLoadingContainerView;
 }
-
+#pragma mark - 在等待页面和详情页面均添加返回按钮
+- (void)addbuttonBackintheSubView:(UIView *)subview
+{
+    UIButton *buttonBack = [UIButton buttonWithType:UIButtonTypeCustom];
+    buttonBack.frame = CGRectMake(0, 30 , 44, 34);
+    [buttonBack setImage:[UIImage imageNamed:@"backBarButtonIcon"] forState:UIControlStateNormal];
+    [buttonBack addTarget:self action:@selector(popViewController:) forControlEvents:UIControlEventTouchUpInside];
+    [subview addSubview:buttonBack];
+}
 -(KMDetailsPageView *)detailsPageView{
     if (!_detailsPageView) {
         _detailsPageView = [[KMDetailsPageView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, mScreenHeight)];
@@ -314,14 +321,8 @@
 
 - (void)setupNavbarButtons
 {
-    UIButton *buttonBack = [UIButton buttonWithType:UIButtonTypeCustom];
-    buttonBack.frame = CGRectMake(0, 30, 44, 34);
-    [buttonBack setImage:[UIImage imageNamed:@"backBarButtonIcon"] forState:UIControlStateNormal];
-    [buttonBack addTarget:self action:@selector(popViewController:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     [self.view addSubview:self.navigationBarView];
-    [self.view addSubview:buttonBack];
+    [self addbuttonBackintheSubView:self.view];
     self.navBarTitleLabel.text = @"优惠详情";
 }
 

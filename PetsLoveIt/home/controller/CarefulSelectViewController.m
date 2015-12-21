@@ -106,11 +106,11 @@
                              };
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
-            NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+            NSMutableDictionary *jsonArray = [responseData objectForKey:@"data"];
             if ([jsonArray count] ==0) {
                 return ;
             }
-            _cheapProduct = [[GoodsModel alloc] initWithDictionary:jsonArray[0]];
+            _cheapProduct = [[GoodsModel alloc] initWithDictionary:jsonArray];
             _descLabel1.text = _cheapProduct.name;
             [_urlImageView1 sd_setImageWithURL:[NSURL URLWithString:_cheapProduct.appMinpic] placeholderImage:kImagePlaceHolder];
         }
@@ -124,6 +124,7 @@
                              };
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
+            // 修改了白菜价的条件，并在模型里加入了白菜价的判断
             NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
             if ([jsonArray count] ==0) {
                 return ;
@@ -245,7 +246,7 @@
         _descLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel1.bottom+10, mScreenWidth/2-20, 14)];
         [_descLabel1 setTextColor:mRGBToColor(0x666666)];
         [_descLabel1 setFont:[UIFont systemFontOfSize:12]];
-        [_descLabel1 setText:@"今日白菜今日白菜今日白菜"];
+        [_descLabel1 setText:@"一大波白菜价商品即将到来"];
         _urlImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(15, _descLabel1.bottom+5, 130, 95)];
         [_displayView1 addSubview:_titleLabel1];
         [_displayView1 addSubview:_descLabel1];
@@ -258,7 +259,7 @@
        
         
         _displayView2 = [[UIView alloc] initWithFrame:CGRectMake(_displayView1.right, 0, mScreenWidth/2, _displayView.height/2)];
-        if (mIsiP5) {
+        if (mIsiP5|mRetina) {
             _urlImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 80, _descLabel2.bottom+5, 70, 60)];
         }else{
             _urlImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 100, _descLabel2.bottom+5, 90, 60)];
@@ -284,7 +285,7 @@
         
         
         _displayView3 = [[UIView alloc] initWithFrame:CGRectMake(_displayView1.right, _displayView2.bottom, mScreenWidth/2, _displayView.height/2)];
-        if (mIsiP5) {
+        if (mIsiP5|mRetina) {
             _urlImageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 80, _descLabel3.bottom+5, 70, 60)];
         }else{
             _urlImageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 100, _descLabel3.bottom+5, 90, 60)];
