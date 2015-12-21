@@ -125,6 +125,7 @@ typedef enum{
     self.view.backgroundColor=[UIColor whiteColor];
     self.scrollView.backgroundColor=[UIColor clearColor];
     self.scrollView.delegate=self;
+    self.scrollView.showsVerticalScrollIndicator = NO;//隐藏垂直滚动条
 }
 
 

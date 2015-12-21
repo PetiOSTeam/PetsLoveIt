@@ -11,7 +11,13 @@
 @implementation GoodsModel
 +(NSArray *)modelPrepare:(id)obj{
     
-    return obj[@"beans"][@"beans"];
+    if (obj[@"beans"][@"beans"]) {
+        return obj[@"beans"][@"beans"];
+    }else
+    {
+        return obj[@"data"];
+    }
+
 }
 
 +(NSDictionary *)replacedKeyFromPropertyName{

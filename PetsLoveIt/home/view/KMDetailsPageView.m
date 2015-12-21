@@ -8,8 +8,8 @@
 
 #import "KMDetailsPageView.h"
 
+#define kDefaultImagePagerHeight [UIScreen mainScreen].applicationFrame.size.width*0.62
 
-#define kDefaultImagePagerHeight 280.0f
 #define kDefaultTableViewHeaderMargin 95.0f
 #define kDefaultImageAlpha 500.0f
 #define kDefaultImageScalingFactor 300.0f
@@ -122,7 +122,7 @@
 
 -(UILabel *)label1{
     if (!_label1) {
-        _label1 = [[UILabel alloc] initWithFrame:CGRectMake(20, _imageView.bottom+10, mScreenWidth-40, 14)];
+        _label1 = [[UILabel alloc] init];
         [_label1 setTextColor:mRGBToColor(0x999999)];
         [_label1 setFont:[UIFont systemFontOfSize:12]];
     }
@@ -131,7 +131,7 @@
 
 -(UILabel *)label2{
     if (!_label2) {
-        _label2 = [[UILabel alloc] initWithFrame:CGRectMake(20, _label1.bottom+15, mScreenWidth-40, 21)];
+        _label2 = [[UILabel alloc] init];
         [_label2 setTextColor:mRGBToColor(0x333333)];
         [_label2 setFont:[UIFont boldSystemFontOfSize:19]];
     }
@@ -140,29 +140,60 @@
 
 -(UILabel *)label3{
     if (!_label3) {
-        _label3 = [[UILabel alloc] initWithFrame:CGRectMake(20, _label2.bottom+10, mScreenWidth-40, 19)];
+        _label3 = [[UILabel alloc] init];
         [_label3 setTextColor:mRGBToColor(0xff4401)];
         [_label3 setFont:[UIFont boldSystemFontOfSize:17]];
     }
     return _label3;
 }
 
+-(UIWebView *)webView{
+    if (!_webView) {
+        _webView = [[UIWebView alloc] init];
+        _webView.scrollView.scrollEnabled = NO;
+        _webView.delegate = self;
+       
+
+    }
+    return _webView;
+}
 
 -(void) loadGoodsInfo:(GoodsModel *)goods{
     self.label1.text = [NSString stringWithFormat:@"%@  %@",goods.typeName,goods.dateTime] ;
     self.label2.text = goods.name;
     self.label3.text = goods.desc;
+    // 根据模型数据设置控件的坐标和尺寸
+    [self setupviewFrameWithDetailsdata];
 }
 
--(UIWebView *)webView{
-    if (!_webView) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(12,_label3.bottom+12, mScreenWidth-24, 300)];
-        _webView.scrollView.scrollEnabled = NO;
-        _webView.delegate = self;
-    }
-    return _webView;
-}
 
+#pragma mark - 根据模型数据设置控件的坐标和尺寸
+- (void)setupviewFrameWithDetailsdata
+{
+    
+    // label1
+    CGSize lablesize1 = [self getframeWithTitle:self.label1.text andTitleFont:self.label1.font];
+    self.label1.frame = (CGRect){{20,_imageView.bottom + 10}, lablesize1};
+    // label2
+    CGSize lablesize2 = [self getframeWithTitle:self.label2.text andTitleFont:self.label2.font];
+    self.label2.frame = (CGRect){{20, _label1.bottom + 5}, lablesize2};
+    // label3
+    CGSize lablesize3 = [self getframeWithTitle:self.label3.text andTitleFont:self.label3.font];
+    self.label3.frame = (CGRect){{20, _label2.bottom + 5}, lablesize3};
+    // webview
+    self.webView.frame = CGRectMake(12,_label3.bottom, mScreenWidth - 24, 300);
+}
+- (CGSize)getframeWithTitle:(NSString *)title andTitleFont:(UIFont *)titlefont
+{
+    CGFloat maxW = mScreenWidth-40;
+    CGSize maxSize = CGSizeMake(maxW, MAXFLOAT);
+    CGSize textSize = [title sizeWithFont:titlefont constrainedToSize:maxSize];
+    
+    return textSize;
+}
+// 根据文字计算标签的高度
+
+// web数据源方法
 - (void) loadHtmlString:(NSString *)html{
     [self.webView loadHTMLString:html baseURL:nil];
 }
@@ -177,6 +208,8 @@
         [self.delegate detailWebViewDidFinishLoad];
     }
 }
+
+
 
 #pragma mark -
 #pragma mark View Layout Setup Methods
