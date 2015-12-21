@@ -15,7 +15,7 @@
 #import "UMSocialSnsPlatformManager.h"
 #import "UMSocialWechatHandler.h"
 #import "LoginViewController.h"
-
+#import "UIView+ShakeView.h"
 @interface ShakeViewController ()<UMSocialUIDelegate,UIAlertViewDelegate>
 @property (nonatomic,strong)   UIView *bgView;
 @property (nonatomic,strong)   UIImageView*        imgUp;
@@ -24,7 +24,7 @@
 @property (nonatomic,strong)   UIView *maskView;
 @property (nonatomic,strong)   UIView *goodsView;
 @property (nonatomic,strong)   UIView *noOpView;
-@property (nonatomic,strong)   UIView *noShareNumView;
+@property (nonatomic,weak)   UIView *shakeview;
 @property (nonatomic,assign)   BOOL showPopViewFlag;
 @property (nonatomic,strong) NSString *goodsId;
 
@@ -142,35 +142,6 @@
     return _maskView;
 }
 
--(UIView *)noShareNumView{
-    if (!_noShareNumView) {
-        _noShareNumView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 230, 160)];
-        _noShareNumView.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
-        _noShareNumView.backgroundColor = [UIColor whiteColor];
-        _noShareNumView.clipsToBounds = YES;
-        _noShareNumView.layer.cornerRadius = 5;
-        
-        UILabel *tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, _noShareNumView.width-20, 60)];
-        tipLabel.center = CGPointMake(_noShareNumView.width/2, _noShareNumView.height/2-15);
-        [tipLabel setTextAlignment:NSTextAlignmentCenter];
-        [tipLabel setFont:[UIFont systemFontOfSize:14]];
-        [tipLabel setTextColor:mRGBToColor(0x333333)];
-        [tipLabel setNumberOfLines:2];
-        [tipLabel setText:@"亲，您今天的机会用完了\n请明天再来吧"];
-        [_noShareNumView addSubview:tipLabel];
-        
-        
-        UIButton *shareButtton = [UIButton buttonWithType:UIButtonTypeCustom];
-        shareButtton.frame = CGRectMake(0, tipLabel.bottom+8, 150, 35);
-        shareButtton.center = CGPointMake(_noShareNumView.width/2, shareButtton.center.y);
-        [shareButtton setTitle:@"取消" forState:UIControlStateNormal];
-        [shareButtton addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
-        shareButtton.layer.cornerRadius = 5;
-        [shareButtton setBackgroundColor:mRGBToColor(0xff4401)];
-        [_noShareNumView addSubview:shareButtton];
-    }
-    return _noShareNumView;
-}
 
 - (void) cancelAction{
     [self hidePopView];
@@ -354,39 +325,72 @@
             }
             else if (canShareNum >=5) {
                 [self showNoShareNumView];
+//                [self setupintegralViewWithintegral:canShareNum];
+
                 return ;
             }
             
-            id jsonDict = [responseData objectForKey:@"data"];
-            GoodsModel *goods = [[GoodsModel alloc] initWithDictionary:jsonDict];
-            self.goodsId = goods.prodId;
-            [self showGoodsView:goods];
+            NSMutableDictionary  *jsonDict = [responseData objectForKey:@"data"];
+            if (jsonDict.count > 1) {
+                GoodsModel *goods = [[GoodsModel alloc] initWithDictionary:jsonDict];
+                self.goodsId = goods.prodId;
+                [self showGoodsView:goods];
+                
+            }else{
+                 NSInteger jifen = [[[responseData objectForKey:@"data"]  objectForKey:@"rtnMsg"] integerValue];
+                //
+                [self setupintegralViewWithintegral:jifen];
+                
+            }
+
         }else{
             self.showPopViewFlag = NO;
         }
     }];
 }
 
-- (void)showNoShareNumView{
-    self.maskView.alpha = 0;
-    self.noShareNumView.bottom = 0;
+// 摇到积分
+- (void)setupintegralViewWithintegral:(NSInteger)jifen
+{
+    if (jifen) {
+        NSString *str = [NSString stringWithFormat:@"恭喜您获得%li积分，积累更多积分可以兑换礼品哦😊",(long)jifen];
+        UIView *shakeview = [UIView ShakeViewWithFirstTitle:str andSecondTitle:@"确定" andaddTarget:self action:@selector(cancelAction)];
+        // 添加动画
+        [self addanimationWithShakeView:shakeview];
+    }else
+    {
+        NSString *str = [NSString stringWithFormat:@"亲😲，很抱歉您这次什么也没摇到"];
+        UIView *shakeview = [UIView ShakeViewWithFirstTitle:str andSecondTitle:@"确定" andaddTarget:self action:@selector(cancelAction)];
+        // 添加动画
+        [self addanimationWithShakeView:shakeview];
+    }
+   
+    
+}
+// 摇一摇之后的动画效果
+- (void)addanimationWithShakeView:(UIView *)shakeview
+{
+    shakeview.bottom = 0;
     [UIView animateWithDuration:0.5 animations:^{
         [self.view addSubview:self.maskView];
-        [self.view addSubview:self.noShareNumView];
-        self.noShareNumView.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
+        [self.view addSubview:shakeview];
+        self.shakeview = shakeview;
+        self.shakeview.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
         self.maskView.alpha = 0.7;
     }];
+    
 }
-
+// 分享机会用完
+- (void)showNoShareNumView{
+    
+    NSString *str = [NSString stringWithFormat:@"亲，您今天的机会用完了，请明天再来吧"];
+    UIView *shakeview = [UIView ShakeViewWithFirstTitle:str andSecondTitle:@"取消" andaddTarget:self action:@selector(cancelAction)];
+    // 添加动画
+    [self addanimationWithShakeView:shakeview];
+}
+// 摇一摇机会用完
 - (void)showNoOpView{
-    self.maskView.alpha = 0;
-    self.noOpView.bottom = 0;
-   [UIView animateWithDuration:0.5 animations:^{
-       [self.view addSubview:self.maskView];
-       [self.view addSubview:self.noOpView];
-       self.noOpView.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
-       self.maskView.alpha = 0.7;
-   }];
+    [self addanimationWithShakeView:self.noOpView];
 }
 
 - (void)showGoodsView:(GoodsModel *)goods{
@@ -416,7 +420,7 @@
         [self.maskView removeFromSuperview];
         [self.goodsView removeFromSuperview];
         [self.noOpView removeFromSuperview];
-        [self.noShareNumView removeFromSuperview];
+        [self.shakeview removeFromSuperview];
     }];
 }
 

@@ -140,6 +140,7 @@
          onCompletion:^(id responseData, NSError *error) {
              [hud hide:YES];
              if (responseData) {
+            
                  int rtnCode = [[responseData objectForKey:@"rtnCode"] intValue];
                  if (rtnCode == 1) {
                      [weakSelf exchangeSucceessfulWithJsonDict:responseData];

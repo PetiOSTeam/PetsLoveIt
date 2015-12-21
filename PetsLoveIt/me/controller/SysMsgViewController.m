@@ -17,24 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self prepareViewAndData];
-    
-}
-
-- (void)prepareViewAndData{
     [self config];
-    [self setMsgRead];
-}
-
-- (void)setMsgRead{
-    NSDictionary *params = @{@"uid":@"saveUserReadMsg",
-                             @"msgType":@"1"
-                             };
-    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-        if (!error) {
-            
-        }
-    }];
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -91,7 +75,7 @@
     configModel.removeBackToTopBtn=YES;
     
     configModel.refreshControlType = LTConfigModelRefreshControlTypeBoth;
-    
+//     NSLog(@"😊😊😊😊😊😊😊😊😊😊😊😊😊😊%@");
     //配置完毕
     self.configModel=configModel;
 }
@@ -100,6 +84,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - delegate
 
 /*
 #pragma mark - Navigation

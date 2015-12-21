@@ -125,6 +125,7 @@
         _label1 = [[UILabel alloc] init];
         [_label1 setTextColor:mRGBToColor(0x999999)];
         [_label1 setFont:[UIFont systemFontOfSize:12]];
+        _label1.numberOfLines = 0;
     }
     return _label1;
 }
@@ -134,6 +135,7 @@
         _label2 = [[UILabel alloc] init];
         [_label2 setTextColor:mRGBToColor(0x333333)];
         [_label2 setFont:[UIFont boldSystemFontOfSize:19]];
+        _label2.numberOfLines = 0;
     }
     return _label2;
 }
@@ -143,6 +145,7 @@
         _label3 = [[UILabel alloc] init];
         [_label3 setTextColor:mRGBToColor(0xff4401)];
         [_label3 setFont:[UIFont boldSystemFontOfSize:17]];
+        _label1.numberOfLines = 0;
     }
     return _label3;
 }
@@ -152,6 +155,7 @@
         _webView = [[UIWebView alloc] init];
         _webView.scrollView.scrollEnabled = NO;
         _webView.delegate = self;
+        _label3.numberOfLines = 0;
        
 
     }
@@ -183,6 +187,7 @@
     // webview
     self.webView.frame = CGRectMake(12,_label3.bottom, mScreenWidth - 24, 300);
 }
+// 根据文字计算标签的高度
 - (CGSize)getframeWithTitle:(NSString *)title andTitleFont:(UIFont *)titlefont
 {
     CGFloat maxW = mScreenWidth-40;
@@ -191,7 +196,6 @@
     
     return textSize;
 }
-// 根据文字计算标签的高度
 
 // web数据源方法
 - (void) loadHtmlString:(NSString *)html{
