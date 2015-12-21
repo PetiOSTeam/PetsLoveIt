@@ -10,5 +10,5 @@
 #import "SysMsgModel.h"
 
 @interface SysMsgCell : LTCell
-
++ (CGFloat) heightForCell:(NSString *)text;
 @end

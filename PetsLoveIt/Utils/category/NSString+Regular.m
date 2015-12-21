@@ -19,7 +19,7 @@
 
 - (BOOL)isValidateName
 {
-    NSString *regex = @"^[a-zA-Z0-9\u4e00-\u9fa5\\-_()\\[\\]]*$";
+    NSString *regex = @"^[a-zA-Z0-9\u4e00-\u9fa5\\-_()\\[\\]]{1,12}$";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [predicate evaluateWithObject:self];
 }

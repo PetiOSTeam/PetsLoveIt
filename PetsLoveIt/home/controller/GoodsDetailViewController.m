@@ -203,7 +203,7 @@
             }];
             [self.detailsPageView.tableView2 reloadData];
         }else{
-            mAlertAPIErrorInfo(error);
+            //mAlertAPIErrorInfo(error);
         }
     }];
 }

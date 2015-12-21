@@ -13,6 +13,7 @@
 #import "CoreViewNetWorkStausManager.h"
 #import "GoodsDetailViewController.h"
 #import "AdModel.h"
+#import "PetWebViewController.h"
 
 @interface CarefulSelectViewController ()<ZQWScrollViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic,strong) UIView *tableHeaderView;
@@ -153,9 +154,9 @@
 }
 
 -(void)selectScrollView:(NSInteger)index{
-    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    PetWebViewController *vc = [PetWebViewController new];
     AdModel *adModel = [self.adArray objectAtIndex:index];
-    vc.goodsId = adModel.prodId;
+    //vc.htmlUrl = adModel.;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -225,7 +226,7 @@
         _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 370)];
         [_tableHeaderView setBackgroundColor:mRGBToColor(0xf5f5f5)];
         
-        _zqw = [[ZQW_ScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 190)];
+        _zqw = [[ZQW_ScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 180)];
         _zqw.currentColor = [UIColor grayColor];
         _zqw.allColor = [UIColor whiteColor];
         _zqw.autoScrollTimeInterval = 5;

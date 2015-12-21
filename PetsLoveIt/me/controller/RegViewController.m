@@ -236,6 +236,7 @@
     NSString  *nickName = self.nickTextField.text;
     NSString  *pwd = self.pwdTextField.text;
     NSString *encryptedPwd = [[_Des AES128Encrypt:[pwd appendAESKeyAndTimeStamp]] uppercaseString];
+    
     if ([self.token length] ==0) {
         mAlertView(@"提示", @"您还没有点击发送验证码");
         return;
@@ -249,7 +250,7 @@
         return;
     }
     if (![nickName isValidateName]) {
-        mAlertView(@"提示", @"昵称应该是数字字母下划线汉字的组合");
+        mAlertView(@"提示", @"昵称应该是1-12位数字字母下划线汉字的组合");
         return;
 
     }

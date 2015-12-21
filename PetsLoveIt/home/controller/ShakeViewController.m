@@ -14,8 +14,9 @@
 #import "UMSocialSnsService.h"
 #import "UMSocialSnsPlatformManager.h"
 #import "UMSocialWechatHandler.h"
+#import "LoginViewController.h"
 
-@interface ShakeViewController ()<UMSocialUIDelegate>
+@interface ShakeViewController ()<UMSocialUIDelegate,UIAlertViewDelegate>
 @property (nonatomic,strong)   UIView *bgView;
 @property (nonatomic,strong)   UIImageView*        imgUp;
 @property (nonatomic,strong)   UIImageView*        imgDown;
@@ -52,10 +53,9 @@
     
     //NSString *path = [[NSBundle mainBundle] pathForResource:@"shake" ofType:@"wav"];
     //AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundID);
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addAnimations) name:@"shake" object:nil];
-    
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addAnimations) name:@"shake" object:nil];
 }
+
 -(UIView *)bgView{
     if (!_bgView) {
         _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 200)];
@@ -121,6 +121,12 @@
     [_imgDown.layer addAnimation:translation forKey:@"translation"];
     [_imgUp.layer  addAnimation:translation2 forKey:@"translation2"];
 
+    if (![AppCache getUserInfo]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"亲，您还没有登录哦" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"去登录", nil];
+        [alertView show];
+        return;
+    }
+    
     self.showPopViewFlag = YES;
     [self performSelector:@selector(getRandomProduct) withObject:nil afterDelay:0];
 }
@@ -150,7 +156,7 @@
         [tipLabel setFont:[UIFont systemFontOfSize:14]];
         [tipLabel setTextColor:mRGBToColor(0x333333)];
         [tipLabel setNumberOfLines:2];
-        [tipLabel setText:@"亲，您今天的机会用完了，请明天再来吧"];
+        [tipLabel setText:@"亲，您今天的机会用完了\n请明天再来吧"];
         [_noShareNumView addSubview:tipLabel];
         
         
@@ -178,7 +184,7 @@
         _noOpView.clipsToBounds = YES;
         _noOpView.layer.cornerRadius = 5;
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, _noOpView.width, 30)];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 30, _noOpView.width, 17)];
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
         [titleLabel setFont:[UIFont systemFontOfSize:15]];
         [titleLabel setTextColor:mRGBToColor(0x333333)];
@@ -194,7 +200,7 @@
         [_noOpView addSubview:tipLabel];
         
         UIButton *shareButtton = [UIButton buttonWithType:UIButtonTypeCustom];
-        shareButtton.frame = CGRectMake(0, tipLabel.bottom+8, 150, 35);
+        shareButtton.frame = CGRectMake(0, _noOpView.height-29-35, 150, 35);
         shareButtton.center = CGPointMake(_noOpView.width/2, shareButtton.center.y);
         [shareButtton setTitle:@"立即分享" forState:UIControlStateNormal];
         [shareButtton addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
@@ -293,8 +299,6 @@
                                      shareImage:[UIImage imageNamed:@"ImageAppIcon"]
                                 shareToSnsNames:@[UMShareToWechatSession,UMShareToQQ,UMShareToQzone,UMShareToWechatTimeline,UMShareToSina]
                                        delegate:self];
-    //shareNum 加1
-    [self updateShareNum];
 }
 
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
@@ -304,7 +308,8 @@
     {
         //得到分享到的微博平台名
         NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
-        
+        //shareNum 加1
+        [self updateShareNum];
     }
 }
 
@@ -322,6 +327,13 @@
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.goodsId = self.goodsId;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        LoginViewController *vc = [LoginViewController new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)getRandomProduct{
@@ -414,9 +426,16 @@
     buttonBack.frame = CGRectMake(0, 30, 44, 34);
     [buttonBack setImage:[UIImage imageNamed:@"whiteBackBarButtonIcon"] forState:UIControlStateNormal];
     [buttonBack addTarget:self action:@selector(popViewController:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
+    buttonBack.center = CGPointMake(buttonBack.center.x, 42);
     [self.view addSubview:buttonBack];
+    
+    self.navBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 30, mScreenWidth-60, 24)];
+    self.navBarTitleLabel.center = CGPointMake(self.navBarTitleLabel.center.x, 42);
+    self.navBarTitleLabel.text = @"摇一摇";
+    [self.navBarTitleLabel setTextColor:[UIColor whiteColor]];
+    [self.navBarTitleLabel setFont:[UIFont systemFontOfSize:18]];
+    [self.navBarTitleLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.view addSubview:self.navBarTitleLabel];
 }
 
 -(UIImageView *)imgUp{

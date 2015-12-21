@@ -20,6 +20,7 @@
 #import "ShakeViewController.h"
 #import "SearchViewController.h"
 #import "BaseNavigationController.h"
+#import "LoginViewController.h"
 
 @interface HomePageViewController ()
 @property (nonatomic,strong) CorePagesView *pagesView;

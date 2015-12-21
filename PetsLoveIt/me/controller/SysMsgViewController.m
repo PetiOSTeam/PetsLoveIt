@@ -37,6 +37,13 @@
     }];
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SysMsgModel *model = [self.dataList objectAtIndex:indexPath.row];
+    CGFloat height = [SysMsgCell heightForCell:model.msgcontent];
+    
+    return height;
+}
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

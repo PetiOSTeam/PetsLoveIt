@@ -9,7 +9,7 @@
 #import "KMDetailsPageView.h"
 
 
-#define kDefaultImagePagerHeight 300.0f
+#define kDefaultImagePagerHeight 280.0f
 #define kDefaultTableViewHeaderMargin 95.0f
 #define kDefaultImageAlpha 500.0f
 #define kDefaultImageScalingFactor 300.0f
