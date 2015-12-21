@@ -492,6 +492,7 @@
         self.levelLabel.text = @"快来登录和小伙伴们一起互动吧";
         self.photoImageView.hidden = YES;
         _levelLabel.width = 200;
+        [_levelLabel setTextAlignment:NSTextAlignmentCenter];
         _levelLabel.center  = CGPointMake(mScreenWidth/2, _levelLabel.center.y);
         self.avatarImageView.image = [UIImage imageNamed:@"defaultUserAvatar"];
         [self.signButton setTitle:@"登录" forState:UIControlStateNormal];

@@ -23,18 +23,20 @@
 
 - (void)configUIWithModel:(SysMsgModel *)model
 {
-    self.contentLabel.text = model.msgcontent;
     self.contentLabel.width = mScreenWidth-40;
+    self.contentLabel.numberOfLines = 0;
+    [self.contentLabel setFont:[UIFont systemFontOfSize:15]];
+    self.contentLabel.text = model.msgcontent;
+    //[self.contentLabel setTextAlignment:NSTextAlignmentJustified];
     [self.contentLabel sizeToFit];
     NSLog(@"%f",self.contentLabel.height);
-    //self.contentLabel.height = self.contentLabel.height;
     self.timeLabel.top = self.contentLabel.bottom + 10;
     self.timeLabel.text = model.sendTime;
 }
 
 + (CGFloat) heightForCell:(NSString *)text{
     CGFloat height=0;
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(13, 0, mScreenWidth-40, 17)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, mScreenWidth-40, 17)];
     label.numberOfLines = 0;
     [label setFont:[UIFont systemFontOfSize:15]];
     [label setText:text];

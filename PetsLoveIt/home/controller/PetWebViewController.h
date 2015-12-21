@@ -10,5 +10,6 @@
 
 @interface PetWebViewController : CommonViewController
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (strong,nonatomic) NSString *proId;
 @property (strong,nonatomic) NSString *htmlUrl;
 @end

@@ -34,6 +34,8 @@
 		182110561BEF1D9A00C32E23 /* GoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182110541BEF1D9A00C32E23 /* GoodsCell.m */; };
 		182110571BEF1D9A00C32E23 /* GoodsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182110551BEF1D9A00C32E23 /* GoodsCell.xib */; };
 		1826F84B1C25593D0043B50D /* agree.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1826F84A1C25593D0043B50D /* agree.txt */; };
+		1826F8511C27AE450043B50D /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 1826F84E1C27AE450043B50D /* NJKWebViewProgress.m */; };
+		1826F8521C27AE450043B50D /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1826F8501C27AE450043B50D /* NJKWebViewProgressView.m */; };
 		182EB8291BEDC30E004EA19C /* ShareOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182EB8271BEDC30E004EA19C /* ShareOrderCell.m */; };
 		182EB82A1BEDC30E004EA19C /* ShareOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182EB8281BEDC30E004EA19C /* ShareOrderCell.xib */; };
 		182EB8331BEDC374004EA19C /* ArticleTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 182EB8311BEDC374004EA19C /* ArticleTableCell.m */; };
@@ -674,6 +676,10 @@
 		182110541BEF1D9A00C32E23 /* GoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsCell.m; sourceTree = "<group>"; };
 		182110551BEF1D9A00C32E23 /* GoodsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsCell.xib; sourceTree = "<group>"; };
 		1826F84A1C25593D0043B50D /* agree.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = agree.txt; sourceTree = "<group>"; };
+		1826F84D1C27AE450043B50D /* NJKWebViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgress.h; sourceTree = "<group>"; };
+		1826F84E1C27AE450043B50D /* NJKWebViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgress.m; sourceTree = "<group>"; };
+		1826F84F1C27AE450043B50D /* NJKWebViewProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NJKWebViewProgressView.h; sourceTree = "<group>"; };
+		1826F8501C27AE450043B50D /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
 		182EB8261BEDC30E004EA19C /* ShareOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareOrderCell.h; sourceTree = "<group>"; };
 		182EB8271BEDC30E004EA19C /* ShareOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareOrderCell.m; sourceTree = "<group>"; };
 		182EB8281BEDC30E004EA19C /* ShareOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareOrderCell.xib; sourceTree = "<group>"; };
@@ -1771,6 +1777,17 @@
 			name = Advice;
 			sourceTree = "<group>";
 		};
+		1826F84C1C27AE450043B50D /* NJKWebViewProgress */ = {
+			isa = PBXGroup;
+			children = (
+				1826F84D1C27AE450043B50D /* NJKWebViewProgress.h */,
+				1826F84E1C27AE450043B50D /* NJKWebViewProgress.m */,
+				1826F84F1C27AE450043B50D /* NJKWebViewProgressView.h */,
+				1826F8501C27AE450043B50D /* NJKWebViewProgressView.m */,
+			);
+			path = NJKWebViewProgress;
+			sourceTree = "<group>";
+		};
 		1848588D1BF8DD3C001FF521 /* SKTagView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2040,6 +2057,7 @@
 		189442EA1BEB0773006249F0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				1826F84C1C27AE450043B50D /* NJKWebViewProgress */,
 				186EA8841C1691F1009876BD /* JPush */,
 				F91BA2C31C15B08C00B1C2E9 /* XRZAlertControl */,
 				F91BA2C21C15B04300B1C2E9 /* XLPopViewControll */,
@@ -4289,6 +4307,7 @@
 				189446881BEB0774006249F0 /* SWTableViewCell.m in Sources */,
 				F9BE49A11C14542A002E47CC /* GradeDetailViewController.m in Sources */,
 				189442DB1BEAF65A006249F0 /* UITableViewCell+Addition.m in Sources */,
+				1826F8511C27AE450043B50D /* NJKWebViewProgress.m in Sources */,
 				184858AF1BF8DD3C001FF521 /* MASLayoutConstraint.m in Sources */,
 				189445AA1BEB0774006249F0 /* LCCell.m in Sources */,
 				1894463E1BEB0774006249F0 /* ZBMessageManagerFaceView.m in Sources */,
@@ -4548,6 +4567,7 @@
 				189445731BEB0774006249F0 /* AFURLResponseSerialization.m in Sources */,
 				F99B56CC1BF4AE12008E18A2 /* NSLayoutConstraint+PureLayout.m in Sources */,
 				18E21ED21C00229C007059F3 /* YYLabel.m in Sources */,
+				1826F8521C27AE450043B50D /* NJKWebViewProgressView.m in Sources */,
 				1808BE481C131AA2002A029B /* CommentModel.m in Sources */,
 				18E21EBE1C00229C007059F3 /* YYTextEffectWindow.m in Sources */,
 				1894466A1BEB0774006249F0 /* RichEditView.m in Sources */,
