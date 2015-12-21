@@ -137,7 +137,7 @@
     if (CGSizeEqualToSize(size, CGSizeZero)) {
         size = CGSizeMake(self.view.frame.size.width * 0.6, 40);
     }
-    return CGRectMake(self.view.frame.size.width / 2 - size.width / 2, self.pageControl.frame.origin.y - size.height-30, size.width, size.height);
+    return CGRectMake(self.view.frame.size.width / 2 - size.width / 2, self.pageControl.frame.origin.y - size.height-30+(mIsiP4s?30:0), size.width, size.height);
 }
 
 #pragma mark - UIScrollViewDelegate
