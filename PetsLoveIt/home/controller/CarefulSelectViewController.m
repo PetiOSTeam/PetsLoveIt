@@ -158,6 +158,7 @@
     PetWebViewController *vc = [PetWebViewController new];
     AdModel *adModel = [self.adArray objectAtIndex:index];
     //vc.htmlUrl = adModel.;
+    vc.proId = adModel.prodId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

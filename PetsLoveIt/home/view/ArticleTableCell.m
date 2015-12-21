@@ -34,7 +34,7 @@
     }else{
         self.titleLabel.text = [NSString stringWithFormat:@"%@",article.typeName];
     }
-       
+    
     self.contentLabel.text = article.desc;
     self.dateLabel.text = article.dateTime;
     self.commentLabel.text = article.commentNum;
