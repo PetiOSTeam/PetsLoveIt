@@ -26,6 +26,8 @@
 #import "AdviceViewController.h"
 #import "APService.h"
 #import "SigninbubbleButton.h"
+#import "HomePageViewController.h"
+
 @interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerContainerView;
 @property (weak, nonatomic) IBOutlet UIView *menuContainerView;

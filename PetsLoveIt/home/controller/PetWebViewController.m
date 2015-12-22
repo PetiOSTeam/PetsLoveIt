@@ -46,12 +46,14 @@
         _webViewProgressView.top=0;
         [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.htmlUrl]]];
     }
-    if (self.proId) {
+    if (self.isProduct) {
         _webViewProgressView.top=64;
         [self showNaviBarView];
         self.navBarTitleLabel.text = @"直达链接";
         self.webView.top = 64;
-        [self getProductDetailById:self.proId];
+        if (self.proId) {
+            [self getProductDetailById:self.proId];
+        }
 
     }else{
     
