@@ -51,6 +51,11 @@
     if (self.goodsId) {
         [self getProductDetailById:self.goodsId];
 
+    }else if (self.goods){
+        [self hideLoadingView];
+        [self loadViewAndData];
+        //获取猜你喜欢数据
+        [self getRelatedInfoById:self.goods.appSort];
     }
     
 }
@@ -294,6 +299,7 @@
 {
     UIButton *buttonBack = [UIButton buttonWithType:UIButtonTypeCustom];
     buttonBack.frame = CGRectMake(0, 30 , 44, 34);
+    buttonBack.center = CGPointMake(buttonBack.center.x, self.navBarTitleLabel.center.y) ;
     [buttonBack setImage:[UIImage imageNamed:@"backBarButtonIcon"] forState:UIControlStateNormal];
     [buttonBack addTarget:self action:@selector(popViewController:) forControlEvents:UIControlEventTouchUpInside];
     [subview addSubview:buttonBack];
@@ -322,8 +328,9 @@
 - (void)setupNavbarButtons
 {
     [self.view addSubview:self.navigationBarView];
-    [self addbuttonBackintheSubView:self.view];
     self.navBarTitleLabel.text = @"优惠详情";
+    [self addbuttonBackintheSubView:self.view];
+    
 }
 
 #pragma mark -

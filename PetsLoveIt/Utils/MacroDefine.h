@@ -99,19 +99,29 @@ otherButtonTitles:nil]; \
 
 
 //----------页面设计相关-------
-
+/** 
+  导航栏高度
+ */
 #define mNavBarHeight         (self.navigationController.navigationBar.height)
+/**
+ 底部控制器高度
+ */
 #define mTabBarHeight         (self.tabBarController.tabBar.height)
 #define mStatusBarHeight      ([UIApplication sharedApplication].statusBarFrame.size.height)
 #define mSlideBarHeight       40.0f
+/**
+ 屏幕宽度
+ */
 #define mScreenWidth          ([UIScreen mainScreen].bounds.size.width)
+/**
+ 屏幕高度
+ */
 #define mScreenHeight         ([UIScreen mainScreen].bounds.size.height)
 
 
 //----------设备系统相关---------
 #define mRetina   ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
 #define mIsiP5    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136),[[UIScreen mainScreen] currentMode].size) : NO)
-#define mIsiP4s    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960),[[UIScreen mainScreen] currentMode].size) : NO)
 #define mIsPad    (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #define mIsiphone (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define mIos7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)

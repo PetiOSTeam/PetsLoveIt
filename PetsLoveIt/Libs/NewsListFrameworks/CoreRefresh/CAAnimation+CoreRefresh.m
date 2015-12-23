@@ -90,7 +90,7 @@
     kfa.duration=0.15f;
     
     //是否重复
-    kfa.repeatCount=6.0f;
+    kfa.repeatCount=2.0f;
     
     //是否反转
     kfa.autoreverses=YES;

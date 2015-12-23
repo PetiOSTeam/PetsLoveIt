@@ -100,17 +100,17 @@
 }
 
 -(void)getCheapProduct{
-    NSDictionary *params = @{@"uid":@"getCheapProduct",
+    NSDictionary *params = @{@"uid":@"getCheapProductList",
                              @"startNum":@"0",
                              @"limit":@"5"
                              };
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
-            NSMutableDictionary *jsonArray = [responseData objectForKey:@"data"];
+            NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
             if ([jsonArray count] ==0) {
                 return ;
             }
-            _cheapProduct = [[GoodsModel alloc] initWithDictionary:jsonArray];
+            _cheapProduct = [[GoodsModel alloc] initWithDictionary:[jsonArray firstObject]];
             _descLabel1.text = _cheapProduct.name;
             [_urlImageView1 sd_setImageWithURL:[NSURL URLWithString:_cheapProduct.appMinpic] placeholderImage:kImagePlaceHolder];
         }
@@ -225,7 +225,7 @@
 
 -(UIView *)tableHeaderView{
     if (!_tableHeaderView) {
-        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 370)];
+        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 360)];
         [_tableHeaderView setBackgroundColor:mRGBToColor(0xf5f5f5)];
         
         _zqw = [[ZQW_ScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 180)];
@@ -332,18 +332,22 @@
 
 - (void)tapOnImageView1{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.goodsId = _cheapProduct.prodId;
+    //vc.goodsId = _cheapProduct.prodId;
+    vc.goods = _cheapProduct;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)tapOnImageView2{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.goodsId = _limittedTimeProduct.prodId;
+//    vc.goodsId = _limittedTimeProduct.prodId;
+    vc.goods = _limittedTimeProduct;
 
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)tapOnImageView3{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.goodsId = _jdProduct.prodId;
+//    vc.goodsId = _jdProduct.prodId;
+    vc.goods = _jdProduct;
+
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -150,7 +150,7 @@
         return 1;
     }
     NSArray *historySearchs = self.dataSource[section];
-    return historySearchs.count > 15 ? 15 : historySearchs.count;
+    return historySearchs.count > 6 ? 6 : historySearchs.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
