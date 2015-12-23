@@ -34,6 +34,7 @@
 - (void)prepareViewAndData{
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"我的收藏";
+    self.view.width = mScreenWidth;
     [self setPageViews];
 }
 
