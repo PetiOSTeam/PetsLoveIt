@@ -157,8 +157,8 @@
 -(void)selectScrollView:(NSInteger)index{
     PetWebViewController *vc = [PetWebViewController new];
     AdModel *adModel = [self.adArray objectAtIndex:index];
-    //vc.htmlUrl = adModel.;
-    vc.proId = adModel.prodId;
+       vc.htmlUrl = adModel.goUrl;
+    vc.isProduct = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

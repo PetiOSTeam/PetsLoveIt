@@ -26,7 +26,9 @@
 #import "AdviceViewController.h"
 #import "APService.h"
 #import "SigninbubbleButton.h"
-@interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate>
+#import "CAAnimation+CoreRefresh.h"
+#import "ShakeremindView.h"
+@interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate,UITabBarControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerContainerView;
 @property (weak, nonatomic) IBOutlet UIView *menuContainerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -62,8 +64,10 @@
 
 @property (strong,nonatomic) NSString * imageQualityStr;
 @property (strong,nonatomic) NSString * sdImageCacheSize;
-
-
+/** 点击投稿后显示的提醒 */
+@property (weak,nonatomic) UIView *remindview;
+/** 点击投稿后遮盖 */
+@property (strong,nonatomic) UIView *maskview;
 
 @end
 
@@ -75,8 +79,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self prepareViewAndData];
+  
+    self.tabBarController.delegate = self;
 }
-
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UINavigationController *)viewController{
+     UIViewController *vc = [viewController.viewControllers firstObject];
+    if ([vc isKindOfClass:[MeViewController class]]) {
+        NSLog( @"点击了我的");
+        [self loadUserInfoViewAndData];
+    }
+}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self loadUserInfoViewAndData];
@@ -253,15 +265,56 @@
     MyBLViewController *vc = [MyBLViewController new];
     [self.navigationController pushViewController:vc animated:YES];
 }
+#pragma mark - 点击投稿后弹出提醒的相关方法
 -(void) showArticleVC{
-    if (![AppCache getUserInfo]) {
-        [self showLoginVC];
-        return;
+    ShakeremindView *remindview = [[ShakeremindView alloc]initWithFrame:CGRectMake(0, 0, 230, 160)];
+    remindview.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
+    remindview.lable1.text = @"研发中，敬请期待";
+    remindview.lable1.font = [UIFont systemFontOfSize:16];
+    [remindview.lelftButton setTitle:@"确定" forState:UIControlStateNormal];
+    [remindview.lelftButton addTarget:self  action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
+    remindview.hidesrightButton = YES;
+    remindview.lable1.center = CGPointMake(remindview.width/2,remindview.height/2 -20);
+    // 添加动画
+    [self addanimationWithShakeView:remindview];
+
+    
+}
+- (void)addanimationWithShakeView:(UIView *)remindview
+{
+    [self.tabBarController.view addSubview:self.maskview];
+    [self.tabBarController.view addSubview:remindview];
+    self.maskview.alpha = 0;
+    remindview.bottom = 0;
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        self.remindview = remindview;
+        self.remindview.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
+        self.maskview.alpha = 0.7;
+        
+}];
+  
+    
+}
+- (UIView *)maskview{
+    if (!_maskview) {
+        _maskview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, mScreenHeight)];
+        [_maskview setBackgroundColor:[UIColor blackColor]];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelAction)];
+        [_maskview addGestureRecognizer:tap];
+       ;
     }
-    MyArticleViewController *vc = [MyArticleViewController new];
-    [self.navigationController pushViewController:vc animated:YES];
+    return _maskview;
+}
+- (void)cancelAction{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.maskview removeFromSuperview];
+        [self.remindview removeFromSuperview];
+    }];
 }
 
+#pragma mark -
 - (void) showMsgVC{
     if (![AppCache getUserInfo]) {
         [self showLoginVC];
@@ -561,6 +614,7 @@
         _levelLabel.center  = CGPointMake(mScreenWidth/2, _levelLabel.center.y);
 
         NSString *todaySined = userInfo.todaySigned;
+        
         if ([todaySined isEqualToString:@"1"]) {
             [self.signButton setTitle:@"已签到" forState:UIControlStateNormal];
  
@@ -575,7 +629,10 @@
 
     
 }
-
+- (void)refreshData
+{
+    
+}
 -(UIView *)navigationBarView{
     if (!_navigationBarView) {
         _navigationBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 64)];
@@ -906,6 +963,7 @@
                 return;
             }
             AdviceViewController *vc = [AdviceViewController new];
+
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

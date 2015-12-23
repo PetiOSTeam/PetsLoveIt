@@ -62,6 +62,7 @@
 
 
 - (void)showShakeVC{
+    
     ShakeViewController *vc = [ShakeViewController new];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -74,6 +75,7 @@
 
 -(UIView *)headerView{
     if (!_headerView) {
+        _headerView.userInteractionEnabled = YES;
         _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 64)];
         [_headerView setBackgroundColor:[UIColor whiteColor]];
         _navBarTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, mScreenWidth, 44)];

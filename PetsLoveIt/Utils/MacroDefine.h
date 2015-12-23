@@ -99,12 +99,23 @@ otherButtonTitles:nil]; \
 
 
 //----------页面设计相关-------
-
+/** 
+  导航栏高度
+ */
 #define mNavBarHeight         (self.navigationController.navigationBar.height)
+/**
+ 底部控制器高度
+ */
 #define mTabBarHeight         (self.tabBarController.tabBar.height)
 #define mStatusBarHeight      ([UIApplication sharedApplication].statusBarFrame.size.height)
 #define mSlideBarHeight       40.0f
+/**
+ 屏幕宽度
+ */
 #define mScreenWidth          ([UIScreen mainScreen].bounds.size.width)
+/**
+ 屏幕高度
+ */
 #define mScreenHeight         ([UIScreen mainScreen].bounds.size.height)
 
 

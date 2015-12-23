@@ -17,7 +17,6 @@
 		1802A1FF1C0C6042009BC2F8 /* AddAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802A1FD1C0C6042009BC2F8 /* AddAddressViewController.m */; };
 		1802A2001C0C6042009BC2F8 /* AddAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1802A1FE1C0C6042009BC2F8 /* AddAddressViewController.xib */; };
 		1802A2051C0C7D32009BC2F8 /* AdviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1802A2031C0C7D32009BC2F8 /* AdviceViewController.m */; };
-		1802A2061C0C7D32009BC2F8 /* AdviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1802A2041C0C7D32009BC2F8 /* AdviceViewController.xib */; };
 		1808BE441C131A06002A029B /* CommentGoodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808BE421C131A06002A029B /* CommentGoodsViewController.m */; };
 		1808BE451C131A06002A029B /* CommentGoodsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1808BE431C131A06002A029B /* CommentGoodsViewController.xib */; };
 		1808BE481C131AA2002A029B /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1808BE471C131AA2002A029B /* CommentModel.m */; };
@@ -576,8 +575,9 @@
 		18F633BC1BF8898000FD98B1 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F633BA1BF8898000FD98B1 /* libSocialSina.a */; };
 		18F633BF1BF88E6400FD98B1 /* KMDetailsPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */; };
 		76AF7FED1BEF7F1F0066659E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AF7FEC1BEF7F1F0066659E /* OrderModel.m */; };
+		9D1D3AE41C28F9C500155E6D /* ShakeremindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1D3AE31C28F9C500155E6D /* ShakeremindView.m */; };
+		9D1D3B341C297DC300155E6D /* AdviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D1D3B331C297DC300155E6D /* AdviceViewController.xib */; };
 		9D4240AF1C20374A0047EEFD /* SigninbubbleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */; };
-		9DFDC6A91C27945100B0BDAA /* UIView+ShakeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFDC6A81C27945100B0BDAA /* UIView+ShakeView.m */; };
 		F91BA2C51C15B08C00B1C2E9 /* XRZAlertControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */; };
 		F91BA2C91C15B65A00B1C2E9 /* GradePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C81C15B65A00B1C2E9 /* GradePopView.m */; };
 		F91BA2CB1C15B66C00B1C2E9 /* GradePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91BA2CA1C15B66C00B1C2E9 /* GradePopView.xib */; };
@@ -648,7 +648,6 @@
 		1802A1FE1C0C6042009BC2F8 /* AddAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddAddressViewController.xib; sourceTree = "<group>"; };
 		1802A2021C0C7D32009BC2F8 /* AdviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdviceViewController.h; sourceTree = "<group>"; };
 		1802A2031C0C7D32009BC2F8 /* AdviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdviceViewController.m; sourceTree = "<group>"; };
-		1802A2041C0C7D32009BC2F8 /* AdviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviceViewController.xib; sourceTree = "<group>"; };
 		1808BE411C131A06002A029B /* CommentGoodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentGoodsViewController.h; sourceTree = "<group>"; };
 		1808BE421C131A06002A029B /* CommentGoodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentGoodsViewController.m; sourceTree = "<group>"; };
 		1808BE431C131A06002A029B /* CommentGoodsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentGoodsViewController.xib; sourceTree = "<group>"; };
@@ -1626,10 +1625,11 @@
 		18F633BE1BF88E6400FD98B1 /* KMDetailsPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDetailsPageView.h; sourceTree = "<group>"; };
 		76AF7FEB1BEF7F1F0066659E /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		76AF7FEC1BEF7F1F0066659E /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		9D1D3AE21C28F9C500155E6D /* ShakeremindView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeremindView.h; sourceTree = "<group>"; };
+		9D1D3AE31C28F9C500155E6D /* ShakeremindView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeremindView.m; sourceTree = "<group>"; };
+		9D1D3B331C297DC300155E6D /* AdviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviceViewController.xib; sourceTree = "<group>"; };
 		9D4240AD1C20374A0047EEFD /* SigninbubbleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SigninbubbleButton.h; path = PetsLoveIt/SigninbubbleButton.h; sourceTree = SOURCE_ROOT; };
 		9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SigninbubbleButton.m; path = PetsLoveIt/SigninbubbleButton.m; sourceTree = SOURCE_ROOT; };
-		9DFDC6A71C27945100B0BDAA /* UIView+ShakeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ShakeView.h"; sourceTree = "<group>"; };
-		9DFDC6A81C27945100B0BDAA /* UIView+ShakeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ShakeView.m"; sourceTree = "<group>"; };
 		F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XRZAlertControl.swift; sourceTree = "<group>"; };
 		F91BA2C61C15B16700B1C2E9 /* PetsLoveIt-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PetsLoveIt-Header.h"; sourceTree = "<group>"; };
 		F91BA2C71C15B65A00B1C2E9 /* GradePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradePopView.h; sourceTree = "<group>"; };
@@ -1772,7 +1772,7 @@
 			children = (
 				1802A2021C0C7D32009BC2F8 /* AdviceViewController.h */,
 				1802A2031C0C7D32009BC2F8 /* AdviceViewController.m */,
-				1802A2041C0C7D32009BC2F8 /* AdviceViewController.xib */,
+				9D1D3B331C297DC300155E6D /* AdviceViewController.xib */,
 			);
 			name = Advice;
 			sourceTree = "<group>";
@@ -3254,11 +3254,11 @@
 		18DD071D1BEC53E5003C8160 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				9DFDC6A71C27945100B0BDAA /* UIView+ShakeView.h */,
-				9DFDC6A81C27945100B0BDAA /* UIView+ShakeView.m */,
 				18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */,
 				18F633BE1BF88E6400FD98B1 /* KMDetailsPageView.h */,
 				182110531BEF1D9A00C32E23 /* GoodsCell.h */,
+				9D1D3AE21C28F9C500155E6D /* ShakeremindView.h */,
+				9D1D3AE31C28F9C500155E6D /* ShakeremindView.m */,
 				182110541BEF1D9A00C32E23 /* GoodsCell.m */,
 				182110551BEF1D9A00C32E23 /* GoodsCell.xib */,
 				1821104D1BEEE89800C32E23 /* ZQW_ScrollView.h */,
@@ -4153,7 +4153,6 @@
 				1847260C1C17DECA005E0E29 /* expression.plist in Resources */,
 				F9EAB78A1BF75A1B00BD0D6B /* PLSoretedCell.xib in Resources */,
 				189445EE1BEB0774006249F0 /* e_23@2x.png in Resources */,
-				1802A2061C0C7D32009BC2F8 /* AdviceViewController.xib in Resources */,
 				1808BE551C132746002A029B /* CommentSubCell.xib in Resources */,
 				1894464B1BEB0774006249F0 /* chatBar_moreSelected.png in Resources */,
 				189446101BEB0774006249F0 /* e_54@2x.png in Resources */,
@@ -4180,6 +4179,7 @@
 				18E21EE01C01B672007059F3 /* LoginViewController.xib in Resources */,
 				18F633B51BF883C800FD98B1 /* ios-social-sdk-shake.html in Resources */,
 				F9EAB78C1BF75A1B00BD0D6B /* PLStoreCell.xib in Resources */,
+				9D1D3B341C297DC300155E6D /* AdviceViewController.xib in Resources */,
 				189446641BEB0774006249F0 /* chatBar_more_photoSelected@2x.png in Resources */,
 				1894464C1BEB0774006249F0 /* chatBar_moreSelected@2x.png in Resources */,
 				18E21F401C05AE6A007059F3 /* MyArticleViewController.xib in Resources */,
@@ -4458,7 +4458,6 @@
 				189445D11BEB0774006249F0 /* PSTCollectionViewFlowLayout.m in Sources */,
 				1894466C1BEB0774006249F0 /* MKAnnotationView+WebCache.m in Sources */,
 				189445861BEB0774006249F0 /* MJPhotoLoadingView.m in Sources */,
-				9DFDC6A91C27945100B0BDAA /* UIView+ShakeView.m in Sources */,
 				18E21EC31C00229C007059F3 /* YYTextMagnifier.m in Sources */,
 				189445831BEB0774006249F0 /* MJPhoto.m in Sources */,
 				189447171BEC3BC5006249F0 /* RESTError.m in Sources */,
@@ -4535,6 +4534,7 @@
 				18E21EC81C00229C007059F3 /* YYTextRubyAnnotation.m in Sources */,
 				189445CF1BEB0774006249F0 /* PSTCollectionViewController.m in Sources */,
 				189446821BEB0774006249F0 /* SVIndicator.m in Sources */,
+				9D1D3AE41C28F9C500155E6D /* ShakeremindView.m in Sources */,
 				18E21E851C001E0F007059F3 /* MeViewController.m in Sources */,
 				189442E41BEAF65A006249F0 /* FileUtils.m in Sources */,
 				189442DA1BEAF65A006249F0 /* UIResponder+Router.m in Sources */,

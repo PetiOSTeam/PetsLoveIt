@@ -16,5 +16,5 @@
 @property (nonatomic,strong) NSString *order;
 @property (nonatomic,strong) NSString *prodId;
 @property (nonatomic,strong) NSString *state;
-
+@property (nonatomic,strong) NSString *goUrl;
 @end
