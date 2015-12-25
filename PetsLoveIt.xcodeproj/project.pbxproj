@@ -578,6 +578,8 @@
 		9D1D3AE41C28F9C500155E6D /* ShakeremindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1D3AE31C28F9C500155E6D /* ShakeremindView.m */; };
 		9D1D3B341C297DC300155E6D /* AdviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D1D3B331C297DC300155E6D /* AdviceViewController.xib */; };
 		9D4240AF1C20374A0047EEFD /* SigninbubbleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */; };
+		9D636C161C2A7F7C00886FF6 /* CheapProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D636C151C2A7F7C00886FF6 /* CheapProductViewController.m */; };
+		9D636C191C2A85A000886FF6 /* CheapProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D636C181C2A85A000886FF6 /* CheapProductCell.m */; };
 		F91BA2C51C15B08C00B1C2E9 /* XRZAlertControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */; };
 		F91BA2C91C15B65A00B1C2E9 /* GradePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C81C15B65A00B1C2E9 /* GradePopView.m */; };
 		F91BA2CB1C15B66C00B1C2E9 /* GradePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91BA2CA1C15B66C00B1C2E9 /* GradePopView.xib */; };
@@ -1630,6 +1632,10 @@
 		9D1D3B331C297DC300155E6D /* AdviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviceViewController.xib; sourceTree = "<group>"; };
 		9D4240AD1C20374A0047EEFD /* SigninbubbleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SigninbubbleButton.h; path = PetsLoveIt/SigninbubbleButton.h; sourceTree = SOURCE_ROOT; };
 		9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SigninbubbleButton.m; path = PetsLoveIt/SigninbubbleButton.m; sourceTree = SOURCE_ROOT; };
+		9D636C141C2A7F7C00886FF6 /* CheapProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheapProductViewController.h; sourceTree = "<group>"; };
+		9D636C151C2A7F7C00886FF6 /* CheapProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheapProductViewController.m; sourceTree = "<group>"; };
+		9D636C171C2A85A000886FF6 /* CheapProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheapProductCell.h; sourceTree = "<group>"; };
+		9D636C181C2A85A000886FF6 /* CheapProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheapProductCell.m; sourceTree = "<group>"; };
 		F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XRZAlertControl.swift; sourceTree = "<group>"; };
 		F91BA2C61C15B16700B1C2E9 /* PetsLoveIt-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PetsLoveIt-Header.h"; sourceTree = "<group>"; };
 		F91BA2C71C15B65A00B1C2E9 /* GradePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradePopView.h; sourceTree = "<group>"; };
@@ -3254,11 +3260,15 @@
 		18DD071D1BEC53E5003C8160 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */,
+				9D636C141C2A7F7C00886FF6 /* CheapProductViewController.h */,
+				9D636C151C2A7F7C00886FF6 /* CheapProductViewController.m */,
 				18F633BE1BF88E6400FD98B1 /* KMDetailsPageView.h */,
-				182110531BEF1D9A00C32E23 /* GoodsCell.h */,
+				18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */,
+				9D636C171C2A85A000886FF6 /* CheapProductCell.h */,
+				9D636C181C2A85A000886FF6 /* CheapProductCell.m */,
 				9D1D3AE21C28F9C500155E6D /* ShakeremindView.h */,
 				9D1D3AE31C28F9C500155E6D /* ShakeremindView.m */,
+				182110531BEF1D9A00C32E23 /* GoodsCell.h */,
 				182110541BEF1D9A00C32E23 /* GoodsCell.m */,
 				182110551BEF1D9A00C32E23 /* GoodsCell.xib */,
 				1821104D1BEEE89800C32E23 /* ZQW_ScrollView.h */,
@@ -3936,7 +3946,7 @@
 				TargetAttributes = {
 					189442531BE9DEC3006249F0 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = GRNH6548E2;
+						DevelopmentTeam = HSNXF846Q2;
 					};
 				};
 			};
@@ -4248,6 +4258,7 @@
 				189445801BEB0774006249F0 /* MBProgressHUD+Add.m in Sources */,
 				189445DC1BEB0774006249F0 /* DXMessageToolBar.m in Sources */,
 				F960FFD61C0B003800281547 /* BeansEntity.m in Sources */,
+				9D636C191C2A85A000886FF6 /* CheapProductCell.m in Sources */,
 				189445A21BEB0774006249F0 /* NSString+File.m in Sources */,
 				189445951BEB0774006249F0 /* MWGridCell.m in Sources */,
 				189446871BEB0774006249F0 /* SWLongPressGestureRecognizer.m in Sources */,
@@ -4356,6 +4367,7 @@
 				189446771BEB0774006249F0 /* UIImage+GIF.m in Sources */,
 				189445D51BEB0774006249F0 /* PSTGridLayoutInfo.m in Sources */,
 				18E21EC71C00229C007059F3 /* YYTextParser.m in Sources */,
+				9D636C161C2A7F7C00886FF6 /* CheapProductViewController.m in Sources */,
 				189446791BEB0774006249F0 /* UIImage+WebP.m in Sources */,
 				189442CD1BEAF65A006249F0 /* NSObject+Addition.m in Sources */,
 				18F632A11BF7550300FD98B1 /* ShakeViewController.m in Sources */,
@@ -4684,7 +4696,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LIFE GUIDE CO LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4724,7 +4736,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pets.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c8353d63-a493-498e-8c2c-c37e2a0f88c5";
+				PROVISIONING_PROFILE = "187116f0-fccb-4352-af9e-09d34197c7e6";
+				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "PetsLoveIt/PetsLoveIt-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -4738,7 +4751,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LIFE GUIDE CO LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4778,7 +4791,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.pets.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c8353d63-a493-498e-8c2c-c37e2a0f88c5";
+				PROVISIONING_PROFILE = "187116f0-fccb-4352-af9e-09d34197c7e6";
+				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "PetsLoveIt/PetsLoveIt-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "";

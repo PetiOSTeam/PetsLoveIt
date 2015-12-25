@@ -45,12 +45,13 @@ static NSString * CellIdentifier = @"GradientCell";
     if (self.gradeStyle == GradeStyleNew) {
         uid = @"getIntegralChanges";
     }else {
+    
         uid = @"getUserIntegralChanges";
     }
     
     NSDictionary *parameter = @{@"uid": uid,
                                 @"startNum": @0,
-                                @"limit": @50,
+                                @"limit": @5,
                                 };
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     hud.labelText = @"加载中...";

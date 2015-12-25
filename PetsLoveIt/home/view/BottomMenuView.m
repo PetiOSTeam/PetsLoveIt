@@ -40,7 +40,6 @@
     [self.menuButton2 setImage:[UIImage imageNamed:@"unStoreIcon"] forState:UIControlStateNormal];
     [self.menuButton2 setImage:[UIImage imageNamed:@"storeIcon"] forState:UIControlStateSelected];
     [self.menuButton2 addTarget:self action:@selector(didClickOnMenu2) forControlEvents:UIControlEventTouchUpInside];
-    
     self.menuButton3 = [UIButton buttonWithType:UIButtonTypeCustom];
     self.menuButton3.height = frame.size.height;
     [self.menuButton3 setImage:[UIImage imageNamed:@"shareIcon"] forState:UIControlStateNormal];

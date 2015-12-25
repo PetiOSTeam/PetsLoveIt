@@ -7,8 +7,8 @@
 //
 
 #import "KMDetailsPageView.h"
-
-#define kDefaultImagePagerHeight [UIScreen mainScreen].applicationFrame.size.width*0.62
+#import "CheapProductCell.h"
+#define kDefaultImagePagerHeight 210.0f
 
 #define kDefaultTableViewHeaderMargin 95.0f
 #define kDefaultImageAlpha 500.0f
@@ -145,7 +145,7 @@
         _label3 = [[UILabel alloc] init];
         [_label3 setTextColor:mRGBToColor(0xff4401)];
         [_label3 setFont:[UIFont boldSystemFontOfSize:17]];
-        _label1.numberOfLines = 0;
+        _label3.numberOfLines = 0;
     }
     return _label3;
 }
@@ -155,7 +155,7 @@
         _webView = [[UIWebView alloc] init];
         _webView.scrollView.scrollEnabled = NO;
         _webView.delegate = self;
-        _label3.numberOfLines = 0;
+       
        
 
     }
@@ -185,8 +185,8 @@
     CGSize lablesize3 = [self getframeWithTitle:self.label3.text andTitleFont:self.label3.font];
     self.label3.frame = (CGRect){{20, _label2.bottom + 5}, lablesize3};
     // webview
-    self.webView.frame = CGRectMake(12,_label3.bottom, mScreenWidth - 24, 300);
-}
+    self.webView.frame = CGRectMake(12,_label3.bottom, mScreenWidth - 32 , 300);
+   }
 // 根据文字计算标签的高度
 - (CGSize)getframeWithTitle:(NSString *)title andTitleFont:(UIFont *)titlefont
 {
@@ -205,16 +205,57 @@
     CGFloat contentHeight = webView.scrollView.contentSize.height;
     self.webView.height = contentHeight+20;
     self.headerView.height = self.webView.bottom;
+    
+//    if (self.isCheapProduct) {
+//        [self setupCheapProduct];
+//    }
     self.tableView.tableHeaderView.height = self.headerView.height;
     self.tableView.contentSize = CGSizeMake(mScreenWidth, self.tableView.tableHeaderView.height);
-    
     if ([self.delegate respondsToSelector:@selector(detailWebViewDidFinishLoad)]) {
         [self.delegate detailWebViewDidFinishLoad];
     }
 }
 
-
-
+//- (void)setupCheapProduct
+//{
+//    if (self.CheapProductarray) {
+//        _CheapProductTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.webView.left, self.webView.bottom, self.webView.width, self.CheapProductarray.count*140) style:UITableViewStylePlain];
+//        self.headerView.height = _CheapProductTableView.bottom;
+//        [self.tableView.tableHeaderView addSubview:_CheapProductTableView];
+//        _CheapProductTableView.dataSource = self;
+//        _CheapProductTableView.tableHeaderView.height = 0;
+//        _CheapProductTableView.tableFooterView.height = 0;
+//    }
+//    
+//}
+//- (UITableView *)CheapProductTableView
+//{
+//    if (!_CheapProductTableView) {
+//        _CheapProductTableView = [[UITableView alloc]initWithFrame:CGRectMake(self.webView.left, self.webView.bottom, self.webView.width, self.CheapProductarray.count*140) style:UITableViewStylePlain];
+//    }
+//    return _CheapProductTableView;
+//}
+//#pragma mark - 白菜TableViewDataSource
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return 1;
+//}
+//
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return 1;//self.CheapProductarray.count;
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    CheapProductCell *cell = [CheapProductCell cellWithTableView:tableView];
+//    cell.goods = self.CheapProductarray[indexPath.row];
+//    return cell;
+//}
+//
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 140;
+//}
 #pragma mark -
 #pragma mark View Layout Setup Methods
 

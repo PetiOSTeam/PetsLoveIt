@@ -27,7 +27,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *residuePagesLabel;
 
 @property (strong, nonatomic) GradeDetailHeaderView *headerView;
-
 @end
 
 @implementation GradeDetailViewController
@@ -53,6 +52,7 @@
 {
     [super viewDidLoad];
     [self configUI];
+   
 }
 
 - (void)configUI
@@ -88,7 +88,7 @@
     
     NSDictionary *headerAttributes = @{NSForegroundColorAttributeName: mRGBToColor(0xF52E0A),
                                  NSFontAttributeName: [UIFont systemFontOfSize:16]};
-    NSString *str = [NSString stringWithFormat:@"%@ 积分", self.gradeModel.discount];
+    NSString *str = [NSString stringWithFormat:@"%@ 积分", self.gradeModel.integral];
     NSMutableAttributedString *headerAttributedStr = [[NSMutableAttributedString alloc] initWithString:str
                                                                                       attributes:headerAttributes];
     NSRange range = NSMakeRange(str.length - 2, 2);
@@ -129,6 +129,13 @@
 
 - (IBAction)exchangeAction:(id)sender
 {
+//    //创建一个消息对象
+//    NSNotification * notice = [NSNotification notificationWithName:@"refreshtheintegral" object:nil userInfo:nil];
+//    //发送消息
+//    [[NSNotificationCenter defaultCenter]postNotification:notice];
+//
+    //发送消息
+//    [[NSNotificationCenter defaultCenter]postNotification:notice];
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"兑换中...";
     NSDictionary *parameter = @{@"uid": @"saveUserChangeIntegral",
@@ -144,8 +151,16 @@
                  int rtnCode = [[responseData objectForKey:@"rtnCode"] intValue];
                  if (rtnCode == 1) {
                      [weakSelf exchangeSucceessfulWithJsonDict:responseData];
+                     [self refreshnumberforgoods];
+                     //创建一个消息对象
+                     NSNotification * notice = [NSNotification notificationWithName:@"refreshtheintegral" object:nil userInfo:nil];
+                     //发送消息
+                     [[NSNotificationCenter defaultCenter]postNotification:notice];
+
                  }else if(rtnCode == 0){
-                     [mAppUtils showHint:@"你已经兑换过此优惠"];
+                     
+                     NSString *rtnmsg = [responseData objectForKey:@"rtnMsg"];
+                     [mAppUtils showHint:rtnmsg];
                  }
                  
              }else {
@@ -153,9 +168,40 @@
              }
          }];
 }
+#pragma mark - 刷新剩余票数
+- (void)refreshnumberforgoods
+{
+    NSDictionary *parameter = @{@"uid": @"getIntegralChangeById",
+                                @"discountId":self.gradeModel.discountId
+                                };
+    [APIOperation GET:@"getCoreSv.action"
+           parameters:parameter
+         onCompletion:^(id responseData, NSError *error) {
+             
+             if (responseData) {
+                 NSDictionary *defaultDict = @{NSFontAttributeName: [UIFont systemFontOfSize:12],
+                                               NSForegroundColorAttributeName: mRGBToColor(0x9E9E9E)};
+                 NSDictionary *attributes = @{NSForegroundColorAttributeName: mRGBToColor(0xF52E0A),
+                                              NSFontAttributeName: [UIFont systemFontOfSize:16]};
+                 NSDictionary *refreshdic = [responseData objectForKey:@"bean"];
+                 NSString *residueStr = [NSString stringWithFormat:@"剩余：%@ 张", refreshdic[@"remainingNum"]];
+                 NSMutableAttributedString *attributedStr1 = [[NSMutableAttributedString alloc] initWithString:residueStr
+                                                                                                    attributes:defaultDict];
+                 NSRange  totalRange1 = NSMakeRange(3, self.gradeModel.remainingNum.length);
+                 [attributedStr1 addAttributes:attributes range:totalRange1];
+                 self.residuePagesLabel.attributedText = attributedStr1;
+                 
+             }else {
+                
+             }
+         }];
+
+}
 
 - (void)exchangeSucceessfulWithJsonDict:(NSDictionary *)resp
+
 {
+    
     GradeExchangeModel *model = [[GradeExchangeModel alloc] initWithJson:resp];
     GradePopView *popView = [[NSBundle mainBundle] loadNibNamed:@"GradePopView"
                                                           owner:self
@@ -178,6 +224,10 @@
             [weakSelf.navigationController pushViewController:userSetVC animated:YES];
         }
     };
+    //创建一个消息对象
+    NSNotification * notice = [NSNotification notificationWithName:@"refreshtheintegral" object:nil userInfo:nil];
+    //发送消息
+    [[NSNotificationCenter defaultCenter]postNotification:notice];
 }
 
 #pragma mark - *** getter ***
@@ -193,7 +243,11 @@
     }
     return _headerView;
 }
-
+//-(void)dealloc
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:@"refreshtheintegral"];
+//   
+//}
 /*
 #pragma mark - Navigation
 

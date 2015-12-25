@@ -7,8 +7,11 @@
 //
 
 #import "GoodsCell.h"
+@interface GoodsCell  ()
 
+@end
 @implementation GoodsCell
+
 
 - (void)awakeFromNib {
     // Initialization code
@@ -24,6 +27,7 @@
 
 - (void)loadCellWithGoodsModel:(GoodsModel *)good{
     [self loadInfo:good];
+    
 }
 
 - (void)loadInfo:(GoodsModel *)good{
@@ -34,10 +38,11 @@
     }else{
        self.nameLabel.text = [NSString stringWithFormat:@"%@",good.typeName];
     }
+    NSString *popularitystr = [self productpopularityWithobjectId:good];
     self.descLabel.text = good.name;
     self.prodLabel.text = good.desc;
     self.commentNumLabel.text = good.commentNum;
-    self.favorNumLabel.text = good.favorNum;
+    self.favorNumLabel.text = popularitystr;
     self.dateLabel.text = good.dateDesc;
     
     self.commentImageView.image = [UIImage imageNamed:@"listcommentIcon"];
@@ -50,4 +55,24 @@
     // Configure the view for the selected state
 }
 
+- (NSString *)productpopularityWithobjectId:(GoodsModel *)good
+{
+    float zancount = [good.favorNum floatValue];
+    if (good.favorNum == nil) {
+        zancount = 0;
+    }
+    
+    
+    float caicount = [good.notworthnum floatValue];
+    if (good.notworthnum == nil) {
+        caicount = 0;
+    }
+    float popularityF = zancount/(caicount+zancount)*100;
+    if (zancount == 0) {
+        popularityF =0;
+    }
+   
+    return [[NSString alloc]initWithFormat:@"%.0f%@",popularityF,@"%" ];
+    
+}
 @end

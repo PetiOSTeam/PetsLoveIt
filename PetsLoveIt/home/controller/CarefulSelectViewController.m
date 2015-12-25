@@ -14,7 +14,8 @@
 #import "GoodsDetailViewController.h"
 #import "AdModel.h"
 #import "PetWebViewController.h"
-
+#import "CheapProductViewController.h"
+#import "MJExtension.h"
 @interface CarefulSelectViewController ()<ZQWScrollViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic,strong) UIView *tableHeaderView;
 @property(nonatomic,strong)  ZQW_ScrollView *zqw;
@@ -40,9 +41,10 @@
 @property (nonatomic,strong) UILabel *titleLabel3;
 @property (nonatomic,strong) UILabel *descLabel3;
 
-@property (nonatomic,strong) GoodsModel *cheapProduct;//白菜价产品
+@property (nonatomic,strong) GoodsModel *cheapProduct;//第一个白菜价产品
 @property (nonatomic,strong) GoodsModel *limittedTimeProduct;//限时优惠
 @property (nonatomic,strong) GoodsModel *jdProduct;//尖端产品
+@property (nonatomic , strong) NSArray *cheapProductArray;
 @end
 
 @implementation CarefulSelectViewController{
@@ -54,7 +56,13 @@
     // Do any additional setup after loading the view.
     [self prepareViewsAndData];
 }
-
+- (NSArray *)cheapProductArray
+{
+    if (_cheapProductArray == nil) {
+        _cheapProductArray = [NSArray array];
+    }
+    return _cheapProductArray;
+}
 - (void)prepareViewsAndData{
     
     self.imageURLs = [NSMutableArray new];
@@ -110,7 +118,14 @@
             if ([jsonArray count] ==0) {
                 return ;
             }
-            _cheapProduct = [[GoodsModel alloc] initWithDictionary:[jsonArray firstObject]];
+            NSMutableArray *typearray = [NSMutableArray array];
+            for (NSMutableDictionary *typedict in jsonArray) {
+                GoodsModel *typemodel = [[GoodsModel alloc] initWithDictionary:typedict];
+                [typearray addObject:typemodel];
+            }
+            self.cheapProductArray = typearray;
+            
+            _cheapProduct = [self.cheapProductArray firstObject];
             _descLabel1.text = _cheapProduct.name;
             [_urlImageView1 sd_setImageWithURL:[NSURL URLWithString:_cheapProduct.appMinpic] placeholderImage:kImagePlaceHolder];
         }
@@ -124,7 +139,6 @@
                              };
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
-            // 修改了白菜价的条件，并在模型里加入了白菜价的判断
             NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
             if ([jsonArray count] ==0) {
                 return ;
@@ -145,6 +159,10 @@
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+            if ([jsonArray count] ==0) {
+                return ;
+            }
+
             _jdProduct = [[GoodsModel alloc] initWithDictionary:jsonArray[0]];
             [_urlImageView3 sd_setImageWithURL:[NSURL URLWithString:_jdProduct.appMinpic] placeholderImage:kImagePlaceHolder];
             _descLabel3.text = _jdProduct.name;
@@ -225,10 +243,10 @@
 
 -(UIView *)tableHeaderView{
     if (!_tableHeaderView) {
-        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 360)];
+        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 365)];
         [_tableHeaderView setBackgroundColor:mRGBToColor(0xf5f5f5)];
         
-        _zqw = [[ZQW_ScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 180)];
+        _zqw = [[ZQW_ScrollView alloc]initWithFrame:CGRectMake(0, 5, self.view.bounds.size.width, 180)];
         _zqw.currentColor = [UIColor grayColor];
         _zqw.allColor = [UIColor whiteColor];
         _zqw.autoScrollTimeInterval = 5;
@@ -248,7 +266,7 @@
         [_descLabel1 setTextColor:mRGBToColor(0x666666)];
         [_descLabel1 setFont:[UIFont systemFontOfSize:12]];
         [_descLabel1 setText:@"一大波白菜价商品即将到来"];
-        _urlImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(15, _descLabel1.bottom+5, 130, 95)];
+        _urlImageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(10, _descLabel1.bottom+5, 130, 95)];
         [_displayView1 addSubview:_titleLabel1];
         [_displayView1 addSubview:_descLabel1];
         [_displayView1 addSubview:_urlImageView1];
@@ -331,9 +349,11 @@
 }
 
 - (void)tapOnImageView1{
-    GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    CheapProductViewController *vc = [CheapProductViewController new];
     //vc.goodsId = _cheapProduct.prodId;
     vc.goods = _cheapProduct;
+    vc.cheapProductArray = self.cheapProductArray;
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)tapOnImageView2{

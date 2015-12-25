@@ -54,7 +54,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *menuImageView5;
 @property (weak, nonatomic) IBOutlet UIImageView *menuImageView6;
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
-
+/** 积分实时数据 */
+@property (copy, nonatomic) NSString *integralstr;
 
 @property (strong, nonatomic)  UIView *navigationBarView;
 @property (strong, nonatomic)  UILabel *navBarTitleLabel;
@@ -75,10 +76,22 @@
     UIImageView *dotImage;
     UIImageView *dotOnMsgImage;
 }
-
+- (NSString *)integralstr
+{
+    if (!_integralstr) {
+        [self refreshtheintegral];
+    }
+    return _integralstr;
+}
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     [self prepareViewAndData];
+   
+//    //获取通知中心单例对象
+//    center = [NSNotificationCenter defaultCenter];
+    //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshtheintegral) name:@"refreshtheintegral" object:nil];
   
     self.tabBarController.delegate = self;
 }
@@ -567,67 +580,104 @@
         self.photoImageView.hidden = NO;
         
         //self.levelLabel.text = @"";
-        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"等级: "];
-        UIFont *font = [UIFont systemFontOfSize:12];
-        NSMutableAttributedString *attachment = nil;
-        int grade = [userInfo.userGrade intValue];
-        //grade = 121;
-        int kingNum = grade/64;
-        int sunNum = grade%64==0?0:grade%64/16;
-        int moonNum = (grade%64==0||grade%16==0)?0:grade%16/4;
-        int starNum = (grade%64==0||grade%16==0||grade%4==0)?0:grade%4;
-        //如果等级为0，显示一个星星
-
-        if (starNum == 0&&grade ==0) {
-            starNum = 1;
-        }
+        // 加载等级和积分
+        [self loadingIntegralandrankWithData:userInfo];
         
-        for (int i=0; i<kingNum; i++) {
-            UIImage *image = [UIImage imageNamed:@"kingIcon"];
-            attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
-            [text appendAttributedString: attachment];
-        }
-        for (int i=0; i<sunNum; i++) {
-            UIImage *image = [UIImage imageNamed:@"sunIcon"];
-            attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
-            [text appendAttributedString: attachment];
-        }
-        for (int i=0; i<moonNum; i++) {
-            UIImage *image = [UIImage imageNamed:@"moonIcon"];
-            attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
-            [text appendAttributedString: attachment];
-        }
-        for (int i=0; i<starNum; i++) {
-            // UIImage attachment
-            UIImage *image = [UIImage imageNamed:@"starIcon"];
-            attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
-            [text appendAttributedString: attachment];
-        }
-        //积分
-        NSMutableAttributedString *userIntegral = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  积分: %@",userInfo.userIntegral]];
-        [text appendAttributedString:userIntegral];
-        [_levelLabel setTextAlignment:NSTextAlignmentCenter];
-        _levelLabel.attributedText = text;
-        CGSize size = CGSizeMake(mScreenWidth-16, 20);
-        YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:text];
-        _levelLabel.width = layout.textBoundingSize.width;
-        _levelLabel.center  = CGPointMake(mScreenWidth/2, _levelLabel.center.y);
-
-        NSString *todaySined = userInfo.todaySigned;
-        
-        if ([todaySined isEqualToString:@"1"]) {
-            [self.signButton setTitle:@"已签到" forState:UIControlStateNormal];
- 
-        }else{
-            [self.signButton setTitle:@"签到送积分" forState:UIControlStateNormal];
-            [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
-
-        }
+        [self isSignin];
         
     }
     [self.tableView reloadData];
 
     
+}
+// 查询是否签到
+- (void)isSignin
+{
+   
+    NSDictionary *parameter = @{@"uid": @"getUserSign"};
+    [APIOperation GET:@"common.action"
+           parameters:parameter
+         onCompletion:^(id responseData, NSError *error) {
+             if (responseData) {
+                 NSDictionary *data =  [responseData objectForKey:@"beans"];
+                 NSString *issignin = data[@"isSign"];
+                 if ([issignin isEqualToString:@"1"]) {
+                    
+                     [self.signButton setTitle:@"已签到" forState:UIControlStateNormal];
+                 }else
+                 {
+                     [self.signButton setTitle:@"签到送积分" forState:UIControlStateNormal];
+                     [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
+
+                 }
+                 
+                 
+             }else {
+                 [self.signButton setTitle:@"签到送积分" forState:UIControlStateNormal];
+                 [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];             }
+         }];
+    
+    
+}
+// 加载等级和积分
+- (void)loadingIntegralandrankWithData:(LocalUserInfoModelClass *)userInfo
+{
+    
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"等级: "];
+    UIFont *font = [UIFont systemFontOfSize:12];
+    NSMutableAttributedString *attachment = nil;
+    int grade = [userInfo.userGrade intValue];
+    //grade = 121;
+    int kingNum = grade/64;
+    int sunNum = grade%64==0?0:grade%64/16;
+    int moonNum = (grade%64==0||grade%16==0)?0:grade%16/4;
+    int starNum = (grade%64==0||grade%16==0||grade%4==0)?0:grade%4;
+    //如果等级为0，显示一个星星
+    
+    if (starNum == 0&&grade ==0) {
+        starNum = 1;
+    }
+    
+    for (int i=0; i<kingNum; i++) {
+        UIImage *image = [UIImage imageNamed:@"kingIcon"];
+        attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        [text appendAttributedString: attachment];
+    }
+    for (int i=0; i<sunNum; i++) {
+        UIImage *image = [UIImage imageNamed:@"sunIcon"];
+        attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        [text appendAttributedString: attachment];
+    }
+    for (int i=0; i<moonNum; i++) {
+        UIImage *image = [UIImage imageNamed:@"moonIcon"];
+        attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        [text appendAttributedString: attachment];
+    }
+    for (int i=0; i<starNum; i++) {
+        // UIImage attachment
+        UIImage *image = [UIImage imageNamed:@"starIcon"];
+        attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        [text appendAttributedString: attachment];
+    }
+    //积分
+    NSMutableAttributedString *userIntegral;
+    
+    if (self.integralstr) {
+        userIntegral = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  积分: %@",self.integralstr]];
+    }else{
+        userIntegral = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  积分: %@",userInfo.userIntegral]];
+    }
+    
+    [text appendAttributedString:userIntegral];
+    
+    [_levelLabel setTextAlignment:NSTextAlignmentCenter];
+    _levelLabel.attributedText = text;
+    CGSize size = CGSizeMake(mScreenWidth-16, 20);
+    YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:text];
+    _levelLabel.width = layout.textBoundingSize.width;
+    _levelLabel.center  = CGPointMake(mScreenWidth/2, _levelLabel.center.y);
+    self.integralstr = nil;
+
 }
 - (void)refreshData
 {
@@ -680,7 +730,9 @@
             SigninbubbleButton *signbubble = [[SigninbubbleButton alloc]initWithframe:self.signButton.frame andSigninData:responseData];
             [self.signButton.superview addSubview:signbubble];
             [self.signButton setTitle:@"已签到" forState:UIControlStateNormal];
+            [self refreshtheintegral];
             [self.signButton removeTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
+            [self refreshtheintegral];
             LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
             userInfo.todaySigned = @"1";
             mAppDelegate.loginUser = userInfo;
@@ -982,6 +1034,32 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - 刷新当前界面的积分
+- (void)refreshtheintegral{
+    
+    NSDictionary *parameter = @{@"uid": @"getLoginInfo"};
+    [APIOperation GET:@"getCoreSv.action"
+           parameters:parameter
+         onCompletion:^(id responseData, NSError *error) {
+             if (responseData) {
+                LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
+                 NSDictionary *userdic = [responseData objectForKey:@"bean"];
+                 NSString *realtimeintegral = userdic[@"userIntegral"];
+                
 
+                _integralstr = [[NSString alloc]initWithString:realtimeintegral];
+                [self loadingIntegralandrankWithData:userInfo];
+                 
+             }else {
+                 
+             }
+         }];
+    
+    
+}
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

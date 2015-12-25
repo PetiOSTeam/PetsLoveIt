@@ -8,8 +8,11 @@
 
 #import "CommonViewController.h"
 #import "GoodsModel.h"
+@class KMDetailsPageView;
 @interface GoodsDetailViewController : CommonViewController
 @property (nonatomic,strong) NSString *goodsId;
 @property (nonatomic,strong) GoodsModel *goods;
 @property (nonatomic,assign) DetailPageType pageType;
+@property (strong, nonatomic)  KMDetailsPageView * detailsPageView;
+
 @end

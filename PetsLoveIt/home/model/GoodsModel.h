@@ -46,5 +46,6 @@
 @property (nonatomic,strong) NSString *collectnum;
 @property (nonatomic,strong) NSString *publisher;
 @property (nonatomic,strong) NSString *publisherIcon;
+@property (nonatomic,strong) NSString *notworthnum;
 
 @end

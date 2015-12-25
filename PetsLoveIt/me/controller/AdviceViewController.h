@@ -7,7 +7,7 @@
 //
 
 #import "CommonViewController.h"
-
+@class YLLabel;
 @interface AdviceViewController : CommonViewController
-
+@property (weak, nonatomic) IBOutlet YLLabel *placeholder;
 @end

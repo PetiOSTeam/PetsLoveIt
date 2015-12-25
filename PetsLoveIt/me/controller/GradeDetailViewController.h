@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "GradeModel.h"
-
 @interface GradeDetailViewController : UIViewController
 
 @property (nonatomic, strong) GradeModel *gradeModel;
+
 
 @end

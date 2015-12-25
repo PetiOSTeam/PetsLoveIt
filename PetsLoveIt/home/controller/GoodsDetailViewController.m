@@ -22,12 +22,14 @@
 @property (strong, nonatomic)  UILabel *navBarTitleLabel;
 
 @property (strong, nonatomic)  UIView *networkLoadingContainerView;
-@property (strong, nonatomic)  KMDetailsPageView* detailsPageView;
+
 @property (nonatomic,strong) BottomMenuView *menuView;
 
 
 @property (assign) CGPoint scrollViewDragPoint;
 @property (nonatomic, strong) KMNetworkLoadingViewController* networkLoadingViewController;
+/**产品的喜爱度 */
+@property (nonatomic, copy) NSString* popularitystr;
 @end
 
 @implementation GoodsDetailViewController{
@@ -81,34 +83,86 @@
 }
 
 -(void)praiseProduct:(BOOL)praiseFlag{
+  
     NSMutableDictionary *params = [NSMutableDictionary new];
+    NSMutableDictionary *paremssec =[NSMutableDictionary new];
     if ([AppCache getUserInfo]) {
         [params setObject:[AppCache getUserId] forKey:@"userId"];
+        
+    }
+    if ([AppCache getToken]) {
+        [paremssec setObject:[AppCache getToken] forKey:@"userToken"];
     }
     [params setObject:@"savePraiseInfo" forKey:@"uid"];
     [params setObject:self.goods.prodId forKey:@"objectId"];
-    if (praiseFlag && !isLiked) {
-        isLiked = YES;
-        isDisliked = NO;
-        [params setObject:@"5" forKey:@"type"];
-        self.goods.favorNum = [NSString stringWithFormat:@"%ld",[self.goods.favorNum integerValue]+1];
-    }else if(!praiseFlag &&!isDisliked){
-        isLiked = NO;
-        isDisliked = YES;
-        [params setObject:@"4" forKey:@"type"];
-        self.goods.favorNum = [NSString stringWithFormat:@"%ld",[self.goods.favorNum integerValue]-1];
-    }else{
-        [mAppUtils showHint:@"您已经点过了哦"];
-        return;
-    }
-    [self.menuView.menuButton1 setTitle:self.goods.favorNum forState:UIControlStateNormal];
-    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+    
+    [paremssec setObject:@"getUserPraiseAndNoPraiseNum" forKey:@"uid"];
+    [paremssec setObject:self.goods.prodId forKey:@"prodId"];
+        [APIOperation GET:@"common.action" parameters:paremssec onCompletion:^(id responseData, NSError *error) {
+        NSLog(@"%@1231289312    %@******%@",responseData,self.goods.prodId,[AppCache getToken]);
+        
         if (!error) {
+            NSDictionary *bean = [responseData objectForKey:@"bean"];
+          
+            if (![bean count]) {
+                if (praiseFlag ) {
+                    [params setObject:@"2" forKey:@"type"];
+                }else
+                {
+                    [params setObject:@"21" forKey:@"type"];
+                   
+                }
+                
+                [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+                    if (!error) {
+                        [self productpopularityWithobjectId:self.goods.prodId];
+                                           }
+                }];
+            }else{
+                [mAppUtils showHint:@"您已经点过了哦"];
+                return;
+            }
             
         }
     }];
 }
+#pragma mark - 显示产品的喜爱度
+- (void)productpopularityWithobjectId:(NSString *)objectid
+{
+    
+    NSDictionary *paramszan = @{@"uid":@"getPraiseInfo",@"type":@"2",@"objectId":objectid};
+    NSDictionary *paramscai = @{@"uid":@"getPraiseInfo",@"type":@"21",@"objectId":objectid};
+    [APIOperation GET:@"common.action" parameters:paramszan onCompletion:^(id responseData, NSError *error) {
+        
+        if (!error) {
+            float zancount = [[responseData objectForKey:@"bean"][@"praiseNum"]floatValue];
+            [APIOperation GET:@"common.action" parameters:paramscai onCompletion:^(id responseData, NSError *error) {
+                
+                float caicount = [[responseData objectForKey:@"bean"][@"praiseNum"]floatValue];
+                
+                if (!error) {
+                    float popularityF = zancount/(caicount+zancount)*100;
+                    if (zancount == 0) {
+                        popularityF =0;
+                    }
+                    NSString *typestr = [[NSString alloc]initWithFormat:@"%.0f%@",popularityF,@"%" ];
+                    _popularitystr = [[NSString alloc]initWithString:typestr];
+                    [self.menuView.menuButton1 setTitle:_popularitystr forState:UIControlStateNormal];
 
+                }
+            }];
+        }
+    }];
+
+    
+}
+- (NSString *)popularitystr
+{
+    if (!_popularitystr) {
+        [self productpopularityWithobjectId:self.goods.prodId];
+    }
+    return _popularitystr;
+}
 -(void)collectProduct:(BOOL)collectFlag{
     NSDictionary *params ;
     if (collectFlag) {
@@ -234,7 +288,7 @@
 #pragma mark - 加载HTML页面数据，并进行图文混排
 -(void) loadViewAndData{
     NSString *html = self.goods.prodDetail;
-    CGFloat viewwidth = [UIScreen mainScreen].bounds.size.width - 24;
+    CGFloat viewwidth = [UIScreen mainScreen].bounds.size.width - 32;
     NSString *css = [NSString stringWithFormat:@"<html><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><body width=%f style=\"word-wrap:break-word;ext-align: justify; font-family:Arial\"><style>img{max-width:%f;height:auto;}</style>",viewwidth,viewwidth];
     
     NSMutableString *desc = [NSMutableString stringWithFormat:@"%@%@%@",
@@ -246,7 +300,7 @@
     if (self.pageType == RelatedPersonType) {
         [_menuView loadAvatarImage:self.goods.publisherIcon];
     }
-    [self.menuView.menuButton1 setTitle:self.goods.favorNum forState:UIControlStateNormal];
+    [self.menuView.menuButton1 setTitle:self.popularitystr forState:UIControlStateNormal];
     [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
     [self.menuView.menuButton4 setTitle:self.goods.commentNum forState:UIControlStateNormal];
     if ([self.goods.usercollectnum isEqualToString:@"1"]) {

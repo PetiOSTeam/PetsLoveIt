@@ -113,6 +113,10 @@
 /// @name KMDetailsPageView Public Methods
 ///-------------------------------
 
+// /**白菜价相关方法*/
+//@property (nonatomic,assign) BOOL isCheapProduct;
+//@property (nonatomic,strong) UITableView *CheapProductTableView;
+//@property (nonatomic,strong) NSArray *CheapProductarray;
 /*
  Call this method to reload data. This will refresh the tableview and the header imageview.
  */

@@ -17,7 +17,7 @@
 
 @interface CommentGoodsViewController ()<RichEditViewDelegate,DXMessageToolBarDelegate>
 @property (nonatomic,strong) RichEditToolBar *editToolBar;
-
+@property (nonatomic,assign) BOOL ISclick;
 @end
 
 @implementation CommentGoodsViewController{
@@ -37,13 +37,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navBarTitleLabel.text = @"所有评论";
+    self.tableView.top = 64;
+    
+    [self showNaviBarView];
     [self prepareViewAndData];
 }
 
 - (void)prepareViewAndData{
-    [self showNaviBarView];
-    self.navBarTitleLabel.text = @"所有评论";
-    self.tableView.top = 64;
+    
     
     [self config];
     self.tableView.height = mScreenHeight -mStatusBarHeight-mNavBarHeight- [RichEditToolBar defaultHeight];
@@ -79,14 +81,16 @@
     [popButton3 addTarget:self action:@selector(copyAction) forControlEvents:UIControlEventTouchUpInside];
     
     popButton4 = [[UIButton alloc] initWithFrame:CGRectMake(popButton3.right, 10, popBtnWidth, 30)];
-    [popButton4 setTitle:@"赞" forState:UIControlStateNormal];
+    NSString *zancount = [[NSString alloc]initWithFormat:@"赞(%@)",selectedComment.praiseNum?selectedComment.praiseNum:@"0" ];
+    [popButton4 setTitle:zancount forState:UIControlStateNormal];
     [popButton4 addRightBorderWithColor:mRGBToColor(0x505050) andWidth:2];
 
     [popButton4 addTarget:self action:@selector(likeAction) forControlEvents:UIControlEventTouchUpInside];
     [popButton4.titleLabel setFont:[UIFont systemFontOfSize:14]];
 
     popButton5 = [[UIButton alloc] initWithFrame:CGRectMake(popButton4.right, 10, popBtnWidth, 30)];
-    [popButton5 setTitle:@"踩" forState:UIControlStateNormal];
+    NSString *caicount = [[NSString alloc]initWithFormat:@"踩(%@)",selectedComment.stepNum?selectedComment.stepNum:@"0"];
+    [popButton5 setTitle:caicount forState:UIControlStateNormal];
     [popButton5.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [popButton5 addRightBorderWithColor:mRGBToColor(0x505050) andWidth:2];
 
@@ -123,7 +127,7 @@
     [[DXPopover sharedView] dismiss];
     isReply = YES;
     [[DXPopover sharedView] dismiss];
-    self.editToolBar.inputTextView.text = [NSString stringWithFormat:@"@%@",selectedComment.nickName];
+    self.editToolBar.inputTextView.text = [NSString stringWithFormat:@"@%@ ",selectedComment.nickName];
     [self.editToolBar.inputTextView becomeFirstResponder];
 }
 -(void)copyAction{
@@ -136,30 +140,103 @@
 }
 -(void)likeAction{
     [[DXPopover sharedView] dismiss];
+    if( ([selectedComment.praiseFlag intValue] == 0)&&([selectedComment.stepFlag intValue] == 0) ){
+        NSDictionary *params = @{
+                                 @"uid": @"savePraiseInfo",
+                                 @"objectId":selectedComment.commentId,
+                                 @"type":@"1"
+                                 };
+        [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+            if (!error) {
+                NSLog(@"点赞成功%@",responseData);
+                [mAppUtils showHint:@"点赞成功"];
+                selectedComment.praiseNum = [NSString stringWithFormat:@"%i",([selectedComment.praiseNum intValue]+1)];
+                selectedComment.praiseFlag = @"1";
+            }
+        }];
+
+        
+    }else{
+        [mAppUtils showHint:@"亲！您已经评价过了哦"];
+        return;
+       }
+}
+- (BOOL)ISclick
+{
+    [self getUserISpraiseandnopraisenum];
+    return _ISclick;
+}
+- (void)getUserISpraiseandnopraisenum
+{
+ 
+//    LocalUserInfoModelClass *userInfo = [AppCache getUserId];
     
     NSDictionary *params = @{
-                             @"uid": @"savePraiseInfo",
-                             @"objectId":selectedComment.commentId,
-                             @"type":@"1"
+                             @"uid": @"getPraiseInfo",
+                              @"objectId":selectedComment.commentId,
+                             @"nowDay":@"1",
+                             @"type":@"1",
+                             @"userId":[AppCache getUserId]
                              };
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
-            [mAppUtils showHint:@"点赞成功"];
+            NSDictionary *bean = responseData[@"bean"];
+            if (!bean.count){
+                selectedComment.praiseFlag = @"0";
+                           }else{
+                selectedComment.praiseFlag = @"1";
+                _ISclick = YES;
+                
+            }
+            
         }
     }];
+    NSDictionary *paramscai = @{
+                             @"uid": @"getPraiseInfo",
+                             @"objectId":selectedComment.commentId,
+                             @"nowDay":@"1",
+                             @"type":@"11",
+                             @"userId":[AppCache getUserId]
+                             };
+    [APIOperation GET:@"common.action" parameters:paramscai onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            NSDictionary *beancai = responseData[@"bean"];
+            if (!beancai.count){
+                selectedComment.stepFlag = @"0";
+                _ISclick = NO;
+                
+            }else{
+                selectedComment.stepFlag = @"1";
+                _ISclick = YES;
+            }
+            
+        }
+    }];
+
+    
+    
 }
 -(void)unlikeAction{
     [[DXPopover sharedView] dismiss];
-    NSDictionary *params = @{
-                             @"uid": @"savePraiseInfo",
-                             @"objectId":selectedComment.commentId,
-                             @"type":@"11"
-                             };
-    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-        if (!error) {
-            [mAppUtils showHint:@"点踩成功"];
+    if (([selectedComment.praiseFlag intValue] == 0)&&([selectedComment.stepFlag intValue] == 0)) {
+        NSDictionary *params = @{
+                                 @"uid": @"savePraiseInfo",
+                                 @"objectId":selectedComment.commentId,
+                                 @"type":@"11"
+                                 };
+        [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+            if (!error) {
+                [mAppUtils showHint:@"点踩成功"];
+                selectedComment.stepNum = [NSString stringWithFormat:@"%i",([selectedComment.stepNum intValue]+1)];
+                selectedComment.stepFlag = @"1";
+            }
+        }];
+
+        
+    }else{
+        [mAppUtils showHint:@"亲！您已经评价过了哦"];
+        return;
         }
-    }];
 }
 -(void)reportAction{
     [[DXPopover sharedView] dismiss];
@@ -222,6 +299,13 @@
     CommentCell *cell =(CommentCell *) [tableView cellForRowAtIndexPath:indexPath];
     selectedComment = [self.dataList objectAtIndex:indexPath.row];
     [DXPopover showAtView:cell  atViewOffsetX:cell.center.x atViewOffsetY:cell.top+cell.commentLabel.top popoverPostion:DXPopoverPositionDown withContentView:moreMenuContainerView inView:self.tableView ];
+    [self getUserISpraiseandnopraisenum];
+    NSString *zancount = [[NSString alloc]initWithFormat:@"赞(%@)",selectedComment.praiseNum?selectedComment.praiseNum:@"0" ];
+    [popButton4 setTitle:zancount forState:UIControlStateNormal];
+    NSString *caicount = [[NSString alloc]initWithFormat:@"踩(%@)",selectedComment.stepNum?selectedComment.stepNum:@"0"];
+    [popButton5 setTitle:caicount forState:UIControlStateNormal];
+
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

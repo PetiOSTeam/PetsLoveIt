@@ -9,5 +9,8 @@
 #import "CommonViewController.h"
 
 @interface MeViewController : CommonViewController
+//{
+//    NSNotificationCenter *center; 
+//}
 - (void) getNewMsg;
 @end

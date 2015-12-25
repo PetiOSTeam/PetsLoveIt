@@ -7,11 +7,12 @@
 //
 
 #import "AdviceViewController.h"
+#import "YLLabel.h"
+NSString* const msg = @"如果您在使用app过程中遇到功能、内容等方面的错误或者对我们有任何建议和意见，请在此处向我们提交，期待并感谢您的宝贵意见，被采纳的建议我们有丰厚积分相送。";
 
 @interface AdviceViewController ()<UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *cotentContainerView;
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
-@property (weak, nonatomic) IBOutlet UILabel *placeholder;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @end
@@ -30,6 +31,9 @@
     self.submitButton.layer.cornerRadius = 25;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
+    [self.placeholder setText:msg];
+    self.placeholder.textColor = mRGBToColor(0xbdbdbd);
+    self.placeholder.font = [UIFont systemFontOfSize:15.0f];
 }
 
 -(void)textViewDidChange:(UITextView *)textView{

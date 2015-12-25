@@ -310,6 +310,10 @@
                  NSInteger jifen = [[responseData objectForKey:@"rtnMsg"] integerValue];
                 //
                 [self setupintegralViewWithintegral:jifen];
+                    //创建一个消息对象
+                    NSNotification * notice = [NSNotification notificationWithName:@"refreshtheintegral" object:nil userInfo:nil];
+                    //发送消息
+                    [[NSNotificationCenter defaultCenter]postNotification:notice];
                 
             }
 

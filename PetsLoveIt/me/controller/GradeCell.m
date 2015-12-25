@@ -52,7 +52,7 @@
     
     NSDictionary *attributes = @{NSForegroundColorAttributeName: mRGBToColor(0xF52E0A),
                                  NSFontAttributeName: [UIFont systemFontOfSize:16]};
-    NSString *str = [NSString stringWithFormat:@"%@ 积分", gradeModel.discount];
+    NSString *str = [NSString stringWithFormat:@"%@ 积分", gradeModel.integral];
     NSMutableAttributedString *attributedStr = [[NSMutableAttributedString alloc] initWithString:str
                                                                                       attributes:attributes];
     NSRange range = NSMakeRange(str.length - 2, 2);
@@ -63,7 +63,7 @@
     
     if (self.gradeStyle == GradeStyleHistory) {
         [self.exchangeButton setBackgroundColor:[UIColor colorWithWhite:0.459 alpha:1.000]];
-        self.exchangeButton.userInteractionEnabled = NO;
+        self.exchangeButton.userInteractionEnabled = YES;
         [self.exchangeButton setTitle:@"已兑换" forState:UIControlStateNormal];
     }
 }
