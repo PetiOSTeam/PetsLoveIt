@@ -18,7 +18,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self config];
-    
+    [self setMsgRead];
+}
+
+- (void)setMsgRead{
+    NSDictionary *params = @{@"uid":@"saveUserReadMsg",
+                             @"msgType":@"1"
+                             };
+    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            
+        }
+    }];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
