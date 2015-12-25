@@ -446,6 +446,17 @@
 
 - (void)animateNavigationBar:(CGFloat)scrollOffset draggingPoint:(CGPoint)scrollViewDragPoint
 {
+    NSLog(@"%f",self.tableView.top);
+    if (self.tableView2.top >64 && self.tableView.top<0) {
+        _navBarView.alpha = 1;
+        _navBarView.hidden = NO;
+        return;
+        
+    }else{
+        _navBarView.alpha = 0;
+        _navBarView.hidden = YES;
+    }
+    
     if(scrollOffset > _navBarFadingOffset && _navBarView.alpha == 0.0)
     { //make the navbar appear
         _navBarView.alpha = 0;
@@ -463,6 +474,7 @@
             _navBarView.hidden = YES;
         }];
     }
+    
 }
 
 @end

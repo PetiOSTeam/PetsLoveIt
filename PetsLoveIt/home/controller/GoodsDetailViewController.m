@@ -421,6 +421,7 @@
 
 - (CGPoint)detailsPage:(KMDetailsPageView *)detailsPageView tableViewWillBeginDragging:(UITableView *)tableView;
 {
+    
     return self.scrollViewDragPoint;
 }
 
