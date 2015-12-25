@@ -43,7 +43,7 @@
     self.prodLabel.text = good.desc;
     self.commentNumLabel.text = good.commentNum;
     self.favorNumLabel.text = popularitystr;
-    self.dateLabel.text = good.dateDesc;
+    self.dateLabel.text = good.dateTime;
     
     self.commentImageView.image = [UIImage imageNamed:@"listcommentIcon"];
     self.favorImageView.image = [UIImage imageNamed:@"listfavorIcon"];

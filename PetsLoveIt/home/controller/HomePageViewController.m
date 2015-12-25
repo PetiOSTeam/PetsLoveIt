@@ -46,12 +46,12 @@
 
 -(void)setupNaviButton{
     UIButton *shakeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    shakeButton.frame = CGRectMake(10, 30, 64, 34);
+    shakeButton.frame = CGRectMake(0, 30, 64, 34);
     [shakeButton setImage:[UIImage imageNamed:@"shakeIcon"] forState:UIControlStateNormal];
     [shakeButton addTarget:self action:@selector(showShakeVC) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    searchButton.frame = CGRectMake(mScreenWidth-64-10, 30, 64, 34);
+    searchButton.frame = CGRectMake(mScreenWidth-64, 30, 64, 34);
     [searchButton setImage:[UIImage imageNamed:@"searchGoodsIcon"] forState:UIControlStateNormal];
     [searchButton addTarget:self action:@selector(showSearchVC) forControlEvents:UIControlEventTouchUpInside];
     
@@ -119,7 +119,7 @@
         [pageModels addObject:pageModel];
         
     }
-    _pagesView=[CorePagesView viewWithOwnerVC:self pageModels:pageModels];
+    _pagesView=[CorePagesView viewWithOwnerVC:self pageModels:pageModels isHomePage:YES];
     _pagesView.top = 64;
     [self.pagesView.pagesBarView setBackgroundColor:mRGBToColor(0xfeffff)];
     [self.pagesView.scrollView setBackgroundColor:mRGBToColor(0xffffff)];

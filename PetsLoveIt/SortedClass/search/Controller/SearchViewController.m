@@ -134,6 +134,7 @@
     if (indexPath.section == 1) {
         NSArray *tempArray = self.dataSource[indexPath.section];
         SearchResultsViewController *resultsVC = [[SearchResultsViewController alloc] init];
+        resultsVC.resyltStyle = ResultStyle_Sift;
         resultsVC.searchText = tempArray[indexPath.row];
         [self.navigationController pushViewController:resultsVC animated:YES];
     }
@@ -238,6 +239,7 @@
 {
     [searchBar resignFirstResponder];
     SearchResultsViewController *searchResultsVC = [[SearchResultsViewController alloc] init];
+    searchResultsVC.resyltStyle = ResultStyle_Sift;
     searchResultsVC.searchText = searchBar.text;
     [self.navigationController pushViewController:searchResultsVC animated:YES];
 }
@@ -245,6 +247,7 @@
 - (void)didClickWithText:(NSString *)hotwordText
 {
     SearchResultsViewController *searchResultsVC = [[SearchResultsViewController alloc] init];
+    searchResultsVC.resyltStyle = ResultStyle_Sift;
     searchResultsVC.searchText = hotwordText;
     [self.navigationController pushViewController:searchResultsVC animated:YES];
 }

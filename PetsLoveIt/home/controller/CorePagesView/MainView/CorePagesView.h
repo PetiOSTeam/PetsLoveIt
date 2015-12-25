@@ -12,6 +12,7 @@
 
 @interface CorePagesView : UIView
 @property (nonatomic,assign) BOOL useAutoResizeWidth;//自动计算顶部按钮宽度
+@property (nonatomic,assign) BOOL homePageWidth;//首页显示6个btn
 
 @property (strong, nonatomic) IBOutlet CorePagesBarView *pagesBarView;
 
@@ -33,11 +34,11 @@
  */
 +(instancetype)viewWithOwnerVC:(UIViewController *)ownerVC pageModels:(NSArray *)pageModels;
 
-+(instancetype)viewWithOwnerVC:(UIViewController *)ownerVC pageModels:(NSArray *)pageModels pageWidth:(CGFloat)width;
++(instancetype)viewWithOwnerVC:(UIViewController *)ownerVC pageModels:(NSArray *)pageModels pageWidth:(CGFloat)width  isHomePage:(BOOL) isHomePage;
 
 +(instancetype)viewWithOwnerVC:(UIViewController *)ownerVC pageModels:(NSArray *)pageModels useAutoResizeWidth:(BOOL) useAutoResizeWidth;
 
-
++(instancetype)viewWithOwnerVC:(UIViewController *)ownerVC pageModels:(NSArray *)pageModels isHomePage:(BOOL) isHomePage;
 
 
 @end

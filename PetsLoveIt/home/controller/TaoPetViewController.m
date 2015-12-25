@@ -50,10 +50,10 @@
     if (!_tableHeaderView) {
         _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 31)];
         _tableHeaderView.backgroundColor = mRGBToColor(0xffffff);
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 100, 31)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 150, 31)];
         [label setFont:[UIFont systemFontOfSize:12]];
         [label setTextColor:mRGBToColor(0xff4401)];
-        [label setText:@"上海"];
+        [label setText:@"目前仅支持上海地区"];
         _tableHeaderView.layer.borderColor = kLayerBorderColor.CGColor;
         _tableHeaderView.layer.borderWidth = kLayerBorderWidth;
         [_tableHeaderView addSubview:label];

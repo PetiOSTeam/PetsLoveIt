@@ -14,6 +14,7 @@
 
 
 @property (nonatomic,assign) BOOL useAutoResizeWidth;//自动计算顶部按钮宽度
+@property (nonatomic,assign) BOOL homePageWidth;//首页显示6个btn
 /**
  *  分页模型数组
  */

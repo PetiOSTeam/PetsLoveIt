@@ -132,7 +132,9 @@
             btnW = mScreenWidth / _pageModels.count;
         }
         
-        
+        if (self.homePageWidth) {
+            btnW = (mScreenWidth-10) / 5;
+        }
         
         
         CGSize size=CGSizeMake(btnW, CorePagesBarViewH);

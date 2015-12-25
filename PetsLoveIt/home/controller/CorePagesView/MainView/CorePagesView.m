@@ -108,14 +108,29 @@
     return pagesView;
 }
 
-+(instancetype)viewWithOwnerVC:(UIViewController *)ownerVC pageModels:(NSArray *)pageModels pageWidth:(CGFloat)width{
++(instancetype)viewWithOwnerVC:(UIViewController *)ownerVC pageModels:(NSArray *)pageModels pageWidth:(CGFloat)width isHomePage:(BOOL) isHomePage{
     
     CorePagesView *pagesView=[[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:nil options:nil].firstObject;
     pagesView.frame = CGRectMake(0, 64, width, mScreenHeight-64);
     dispatch_async(dispatch_get_main_queue(), ^{
         //记录所属控制器
         pagesView.ownerVC=ownerVC;
+        pagesView.homePageWidth = isHomePage;
+        //模型数组
+        pagesView.pageModels=pageModels;
         
+    });
+    
+    return pagesView;
+}
++(instancetype)viewWithOwnerVC:(UIViewController *)ownerVC pageModels:(NSArray *)pageModels isHomePage:(BOOL) isHomePage{
+    CorePagesView *pagesView=[[NSBundle mainBundle] loadNibNamed:NSStringFromClass(self) owner:nil options:nil].firstObject;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //记录所属控制器
+        pagesView.ownerVC=ownerVC;
+        
+        pagesView.homePageWidth = isHomePage;
         //模型数组
         pagesView.pageModels=pageModels;
         
@@ -224,6 +239,7 @@
     }
     
     self.pagesBarView.useAutoResizeWidth = self.useAutoResizeWidth;
+    self.pagesBarView.homePageWidth = self.homePageWidth;
     //数据传递
     self.pagesBarView.pageModels=pageModels;
     

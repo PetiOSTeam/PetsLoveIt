@@ -66,7 +66,7 @@
         [pageModels addObject:pageModel];
         
     }
-    _pagesView=[CorePagesView viewWithOwnerVC:self pageModels:pageModels pageWidth:mScreenWidth];
+    _pagesView=[CorePagesView viewWithOwnerVC:self pageModels:pageModels pageWidth:mScreenWidth isHomePage:YES];
     _pagesView.top = 64;
     [self.pagesView.pagesBarView setBackgroundColor:mRGBToColor(0xfeffff)];
     [self.pagesView.scrollView setBackgroundColor:mRGBToColor(0xffffff)];
