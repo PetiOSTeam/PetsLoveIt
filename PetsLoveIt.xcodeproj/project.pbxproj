@@ -83,6 +83,7 @@
 		185767601C0AFD47000A044D /* PushSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1857675E1C0AFD47000A044D /* PushSettingViewController.xib */; };
 		185767651C0B0794000A044D /* UserSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185767631C0B0794000A044D /* UserSettingVC.m */; };
 		185767661C0B0794000A044D /* UserSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185767641C0B0794000A044D /* UserSettingVC.xib */; };
+		186AEBD31C2CE8D60092F289 /* MyCollectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186AEBD21C2CE8D60092F289 /* MyCollectViewController.xib */; };
 		186EA8831C148C73009876BD /* GradeDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */; };
 		186EA8871C1691F1009876BD /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 186EA8861C1691F1009876BD /* libPushSDK-1.8.8.a */; };
 		186EA8891C169362009876BD /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 186EA8881C169362009876BD /* PushConfig.plist */; };
@@ -515,7 +516,6 @@
 		18E21EF51C040674007059F3 /* SentCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21EF41C040674007059F3 /* SentCommentViewController.m */; };
 		18E21EF71C040B21007059F3 /* MyCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21EF61C040B21007059F3 /* MyCommentViewController.xib */; };
 		18E21F141C046E15007059F3 /* MyCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F121C046E15007059F3 /* MyCollectViewController.m */; };
-		18E21F151C046E15007059F3 /* MyCollectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21F131C046E15007059F3 /* MyCollectViewController.xib */; };
 		18E21F241C047C91007059F3 /* MyGradeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18E21F211C047C91007059F3 /* MyGradeViewController.xib */; };
 		18E21F251C047C91007059F3 /* MyGradeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F221C047C91007059F3 /* MyGradeViewController.m */; };
 		18E21F2F1C058627007059F3 /* MyBLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18E21F2D1C058627007059F3 /* MyBLViewController.m */; };
@@ -737,6 +737,7 @@
 		185767621C0B0794000A044D /* UserSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingVC.h; sourceTree = "<group>"; };
 		185767631C0B0794000A044D /* UserSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingVC.m; sourceTree = "<group>"; };
 		185767641C0B0794000A044D /* UserSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingVC.xib; sourceTree = "<group>"; };
+		186AEBD21C2CE8D60092F289 /* MyCollectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCollectViewController.xib; sourceTree = "<group>"; };
 		186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeDetailHeaderView.xib; sourceTree = "<group>"; };
 		186EA8851C1691F1009876BD /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		186EA8861C1691F1009876BD /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
@@ -1528,7 +1529,6 @@
 		18E21EF61C040B21007059F3 /* MyCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCommentViewController.xib; sourceTree = "<group>"; };
 		18E21F111C046E15007059F3 /* MyCollectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectViewController.h; sourceTree = "<group>"; };
 		18E21F121C046E15007059F3 /* MyCollectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectViewController.m; sourceTree = "<group>"; };
-		18E21F131C046E15007059F3 /* MyCollectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCollectViewController.xib; sourceTree = "<group>"; };
 		18E21F211C047C91007059F3 /* MyGradeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyGradeViewController.xib; sourceTree = "<group>"; };
 		18E21F221C047C91007059F3 /* MyGradeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGradeViewController.m; sourceTree = "<group>"; };
 		18E21F231C047C91007059F3 /* MyGradeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGradeViewController.h; sourceTree = "<group>"; };
@@ -3518,9 +3518,9 @@
 		18E21F451C05B32E007059F3 /* MyCollect */ = {
 			isa = PBXGroup;
 			children = (
+				186AEBD21C2CE8D60092F289 /* MyCollectViewController.xib */,
 				18E21F111C046E15007059F3 /* MyCollectViewController.h */,
 				18E21F121C046E15007059F3 /* MyCollectViewController.m */,
-				18E21F131C046E15007059F3 /* MyCollectViewController.xib */,
 			);
 			name = MyCollect;
 			sourceTree = "<group>";
@@ -4013,6 +4013,7 @@
 				189446831BEB0774006249F0 /* SVProgressHUD.bundle in Resources */,
 				189446321BEB0774006249F0 /* e_85@2x.png in Resources */,
 				189445E31BEB0774006249F0 /* e_13@2x.png in Resources */,
+				186AEBD31C2CE8D60092F289 /* MyCollectViewController.xib in Resources */,
 				189446601BEB0774006249F0 /* chatBar_more_locationSelected@2x.png in Resources */,
 				189445FB1BEB0774006249F0 /* e_35@2x.png in Resources */,
 				1894460D1BEB0774006249F0 /* e_51@2x.png in Resources */,
@@ -4131,7 +4132,6 @@
 				1894465D1BEB0774006249F0 /* chatBar_more_location.png in Resources */,
 				189446171BEB0774006249F0 /* e_60@2x.png in Resources */,
 				F9EAB7901BF75A1B00BD0D6B /* SoretedHeaderView.xib in Resources */,
-				18E21F151C046E15007059F3 /* MyCollectViewController.xib in Resources */,
 				189445F31BEB0774006249F0 /* e_28@2x.png in Resources */,
 				189446381BEB0774006249F0 /* e_9@2x.png in Resources */,
 				18E21EF71C040B21007059F3 /* MyCommentViewController.xib in Resources */,
