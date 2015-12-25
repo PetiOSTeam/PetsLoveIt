@@ -17,7 +17,7 @@
 
 @interface CommentGoodsViewController ()<RichEditViewDelegate,DXMessageToolBarDelegate>
 @property (nonatomic,strong) RichEditToolBar *editToolBar;
-@property (nonatomic,assign) BOOL ISclick;
+
 @end
 
 @implementation CommentGoodsViewController{
@@ -161,11 +161,6 @@
         return;
        }
 }
-- (BOOL)ISclick
-{
-    [self getUserISpraiseandnopraisenum];
-    return _ISclick;
-}
 - (void)getUserISpraiseandnopraisenum
 {
  
@@ -185,7 +180,7 @@
                 selectedComment.praiseFlag = @"0";
                            }else{
                 selectedComment.praiseFlag = @"1";
-                _ISclick = YES;
+                
                 
             }
             
@@ -203,11 +198,11 @@
             NSDictionary *beancai = responseData[@"bean"];
             if (!beancai.count){
                 selectedComment.stepFlag = @"0";
-                _ISclick = NO;
+                
                 
             }else{
                 selectedComment.stepFlag = @"1";
-                _ISclick = YES;
+                
             }
             
         }

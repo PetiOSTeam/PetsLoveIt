@@ -7,7 +7,6 @@
 //
 
 #import "KMDetailsPageView.h"
-#import "CheapProductCell.h"
 #define kDefaultImagePagerHeight 210.0f
 
 #define kDefaultTableViewHeaderMargin 95.0f

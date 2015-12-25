@@ -17,6 +17,7 @@
 #import "LoginViewController.h"
 #import "ShakeremindView.h"
 #import "MyGradeViewController.h"
+#import <AudioToolbox/AudioToolbox.h>
 @interface ShakeViewController ()<UMSocialUIDelegate,UIAlertViewDelegate>
 @property (nonatomic,strong)   UIView *bgView;
 @property (nonatomic,strong)   UIImageView*        imgUp;
@@ -104,11 +105,12 @@
 #pragma mark - 摇一摇动画效果
 - (void)addAnimations
 {
+    
     if (self.showPopViewFlag) {
         return;
     }
     //AudioServicesPlaySystemSound (soundID);
-    
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     //让imgup上下移动
     CABasicAnimation *translation2 = [CABasicAnimation animationWithKeyPath:@"position"];
     translation2.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];

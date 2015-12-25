@@ -14,7 +14,6 @@
 #import "GoodsDetailViewController.h"
 #import "AdModel.h"
 #import "PetWebViewController.h"
-#import "CheapProductViewController.h"
 #import "MJExtension.h"
 @interface CarefulSelectViewController ()<ZQWScrollViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic,strong) UIView *tableHeaderView;
@@ -349,10 +348,10 @@
 }
 
 - (void)tapOnImageView1{
-    CheapProductViewController *vc = [CheapProductViewController new];
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
     //vc.goodsId = _cheapProduct.prodId;
     vc.goods = _cheapProduct;
-    vc.cheapProductArray = self.cheapProductArray;
+    
     
     [self.navigationController pushViewController:vc animated:YES];
 }
