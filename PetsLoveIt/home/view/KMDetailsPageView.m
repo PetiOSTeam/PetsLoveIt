@@ -67,7 +67,7 @@
     _backgroundViewColor = [UIColor clearColor];
     
     _navBarFadingOffset = _imageHeaderViewHeight - (CGRectGetHeight(_navBarView.frame) + kDefaultTableViewHeaderMargin);
-    _navBarFadingOffset = 64;
+    //_navBarFadingOffset = 64;
     
     if(!self.imageView)
         [self setupImageView];
@@ -203,7 +203,7 @@
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     CGFloat contentHeight = webView.scrollView.contentSize.height;
-    self.webView.height = contentHeight;
+    self.webView.height = contentHeight+20;
     self.headerView.height = self.webView.bottom;
     self.tableView.tableHeaderView.height = self.headerView.height;
     self.tableView.contentSize = CGSizeMake(mScreenWidth, self.tableView.tableHeaderView.height);
