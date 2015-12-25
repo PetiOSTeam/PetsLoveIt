@@ -579,6 +579,7 @@
 		9D1D3B341C297DC300155E6D /* AdviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D1D3B331C297DC300155E6D /* AdviceViewController.xib */; };
 		9D4240AF1C20374A0047EEFD /* SigninbubbleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */; };
 		9DFC24E71C2D173C00936CC0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFC24E61C2D173C00936CC0 /* AudioToolbox.framework */; };
+		9DFC24EB1C2D202300936CC0 /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC24EA1C2D202300936CC0 /* YLLabel.m */; };
 		F91BA2C51C15B08C00B1C2E9 /* XRZAlertControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */; };
 		F91BA2C91C15B65A00B1C2E9 /* GradePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C81C15B65A00B1C2E9 /* GradePopView.m */; };
 		F91BA2CB1C15B66C00B1C2E9 /* GradePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91BA2CA1C15B66C00B1C2E9 /* GradePopView.xib */; };
@@ -1632,6 +1633,8 @@
 		9D4240AD1C20374A0047EEFD /* SigninbubbleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SigninbubbleButton.h; path = PetsLoveIt/SigninbubbleButton.h; sourceTree = SOURCE_ROOT; };
 		9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SigninbubbleButton.m; path = PetsLoveIt/SigninbubbleButton.m; sourceTree = SOURCE_ROOT; };
 		9DFC24E61C2D173C00936CC0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		9DFC24E91C2D202300936CC0 /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
+		9DFC24EA1C2D202300936CC0 /* YLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLabel.m; sourceTree = "<group>"; };
 		F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XRZAlertControl.swift; sourceTree = "<group>"; };
 		F91BA2C61C15B16700B1C2E9 /* PetsLoveIt-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PetsLoveIt-Header.h"; sourceTree = "<group>"; };
 		F91BA2C71C15B65A00B1C2E9 /* GradePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradePopView.h; sourceTree = "<group>"; };
@@ -2061,6 +2064,7 @@
 		189442EA1BEB0773006249F0 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				9DFC24E81C2D202300936CC0 /* YLLabel */,
 				1826F84C1C27AE450043B50D /* NJKWebViewProgress */,
 				186EA8841C1691F1009876BD /* JPush */,
 				F91BA2C31C15B08C00B1C2E9 /* XRZAlertControl */,
@@ -3680,6 +3684,15 @@
 			path = UMSocial_Sdk_Instructions;
 			sourceTree = "<group>";
 		};
+		9DFC24E81C2D202300936CC0 /* YLLabel */ = {
+			isa = PBXGroup;
+			children = (
+				9DFC24E91C2D202300936CC0 /* YLLabel.h */,
+				9DFC24EA1C2D202300936CC0 /* YLLabel.m */,
+			);
+			path = YLLabel;
+			sourceTree = "<group>";
+		};
 		F91BA2C21C15B04300B1C2E9 /* XLPopViewControll */ = {
 			isa = PBXGroup;
 			children = (
@@ -4503,6 +4516,7 @@
 				189445D61BEB0774006249F0 /* PSTGridLayoutItem.m in Sources */,
 				18E21EC11C00229C007059F3 /* YYTextLayout.m in Sources */,
 				189445A91BEB0774006249F0 /* CoreLCVC.m in Sources */,
+				9DFC24EB1C2D202300936CC0 /* YLLabel.m in Sources */,
 				18D2CB0F1BEF453300B8DD72 /* DiscountViewController.m in Sources */,
 				189445711BEB0774006249F0 /* AFURLConnectionOperation.m in Sources */,
 				189445AE1BEB0774006249F0 /* CoreFooterView.m in Sources */,
