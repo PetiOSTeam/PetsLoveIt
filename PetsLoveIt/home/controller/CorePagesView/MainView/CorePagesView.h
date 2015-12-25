@@ -33,7 +33,7 @@
  */
 +(instancetype)viewWithOwnerVC:(UIViewController *)ownerVC pageModels:(NSArray *)pageModels;
 
-
++(instancetype)viewWithOwnerVC:(UIViewController *)ownerVC pageModels:(NSArray *)pageModels pageWidth:(CGFloat)width;
 
 +(instancetype)viewWithOwnerVC:(UIViewController *)ownerVC pageModels:(NSArray *)pageModels useAutoResizeWidth:(BOOL) useAutoResizeWidth;
 
