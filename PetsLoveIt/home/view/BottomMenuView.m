@@ -141,12 +141,12 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 0) {
-        self.menuButton1.selected = YES;
+     
         if ([self.delegate respondsToSelector:@selector(praiseProduct:)]) {
             [self.delegate praiseProduct:YES];
         }
     }else if (buttonIndex == 1){
-        self.menuButton1.selected = NO;
+        
         if ([self.delegate respondsToSelector:@selector(praiseProduct:)]) {
             [self.delegate praiseProduct:NO];
         }
@@ -158,9 +158,10 @@
 
 - (void) didClickOnMenu2{
     if (![AppCache getUserInfo]) {
-        if ([self.delegate respondsToSelector:@selector(showLoginVC)]) {
-            [self.delegate showLoginVC];
-        }
+//        if ([self.delegate respondsToSelector:@selector(showLoginVC)]) {
+//            [self.delegate showLoginVC];
+//        }
+        [mAppUtils showHint:@"您还没有登陆"];
         return;
     }else{
         self.menuButton2.selected = !self.menuButton2.selected;

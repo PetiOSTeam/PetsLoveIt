@@ -9,7 +9,7 @@
 #import "RegViewController.h"
 #import <CoreText/CoreText.h>
 #import "AwardRulesViewController.h"
-
+#import "MeViewController.h"
 
 @interface RegViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel1;
@@ -245,25 +245,31 @@
         mAlertView(@"提示", @"手机号不能为空");
         return;
     }
-    if ([code length]==0) {
-        mAlertView(@"提示", @"验证码不能为空");
-        return;
-    }
-    if (![nickName isValidateName]) {
-        mAlertView(@"提示", @"昵称应该是1-12位数字字母下划线汉字的组合");
-        return;
+    if (!self.mobileExist) {
+        if ([code length]==0) {
+            mAlertView(@"提示", @"验证码不能为空");
+            return;
+        }
+        if (![nickName isValidateName]) {
+            mAlertView(@"提示", @"昵称应该是1-12位数字字母下划线汉字的组合");
+            return;
+            
+        }
+        if (![pwd isValidatePassword]&&!self.mobileExist) {
+            mAlertView(@"提示", @"密码应该是6－18位的字母数字下划线组合");
+            return;
+        }
 
     }
-    if (![pwd isValidatePassword]&&!self.mobileExist) {
-        mAlertView(@"提示", @"密码应该是6－18位的字母数字下划线组合");
-        return;
-    }
-    
+       //userToken=userToken_f94d719172d44810b401962948bafa79&otheraccount=&othertype=&athcode=&account=15921438852
+   // &type=1&userName=testr1&nickName=testRegist1&userPwd=1EE996B5BDFBFBED595B5AAB355BE1A8A73B023B670114F
+   // 20A7A870281046F385333405B765CE98E876D5C69455E1D6E
     NSDictionary *params = @{
                              @"uid":@"userRegist",
                              @"type":@"1",
                              @"account":mobile,
                              @"athcode":code,
+                             @"userName":nickName,
                              @"nickName":nickName,
                              @"userPwd":encryptedPwd,
                              @"userToken":self.token
@@ -321,6 +327,8 @@
             [SVProgressHUD dismiss];
 
             mAlertAPIErrorInfo(error);
+//            MeViewController *me = [[MeViewController alloc]init];
+//            [self pushNewViewController:me];
         }
     }];
     
@@ -427,7 +435,10 @@
     });
     dispatch_resume(_timer);
 }
-
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

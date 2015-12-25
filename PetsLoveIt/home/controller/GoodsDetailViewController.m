@@ -15,7 +15,6 @@
 #import "PetWebViewController.h"
 #import "LoginViewController.h"
 #import "CommentGoodsViewController.h"
-
 @interface GoodsDetailViewController ()<UIWebViewDelegate,UITableViewDataSource, UITableViewDelegate,  KMNetworkLoadingViewDelegate, KMDetailsPageDelegate,BottomMenuViewDelegate>
 
 @property (strong, nonatomic)  UIView *navigationBarView;
@@ -28,15 +27,12 @@
 
 @property (assign) CGPoint scrollViewDragPoint;
 @property (nonatomic, strong) KMNetworkLoadingViewController* networkLoadingViewController;
-/**产品的喜爱度 */
-@property (nonatomic, copy) NSString* popularitystr;
+
+
+
 @end
 
-@implementation GoodsDetailViewController{
-    BOOL isLiked;
-    BOOL isDisliked;
-}
-
+@implementation GoodsDetailViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self prepareViewsAndData];
@@ -84,29 +80,24 @@
 
 -(void)praiseProduct:(BOOL)praiseFlag{
   
+    
     NSMutableDictionary *params = [NSMutableDictionary new];
-    NSMutableDictionary *paremssec =[NSMutableDictionary new];
     if ([AppCache getUserInfo]) {
         [params setObject:[AppCache getUserId] forKey:@"userId"];
         
+    }else{
+        [mAppUtils showHint:@"您还没有登陆"];
+        return;
     }
-    if ([AppCache getToken]) {
-        [paremssec setObject:[AppCache getToken] forKey:@"userToken"];
-    }
+
     [params setObject:@"savePraiseInfo" forKey:@"uid"];
     [params setObject:self.goods.prodId forKey:@"objectId"];
     
-    [paremssec setObject:@"getUserPraiseAndNoPraiseNum" forKey:@"uid"];
-    [paremssec setObject:self.goods.prodId forKey:@"prodId"];
-        [APIOperation GET:@"common.action" parameters:paremssec onCompletion:^(id responseData, NSError *error) {
-        NSLog(@"%@1231289312    %@******%@",responseData,self.goods.prodId,[AppCache getToken]);
-        
-        if (!error) {
-            NSDictionary *bean = [responseData objectForKey:@"bean"];
-          
-            if (![bean count]) {
+    
+            if (self.goods.isclick == NOclick) {
                 if (praiseFlag ) {
                     [params setObject:@"2" forKey:@"type"];
+                    
                 }else
                 {
                     [params setObject:@"21" forKey:@"type"];
@@ -115,19 +106,26 @@
                 
                 [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
                     if (!error) {
-                        [self productpopularityWithobjectId:self.goods.prodId];
+                        [self productpopularityWithobject:self.goods.prodId];
+                        self.menuView.menuButton1.selected = YES;
+                        self.goods.isclick = ISclick;
                                            }
                 }];
             }else{
                 [mAppUtils showHint:@"您已经点过了哦"];
                 return;
             }
-            
-        }
-    }];
+    
 }
 #pragma mark - 显示产品的喜爱度
-- (void)productpopularityWithobjectId:(NSString *)objectid
+//- (NSString *)popularitystr
+//{
+//    if (!_popularitystr) {
+//        [self productpopularityWithobjectId:self.goods.prodId];
+//    }
+//    return _popularitystr;
+//}
+- (void)productpopularityWithobject:(NSString *)objectid
 {
     
     NSDictionary *paramszan = @{@"uid":@"getPraiseInfo",@"type":@"2",@"objectId":objectid};
@@ -146,23 +144,42 @@
                         popularityF =0;
                     }
                     NSString *typestr = [[NSString alloc]initWithFormat:@"%.0f%@",popularityF,@"%" ];
-                    _popularitystr = [[NSString alloc]initWithString:typestr];
-                    [self.menuView.menuButton1 setTitle:_popularitystr forState:UIControlStateNormal];
+                    self.goods.popularitystr = [[NSString alloc]initWithString:typestr];
+                    [self.menuView.menuButton1 setTitle: self.goods.popularitystr forState:UIControlStateNormal];
 
                 }
             }];
         }
     }];
-
-    
 }
-- (NSString *)popularitystr
+#pragma mark 显示用户对产品点的是赞还是踩
+- (void)userlikedproductonYESorNO
 {
-    if (!_popularitystr) {
-        [self productpopularityWithobjectId:self.goods.prodId];
+    
+    NSMutableDictionary *paremssec =[NSMutableDictionary new];
+    if ([AppCache getToken]) {
+        [paremssec setObject:[AppCache getToken] forKey:@"userToken"];
     }
-    return _popularitystr;
+    [paremssec setObject:@"getUserPraiseAndNoPraiseNum" forKey:@"uid"];
+    [paremssec setObject:self.goods.prodId forKey:@"prodId"];
+    [APIOperation GET:@"common.action" parameters:paremssec onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            NSLog(@"%@1231289312    %@******%@",responseData,self.goods.prodId,[AppCache getUserId]);
+            NSDictionary *bean = [responseData objectForKey:@"bean"];
+            
+            if ([bean count]) {
+                                   self.goods.isclick = ISclick;
+                    self.menuView.menuButton1.selected = YES;
+                
+            }else{
+                self.menuView.menuButton1.selected = NO;
+                self.goods.isclick = NOclick;
+            }
+            
+        }
+    }];
 }
+
 -(void)collectProduct:(BOOL)collectFlag{
     NSDictionary *params ;
     if (collectFlag) {
@@ -179,11 +196,9 @@
                    };
         self.goods.collectnum = [NSString stringWithFormat:@"%ld",[self.goods.collectnum integerValue]-1];
     }
-    [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
-    
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
-            
+            [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
         }else{
             mAlertAPIErrorInfo(error);
         }
@@ -300,7 +315,17 @@
     if (self.pageType == RelatedPersonType) {
         [_menuView loadAvatarImage:self.goods.publisherIcon];
     }
-    [self.menuView.menuButton1 setTitle:self.popularitystr forState:UIControlStateNormal];
+    [self.menuView.menuButton1 setTitle:self.goods.popularitystr forState:UIControlStateNormal];
+    [self userlikedproductonYESorNO];
+//    if ((self.goods.isLiked == ISliked)&&(self.goods.isLiked == ISliked)) {
+//        self.menuView.menuButton1.selected = YES;
+//    }else
+//    {
+//        self.menuView.menuButton1.selected = NO;
+//        
+//    }
+    
+    
     [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
     [self.menuView.menuButton4 setTitle:self.goods.commentNum forState:UIControlStateNormal];
     if ([self.goods.usercollectnum isEqualToString:@"1"]) {

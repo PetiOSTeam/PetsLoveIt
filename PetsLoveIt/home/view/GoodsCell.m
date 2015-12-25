@@ -38,7 +38,7 @@
     }else{
        self.nameLabel.text = [NSString stringWithFormat:@"%@",good.typeName];
     }
-    NSString *popularitystr = [self productpopularityWithobjectId:good];
+    NSString *popularitystr = good.popularitystr;
     self.descLabel.text = good.name;
     self.prodLabel.text = good.desc;
     self.commentNumLabel.text = good.commentNum;
@@ -55,24 +55,24 @@
     // Configure the view for the selected state
 }
 
-- (NSString *)productpopularityWithobjectId:(GoodsModel *)good
-{
-    float zancount = [good.favorNum floatValue];
-    if (good.favorNum == nil) {
-        zancount = 0;
-    }
-    
-    
-    float caicount = [good.notworthnum floatValue];
-    if (good.notworthnum == nil) {
-        caicount = 0;
-    }
-    float popularityF = zancount/(caicount+zancount)*100;
-    if (zancount == 0) {
-        popularityF =0;
-    }
-   
-    return [[NSString alloc]initWithFormat:@"%.0f%@",popularityF,@"%" ];
-    
-}
+//- (NSString *)productpopularityWithobjectId:(GoodsModel *)good
+//{
+//    float zancount = [good.favorNum floatValue];
+//    if (good.favorNum == nil) {
+//        zancount = 0;
+//    }
+//    
+//    
+//    float caicount = [good.notworthnum floatValue];
+//    if (good.notworthnum == nil) {
+//        caicount = 0;
+//    }
+//    float popularityF = zancount/(caicount+zancount)*100;
+//    if (zancount == 0) {
+//        popularityF =0;
+//    }
+//   
+//    return [[NSString alloc]initWithFormat:@"%.0f%@",popularityF,@"%" ];
+//    
+//}
 @end

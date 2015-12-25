@@ -140,6 +140,13 @@
 }
 -(void)likeAction{
     [[DXPopover sharedView] dismiss];
+    if (![AppCache getUserInfo]) {
+        //        if ([self.delegate respondsToSelector:@selector(showLoginVC)]) {
+        //            [self.delegate showLoginVC];
+        //        }
+        [mAppUtils showHint:@"您还没有登陆"];
+        return;
+    }
     if( ([selectedComment.praiseFlag intValue] == 0)&&([selectedComment.stepFlag intValue] == 0) ){
         NSDictionary *params = @{
                                  @"uid": @"savePraiseInfo",
@@ -176,6 +183,7 @@
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             NSDictionary *bean = responseData[@"bean"];
+            NSLog(@"赞的数量  %@",bean);
             if (!bean.count){
                 selectedComment.praiseFlag = @"0";
                            }else{
@@ -196,6 +204,7 @@
     [APIOperation GET:@"common.action" parameters:paramscai onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             NSDictionary *beancai = responseData[@"bean"];
+             NSLog(@"踩的数量  %@",beancai);
             if (!beancai.count){
                 selectedComment.stepFlag = @"0";
                 
@@ -213,6 +222,13 @@
 }
 -(void)unlikeAction{
     [[DXPopover sharedView] dismiss];
+    if (![AppCache getUserInfo]) {
+        //        if ([self.delegate respondsToSelector:@selector(showLoginVC)]) {
+        //            [self.delegate showLoginVC];
+        //        }
+        [mAppUtils showHint:@"您还没有登陆"];
+        return;
+    }
     if (([selectedComment.praiseFlag intValue] == 0)&&([selectedComment.stepFlag intValue] == 0)) {
         NSDictionary *params = @{
                                  @"uid": @"savePraiseInfo",
