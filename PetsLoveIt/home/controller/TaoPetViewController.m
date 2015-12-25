@@ -40,7 +40,7 @@
     
     [self config];
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
-    self.tableView.top = 5;
+    self.tableView.tableHeaderView = self.tableHeaderView;
     self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
     
 }
@@ -49,6 +49,14 @@
 -(UIView *)tableHeaderView{
     if (!_tableHeaderView) {
         _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 31)];
+        _tableHeaderView.backgroundColor = mRGBToColor(0xffffff);
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 100, 31)];
+        [label setFont:[UIFont systemFontOfSize:12]];
+        [label setTextColor:mRGBToColor(0xff4401)];
+        [label setText:@"上海"];
+        _tableHeaderView.layer.borderColor = kLayerBorderColor.CGColor;
+        _tableHeaderView.layer.borderWidth = kLayerBorderWidth;
+        [_tableHeaderView addSubview:label];
     }
     return _tableHeaderView;
 }
