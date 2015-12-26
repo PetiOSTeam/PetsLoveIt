@@ -1892,7 +1892,6 @@
 		1894424B1BE9DEC3006249F0 = {
 			isa = PBXGroup;
 			children = (
-				9DFC24E61C2D173C00936CC0 /* AudioToolbox.framework */,
 				189442561BE9DEC3006249F0 /* PetsLoveIt */,
 				189442551BE9DEC3006249F0 /* Products */,
 			);
@@ -1934,6 +1933,7 @@
 				1894470A1BEC34F3006249F0 /* libstdc++.tbd */,
 				189447081BEC34E7006249F0 /* libsqlite3.tbd */,
 				189447061BEC34DB006249F0 /* libiconv.tbd */,
+				9DFC24E61C2D173C00936CC0 /* AudioToolbox.framework */,
 				189447041BEC34C1006249F0 /* Security.framework */,
 				189447021BEC34B4006249F0 /* SystemConfiguration.framework */,
 				189447001BEC349E006249F0 /* CoreGraphics.framework */,

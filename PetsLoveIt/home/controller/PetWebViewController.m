@@ -51,6 +51,7 @@
         [self showNaviBarView];
         self.navBarTitleLabel.text = @"直达链接";
         self.webView.top = 64;
+        self.webView.height = mScreenHeight - 64;
         if (self.proId) {
             [self getProductDetailById:self.proId];
         }

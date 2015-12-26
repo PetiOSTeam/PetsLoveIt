@@ -571,11 +571,8 @@
         self.nameLabel.text = [NSString stringWithFormat:@"Hi , %@",[AppCache getUserName]];
         self.navBarTitleLabel.text =[NSString stringWithFormat:@"Hi , %@",[AppCache getUserName]] ;
         [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[AppCache getUserAvatar]] placeholderImage:[UIImage imageNamed:@"defaultUserAvatar"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-            if (!image) {
-                self.photoImageView.image =[UIImage imageNamed:@"photoIcon"];
-            }else{
-                self.photoImageView.image =[UIImage imageNamed:@"colorPhotoIcon"];
-            }
+            
+            self.photoImageView.image =[UIImage imageNamed:@"colorPhotoIcon"];
         }];
         self.photoImageView.hidden = NO;
         
@@ -757,7 +754,7 @@
 - (IBAction)showRuleVC:(id)sender {
     AwardRulesViewController *vc  = [AwardRulesViewController new];
     vc.navTitle = @"规则说明";
-    vc.desc = @"《宠物爱这个》注册用户，每天签到可获得积分奖励。积分可用于兑换实物奖励，相当于真金白银。连续签到，第一天+1，第二天+2，第三天+3，以此类推；以周为单位，满7天系统重置，重新循环第一天+1，第二天+2，第三天+3……连续不间断签到满30天，将有惊喜奖励。\n\n奖品发放\n\n1、签到获得的积分可用于兑换实物奖励，如实填写收货信息后；我们的客服人员会电话联系核实后，给您发放。\n\n2、虚拟类奖品所有电子码使用期限及兑换规则请参照合作方对应活动使用规范\n\n3、请保证您提供的领奖信息清晰准确，如果因领奖信息有误、不完整或不清晰而导致奖品未能及时收到而导致奖品不能正常发放的情况，视为您放弃；\n\n4、本活动快递奖品的收货地址仅限中国大陆地区；\n5、活动奖品以您收到的实物为准。\n\n 免责说明\n\n签到、抽奖秉着公平、公正、公开、真实的原则，我司声明以下免责条款，参加活动前请用户仔细阅读条款，所有活动、奖励与苹果公司无关 。\n\n本次活动最终解释权归《宠物爱这个》所有";
+    vc.desc = @"《宠物爱这个》注册用户，每天签到可获得积分奖励。积分可用于兑换实物奖励，相当于真金白银。连续签到，第一天+1，第二天+2，第三天+3，以此类推；以周为单位，满7天系统重置，重新循环第一天+1，第二天+2，第三天+3……连续不间断签到满30天，将有惊喜奖励。\n\n奖品发放\n\n1、签到获得的积分可用于兑换实物奖励，如实填写收货信息后；我们的客服人员会电话联系核实后，给您发放。\n\n2、虚拟类奖品所有电子码使用期限及兑换规则请参照合作方对应活动使用规范\n\n3、请保证您提供的领奖信息清晰准确，如果因领奖信息有误、不完整或不清晰而导致奖品未能及时收到而导致奖品不能正常发放的情况，视为您放弃；\n\n4、本活动快递奖品的收货地址仅限中国大陆地区；\n\n5、活动奖品以您收到的实物为准。\n\n 免责说明\n\n签到、抽奖秉着公平、公正、公开、真实的原则，我司声明以下免责条款，参加活动前请用户仔细阅读条款，所有活动、奖励与苹果公司无关 。\n\n本次活动最终解释权归《宠物爱这个》所有";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
