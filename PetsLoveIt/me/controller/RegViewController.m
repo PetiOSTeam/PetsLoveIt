@@ -365,27 +365,30 @@
     [APIOperation GET:@"isBindUser.action"  parameters:params onCompletion:^(id responseData, NSError *error) {
         [SVProgressHUD dismiss];
         [mAppUtils hideHint];
-        if (!error) {
+        if (responseData) {
             //绑定过三方帐号，直接登录
             NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
             LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
-            localUserInfo.userToken = [responseData objectForKey:@"userToken"];
-            localUserInfo.otherType = self.otherType;
-            localUserInfo.otherAccount = self.otherAccount;
-            //将userinfo记录下来
-            mAppDelegate.loginUser = localUserInfo;
-            [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+            if (localUserInfo) {
+                localUserInfo.userToken = [responseData objectForKey:@"userToken"];
+                localUserInfo.otherType = self.otherType;
+                localUserInfo.otherAccount = self.otherAccount;
+                //将userinfo记录下来
+                mAppDelegate.loginUser = localUserInfo;
+                [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+                
+                [mUserDefaults setObject:_accountTextField.text forKey:HLoginAccount];
+                [mUserDefaults synchronize];
+                
+                //登录成功
+                [mAppUtils showHint:@"登录成功"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                });
+            }
             
-            [mUserDefaults setObject:_accountTextField.text forKey:HLoginAccount];
-            [mUserDefaults synchronize];
-            
-            //登录成功
-            [mAppUtils showHint:@"登录成功"];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.navigationController popToRootViewControllerAnimated:YES];
-            });
         }else{
-            mAlertAPIErrorInfo(error);
+            //mAlertAPIErrorInfo(error);
         }
     }];
 }
