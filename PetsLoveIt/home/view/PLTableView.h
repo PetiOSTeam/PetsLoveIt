@@ -12,5 +12,8 @@
 
 @property (nonatomic,strong) NSMutableArray *dataArray1;
 @property (nonatomic,strong) NSMutableArray *dataArray2;
+@property (nonatomic,assign) BOOL hiddenSection;
+
+-(instancetype)initWithFrame:(CGRect)frame hiddenSection:(BOOL)hiddenSection;
 
 @end

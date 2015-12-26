@@ -37,6 +37,9 @@
 ///-------------------------------
 
 @interface KMDetailsPageView : UIView
+@property (nonatomic,assign) BOOL isCheapProduct;
+
+- (id)initWithFrame:(CGRect)frame isCheapProduct:(BOOL)isCheapProduct;
 
 @property (nonatomic, strong) UIWebView *webView;
 

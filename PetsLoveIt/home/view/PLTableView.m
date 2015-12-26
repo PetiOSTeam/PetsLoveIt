@@ -34,6 +34,20 @@
     
     return self;
 }
+
+-(instancetype)initWithFrame:(CGRect)frame hiddenSection:(BOOL)hiddenSection{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.dataSource = self;
+        self.delegate = self;
+        self.tableFooterView = [UIView new];
+        self.hiddenSection = hiddenSection;
+        [self setContentSize:CGSizeMake(mScreenWidth, self.dataArray1.count*rowHeight1)];
+    }
+    
+    return self;
+}
+
 -(NSMutableArray *)dataArray1{
     if (!_dataArray1) {
         _dataArray1 = [NSMutableArray new];
@@ -67,6 +81,9 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (self.hiddenSection) {
+        return 0;
+    }
     return 1;
 }
 

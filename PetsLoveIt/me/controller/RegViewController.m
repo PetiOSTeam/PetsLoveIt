@@ -337,19 +337,20 @@
     [APIOperation GET:@"userLogin.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         [SVProgressHUD dismiss];
 
-        if (!error) {
+        if (responseData) {
             NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
             LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
-            localUserInfo.userToken = [responseData objectForKey:@"userToken"];
-            localUserInfo.loginType = userInfo.loginType;
-            localUserInfo.accountName = userInfo.accountName;
-            localUserInfo.password = userInfo.password;
-            //将userinfo记录下来
-            mAppDelegate.loginUser = localUserInfo;
-            [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
-            [self.navigationController popToRootViewControllerAnimated:YES];
-
-            
+            if (localUserInfo) {
+                localUserInfo.userToken = [responseData objectForKey:@"userToken"];
+                localUserInfo.loginType = userInfo.loginType;
+                localUserInfo.accountName = userInfo.accountName;
+                localUserInfo.password = userInfo.password;
+                //将userinfo记录下来
+                mAppDelegate.loginUser = localUserInfo;
+                [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
+ 
         }
     }];
 }

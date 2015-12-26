@@ -353,7 +353,7 @@
 
 - (void)tapOnImageView1{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    //vc.goodsId = _cheapProduct.prodId;
+    vc.isCheapProduct = YES;
     vc.goods = _cheapProduct;
     
     

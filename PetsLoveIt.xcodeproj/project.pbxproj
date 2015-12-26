@@ -84,6 +84,8 @@
 		185767651C0B0794000A044D /* UserSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185767631C0B0794000A044D /* UserSettingVC.m */; };
 		185767661C0B0794000A044D /* UserSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185767641C0B0794000A044D /* UserSettingVC.xib */; };
 		186AEBD31C2CE8D60092F289 /* MyCollectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186AEBD21C2CE8D60092F289 /* MyCollectViewController.xib */; };
+		186AEBD71C2E8AB60092F289 /* CheapProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AEBD51C2E8AB60092F289 /* CheapProductCell.m */; };
+		186AEBD81C2E8AB60092F289 /* CheapProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186AEBD61C2E8AB60092F289 /* CheapProductCell.xib */; };
 		186EA8831C148C73009876BD /* GradeDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */; };
 		186EA8871C1691F1009876BD /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 186EA8861C1691F1009876BD /* libPushSDK-1.8.8.a */; };
 		186EA8891C169362009876BD /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 186EA8881C169362009876BD /* PushConfig.plist */; };
@@ -738,6 +740,9 @@
 		185767631C0B0794000A044D /* UserSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingVC.m; sourceTree = "<group>"; };
 		185767641C0B0794000A044D /* UserSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserSettingVC.xib; sourceTree = "<group>"; };
 		186AEBD21C2CE8D60092F289 /* MyCollectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyCollectViewController.xib; sourceTree = "<group>"; };
+		186AEBD41C2E8AB60092F289 /* CheapProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheapProductCell.h; sourceTree = "<group>"; };
+		186AEBD51C2E8AB60092F289 /* CheapProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheapProductCell.m; sourceTree = "<group>"; };
+		186AEBD61C2E8AB60092F289 /* CheapProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheapProductCell.xib; sourceTree = "<group>"; };
 		186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeDetailHeaderView.xib; sourceTree = "<group>"; };
 		186EA8851C1691F1009876BD /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		186EA8861C1691F1009876BD /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
@@ -1892,7 +1897,6 @@
 		1894424B1BE9DEC3006249F0 = {
 			isa = PBXGroup;
 			children = (
-				9DFC24E61C2D173C00936CC0 /* AudioToolbox.framework */,
 				189442561BE9DEC3006249F0 /* PetsLoveIt */,
 				189442551BE9DEC3006249F0 /* Products */,
 			);
@@ -1934,6 +1938,7 @@
 				1894470A1BEC34F3006249F0 /* libstdc++.tbd */,
 				189447081BEC34E7006249F0 /* libsqlite3.tbd */,
 				189447061BEC34DB006249F0 /* libiconv.tbd */,
+				9DFC24E61C2D173C00936CC0 /* AudioToolbox.framework */,
 				189447041BEC34C1006249F0 /* Security.framework */,
 				189447021BEC34B4006249F0 /* SystemConfiguration.framework */,
 				189447001BEC349E006249F0 /* CoreGraphics.framework */,
@@ -3289,6 +3294,9 @@
 				1808BE531C132746002A029B /* CommentSubCell.xib */,
 				1808BE561C132A43002A029B /* CommentTableView.h */,
 				1808BE571C132A43002A029B /* CommentTableView.m */,
+				186AEBD41C2E8AB60092F289 /* CheapProductCell.h */,
+				186AEBD51C2E8AB60092F289 /* CheapProductCell.m */,
+				186AEBD61C2E8AB60092F289 /* CheapProductCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -4116,6 +4124,7 @@
 				186EA8831C148C73009876BD /* GradeDetailHeaderView.xib in Resources */,
 				18F633A61BF883C800FD98B1 /* UMSnsAccountViewController.xib in Resources */,
 				189446291BEB0774006249F0 /* e_77@2x.png in Resources */,
+				186AEBD81C2E8AB60092F289 /* CheapProductCell.xib in Resources */,
 				189445A81BEB0774006249F0 /* CoreList.bundle in Resources */,
 				189445E61BEB0774006249F0 /* e_16@2x.png in Resources */,
 				189446421BEB0774006249F0 /* chatBar_face@2x.png in Resources */,
@@ -4265,6 +4274,7 @@
 				189445801BEB0774006249F0 /* MBProgressHUD+Add.m in Sources */,
 				189445DC1BEB0774006249F0 /* DXMessageToolBar.m in Sources */,
 				F960FFD61C0B003800281547 /* BeansEntity.m in Sources */,
+				186AEBD71C2E8AB60092F289 /* CheapProductCell.m in Sources */,
 				189445A21BEB0774006249F0 /* NSString+File.m in Sources */,
 				189445951BEB0774006249F0 /* MWGridCell.m in Sources */,
 				189446871BEB0774006249F0 /* SWLongPressGestureRecognizer.m in Sources */,

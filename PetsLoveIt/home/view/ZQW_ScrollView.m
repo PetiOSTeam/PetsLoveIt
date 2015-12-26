@@ -63,7 +63,9 @@
     
     //设置第一张图片
     UIImageView *imageView1 = [[UIImageView alloc]init];
-    [imageView1 yy_setImageWithURL:[NSURL URLWithString:_pictureArray[_pictureArray.count - 1]] placeholder:kImagePlaceHolder];
+    if (_pictureArray.count>0) {
+        [imageView1 yy_setImageWithURL:[NSURL URLWithString:_pictureArray[_pictureArray.count - 1]] placeholder:kImagePlaceHolder];
+    }
     [imageView1 setClipsToBounds:YES];
     //[imageView1 setContentMode:UIViewContentModeScaleAspectFill];
 
