@@ -90,7 +90,7 @@
              if (responseData) {
                  NSDictionary *userInfo = [responseData objectForKey:@"bean"];
                  NSString *realtimeintegral = userInfo[@"userIntegral"];
-                 self.gradeLabel.text = realtimeintegral;
+                 self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",realtimeintegral];
                  self.Integralstr = realtimeintegral;
                  NSLog(@"realtimeintegral%@",self.gradeLabel.text);
                 
