@@ -15,7 +15,11 @@
 #import "PetWebViewController.h"
 #import "LoginViewController.h"
 #import "CommentGoodsViewController.h"
-@interface GoodsDetailViewController ()<UIWebViewDelegate,UITableViewDataSource, UITableViewDelegate,  KMNetworkLoadingViewDelegate, KMDetailsPageDelegate,BottomMenuViewDelegate>
+#import "CheapProductCell.h"
+
+#define cheapCellHeight 150
+
+@interface GoodsDetailViewController ()<UIWebViewDelegate,UITableViewDataSource, UITableViewDelegate,  KMNetworkLoadingViewDelegate, KMDetailsPageDelegate,BottomMenuViewDelegate,CheapProductCellDelegate>
 
 @property (strong, nonatomic)  UIView *navigationBarView;
 @property (strong, nonatomic)  UILabel *navBarTitleLabel;
@@ -28,6 +32,7 @@
 @property (assign) CGPoint scrollViewDragPoint;
 @property (nonatomic, strong) KMNetworkLoadingViewController* networkLoadingViewController;
 
+@property (nonatomic,strong) NSMutableArray *dataArray;
 
 
 @end
@@ -54,6 +59,12 @@
         [self loadViewAndData];
         //获取猜你喜欢数据
         [self getRelatedInfoById:self.goods.appSort];
+    
+    }
+    
+    if (self.isCheapProduct) {
+        //获取白菜价
+        [self getCheapProduct];
     }
     
 }
@@ -63,7 +74,15 @@
  
 }
 -(void)detailWebViewDidFinishLoad{
+    if (self.isCheapProduct) {
+        self.detailsPageView.tableView.contentSize = CGSizeMake(mScreenWidth, self.detailsPageView.tableView.tableHeaderView.height +self.dataArray.count*cheapCellHeight);
+    }else{
+        self.detailsPageView.tableView.contentSize = CGSizeMake(mScreenWidth,self.detailsPageView.tableView.tableHeaderView.height);
+    }
+    
     [self hideLoadingView];
+    
+    
 }
 
 
@@ -77,6 +96,38 @@
     }
     return _menuView;
 }
+-(NSMutableArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray = [NSMutableArray new];
+    }
+    return _dataArray;
+}
+
+-(void)getCheapProduct{
+    NSDictionary *params = @{@"uid":@"getCheapProductList",
+                             @"startNum":@"0",
+                             @"limit":@"10"
+                             };
+    [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+            if ([jsonArray count] ==0) {
+                return ;
+            }
+            for (NSMutableDictionary *typedict in jsonArray) {
+                GoodsModel *typemodel = [[GoodsModel alloc] initWithDictionary:typedict];
+                if (![self.goods.prodId isEqualToString:typemodel.prodId]) {
+                    [self.dataArray addObject:typemodel];
+                }
+                
+            }
+            
+            [self.detailsPageView.tableView reloadData];
+            
+            
+        }
+    }];
+}
 
 -(void)praiseProduct:(BOOL)praiseFlag{
   
@@ -86,7 +137,7 @@
         [params setObject:[AppCache getUserId] forKey:@"userId"];
         
     }else{
-        [mAppUtils showHint:@"您还没有登陆"];
+        [mAppUtils showHint:@"您还没有登录"];
         return;
     }
 
@@ -268,12 +319,22 @@
                              @"startNum":@"0",
                              @"limit":@"5"
                              };
+    //如果是白菜价，则猜你喜欢取白菜价列表接口
+    if (self.isCheapProduct) {
+        params = @{@"uid":@"getCheapProductList",
+                   @"startNum":@"0",
+                   @"limit":@"10"
+                   };
+    }
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
             [jsonArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 GoodsModel *goods = [[GoodsModel alloc] initWithDictionary:obj];
-                [self.detailsPageView.tableView2.dataArray1 addObject:goods];
+                if (self.isCheapProduct && ![self.goods.prodId isEqualToString:goods.prodId]) {
+                    [self.detailsPageView.tableView2.dataArray1 addObject:goods];
+                }
+                
             }];
             [self.detailsPageView.tableView2 reloadData];
         }else{
@@ -385,7 +446,7 @@
 }
 -(KMDetailsPageView *)detailsPageView{
     if (!_detailsPageView) {
-        _detailsPageView = [[KMDetailsPageView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, mScreenHeight)];
+        _detailsPageView = [[KMDetailsPageView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, mScreenHeight) isCheapProduct:self.isCheapProduct];
     }
     return _detailsPageView;
 }
@@ -412,28 +473,52 @@
     
 }
 
-#pragma mark -
-#pragma mark UITableView Data Source
+#pragma mark - CheapProductCellDelegate
+-(void)showGoodsDetailVC:(GoodsModel *)goods{
+    GoodsDetailViewController *vc =[GoodsDetailViewController new];
+    vc.goods = goods;
+    vc.isCheapProduct = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
+#pragma mark - 白菜TableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.dataArray.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"goodsdetailcell"];
+    static NSString *cellIdentifier = @"CheapProductCell";
+    CheapProductCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil] firstObject];
+    }
+    cell.delegate = self;
+    GoodsModel *goods = self.dataArray[indexPath.row];
+    [cell loadViewWithModel:goods];
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 100;
+    return cheapCellHeight;
 }
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    GoodsModel *goods = self.dataArray[indexPath.row];
+
+    PetWebViewController *vc = [PetWebViewController new];
+    vc.isProduct = YES;
+    vc.htmlUrl = goods.goUrl;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 
 #pragma mark -

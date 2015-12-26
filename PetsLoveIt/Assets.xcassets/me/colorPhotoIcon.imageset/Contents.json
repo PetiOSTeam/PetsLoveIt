@@ -2,7 +2,16 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "photo_icon copy@0.5x(3).pdf"
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "photo_icon_yang.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
