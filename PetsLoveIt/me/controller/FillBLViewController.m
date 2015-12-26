@@ -144,6 +144,9 @@
 }
 
 -(void)okPickerView{
+    if (!self.selectedProduct && [self.subPickerArray count]>0) {
+        self.selectedProduct = [self.subPickerArray firstObject];
+    }
     self.sortTextField.text = self.selectedProduct.name;
     
     [self hidePickerView];
