@@ -55,25 +55,41 @@
     [self.menuButton5.titleLabel setFont:[UIFont systemFontOfSize:18]];
     [self.menuButton5 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.menuButton5 addTarget:self action:@selector(didClickOnMenu5) forControlEvents:UIControlEventTouchUpInside];
-    self.menuButton5.width = 100;
+    self.menuButton5.width = 105;
 
    
     self.menuButton1.width = self.menuButton2.width =self.menuButton3.width=self.menuButton4.width = (mScreenWidth-100)/4;
    
     
-    self.menuButton1.left = 0;
-    self.menuButton2.left=self.menuButton1.right;
-    self.menuButton3.left=self.menuButton2.right;
-    self.menuButton4.left=self.menuButton3.right;
-    self.menuButton5.left = self.menuButton4.right;
+    self.menuButton1.left = 5;
+    self.menuButton2.left=self.menuButton1.right -3;
+    self.menuButton3.left=self.menuButton2.right -3;
+    self.menuButton4.left=self.menuButton3.right-5;
+    self.menuButton5.left = self.menuButton4.right + 3;
     
     
-    [self addSubview:self.menuButton1];
-    [self addSubview:self.menuButton2];
-    [self addSubview:self.menuButton3];
-    [self addSubview:self.menuButton4];
     [self addSubview:self.menuButton5];
+    [self addSubview:self.menuButton4];
+    [self addSubview:self.menuButton3];
+    [self addSubview:self.menuButton2];
+    [self addSubview:self.menuButton1];
     
+    //  设置内容居左
+    
+    self.menuButton1.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    self.menuButton2.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    self.menuButton3.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    self.menuButton4.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    // 文字对齐
+    self.menuButton1.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.menuButton2.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.menuButton3.titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.menuButton4.titleLabel.textAlignment = NSTextAlignmentCenter;
+
+    
+//    // 设置高亮时候不调整图片
+//    self.adjustsImageWhenHighlighted = NO;
+
     [self.menuButton1 setTitleColor:mRGBToColor(0x999999) forState:UIControlStateNormal];
     [self.menuButton1.titleLabel setFont:[UIFont systemFontOfSize:11]];
 

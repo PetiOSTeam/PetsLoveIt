@@ -43,5 +43,8 @@
  */
 -(void)dataFill;
 
-
+/**
+ *  自己添加的参数显示是否是淘宠界面
+ */
+@property (assign,nonatomic) BOOL isTaopet;
 @end

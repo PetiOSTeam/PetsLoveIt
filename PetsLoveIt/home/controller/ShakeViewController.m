@@ -423,7 +423,7 @@
         goodsTitleLabel.text = goods.name;
         [goodsImageView sd_setImageWithURL:[NSURL URLWithString:goods.appPic] placeholderImage:kImagePlaceHolder];
         commentNumLabel.text = goods.commentNum;
-        favorNumLabel.text = goods.favorNum;
+        favorNumLabel.text = goods.popularitystr;
         
     }];
     

@@ -38,7 +38,7 @@
     self.contentLabel.text = article.desc;
     self.dateLabel.text = article.dateTime;
     self.commentLabel.text = article.commentNum;
-    self.favorNumLabel.text = article.favorNum;
+    self.favorNumLabel.text = article.popularitystr;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

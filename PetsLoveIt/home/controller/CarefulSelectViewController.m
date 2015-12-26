@@ -52,7 +52,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+     self.navigationBarView.bottom = self.navigationBarView.bottom+5;
     // Do any additional setup after loading the view.
+    
     [self prepareViewsAndData];
 }
 - (NSArray *)cheapProductArray
@@ -169,6 +171,7 @@
             NSLog(@"rtnCode:%@",[responseData objectForKey:@"rtnCode"]);
         }
     }];
+   
 }
 
 -(void)selectScrollView:(NSInteger)index{
@@ -198,7 +201,7 @@
     //url,分为公告和话题
     
     configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getCoreSv.action"];
-    
+    configModel.isTaopet = NO;
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
@@ -216,6 +219,7 @@
     configModel.ModelClass=[GoodsModel class];
     //cell类
     configModel.ViewForCellClass=[GoodsCell class];
+    
     //标识
     configModel.lid=NSStringFromClass(self.class);
     //pageName第几页的参数名
@@ -242,7 +246,7 @@
 
 -(UIView *)tableHeaderView{
     if (!_tableHeaderView) {
-        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 365)];
+        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 360)];
         [_tableHeaderView setBackgroundColor:mRGBToColor(0xf5f5f5)];
         
         _zqw = [[ZQW_ScrollView alloc]initWithFrame:CGRectMake(0, 5, self.view.bounds.size.width, 180)];

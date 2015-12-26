@@ -20,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *commentNumLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *favorImageView;
 @property (weak, nonatomic) IBOutlet UILabel *favorNumLabel;
+@property (weak, nonatomic) IBOutlet UIView *collectionView;
+@property (weak, nonatomic) IBOutlet UIImageView *collectionImage;
+@property (weak, nonatomic) IBOutlet UILabel *collectionLabel;
 
 
 - (void)loadCellWithGoodsModel:(GoodsModel *)good;

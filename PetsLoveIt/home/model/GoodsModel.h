@@ -54,5 +54,5 @@ typedef NS_ENUM(NSUInteger, Userpopularity) {
 @property (nonatomic, copy) NSString* popularitystr;
 /**用户对产品是否评价*/
 @property (assign,nonatomic)  Userpopularity isclick;
-- (NSString *)productpopularityWithobject:(GoodsModel *)good;
+
 @end

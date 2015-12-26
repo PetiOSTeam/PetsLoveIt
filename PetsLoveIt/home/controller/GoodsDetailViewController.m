@@ -199,6 +199,10 @@
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
+            if (collectFlag){
+                [mAppUtils showHint:@"收藏成功"];
+            }
+            
         }else{
             mAlertAPIErrorInfo(error);
         }
@@ -317,14 +321,7 @@
     }
     [self.menuView.menuButton1 setTitle:self.goods.popularitystr forState:UIControlStateNormal];
     [self userlikedproductonYESorNO];
-//    if ((self.goods.isLiked == ISliked)&&(self.goods.isLiked == ISliked)) {
-//        self.menuView.menuButton1.selected = YES;
-//    }else
-//    {
-//        self.menuView.menuButton1.selected = NO;
-//        
-//    }
-    
+
     
     [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
     [self.menuView.menuButton4 setTitle:self.goods.commentNum forState:UIControlStateNormal];

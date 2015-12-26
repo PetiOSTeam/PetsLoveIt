@@ -86,8 +86,7 @@
     NSString *rid=NSStringFromClass(self.configModel.ViewForCellClass);
     
     LCCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:rid forIndexPath:indexPath];
-    
-    cell.model=self.dataList[indexPath.item];
+        cell.model=self.dataList[indexPath.item];
     
     return cell;
 }

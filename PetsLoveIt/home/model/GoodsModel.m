@@ -24,7 +24,30 @@
     if (!_popularitystr) {
         _popularitystr = [self productpopularityWithobject:self];
     }
+    
     return _popularitystr;
+}
+- (NSString *)commentNum
+{
+//    _commentNum = @"2000";
+    _commentNum = [self stringAbidebytherules:_commentNum];
+    return _commentNum;
+}
+- (NSString *)collectnum
+{
+//    _collectnum = @"2000";
+    _collectnum = [self stringAbidebytherules:_collectnum];
+    return _collectnum;
+}
+- (NSString *)stringAbidebytherules:(NSString *)str
+{
+    float num = [str floatValue];
+    if (num > 10000){
+        return [NSString stringWithFormat:@"%.1fw",(num/10000)];
+    }else
+    {
+        return [NSString stringWithFormat:@"%.0f",num];
+    }
 }
 +(NSDictionary *)replacedKeyFromPropertyName{
     return @{
@@ -47,45 +70,6 @@
 }
 
 #pragma mark 显示用户对产品点的是赞还是踩
-//- (void)userlikedproductonYESorNO
-//{
-//    
-//    NSMutableDictionary *paremssec =[NSMutableDictionary new];
-//    if ([AppCache getToken]) {
-//        [paremssec setObject:[AppCache getToken] forKey:@"userToken"];
-//    }
-//    [paremssec setObject:@"getUserPraiseAndNoPraiseNum" forKey:@"uid"];
-//    [paremssec setObject:self.prodId forKey:@"prodId"];
-//    [APIOperation GET:@"common.action" parameters:paremssec onCompletion:^(id responseData, NSError *error) {
-//        if (!error) {
-//            NSLog(@"%@1231289312    %@******%@",responseData,self.prodId,[AppCache getToken]);
-//            NSDictionary *bean = [responseData objectForKey:@"bean"];
-//            
-//            if ([bean count]) {
-//                //                bean =     {
-//                //                    nopraisenum = 1;
-//                //                    praisenum = 0;
-//                //                    prodId = 151224015;
-//                //                    userId = 107;
-//                //                };
-//                int praisenum = [bean[@"praisenum"]intValue];
-//                int nopraisenum = [bean[@"nopraisenum"]intValue];
-//                if (praisenum > nopraisenum) {
-//                    _isLiked = ISliked;
-//                    
-//                }else{
-//                    _isLiked = NOliked;
-//                }
-//                
-//                
-//                
-//            }else{
-//                _isLiked = NOclick;
-//            }
-//            
-//        }
-//    }];
-//}
 
 // 计算产品的受喜爱度
 - (NSString *)productpopularityWithobject:(GoodsModel *)good

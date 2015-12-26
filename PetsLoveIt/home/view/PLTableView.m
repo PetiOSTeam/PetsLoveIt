@@ -77,11 +77,13 @@
 }
 
 -(UITableViewCell *)goodsCell:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     NSString *identifier = @"GoodsCell";
     GoodsCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil] firstObject];
     }
+    cell.isTaopet = NO;
     GoodsModel *good = self.dataArray1[indexPath.row];
     [cell loadCellWithGoodsModel:good];
     return cell;

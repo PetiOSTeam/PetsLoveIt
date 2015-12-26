@@ -17,6 +17,7 @@
 
 @property (nonatomic,assign) BOOL isCollect;//是否为收藏页面
 @property (nonatomic,assign) BOOL isMyArticle;//是否为我的投稿
+
 /**
  *  tableView
  */

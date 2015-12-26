@@ -149,6 +149,8 @@ typedef enum{
  *  是否移除返回顶部功能按钮，默认不移除
  */
 @property (nonatomic,assign) BOOL removeBackToTopBtn;
-
-
+/**
+ *  自己添加的参数显示是否是淘宠界面
+ */
+@property (assign,nonatomic) BOOL isTaopet;
 @end

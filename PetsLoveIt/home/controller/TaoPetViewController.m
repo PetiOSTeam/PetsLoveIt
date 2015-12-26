@@ -34,6 +34,7 @@
     }else{
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
     }
+    
 }
 
 - (void)prepareViewsAndData{
@@ -81,7 +82,7 @@
     //url,分为公告和话题
     
     configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getCoreSv.action"];
-    
+    configModel.isTaopet = YES;
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{

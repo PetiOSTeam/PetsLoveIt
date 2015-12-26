@@ -31,12 +31,21 @@
 }
 
 - (void)loadInfo:(GoodsModel *)good{
+    
     [self.goodImageView sd_setImageWithURL:[NSURL URLWithString:good.appMinpic] placeholderImage:kImagePlaceHolder ];
     if ([good.mallName length]>0)
     {
       self.nameLabel.text = [NSString stringWithFormat:@"%@-%@",good.typeName,good.mallName];
     }else{
        self.nameLabel.text = [NSString stringWithFormat:@"%@",good.typeName];
+    }
+    if (self.isTaopet) {
+        self.collectionView.hidden = NO;
+        self.collectionLabel.text = good.collectnum;
+        self.collectionImage.image = [UIImage imageNamed:@"collectIcon"];
+    }else
+    {
+        self.collectionView.hidden = YES;
     }
     NSString *popularitystr = good.popularitystr;
     self.descLabel.text = good.name;
