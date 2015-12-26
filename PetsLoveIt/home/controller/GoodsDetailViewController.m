@@ -368,7 +368,7 @@
 #pragma mark - 加载HTML页面数据，并进行图文混排
 -(void) loadViewAndData{
     NSString *html = self.goods.prodDetail;
-    CGFloat viewwidth = [UIScreen mainScreen].bounds.size.width - 32;
+    CGFloat viewwidth = [UIScreen mainScreen].bounds.size.width - 40;
     NSString *css = [NSString stringWithFormat:@"<html><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><body width=%f style=\"word-wrap:break-word;ext-align: justify; font-family:Arial\"><style>img{max-width:%f;height:auto;}</style>",viewwidth,viewwidth];
     
     NSMutableString *desc = [NSMutableString stringWithFormat:@"%@%@%@",

@@ -205,7 +205,7 @@
          self.label3.hidden = NO;
     }
     // webview
-    self.webView.frame = CGRectMake(12,_label3.bottom, mScreenWidth - 24 , 300);
+    self.webView.frame = CGRectMake(12,_label3.bottom, mScreenWidth - 32 , 300);
    }
 // 根据文字计算标签的高度
 - (CGSize)getframeWithTitle:(NSString *)title andTitleFont:(UIFont *)titlefont
