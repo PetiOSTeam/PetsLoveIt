@@ -210,10 +210,8 @@
                              @"mobile":mobile
                              };
     [APIOperation GET:@"smsathcode.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-        if (!error) {
+        if (responseData) {
             self.token = [responseData objectForKey:@"userToken"];
-        }else{
-            mAlertAPIErrorInfo(error);
         }
     }];
 }
@@ -238,8 +236,8 @@
     NSString *encryptedPwd = [[_Des AES128Encrypt:[pwd appendAESKeyAndTimeStamp]] uppercaseString];
     
     if ([self.token length] ==0) {
-        mAlertView(@"提示", @"您还没有点击发送验证码");
-        return;
+        //mAlertView(@"提示", @"您还没有点击发送验证码");
+        //return;
     }
     if ([mobile length]==0) {
         mAlertView(@"提示", @"手机号不能为空");
@@ -249,7 +247,7 @@
         mAlertView(@"提示", @"验证码不能为空");
         return;
     }
-    if (![nickName isValidateName]) {
+    if (![nickName isValidateName]&&!self.mobileExist) {
         mAlertView(@"提示", @"昵称应该是1-12位数字字母下划线汉字的组合");
         return;
 
@@ -298,7 +296,7 @@
     }
     [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeClear];
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-        if (!error) {
+        if (responseData) {
             [SVProgressHUD dismiss];
 
             NSLog(@"%@",responseData);
@@ -381,7 +379,9 @@
             
             //登录成功
             [mAppUtils showHint:@"登录成功"];
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            });
         }else{
             mAlertAPIErrorInfo(error);
         }

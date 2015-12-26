@@ -50,7 +50,7 @@
         
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(ZQWWIDTH * (i+1), 0, self.scrollView.frame.size.width,self.scrollView.frame.size.height )];
         
-        [imageView sd_setImageWithURL:[NSURL URLWithString:_pictureArray[i]] placeholderImage:kImagePlaceHolder];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:_pictureArray[i]] placeholderImage:[UIImage imageNamed:@"index_default_load"]];
         [imageView setClipsToBounds:YES];
         //[imageView setContentMode:UIViewContentModeScaleAspectFill];
         [self.scrollView setClipsToBounds:YES];

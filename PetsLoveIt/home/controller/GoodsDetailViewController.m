@@ -434,7 +434,7 @@
 {
     __block UIImageView* blockImageView = imageView;
     
-    [imageView sd_setImageWithURL:[NSURL URLWithString:self.goods.appPic] completed:^ (UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [imageView  sd_setImageWithURL:[NSURL URLWithString:self.goods.appPic] placeholderImage:[UIImage imageNamed:@"goodsDetail_default_load"] completed:^ (UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if ([detailsPageView.delegate respondsToSelector:@selector(headerImageViewFinishedLoading:)])
             [detailsPageView.delegate headerImageViewFinishedLoading:blockImageView];
     }];

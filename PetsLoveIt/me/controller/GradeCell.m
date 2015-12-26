@@ -46,7 +46,7 @@
     _exchangeBlock = exchangeBlock;
     
     [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:gradeModel.discountPic]
-                          placeholderImage:[UIImage imageNamed:@"timeline_image_loading"]];
+                          placeholderImage:[UIImage imageNamed:@"jifen_default_load"]];
     self.titleLabel.text = gradeModel.name;
     [self.titleLabel sizeToFit];
     

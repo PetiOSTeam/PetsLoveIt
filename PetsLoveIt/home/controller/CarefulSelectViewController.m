@@ -273,7 +273,7 @@
         
         [_displayView addBorderWithFrame:CGRectMake(mScreenWidth/2, 0, kLayerBorderWidth, _displayView.height) andColor:kLayerBorderColor andWidth:kLayerBorderWidth];
         [_displayView addBorderWithFrame:CGRectMake(mScreenWidth/2, _displayView.height/2, mScreenWidth/2, kLayerBorderWidth) andColor:kLayerBorderColor andWidth:kLayerBorderWidth];
-        [_urlImageView1 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:kImagePlaceHolder];
+        [_urlImageView1 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"baicai_default_load"]];
        
         
         _displayView2 = [[UIView alloc] initWithFrame:CGRectMake(_displayView1.right, 0, mScreenWidth/2, _displayView.height/2)];
@@ -297,7 +297,7 @@
         [_displayView2 addSubview:_urlImageView2];
         
         
-        [_urlImageView2 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:kImagePlaceHolder];
+        [_urlImageView2 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"baicai_default_load"]];
         
         
         
@@ -319,7 +319,7 @@
         [_descLabel3 setFont:[UIFont systemFontOfSize:12]];
         
         
-        [_urlImageView3 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:kImagePlaceHolder];
+        [_urlImageView3 sd_setImageWithURL:[NSURL URLWithString:@""] placeholderImage:[UIImage imageNamed:@"baicai_default_load"]];
         
         
         [_displayView3 addSubview:_titleLabel3];

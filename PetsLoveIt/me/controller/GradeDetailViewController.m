@@ -80,7 +80,7 @@
 //    self.webView.scrollView.contentInset = UIEdgeInsetsMake(self.headerView.height, 0, 0, 0);
     
     [self.headerView.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.gradeModel.discountPic]
-                          placeholderImage:[UIImage imageNamed:@"timeline_image_loading"]];
+                          placeholderImage:[UIImage imageNamed:@"jifenxiangqing_default_load"]];
     
     self.headerView.titleLabel.text = self.gradeModel.name;
     

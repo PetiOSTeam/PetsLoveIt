@@ -20,7 +20,7 @@
  */
 - (void)dataFill {
     GoodsModel *order = (GoodsModel *)self.model;
-    [self.orderPictureImageView sd_setImageWithURL:[NSURL URLWithString:order.appMinpic] placeholderImage:kImagePlaceHolder ];
+    [self.orderPictureImageView sd_setImageWithURL:[NSURL URLWithString:order.appMinpic] placeholderImage:[UIImage imageNamed:@"shareOrder_default_load"] ];
     [self.orderPictureImageView setContentMode:UIViewContentModeScaleAspectFill];
     [self.orderPictureImageView setClipsToBounds:YES];
     self.ordeerTitleLabel.text = order.name;
