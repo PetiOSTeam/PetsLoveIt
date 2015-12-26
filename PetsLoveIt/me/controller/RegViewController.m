@@ -210,10 +210,8 @@
                              @"mobile":mobile
                              };
     [APIOperation GET:@"smsathcode.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-        if (!error) {
+        if (responseData) {
             self.token = [responseData objectForKey:@"userToken"];
-        }else{
-            mAlertAPIErrorInfo(error);
         }
     }];
 }
@@ -238,32 +236,26 @@
     NSString *encryptedPwd = [[_Des AES128Encrypt:[pwd appendAESKeyAndTimeStamp]] uppercaseString];
     
     if ([self.token length] ==0) {
-        mAlertView(@"提示", @"您还没有点击发送验证码");
-        return;
+        //mAlertView(@"提示", @"您还没有点击发送验证码");
+        //return;
     }
     if ([mobile length]==0) {
         mAlertView(@"提示", @"手机号不能为空");
         return;
     }
-    if (!self.mobileExist) {
-        if ([code length]==0) {
-            mAlertView(@"提示", @"验证码不能为空");
-            return;
-        }
-        if (![nickName isValidateName]) {
-            mAlertView(@"提示", @"昵称应该是1-12位数字字母下划线汉字的组合");
-            return;
-            
-        }
-        if (![pwd isValidatePassword]&&!self.mobileExist) {
+    if ([code length]==0) {
+        mAlertView(@"提示", @"验证码不能为空");
+        return;
+    }
+    if (![nickName isValidateName]&&!self.mobileExist) {
+        mAlertView(@"提示", @"昵称应该是1-12位数字字母下划线汉字的组合");
+        return;
+    }
+    if (![pwd isValidatePassword] &&!self.mobileExist) {
             mAlertView(@"提示", @"密码应该是6－18位的字母数字下划线组合");
             return;
-        }
-
     }
-       //userToken=userToken_f94d719172d44810b401962948bafa79&otheraccount=&othertype=&athcode=&account=15921438852
-   // &type=1&userName=testr1&nickName=testRegist1&userPwd=1EE996B5BDFBFBED595B5AAB355BE1A8A73B023B670114F
-   // 20A7A870281046F385333405B765CE98E876D5C69455E1D6E
+
     NSDictionary *params = @{
                              @"uid":@"userRegist",
                              @"type":@"1",
@@ -304,7 +296,7 @@
     }
     [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeClear];
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-        if (!error) {
+        if (responseData) {
             [SVProgressHUD dismiss];
 
             NSLog(@"%@",responseData);
@@ -373,25 +365,30 @@
     [APIOperation GET:@"isBindUser.action"  parameters:params onCompletion:^(id responseData, NSError *error) {
         [SVProgressHUD dismiss];
         [mAppUtils hideHint];
-        if (!error) {
+        if (responseData) {
             //绑定过三方帐号，直接登录
             NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
             LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
-            localUserInfo.userToken = [responseData objectForKey:@"userToken"];
-            localUserInfo.otherType = self.otherType;
-            localUserInfo.otherAccount = self.otherAccount;
-            //将userinfo记录下来
-            mAppDelegate.loginUser = localUserInfo;
-            [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+            if (localUserInfo) {
+                localUserInfo.userToken = [responseData objectForKey:@"userToken"];
+                localUserInfo.otherType = self.otherType;
+                localUserInfo.otherAccount = self.otherAccount;
+                //将userinfo记录下来
+                mAppDelegate.loginUser = localUserInfo;
+                [AppCache cacheObject:localUserInfo forKey:HLocalUserInfo];
+                
+                [mUserDefaults setObject:_accountTextField.text forKey:HLoginAccount];
+                [mUserDefaults synchronize];
+                
+                //登录成功
+                [mAppUtils showHint:@"登录成功"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                });
+            }
             
-            [mUserDefaults setObject:_accountTextField.text forKey:HLoginAccount];
-            [mUserDefaults synchronize];
-            
-            //登录成功
-            [mAppUtils showHint:@"登录成功"];
-            [self.navigationController popToRootViewControllerAnimated:YES];
         }else{
-            mAlertAPIErrorInfo(error);
+            //mAlertAPIErrorInfo(error);
         }
     }];
 }
