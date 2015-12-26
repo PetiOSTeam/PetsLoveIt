@@ -326,7 +326,7 @@
     //如果是白菜价，则猜你喜欢取白菜价列表接口
     if (self.isCheapProduct) {
         params = @{@"uid":@"getCheapProductList",
-                   @"startNum":@"0",
+                   @"startNum":@"10",
                    @"limit":@"10"
                    };
     }
@@ -335,7 +335,7 @@
             NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
             [jsonArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 GoodsModel *goods = [[GoodsModel alloc] initWithDictionary:obj];
-                if (self.isCheapProduct && ![self.goods.prodId isEqualToString:goods.prodId]) {
+                if (![self.goods.prodId isEqualToString:goods.prodId]) {
                     [self.detailsPageView.tableView2.dataArray1 addObject:goods];
                 }
                 

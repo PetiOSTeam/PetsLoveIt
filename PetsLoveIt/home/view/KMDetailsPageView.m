@@ -227,7 +227,10 @@
     if (mIsiP5) {
         self.webView.height = contentHeight + 110;
     }
-    
+    NSLog(@"%f",[[UIScreen mainScreen] currentMode].size.width);
+    if ([[UIScreen mainScreen] currentMode].size.width==750) {
+        self.webView.height = contentHeight + 90;
+    }
     self.headerView.height = self.webView.bottom;
     
     self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom ) ;
