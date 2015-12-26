@@ -55,10 +55,10 @@
     [self.menuButton5.titleLabel setFont:[UIFont systemFontOfSize:18]];
     [self.menuButton5 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.menuButton5 addTarget:self action:@selector(didClickOnMenu5) forControlEvents:UIControlEventTouchUpInside];
-    self.menuButton5.width = 120;
+    self.menuButton5.width = 100;
 
    
-    self.menuButton1.width = self.menuButton2.width =self.menuButton3.width=self.menuButton4.width = (mScreenWidth-120)/4;
+    self.menuButton1.width = self.menuButton2.width =self.menuButton3.width=self.menuButton4.width = (mScreenWidth-100)/4;
    
     
     self.menuButton1.left = 0;
