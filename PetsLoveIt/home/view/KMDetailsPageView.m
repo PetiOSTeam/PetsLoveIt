@@ -124,6 +124,9 @@
         [_headerView addSubview:self.label2];
         [_headerView addSubview:self.label3];
         [_headerView addSubview:self.webView];
+        if (self.isCheapProduct) {
+            [_headerView addSubview:self.cheapTable];
+        }
         _headerView.clipsToBounds = YES;
     }
     return _headerView;
@@ -169,6 +172,13 @@
 
     }
     return _webView;
+}
+
+-(CheapTableView *)cheapTable{
+    if (!_cheapTable) {
+        _cheapTable = [[CheapTableView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 0)];
+    }
+    return _cheapTable;
 }
 
 -(void) loadGoodsInfo:(GoodsModel *)goods{
@@ -231,16 +241,56 @@
     if ([[UIScreen mainScreen] currentMode].size.width==750) {
         self.webView.height = contentHeight + 90;
     }
-    self.headerView.height = self.webView.bottom;
+    if (self.isCheapProduct) {
+        [self getCheapProductOnCompletion:^{
+            self.cheapTable.top = self.webView.bottom +10;
+            self.cheapTable.height = self.cheapTable.dataArray.count * 150;
+            self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.cheapTable.bottom ) ;
+            [self setupTableViewHeader];
+            
+            self.tableView.tableHeaderView.height = self.headerView.height;
+        }];
+        
+    }else{
+        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom ) ;
+    }
     
-    self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom ) ;
+    
     [self setupTableViewHeader];
     
     self.tableView.tableHeaderView.height = self.headerView.height;
-    self.tableView.contentSize = CGSizeMake(mScreenWidth, self.tableView.tableHeaderView.height);
+    
     if ([self.delegate respondsToSelector:@selector(detailWebViewDidFinishLoad)]) {
         [self.delegate detailWebViewDidFinishLoad];
     }
+}
+
+-(void)getCheapProductOnCompletion:(void (^)())completionBlock{
+    NSDictionary *params = @{@"uid":@"getCheapProductList",
+                             @"startNum":@"0",
+                             @"limit":@"10"
+                             };
+    [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+            if ([jsonArray count] ==0) {
+                return ;
+            }
+            for (NSMutableDictionary *typedict in jsonArray) {
+                GoodsModel *typemodel = [[GoodsModel alloc] initWithDictionary:typedict];
+                if (![self.goods.prodId isEqualToString:typemodel.prodId]) {
+                    [self.cheapTable.dataArray addObject:typemodel];
+                }
+                
+            }
+            
+            [self.cheapTable reloadData];
+            if (completionBlock) {
+                completionBlock();
+            }
+            
+        }
+    }];
 }
 
 #pragma mark -
@@ -249,7 +299,6 @@
 - (void)setupTableView
 {
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _tableView.bottom, mScreenWidth, mScreenHeight-49)];
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.delegate = self.tableViewDelegate;
     self.tableView.dataSource = self.tableViewDataSource;

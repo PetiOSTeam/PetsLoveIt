@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "PLTableView.h"
 #import "GoodsModel.h"
+#import "CheapTableView.h"
 
 @class KMDetailsPageView;
 
@@ -42,10 +43,11 @@
 - (id)initWithFrame:(CGRect)frame isCheapProduct:(BOOL)isCheapProduct;
 
 @property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) CheapTableView *cheapTable;
 
 @property (nonatomic, strong) PLTableView *tableView2;
 
-
+@property (nonatomic,strong) GoodsModel *goods;
 /**
  Image header height value will set the height of the image pager header. Default value is 375.0f.
  */

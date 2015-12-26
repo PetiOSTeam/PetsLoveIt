@@ -86,6 +86,7 @@
 		186AEBD31C2CE8D60092F289 /* MyCollectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186AEBD21C2CE8D60092F289 /* MyCollectViewController.xib */; };
 		186AEBD71C2E8AB60092F289 /* CheapProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AEBD51C2E8AB60092F289 /* CheapProductCell.m */; };
 		186AEBD81C2E8AB60092F289 /* CheapProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186AEBD61C2E8AB60092F289 /* CheapProductCell.xib */; };
+		186AEBDE1C2ED3330092F289 /* CheapTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 186AEBDD1C2ED3330092F289 /* CheapTableView.m */; };
 		186EA8831C148C73009876BD /* GradeDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */; };
 		186EA8871C1691F1009876BD /* libPushSDK-1.8.8.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 186EA8861C1691F1009876BD /* libPushSDK-1.8.8.a */; };
 		186EA8891C169362009876BD /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 186EA8881C169362009876BD /* PushConfig.plist */; };
@@ -743,6 +744,8 @@
 		186AEBD41C2E8AB60092F289 /* CheapProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheapProductCell.h; sourceTree = "<group>"; };
 		186AEBD51C2E8AB60092F289 /* CheapProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheapProductCell.m; sourceTree = "<group>"; };
 		186AEBD61C2E8AB60092F289 /* CheapProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheapProductCell.xib; sourceTree = "<group>"; };
+		186AEBDC1C2ED3330092F289 /* CheapTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheapTableView.h; sourceTree = "<group>"; };
+		186AEBDD1C2ED3330092F289 /* CheapTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheapTableView.m; sourceTree = "<group>"; };
 		186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradeDetailHeaderView.xib; sourceTree = "<group>"; };
 		186EA8851C1691F1009876BD /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		186EA8861C1691F1009876BD /* libPushSDK-1.8.8.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.8.a"; sourceTree = "<group>"; };
@@ -3269,6 +3272,8 @@
 			children = (
 				18F633BE1BF88E6400FD98B1 /* KMDetailsPageView.h */,
 				18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */,
+				186AEBDC1C2ED3330092F289 /* CheapTableView.h */,
+				186AEBDD1C2ED3330092F289 /* CheapTableView.m */,
 				9D1D3AE21C28F9C500155E6D /* ShakeremindView.h */,
 				9D1D3AE31C28F9C500155E6D /* ShakeremindView.m */,
 				182110531BEF1D9A00C32E23 /* GoodsCell.h */,
@@ -4339,6 +4344,7 @@
 				184858AF1BF8DD3C001FF521 /* MASLayoutConstraint.m in Sources */,
 				189445AA1BEB0774006249F0 /* LCCell.m in Sources */,
 				1894463E1BEB0774006249F0 /* ZBMessageManagerFaceView.m in Sources */,
+				186AEBDE1C2ED3330092F289 /* CheapTableView.m in Sources */,
 				18DB0D931BF2EA2B003F3743 /* KMActivityIndicator.m in Sources */,
 				F9EAB7911BF75A1B00BD0D6B /* StoreFooterView.m in Sources */,
 				189446E21BEB0A80006249F0 /* YYImageCoder.m in Sources */,

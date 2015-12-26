@@ -36,6 +36,10 @@
 
 -(void)dataFill{
     CommentModel *comment = (CommentModel *)self.model;
+    [self loadViewWithModel:comment];
+}
+
+- (void)loadViewWithModel:(CommentModel *)comment{
     //显示parent评论
     if (comment.parent_data) {
         [comment.parent_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -60,13 +64,13 @@
     if (self.commentLabel.height < 21) {
         self.commentLabel.height = 21;
     }
-
-
+    
+    
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:comment.userIcon] placeholderImage:kDefaultHeadImage];
     self.nameLabel.text = comment.nickName;
     self.dateLabel.text = comment.timeFlag;
     self.floorLabel.text = [NSString stringWithFormat:@"%@楼",comment.orderNo];
-    }
+}
 
 +(CGFloat)heightForCellWithObject:(CommentModel *)object
 {

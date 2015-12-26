@@ -16,8 +16,11 @@
 #import "LoginViewController.h"
 #import "CommentGoodsViewController.h"
 #import "CheapProductCell.h"
+#import "CommentModel.h"
+#import "CommentCell.h"
+#import "CommentGoodsViewController.h"
 
-#define cheapCellHeight 150
+#define sectionHeaderHeight 47
 
 @interface GoodsDetailViewController ()<UIWebViewDelegate,UITableViewDataSource, UITableViewDelegate,  KMNetworkLoadingViewDelegate, KMDetailsPageDelegate,BottomMenuViewDelegate,CheapProductCellDelegate>
 
@@ -62,11 +65,8 @@
     
     }
     
-    if (self.isCheapProduct) {
-        //获取白菜价
-        [self getCheapProduct];
-    }
-    
+    //获取热门评论
+    [self getHotComment];
 }
 
 - (void) setupLoadingView{
@@ -74,19 +74,11 @@
  
 }
 -(void)detailWebViewDidFinishLoad{
-    if (self.isCheapProduct) {
-        self.detailsPageView.tableView.contentSize = CGSizeMake(mScreenWidth, self.detailsPageView.tableView.tableHeaderView.height +self.dataArray.count*cheapCellHeight);
-    }else{
-        self.detailsPageView.tableView.contentSize = CGSizeMake(mScreenWidth,self.detailsPageView.tableView.tableHeaderView.height);
-    }
-    
+
     [self hideLoadingView];
     
     
 }
-
-
-
 
 -(BottomMenuView *)menuView{
     if (!_menuView) {
@@ -103,31 +95,30 @@
     return _dataArray;
 }
 
--(void)getCheapProduct{
-    NSDictionary *params = @{@"uid":@"getCheapProductList",
-                             @"startNum":@"0",
-                             @"limit":@"10"
+-(void)getHotComment{
+    NSString *productId = self.goods.prodId==nil?self.goodsId:self.goods.prodId;
+    NSDictionary *params = @{@"uid":@"getHotCommentByProduct",
+                             @"productId":productId,
+                             @"pageIndex":@"1",
+                             @"pageSize":@"10"
                              };
-    [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
-            NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+            NSArray *jsonArray = [[responseData objectForKey:@"rows"] objectForKey:@"rows"];
             if ([jsonArray count] ==0) {
                 return ;
             }
-            for (NSMutableDictionary *typedict in jsonArray) {
-                GoodsModel *typemodel = [[GoodsModel alloc] initWithDictionary:typedict];
-                if (![self.goods.prodId isEqualToString:typemodel.prodId]) {
-                    [self.dataArray addObject:typemodel];
-                }
-                
-            }
-            
+            [jsonArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                CommentModel *model = [[CommentModel alloc] initWithDictionary:obj];
+                [self.dataArray addObject:model];
+            }];
             [self.detailsPageView.tableView reloadData];
-            
-            
+
         }
     }];
 }
+
+
 
 -(void)praiseProduct:(BOOL)praiseFlag{
   
@@ -267,7 +258,10 @@
 
 -(void)showCommentVC{
     CommentGoodsViewController *vc = [CommentGoodsViewController new];
-    vc.goodsId = self.goodsId;
+    if (self.goodsId) {
+        vc.goodsId = self.goodsId;
+    }else
+        vc.goodsId = self.goods.prodId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -470,13 +464,7 @@
     
 }
 
-#pragma mark - CheapProductCellDelegate
--(void)showGoodsDetailVC:(GoodsModel *)goods{
-    GoodsDetailViewController *vc =[GoodsDetailViewController new];
-    vc.goods = goods;
-    vc.isCheapProduct = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-}
+
 
 #pragma mark - 白菜TableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -491,32 +479,83 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"CheapProductCell";
-    CheapProductCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    static NSString *cellIdentifier = @"CommentCell";
+    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil] firstObject];
     }
-    cell.delegate = self;
-    GoodsModel *goods = self.dataArray[indexPath.row];
-    [cell loadViewWithModel:goods];
+    cell.floorLabel.hidden = YES;
+    CommentModel *comment = self.dataArray[indexPath.row];
+    [cell loadViewWithModel:comment];
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return cheapCellHeight;
+    CommentModel *model = [self.dataArray objectAtIndex:indexPath.row];
+    CGFloat height = [CommentCell heightForCellWithObject:model];
+    
+    return height;
 }
 
+- (void)tableView:(UITableView*)tableView
+  willDisplayCell:(UITableViewCell*)cell
+forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, sectionHeaderHeight)];
+    [headerView setBackgroundColor:[UIColor whiteColor]];
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, sectionHeaderHeight-0.5, mScreenWidth, 0.5)];
+    [lineView setBackgroundColor:kCellSeparatorColor];
+    [headerView addSubview:lineView];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, mScreenWidth-30, sectionHeaderHeight)];
+    [titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
+    [titleLabel setTextColor:mRGBToColor(0x333333)];
+    [titleLabel setText:@"热门评论"];
+    [headerView addSubview:titleLabel];
+    
+    
+    UILabel *subTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 200, sectionHeaderHeight)];
+    subTitleLabel.right = mScreenWidth - 20;
+    [subTitleLabel setTextAlignment:NSTextAlignmentRight];
+    [subTitleLabel setFont:[UIFont boldSystemFontOfSize:11]];
+    [subTitleLabel setTextColor:mRGBToColor(0x666666)];
+    [subTitleLabel setText:@"查看全部评论"];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showAllCommentVC)];
+    subTitleLabel.userInteractionEnabled = YES;
+    [subTitleLabel addGestureRecognizer:tap];
+
+    [headerView addSubview:subTitleLabel];
+  
+
+    return headerView;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return sectionHeaderHeight;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    GoodsModel *goods = self.dataArray[indexPath.row];
-
-    PetWebViewController *vc = [PetWebViewController new];
-    vc.isProduct = YES;
-    vc.htmlUrl = goods.goUrl;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    CommentGoodsViewController *vc = [CommentGoodsViewController new];
+    vc.goodsId = self.goodsId==nil?self.goods.prodId:self.goodsId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
+- (void) showAllCommentVC{
+    CommentGoodsViewController *vc = [CommentGoodsViewController new];
+    vc.goodsId = self.goodsId==nil?self.goods.prodId:self.goodsId;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark -
 #pragma mark KMDetailsPageDelegate
