@@ -12,11 +12,24 @@
 #import <UIKit/UIKit.h>
 #import "CoreListVC.h"
 
+@protocol MyCollectDelegate <NSObject>
+
+@optional
+- (void) selectAllCollect:(BOOL)allSelect;
+
+@end
 
 @interface CoreLTVC : CoreListVC<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic,strong) NSMutableArray *seletedArray;
+@property (nonatomic,assign) BOOL showSelect;
 
 @property (nonatomic,assign) BOOL isCollect;//是否为收藏页面
 @property (nonatomic,assign) BOOL isMyArticle;//是否为我的投稿
+@property (nonatomic,weak) id<MyCollectDelegate> delegate;
+
+- (void) showSelectView:(BOOL)show;
+- (void) selectAllData:(BOOL)select;
+
 
 /**
  *  tableView

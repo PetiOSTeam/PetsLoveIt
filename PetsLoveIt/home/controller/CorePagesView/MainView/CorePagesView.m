@@ -157,6 +157,10 @@
 }
 
 
+-(id)currentVC{
+    return [self.pageModels[self.page] pageVC];
+}
+
 
 -(void)awakeFromNib{
     

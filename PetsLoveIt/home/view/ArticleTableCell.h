@@ -10,8 +10,17 @@
 #import "LTCell.h"
 #import "GoodsModel.h"
 
+@protocol GoodsCellDelegate <NSObject>
+
+@optional
+-(void) selectCollect:(NSString *)proId isSelect:(BOOL)isSelect;
+
+@end
+
 
 @interface ArticleTableCell : LTCell
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -22,7 +31,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *favorImageView;
 @property (weak, nonatomic) IBOutlet UILabel *favorNumLabel;
 
+@property (weak,nonatomic) id<GoodsCellDelegate> delegate;
 
+- (void)showSelectView:(BOOL)show;
 - (void)loadCellWithModel:(GoodsModel*)article;
 
 @end

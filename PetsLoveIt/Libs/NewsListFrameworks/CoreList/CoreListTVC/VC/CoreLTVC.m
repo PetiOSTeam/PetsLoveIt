@@ -8,6 +8,7 @@
 
 #import "CoreLTVC.h"
 #import "LTCell.h"
+#import "GoodsModel.h"
 
 
 @interface CoreLTVC ()
@@ -97,7 +98,30 @@
 }
 
 
+-(NSMutableArray *)seletedArray{
+    if (!_seletedArray) {
+        _seletedArray = [NSMutableArray new];
+    }
+    return _seletedArray;
+}
 
+- (void) showSelectView:(BOOL)show{
+    self.showSelect = show;
+    [self.tableView reloadData];
+}
+
+- (void) selectAllData:(BOOL)select{
+    if (select) {
+        [self.seletedArray removeAllObjects];
+        [self.dataList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            GoodsModel *goods = obj;
+            [self.seletedArray  addObject:goods.prodId];
+        }];
+    }else{
+        [self.seletedArray removeAllObjects];
+    }
+    [self.tableView reloadData];
+}
 
 /**
  *  tableView
