@@ -39,9 +39,10 @@
 @property (nonatomic,strong) NSString *appMinpic;
 @property (nonatomic,strong) NSString *price;
 @property (nonatomic,strong) NSString *collectnum;
+@property (nonatomic,strong) NSString *typeName;
+@property (nonatomic,strong) NSString *notworthnum;
 /**产品的喜爱度 */
 @property (nonatomic, copy) NSString* popularitystr;
-
 
 -(id)initWithJson:(NSDictionary *)json;
 
