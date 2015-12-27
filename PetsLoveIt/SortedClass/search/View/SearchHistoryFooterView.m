@@ -17,7 +17,7 @@
 - (void)awakeFromNib
 {
     self.width = mScreenWidth;
-    [self addTopBorderWithColor:kLineColor andWidth:.5];
+//    [self addTopBorderWithColor:kLineColor andWidth:.5];
     [self addBottomBorderWithColor:kLineColor andWidth:.5];
 }
 
@@ -36,8 +36,10 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {
+        
         saveArrayToDocument(@"hotwords.plist", [NSArray new]);
         if (self.clearCompletion) {
+            
             self.clearCompletion();
         }
     }

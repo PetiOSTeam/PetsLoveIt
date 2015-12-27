@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9046" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BLLinkViewController">
             <connections>
+                <outlet property="BLinstructions" destination="l87-la-qTd" id="wcH-xe-pGr"/>
                 <outlet property="linkView" destination="tzd-HH-qeB" id="gWV-3n-e7U"/>
                 <outlet property="okButton" destination="lEH-YS-0GP" id="sNu-vK-Vhb"/>
                 <outlet property="placeHolderLabel" destination="Oxv-pu-qtA" id="CyE-Xi-n3a"/>
@@ -65,7 +66,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l87-la-qTd">
-                    <rect key="frame" x="20" y="240" width="281" height="145"/>
+                    <rect key="frame" x="19" y="240" width="281" height="151"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <animations/>
                     <string key="text">欢迎把所发现的优惠信息爆料给宠物爱这个，分享给爱友赢取积分奖励
@@ -75,7 +76,7 @@
 2､关于产品的价格：单买价、凑单品、限时促销等特别产品务必说一说
 3､关于产品的购买：是否需要用优惠券、还是参加满减活动等请描述的详细一些，让爱友们可以无困难的挥霍。</string>
                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

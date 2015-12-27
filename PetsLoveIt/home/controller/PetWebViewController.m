@@ -57,7 +57,7 @@
         }
 
     }else{
-    
+       self.webView.height = mScreenHeight - 64;
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:nil style:UIBarButtonItemStyleBordered target:self action:@selector(clickedLeftBarButtonItemAction)];
         self.navigationItem.leftBarButtonItem.title = @"取消";
     }

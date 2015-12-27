@@ -51,7 +51,7 @@
     self.timeLabel.text = [date convertDateToStringWithFormat:@"MM-dd"];
     self.priceLabel.text = [NSString stringWithFormat:@"%@元", productModel.price];
     self.commentNumLabel.text = productModel.commentnum;
-    self.likesNumLabel.text = productModel.cheapPeriods;
+    self.likesNumLabel.text = productModel.popularitystr;
     self.collectNumLabel.text = productModel.collectnum;
     [self.commentNumLabel sizeToFit];
     [self.likesNumLabel sizeToFit];

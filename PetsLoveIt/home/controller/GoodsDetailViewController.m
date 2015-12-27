@@ -61,14 +61,18 @@
         [self hideLoadingView];
         [self loadViewAndData];
         //获取猜你喜欢数据
-        [self getRelatedInfoById:self.goods.appSort];
-    
+        [self getRelatedInfoByappType:self.goods.appType];
+        //获取热门评论
+        [self getHotComment];
     }
     
-    //获取热门评论
-    [self getHotComment];
+    
 }
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
 - (void) setupLoadingView{
     [self.view addSubview:self.networkLoadingContainerView];
  
@@ -223,14 +227,17 @@
 }
 
 -(void)collectProduct:(BOOL)collectFlag{
+    NSString *productId = self.goods.prodId==nil?self.goodsId:self.goods.prodId;
+
     NSDictionary *params ;
     if (collectFlag) {
         params = @{
                    @"uid":@"saveUsercollect",
-                   @"productId":self.goodsId,
+                   @"productId":productId,
                    @"productSort":self.goods.appType
                    };
         self.goods.collectnum = [NSString stringWithFormat:@"%ld",[self.goods.collectnum integerValue]+1];
+        NSLog(@"%@",params);
     }else{
         params = @{
                    @"uid":@"delcollectByUserId",
@@ -270,6 +277,7 @@
         case GoodsType:
         {
             PetWebViewController *vc = [PetWebViewController new];
+//            vc.isProduct = YES;
             vc.htmlUrl = self.goods.goUrl;
             BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:navi animated:YES completion:NULL];
@@ -290,10 +298,10 @@
 }
 
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-
-}
+//-(void)viewWillAppear:(BOOL)animated{
+//    [super viewWillAppear:animated];
+//
+//}
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -309,11 +317,11 @@
 
 }
 
-- (void) getRelatedInfoById:(NSString *)proId{
-    
+- (void) getRelatedInfoByappType:(NSString *)apptype{
+//    http://www.cwaizg.cn/petweb/actions/getCoreSv.action?uid=getProductByType&appType=m01&limit=5&startNum=0&userToken=userToken_4107426a1ab044de95f19cc1fc364ff0
     NSDictionary *params = @{
-                             @"uid":@"getProductsBySort",
-                             @"minSortId":proId,
+                             @"uid":@"getProductByType",
+                             @"appType":apptype,
                              @"startNum":@"0",
                              @"limit":@"5"
                              };
@@ -352,7 +360,7 @@
             self.goods = [[GoodsModel alloc] initWithDictionary:[responseData objectForKey:@"data"]] ;
             [self loadViewAndData];
             //获取猜你喜欢数据
-            [self getRelatedInfoById:self.goods.appSort];
+            [self getRelatedInfoByappType:self.goods.appType];
         }else{
             [self hideLoadingView];
             mAlertAPIErrorInfo(error);

@@ -181,18 +181,21 @@
         _goodsView.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
         _goodsView.backgroundColor = [UIColor whiteColor];
         _goodsView.clipsToBounds = YES;
-        _goodsView.layer.cornerRadius = 5;
+        _goodsView.layer.cornerRadius = 10;
         UIImageView *topBgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 75, 30)];
         topBgImageView.image = [UIImage imageNamed:@"shakeTopBgImage"];
         topBgImageView.center = CGPointMake(_goodsView.width/2, topBgImageView.height/2);
         [_goodsView addSubview:topBgImageView];
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 75, 30)];
-        titleLabel.center = topBgImageView.center;
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 75, 20)];
+        
+        titleLabel.center = CGPointMake(topBgImageView.center.x , topBgImageView.center.y-2 );
         [titleLabel setTextAlignment:NSTextAlignmentCenter];
         [titleLabel setFont:[UIFont systemFontOfSize:14]];
         [titleLabel setTextColor:[UIColor whiteColor]];
         [titleLabel setText:@"优惠"];
+        
+//        titleLabel.contentHorizontalAlignment = UIControlContentVerticalAlignmentTop;
         [_goodsView addSubview:titleLabel];
         
         goodsImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, topBgImageView.bottom + 15, 140, 125)];
@@ -293,6 +296,8 @@
             NSInteger canShareNum = [[[responseData objectForKey:@"data"]  objectForKey:@"sharenum"] integerValue];
             if ([code isEqualToString:@"0"] && canShareNum<5) {
                 [self showNoOpView];
+//                [self showGoodsView:nil];
+
                 return ;
             }
             else if (canShareNum >=5) {
@@ -321,7 +326,7 @@
 
         }else{
             self.showPopViewFlag = NO;
-        }
+                   }
     }];
 }
 #pragma mark - 摇一摇会出现的情况

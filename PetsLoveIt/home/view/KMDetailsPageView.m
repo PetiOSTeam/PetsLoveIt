@@ -80,11 +80,11 @@
     
     if(!self.imageView)
         [self setupImageView];
-    if (!self.tableView)
-        [self setupTableView];
+    
     
     [self addSubview:self.tableView2];
-
+    if (!self.tableView)
+        [self setupTableView];
     
     if (!self.tableView.tableHeaderView && !self.isCheapProduct)
         [self setupTableViewHeader];
@@ -187,6 +187,7 @@
     }
     self.label2.text = goods.name;
     self.label3.text = goods.desc;
+    self.goods = goods;
     // 根据模型数据设置控件的坐标和尺寸
     [self setupviewFrameWithDetailsdata];
 }
@@ -280,6 +281,7 @@
                 GoodsModel *typemodel = [[GoodsModel alloc] initWithDictionary:typedict];
                 if (![self.goods.prodId isEqualToString:typemodel.prodId]) {
                     [self.cheapTable.dataArray addObject:typemodel];
+                    NSLog(@"goods = %@",self.goods);
                 }
                 
             }

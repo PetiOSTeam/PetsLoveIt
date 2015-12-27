@@ -335,7 +335,7 @@
     //url,分为公告和话题
     
     configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"common.action"];
-    
+   //uid=getUsercollect&appType=m10&limit=5&startNum=0&userToken
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
