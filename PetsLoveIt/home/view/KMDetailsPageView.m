@@ -250,20 +250,24 @@
             [self setupTableViewHeader];
             
             self.tableView.tableHeaderView.height = self.headerView.height;
+            if ([self.delegate respondsToSelector:@selector(detailWebViewDidFinishLoad)]) {
+                [self.delegate detailWebViewDidFinishLoad];
+            }
         }];
         
     }else{
         self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom ) ;
+        [self setupTableViewHeader];
+        
+        self.tableView.tableHeaderView.height = self.headerView.height;
+        
+        if ([self.delegate respondsToSelector:@selector(detailWebViewDidFinishLoad)]) {
+            [self.delegate detailWebViewDidFinishLoad];
+        }
     }
     
     
-    [self setupTableViewHeader];
-    
-    self.tableView.tableHeaderView.height = self.headerView.height;
-    
-    if ([self.delegate respondsToSelector:@selector(detailWebViewDidFinishLoad)]) {
-        [self.delegate detailWebViewDidFinishLoad];
-    }
+   
 }
 
 -(void)getCheapProductOnCompletion:(void (^)())completionBlock{

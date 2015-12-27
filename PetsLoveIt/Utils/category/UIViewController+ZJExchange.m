@@ -97,6 +97,7 @@ static const char kBottomFrameKey = 'g';
    // NSLog(@"=========keypath:%@\n=========object:%@\n===========change:%@", keyPath, object, change);
     if ([keyPath isEqualToString:mContentSizeKeyPath] && [object isEqual:self.topScrollView]) {
         CGSize newContentSize = [change[@"new"] CGSizeValue];
+        newContentSize.height = newContentSize.height<mScreenHeight-49?mScreenHeight-49:newContentSize.height;
         UILabel *bottomLabel = [self.topScrollView viewWithTag:mBottomChangeViewTag];
         bottomLabel.frame = CGRectMake(0, newContentSize.height, bottomLabel.frame.size.width, bottomLabel.frame.size.height);
     }

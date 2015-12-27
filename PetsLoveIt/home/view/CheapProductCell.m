@@ -18,6 +18,7 @@
     self.mainContainerView.layer.borderWidth = kLayerBorderWidth;
     self.mainContainerView.backgroundColor = mRGBToColor(0xfdfdfd);
     self.buyBtn.layer.cornerRadius = 15;
+    self.buyBtn.enabled = NO;
     self.showDetailLabel.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showGoodsDetailVC)];
     [self.showDetailLabel addGestureRecognizer:tap];

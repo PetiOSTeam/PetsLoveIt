@@ -62,8 +62,6 @@
         [self loadViewAndData];
         //获取猜你喜欢数据
         [self getRelatedInfoByappType:self.goods.appType];
-        //获取热门评论
-        [self getHotComment];
     }
     
     
@@ -78,9 +76,9 @@
  
 }
 -(void)detailWebViewDidFinishLoad{
-
+    //顶部的商品信息加载完后，再加载热门评论，fix热门评论先出现的bug
+    [self getHotComment];
     [self hideLoadingView];
-    
     
 }
 
@@ -549,7 +547,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return sectionHeaderHeight;
+    return self.dataArray.count>0? sectionHeaderHeight:0;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
