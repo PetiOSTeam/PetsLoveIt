@@ -36,8 +36,8 @@
 
 - (void)prepareViewAndData{
     [self config];
-    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
-//    self.tableView.height = mScreenHeight -mStatusBarHeight-mNavBarHeight- [RichEditToolBar defaultHeight];
+    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH - [RichEditToolBar defaultHeight];
+//    self.tableView.height = mScreenHeight -mStatusBarHeight-mNavBarHeight- [RichEditToolBar defaultHeight] ;
     
     _editToolBar =[[RichEditToolBar alloc] initWithFrame:CGRectMake(0, mScreenHeight -mStatusBarHeight-mNavBarHeight- [RichEditToolBar defaultHeight], mScreenWidth, [RichEditToolBar defaultHeight]) hideFaceBtn:YES];
     _editToolBar.top = self.tableView.bottom;
@@ -45,8 +45,10 @@
     _editToolBar.delegate = self;
     _editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
     [self.view addSubview:_editToolBar];
+    _editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
     _menuview = [[MoreMenuContainerView alloc]init];
     _menuview.editToolBar = _editToolBar;
+   
     
 }
 
@@ -174,17 +176,18 @@
 }
 
 #pragma mark editToolBarDelegate
-- (void)didChangeFrameToHeight:(CGFloat)toHeight keyboardInfo:(NSDictionary *)userInfo
-{
+- (void)didChangeFrameToHeight:(CGFloat)toHeight keyboardInfo:(NSDictionary *)userInfo{
     NSInteger cuver = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
     [UIView beginAnimations:@"" context:nil];
     [UIView setAnimationCurve:cuver];
     [UIView setAnimationDuration:[userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]];
     CGRect rect = self.tableView.frame;
-    rect.size.height = self.view.frame.size.height - toHeight-mNavBarHeight-mStatusBarHeight;
+    rect.size.height = self.view.frame.size.height - toHeight-mNavBarHeight-mStatusBarHeight ;
     self.tableView.frame = rect;
     
+    NSLog(@"toHeight%f",toHeight);
     [UIView commitAnimations];
+
 }
 
 /*

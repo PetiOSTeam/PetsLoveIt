@@ -55,7 +55,7 @@
     _editToolBar.delegate = self;
     _editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
     [self.view addSubview:_editToolBar];
-    
+    _editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
     
     
     moreMenuContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth-40+10, 50)];
@@ -310,11 +310,11 @@
     CommentCell *cell =(CommentCell *) [tableView cellForRowAtIndexPath:indexPath];
     selectedComment = [self.dataList objectAtIndex:indexPath.row];
     [DXPopover showAtView:cell  atViewOffsetX:cell.center.x atViewOffsetY:cell.top+cell.commentLabel.top popoverPostion:DXPopoverPositionDown withContentView:moreMenuContainerView inView:self.tableView ];
-//    [self getUserISpraiseandnopraisenum];
-//    NSString *zancount = [[NSString alloc]initWithFormat:@"赞(%@)",selectedComment.praiseNum?selectedComment.praiseNum:@"0" ];
-//    [popButton4 setTitle:zancount forState:UIControlStateNormal];
-//    NSString *caicount = [[NSString alloc]initWithFormat:@"踩(%@)",selectedComment.stepNum?selectedComment.stepNum:@"0"];
-//    [popButton5 setTitle:caicount forState:UIControlStateNormal];
+    [self getUserISpraiseandnopraisenum];
+    NSString *zancount = [[NSString alloc]initWithFormat:@"赞(%@)",selectedComment.praiseNum?selectedComment.praiseNum:@"0" ];
+    [popButton4 setTitle:zancount forState:UIControlStateNormal];
+    NSString *caicount = [[NSString alloc]initWithFormat:@"踩(%@)",selectedComment.stepNum?selectedComment.stepNum:@"0"];
+    [popButton5 setTitle:caicount forState:UIControlStateNormal];
 
     
 }
@@ -381,7 +381,8 @@
     CGRect rect = self.tableView.frame;
     rect.size.height = self.view.frame.size.height - toHeight-mNavBarHeight-mStatusBarHeight;
     self.tableView.frame = rect;
-    
+    NSLog(@"toHeight%f",toHeight);
+
     [UIView commitAnimations];
 }
 
