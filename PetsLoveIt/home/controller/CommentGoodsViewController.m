@@ -36,12 +36,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self showNaviBarView];
     // Do any additional setup after loading the view from its nib.
     self.navBarTitleLabel.text = @"所有评论";
-    self.navigationBarView.backgroundColor = [UIColor redColor];
     self.tableView.top = 64;
     
-    [self showNaviBarView];
     [self prepareViewAndData];
 }
 
