@@ -11,7 +11,7 @@
 #import "MyCommentCell.h"
 #import "GoodsDetailViewController.h"
 
-@interface ReceivedCommentViewController ()<MyCommentCellDelegate>
+@interface ReceivedCommentViewController ()<MyCommentCellDelegate,UITabBarDelegate>
 
 @end
 
@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self prepareViewAndData];
-    
+    self.tableView.delegate = self;
 }
 
 - (void)prepareViewAndData{
@@ -64,7 +64,7 @@
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
                            @"uid":@"getTomeComment",
-                           @"userToken":[AppCache getToken],
+//                           @"userToken":[AppCache getToken],
                            @"userId":[AppCache getUserId]
                         
                            };
@@ -99,7 +99,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+# pragma mark - tableview代理
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"1111");
+}
 /*
 #pragma mark - Navigation
 

@@ -211,7 +211,7 @@
     if (self.isCollect) {
         configModel.params = @{
                                @"uid":@"getUsercollect",
-                               @"appType":@"m01"
+                               @"appType":@"m100"
                                };
     }
     

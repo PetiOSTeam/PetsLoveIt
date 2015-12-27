@@ -78,11 +78,16 @@
                                           forState:UIControlStateNormal];
         [self.footerView.clearButton setTitle:@"清除搜索记录"
                                      forState:UIControlStateNormal];
+        self.footerView.clearButton.enabled = YES;
+        [self.footerView addTopBorderWithColor:kLineColor andWidth:.5];
     }else {
+        
         [self.footerView.clearButton setTitleColor:kLineColor
                                           forState:UIControlStateNormal];
         [self.footerView.clearButton setTitle:@"暂无搜索记录"
                                      forState:UIControlStateNormal];
+        self.footerView.clearButton.enabled = NO;
+//        [self.footerView addTopBorderWithColor:kLineColor andWidth:0];
     }
 }
 
@@ -188,6 +193,7 @@
     }else {
         headerView.changeKeyworksButton.hidden = YES;
         headerView.title = @"搜索历史";
+        
     }
     return headerView;
 }
@@ -294,6 +300,7 @@
             [weakSelf.dataSource replaceObjectAtIndex:1 withObject:historys];
             [weakSelf.tableView reloadData];
             [weakSelf setupSubviews];
+            
         };
         _footerView.width = self.view.width;
     }

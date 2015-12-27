@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UILabel *placeHolderLabel;
 @property (weak, nonatomic) IBOutlet UIButton *okButton;
+@property (weak, nonatomic) IBOutlet UILabel *BLinstructions;
 
 @end
 
@@ -34,6 +35,17 @@
     self.okButton.layer.borderColor = mRGBToColor(0xc2c2c2).CGColor;
     self.okButton.layer.borderWidth = 1;
     self.okButton.layer.cornerRadius = 23;
+    
+    NSString *labelText = self.BLinstructions.text;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    
+    [paragraphStyle setLineSpacing:2.5];//调整行间距
+    
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
+    self.BLinstructions.attributedText = attributedString;
+    
+    [self.BLinstructions sizeToFit];
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
