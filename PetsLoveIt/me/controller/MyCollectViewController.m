@@ -18,12 +18,16 @@
 #import "TaoPetViewController.h"
 #import "TaoPetViewController.h"
 
-@interface MyCollectViewController ()
+@interface MyCollectViewController ()<MyCollectDelegate,UIAlertViewDelegate>
 @property (nonatomic,strong) CorePagesView *pagesView;
+@property (nonatomic,strong) UIView *menuView;
 
 @end
 
-@implementation MyCollectViewController
+@implementation MyCollectViewController{
+    UIButton *allSelectBtn;
+    UIButton *rightNaviButton;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,8 +38,129 @@
 - (void)prepareViewAndData{
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"我的收藏";
-    self.view.width = mScreenWidth;
+    [self addNavRightBtn];
     [self setPageViews];
+}
+
+- (void)addNavRightBtn{
+    rightNaviButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightNaviButton.frame = CGRectMake(mScreenWidth-60, 30, 44, 34);
+    rightNaviButton.center = CGPointMake(rightNaviButton.center.x, 42);
+    [rightNaviButton setTitle:@"编辑" forState:UIControlStateNormal];
+    [rightNaviButton setTitle:@"取消" forState:UIControlStateSelected];
+    [rightNaviButton.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [rightNaviButton setTitleColor:mRGBToColor(0xff4401) forState:UIControlStateNormal];
+    [rightNaviButton addTarget:self action:@selector(editCollectAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationBarView addSubview:rightNaviButton];
+}
+
+- (void)editCollectAction:(id)sender{
+    UIButton *button = sender;
+    button.selected = !button.selected;
+    BOOL selected = button.selected;
+    self.pagesView.scrollView.scrollEnabled = self.pagesView.pagesBarView.userInteractionEnabled= !selected;
+    CoreLTVC *currentVC = self.pagesView.currentVC;
+    [currentVC showSelectView:selected];
+    [self showMenuView:selected];
+}
+
+-(void) showMenuView:(BOOL) show{
+    if (show) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.menuView.top = mScreenHeight-49;
+        }];
+    }else{
+        [UIView animateWithDuration:0.3 animations:^{
+            self.menuView.top = mScreenHeight;
+        }];
+    }
+    
+}
+
+-(UIView *)menuView{
+    if (!_menuView) {
+        _menuView = [[UIView alloc] initWithFrame:CGRectMake(0, mScreenHeight, mScreenWidth, 49)];
+        [_menuView setBackgroundColor:mRGBToColor(0xffffff)];
+        [_menuView addTopBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+        allSelectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [allSelectBtn setFrame:CGRectMake(0, 0, 100, _menuView.height)];
+        [allSelectBtn setImage:[UIImage imageNamed:@"unChooseIcon"] forState:UIControlStateNormal];
+        [allSelectBtn setImage:[UIImage imageNamed:@"chooseIcon"] forState:UIControlStateSelected];
+        [allSelectBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 12, 0, 100-25-12)];
+        [allSelectBtn setTitle:@"全选" forState:UIControlStateNormal];
+        [allSelectBtn setTitleColor:mRGBToColor(0xff4401) forState:UIControlStateNormal];
+        [allSelectBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+        [allSelectBtn addTarget:self action:@selector(allSelectAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_menuView addSubview:allSelectBtn];
+        
+        UIButton *deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [deleteBtn setFrame:CGRectMake(0, 0, 100, _menuView.height)];
+        deleteBtn.center = CGPointMake(mScreenWidth/2, _menuView.height/2);
+        [deleteBtn setImage:[UIImage imageNamed:@"deleteChooseIcon"] forState:UIControlStateNormal];
+        [deleteBtn addTarget:self action:@selector(deleteSelectAction) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_menuView addSubview:deleteBtn];
+        [self.view addSubview:_menuView];
+    }
+    return _menuView;
+}
+
+- (void)allSelectAction:(id)sender{
+    UIButton *button = sender;
+    button.selected = !button.selected;
+    BOOL selected = button.selected;
+    id currentVC = self.pagesView.currentVC;
+    if ([currentVC isKindOfClass:[DiscountViewController class]]) {
+        DiscountViewController *vc = currentVC;
+        [vc selectAllData:selected];
+
+    }
+
+}
+
+- (void)deleteSelectAction{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您确定要删除吗？"
+                                                        message:nil
+                                                       delegate:self
+                                              cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+    
+    
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 1) {
+        CoreLTVC *currentVC = self.pagesView.currentVC;
+        NSMutableString *proIds = [NSMutableString new];
+        for (NSString *proId in currentVC.seletedArray) {
+            [proIds appendString:proId];
+            [proIds appendString:@","];
+        }
+        NSDictionary *params = @{
+                                 @"uid":@"delcollectByUserId",
+                                 @"productId":proIds
+                                 };
+        [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeNone];
+        [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+            [SVProgressHUD dismiss];
+            if (!error) {
+                
+                rightNaviButton.selected = NO;
+                BOOL selected = rightNaviButton.selected;
+                self.pagesView.scrollView.scrollEnabled = self.pagesView.pagesBarView.userInteractionEnabled= !selected;
+                CoreLTVC *currentVC = self.pagesView.currentVC;
+                [currentVC.seletedArray removeAllObjects];
+                [currentVC showSelectView:selected];
+                [self showMenuView:selected];
+                [currentVC reloadDataWithheaderViewStateRefresh];
+            }
+        }];
+    }
+}
+
+#pragma mark - MyCollect delegate
+-(void)selectAllCollect:(BOOL)selectAll{
+    allSelectBtn.selected = selectAll;
 }
 
 - (void)setPageViews{
@@ -44,11 +169,9 @@
     NSArray *topicArray = @[@"优惠",@"海淘",@"淘宠",@"晒单",@"经验",@"资讯",@"其他"];
     for (int i=0; i<topicArray.count; i++) {
         CoreLTVC *vc;
-        if (i==6) {
-            vc = [CarefulSelectViewController new];
-            
-        }else if (i==0){
+        if (i==0){
             vc = [DiscountViewController new];
+
         }else if (i==1){
             vc = [MassTaoViewController new];
         }else if (i==2){
@@ -60,8 +183,12 @@
             vc = [ExperienceViewController new];
         }else if (i==5){
             vc = [NewsViewController new];
+        }else if (i==6) {
+            vc = [CarefulSelectViewController new];
+            
         }
         vc.isCollect = YES;
+        vc.delegate = self;
         CorePageModel *pageModel=[CorePageModel model:vc pageBarName:topicArray[i]];
         [pageModels addObject:pageModel];
         

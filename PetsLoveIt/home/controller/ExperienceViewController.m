@@ -11,7 +11,7 @@
 #import "ArticleTableCell.h"
 #import "GoodsDetailViewController.h"
 
-@interface ExperienceViewController ()
+@interface ExperienceViewController ()<GoodsCellDelegate>
 
 @end
 
@@ -44,6 +44,36 @@
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
     }
     
+}
+#pragma mark - GoodsCell delegate
+-(void)selectCollect:(NSString *)proId isSelect:(BOOL)isSelect{
+    if (isSelect) {
+        if (![self.seletedArray containsObject:proId]) {
+            [self.seletedArray addObject:proId];
+        }
+    }else{
+        [self.seletedArray removeObject:proId];
+    }
+    BOOL isAllSelect = NO;
+    if (self.seletedArray.count == self.dataList.count) {
+        isAllSelect = YES;
+    }
+    if ([self.delegate respondsToSelector:@selector(selectAllCollect:)]) {
+        [self.delegate selectAllCollect:isAllSelect];
+    }
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ArticleTableCell * cell =(ArticleTableCell *) [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    [cell showSelectView:self.showSelect];
+    GoodsModel *goods = [self.dataList objectAtIndex:indexPath.row];
+    cell.delegate = self;
+    if ([self.seletedArray containsObject:goods.prodId]) {
+        cell.selectBtn.selected = YES;
+    }else{
+        cell.selectBtn.selected = NO;
+    }
+    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

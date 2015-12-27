@@ -23,6 +23,7 @@
  */
 @property (nonatomic,strong) NSArray *pageModels;
 
+@property (nonatomic,weak) id currentVC;//当前选中的vc
 
 /**
  *  快速实例化对象
