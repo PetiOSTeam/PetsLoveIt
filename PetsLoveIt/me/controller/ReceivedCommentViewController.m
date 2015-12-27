@@ -64,7 +64,7 @@
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
                            @"uid":@"getTomeComment",
-//                           @"userToken":[AppCache getToken],
+                           @"userToken":[AppCache getToken],
                            @"userId":[AppCache getUserId]
                         
                            };

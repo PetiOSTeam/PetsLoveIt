@@ -49,7 +49,14 @@
     }
     return self;
 }
-
+- (NSString *)popularitystr
+{
+    if (!_popularitystr) {
+        _popularitystr = [self productpopularityWithobject:self];
+    }
+    
+    return _popularitystr;
+}
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [aCoder encodeObject:self.province forKey:@"zx_province"];
@@ -153,5 +160,25 @@
     
     return result;
 }
-
+// 计算产品的受喜爱度
+- (NSString *)productpopularityWithobject:(ProductModel *)productmodel
+{
+    float zancount = [productmodel.praisenum floatValue];
+    if (productmodel.praisenum == nil) {
+        zancount = 0;
+    }
+    
+    
+    float caicount = [productmodel.praisenum floatValue];
+    if (productmodel.praisenum == nil) {
+        caicount = 0;
+    }
+    float popularityF = zancount/(caicount+zancount)*100;
+    if (zancount == 0) {
+        popularityF =0;
+    }
+    
+    return [[NSString alloc]initWithFormat:@"%.0f%@",popularityF,@"%" ];
+    
+}
 @end
