@@ -79,7 +79,7 @@
         [self.footerView.clearButton setTitle:@"清除搜索记录"
                                      forState:UIControlStateNormal];
         self.footerView.clearButton.enabled = YES;
-        [self.footerView addTopBorderWithColor:kLineColor andWidth:.5];
+//        [self.footerView addTopBorderWithColor:kLineColor andWidth:.5];
     }else {
         
         [self.footerView.clearButton setTitleColor:kLineColor
@@ -216,6 +216,7 @@
             cell.width = mScreenWidth;
             cell.delegate = self;
         }
+        
         [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
         if (keywords.count == 0) {
             [cell startLoading];
@@ -227,6 +228,8 @@
     static NSString *CellIdentifier = @"CellIdentifier";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell.width = mScreenWidth;
+    [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];

@@ -88,7 +88,9 @@
     if (zancount == 0) {
         popularityF =0;
     }
-
+    if (popularityF == 0) {
+        return @"0";
+    }
     return [[NSString alloc]initWithFormat:@"%.0f%@",popularityF,@"%" ];
 
 }

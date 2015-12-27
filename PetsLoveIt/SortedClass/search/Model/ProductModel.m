@@ -12,6 +12,7 @@
 
 -(id)initWithJson:(NSDictionary *)json;
 {
+//    NSLog(@"json😄😄55%@",json);
     self = [super init];
     if(self)
     {
@@ -44,6 +45,8 @@
             self.appMinpic  = [json objectForKey:@"appMinpic"];
             self.price  = [json objectForKey:@"price"];
             self.collectnum  = [json objectForKey:@"collectnum"];
+            self.typeName = [json objectForKey:@"typeName"];
+            self.notworthnum = [json objectForKey:@"notworthnum"];
             
         }
     }
@@ -86,6 +89,10 @@
     [aCoder encodeObject:self.appMinpic forKey:@"zx_appMinpic"];
     [aCoder encodeObject:self.price forKey:@"zx_price"];
     [aCoder encodeObject:self.collectnum forKey:@"zx_collectnum"];
+    [aCoder encodeObject:self.typeName forKey:@"zx_typeName"];
+    [aCoder encodeObject:self.notworthnum forKey:@"notworthnum"];
+    
+
     
 }
 
@@ -122,7 +129,8 @@
         self.appMinpic = [aDecoder decodeObjectForKey:@"zx_appMinpic"];
         self.price = [aDecoder decodeObjectForKey:@"zx_price"];
         self.collectnum = [aDecoder decodeObjectForKey:@"zx_collectnum"];
-        
+        self.typeName = [aDecoder decodeObjectForKey:@"zx_typeName"];
+        self.notworthnum = [aDecoder decodeObjectForKey:@"zx_notworthnum"];
     }
     return self;
 }
@@ -157,7 +165,8 @@
     result = [result stringByAppendingFormat:@"appMinpic : %@\n",self.appMinpic];
     result = [result stringByAppendingFormat:@"price : %@\n",self.price];
     result = [result stringByAppendingFormat:@"collectnum : %@\n",self.collectnum];
-    
+    result = [result stringByAppendingFormat:@"typeName : %@\n",self.typeName];
+    result = [result stringByAppendingFormat:@"notworthnum : %@\n",self.notworthnum];
     return result;
 }
 // 计算产品的受喜爱度
@@ -169,15 +178,17 @@
     }
     
     
-    float caicount = [productmodel.praisenum floatValue];
-    if (productmodel.praisenum == nil) {
+    float caicount = [productmodel.notworthnum floatValue];
+    if (productmodel.notworthnum == nil) {
         caicount = 0;
     }
     float popularityF = zancount/(caicount+zancount)*100;
     if (zancount == 0) {
         popularityF =0;
     }
-    
+    if (popularityF == 0) {
+        return @"0";
+    }
     return [[NSString alloc]initWithFormat:@"%.0f%@",popularityF,@"%" ];
     
 }
