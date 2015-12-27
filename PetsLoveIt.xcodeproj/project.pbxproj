@@ -578,6 +578,7 @@
 		18F633BC1BF8898000FD98B1 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F633BA1BF8898000FD98B1 /* libSocialSina.a */; };
 		18F633BF1BF88E6400FD98B1 /* KMDetailsPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */; };
 		76AF7FED1BEF7F1F0066659E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AF7FEC1BEF7F1F0066659E /* OrderModel.m */; };
+		9D1B32141C303A1A00CF12CF /* MoreMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B32131C303A1A00CF12CF /* MoreMenuContainerView.m */; };
 		9D1D3AE41C28F9C500155E6D /* ShakeremindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1D3AE31C28F9C500155E6D /* ShakeremindView.m */; };
 		9D1D3B341C297DC300155E6D /* AdviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D1D3B331C297DC300155E6D /* AdviceViewController.xib */; };
 		9D4240AF1C20374A0047EEFD /* SigninbubbleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */; };
@@ -1635,6 +1636,8 @@
 		18F633BE1BF88E6400FD98B1 /* KMDetailsPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDetailsPageView.h; sourceTree = "<group>"; };
 		76AF7FEB1BEF7F1F0066659E /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		76AF7FEC1BEF7F1F0066659E /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		9D1B32121C303A1A00CF12CF /* MoreMenuContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreMenuContainerView.h; path = PetsLoveIt/home/controller/MoreMenuContainerView.h; sourceTree = SOURCE_ROOT; };
+		9D1B32131C303A1A00CF12CF /* MoreMenuContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreMenuContainerView.m; path = PetsLoveIt/home/controller/MoreMenuContainerView.m; sourceTree = SOURCE_ROOT; };
 		9D1D3AE21C28F9C500155E6D /* ShakeremindView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeremindView.h; sourceTree = "<group>"; };
 		9D1D3AE31C28F9C500155E6D /* ShakeremindView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShakeremindView.m; sourceTree = "<group>"; };
 		9D1D3B331C297DC300155E6D /* AdviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviceViewController.xib; sourceTree = "<group>"; };
@@ -3169,6 +3172,8 @@
 		189446F01BEB859D006249F0 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				9D1B32121C303A1A00CF12CF /* MoreMenuContainerView.h */,
+				9D1B32131C303A1A00CF12CF /* MoreMenuContainerView.m */,
 				9D4240AD1C20374A0047EEFD /* SigninbubbleButton.h */,
 				9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */,
 				184726041C17D2EE005E0E29 /* MyCommentCell.h */,
@@ -4475,6 +4480,7 @@
 				1894457F1BEB0774006249F0 /* GTMBase64.m in Sources */,
 				1802A1FF1C0C6042009BC2F8 /* AddAddressViewController.m in Sources */,
 				1894425C1BE9DEC3006249F0 /* AppDelegate.m in Sources */,
+				9D1B32141C303A1A00CF12CF /* MoreMenuContainerView.m in Sources */,
 				189442D21BEAF65A006249F0 /* UIAlertView+Addition.m in Sources */,
 				189445DD1BEB0774006249F0 /* Emoji.m in Sources */,
 				189442E51BEAF65A006249F0 /* AFHTTPClientForiOS6OrLower.m in Sources */,
