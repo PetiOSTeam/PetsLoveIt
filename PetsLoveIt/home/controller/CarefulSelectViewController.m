@@ -82,8 +82,7 @@
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
     }else{
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH;
-        self.tableView.tableHeaderView = self.tableHeaderView;
-    }
+            }
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     [self config];
     
@@ -183,6 +182,10 @@
 
 -(void)dealWithResponseData:(id)obj{
     if (obj) {
+        if (!self.isCollect) {
+            self.tableView.tableHeaderView = self.tableHeaderView;
+
+        }
         
     }
     if (!self.isCollect) {
@@ -279,7 +282,7 @@
 
 -(UIView *)tableHeaderView{
     if (!_tableHeaderView) {
-        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 360)];
+        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 365)];
         [_tableHeaderView setBackgroundColor:mRGBToColor(0xf5f5f5)];
         
         _zqw = [[ZQW_ScrollView alloc]initWithFrame:CGRectMake(0, 5, self.view.bounds.size.width, 180)];

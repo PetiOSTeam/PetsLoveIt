@@ -46,13 +46,16 @@
 
 -(void)setupNaviButton{
     UIButton *shakeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    shakeButton.frame = CGRectMake(0, 30, 64, 34);
-    [shakeButton setImage:[UIImage imageNamed:@"shakeIcon"] forState:UIControlStateNormal];
+    shakeButton.frame = CGRectMake(15, 30, 25, 25);
+
+    [shakeButton setBackgroundImage:[UIImage imageNamed:@"shakeIcon"] forState:UIControlStateNormal];
+
     [shakeButton addTarget:self action:@selector(showShakeVC) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    searchButton.frame = CGRectMake(mScreenWidth-64, 30, 64, 34);
-    [searchButton setImage:[UIImage imageNamed:@"searchGoodsIcon"] forState:UIControlStateNormal];
+    searchButton.frame = CGRectMake(mScreenWidth-40, 30, 25, 25);
+    [searchButton setBackgroundImage:[UIImage imageNamed:@"searchGoodsIcon"] forState:UIControlStateNormal];
+
     [searchButton addTarget:self action:@selector(showSearchVC) forControlEvents:UIControlEventTouchUpInside];
     
     [self.headerView addSubview:shakeButton];
