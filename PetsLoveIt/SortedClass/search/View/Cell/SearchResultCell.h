@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ProductModel.h"
+#import "GoodsModel.h"
 
 @interface SearchResultCell : UITableViewCell
 
-@property (nonatomic, strong) ProductModel *productModel;
+@property (nonatomic, strong) GoodsModel *productModel;
 
 @end

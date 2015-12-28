@@ -40,7 +40,7 @@
     // Configure the view for the selected state
 }
 
-- (void)setProductModel:(ProductModel *)productModel
+- (void)setProductModel:( GoodsModel *)productModel
 {
     _productModel = productModel;
     [self.productImageView sd_setImageWithURL:[NSURL URLWithString:productModel.appMinpic]
@@ -50,7 +50,7 @@
     NSDate *date = [[NSDate alloc] convertStringToDate:productModel.dateTime format:@"yyyy-MM-dd HH:mm:ss"];
     self.timeLabel.text = [date convertDateToStringWithFormat:@"MM-dd"];
     self.priceLabel.text = [NSString stringWithFormat:@"%@元", productModel.price];
-    self.commentNumLabel.text = productModel.commentnum;
+    self.commentNumLabel.text = productModel.commentNum;
     self.likesNumLabel.text = productModel.popularitystr;
     self.collectNumLabel.text = productModel.collectnum;
     [self.commentNumLabel sizeToFit];

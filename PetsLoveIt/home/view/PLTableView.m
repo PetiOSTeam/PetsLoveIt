@@ -121,7 +121,7 @@
     GoodsModel *good = self.dataArray1[indexPath.row];
     UIViewController *parentVC = [self viewController];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.goodsId = good.prodId;
+    vc.goods = good;
     [parentVC.navigationController pushViewController:vc animated:YES];
 }
 

@@ -207,6 +207,7 @@
     if (indexPath.section == 0) {
         static NSString *CellIdentifierKeyWords = @"CellIdentifierKeyWords";
         SearchKeyWordsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierKeyWords];
+        [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
         NSArray *keywords = self.dataSource[indexPath.section];
         if (!cell) {
             cell = [[SearchKeyWordsCell alloc] initWithStyle:UITableViewCellStyleDefault
@@ -221,7 +222,7 @@
             cell.delegate = self;
         }
         
-        [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
+        
         if (keywords.count == 0) {
             [cell startLoading];
         }else {

@@ -182,9 +182,9 @@
 }
 
 -(void) loadGoodsInfo:(GoodsModel *)goods{
-    if((goods.typeName)&&(goods.dateTime)){
+    
     self.label1.text = [NSString stringWithFormat:@"%@  %@",goods.typeName,goods.dateTime] ;
-    }
+    
     self.label2.text = goods.name;
     self.label3.text = goods.desc;
     self.goods = goods;
@@ -207,14 +207,14 @@
     // label3
     CGSize lablesize3 = [self getframeWithTitle:self.label3.text andTitleFont:self.label3.font];
     self.label3.frame = (CGRect){{20, _label2.bottom + 5}, lablesize3};
-    if ([self.label2.text isEqualToString:self.label2.text]) {
-        self.label3.frame = self.label2.frame;
-        self.label3.hidden = YES;
-        
-    }else
-    {
-         self.label3.hidden = NO;
-    }
+//    if ([self.label3.text isEqualToString:self.label2.text]) {
+//        self.label3.frame = self.label2.frame;
+//        self.label3.hidden = YES;
+//        
+//    }else
+//    {
+//         self.label3.hidden = NO;
+//    }
     // webview
     self.webView.frame = CGRectMake(12,_label3.bottom, mScreenWidth - 24 , 300);
    }

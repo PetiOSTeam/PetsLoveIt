@@ -52,7 +52,7 @@
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.pageType = RelatedPersonType;
-    vc.goodsId = model.prodId;
+    vc.goods = model;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

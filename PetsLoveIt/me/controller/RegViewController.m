@@ -229,11 +229,16 @@
 - (IBAction)regAction:(id)sender {
     [self.view endEditing:YES];
     
-    NSString  *mobile = self.accountTextField.text;
+       NSString  *mobile = self.accountTextField.text;
     NSString  *code = self.codeTextField.text;
     NSString  *nickName = self.nickTextField.text;
     NSString  *pwd = self.pwdTextField.text;
-    NSString *encryptedPwd = [[_Des AES128Encrypt:[pwd appendAESKeyAndTimeStamp]] uppercaseString];
+    NSString *encryptedPwd;
+    if (pwd) {
+        encryptedPwd = [[_Des AES128Encrypt:[pwd appendAESKeyAndTimeStamp]] uppercaseString];
+    }
+
+   
     
     if ([self.token length] ==0) {
         //mAlertView(@"提示", @"您还没有点击发送验证码");
@@ -298,8 +303,14 @@
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (responseData) {
             [SVProgressHUD dismiss];
-
-            NSLog(@"%@",responseData);
+             NSLog(@"%@",responseData);
+            NSString *rtnCode = [responseData objectForKey:@"rtnCode"];
+            int rtncodenum = [rtnCode intValue];
+            if (rtncodenum != 1) {
+                [mAppUtils showHint:[responseData objectForKey:@"rtnMsg"]];
+                return ;
+            }else{
+           
             [mAppUtils showHint:[responseData objectForKey:@"rtnMsg"]];
             if (self.isOtherLogin) {
                 //用绑定帐号的接口自动登录
@@ -314,7 +325,7 @@
                 userInfo.password = encryptedPwd;
                 [self loginByAccount:userInfo];
             }
-            
+            }
         }else{
             [SVProgressHUD dismiss];
 
@@ -371,6 +382,7 @@
             NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
             LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
             if (localUserInfo) {
+                
                 localUserInfo.userToken = [responseData objectForKey:@"userToken"];
                 localUserInfo.otherType = self.otherType;
                 localUserInfo.otherAccount = self.otherAccount;

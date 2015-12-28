@@ -28,7 +28,7 @@
     self.userNameLabel.text = order.publisher;
     self.shareTimeLabel.text = order.dateTime;
     self.commentNumLabel.text = order.commentNum;
-    self.likeNumLabel.text = order.favorNum;
+    self.likeNumLabel.text = order.popularitystr;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
