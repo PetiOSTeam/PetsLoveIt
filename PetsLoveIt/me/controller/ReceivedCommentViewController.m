@@ -36,11 +36,12 @@
 
 - (void)prepareViewAndData{
     [self config];
-    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH - [RichEditToolBar defaultHeight];
-//    self.tableView.height = mScreenHeight -mStatusBarHeight-mNavBarHeight- [RichEditToolBar defaultHeight] ;
+    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH ;
+
     
     _editToolBar =[[RichEditToolBar alloc] initWithFrame:CGRectMake(0, mScreenHeight -mStatusBarHeight-mNavBarHeight- [RichEditToolBar defaultHeight], mScreenWidth, [RichEditToolBar defaultHeight]) hideFaceBtn:YES];
-    _editToolBar.top = self.tableView.bottom;
+    //_editToolBar.top = self.tableView.bottom;
+    _editToolBar.hidden = YES;
     _editToolBar.userInteractionEnabled = YES;
     _editToolBar.delegate = self;
     _editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
@@ -50,6 +51,10 @@
     _menuview.editToolBar = _editToolBar;
    
     
+}
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
+    self.editToolBar.hidden = YES;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -134,7 +139,7 @@
     [DXPopover showAtView:cell  atViewOffsetX:cell.center.x atViewOffsetY:cell.top+cell.otherCommentLabel.top popoverPostion:DXPopoverPositionDown withContentView:_menuview inView:self.tableView ];
     
 }
-#pragma mark - 发表评论
+#pragma mark - 发表评论,该页面只有回复
 -(void)didSendText:(NSString *)text{
     
     [self.view endEditing:YES];
@@ -146,27 +151,18 @@
     }
     
     NSDictionary *params = @{
-                             @"uid": @"saveCommentInfo",
-                             @"productId":selectedComment.productId,
-                             @"userId":[AppCache getUserId],
-                             @"content":text
-                             };
-    
-    if (_menuview.isReply && selectedComment) {
-        params = @{
                    @"uid": @"saveCommentInfo",
                    @"productId":selectedComment.productId,
                    @"parentId":selectedComment.commentId,
-                   @"userId":[AppCache getUserId],
+                   @"userId":selectedComment.userId,
                    @"content":text
                    };
-    }
+    
     [APIOperation POST:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
        _menuview.isReply = NO;
         if (!error) {
             self.page = 1;
             self.dataList = nil;
-            [self reloadData];
             [self reloadDataWithheaderViewStateRefresh];
         }else{
             mAlertAPIErrorInfo(error);
@@ -182,9 +178,9 @@
     [UIView setAnimationCurve:cuver];
     [UIView setAnimationDuration:[userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]];
     CGRect rect = self.tableView.frame;
-    rect.size.height = self.view.frame.size.height - toHeight-mNavBarHeight-mStatusBarHeight ;
+    rect.size.height = mScreenHeight - toHeight-mNavBarHeight-mStatusBarHeight ;
     self.tableView.frame = rect;
-    
+    self.editToolBar.top = mScreenHeight - toHeight-mNavBarHeight-mStatusBarHeight - [RichEditToolBar defaultHeight];
     NSLog(@"toHeight%f",toHeight);
     [UIView commitAnimations];
 

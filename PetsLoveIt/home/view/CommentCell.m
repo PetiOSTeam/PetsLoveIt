@@ -42,6 +42,7 @@
 - (void)loadViewWithModel:(CommentModel *)comment{
     //显示parent评论
     if (comment.parent_data) {
+        [self.tableView.dataArray removeAllObjects];
         [comment.parent_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [self.tableView.dataArray  addObject:[[CommentModel alloc] initWithDictionary:obj]];
         }];

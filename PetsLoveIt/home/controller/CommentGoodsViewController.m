@@ -293,7 +293,7 @@
         if (!error) {
             self.page = 1;
             self.dataList = nil;
-            [self reloadData];
+           // [self reloadData];
             [self reloadDataWithheaderViewStateRefresh];
         }else{
             mAlertAPIErrorInfo(error);

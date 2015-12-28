@@ -199,7 +199,7 @@
     //present出来的vc
     UINavigationController *naviVC = (UINavigationController *)self.viewController.navigationController.presentedViewController;
      id presentedVc = [naviVC.viewControllers lastObject];
-    if (![NSStringFromClass([pushedVc class]) isEqualToString:@"CommentGoodsViewController"]&&![NSStringFromClass([presentedVc class]) isEqualToString:@"ForwardDynamicViewController"]&&![NSStringFromClass([pushedVc class]) isEqualToString:@"DynamicDetailViewController"]) {
+    if (![NSStringFromClass([pushedVc class]) isEqualToString:@"CommentGoodsViewController"]&&![NSStringFromClass([presentedVc class]) isEqualToString:@"ForwardDynamicViewController"]&&![NSStringFromClass([pushedVc class]) isEqualToString:@"MyCommentViewController"]) {
         return;
     }
     

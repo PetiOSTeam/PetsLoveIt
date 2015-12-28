@@ -81,8 +81,6 @@
     if (self.isCollect) {
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
     }else{
-        self.tableView.tableHeaderView = self.tableHeaderView;
-
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH;
     }
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
@@ -183,6 +181,9 @@
 }
 
 -(void)dealWithResponseData:(id)obj{
+    if (obj) {
+        self.tableView.tableHeaderView = self.tableHeaderView;
+    }
     if (!self.isCollect) {
         [self getAdData];
         [self getCheapProduct];
