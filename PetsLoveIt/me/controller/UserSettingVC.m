@@ -97,13 +97,15 @@
         case 1:
         {
             cell.textLabel.text = @"设置收货地址";
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, 15)];
+//            cell.detailTextLabel.text = @"用于积分商品的兑换";
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 15)];
             [label setTextColor:mRGBToColor(0x999999)];
             [label setFont:[UIFont systemFontOfSize:13]];
             [label setTextAlignment:NSTextAlignmentRight];
             [label setText:@"用于积分商品的兑换"];
             
-            label.center = cell.contentView.center;
+            label.center = CGPointMake(cell.contentView.center.x, 27);
+            
             [cell.contentView addSubview:label];
             UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
             arrow.image = [UIImage imageNamed:@"rightArrowIcon"];
