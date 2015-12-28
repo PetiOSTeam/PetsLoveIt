@@ -211,7 +211,16 @@
                              };
     [APIOperation GET:@"smsathcode.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (responseData) {
-            self.token = [responseData objectForKey:@"userToken"];
+             int rtnCode = [[responseData objectForKey:@"rtnCode"] intValue];
+            if (rtnCode == 1) {
+                
+                [mAppUtils showHint:[responseData objectForKey:@"rtnMsg"]];
+                self.token = [responseData objectForKey:@"userToken"];
+            }else{
+                [mAppUtils showHint:[responseData objectForKey:@"rtnMsg"]];
+            }
+            
+           
         }
     }];
 }
@@ -303,7 +312,7 @@
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (responseData) {
             [SVProgressHUD dismiss];
-             NSLog(@"%@",responseData);
+             NSLog(@"%@responseDataresponseDataresponseDataresponseData",responseData);
             NSString *rtnCode = [responseData objectForKey:@"rtnCode"];
             int rtncodenum = [rtnCode intValue];
             if (rtncodenum != 1) {
