@@ -154,7 +154,7 @@
                    @"uid": @"saveCommentInfo",
                    @"productId":selectedComment.productId,
                    @"parentId":selectedComment.commentId,
-                   @"userId":selectedComment.userId,
+                   @"userId":[AppCache getUserId],
                    @"content":text
                    };
     
