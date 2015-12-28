@@ -1041,11 +1041,13 @@
              if (responseData) {
                 LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
                  NSDictionary *userdic = [responseData objectForKey:@"bean"];
-                 if (userdic) {
+                 if (userdic.count>0) {
                      NSString *realtimeintegral = userdic[@"userIntegral"];
                      
+                     if (realtimeintegral) {
+                         _integralstr = [[NSString alloc]initWithString:realtimeintegral];
+                     }
                      
-                     _integralstr = [[NSString alloc]initWithString:realtimeintegral];
                      [self loadingIntegralandrankWithData:userInfo];
                  }
                 
