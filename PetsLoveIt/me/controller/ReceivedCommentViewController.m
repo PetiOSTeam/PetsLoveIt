@@ -153,7 +153,7 @@
     NSDictionary *params = @{
                    @"uid": @"saveCommentInfo",
                    @"productId":selectedComment.productId,
-                   @"parentId":selectedComment.commentId,
+                   @"parentId":selectedComment.parentId,
                    @"userId":[AppCache getUserId],
                    @"content":text
                    };
