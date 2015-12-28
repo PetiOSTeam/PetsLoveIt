@@ -87,7 +87,12 @@ static NSString * CellIdentifier = @"GradientCell";
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    WEAKSELF
+    GradeModel *model = self.gradeModels[indexPath.row];
+    GradeDetailViewController *gradeVC = [[GradeDetailViewController alloc] initWithNibName:@"GradeDetailViewController"
+                                                                                     bundle:nil];
+    gradeVC.gradeModel = model;
+    [weakSelf.navigation pushViewController:gradeVC animated:YES];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section

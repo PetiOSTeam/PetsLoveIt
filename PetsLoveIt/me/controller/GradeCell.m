@@ -64,6 +64,7 @@
     if (self.gradeStyle == GradeStyleHistory) {
         [self.exchangeButton setBackgroundColor:[UIColor colorWithWhite:0.459 alpha:1.000]];
         self.exchangeButton.userInteractionEnabled = YES;
+        self.userInteractionEnabled = YES;
         [self.exchangeButton setTitle:@"已兑换" forState:UIControlStateNormal];
     }
 }

@@ -25,9 +25,9 @@
     self.width = mScreenWidth;
     [self addBottomBorderWithColor:kLineColor andWidth:.5];
     
-    self.salesVolumeBtn.tag = 0;
-    self.priceBtn.tag = 1;
-    self.commentBtn.tag = 2;
+    self.salesVolumeBtn.tag = 1;
+    self.priceBtn.tag = 2;
+    self.commentBtn.tag = 3;
     [self.salesVolumeBtn addTarget:self
                             action:@selector(clickActionWithSales:)
                   forControlEvents:UIControlEventTouchUpInside];

@@ -41,6 +41,7 @@
 - (void)setupNavigationUI
 {
     self.navigationItem.titleView = self.searchButton;
+    
 }
 
 - (void)setupUI
