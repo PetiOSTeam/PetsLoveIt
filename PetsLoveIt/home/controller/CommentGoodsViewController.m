@@ -17,7 +17,6 @@
 
 @interface CommentGoodsViewController ()<RichEditViewDelegate,DXMessageToolBarDelegate>
 @property (nonatomic,strong) RichEditToolBar *editToolBar;
-
 @end
 
 @implementation CommentGoodsViewController{
@@ -57,7 +56,8 @@
     _editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
     [self.view addSubview:_editToolBar];
     _editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
-
+    
+    
     moreMenuContainerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth-40+10, 50)];
     CGFloat popBtnWidth = (mScreenWidth-40)/6;
     popButton1 = [[UIButton alloc] initWithFrame:CGRectMake(5, 10, popBtnWidth, 30)];
@@ -381,7 +381,8 @@
     CGRect rect = self.tableView.frame;
     rect.size.height = self.view.frame.size.height - toHeight-mNavBarHeight-mStatusBarHeight;
     self.tableView.frame = rect;
-    
+    NSLog(@"toHeight%f",toHeight);
+
     [UIView commitAnimations];
 }
 
