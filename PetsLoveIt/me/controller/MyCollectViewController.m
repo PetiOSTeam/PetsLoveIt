@@ -137,8 +137,8 @@
             [proIds appendString:@","];
         }
         NSDictionary *params = @{
-                                 @"uid":@"delcollectByUserId",
-                                 @"productId":proIds
+                                 @"uid":@"delUsercollect",
+                                 @"collectId":proIds
                                  };
         [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeNone];
         [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {

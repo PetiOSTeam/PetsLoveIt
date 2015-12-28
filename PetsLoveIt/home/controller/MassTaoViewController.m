@@ -65,7 +65,7 @@
     [cell showSelectView:self.showSelect];
     GoodsModel *goods = [self.dataList objectAtIndex:indexPath.row];
     cell.delegate = self;
-    if ([self.seletedArray containsObject:goods.prodId]) {
+    if ([self.seletedArray containsObject:goods.collectId]) {
         cell.selectBtn.selected = YES;
     }else{
         cell.selectBtn.selected = NO;

@@ -50,6 +50,7 @@ typedef NS_ENUM(NSUInteger, Userpopularity) {
 @property (nonatomic,strong) NSString *publisher;
 @property (nonatomic,strong) NSString *publisherIcon;
 @property (nonatomic,strong) NSString *notworthnum;
+@property (nonatomic,strong) NSString *collectId;
 /**产品的喜爱度 */
 @property (nonatomic, copy) NSString* popularitystr;
 /**用户对产品是否评价*/

@@ -115,7 +115,7 @@
         [self.seletedArray removeAllObjects];
         [self.dataList enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             GoodsModel *goods = obj;
-            [self.seletedArray  addObject:goods.prodId];
+            [self.seletedArray  addObject:goods.collectId];
         }];
     }else{
         [self.seletedArray removeAllObjects];
