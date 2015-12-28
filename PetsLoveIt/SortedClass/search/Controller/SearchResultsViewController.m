@@ -87,6 +87,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 - (void)searchRequest:(BOOL)isMore
 {
+    
     [self.searchBar resignFirstResponder];
     WEAKSELF
     [self.tableView addFooterWithCallback:^{
@@ -125,7 +126,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
                  NSDictionary *jsonDict = responseData[@"beans"];
                  NSArray *beans = jsonDict[@"beans"];
                  [weakSelf handerSearchResultsFromDatas:beans more:isMore];
-                 weakSelf.page++;
+                 
              }else {
                  [weakSelf.tableView footerEndRefreshing];
                  if (weakSelf.dataSource.count == 0) {
@@ -153,16 +154,20 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
             ProductModel *model = [[ProductModel alloc] initWithJson:obj];
             [tempArray addObject:model];
         }];
+//        NSLog(@"temparray%@",tempArray);
         if (isMore) {
             [self.dataSource addObjectsFromArray:tempArray];
         }else {
+            
             self.dataSource = tempArray;
         }
         [self.tableView reloadData];
     }
 }
 
+
 #pragma mark - *** search delegate ***
+
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
@@ -223,7 +228,10 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
     return cell;
 }
 
-
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    [self.searchBar endEditing:YES];
+}
 #pragma mark - *** DZNEmptyDataSetSource && Delegate ***
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView

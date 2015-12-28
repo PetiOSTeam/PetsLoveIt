@@ -132,6 +132,10 @@
 }
 
 #pragma mark - *** delegate && dataSource ****
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    [self.searchBar endEditing:YES];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

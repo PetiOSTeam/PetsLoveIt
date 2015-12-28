@@ -9,7 +9,7 @@
 #import "MyHistoryGradeViewController.h"
 #import "MyGradeListView.h"
 #import "UIView+MJExtension.h"
-@interface MyHistoryGradeViewController ()
+@interface MyHistoryGradeViewController ()<UICollectionViewDelegate>
 
 @property (nonatomic, strong) MyGradeListView *gradeListView;
 @property (nonatomic , weak) UIView *view2;
