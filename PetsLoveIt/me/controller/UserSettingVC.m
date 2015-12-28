@@ -9,7 +9,7 @@
 #import "UserSettingVC.h"
 #import "BindEmailViewController.h"
 #import "BindMobileViewController.h"
-#import "AddressViewController.h"
+#import "AddAddressViewController.h"
 
 @interface UserSettingVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -133,7 +133,7 @@
         [self.navigationController pushViewController:vc animated:YES];
 
     }else if (indexPath.row == 1){
-        AddressViewController *vc = [AddressViewController new];
+        AddAddressViewController *vc = [AddAddressViewController new];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
