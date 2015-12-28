@@ -58,6 +58,9 @@
     UIButton *button = sender;
     button.selected = !button.selected;
     BOOL selected = button.selected;
+    if (!selected) {
+        allSelectBtn.selected = NO;
+    }
     self.pagesView.scrollView.scrollEnabled = self.pagesView.pagesBarView.userInteractionEnabled= !selected;
     CoreLTVC *currentVC = self.pagesView.currentVC;
     [currentVC showSelectView:selected];
@@ -110,15 +113,17 @@
     button.selected = !button.selected;
     BOOL selected = button.selected;
     id currentVC = self.pagesView.currentVC;
-    if ([currentVC isKindOfClass:[DiscountViewController class]]) {
-        DiscountViewController *vc = currentVC;
-        [vc selectAllData:selected];
-
-    }
+    CoreLTVC *vc = currentVC;
+    [vc selectAllData:selected];
 
 }
 
 - (void)deleteSelectAction{
+    CoreLTVC *currentVC = self.pagesView.currentVC;
+    if (currentVC.seletedArray.count ==0 ) {
+        mAlertView(@"提示", @"请选择您要删除的收藏");
+        return;
+    }
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"您确定要删除吗？"
                                                         message:nil
                                                        delegate:self
