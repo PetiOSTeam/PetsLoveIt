@@ -58,6 +58,7 @@ typedef enum{
 @property (nonatomic,strong) NSString *customeEndStatusMsg;
 
 @property (nonatomic,strong) NSString *customNoResultMsg;
+@property (nonatomic,strong) NSString *customNoResultSubMsg;
 /**
  *  CoreViewNetWorkStausOffsetY
  */

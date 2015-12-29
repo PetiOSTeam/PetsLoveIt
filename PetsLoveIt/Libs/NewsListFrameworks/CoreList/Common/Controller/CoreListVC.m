@@ -365,9 +365,12 @@ typedef enum{
         [self.scrollView headerSetState:CoreHeaderViewRefreshStateSuccessedResultNoMoreData];
         //第一次来就没有数据：提示没有数据
         NSString *msg =_configModel.hiddenNetWorkStausManager?@"":kNoContentTip;
+        if (_configModel.customNoResultMsg&&!_configModel.hiddenNetWorkStausManager) {
+            msg = _configModel.customNoResultMsg;
+        }
         NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"去看看别的吧";
-        if (_configModel.customNoResultMsg) {
-            subMsg = _configModel.customNoResultMsg;
+        if (_configModel.customNoResultSubMsg&&!_configModel.hiddenNetWorkStausManager) {
+            subMsg = _configModel.customNoResultSubMsg;
         }
         [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
             if (!_configModel.hiddenNetWorkStausManager) {
@@ -394,7 +397,13 @@ typedef enum{
             if (!_configModel.hiddenNetWorkStausManager) {
                 //第一次来就没有数据：提示没有数据
                 NSString *msg =_configModel.hiddenNetWorkStausManager?@"":kNoContentTip;
+                if (_configModel.customNoResultMsg&&!_configModel.hiddenNetWorkStausManager) {
+                    msg = _configModel.customNoResultMsg;
+                }
                 NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"去看看别的吧";
+                if (_configModel.customNoResultSubMsg&&!_configModel.hiddenNetWorkStausManager) {
+                    subMsg = _configModel.customNoResultSubMsg;
+                }
                 [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
                     if (!_configModel.hiddenNetWorkStausManager) {
                         [self reloadDataWithheaderViewStateRefresh];
