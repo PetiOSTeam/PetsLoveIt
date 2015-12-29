@@ -32,11 +32,41 @@
     self.tableView.layer.borderColor = mRGBToColor(0xd2d2d2).CGColor;
     self.tableView.layer.borderWidth = kLayerBorderWidth;
     self.tableView.layer.cornerRadius = 2;
+    
 }
-
+- (void)setupHotcommentCellFrameWith:(NSInteger)index andpraiseNum:(NSString *)praisenum{
+    self.avatarImageView.left = 20;
+    self.nameLabel.left = self.avatarImageView.right+10;
+    self.nameLabel.top = 15;
+    self.dateLabel.frame = CGRectMake(self.nameLabel.left, self.nameLabel.bottom, 100, self.dateLabel.height);
+    self.commentLabel.left = 20;
+    UIImageView *zanImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"upIcon"]];
+    zanImage.frame =CGRectMake(0, 0, 25, 25);
+    zanImage.right = self.width- 10;
+    zanImage.center = CGPointMake(zanImage.center.x, self.avatarImageView.center.y);
+    UILabel *zanLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 40, 12)];
+    zanLabel.right = zanImage.left ;
+    zanLabel.center = CGPointMake(zanLabel.center.x, zanImage.center.y+2);
+    // 设置label的格式和内容
+    NSString *datalabeltitle = [NSString stringWithFormat:@"TOP%li  %@",index+1,self.dateLabel.text];
+    self.dateLabel.text = datalabeltitle;
+    self.dateLabel.textAlignment = NSTextAlignmentLeft;
+    self.dateLabel.font = [UIFont systemFontOfSize:10];
+    [self.dateLabel setTintColor:mRGBColor(153, 153, 153)];
+    zanLabel.text = [NSString stringWithFormat:@" %@",praisenum];
+;
+    zanLabel.textAlignment = NSTextAlignmentRight;
+    zanLabel.font = [UIFont systemFontOfSize:10];
+    [zanLabel setTintColor:mRGBColor(153, 153, 153)];
+    [self.contentView addSubview:zanImage];
+    [self.contentView addSubview:zanLabel];
+}
 -(void)dataFill{
     CommentModel *comment = (CommentModel *)self.model;
     [self loadViewWithModel:comment];
+    if (self.isHotcomment) {
+        [self setupHotcommentCellFrameWith:self.Hotcomenindex andpraiseNum:comment.praiseNum];
+    }
 }
 
 - (void)loadViewWithModel:(CommentModel *)comment{

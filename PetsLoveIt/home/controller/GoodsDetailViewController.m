@@ -495,14 +495,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    CommentModel *comment = self.dataArray[indexPath.row];
     static NSString *cellIdentifier = @"CommentCell";
     CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:cellIdentifier owner:self options:nil] firstObject];
     }
     cell.floorLabel.hidden = YES;
-    CommentModel *comment = self.dataArray[indexPath.row];
-    [cell loadViewWithModel:comment];
+    cell.isHotcomment = YES;
+    cell.Hotcomenindex = indexPath.row;
+    cell.model = comment;
+//    [cell loadViewWithModel:comment];
+//    [cell setupHotcommentCellFrameWith:indexPath.row andpraiseNum:comment.praiseNum];
     return cell;
 }
 

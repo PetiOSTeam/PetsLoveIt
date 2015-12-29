@@ -200,19 +200,19 @@
     
     // label1
     CGSize lablesize1 = [self getframeWithTitle:self.label1.text andTitleFont:self.label1.font];
-    self.label1.frame = (CGRect){{20,_imageView.bottom + 15}, lablesize1};
+    self.label1.frame = (CGRect){{20,_imageView.bottom + 10}, lablesize1};
     // label2
     CGSize lablesize2 = [self getframeWithTitle:self.label2.text andTitleFont:self.label2.font];
-    self.label2.frame = (CGRect){{20, _label1.bottom + 10}, lablesize2};
+    self.label2.frame = (CGRect){{20, _label1.bottom + 15}, lablesize2};
     
     // label3
     CGSize lablesize3 = [self getframeWithTitle:self.label3.text andTitleFont:self.label3.font];
-    self.label3.frame = (CGRect){{20, _label2.bottom }, lablesize3};
+    self.label3.frame = (CGRect){{20, _label2.bottom +10}, lablesize3};
    
     if (self.isShareOrder) {
         UIImageView *iconimage = [[UIImageView alloc]initWithFrame:CGRectMake(20, _label3.bottom+15, 24, 24)];
         [iconimage sd_setImageWithURL:[NSURL URLWithString:self.goods.publisherIcon] placeholderImage:kDefaultHeadImage];
-        iconimage.layer.cornerRadius = 12;
+        [iconimage.layer setCornerRadius:12];
         UILabel *username = [[UILabel alloc]initWithFrame:CGRectMake(54, _label3.bottom+27, 50, 13)];
         username.center = CGPointMake(username.center.x, iconimage.center.y);
         username.text = self.goods.publisher;

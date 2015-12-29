@@ -19,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *floorLabel;
 @property (weak, nonatomic) IBOutlet MLEmojiLabel *commentLabel;
 @property (weak, nonatomic) IBOutlet CommentTableView *tableView;
+@property (assign) BOOL isHotcomment;
+@property (assign) NSInteger Hotcomenindex;
 - (void)loadViewWithModel:(CommentModel *)comment;
 +(CGFloat)heightForCellWithObject:(CommentModel *)object;
+- (void)setupHotcommentCellFrameWith:(NSInteger)index andpraiseNum:(NSString *)praisenum;
 @end
