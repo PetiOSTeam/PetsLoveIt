@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "LTCell.h"
+#import "GoodsModel.h"
+@protocol GoodsCellDelegate <NSObject>
 
+@optional
+-(void) selectCollect:(NSString *)proId isSelect:(BOOL)isSelect;
+
+@end
 @interface ShareOrderCell : LTCell
 
-
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
 
 @property (weak, nonatomic) IBOutlet UIImageView *orderPictureImageView;
 @property (weak, nonatomic) IBOutlet UILabel *ordeerTitleLabel;
@@ -23,7 +30,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *likeImageView;
 @property (weak, nonatomic) IBOutlet UILabel *likeNumLabel;
 
-
+@property (weak,nonatomic) id<GoodsCellDelegate> delegate;
+- (void)showSelectView:(BOOL)show;
+- (void)loadViewWithModel:(GoodsModel *)order;
 
 
 @end

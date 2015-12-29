@@ -23,7 +23,7 @@
     button.selected = !button.selected;
     BOOL selected = button.selected;
     if ([self.delegate respondsToSelector:@selector(selectCollect:isSelect:)]) {
-        [self.delegate selectCollect:good.prodId isSelect:selected];
+        [self.delegate selectCollect:good.collectId isSelect:selected];
     }
 }
 - (void)showSelectView:(BOOL)show{

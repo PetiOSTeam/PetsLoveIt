@@ -10,6 +10,7 @@
 #import "GoodsCell.h"
 #import "ArticleTableCell.h"
 #import "GoodsDetailViewController.h"
+#import "ShareOrderCell.h"
 
 #define rowHeight1 110
 #define rowHeight2 136
@@ -47,6 +48,21 @@
     
     return self;
 }
+
+-(instancetype)initWithFrame:(CGRect)frame isShareOrder:(BOOL)isShareOrder{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.dataSource = self;
+        self.delegate = self;
+        self.tableFooterView = [UIView new];
+        sectionTitle1 = @"猜你喜欢";
+        self.isShareOrder = isShareOrder;
+        [self setContentSize:CGSizeMake(mScreenWidth, self.dataArray1.count*rowHeight1)];
+    }
+    
+    return self;
+}
+
 
 -(NSMutableArray *)dataArray1{
     if (!_dataArray1) {
@@ -89,6 +105,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.isShareOrder) {
+        return [self shareOrderCell:tableView cellForRowAtIndexPath:indexPath];
+    }else
         return  [self goodsCell:tableView cellForRowAtIndexPath:indexPath];
 
 }
@@ -116,6 +135,19 @@
     return cell;
 }
 
+-(UITableViewCell *)shareOrderCell:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *identifier = @"ShareOrderCell";
+    ShareOrderCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil] firstObject];
+    }
+    GoodsModel *article = self.dataArray1[indexPath.row];
+    [cell loadViewWithModel:article];
+    return cell;
+}
+
+
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodsModel *good = self.dataArray1[indexPath.row];
@@ -127,6 +159,9 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
+        if (self.isShareOrder) {
+            return 255;
+        }
         return rowHeight1;
     }else{
         return rowHeight2;

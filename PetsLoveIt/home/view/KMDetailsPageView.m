@@ -49,11 +49,12 @@
     return self;
 }
 
-- (id)initWithFrame:(CGRect)frame isCheapProduct:(BOOL)isCheapProduct
+- (id)initWithFrame:(CGRect)frame isCheapProduct:(BOOL)isCheapProduct isShareOrder:(BOOL)isShareOrder
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.isCheapProduct = isCheapProduct;
+        self.isShareOrder = isShareOrder;
         [self initialize];
     }
     return self;
@@ -97,7 +98,7 @@
 
 -(PLTableView *)tableView2{
     if (!_tableView2) {
-        _tableView2 = [[PLTableView alloc] initWithFrame:CGRectMake(0, _tableView.bottom, mScreenWidth, mScreenHeight-49)];
+        _tableView2 = [[PLTableView alloc] initWithFrame:CGRectMake(0, _tableView.bottom, mScreenWidth, mScreenHeight-49) isShareOrder:self.isShareOrder];
     }
     return _tableView2;
 }
