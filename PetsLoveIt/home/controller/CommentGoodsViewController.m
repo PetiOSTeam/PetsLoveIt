@@ -362,7 +362,7 @@
     configModel.rowHeight=210;
     configModel.hiddenNetWorkStausManager = NO;
     
-    configModel.CoreViewNetWorkStausManagerOffsetY = -30;
+    //configModel.CoreViewNetWorkStausManagerOffsetY = -30;
     //移除返回顶部:(默认开启)
     configModel.removeBackToTopBtn=YES;
     
