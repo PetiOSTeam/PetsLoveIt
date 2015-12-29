@@ -214,7 +214,7 @@
         [commentNumImageView setImage:[UIImage imageNamed:@"listcommentIcon"]];
         [_goodsView addSubview:commentNumImageView];
     
-        commentNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, goodsTitleLabel.bottom + 8, 30, 16)];
+        commentNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, goodsTitleLabel.bottom + 8, 35, 16)];
         commentNumLabel.left = commentNumImageView.right+2;
         commentNumLabel.center = CGPointMake(commentNumLabel.center.x, commentNumImageView.center.y);
         [commentNumLabel setTextAlignment:NSTextAlignmentLeft];
@@ -222,11 +222,11 @@
         [commentNumLabel setTextColor:mRGBToColor(0x999999)];
         [_goodsView addSubview:commentNumLabel];
         
-        UIImageView *favorNumImageView = [[UIImageView alloc] initWithFrame:CGRectMake(commentNumLabel.right + 2, goodsTitleLabel.bottom + 8, 20, 20)];
+        UIImageView *favorNumImageView = [[UIImageView alloc] initWithFrame:CGRectMake(commentNumLabel.right -5, goodsTitleLabel.bottom + 8, 20, 20)];
         [favorNumImageView setImage:[UIImage imageNamed:@"listfavorIcon"]];
         [_goodsView addSubview:favorNumImageView];
         
-        favorNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, goodsTitleLabel.bottom + 8, 30, 16)];
+        favorNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, goodsTitleLabel.bottom + 8, 35, 16)];
         favorNumLabel.left = favorNumImageView.right+2;
         favorNumLabel.center = CGPointMake(favorNumLabel.center.x, favorNumImageView.center.y);
         [favorNumLabel setTextAlignment:NSTextAlignmentLeft];

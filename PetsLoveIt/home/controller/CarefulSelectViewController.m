@@ -82,7 +82,7 @@
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
     }else{
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH;
-    }
+            }
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     [self config];
     
@@ -182,7 +182,11 @@
 
 -(void)dealWithResponseData:(id)obj{
     if (obj) {
-        self.tableView.tableHeaderView = self.tableHeaderView;
+        if (!self.isCollect) {
+            self.tableView.tableHeaderView = self.tableHeaderView;
+
+        }
+        
     }
     if (!self.isCollect) {
         [self getAdData];
@@ -278,7 +282,7 @@
 
 -(UIView *)tableHeaderView{
     if (!_tableHeaderView) {
-        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 360)];
+        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 365)];
         [_tableHeaderView setBackgroundColor:mRGBToColor(0xf5f5f5)];
         
         _zqw = [[ZQW_ScrollView alloc]initWithFrame:CGRectMake(0, 5, self.view.bounds.size.width, 180)];
@@ -410,7 +414,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.goodsId = model.prodId;
+    vc.goods = model;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

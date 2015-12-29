@@ -5,7 +5,7 @@
 //  Created by dllo on 15/10/31.
 //  Copyright © 2015年 zhaoqingwen. All rights reserved.
 //
-
+#define mRGBToColor030(rgb) [UIColor colorWithRed:((float)((rgb & 0xFF0000) >> 16))/255.0 green:((float)((rgb & 0xFF00) >> 8))/255.0 blue:((float)(rgb & 0xFF))/255.0 alpha:0.3]
 #import "ZQW_ScrollView.h"
 #import "UIImageView+WebCache.h"
 
@@ -106,9 +106,10 @@
     //设置页数
     _pageControl.numberOfPages=_pictureArray.count;
     //设置当前页码的颜色
-    _pageControl.currentPageIndicatorTintColor=_currentColor;
+    _pageControl.currentPageIndicatorTintColor=mRGBToColor(0xffffff);
     //设置所有页码的颜色
-    self.pageControl.pageIndicatorTintColor=_allColor;
+    self.pageControl.pageIndicatorTintColor=mRGBToColor030(0xffffff);
+
     //设置事件
     //        [self.pageControl addTarget:self action:@selector(pageAction) forControlEvents:UIControlEventValueChanged];
     

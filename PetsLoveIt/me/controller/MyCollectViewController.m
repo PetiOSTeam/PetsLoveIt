@@ -173,24 +173,24 @@
 - (void)setPageViews{
     
     NSMutableArray *pageModels = [NSMutableArray new];
-    NSArray *topicArray = @[@"优惠",@"海淘",@"淘宠",@"晒单",@"经验",@"资讯",@"其他"];
+    NSArray *topicArray = @[@"白菜",@"优惠",@"海淘",@"淘宠",@"晒单",@"经验",@"资讯"];
     for (int i=0; i<topicArray.count; i++) {
         CoreLTVC *vc;
-        if (i==0){
+        if (i==1){
             vc = [DiscountViewController new];
 
-        }else if (i==1){
-            vc = [MassTaoViewController new];
         }else if (i==2){
+            vc = [MassTaoViewController new];
+        }else if (i==3){
             vc = [TaoPetViewController new];
         }
-        else if (i ==3) {
+        else if (i ==4) {
             vc = [ShareOrderViewController new];
-        } else if (i==4){
+        } else if (i==5){
             vc = [ExperienceViewController new];
-        }else if (i==5){
+        }else if (i==6){
             vc = [NewsViewController new];
-        }else if (i==6) {
+        }else if (i==0) {
             vc = [CarefulSelectViewController new];
             
         }

@@ -17,5 +17,7 @@
 @property (strong, nonatomic) NSString *shareTime;
 @property (strong, nonatomic) NSString *commentNum;
 @property (strong, nonatomic) NSString *likeNum;
-
+@property (nonatomic,strong) NSString *notworthnum;
+/**产品的喜爱度 */
+@property (nonatomic, copy) NSString* popularitystr;
 @end

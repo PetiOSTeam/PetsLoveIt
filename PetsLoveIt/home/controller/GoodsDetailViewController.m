@@ -58,6 +58,7 @@
         [self getProductDetailById:self.goodsId];
 
     }else if (self.goods){
+        self.goodsId = self.goods.prodId;
         [self hideLoadingView];
         [self loadViewAndData];
         //获取猜你喜欢数据
@@ -248,6 +249,8 @@
             [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
             if (collectFlag){
                 [mAppUtils showHint:@"收藏成功"];
+            }else{
+                [mAppUtils showHint:@"取消收藏成功"];
             }
             
         }else{
@@ -356,6 +359,8 @@
         //[self hideLoadingView];
         if (!error) {
             self.goods = [[GoodsModel alloc] initWithDictionary:[responseData objectForKey:@"data"]] ;
+//            NSLog(@"😊😊😊😊😊%@",self.goods.typeName);
+
             [self loadViewAndData];
             //获取猜你喜欢数据
             [self getRelatedInfoByappType:self.goods.appType];
@@ -367,6 +372,7 @@
 }
 #pragma mark - 加载HTML页面数据，并进行图文混排
 -(void) loadViewAndData{
+    [self.detailsPageView loadGoodsInfo:self.goods];
     NSString *html = self.goods.prodDetail;
     CGFloat viewwidth = [UIScreen mainScreen].bounds.size.width - 24;
     NSString *css = [NSString stringWithFormat:@"<html><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><body width=%f style=\"word-wrap:break-word;ext-align: justify; font-family:Arial\"><style>img{max-width:%f;height:auto;}</style>",viewwidth,viewwidth-16];
@@ -389,8 +395,8 @@
     if ([self.goods.usercollectnum isEqualToString:@"1"]) {
         self.menuView.menuButton2.selected = YES;
     }
-    [self.detailsPageView loadGoodsInfo:self.goods];
-    [self.detailsPageView reloadData];
+    
+       [self.detailsPageView reloadData];
 
 }
 

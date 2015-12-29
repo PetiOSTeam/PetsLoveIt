@@ -151,7 +151,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
         }
         NSMutableArray *tempArray = [NSMutableArray new];
         [data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            ProductModel *model = [[ProductModel alloc] initWithJson:obj];
+            GoodsModel *model = [[GoodsModel alloc] initWithDictionary:obj];
             [tempArray addObject:model];
         }];
 //        NSLog(@"temparray%@",tempArray);
@@ -180,10 +180,10 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    ProductModel *model = self.dataSource[indexPath.row];
+    GoodsModel *model = self.dataSource[indexPath.row];
 
     GoodsDetailViewController *goodsDetailVC = [[GoodsDetailViewController alloc] init];
-    goodsDetailVC.goodsId = model.prodId;
+    goodsDetailVC.goods = model;
     [self.navigationController pushViewController:goodsDetailVC animated:YES];
     _isPush = YES;
 }
@@ -223,7 +223,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 {
     SearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
                                                              forIndexPath:indexPath];
-    ProductModel *model = self.dataSource[indexPath.row];
+    GoodsModel *model = self.dataSource[indexPath.row];
     cell.productModel = model;
     return cell;
 }

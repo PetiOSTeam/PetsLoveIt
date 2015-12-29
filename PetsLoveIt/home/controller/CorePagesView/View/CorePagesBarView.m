@@ -133,7 +133,7 @@
         }
         
         if (self.homePageWidth) {
-            btnW = (mScreenWidth-10) / 5;
+            btnW = (mScreenWidth-10) / 6;
         }
         
         

@@ -84,7 +84,7 @@
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.pageType = RelatedPersonType;
     vc.isShareOrder = YES;
-    vc.goodsId = model.prodId;
+    vc.goods = model;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -89,12 +89,14 @@
          onCompletion:^(id responseData, NSError *error) {
              if (responseData) {
                  NSDictionary *userInfo = [responseData objectForKey:@"bean"];
-                 NSString *realtimeintegral = userInfo[@"userIntegral"];
-                 self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",realtimeintegral];
-                 self.Integralstr = realtimeintegral;
-                 NSLog(@"realtimeintegral%@",self.gradeLabel.text);
-                
-                             }else {
+                 if (userInfo.count > 0 ) {
+                     NSString *realtimeintegral = userInfo[@"userIntegral"];
+                     self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",realtimeintegral];
+                     self.Integralstr = realtimeintegral;
+                     NSLog(@"realtimeintegral%@",self.gradeLabel.text);
+                     }
+    
+                }else {
                                  
              }
          }];
