@@ -24,7 +24,7 @@
       
         if ([msg isEqualToString:kNoNetWorkTip]) {
             myCmView.imageView.image = [UIImage imageNamed:@"noNetWorkIcon"];
-        }else if ([msg isEqualToString:kNoContentTip]){
+        }else if ([msg isEqualToString:kNoContentTip]||[msg isEqualToString:kNoBLTip]){
             myCmView.imageView.image = [UIImage imageNamed:@"noContentIcon"];
         }else{
             return ;

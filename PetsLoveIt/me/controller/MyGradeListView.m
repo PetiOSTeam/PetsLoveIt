@@ -8,6 +8,7 @@
 
 #import "MyGradeListView.h"
 #import "GradeDetailViewController.h"
+#import "CoreViewNetWorkStausManager.h"
 
 static NSString * CellIdentifier = @"GradientCell";
 
@@ -79,6 +80,9 @@ static NSString * CellIdentifier = @"GradientCell";
     }];
     if (self.gradeModels.count == 0) {
         self.isNotData = YES;
+        [CoreViewNetWorkStausManager show:self type:CMTypeError msg:kNoContentTip  subMsg:kNoContentSubTip offsetY:0 failClickBlock:^{
+            
+        }];
     }
     [self.collectionView reloadData];
 }
@@ -138,7 +142,7 @@ static NSString * CellIdentifier = @"GradientCell";
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView
 {
-    NSAttributedString *str = [[NSAttributedString alloc] initWithString:_isNotData ? @"暂无兑换记录" : @"点击屏幕，重新加载" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}];
+    NSAttributedString *str = [[NSAttributedString alloc] initWithString: @"" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}];
     return str;
 }
 
