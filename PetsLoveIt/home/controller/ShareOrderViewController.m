@@ -12,7 +12,6 @@
 #import "OrderModel.h"
 #import "ShareOrderCell.h"
 #import "GoodsDetailViewController.h"
-#import "ShareOrderDetailViewController.h"
 @interface ShareOrderViewController ()<GoodsCellDelegate> {
     NSMutableArray *dataArray;
 }
@@ -81,10 +80,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
-    ShareOrderDetailViewController *vc = [ShareOrderDetailViewController new];
+    GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.pageType = RelatedPersonType;
     vc.isShareOrder = YES;
+    
     vc.goods = model;
+    NSLog(@"%@",model);
     [self.navigationController pushViewController:vc animated:YES];
 }
 

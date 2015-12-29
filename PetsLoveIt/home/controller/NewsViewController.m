@@ -80,7 +80,7 @@
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.pageType = NewsType;
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
-    vc.goods = model;
+    vc.goodsId = model.prodId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

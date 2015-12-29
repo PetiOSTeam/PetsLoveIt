@@ -396,6 +396,7 @@
     [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
     [self.menuView.menuButton4 setTitle:self.goods.commentNum forState:UIControlStateNormal];
     if ([self.goods.usercollectnum isEqualToString:@"1"]) {
+    
         self.menuView.menuButton2.selected = YES;
     }
     

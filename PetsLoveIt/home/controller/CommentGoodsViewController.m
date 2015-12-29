@@ -382,8 +382,6 @@
     CGRect rect = self.tableView.frame;
     rect.size.height = self.view.frame.size.height - toHeight-mNavBarHeight-mStatusBarHeight;
     self.tableView.frame = rect;
-    NSLog(@"toHeight%f",toHeight);
-
     [UIView commitAnimations];
 }
 
