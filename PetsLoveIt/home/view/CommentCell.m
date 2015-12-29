@@ -57,7 +57,7 @@
 ;
     zanLabel.textAlignment = NSTextAlignmentRight;
     zanLabel.font = [UIFont systemFontOfSize:10];
-    [zanLabel setTintColor:mRGBColor(153, 153, 153)];
+    [zanLabel setTextColor:mRGBColor(153, 153, 153)];
     [self.contentView addSubview:zanImage];
     [self.contentView addSubview:zanLabel];
 }
