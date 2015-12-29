@@ -41,8 +41,15 @@
     self.tableView.top = 64;
     
     [self prepareViewAndData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow) name:UIKeyboardWillShowNotification object:nil];
 }
-
+- (void)keyboardWillShow{
+    [self.view bringSubviewToFront:self.editToolBar];
+}
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)prepareViewAndData{
     
     
