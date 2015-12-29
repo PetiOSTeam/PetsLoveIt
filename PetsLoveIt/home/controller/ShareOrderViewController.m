@@ -13,7 +13,7 @@
 #import "ShareOrderCell.h"
 #import "GoodsDetailViewController.h"
 
-@interface ShareOrderViewController () {
+@interface ShareOrderViewController ()<GoodsCellDelegate> {
     NSMutableArray *dataArray;
 }
 
@@ -47,11 +47,43 @@
     [self config];
 }
 
+#pragma mark - GoodsCell delegate
+-(void)selectCollect:(NSString *)proId isSelect:(BOOL)isSelect{
+    if (isSelect) {
+        if (![self.seletedArray containsObject:proId]) {
+            [self.seletedArray addObject:proId];
+        }
+    }else{
+        [self.seletedArray removeObject:proId];
+    }
+    BOOL isAllSelect = NO;
+    if (self.seletedArray.count == self.dataList.count) {
+        isAllSelect = YES;
+    }
+    if ([self.delegate respondsToSelector:@selector(selectAllCollect:)]) {
+        [self.delegate selectAllCollect:isAllSelect];
+    }
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ShareOrderCell * cell =(ShareOrderCell *) [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    [cell showSelectView:self.showSelect];
+    GoodsModel *goods = [self.dataList objectAtIndex:indexPath.row];
+    cell.delegate = self;
+    if ([self.seletedArray containsObject:goods.collectId]) {
+        cell.selectBtn.selected = YES;
+    }else{
+        cell.selectBtn.selected = NO;
+    }
+    return cell;
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.pageType = RelatedPersonType;
+    vc.isShareOrder = YES;
     vc.goodsId = model.prodId;
     [self.navigationController pushViewController:vc animated:YES];
 }

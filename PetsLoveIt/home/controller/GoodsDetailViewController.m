@@ -443,7 +443,7 @@
 }
 -(KMDetailsPageView *)detailsPageView{
     if (!_detailsPageView) {
-        _detailsPageView = [[KMDetailsPageView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, mScreenHeight) isCheapProduct:self.isCheapProduct];
+        _detailsPageView = [[KMDetailsPageView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, mScreenHeight) isCheapProduct:self.isCheapProduct isShareOrder:self.isShareOrder];
     }
     return _detailsPageView;
 }

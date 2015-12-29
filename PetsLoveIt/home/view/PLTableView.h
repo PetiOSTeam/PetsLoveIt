@@ -13,7 +13,9 @@
 @property (nonatomic,strong) NSMutableArray *dataArray1;
 @property (nonatomic,strong) NSMutableArray *dataArray2;
 @property (nonatomic,assign) BOOL hiddenSection;
+@property (nonatomic,assign) BOOL isShareOrder;
 
 -(instancetype)initWithFrame:(CGRect)frame hiddenSection:(BOOL)hiddenSection;
+-(instancetype)initWithFrame:(CGRect)frame isShareOrder:(BOOL)isShareOrder;
 
 @end

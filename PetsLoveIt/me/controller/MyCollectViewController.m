@@ -58,12 +58,14 @@
     UIButton *button = sender;
     button.selected = !button.selected;
     BOOL selected = button.selected;
-    if (!selected) {
-        allSelectBtn.selected = NO;
-    }
+
     self.pagesView.scrollView.scrollEnabled = self.pagesView.pagesBarView.userInteractionEnabled= !selected;
     CoreLTVC *currentVC = self.pagesView.currentVC;
     [currentVC showSelectView:selected];
+    if (!selected) {
+        allSelectBtn.selected = NO;
+        [currentVC.seletedArray removeAllObjects];
+    }
     [self showMenuView:selected];
 }
 
