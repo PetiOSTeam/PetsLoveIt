@@ -248,8 +248,11 @@
         if (!error) {
             [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
             if (collectFlag){
+                
                 [mAppUtils showHint:@"收藏成功"];
             }else{
+                
+
                 [mAppUtils showHint:@"取消收藏成功"];
             }
             

@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *likesNumLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *collectNumLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *collecticon;
 
 @end
 
@@ -43,6 +44,14 @@
 - (void)setProductModel:( GoodsModel *)productModel
 {
     _productModel = productModel;
+    if ([_productModel.typeName isEqualToString:@"淘宠"]) {
+        self.collectNumLabel.hidden = NO;
+        self.collecticon.hidden =NO;
+    }else{
+        self.collectNumLabel.hidden = YES;
+        self.collecticon.hidden =YES;
+       
+    }
     [self.productImageView sd_setImageWithURL:[NSURL URLWithString:productModel.appMinpic]
                              placeholderImage:[UIImage imageNamed:@"timeline_image_loading"]];
     self.productTitleLabel.text = productModel.name;

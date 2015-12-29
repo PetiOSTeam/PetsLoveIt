@@ -155,6 +155,7 @@
             <animations/>
             <connections>
                 <outlet property="collectNumLabel" destination="xag-DB-lIh" id="6ow-Qn-llM"/>
+                <outlet property="collecticon" destination="Ylr-22-AFA" id="pWV-gg-zQL"/>
                 <outlet property="commentNumLabel" destination="3Ro-w7-Plr" id="wSv-kv-EjV"/>
                 <outlet property="fromWebName" destination="KA2-MU-XAc" id="bJh-TU-OVP"/>
                 <outlet property="likesNumLabel" destination="3p4-tK-weR" id="nN5-e2-EVl"/>
