@@ -143,6 +143,7 @@
     }];
 }
 - (IBAction)msgAction:(id)sender {
+    [self.view endEditing:YES];
     NSString  *mobile = self.mobileTextField.text;
     if ([mobile length]==0) {
         mAlertView(@"提示", @"手机号不能为空");

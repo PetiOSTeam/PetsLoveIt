@@ -38,6 +38,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"meSettingCell"];
+
     [cell.textLabel setFont:[UIFont systemFontOfSize:14]];
     [cell.textLabel setTextColor:mRGBToColor(0x333333)];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
