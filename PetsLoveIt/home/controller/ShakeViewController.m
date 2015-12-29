@@ -29,7 +29,7 @@
 @property (nonatomic,weak)   ShakeremindView *shakeview;
 @property (nonatomic,assign)   BOOL showPopViewFlag;
 @property (nonatomic,strong) NSString *goodsId;
-
+@property (nonatomic,weak) UILabel *typelabel;
 
 @end
 
@@ -187,16 +187,16 @@
         topBgImageView.center = CGPointMake(_goodsView.width/2, topBgImageView.height/2);
         [_goodsView addSubview:topBgImageView];
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 75, 20)];
-        
-        titleLabel.center = CGPointMake(topBgImageView.center.x , topBgImageView.center.y-2 );
-        [titleLabel setTextAlignment:NSTextAlignmentCenter];
-        [titleLabel setFont:[UIFont systemFontOfSize:14]];
-        [titleLabel setTextColor:[UIColor whiteColor]];
-        [titleLabel setText:@"优惠"];
+        UILabel *typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 75, 20)];
+        self.typelabel = typeLabel;
+        typeLabel.center = CGPointMake(topBgImageView.center.x , topBgImageView.center.y-2 );
+        [typeLabel setTextAlignment:NSTextAlignmentCenter];
+        [typeLabel setFont:[UIFont systemFontOfSize:14]];
+        [typeLabel setTextColor:[UIColor whiteColor]];
+        [typeLabel setText:@"优惠"];
         
 //        titleLabel.contentHorizontalAlignment = UIControlContentVerticalAlignmentTop;
-        [_goodsView addSubview:titleLabel];
+        [_goodsView addSubview:typeLabel];
         
         goodsImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, topBgImageView.bottom + 15, 140, 125)];
         goodsImageView.center = CGPointMake(_goodsView.width/2, goodsImageView.center.y);
@@ -210,7 +210,7 @@
         [goodsTitleLabel setTextColor:mRGBToColor(0x333333)];
         [_goodsView addSubview:goodsTitleLabel];
         
-        UIImageView *commentNumImageView = [[UIImageView alloc] initWithFrame:CGRectMake(70, goodsTitleLabel.bottom + 8, 20, 20)];
+        UIImageView *commentNumImageView = [[UIImageView alloc] initWithFrame:CGRectMake(65, goodsTitleLabel.bottom + 8, 20, 20)];
         [commentNumImageView setImage:[UIImage imageNamed:@"listcommentIcon"]];
         [_goodsView addSubview:commentNumImageView];
     
@@ -425,8 +425,10 @@
         self.goodsView.height = 280;
         self.goodsView.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
         self.maskView.alpha = 0.7;
+        self.typelabel.text = goods.typeName;
         goodsTitleLabel.text = goods.name;
         [goodsImageView sd_setImageWithURL:[NSURL URLWithString:goods.appPic] placeholderImage:kImagePlaceHolder];
+        
         commentNumLabel.text = goods.commentNum;
         favorNumLabel.text = goods.popularitystr;
         

@@ -582,6 +582,7 @@
 		9D1D3AE41C28F9C500155E6D /* ShakeremindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1D3AE31C28F9C500155E6D /* ShakeremindView.m */; };
 		9D1D3B341C297DC300155E6D /* AdviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D1D3B331C297DC300155E6D /* AdviceViewController.xib */; };
 		9D4240AF1C20374A0047EEFD /* SigninbubbleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */; };
+		9D549D101C3239B3009C8F47 /* ShareOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D549D0F1C3239B3009C8F47 /* ShareOrderDetailViewController.m */; };
 		9DFC24E71C2D173C00936CC0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFC24E61C2D173C00936CC0 /* AudioToolbox.framework */; };
 		9DFC24EB1C2D202300936CC0 /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC24EA1C2D202300936CC0 /* YLLabel.m */; };
 		F91BA2C51C15B08C00B1C2E9 /* XRZAlertControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */; };
@@ -1643,6 +1644,8 @@
 		9D1D3B331C297DC300155E6D /* AdviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviceViewController.xib; sourceTree = "<group>"; };
 		9D4240AD1C20374A0047EEFD /* SigninbubbleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SigninbubbleButton.h; path = PetsLoveIt/SigninbubbleButton.h; sourceTree = SOURCE_ROOT; };
 		9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SigninbubbleButton.m; path = PetsLoveIt/SigninbubbleButton.m; sourceTree = SOURCE_ROOT; };
+		9D549D0E1C3239B3009C8F47 /* ShareOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareOrderDetailViewController.h; sourceTree = "<group>"; };
+		9D549D0F1C3239B3009C8F47 /* ShareOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareOrderDetailViewController.m; sourceTree = "<group>"; };
 		9DFC24E61C2D173C00936CC0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9DFC24E91C2D202300936CC0 /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
 		9DFC24EA1C2D202300936CC0 /* YLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLabel.m; sourceTree = "<group>"; };
@@ -3276,6 +3279,8 @@
 			isa = PBXGroup;
 			children = (
 				18F633BE1BF88E6400FD98B1 /* KMDetailsPageView.h */,
+				9D549D0E1C3239B3009C8F47 /* ShareOrderDetailViewController.h */,
+				9D549D0F1C3239B3009C8F47 /* ShareOrderDetailViewController.m */,
 				18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */,
 				186AEBDC1C2ED3330092F289 /* CheapTableView.h */,
 				186AEBDD1C2ED3330092F289 /* CheapTableView.m */,
@@ -4312,6 +4317,7 @@
 				189442DC1BEAF65A006249F0 /* UITextField+LimitLength.m in Sources */,
 				184858B41BF8DD3C001FF521 /* View+MASAdditions.m in Sources */,
 				189445B71BEB0774006249F0 /* UIScrollView+MJExtension.m in Sources */,
+				9D549D101C3239B3009C8F47 /* ShareOrderDetailViewController.m in Sources */,
 				184858B61BF8DD3C001FF521 /* SKTagButton.m in Sources */,
 				189445C51BEB0774006249F0 /* NSObject+MJKeyValue.m in Sources */,
 				189442E71BEAF65A006249F0 /* APIOperation.m in Sources */,

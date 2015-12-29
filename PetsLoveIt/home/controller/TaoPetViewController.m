@@ -31,8 +31,11 @@
 -(void)viewWillAppear:(BOOL)animated{
     if (self.isCollect) {
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
+        
+
     }else{
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
+        
     }
     
 }
@@ -41,7 +44,10 @@
     
     [self config];
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
-    self.tableView.tableHeaderView = self.tableHeaderView;
+    if (!self.isCollect) {
+        self.tableView.tableHeaderView = self.tableHeaderView;
+    }
+//
     self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
     
 }

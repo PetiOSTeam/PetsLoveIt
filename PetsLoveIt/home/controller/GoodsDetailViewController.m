@@ -363,7 +363,7 @@
         if (!error) {
             self.goods = [[GoodsModel alloc] initWithDictionary:[responseData objectForKey:@"data"]] ;
 //            NSLog(@"😊😊😊😊😊%@",self.goods.typeName);
-
+             self.goodsId =self.goods.prodId;
             [self loadViewAndData];
             //获取猜你喜欢数据
             [self getRelatedInfoByappType:self.goods.appType];
