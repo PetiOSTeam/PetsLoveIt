@@ -51,6 +51,17 @@
                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="aEX-x2-vtW">
+                        <rect key="frame" x="315" y="15" width="20" height="23"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bbT-KU-DXd">
+                        <rect key="frame" x="354" y="17" width="42" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -60,6 +71,8 @@
                 <outlet property="floorLabel" destination="GIl-b1-93H" id="8tO-BB-Taz"/>
                 <outlet property="nameLabel" destination="YUN-zI-Ghc" id="vRJ-L4-y8H"/>
                 <outlet property="tableView" destination="jS3-L3-b32" id="S8p-1q-Nqq"/>
+                <outlet property="zanImage" destination="aEX-x2-vtW" id="MAp-OT-BMu"/>
+                <outlet property="zanLabel" destination="bbT-KU-DXd" id="tsE-o8-FXH"/>
             </connections>
             <point key="canvasLocation" x="117.5" y="101"/>
         </tableViewCell>

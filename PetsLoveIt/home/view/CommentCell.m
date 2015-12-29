@@ -8,7 +8,9 @@
 
 #import "CommentCell.h"
 
-@implementation CommentCell
+@implementation CommentCell{
+
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -33,6 +35,7 @@
     self.tableView.layer.borderWidth = kLayerBorderWidth;
     self.tableView.layer.cornerRadius = 2;
     
+    
 }
 - (void)setupHotcommentCellFrameWith:(NSInteger)index andpraiseNum:(NSString *)praisenum{
     self.avatarImageView.left = 20;
@@ -40,26 +43,29 @@
     self.nameLabel.top = 15;
     self.dateLabel.frame = CGRectMake(self.nameLabel.left, self.nameLabel.bottom, 100, self.dateLabel.height);
     self.commentLabel.left = 20;
-    UIImageView *zanImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"upIcon"]];
-    zanImage.frame =CGRectMake(0, 0, 25, 25);
-    zanImage.right = self.width- 10;
-    zanImage.center = CGPointMake(zanImage.center.x, self.avatarImageView.center.y);
-    UILabel *zanLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 40, 12)];
-    zanLabel.right = zanImage.left ;
-    zanLabel.center = CGPointMake(zanLabel.center.x, zanImage.center.y+2);
+    
+    _zanImage.hidden = NO;
+    _zanImage.image = [UIImage imageNamed:@"upIcon"];
+    _zanImage.frame =CGRectMake(0, 0, 25, 25);
+    _zanImage.right = self.width- 10;
+    _zanImage.center = CGPointMake(_zanImage.center.x, self.avatarImageView.center.y);
+    
+    _zanLabel.hidden = NO;
+    _zanLabel.right = _zanImage.left ;
+    _zanLabel.center = CGPointMake(_zanLabel.center.x, _zanImage.center.y+2);
+    
     // 设置label的格式和内容
     NSString *datalabeltitle = [NSString stringWithFormat:@"TOP%li  %@",index+1,self.dateLabel.text];
     self.dateLabel.text = datalabeltitle;
     self.dateLabel.textAlignment = NSTextAlignmentLeft;
     self.dateLabel.font = [UIFont systemFontOfSize:10];
     [self.dateLabel setTextColor:mRGBColor(153, 153, 153)];
-    zanLabel.text = [NSString stringWithFormat:@" %@",praisenum];
+    _zanLabel.text = [NSString stringWithFormat:@" %@",praisenum];
 ;
-    zanLabel.textAlignment = NSTextAlignmentRight;
-    zanLabel.font = [UIFont systemFontOfSize:10];
-    [zanLabel setTextColor:mRGBColor(153, 153, 153)];
-    [self.contentView addSubview:zanImage];
-    [self.contentView addSubview:zanLabel];
+    _zanLabel.textAlignment = NSTextAlignmentRight;
+    _zanLabel.font = [UIFont systemFontOfSize:10];
+    [_zanLabel setTextColor:mRGBColor(153, 153, 153)];
+    
 }
 -(void)dataFill{
     CommentModel *comment = (CommentModel *)self.model;

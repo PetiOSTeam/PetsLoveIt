@@ -13,6 +13,8 @@
 #import "CommentModel.h"
 
 @interface CommentCell : LTCell
+@property (weak, nonatomic) IBOutlet UIImageView *zanImage;
+@property (weak, nonatomic) IBOutlet UILabel *zanLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
