@@ -52,9 +52,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     self.navigationBarView.bottom = self.navigationBarView.bottom+5;
+//     self.navigationBarView.bottom = self.navigationBarView.bottom+5;
     // Do any additional setup after loading the view.
-    
+     self.tableView.top = 5;
     [self prepareViewsAndData];
 }
 - (NSArray *)cheapProductArray
@@ -282,10 +282,10 @@
 
 -(UIView *)tableHeaderView{
     if (!_tableHeaderView) {
-        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 365)];
+        _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 360)];
         [_tableHeaderView setBackgroundColor:mRGBToColor(0xf5f5f5)];
         
-        _zqw = [[ZQW_ScrollView alloc]initWithFrame:CGRectMake(0, 5, self.view.bounds.size.width, 180)];
+        _zqw = [[ZQW_ScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 180)];
         _zqw.currentColor = [UIColor grayColor];
         _zqw.allColor = [UIColor whiteColor];
         _zqw.autoScrollTimeInterval = 5;
@@ -390,22 +390,22 @@
 - (void)tapOnImageView1{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.isCheapProduct = YES;
-    vc.goods = _cheapProduct;
+    vc.goodsId = _cheapProduct.prodId;
     
     
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)tapOnImageView2{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-//    vc.goodsId = _limittedTimeProduct.prodId;
-    vc.goods = _limittedTimeProduct;
+    vc.goodsId = _limittedTimeProduct.prodId;
+//    vc.goods = _limittedTimeProduct;
 
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)tapOnImageView3{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-//    vc.goodsId = _jdProduct.prodId;
-    vc.goods = _jdProduct;
+    vc.goodsId = _jdProduct.prodId;
+//    vc.goods = _jdProduct;
 
     [self.navigationController pushViewController:vc animated:YES];
 }

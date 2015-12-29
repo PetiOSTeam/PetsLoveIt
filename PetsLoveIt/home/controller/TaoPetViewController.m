@@ -26,6 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self prepareViewsAndData];
+     self.tableView.top = 5;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -105,7 +106,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.goods = model;
+    vc.goodsId = model.prodId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

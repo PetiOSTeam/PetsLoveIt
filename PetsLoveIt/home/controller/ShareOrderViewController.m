@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+     self.tableView.top = 5;
     [self prepareViewsAndData];
 }
 
@@ -84,7 +84,7 @@
     vc.pageType = RelatedPersonType;
     vc.isShareOrder = YES;
     
-    vc.goods = model;
+    vc.goodsId = model.prodId;
     NSLog(@"%@",model);
     [self.navigationController pushViewController:vc animated:YES];
 }
