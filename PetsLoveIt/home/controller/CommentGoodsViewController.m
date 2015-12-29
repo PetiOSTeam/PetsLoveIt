@@ -368,9 +368,7 @@
     //行高
     configModel.rowHeight=210;
     configModel.hiddenNetWorkStausManager = NO;
-    if (mRetina|mIsiP5) {
-        configModel.CoreViewNetWorkStausManagerOffsetY = 50;
-    }
+    
   
     
     //移除返回顶部:(默认开启)
