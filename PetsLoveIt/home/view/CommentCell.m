@@ -52,7 +52,7 @@
     self.dateLabel.text = datalabeltitle;
     self.dateLabel.textAlignment = NSTextAlignmentLeft;
     self.dateLabel.font = [UIFont systemFontOfSize:10];
-    [self.dateLabel setTintColor:mRGBColor(153, 153, 153)];
+    [self.dateLabel setTextColor:mRGBColor(153, 153, 153)];
     zanLabel.text = [NSString stringWithFormat:@" %@",praisenum];
 ;
     zanLabel.textAlignment = NSTextAlignmentRight;

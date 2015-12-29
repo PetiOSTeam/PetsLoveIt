@@ -25,7 +25,7 @@
                     <color key="textColor" red="0.60784313725490191" green="0.61176470588235299" blue="0.63137254901960782" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="领奖码：——" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txp-db-rkR">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="领奖码：——" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Txp-db-rkR">
                     <rect key="frame" x="8" y="84" width="224" height="21"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
