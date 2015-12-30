@@ -221,9 +221,9 @@
         username.textAlignment = NSTextAlignmentLeft;
         [_headerView addSubview:iconimage];
         [_headerView addSubview:username];
-        self.webView.frame = CGRectMake(12,iconimage.bottom+10, mScreenWidth - 24 , 300);
+        self.webView.frame = CGRectMake(12,iconimage.bottom+20, mScreenWidth - 24 , 300);
     }else{
-    self.webView.frame = CGRectMake(12,_label3.bottom, mScreenWidth - 24 , 300);
+    self.webView.frame = CGRectMake(12,_label3.bottom+20, mScreenWidth - 24 , 300);
     }
    }
 // 根据文字计算标签的高度

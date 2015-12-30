@@ -59,12 +59,43 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
     [self showNaviBarView];
-    self.navBarTitleLabel.text = @"我的积分";
+    self.navBarTitleLabel.text = @"兑换详情";
     
     [self.view addSubview:self.headerView];
-
-    self.webView.top = mNavBarHeight+mStatusBarHeight+self.headerView.height;
-    self.webView.height = mScreenHeight - 64- self.headerView.height - self.bottomView.height;
+    UILabel *desclabel = [[UILabel alloc]initWithFrame:CGRectMake(20, self.headerView.bottom+20, 50, 17)];
+    desclabel.top =  mNavBarHeight+mStatusBarHeight+128+20;
+    desclabel.text = self.gradeModel.desc;
+    desclabel.textAlignment = NSTextAlignmentRight;
+    desclabel.font = [UIFont systemFontOfSize:17];
+    [desclabel setTextColor:mRGBToColor(0x333333)];
+    UILabel *discountlabel = [[UILabel alloc]initWithFrame:CGRectMake(20, desclabel.bottom+30, 100, 14)];
+    desclabel.text = self.gradeModel.discount;
+    desclabel.textAlignment = NSTextAlignmentRight;
+    desclabel.font = [UIFont systemFontOfSize:14];
+    [desclabel setTextColor:mRGBToColor(0x666666)];
+    UILabel *Datelabel = [[UILabel alloc]initWithFrame:CGRectMake(20, discountlabel.bottom+16, 200, 14)];
+    desclabel.text = self.gradeModel.effectiveDate;
+    desclabel.textAlignment = NSTextAlignmentRight;
+    desclabel.font = [UIFont systemFontOfSize:14];
+    [desclabel setTextColor:mRGBToColor(0x666666)];
+    UILabel *receiveLimitlabel = [[UILabel alloc]initWithFrame:CGRectMake(20, Datelabel.bottom+16, 200, 14)];
+    desclabel.text = self.gradeModel.receiveLimit;
+    desclabel.textAlignment = NSTextAlignmentRight;
+    desclabel.font = [UIFont systemFontOfSize:14];
+    [desclabel setTextColor:mRGBToColor(0xFF4401)];
+    UILabel *subtitle = [[UILabel alloc]initWithFrame:CGRectMake(20, receiveLimitlabel.bottom+40, 50, 17)];
+    desclabel.text = @"详细内容";
+    desclabel.textAlignment = NSTextAlignmentRight;
+    desclabel.font = [UIFont systemFontOfSize:17];
+    [desclabel setTextColor:mRGBToColor(0x333333)];
+    [self.view addSubview:desclabel];
+    [self.view addSubview:discountlabel];
+    [self.view addSubview:Datelabel];
+    [self.view addSubview:receiveLimitlabel];
+    [self.view addSubview:subtitle];
+    self.webView.top = subtitle.bottom+20;
+    self.webView.height = mScreenHeight - 64- self.headerView.height - self.bottomView.height-222;
+    
     
     NSString *html = self.gradeModel.instructions;
     NSString *css = [NSString stringWithFormat:
@@ -129,13 +160,7 @@
 
 - (IBAction)exchangeAction:(id)sender
 {
-//    //创建一个消息对象
-//    NSNotification * notice = [NSNotification notificationWithName:@"refreshtheintegral" object:nil userInfo:nil];
-//    //发送消息
-//    [[NSNotificationCenter defaultCenter]postNotification:notice];
-//
-    //发送消息
-//    [[NSNotificationCenter defaultCenter]postNotification:notice];
+
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"兑换中...";
     NSDictionary *parameter = @{@"uid": @"saveUserChangeIntegral",

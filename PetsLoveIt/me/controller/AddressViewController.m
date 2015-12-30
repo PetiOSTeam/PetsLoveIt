@@ -45,30 +45,7 @@
     self.addressView.hidden = YES;
     self.addBtn.hidden = YES;
     self.tipLabel.hidden = YES;
-    
-    NSDictionary *params = @{
-                             @"uid":@"getDeliveryaddressByUserId"
-                             };
-    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-        if (!error) {
-            NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
-            if (jsonArray.count > 0) {
-                self.addressView.hidden = NO;
-                AddressModel *address = [[AddressModel alloc] initWithDictionary:jsonArray[0]];
-                self.address = address;
-                self.nameLabel.text = address.receiveName;
-                self.mobileLabel.text = address.receiveTel;
-                self.addressLabel.text = address.receiveAddress;
-            }else{
-                self.addressView.hidden = YES;
-                self.addBtn.hidden = NO;
-                self.tipLabel.hidden = NO;
-            }
-        }else{
-            mAlertAPIErrorInfo(error);
-        }
-    }];
-}
+   }
 
 - (void)showUpdateAddrVC{
     AddAddressViewController *vc = [AddAddressViewController new];

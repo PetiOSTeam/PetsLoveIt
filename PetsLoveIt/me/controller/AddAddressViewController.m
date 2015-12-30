@@ -29,9 +29,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self Querytheshippingaddress];
     [self showNaviBarView];
-    self.navBarTitleLabel.text = @"设置收货地址";
+    
+    [self Querytheshippingaddress];
+    
+    
     self.addressView.width = self.zipCodeView.width = self.nameView.width = self.mobileView.width = self.msgCodeView.width = mScreenWidth-80;
     [self.addressView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     [self.zipCodeView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
@@ -53,33 +55,18 @@
 }
 // 查询收货地址
 - (void)Querytheshippingaddress{
-    NSDictionary *params = @{
-                             @"uid":@"getDeliveryaddressByUserId"
-                             };
-    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-        if (!error) {
-           
-            NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
-            
-            if (jsonArray.count > 0) {
-                self.addressView.hidden = NO;
-                AddressModel *address = [[AddressModel alloc] initWithDictionary:jsonArray[0]];
-                self.address = address;
-                self.isUpdateAddress = YES;
-                self.navBarTitleLabel.text = @"修改收货地址";
-                [self.okBtn setTitle:@"确定" forState:UIControlStateNormal];
-                self.addressTextField.text = _address.receiveAddress ;
-                self.zipCodeTextField.text = _address.zipCode;
-                self.nameTextField.text = _address.receiveName;
-                self.mobileTextField.text = _address.receiveTel;
-
-        
-            }
-        }else{
-            mAlertAPIErrorInfo(error);
-        }
-    }];
+    if (self.address) {
+        self.addressTextField.text = _address.receiveAddress ;
+        self.zipCodeTextField.text = _address.zipCode;
+        self.nameTextField.text = _address.receiveName;
+        self.mobileTextField.text = _address.receiveTel;
+        self.navBarTitleLabel.text=  @"修改收货地址";
+    }else{
+        self.navBarTitleLabel.text = @"设置收货地址";
     }
+    
+
+       }
 
 
 
