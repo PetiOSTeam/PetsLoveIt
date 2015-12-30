@@ -218,7 +218,7 @@
             }else {
                 cell.height = [SearchKeyWordsCell heightFromArray:keywords];
             }
-            [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
+           
             cell.width = mScreenWidth;
             cell.delegate = self;
         }

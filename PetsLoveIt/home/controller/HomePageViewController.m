@@ -54,7 +54,7 @@
     [shakeButton addTarget:self action:@selector(showShakeVC) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    searchButton.frame = CGRectMake(mScreenWidth-40, 30, 25, 25);
+    searchButton.frame = CGRectMake(mScreenWidth-37, 30, 25, 25);
     [searchButton setBackgroundImage:[UIImage imageNamed:@"searchGoodsIcon"] forState:UIControlStateNormal];
 
     [searchButton addTarget:self action:@selector(showSearchVC) forControlEvents:UIControlEventTouchUpInside];

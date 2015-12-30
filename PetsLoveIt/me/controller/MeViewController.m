@@ -151,7 +151,7 @@
     _levelLabel.userInteractionEnabled = YES;
     _levelLabel.numberOfLines = 0;
     [_levelLabel setTextAlignment:NSTextAlignmentCenter];
-    _levelLabel.frame = CGRectMake(8, self.nameLabel.bottom+10, mScreenWidth-16    ,20);
+    _levelLabel.frame = CGRectMake(8, self.nameLabel.bottom+7, mScreenWidth-16    ,20);
     
     [self.headerView addSubview:_levelLabel];
     

@@ -54,9 +54,14 @@
     [super viewDidLoad];
 //     self.navigationBarView.bottom = self.navigationBarView.bottom+5;
     // Do any additional setup after loading the view.
+    
      self.tableView.top = 5;
     [self prepareViewsAndData];
 }
+
+//#pragma mark -  同过网络判断是否显示tableHeaderView
+//
+//#pragma mark -
 - (NSArray *)cheapProductArray
 {
     if (_cheapProductArray == nil) {
@@ -68,15 +73,15 @@
     
     self.imageURLs = [NSMutableArray new];
     self.adArray = [NSMutableArray new];
-    if (!self.isCollect) {
-        //获取广告数据
-        [self getAdData];
-        //获取白菜价,限时，尖端商品
-        [self getCheapProduct];
-        [self getLimittedTimeProduct];
-        [self getJdProduct];
-
-    }
+//    if (!self.isCollect) {
+//        //获取广告数据
+////        [self getAdData];
+////        //获取白菜价,限时，尖端商品
+////        [self getCheapProduct];
+////        [self getLimittedTimeProduct];
+////        [self getJdProduct];
+//
+//    }
     
     if (self.isCollect) {
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
@@ -184,7 +189,7 @@
     if (obj) {
         if (!self.isCollect) {
             self.tableView.tableHeaderView = self.tableHeaderView;
-
+            
         }
         
     }
@@ -227,7 +232,11 @@
     }
     return cell;
 }
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    
+    [super viewDidAppear:animated];
+}
 /**
  *  模型配置
  */
@@ -300,7 +309,7 @@
         [_titleLabel1 setTextColor:mRGBToColor(0xff4401)];
         [_titleLabel1 setFont:[UIFont systemFontOfSize:16]];
         [_titleLabel1 setText:@"今日白菜"];
-        
+      
         _descLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(10, _titleLabel1.bottom+10, mScreenWidth/2-20, 14)];
         [_descLabel1 setTextColor:mRGBToColor(0x666666)];
         [_descLabel1 setFont:[UIFont systemFontOfSize:12]];
