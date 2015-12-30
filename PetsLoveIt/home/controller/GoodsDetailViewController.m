@@ -36,7 +36,7 @@
 @property (nonatomic, strong) KMNetworkLoadingViewController* networkLoadingViewController;
 
 @property (nonatomic,strong) NSMutableArray *dataArray;
-
+@property (nonatomic,copy) NSString *typename;
 
 @end
 
@@ -45,7 +45,19 @@
     [super viewDidLoad];
     [self prepareViewsAndData];
 }
-
+- (NSString *)typename
+{
+    if (!_typename) {
+        _typename = [NSString stringWithString:self.goods.typeName];
+        if ([_typename isEqualToString:@"其他"]) {
+            _typename =@"白菜";
+        }
+        if (!_typename) {
+           _typename = @"优惠";
+        }
+    }
+    return _typename;
+}
 -(void)prepareViewsAndData{
     
     [self setupDetailsPageView];
@@ -59,7 +71,7 @@
 
     }else if (self.goods){
         self.goodsId = self.goods.prodId;
-        self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.goods.typeName];
+        self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.typename];
         [self hideLoadingView];
         [self loadViewAndData];
         //获取猜你喜欢数据
@@ -364,7 +376,7 @@
             self.goods = [[GoodsModel alloc] initWithDictionary:[responseData objectForKey:@"data"]] ;
 //            NSLog(@"😊😊😊😊😊%@",self.goods.typeName);
              self.goodsId =self.goods.prodId;
-            self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.goods.typeName];
+            self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.typename];
             [self loadViewAndData];
             //获取猜你喜欢数据
             [self getRelatedInfoByappType:self.goods.appType];
@@ -476,7 +488,6 @@
 - (void)setupNavbarButtons
 {
     [self.view addSubview:self.navigationBarView];
-    self.navBarTitleLabel.text = @"优惠详情";
     [self addbuttonBackintheSubView:self.view];
     
 }

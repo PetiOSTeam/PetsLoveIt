@@ -102,7 +102,7 @@
 //}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self refreshtheintegral];
+    [self loadUserInfoViewAndData];
     
     float tmpSize = [[SDImageCache sharedImageCache] checkTmpSize];
     NSString *cacheSize = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];
@@ -657,11 +657,8 @@
     //积分
     NSMutableAttributedString *userIntegral;
     
-    if (self.integralstr) {
-        userIntegral = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  积分: %@",self.integralstr]];
-    }else{
-        userIntegral = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  积分: %@",userInfo.userIntegral]];
-    }
+    userIntegral = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  积分: %@",self.integralstr]];
+   
     
     [text appendAttributedString:userIntegral];
     
@@ -671,8 +668,7 @@
     YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:text];
     _levelLabel.width = layout.textBoundingSize.width;
     _levelLabel.center  = CGPointMake(mScreenWidth/2, _levelLabel.center.y);
-    self.integralstr = nil;
-
+  
 }
 - (void)refreshData
 {

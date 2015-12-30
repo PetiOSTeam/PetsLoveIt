@@ -44,7 +44,7 @@
 
 - (void)addNavRightBtn{
     rightNaviButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightNaviButton.frame = CGRectMake(mScreenWidth-60, 30, 44, 34);
+    rightNaviButton.frame = CGRectMake(mScreenWidth-52, 30, 44, 34);
     rightNaviButton.center = CGPointMake(rightNaviButton.center.x, 42);
     [rightNaviButton setTitle:@"编辑" forState:UIControlStateNormal];
     [rightNaviButton setTitle:@"取消" forState:UIControlStateSelected];
