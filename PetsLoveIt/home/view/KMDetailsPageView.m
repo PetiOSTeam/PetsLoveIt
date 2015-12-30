@@ -241,20 +241,22 @@
     [self.webView loadHTMLString:html baseURL:nil];
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
-    CGFloat contentHeight = webView.scrollView.contentSize.height;
-    self.webView.height = contentHeight+20;
-    if (mIsiP5) {
-        self.webView.height = contentHeight + 110;
-    }
-    NSLog(@"%f",[[UIScreen mainScreen] currentMode].size.width);
-    if ([[UIScreen mainScreen] currentMode].size.width==750) {
-        self.webView.height = contentHeight + 90;
-    }
+    CGSize actualSize = [webView sizeThatFits:CGSizeZero];
+    self.webView.height = actualSize.height;
+//    CGFloat contentHeight = webView.scrollView.contentSize.height;
+//    self.webView.height = contentHeight+20;
+//    if (mIsiP5) {
+//        self.webView.height = contentHeight + 110;
+//    }
+//    NSLog(@"%f",[[UIScreen mainScreen] currentMode].size.width);
+//    if ([[UIScreen mainScreen] currentMode].size.width==750) {
+//        self.webView.height = contentHeight + 90;
+//    }
     if (self.isCheapProduct) {
         [self getCheapProductOnCompletion:^{
             self.cheapTable.top = self.webView.bottom +10;
             self.cheapTable.height = self.cheapTable.dataArray.count * 150;
-            self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.cheapTable.bottom ) ;
+            self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.cheapTable.bottom+45) ;
             [self setupTableViewHeader];
             
             self.tableView.tableHeaderView.height = self.headerView.height;
@@ -264,7 +266,7 @@
         }];
         
     }else{
-        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom ) ;
+        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom+45 ) ;
         [self setupTableViewHeader];
         
         self.tableView.tableHeaderView.height = self.headerView.height;
