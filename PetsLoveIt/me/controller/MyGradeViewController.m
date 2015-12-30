@@ -43,7 +43,7 @@
         self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",self.Integralstr];
     }else
     {
-      self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",userInfo.userIntegral];  
+        [self refreshtheintegral];
     }
     
    

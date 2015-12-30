@@ -87,24 +87,22 @@
     
     [super viewDidLoad];
     [self prepareViewAndData];
-   
-//    //获取通知中心单例对象
-//    center = [NSNotificationCenter defaultCenter];
     //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshtheintegral) name:@"refreshtheintegral" object:nil];
   
     self.tabBarController.delegate = self;
 }
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UINavigationController *)viewController{
-     UIViewController *vc = [viewController.viewControllers firstObject];
-    if ([vc isKindOfClass:[MeViewController class]]) {
-        NSLog( @"点击了我的");
-        [self loadUserInfoViewAndData];
-    }
-}
+/** 取消了点击我的刷新功能，积分已做刷新判断不需刷新整个界面*/
+//- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UINavigationController *)viewController{
+//     UIViewController *vc = [viewController.viewControllers firstObject];
+//    if ([vc isKindOfClass:[MeViewController class]]) {
+//        NSLog( @"点击了我的");
+//        [self loadUserInfoViewAndData];
+//    }
+//}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self loadUserInfoViewAndData];
+    [self refreshtheintegral];
     
     float tmpSize = [[SDImageCache sharedImageCache] checkTmpSize];
     NSString *cacheSize = tmpSize >= 1 ? [NSString stringWithFormat:@"%.2fM",tmpSize] : [NSString stringWithFormat:@"%.2fK",tmpSize * 1024];

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9046" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9035"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,7 +13,6 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5i7-Il-Ulp">
                     <rect key="frame" x="8" y="4" width="56" height="56"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="A2k-iZ-MAX"/>
                         <constraint firstAttribute="width" constant="56" id="S93-Bj-jtz"/>
@@ -21,7 +20,6 @@
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="狗狗" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ze-m1-gdp">
                     <rect key="frame" x="74" y="21" width="138" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="cZ2-3D-v35"/>
                         <constraint firstAttribute="width" constant="138" id="vx4-w3-zDb"/>
@@ -31,7 +29,6 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <animations/>
             <constraints>
                 <constraint firstItem="5i7-Il-Ulp" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="71z-LK-iU2"/>
                 <constraint firstItem="6Ze-m1-gdp" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="cbh-0q-Ez4"/>

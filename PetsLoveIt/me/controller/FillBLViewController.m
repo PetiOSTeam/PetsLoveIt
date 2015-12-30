@@ -148,7 +148,7 @@
         self.selectedProduct = [self.subPickerArray firstObject];
     }
     self.sortTextField.text = self.selectedProduct.name;
-    
+    self.selectedProduct =nil;
     [self hidePickerView];
 }
 
@@ -198,13 +198,15 @@
     if (component == 0) {
         
         self.subPickerArray= [_dict objectForKey:[self.pickerArray objectAtIndex:row]];
-        
+        NSLog(@"%@",self.subPickerArray);
         //[pickerView selectedRowInComponent:1];
         [pickerView reloadComponent:1];
     }else{
         ProductSortModel *sortModel =[self.subPickerArray objectAtIndex:row];
         self.selectedProduct = sortModel;
+        
     }
+    
 }
 
 -(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component{

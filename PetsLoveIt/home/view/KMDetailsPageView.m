@@ -209,7 +209,7 @@
     CGSize lablesize3 = [self getframeWithTitle:self.label3.text andTitleFont:self.label3.font];
     self.label3.frame = (CGRect){{20, _label2.bottom +10}, lablesize3};
    
-    if (self.isShareOrder) {
+    if ([self.goods.appType isEqualToString:@"m05"]) {
         UIImageView *iconimage = [[UIImageView alloc]initWithFrame:CGRectMake(20, _label3.bottom+15, 24, 24)];
         [iconimage sd_setImageWithURL:[NSURL URLWithString:self.goods.publisherIcon] placeholderImage:kDefaultHeadImage];
         [iconimage.layer setCornerRadius:12];

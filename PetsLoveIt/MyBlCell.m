@@ -14,16 +14,20 @@
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
-
+// 增加了未审核的状态
 -(void)dataFill{
     BLModel *model = (BLModel *)self.model;
     self.sourceTitle.text = model.title;
     self.sourceReason.text = model.shareReason;
     if ([model.status intValue] == 1) {
-        self.stateLabel.text = @"已审核";
+        self.stateLabel.text = @"已通过";
  
-    }else{
-        self.stateLabel.text = @"待审核";
+    }else if ([model.status intValue] == 2)
+    {
+       self.stateLabel.text = @"未通过";
+    }
+    else{
+        self.stateLabel.text = @"未审核";
     }
 }
 

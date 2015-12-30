@@ -54,6 +54,10 @@
     [super viewDidLoad];
 //     self.navigationBarView.bottom = self.navigationBarView.bottom+5;
     // Do any additional setup after loading the view.
+    if (!self.isCollect) {
+        self.tableView.tableHeaderView = self.tableHeaderView;
+        
+    }
     
      self.tableView.top = 5;
     [self prepareViewsAndData];

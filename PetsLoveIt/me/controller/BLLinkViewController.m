@@ -60,6 +60,8 @@
     if ([sourceLink length]==0) {
         mAlertView(@"提示", @"链接不能为空");
         return;
+    }else{
+        
     }
     [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeNone];
     NSDictionary *params = @{@"uid":@"getShareInfo",
