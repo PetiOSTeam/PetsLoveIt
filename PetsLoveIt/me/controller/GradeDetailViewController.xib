@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="bottomView" destination="NJj-mw-ZIk" id="VPq-FF-hhH"/>
                 <outlet property="residuePagesLabel" destination="RMG-RM-lM1" id="6oh-gR-qRw"/>
+                <outlet property="scrollView" destination="jwf-bf-cEs" id="m7d-RB-D3n"/>
                 <outlet property="totalPagesLabel" destination="44H-Mf-lTK" id="mvZ-8z-nuc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="webView" destination="Nch-uu-2aW" id="ajq-zf-NHY"/>
@@ -19,13 +20,19 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <webView contentMode="scaleToFill" id="Nch-uu-2aW">
-                    <rect key="frame" x="0.0" y="119" width="320" height="330"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </webView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="jwf-bf-cEs">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <webView contentMode="scaleToFill" id="Nch-uu-2aW">
+                            <rect key="frame" x="0.0" y="95" width="320" height="330"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </webView>
+                    </subviews>
+                </scrollView>
                 <view contentMode="scaleToFill" id="NJj-mw-ZIk">
-                    <rect key="frame" x="0.0" y="519" width="320" height="49"/>
+                    <rect key="frame" x="0.0" y="520" width="320" height="48"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B0T-FI-vbU">

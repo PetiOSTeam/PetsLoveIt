@@ -17,8 +17,9 @@
 @interface GradeDetailViewController ()
 
 @property (nonatomic, assign) BOOL isPushOldExchange;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (weak, nonatomic)  UIWebView *webView;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
@@ -61,7 +62,7 @@
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"兑换详情";
     
-    [self.view addSubview:self.headerView];
+    [self.scrollView addSubview:self.headerView];
     UILabel *desclabel = [[UILabel alloc]initWithFrame:CGRectMake(20, self.headerView.bottom+20, mScreenWidth-40, 17)];
     desclabel.top =  mNavBarHeight+mStatusBarHeight+128+20;
     desclabel.text = [NSString stringWithFormat:@"%@",self.gradeModel.desc];
@@ -88,15 +89,14 @@
     subtitle.textAlignment = NSTextAlignmentLeft;
     subtitle.font = [UIFont systemFontOfSize:17];
     [subtitle setTextColor:mRGBToColor(0x333333)];
-    [self.view addSubview:desclabel];
-    [self.view addSubview:discountlabel];
-    [self.view addSubview:Datelabel];
-    [self.view addSubview:receiveLimitlabel];
-    [self.view addSubview:subtitle];
-    NSLog(@"desclabel%@",desclabel);
-    NSLog(@"discountlabel%@",discountlabel);NSLog(@"Datelabel%@",Datelabel);NSLog(@"receiveLimitlabel%@",receiveLimitlabel);
+    [self.scrollView addSubview:desclabel];
+    [self.scrollView addSubview:discountlabel];
+    [self.scrollView addSubview:Datelabel];
+    [self.scrollView addSubview:receiveLimitlabel];
+    [self.scrollView addSubview:subtitle];
+   
     self.webView.top = subtitle.bottom+20;
-    self.webView.height = mScreenHeight - 64- self.headerView.height - self.bottomView.height-222;
+//    self.webView.height = mScreenHeight - 64- self.headerView.height - self.bottomView.height-222;
     self.webView.left = 12;
     self.webView.width = mScreenWidth-24;
     
@@ -104,7 +104,7 @@
     NSString *css = [NSString stringWithFormat:
                      @"<html><head><style>body{ background-color: transparent; text-align: %@; font-size: %ipx; color: #666666;} a { color: #0663b3; } </style></head><body>",
                      @"justify",
-                     16];
+                     13];
     
     NSMutableString *desc = [NSMutableString stringWithFormat:@"%@%@%@",
                              css,
@@ -154,6 +154,9 @@
     [attributedStr1 addAttributes:attributes range:totalRange1];
     self.residuePagesLabel.attributedText = attributedStr1;
 
+    self.webView.scrollView.scrollEnabled = NO;
+    self.webView.height = self.webView.scrollView.contentSize.height+10;
+    [self.scrollView setContentSize:CGSizeMake(mScreenWidth, self.webView.bottom + 20)];
 }
 
 - (void)didReceiveMemoryWarning {
