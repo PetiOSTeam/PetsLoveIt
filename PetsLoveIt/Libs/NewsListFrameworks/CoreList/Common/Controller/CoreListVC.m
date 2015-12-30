@@ -666,7 +666,12 @@ typedef enum{
 }
 
 -(void)dealWithResponseData:(id)obj{
-    
+    if ([[[obj objectForKey:@"beans"] objectForKey:@"beans"] count]>0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.scrollView addTopBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+        });
+        
+    }
 }
 -(void)testdealWithResponseData:(id)obj{
     

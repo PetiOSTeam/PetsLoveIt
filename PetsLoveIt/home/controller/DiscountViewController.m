@@ -72,7 +72,7 @@
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     self.tableView.top = 5;
     
-    [self.tableView addTopBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+    
     if (self.isCollect) {
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
     }else{

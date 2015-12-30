@@ -42,7 +42,7 @@
     }else{
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH ;
     }
-    [self.tableView addTopBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+    
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     [self config];
 }
@@ -88,6 +88,10 @@
     vc.goodsId = model.prodId;
     NSLog(@"%@",model);
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+-(void)dealWithResponseData:(id)obj{
+    
 }
 
 /**

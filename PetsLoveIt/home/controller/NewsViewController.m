@@ -40,7 +40,7 @@
     [self config];
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     self.tableView.top = 5;
-    [self.tableView addTopBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+    
     self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
     
 }
