@@ -92,6 +92,7 @@
     }else{
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH;
             }
+    [self.tableView.tableHeaderView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     [self.view setBackgroundColor:mRGBToColor(0xf5f5f5)];
     [self config];
     
