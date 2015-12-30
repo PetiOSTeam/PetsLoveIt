@@ -115,7 +115,8 @@ static NSString * ScreenStoreFooterCellIdentifier = @"GradientFooter";
     StoreModel *model = tempData[indexPath.row];
 
     SearchResultsViewController *resultsVC = [[SearchResultsViewController alloc] init];
-    resultsVC.resyltStyle = ResultStyle_Sift;
+    resultsVC.resyltStyle = ResultStyle_Mall;
+    resultsVC.sortId = model.mallId;
     resultsVC.searchText = model.name;
     [self.navigation pushViewController:resultsVC animated:YES];
 

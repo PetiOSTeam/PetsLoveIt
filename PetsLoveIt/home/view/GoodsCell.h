@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIView *collectionView;
 @property (weak, nonatomic) IBOutlet UIImageView *collectionImage;
 @property (weak, nonatomic) IBOutlet UILabel *collectionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *isToplabel;
 
 @property (weak,nonatomic) id<GoodsCellDelegate> delegate;
 

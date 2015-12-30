@@ -69,6 +69,7 @@ static NSString * ScreenStoreFooterIdentifier = @"ScreenStoreFooterIdentifier";
     SearchResultsViewController *resultsVC = [[SearchResultsViewController alloc] init];
     resultsVC.resyltStyle = ResultStyle_Sift;
     resultsVC.searchText = subsortsEntity.name;
+    resultsVC.sortId = subsortsEntity.sortId;
     [self.navigation pushViewController:resultsVC animated:YES];
 }
 

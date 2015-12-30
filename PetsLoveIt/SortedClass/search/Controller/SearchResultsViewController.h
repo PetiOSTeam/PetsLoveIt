@@ -11,6 +11,7 @@
 typedef enum : NSUInteger {
     ResultStyle_Search,
     ResultStyle_Sift,
+    ResultStyle_Mall
 } ResultStyle;
 
 @interface SearchResultsViewController : UIViewController
@@ -21,4 +22,5 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) NSMutableArray *dataSource;
 
+@property (nonatomic, strong) NSString *sortId;
 @end

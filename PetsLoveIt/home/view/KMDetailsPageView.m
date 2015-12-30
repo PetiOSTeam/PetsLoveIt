@@ -213,7 +213,7 @@
         UIImageView *iconimage = [[UIImageView alloc]initWithFrame:CGRectMake(20, _label3.bottom+15, 24, 24)];
         [iconimage sd_setImageWithURL:[NSURL URLWithString:self.goods.publisherIcon] placeholderImage:kDefaultHeadImage];
         [iconimage.layer setCornerRadius:12];
-        UILabel *username = [[UILabel alloc]initWithFrame:CGRectMake(54, _label3.bottom+27, 50, 13)];
+        UILabel *username = [[UILabel alloc]initWithFrame:CGRectMake(54, _label3.bottom+27, 150, 13)];
         username.center = CGPointMake(username.center.x, iconimage.center.y);
         username.text = self.goods.publisher;
         [username setTextColor:mRGBToColor(0x666666)];

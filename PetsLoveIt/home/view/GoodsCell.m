@@ -69,6 +69,11 @@
     
     self.commentImageView.image = [UIImage imageNamed:@"listcommentIcon"];
     self.favorImageView.image = [UIImage imageNamed:@"listfavorIcon"];
+    if ([good.isTop isEqualToString:@"1"]) {
+        self.isToplabel.hidden = NO;
+    }else{
+        self.isToplabel.hidden =YES;
+    }
 }
 
 - (void)showSelectView:(BOOL)show{

@@ -39,6 +39,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 @property (nonatomic, strong) SiftSectionView *siftSectionView;
 
+
 @end
 
 @implementation SearchResultsViewController
@@ -93,28 +94,49 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
     [self.tableView addFooterWithCallback:^{
         [weakSelf searchRequest:YES];
     }];
-
-    NSMutableArray *tempArray = [NSMutableArray arrayWithArray:loadArrayFromDocument(@"hotwords.plist")];
-    if (![tempArray containsObject:self.searchText]) {
-        [tempArray insertObject:self.searchText atIndex:0];
-    }else {
-        NSInteger index = [tempArray indexOfObject:self.searchText];
-        id obj = [[tempArray objectAtIndex:index] mutableCopy];
-        [tempArray removeObjectAtIndex:index];
-        [tempArray insertObject:obj atIndex:0];
+    
+    NSString *order = [NSString stringWithFormat:@"%li",self.siftIndex];
+    NSDictionary *parameters = [[NSDictionary alloc]init];
+    if (self.resyltStyle == ResultStyle_Search) {
+        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:loadArrayFromDocument(@"hotwords.plist")];
+        if (![tempArray containsObject:self.searchText]) {
+            [tempArray insertObject:self.searchText atIndex:0];
+        }else {
+            NSInteger index = [tempArray indexOfObject:self.searchText];
+            id obj = [[tempArray objectAtIndex:index] mutableCopy];
+            [tempArray removeObjectAtIndex:index];
+            [tempArray insertObject:obj atIndex:0];
+        }
+        saveArrayToDocument(@"hotwords.plist", tempArray);
+        parameters = @{@"uid": @"queryProduct",
+                                     @"startNum": @(_page),
+                                     @"limit": @"15",
+                                     @"keywords": self.searchText,
+                                     @"order": order
+                       };
     }
-    saveArrayToDocument(@"hotwords.plist", tempArray);
     
-    NSDictionary *parameters = @{@"uid": @"queryProduct",
-                                 @"startNum": @(_page),
-                                 @"limit": @"15",
-                                 @"keywords": self.searchText};
     
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:parameters];
     if (self.resyltStyle == ResultStyle_Sift) {
-        [dict setObject:@(self.siftIndex) forKey:@"order"];
+        parameters = @{@"uid": @"getProductsBySort",
+                                     @"startNum":@"0",
+                                     @"limit": @"15",
+                                     @"minSortId": self.sortId,
+                                     @"order": order
+                                     };
     }
-    
+//    http://www.cwaizg.cn/petweb/actions/getCoreSv.action?uid=getProductsByMall&limit=5&prodMallId=&startNum=0&userToken=userToken_84ae594bd8004a80bc7b8e741782b87e
+    if (self.resyltStyle == ResultStyle_Mall) {
+        parameters = @{@"uid": @"getProductsByMall",
+                       @"startNum":@"0",
+                       @"limit": @"5",
+                       @"prodMallId": self.sortId,
+                       @"order": order  
+                       };
+
+    }
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:parameters];
+
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"正在搜索";
     [APIOperation GET:kSearchHotWordsAPI
@@ -172,6 +194,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     self.searchText = searchBar.text;
+    self.resyltStyle = ResultStyle_Search;
     [self searchRequest:NO];
 }
 
@@ -195,18 +218,17 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (self.resyltStyle == ResultStyle_Sift) {
+    
         return 50;
-    }
-    return 1;
+    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if (self.resyltStyle == ResultStyle_Sift) {
+    
         return self.siftSectionView;
-    }
-    return nil;
+    
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

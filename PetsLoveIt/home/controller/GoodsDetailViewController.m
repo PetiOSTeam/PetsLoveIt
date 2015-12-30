@@ -59,6 +59,7 @@
 
     }else if (self.goods){
         self.goodsId = self.goods.prodId;
+        self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.goods.typeName];
         [self hideLoadingView];
         [self loadViewAndData];
         //获取猜你喜欢数据
@@ -322,7 +323,6 @@
 }
 
 - (void) getRelatedInfoByappType:(NSString *)apptype{
-//    http://www.cwaizg.cn/petweb/actions/getCoreSv.action?uid=getProductByType&appType=m01&limit=5&startNum=0&userToken=userToken_4107426a1ab044de95f19cc1fc364ff0
     NSDictionary *params = @{
                              @"uid":@"getProductByType",
                              @"appType":apptype,
