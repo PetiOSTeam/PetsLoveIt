@@ -214,7 +214,7 @@
              int rtnCode = [[responseData objectForKey:@"rtnCode"] intValue];
             if (rtnCode == 1) {
                 
-                [mAppUtils showHint:[responseData objectForKey:@"rtnMsg"]];
+//                [mAppUtils showHint:[responseData objectForKey:@"rtnMsg"]];
                 self.token = [responseData objectForKey:@"userToken"];
             }else{
                 [mAppUtils showHint:[responseData objectForKey:@"rtnMsg"]];

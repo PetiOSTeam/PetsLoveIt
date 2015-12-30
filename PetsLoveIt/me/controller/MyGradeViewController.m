@@ -41,6 +41,7 @@
     LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
     if (self.Integralstr) {
         self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",self.Integralstr];
+        self.gradeListView.userintegral = self.Integralstr;
     }else
     {
         [self refreshtheintegral];
@@ -48,6 +49,7 @@
     
    
     [self gradeListView];
+    
 }
 
 - (IBAction)historyAction:(id)sender
@@ -78,6 +80,7 @@
         [_gradeListView autoPinEdgeToSuperviewEdge:ALEdgeLeft];
         [_gradeListView autoPinEdgeToSuperviewEdge:ALEdgeRight];
         [_gradeListView autoPinEdgeToSuperviewEdge:ALEdgeBottom];
+        
     }
     return _gradeListView;
 }
@@ -93,6 +96,7 @@
                      NSString *realtimeintegral = userInfo[@"userIntegral"];
                      self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",realtimeintegral];
                      self.Integralstr = realtimeintegral;
+                     self.gradeListView.userintegral = self.Integralstr;
                      NSLog(@"realtimeintegral%@",self.gradeLabel.text);
                      }
     

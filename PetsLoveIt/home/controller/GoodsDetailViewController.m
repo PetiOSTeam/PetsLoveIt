@@ -48,12 +48,12 @@
 - (NSString *)typename
 {
     if (!_typename) {
-        _typename = [NSString stringWithString:self.goods.appType];
-        if ([_typename isEqualToString:@"m100"]) {
+        _typename = [NSString stringWithString:self.goods.typeName];
+        if ([_typename isEqualToString:@"其他"]) {
             _typename =@"白菜";
         }
         if (!_typename) {
-           _typename = @"优惠";
+           _typename = @"商品";
         }
     }
     return _typename;
