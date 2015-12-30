@@ -315,11 +315,12 @@
              NSLog(@"%@responseDataresponseDataresponseDataresponseData",responseData);
             NSString *rtnCode = [responseData objectForKey:@"rtnCode"];
             int rtncodenum = [rtnCode intValue];
-            if (rtncodenum != 1) {
+            if (rtncodenum !=1) {
                 [mAppUtils showHint:[responseData objectForKey:@"rtnMsg"]];
+                NSLog(@"调用了注册接口返回%i",rtncodenum);
                 return ;
             }else{
-           
+           NSLog(@"调用了注册接口返回或者%i",rtncodenum);
             [mAppUtils showHint:[responseData objectForKey:@"rtnMsg"]];
             if (self.isOtherLogin) {
                 //用绑定帐号的接口自动登录
