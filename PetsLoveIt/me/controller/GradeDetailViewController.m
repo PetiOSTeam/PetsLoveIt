@@ -18,7 +18,7 @@
 
 @property (nonatomic, assign) BOOL isPushOldExchange;
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic)  UIWebView *webView;
 
 @property (weak, nonatomic) IBOutlet UIView *bottomView;
 
@@ -62,40 +62,43 @@
     self.navBarTitleLabel.text = @"兑换详情";
     
     [self.view addSubview:self.headerView];
-    UILabel *desclabel = [[UILabel alloc]initWithFrame:CGRectMake(20, self.headerView.bottom+20, 50, 17)];
+    UILabel *desclabel = [[UILabel alloc]initWithFrame:CGRectMake(20, self.headerView.bottom+20, mScreenWidth-40, 17)];
     desclabel.top =  mNavBarHeight+mStatusBarHeight+128+20;
-    desclabel.text = self.gradeModel.desc;
-    desclabel.textAlignment = NSTextAlignmentRight;
+    desclabel.text = [NSString stringWithFormat:@"%@",self.gradeModel.desc];
+    desclabel.textAlignment = NSTextAlignmentLeft;
     desclabel.font = [UIFont systemFontOfSize:17];
     [desclabel setTextColor:mRGBToColor(0x333333)];
-    UILabel *discountlabel = [[UILabel alloc]initWithFrame:CGRectMake(20, desclabel.bottom+30, 100, 14)];
-    desclabel.text = self.gradeModel.discount;
-    desclabel.textAlignment = NSTextAlignmentRight;
-    desclabel.font = [UIFont systemFontOfSize:14];
-    [desclabel setTextColor:mRGBToColor(0x666666)];
-    UILabel *Datelabel = [[UILabel alloc]initWithFrame:CGRectMake(20, discountlabel.bottom+16, 200, 14)];
-    desclabel.text = self.gradeModel.effectiveDate;
-    desclabel.textAlignment = NSTextAlignmentRight;
-    desclabel.font = [UIFont systemFontOfSize:14];
-    [desclabel setTextColor:mRGBToColor(0x666666)];
-    UILabel *receiveLimitlabel = [[UILabel alloc]initWithFrame:CGRectMake(20, Datelabel.bottom+16, 200, 14)];
-    desclabel.text = self.gradeModel.receiveLimit;
-    desclabel.textAlignment = NSTextAlignmentRight;
-    desclabel.font = [UIFont systemFontOfSize:14];
-    [desclabel setTextColor:mRGBToColor(0xFF4401)];
-    UILabel *subtitle = [[UILabel alloc]initWithFrame:CGRectMake(20, receiveLimitlabel.bottom+40, 50, 17)];
-    desclabel.text = @"详细内容";
-    desclabel.textAlignment = NSTextAlignmentRight;
-    desclabel.font = [UIFont systemFontOfSize:17];
-    [desclabel setTextColor:mRGBToColor(0x333333)];
+    UILabel *discountlabel = [[UILabel alloc]initWithFrame:CGRectMake(20, desclabel.bottom+30, mScreenWidth-40, 14)];
+    discountlabel.text = [NSString stringWithFormat:@"优惠额度: %@",self.gradeModel.discount];
+    discountlabel.textAlignment = NSTextAlignmentLeft;
+    discountlabel.font = [UIFont systemFontOfSize:14];
+    [discountlabel setTextColor:mRGBToColor(0x666666)];
+    UILabel *Datelabel = [[UILabel alloc]initWithFrame:CGRectMake(20, discountlabel.bottom+16, mScreenWidth-40, 14)];
+    Datelabel.text = [NSString stringWithFormat:@"有效日期: %@",self.gradeModel.effectiveDate];
+    Datelabel.textAlignment = NSTextAlignmentLeft;
+    Datelabel.font = [UIFont systemFontOfSize:14];
+    [Datelabel setTextColor:mRGBToColor(0x666666)];
+    UILabel *receiveLimitlabel = [[UILabel alloc]initWithFrame:CGRectMake(20, Datelabel.bottom+16, mScreenWidth-40, 14)];
+    receiveLimitlabel.text = [NSString stringWithFormat:@"领取限制: %@",self.gradeModel.receiveLimit];
+    receiveLimitlabel.textAlignment = NSTextAlignmentLeft;
+    receiveLimitlabel.font = [UIFont systemFontOfSize:14];
+    [receiveLimitlabel setTextColor:mRGBToColor(0xFF4401)];
+    UILabel *subtitle = [[UILabel alloc]initWithFrame:CGRectMake(20, receiveLimitlabel.bottom+40, 150, 17)];
+    subtitle.text = @"详细内容";
+    subtitle.textAlignment = NSTextAlignmentLeft;
+    subtitle.font = [UIFont systemFontOfSize:17];
+    [subtitle setTextColor:mRGBToColor(0x333333)];
     [self.view addSubview:desclabel];
     [self.view addSubview:discountlabel];
     [self.view addSubview:Datelabel];
     [self.view addSubview:receiveLimitlabel];
     [self.view addSubview:subtitle];
+    NSLog(@"desclabel%@",desclabel);
+    NSLog(@"discountlabel%@",discountlabel);NSLog(@"Datelabel%@",Datelabel);NSLog(@"receiveLimitlabel%@",receiveLimitlabel);
     self.webView.top = subtitle.bottom+20;
     self.webView.height = mScreenHeight - 64- self.headerView.height - self.bottomView.height-222;
-    
+    self.webView.left = 12;
+    self.webView.width = mScreenWidth-24;
     
     NSString *html = self.gradeModel.instructions;
     NSString *css = [NSString stringWithFormat:

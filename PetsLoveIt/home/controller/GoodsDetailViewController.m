@@ -48,8 +48,8 @@
 - (NSString *)typename
 {
     if (!_typename) {
-        _typename = [NSString stringWithString:self.goods.typeName];
-        if ([_typename isEqualToString:@"其他"]) {
+        _typename = [NSString stringWithString:self.goods.appType];
+        if ([_typename isEqualToString:@"m100"]) {
             _typename =@"白菜";
         }
         if (!_typename) {
@@ -67,9 +67,11 @@
     [self addExchangeWithTopScrollView:self.detailsPageView.tableView BottomScrollView:self.detailsPageView.tableView2];
     
     if (self.goodsId) {
+        
         [self getProductDetailById:self.goodsId];
 
     }else if (self.goods){
+        
         self.goodsId = self.goods.prodId;
         self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.typename];
         [self hideLoadingView];
