@@ -14,7 +14,7 @@
 #import "MyHistoryGradeViewController.h"
 #import "UserSettingVC.h"
 
-@interface GradeDetailViewController ()
+@interface GradeDetailViewController ()<UIWebViewDelegate,UIScrollViewDelegate>
 
 @property (nonatomic, assign) BOOL isPushOldExchange;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -56,6 +56,12 @@
    
 }
 
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    CGSize actualSize = [webView sizeThatFits:CGSizeZero];
+    self.webView.height = actualSize.height+10;
+     //contentsize是内容的宽和高
+    self.scrollView.contentSize = CGSizeMake(mScreenWidth, self.webView.bottom + 20);
+}
 - (void)configUI
 {
     self.view.backgroundColor = [UIColor whiteColor];
@@ -63,9 +69,10 @@
     self.navBarTitleLabel.text = @"兑换详情";
     
     [self.scrollView addSubview:self.headerView];
+    self.scrollView.delegate =self;
     UILabel *desclabel = [[UILabel alloc]initWithFrame:CGRectMake(20, self.headerView.bottom+20, mScreenWidth-40, 17)];
     desclabel.top =  mNavBarHeight+mStatusBarHeight+128+20;
-    desclabel.text = [NSString stringWithFormat:@"%@",self.gradeModel.desc];
+    desclabel.text = [NSString stringWithFormat:@"基本信息"];
     desclabel.textAlignment = NSTextAlignmentLeft;
     desclabel.font = [UIFont systemFontOfSize:17];
     [desclabel setTextColor:mRGBToColor(0x333333)];
@@ -94,7 +101,7 @@
     [self.scrollView addSubview:Datelabel];
     [self.scrollView addSubview:receiveLimitlabel];
     [self.scrollView addSubview:subtitle];
-   
+    self.webView.delegate =self;
     self.webView.top = subtitle.bottom+20;
 //    self.webView.height = mScreenHeight - 64- self.headerView.height - self.bottomView.height-222;
     self.webView.left = 12;
@@ -155,8 +162,8 @@
     self.residuePagesLabel.attributedText = attributedStr1;
 
     self.webView.scrollView.scrollEnabled = NO;
-    self.webView.height = self.webView.scrollView.contentSize.height+10;
-    [self.scrollView setContentSize:CGSizeMake(mScreenWidth, self.webView.bottom + 20)];
+//    self.webView.height = self.webView.scrollView.contentSize.height;
+//    [self.scrollView setContentSize:CGSizeMake(mScreenWidth, self.webView.bottom + 20)];
 }
 
 - (void)didReceiveMemoryWarning {

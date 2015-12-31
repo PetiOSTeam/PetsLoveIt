@@ -144,11 +144,12 @@
 }
 
 -(void)okPickerView{
+    
     if (!self.selectedProduct && [self.subPickerArray count]>0) {
         self.selectedProduct = [self.subPickerArray firstObject];
     }
     self.sortTextField.text = self.selectedProduct.name;
-    self.selectedProduct =nil;
+    
     [self hidePickerView];
 }
 
@@ -201,6 +202,7 @@
         NSLog(@"%@",self.subPickerArray);
         //[pickerView selectedRowInComponent:1];
         [pickerView reloadComponent:1];
+        self.selectedProduct =nil;
     }else{
         ProductSortModel *sortModel =[self.subPickerArray objectAtIndex:row];
         self.selectedProduct = sortModel;

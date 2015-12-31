@@ -169,7 +169,8 @@
         _webView.scrollView.scrollEnabled = NO;
         _webView.delegate = self;
        
-       
+//        UIScrollView *tempView=(UIScrollView *)[_webView.subviews objectAtIndex:0];
+//        tempView.scrollEnabled=NO;
 
     }
     return _webView;
@@ -242,7 +243,7 @@
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
     CGSize actualSize = [webView sizeThatFits:CGSizeZero];
-    self.webView.height = actualSize.height;
+    self.webView.height = actualSize.height+10;
 //    CGFloat contentHeight = webView.scrollView.contentSize.height;
 //    self.webView.height = contentHeight+20;
 //    if (mIsiP5) {

@@ -52,6 +52,9 @@
         self.collecticon.hidden =YES;
        
     }
+    if ([productModel.appType isEqualToString:@"m100"]) {
+        productModel.typeName = @"白菜";
+    }
     [self.productImageView sd_setImageWithURL:[NSURL URLWithString:productModel.appMinpic]
                              placeholderImage:[UIImage imageNamed:@"timeline_image_loading"]];
     self.productTitleLabel.text = productModel.name;
