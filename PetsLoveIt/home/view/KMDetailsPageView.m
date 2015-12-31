@@ -184,7 +184,7 @@
 
 -(void) loadGoodsInfo:(GoodsModel *)goods{
     
-    self.label1.text = [NSString stringWithFormat:@"%@  %@",goods.typeName,goods.dateTime] ;
+    self.label1.text = [NSString stringWithFormat:@"｜ %@  %@",goods.typeName,goods.dateTime] ;
     
     self.label2.text = goods.name;
     self.label3.text = goods.desc;

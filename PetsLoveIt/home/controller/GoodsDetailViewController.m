@@ -48,8 +48,8 @@
 - (NSString *)typename
 {
     if (!_typename) {
-        _typename = [NSString stringWithString:self.goods.appType];
-        if ([_typename isEqualToString:@"m100"]) {
+        _typename = [NSString stringWithString:self.goods.typeName];
+        if ([self.goods.appType isEqualToString:@"m100"]) {
             _typename =@"白菜";
         }
         if (!_typename) {
