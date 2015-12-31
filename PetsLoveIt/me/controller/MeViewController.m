@@ -76,16 +76,11 @@
     UIImageView *dotImage;
     UIImageView *dotOnMsgImage;
 }
-- (NSString *)integralstr
-{
-    if (!_integralstr) {
-        [self refreshtheintegral];
-    }
-    return _integralstr;
-}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    [self refreshtheintegral];
     [self prepareViewAndData];
     //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshtheintegral) name:@"refreshtheintegral" object:nil];
@@ -102,6 +97,7 @@
 //}
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self refreshtheintegral];
     [self loadUserInfoViewAndData];
     
     float tmpSize = [[SDImageCache sharedImageCache] checkTmpSize];
