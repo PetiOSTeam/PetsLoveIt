@@ -202,6 +202,7 @@
     // label1
     CGSize lablesize1 = [self getframeWithTitle:self.label1.text andTitleFont:self.label1.font];
     self.label1.frame = (CGRect){{20,_imageView.bottom + 10}, lablesize1};
+    
     // label2
     CGSize lablesize2 = [self getframeWithTitle:self.label2.text andTitleFont:self.label2.font];
     self.label2.frame = (CGRect){{20, _label1.bottom + 15}, lablesize2};
@@ -242,20 +243,12 @@
     [self.webView loadHTMLString:html baseURL:nil];
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
-    CGSize actualSize = [webView sizeThatFits:CGSizeZero];
+    CGSize actualSize = [webView sizeThatFits:CGSizeMake(mScreenWidth -24, 0)];
     self.webView.height = actualSize.height+10;
-//    CGFloat contentHeight = webView.scrollView.contentSize.height;
-//    self.webView.height = contentHeight+20;
-//    if (mIsiP5) {
-//        self.webView.height = contentHeight + 110;
-//    }
-//    NSLog(@"%f",[[UIScreen mainScreen] currentMode].size.width);
-//    if ([[UIScreen mainScreen] currentMode].size.width==750) {
-//        self.webView.height = contentHeight + 90;
-//    }
+
     if (self.isCheapProduct) {
         [self getCheapProductOnCompletion:^{
-            self.cheapTable.top = self.webView.bottom +10;
+            self.cheapTable.top = self.webView.bottom+30;
             self.cheapTable.height = self.cheapTable.dataArray.count * 150;
             self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.cheapTable.bottom+45) ;
             [self setupTableViewHeader];
@@ -267,7 +260,7 @@
         }];
         
     }else{
-        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom+45 ) ;
+        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom +45) ;
         [self setupTableViewHeader];
         
         self.tableView.tableHeaderView.height = self.headerView.height;

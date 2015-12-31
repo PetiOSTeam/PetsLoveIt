@@ -62,6 +62,29 @@
         return;
     }else{
         
+        NSString * tempStr1 = @"http://";
+        NSString * tempStr2 = @"https://";
+        
+        
+        
+        
+        NSRange range1 = [sourceLink rangeOfString:tempStr1];//判断字符串是否包含
+        
+        NSRange range2 = [sourceLink rangeOfString:tempStr2];
+        
+        //if (range.location ==NSNotFound)//不包含
+        
+        if ((range1.length >0)||(range2.length >0))//包含
+        {
+        }
+        
+        else//不包含
+            
+        {
+            mAlertView(@"提示", @"请填写带有http://或者https://的网址");
+            return;
+            
+        }
     }
     [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeNone];
     NSDictionary *params = @{@"uid":@"getShareInfo",
