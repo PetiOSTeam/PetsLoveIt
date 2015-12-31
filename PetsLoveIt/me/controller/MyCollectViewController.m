@@ -31,6 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.width = mScreenWidth;
     // Do any additional setup after loading the view from its nib.
     [self prepareViewAndData];
 }
