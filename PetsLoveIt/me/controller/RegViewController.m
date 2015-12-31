@@ -358,7 +358,7 @@
     [APIOperation GET:@"userLogin.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         [SVProgressHUD dismiss];
 
-        if (responseData) {
+        if (!error) {
             NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
             LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
             if (localUserInfo) {
@@ -372,6 +372,8 @@
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
  
+        }else{
+            mAlertAPIErrorInfo(error);
         }
     }];
 }
