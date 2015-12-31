@@ -49,7 +49,7 @@
 {
     if (!_typename) {
         _typename = [NSString stringWithString:self.goods.typeName];
-        if ([_typename isEqualToString:@"其他"]) {
+        if ([self.goods.appType isEqualToString:@"m100"]) {
             _typename =@"白菜";
         }
         if (!_typename) {
