@@ -312,7 +312,7 @@
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (responseData) {
             [SVProgressHUD dismiss];
-             NSLog(@"%@responseDataresponseDataresponseDataresponseData",responseData);
+            
             NSString *rtnCode = [responseData objectForKey:@"rtnCode"];
             int rtncodenum = [rtnCode intValue];
             if (rtncodenum !=1) {
