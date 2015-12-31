@@ -390,7 +390,7 @@
         [SVProgressHUD dismiss];
         [mAppUtils hideHint];
         if (responseData) {
-            //绑定过三方帐号，直接登录
+                       //绑定过三方帐号，直接登录
             NSMutableDictionary *userDict = [responseData objectForKey:@"bean"];
             LocalUserInfoModelClass *localUserInfo = [[LocalUserInfoModelClass alloc] initWithDictionary:userDict];
             if (localUserInfo) {

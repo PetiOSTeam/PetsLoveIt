@@ -84,7 +84,7 @@
             
             NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
             
-            self.otherAccount = snsAccount.usid;
+            self.otherAccount = snsAccount.accessToken;
             self.otherType = @"3";
             [self bindUserAccount];
             
@@ -101,7 +101,7 @@
             
             NSLog(@"username is %@, uid is %@, token is %@ url is %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL);
             
-            self.otherAccount = snsAccount.accessToken;
+            self.otherAccount = snsAccount.usid;
             self.otherType = @"2";
             [self bindUserAccount];
             
