@@ -12,7 +12,7 @@
 @interface MyGradeListView : UIView
 
 @property (nonatomic, weak) UINavigationController *navigation;
-
+@property (nonatomic,copy) NSString *userintegral;
 - (id)initWithFrame:(CGRect)frame
           withStyle:(GradeStyle)style;
 

@@ -53,7 +53,7 @@
             _typename =@"白菜";
         }
         if (!_typename) {
-           _typename = @"优惠";
+           _typename = @"商品";
         }
     }
     return _typename;

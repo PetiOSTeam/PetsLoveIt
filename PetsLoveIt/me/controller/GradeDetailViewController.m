@@ -167,6 +167,10 @@
 - (IBAction)exchangeAction:(id)sender
 {
 
+    if ([self.userintegral intValue]<[self.gradeModel.integral intValue]) {
+        [mAppUtils showHint:@"亲，您的积分不够，快去赚积分吧。"];
+        return;
+    }
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"兑换中...";
     NSDictionary *parameter = @{@"uid": @"saveUserChangeIntegral",
