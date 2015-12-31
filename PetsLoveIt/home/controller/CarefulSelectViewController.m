@@ -186,6 +186,9 @@
     PetWebViewController *vc = [PetWebViewController new];
     AdModel *adModel = [self.adArray objectAtIndex:index];
     vc.htmlUrl = adModel.goUrl;
+    if(vc.htmlUrl.length == 0){
+        return;
+    }
     vc.isProduct = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

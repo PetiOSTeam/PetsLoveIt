@@ -82,6 +82,9 @@
     PetWebViewController *vc = [PetWebViewController new];
     vc.isProduct = YES;
     vc.htmlUrl = goods.goUrl;
+    if(vc.htmlUrl.length == 0){
+        return;
+    }
     [[self viewController].navigationController pushViewController:vc animated:YES];
 }
 

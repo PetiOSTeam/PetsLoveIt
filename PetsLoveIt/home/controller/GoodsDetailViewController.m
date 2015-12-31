@@ -298,6 +298,9 @@
             PetWebViewController *vc = [PetWebViewController new];
 //            vc.isProduct = YES;
             vc.htmlUrl = self.goods.goUrl;
+            if(vc.htmlUrl.length == 0){
+                return;
+            }
             BaseNavigationController *navi = [[BaseNavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:navi animated:YES completion:NULL];
         }
