@@ -243,8 +243,8 @@
     [self.webView loadHTMLString:html baseURL:nil];
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
-    CGSize actualSize = [webView sizeThatFits:CGSizeMake(mScreenWidth -24, 0)];
-    self.webView.height = actualSize.height+10;
+    CGFloat height = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
+    self.webView.height = height+10;
 
     if (self.isCheapProduct) {
         [self getCheapProductOnCompletion:^{

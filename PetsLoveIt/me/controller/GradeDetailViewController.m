@@ -57,10 +57,10 @@
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
-    CGSize actualSize = [webView sizeThatFits:CGSizeZero];
-    self.webView.height = actualSize.height+10;
+    CGFloat height = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
+    self.webView.height = height+20;
      //contentsize是内容的宽和高
-    self.scrollView.contentSize = CGSizeMake(mScreenWidth, self.webView.bottom + 20);
+    self.scrollView.contentSize = CGSizeMake(mScreenWidth, self.webView.bottom);
 }
 - (void)configUI
 {
