@@ -64,17 +64,21 @@
         
         NSString * tempStr1 = @"http://";
         NSString * tempStr2 = @"https://";
-        
+        NSString * tempStr3 = @"HTTP://";
+        NSString * tempStr4 = @"HTTPS://";
         
         
         
         NSRange range1 = [sourceLink rangeOfString:tempStr1];//判断字符串是否包含
         
         NSRange range2 = [sourceLink rangeOfString:tempStr2];
+        NSRange range3 = [sourceLink rangeOfString:tempStr3];//判断字符串是否包含
+        NSRange range4 = [sourceLink rangeOfString:tempStr4];
+
         
         //if (range.location ==NSNotFound)//不包含
         
-        if ((range1.length >0)||(range2.length >0))//包含
+        if ((range1.length >0)||(range2.length >0)||(range3.length >0)||(range4.length >0))//包含
         {
         }
         
