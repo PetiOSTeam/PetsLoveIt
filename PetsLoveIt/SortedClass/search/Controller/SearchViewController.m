@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     /**
      *  初始化数据
      */
@@ -79,7 +79,7 @@
         [self.footerView.clearButton setTitle:@"清除搜索记录"
                                      forState:UIControlStateNormal];
         self.footerView.clearButton.enabled = YES;
-        [self.footerView addTopBorderWithColor:kLineColor andWidth:.5];
+//        [self.footerView addTopBorderWithColor:kLineColor andWidth:.5];
     }else {
         
         [self.footerView.clearButton setTitleColor:kLineColor
@@ -196,7 +196,7 @@
     }else {
         headerView.changeKeyworksButton.hidden = YES;
         headerView.title = @"搜索历史";
-        
+        [headerView addTopBorderWithColor:tableView.separatorColor andWidth:.5];
     }
     return headerView;
 }
@@ -206,11 +206,12 @@
     if (indexPath.section == 0) {
         static NSString *CellIdentifierKeyWords = @"CellIdentifierKeyWords";
         SearchKeyWordsCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierKeyWords];
-        [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
+        
         NSArray *keywords = self.dataSource[indexPath.section];
         if (!cell) {
             cell = [[SearchKeyWordsCell alloc] initWithStyle:UITableViewCellStyleDefault
                                              reuseIdentifier:CellIdentifierKeyWords];
+            
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             if (keywords.count == 0) {
                 cell.height = 100;
@@ -228,23 +229,27 @@
         }else {
             cell.keywords = keywords;
         }
+        
+
         return cell;
-    }else{
+    }
     static NSString *CellIdentifier = @"CellIdentifier";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.width = mScreenWidth;
-//    [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
-    if (!cell) {
+       if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
         cell.textLabel.textColor = mRGBToColor(0x666666);
         cell.textLabel.font = [UIFont systemFontOfSize:14];
+           cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
+
     }
     NSArray *data = self.dataSource[indexPath.section];
     cell.textLabel.text = data[indexPath.row];
     return cell;
-    }
+    
 }
 
 

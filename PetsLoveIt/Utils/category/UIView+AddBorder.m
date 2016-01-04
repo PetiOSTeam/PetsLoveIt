@@ -15,7 +15,7 @@
     CALayer *border = [CALayer layer];
     border.backgroundColor = color.CGColor;
     
-    border.frame = CGRectMake(0, 0, self.frame.size.width, borderWidth);
+    border.frame = CGRectMake(0, 0, mScreenWidth, borderWidth);
     [self.layer  addSublayer:border];
 }
 
@@ -24,7 +24,7 @@
     CALayer *border = [CALayer layer];
     border.backgroundColor = color.CGColor;
 
-    border.frame = CGRectMake(0, self.frame.size.height - borderWidth, self.frame.size.width, borderWidth);
+    border.frame = CGRectMake(0, self.frame.size.height - borderWidth, mScreenWidth, borderWidth);
     [self.layer addSublayer:border];
 }
 
