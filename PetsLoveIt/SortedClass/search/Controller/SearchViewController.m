@@ -79,7 +79,7 @@
         [self.footerView.clearButton setTitle:@"清除搜索记录"
                                      forState:UIControlStateNormal];
         self.footerView.clearButton.enabled = YES;
-//        [self.footerView addTopBorderWithColor:kLineColor andWidth:.5];
+        [self.footerView addTopBorderWithColor:kLineColor andWidth:.5];
     }else {
         
         [self.footerView.clearButton setTitleColor:kLineColor
@@ -87,8 +87,7 @@
         [self.footerView.clearButton setTitle:@"暂无搜索记录"
                                      forState:UIControlStateNormal];
         self.footerView.clearButton.enabled = NO;
-//        [self.footerView addTopBorderWithColor:kLineColor andWidth:0];
-    }
+           }
 }
 
 - (void)dismiss
@@ -230,12 +229,12 @@
             cell.keywords = keywords;
         }
         return cell;
-    }
+    }else{
     static NSString *CellIdentifier = @"CellIdentifier";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell.width = mScreenWidth;
-    [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
+//    [cell addBottomBorderWithColor:tableView.separatorColor andWidth:.5];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
@@ -245,6 +244,7 @@
     NSArray *data = self.dataSource[indexPath.section];
     cell.textLabel.text = data[indexPath.row];
     return cell;
+    }
 }
 
 
