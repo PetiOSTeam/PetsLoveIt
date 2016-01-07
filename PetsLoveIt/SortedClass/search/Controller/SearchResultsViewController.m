@@ -92,6 +92,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
     [self.searchBar resignFirstResponder];
     WEAKSELF
     [self.tableView addFooterWithCallback:^{
+        weakSelf.page = weakSelf.page+1;
         [weakSelf searchRequest:YES];
     }];
     
@@ -143,7 +144,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
            parameters:dict
          onCompletion:^(id responseData, NSError *error) {
              [hud hide:YES];
-             [weakSelf.tableView footerEndRefreshing];
+             
              if (responseData) {
                  NSDictionary *jsonDict = responseData[@"beans"];
                  NSArray *beans = jsonDict[@"beans"];
@@ -156,6 +157,7 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
                      [weakSelf.tableView reloadEmptyDataSet];
                  }
              }
+             [weakSelf.tableView footerEndRefreshing];
          }];
 }
 

@@ -75,7 +75,10 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     self.tableview.delegate = self;
     self.tableview.tableHeaderView = self.headerView;
     self.tableview.showsVerticalScrollIndicator = NO;//隐藏垂直滚动条
-    [self.tableview addFooterWithTarget:self action:@selector(footerRereshing)];
+    [self.tableview addFooterWithCallback:^{
+        [self footerRereshing];
+    }];
+    
     
     self.navigationBarView.hidden = YES;
     if (self.uesrId) {
@@ -526,7 +529,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
                      
                      
                      [self.tableview reloadData];
-                                         
+                      [self.tableview footerEndRefreshing];                   
                  }else {
                      
                  }
