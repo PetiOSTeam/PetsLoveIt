@@ -130,6 +130,9 @@
                 [lineView setBackgroundColor:kCellSeparatorColor];
                 [self addSubview:lineView];
                 [self addSubview:_headerImageView];
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(Clickusericon)];
+                [_headerImageView addGestureRecognizer:tap];
+
             }
                 break;
             case NewsType:
@@ -239,5 +242,10 @@
         [self.delegate showPersonInfoVC];
     }
 }
-
+- (void)Clickusericon
+{
+    if ([self.delegate respondsToSelector:@selector(ClickShaidanauthor)]) {
+        [self.delegate ClickShaidanauthor];
+    }
+}
 @end

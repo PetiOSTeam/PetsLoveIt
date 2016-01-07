@@ -211,9 +211,13 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
     if ([goodsDetailVC.goods.appType isEqualToString:@"m100"]) {
         goodsDetailVC.isCheapProduct =YES;
     }
-    if ([goodsDetailVC.goods.appType isEqualToString:@"m05"]) {
-        goodsDetailVC.isShareOrder =YES;
+    else if(([goodsDetailVC.goods.appType isEqualToString:@"m05"])||([goodsDetailVC.goods.appType isEqualToString:@"m06"])){
+        goodsDetailVC.isShareOrder = YES;
+        goodsDetailVC.pageType = RelatedPersonType;
+    }else if ([goodsDetailVC.goods.appType isEqualToString:@"m07"]){
+        goodsDetailVC.pageType = NewsType;
     }
+
 
     
 

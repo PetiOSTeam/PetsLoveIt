@@ -526,8 +526,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
                      
                      
                      [self.tableview reloadData];
-                     [self.tableview footerEndRefreshing];
-                    
+                                         
                  }else {
                      
                  }

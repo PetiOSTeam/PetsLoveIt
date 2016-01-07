@@ -222,22 +222,22 @@
     CGSize lablesize3 = [self getframeWithTitle:self.label3.text andTitleFont:self.label3.font];
     self.label3.frame = (CGRect){{20, _label2.bottom +10}, lablesize3};
    
-    if ([self.goods.appType isEqualToString:@"m05"]) {
-        UIImageView *iconimage = [[UIImageView alloc]initWithFrame:CGRectMake(20, _label3.bottom+15, 24, 24)];
-        [iconimage sd_setImageWithURL:[NSURL URLWithString:self.goods.publisherIcon] placeholderImage:kDefaultHeadImage];
-        [iconimage.layer setCornerRadius:12];
-        UILabel *username = [[UILabel alloc]initWithFrame:CGRectMake(54, _label3.bottom+27, 150, 13)];
-        username.center = CGPointMake(username.center.x, iconimage.center.y);
-        username.text = self.goods.publisher;
-        [username setTextColor:mRGBToColor(0x666666)];
-        [username setFont:[UIFont systemFontOfSize:12]];
-        username.textAlignment = NSTextAlignmentLeft;
-        [_headerView addSubview:iconimage];
-        [_headerView addSubview:username];
-        self.webView.frame = CGRectMake(12,iconimage.bottom+20, mScreenWidth - 24 , 300);
-    }else{
+//    if ([self.goods.appType isEqualToString:@"m05"]) {
+//        UIImageView *iconimage = [[UIImageView alloc]initWithFrame:CGRectMake(20, _label3.bottom+15, 24, 24)];
+//        [iconimage sd_setImageWithURL:[NSURL URLWithString:self.goods.publisherIcon] placeholderImage:kDefaultHeadImage];
+//        [iconimage.layer setCornerRadius:12];
+//        UILabel *username = [[UILabel alloc]initWithFrame:CGRectMake(54, _label3.bottom+27, 150, 13)];
+//        username.center = CGPointMake(username.center.x, iconimage.center.y);
+//        username.text = self.goods.publisher;
+//        [username setTextColor:mRGBToColor(0x666666)];
+//        [username setFont:[UIFont systemFontOfSize:12]];
+//        username.textAlignment = NSTextAlignmentLeft;
+//        [_headerView addSubview:iconimage];
+//        [_headerView addSubview:username];
+//        self.webView.frame = CGRectMake(12,iconimage.bottom+20, mScreenWidth - 24 , 300);
+//    }else{
     self.webView.frame = CGRectMake(12,_label3.bottom+20, mScreenWidth - 24 , 300);
-    }
+//    }
    }
 // 根据文字计算标签的高度
 - (CGSize)getframeWithTitle:(NSString *)title andTitleFont:(UIFont *)titlefont

@@ -19,7 +19,7 @@
 #import "CommentModel.h"
 #import "CommentCell.h"
 #import "CommentGoodsViewController.h"
-
+#import "UserpageViewController.h"
 #define sectionHeaderHeight 47
 
 @interface GoodsDetailViewController ()<UIWebViewDelegate,UITableViewDataSource, UITableViewDelegate,  KMNetworkLoadingViewDelegate, KMDetailsPageDelegate,BottomMenuViewDelegate,CheapProductCellDelegate>
@@ -224,7 +224,7 @@
     [paremssec setObject:self.goods.prodId forKey:@"prodId"];
     [APIOperation GET:@"common.action" parameters:paremssec onCompletion:^(id responseData, NSError *error) {
         if (!error) {
-            NSLog(@"%@1231289312    %@******%@",responseData,self.goods.prodId,[AppCache getUserId]);
+           
             NSDictionary *bean = [responseData objectForKey:@"bean"];
             
             if ([bean count]) {
@@ -276,7 +276,7 @@
         }
     }];
 }
-
+#pragma mark - BottomMenuViewDelegate
 -(void)showLoginVC{
     LoginViewController *vc = [LoginViewController new];
     [self.navigationController pushViewController:vc animated:YES];
@@ -318,12 +318,17 @@
             break;
     }
 }
+-(void)ClickShaidanauthor
+{
+     if((![self.goods.userId isEqualToString:@"0"])&&(self.goods.userId))  {
+        UserpageViewController *vc = [[UserpageViewController alloc]init];
+        vc.uesrId = self.goods.userId;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
 
 
-//-(void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//
-//}
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
@@ -349,7 +354,7 @@
     //如果是白菜价，则猜你喜欢取白菜价列表接口
     if (self.isCheapProduct) {
         params = @{@"uid":@"getCheapProductList",
-                   @"startNum":@"10",
+                   @"startNum":@"12",
                    @"limit":@"10"
                    };
     }

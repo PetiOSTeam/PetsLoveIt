@@ -153,6 +153,14 @@
     GoodsModel *good = self.dataArray1[indexPath.row];
     UIViewController *parentVC = [self viewController];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    if ([good.appType isEqualToString:@"m100"]) {
+        vc.isCheapProduct = YES;
+    }else if (([good.appType isEqualToString:@"m05"])||([good.appType isEqualToString:@"m06"])){
+        vc.isShareOrder = YES;
+         vc.pageType = RelatedPersonType;
+    }else if ([good.appType isEqualToString:@"m07"]){
+        vc.pageType = NewsType;
+    }
     vc.goods = good;
     [parentVC.navigationController pushViewController:vc animated:YES];
 }

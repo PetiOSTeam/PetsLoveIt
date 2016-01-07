@@ -17,7 +17,7 @@
 - (void) showLoginVC;
 - (void) praiseProduct:(BOOL)praiseFlag;
 - (void) collectProduct:(BOOL)collectFlag;
-
+- (void) ClickShaidanauthor;
 @end
 @interface BottomMenuView : UIView
 
