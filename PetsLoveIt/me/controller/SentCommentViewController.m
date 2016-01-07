@@ -30,6 +30,8 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyCommentCell * cell =(MyCommentCell *) [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    cell.userIcon = [AppCache getUserAvatar];
+
     cell.isSentComment = YES;
     cell.delegate = self;
     return cell;

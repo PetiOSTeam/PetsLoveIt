@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self prepareViewAndData];
+   
 }
 
 -(UIButton *)blBtn{
@@ -39,7 +40,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.tableView.top = mNavBarHeight + mStatusBarHeight;
-    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight - 78;
+    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight ;
     [self.view bringSubviewToFront:self.blBtn];
 
 }

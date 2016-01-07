@@ -207,9 +207,16 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
     GoodsDetailViewController *goodsDetailVC = [[GoodsDetailViewController alloc] init];
     goodsDetailVC.goods = model;
+   
     if ([goodsDetailVC.goods.appType isEqualToString:@"m100"]) {
         goodsDetailVC.isCheapProduct =YES;
     }
+    if ([goodsDetailVC.goods.appType isEqualToString:@"m05"]) {
+        goodsDetailVC.isShareOrder =YES;
+    }
+
+    
+
     [self.navigationController pushViewController:goodsDetailVC animated:YES];
     _isPush = YES;
 }

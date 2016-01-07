@@ -102,8 +102,7 @@
     
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
-    configModel.isTaopet = NO;
-    if (self.isCollect) {
+        if (self.isCollect) {
         configModel.params = @{
                                @"uid":@"getUsercollect",
                                @"appType":@"m02"

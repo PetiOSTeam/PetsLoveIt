@@ -582,8 +582,15 @@
 		9D1D3AE41C28F9C500155E6D /* ShakeremindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1D3AE31C28F9C500155E6D /* ShakeremindView.m */; };
 		9D1D3B341C297DC300155E6D /* AdviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D1D3B331C297DC300155E6D /* AdviceViewController.xib */; };
 		9D4240AF1C20374A0047EEFD /* SigninbubbleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */; };
+		9D4FF05D1C3E3D7300C053E4 /* Shaidanauthor.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D4FF05B1C3E3D7300C053E4 /* Shaidanauthor.m */; };
+		9D4FF0601C3E3FCD00C053E4 /* Shaidanauthor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D4FF05F1C3E3FCD00C053E4 /* Shaidanauthor.xib */; };
+		9D5C90901C3BBAE9007161D3 /* UserpageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D5C908F1C3BBAE9007161D3 /* UserpageViewController.m */; };
+		9D5C90941C3BC26B007161D3 /* UserpageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D5C90931C3BC26B007161D3 /* UserpageViewController.xib */; };
+		9D5C90971C3BD7F8007161D3 /* UserpageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D5C90961C3BD7F8007161D3 /* UserpageModel.m */; };
 		9DFC24E71C2D173C00936CC0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFC24E61C2D173C00936CC0 /* AudioToolbox.framework */; };
 		9DFC24EB1C2D202300936CC0 /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC24EA1C2D202300936CC0 /* YLLabel.m */; };
+		9DFF5C1E1C3D161E007E15B2 /* BaoliaoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF5C1D1C3D161E007E15B2 /* BaoliaoTableViewCell.m */; };
+		9DFF5C201C3D163C007E15B2 /* BaoliaoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DFF5C1F1C3D163C007E15B2 /* BaoliaoTableViewCell.xib */; };
 		F91BA2C51C15B08C00B1C2E9 /* XRZAlertControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */; };
 		F91BA2C91C15B65A00B1C2E9 /* GradePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C81C15B65A00B1C2E9 /* GradePopView.m */; };
 		F91BA2CB1C15B66C00B1C2E9 /* GradePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91BA2CA1C15B66C00B1C2E9 /* GradePopView.xib */; };
@@ -1643,9 +1650,20 @@
 		9D1D3B331C297DC300155E6D /* AdviceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdviceViewController.xib; sourceTree = "<group>"; };
 		9D4240AD1C20374A0047EEFD /* SigninbubbleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SigninbubbleButton.h; path = PetsLoveIt/SigninbubbleButton.h; sourceTree = SOURCE_ROOT; };
 		9D4240AE1C20374A0047EEFD /* SigninbubbleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SigninbubbleButton.m; path = PetsLoveIt/SigninbubbleButton.m; sourceTree = SOURCE_ROOT; };
+		9D4FF05A1C3E3D7200C053E4 /* Shaidanauthor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shaidanauthor.h; sourceTree = "<group>"; };
+		9D4FF05B1C3E3D7300C053E4 /* Shaidanauthor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shaidanauthor.m; sourceTree = "<group>"; };
+		9D4FF05F1C3E3FCD00C053E4 /* Shaidanauthor.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Shaidanauthor.xib; sourceTree = "<group>"; };
+		9D5C908E1C3BBAE9007161D3 /* UserpageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserpageViewController.h; sourceTree = "<group>"; };
+		9D5C908F1C3BBAE9007161D3 /* UserpageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserpageViewController.m; sourceTree = "<group>"; };
+		9D5C90931C3BC26B007161D3 /* UserpageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserpageViewController.xib; sourceTree = "<group>"; };
+		9D5C90951C3BD7F8007161D3 /* UserpageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserpageModel.h; sourceTree = "<group>"; };
+		9D5C90961C3BD7F8007161D3 /* UserpageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserpageModel.m; sourceTree = "<group>"; };
 		9DFC24E61C2D173C00936CC0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9DFC24E91C2D202300936CC0 /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
 		9DFC24EA1C2D202300936CC0 /* YLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLabel.m; sourceTree = "<group>"; };
+		9DFF5C1C1C3D161E007E15B2 /* BaoliaoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoliaoTableViewCell.h; sourceTree = "<group>"; };
+		9DFF5C1D1C3D161E007E15B2 /* BaoliaoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoliaoTableViewCell.m; sourceTree = "<group>"; };
+		9DFF5C1F1C3D163C007E15B2 /* BaoliaoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaoliaoTableViewCell.xib; sourceTree = "<group>"; };
 		F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XRZAlertControl.swift; sourceTree = "<group>"; };
 		F91BA2C61C15B16700B1C2E9 /* PetsLoveIt-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PetsLoveIt-Header.h"; sourceTree = "<group>"; };
 		F91BA2C71C15B65A00B1C2E9 /* GradePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradePopView.h; sourceTree = "<group>"; };
@@ -3249,6 +3267,9 @@
 				1808BE411C131A06002A029B /* CommentGoodsViewController.h */,
 				1808BE421C131A06002A029B /* CommentGoodsViewController.m */,
 				1808BE431C131A06002A029B /* CommentGoodsViewController.xib */,
+				9D5C908E1C3BBAE9007161D3 /* UserpageViewController.h */,
+				9D5C908F1C3BBAE9007161D3 /* UserpageViewController.m */,
+				9D5C90931C3BC26B007161D3 /* UserpageViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3258,6 +3279,8 @@
 			children = (
 				18DD074C1BED9DCC003C8160 /* TopicModel.h */,
 				18DD074D1BED9DCC003C8160 /* TopicModel.m */,
+				9D5C90951C3BD7F8007161D3 /* UserpageModel.h */,
+				9D5C90961C3BD7F8007161D3 /* UserpageModel.m */,
 				182110501BEF1B6500C32E23 /* GoodsModel.h */,
 				182110511BEF1B6500C32E23 /* GoodsModel.m */,
 				76AF7FEB1BEF7F1F0066659E /* OrderModel.h */,
@@ -3275,6 +3298,12 @@
 		18DD071D1BEC53E5003C8160 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				9D4FF05F1C3E3FCD00C053E4 /* Shaidanauthor.xib */,
+				9D4FF05A1C3E3D7200C053E4 /* Shaidanauthor.h */,
+				9D4FF05B1C3E3D7300C053E4 /* Shaidanauthor.m */,
+				9DFF5C1C1C3D161E007E15B2 /* BaoliaoTableViewCell.h */,
+				9DFF5C1D1C3D161E007E15B2 /* BaoliaoTableViewCell.m */,
+				9DFF5C1F1C3D163C007E15B2 /* BaoliaoTableViewCell.xib */,
 				18F633BE1BF88E6400FD98B1 /* KMDetailsPageView.h */,
 				18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */,
 				186AEBDC1C2ED3330092F289 /* CheapTableView.h */,
@@ -4089,6 +4118,7 @@
 				189446001BEB0774006249F0 /* e_3@2x.png in Resources */,
 				18DD071F1BEC53E5003C8160 /* HomePageViewController.xib in Resources */,
 				189445FC1BEB0774006249F0 /* e_36@2x.png in Resources */,
+				9D5C90941C3BC26B007161D3 /* UserpageViewController.xib in Resources */,
 				189446491BEB0774006249F0 /* chatBar_more.png in Resources */,
 				18EAF0411C18720500454BE2 /* MyMsgCell.xib in Resources */,
 				189446391BEB0774006249F0 /* faceDelete.png in Resources */,
@@ -4179,6 +4209,7 @@
 				189446121BEB0774006249F0 /* e_56@2x.png in Resources */,
 				189446221BEB0774006249F0 /* e_70@2x.png in Resources */,
 				18F633A81BF883C800FD98B1 /* UMSocialSDKResourcesNew.bundle in Resources */,
+				9DFF5C201C3D163C007E15B2 /* BaoliaoTableViewCell.xib in Resources */,
 				1894460A1BEB0774006249F0 /* e_49@2x.png in Resources */,
 				1894460C1BEB0774006249F0 /* e_50@2x.png in Resources */,
 				18F633A21BF883C800FD98B1 /* UMSCommentInputControlleriPad.xib in Resources */,
@@ -4200,6 +4231,7 @@
 				18F633B61BF883C800FD98B1 /* ios-social-sdk-share-detail.html in Resources */,
 				189446631BEB0774006249F0 /* chatBar_more_photoSelected.png in Resources */,
 				189446071BEB0774006249F0 /* e_46@2x.png in Resources */,
+				9D4FF0601C3E3FCD00C053E4 /* Shaidanauthor.xib in Resources */,
 				18E21E861C001E0F007059F3 /* MeViewController.xib in Resources */,
 				189446011BEB0774006249F0 /* e_40@2x.png in Resources */,
 				189445E41BEB0774006249F0 /* e_14@2x.png in Resources */,
@@ -4275,10 +4307,12 @@
 				189445CD1BEB0774006249F0 /* PSTCollectionView.m in Sources */,
 				F9BE499D1C133758002E47CC /* GradeModel.m in Sources */,
 				18E21EE41C01CC53007059F3 /* RegViewController.m in Sources */,
+				9DFF5C1E1C3D161E007E15B2 /* BaoliaoTableViewCell.m in Sources */,
 				189445DF1BEB0774006249F0 /* DXFaceView.m in Sources */,
 				189445B91BEB0774006249F0 /* UIView+MJExtension.m in Sources */,
 				1894466B1BEB0774006249F0 /* XHMessageTextView.m in Sources */,
 				189445D31BEB0774006249F0 /* PSTCollectionViewLayout.m in Sources */,
+				9D4FF05D1C3E3D7300C053E4 /* Shaidanauthor.m in Sources */,
 				189446D71BEB0A80006249F0 /* YYKVStorage.m in Sources */,
 				189445A01BEB0774006249F0 /* NSData+MimeType.m in Sources */,
 				189445801BEB0774006249F0 /* MBProgressHUD+Add.m in Sources */,
@@ -4298,6 +4332,7 @@
 				189442E01BEAF65A006249F0 /* UIView+Frame.m in Sources */,
 				1894459A1BEB0774006249F0 /* MWTapDetectingView.m in Sources */,
 				189446E31BEB0A80006249F0 /* YYSpriteSheetImage.m in Sources */,
+				9D5C90971C3BD7F8007161D3 /* UserpageModel.m in Sources */,
 				189445BC1BEB0774006249F0 /* CoreViewNetWorkStausManager.m in Sources */,
 				18E21F521C05B3F6007059F3 /* MsgViewController.m in Sources */,
 				F9BE498E1C1317D5002E47CC /* SysMsgCell.m in Sources */,
@@ -4315,6 +4350,7 @@
 				184858B61BF8DD3C001FF521 /* SKTagButton.m in Sources */,
 				189445C51BEB0774006249F0 /* NSObject+MJKeyValue.m in Sources */,
 				189442E71BEAF65A006249F0 /* APIOperation.m in Sources */,
+				9D5C90901C3BBAE9007161D3 /* UserpageViewController.m in Sources */,
 				189442DE1BEAF65A006249F0 /* UIView+Addition.m in Sources */,
 				F960FFDB1C0B38EB00281547 /* ProductModel.m in Sources */,
 				1894463B1BEB0774006249F0 /* FacialView.m in Sources */,
@@ -4675,7 +4711,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "794edc03-1155-4c7b-bfbe-f980c153c551";
+				PROVISIONING_PROFILE = "2a0246c8-d0f8-4132-84d1-564e03e60fb0";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -4713,7 +4749,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "794edc03-1155-4c7b-bfbe-f980c153c551";
+				PROVISIONING_PROFILE = "2a0246c8-d0f8-4132-84d1-564e03e60fb0";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4766,7 +4802,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.cwaizg.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "794edc03-1155-4c7b-bfbe-f980c153c551";
+				PROVISIONING_PROFILE = "2a0246c8-d0f8-4132-84d1-564e03e60fb0";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "PetsLoveIt/PetsLoveIt-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -4821,7 +4857,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.cwaizg.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "794edc03-1155-4c7b-bfbe-f980c153c551";
+				PROVISIONING_PROFILE = "2a0246c8-d0f8-4132-84d1-564e03e60fb0";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "PetsLoveIt/PetsLoveIt-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

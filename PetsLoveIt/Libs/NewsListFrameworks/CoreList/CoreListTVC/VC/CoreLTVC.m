@@ -87,7 +87,7 @@
     
     //子类真实实例化，父类多态接收
     LTCell *cell=[self.configModel.ViewForCellClass cellWithTableView:tableView];
-    cell.isTaopet = self.configModel.isTaopet;
+   
     //数据传递
     cell.indexPath=indexPath;
     

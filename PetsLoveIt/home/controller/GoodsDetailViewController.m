@@ -376,15 +376,16 @@
                              @"prodId":proId
                              };
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-        //[self hideLoadingView];
+       
         if (!error) {
+           
             self.goods = [[GoodsModel alloc] initWithDictionary:[responseData objectForKey:@"data"]] ;
-//            NSLog(@"😊😊😊😊😊%@",self.goods.typeName);
              self.goodsId =self.goods.prodId;
             self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.typename];
             [self loadViewAndData];
             //获取猜你喜欢数据
             [self getRelatedInfoByappType:self.goods.appType];
+            
         }else{
             [self hideLoadingView];
             mAlertAPIErrorInfo(error);

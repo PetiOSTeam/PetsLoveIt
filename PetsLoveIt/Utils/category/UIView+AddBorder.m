@@ -43,6 +43,7 @@
     border.backgroundColor = color.CGColor;
     
     border.frame = CGRectMake(self.frame.size.width - borderWidth, 0, borderWidth, self.frame.size.height);
+    NSLog(@"%@",NSStringFromCGRect(self.frame));
     [self.layer addSublayer:border];
 }
 

@@ -55,7 +55,7 @@
     }else{
        self.nameLabel.text = [NSString stringWithFormat:@"%@",good.typeName];
     }
-    if (self.isTaopet) {
+    if ([good.appType isEqualToString:@"m04"]) {
         self.collectionView.hidden = NO;
         self.collectionLabel.text = good.collectnum;
         self.collectionImage.image = [UIImage imageNamed:@"collectIcon"];

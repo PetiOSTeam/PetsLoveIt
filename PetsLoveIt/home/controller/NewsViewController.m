@@ -94,7 +94,7 @@
     //url,分为公告和话题
     
     configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getCoreSv.action"];
-    configModel.isTaopet = NO;
+   
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{

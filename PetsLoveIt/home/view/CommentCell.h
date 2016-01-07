@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *zanImage;
 @property (weak, nonatomic) IBOutlet UILabel *zanLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
+- (IBAction)clickIocn;
+@property (weak, nonatomic) IBOutlet UIButton *IocnButton;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *floorLabel;

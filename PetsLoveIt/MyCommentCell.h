@@ -28,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIView *myCommentView;
 @property (weak, nonatomic) IBOutlet MLEmojiLabel *myCommentLabel;
 @property (weak, nonatomic) IBOutlet MLEmojiLabel *otherCommentLabel;
-
+@property (strong,nonatomic) NSString *userIcon;
 @property (nonatomic,assign) id<MyCommentCellDelegate> delegate;
 @property (nonatomic,assign) BOOL isSentComment;
 

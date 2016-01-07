@@ -65,7 +65,8 @@
     
     if (self.isSentComment) {
         self.myCommentView.height = 0 ;
-        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:[AppCache getUserAvatar]] placeholderImage:kDefaultHeadImage];
+    
+        [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:self.userIcon] placeholderImage:kDefaultHeadImage];
     }else{
         [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:comment.otherUserIcon] placeholderImage:kDefaultHeadImage];
         self.myCommentLabel.emojiText = [NSString stringWithFormat:@"%@：%@",[AppCache getUserName],comment.otherContent] ;

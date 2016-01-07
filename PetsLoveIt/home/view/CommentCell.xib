@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="433" height="214"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="433" height="213.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="433" height="213"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="L3c-uf-FDc">
@@ -59,12 +59,20 @@
                         <rect key="frame" x="354" y="17" width="42" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DbK-j7-gDQ" userLabel="Avatar Image View">
+                        <rect key="frame" x="10" y="15" width="36" height="36"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <connections>
+                            <action selector="clickIocn" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Voy-4w-Suh"/>
+                        </connections>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="IocnButton" destination="DbK-j7-gDQ" id="3aF-Uk-OZl"/>
                 <outlet property="avatarImageView" destination="L3c-uf-FDc" id="eEY-Ey-eLU"/>
                 <outlet property="commentLabel" destination="AZk-di-1f9" id="Cy2-Um-VA5"/>
                 <outlet property="dateLabel" destination="zzp-ra-YpQ" id="HcR-Bw-jij"/>

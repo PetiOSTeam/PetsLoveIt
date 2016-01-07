@@ -7,6 +7,7 @@
 //
 
 #import "KMDetailsPageView.h"
+#import "Shaidanauthor.h"
 #define kDefaultImagePagerHeight 210.0f
 
 #define kDefaultTableViewHeaderMargin 95.0f
@@ -22,7 +23,7 @@
 @property (nonatomic, strong) UILabel *label1;
 @property (nonatomic, strong) UILabel *label2;
 @property (nonatomic, strong) UILabel *label3;
-
+@property (nonatomic,strong) Shaidanauthor *shaidanview;
 @end
 
 @implementation KMDetailsPageView
@@ -38,7 +39,13 @@
     }
     return self;
 }
-
+- (Shaidanauthor *)shaidanview
+{
+    if (!_shaidanview) {
+        _shaidanview = [[[NSBundle mainBundle]loadNibNamed:@"Shaidanauthor" owner:self options:nil]firstObject];    }
+  
+    return _shaidanview;
+}
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -125,8 +132,12 @@
         [_headerView addSubview:self.label2];
         [_headerView addSubview:self.label3];
         [_headerView addSubview:self.webView];
+        
         if (self.isCheapProduct) {
             [_headerView addSubview:self.cheapTable];
+        }if (self.isShareOrder) {
+         
+            [_headerView addSubview:self.shaidanview];
         }
         _headerView.clipsToBounds = YES;
     }
@@ -252,14 +263,28 @@
             self.cheapTable.height = self.cheapTable.dataArray.count * 150;
             self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.cheapTable.bottom+45) ;
             [self setupTableViewHeader];
-            
             self.tableView.tableHeaderView.height = self.headerView.height;
             if ([self.delegate respondsToSelector:@selector(detailWebViewDidFinishLoad)]) {
                 [self.delegate detailWebViewDidFinishLoad];
             }
         }];
         
-    }else{
+    }else if (self.isShareOrder)
+    {
+        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom+45+250) ;
+        self.shaidanview.frame = CGRectMake(0, self.webView.bottom, mScreenWidth, 250);
+        
+        self.shaidanview.uesrId = self.goods.userId ;
+//        [self.headerView addSubview:self.shaidanview];
+        
+        [self setupTableViewHeader];
+        self.tableView.tableHeaderView.height = self.headerView.height;
+        if ([self.delegate respondsToSelector:@selector(detailWebViewDidFinishLoad)]) {
+            [self.delegate detailWebViewDidFinishLoad];
+        }
+
+    }
+    else{
         self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom +45) ;
         [self setupTableViewHeader];
         
@@ -269,8 +294,7 @@
             [self.delegate detailWebViewDidFinishLoad];
         }
     }
-    
-    
+   
    
 }
 

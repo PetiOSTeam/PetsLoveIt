@@ -119,7 +119,7 @@
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil] firstObject];
     }
-    cell.isTaopet = NO;
+    
     GoodsModel *good = self.dataArray1[indexPath.row];
     [cell loadCellWithGoodsModel:good];
     return cell;

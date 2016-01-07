@@ -7,6 +7,7 @@
 //
 
 #import "CommentCell.h"
+#import "UserpageViewController.h"
 
 @implementation CommentCell{
 
@@ -39,6 +40,7 @@
 }
 - (void)setupHotcommentCellFrameWith:(NSInteger)index andpraiseNum:(NSString *)praisenum{
     self.avatarImageView.left = 20;
+    self.IocnButton.frame = self.avatarImageView.frame;
     self.nameLabel.left = self.avatarImageView.right+10;
     self.nameLabel.top = 15;
     self.dateLabel.frame = CGRectMake(self.nameLabel.left, self.nameLabel.bottom, 100, self.dateLabel.height);
@@ -77,6 +79,8 @@
 
 - (void)loadViewWithModel:(CommentModel *)comment{
     //显示parent评论
+    
+    
     if (comment.parent_data) {
         [self.tableView.dataArray removeAllObjects];
         [comment.parent_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -101,7 +105,6 @@
     if (self.commentLabel.height < 21) {
         self.commentLabel.height = 21;
     }
-    
     
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:comment.userIcon] placeholderImage:kDefaultHeadImage];
     self.nameLabel.text = comment.nickName;
@@ -150,4 +153,12 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)clickIocn {
+        CommentModel *comment = (CommentModel *)self.model;
+    NSLog(@"clickIocn%@",comment.userName);
+    UserpageViewController *vc = [[UserpageViewController alloc]init];
+    vc.uesrId = comment.userId;
+    
+    [self.viewController.navigationController pushViewController:vc animated:YES];
+}
 @end
