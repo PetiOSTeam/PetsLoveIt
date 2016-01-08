@@ -476,11 +476,12 @@ typedef enum{
         /**
          *  安装底部刷新控件：根据数据安装底部刷新控件，一般来说，第一次加载数据才会执行此方法
          */
-        if(!self.hasData){//如果还没有安装过底部刷新控件
+        //如果数据量超过一屏才添加底部刷新控件
+        CGFloat scrollViewH=self.scrollH;
+        CGFloat dataListTotalH=_configModel.rowHeight * modelsArray.count;
+        if(!self.alreadySetupFooterRefreshControl){//如果还没有安装过底部刷新控件
             
-            //如果数据量超过一屏才添加底部刷新控件
-            CGFloat scrollViewH=self.scrollH;
-            CGFloat dataListTotalH=_configModel.rowHeight * modelsArray.count;
+            
             
             //安装底部刷新控件的条件
             //1.允许安装
@@ -495,7 +496,9 @@ typedef enum{
                 [self removeFooterRefreshControl];
             }
         }
-        
+        if(self.alreadySetupFooterRefreshControl && dataListTotalH <scrollViewH){
+            [self removeFooterRefreshControl];
+        }
         
         
         //当前请求到的数据数组和记录的最新数据对比:

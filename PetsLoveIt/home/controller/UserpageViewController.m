@@ -700,7 +700,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
 - (void)clickButtonWithtype:(NSString *)apptype
 {
     [self getbaoliaoDataWithtype:apptype];
-    [self reloadDataWithheaderViewStateRefresh];
+    [self reloadDataDerectly];
 
 }
 - (void)didReceiveMemoryWarning {
