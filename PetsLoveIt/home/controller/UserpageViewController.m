@@ -287,7 +287,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     [self setupOtherlabelColorWith:0];
     [self getpinglunData];
     
-    [self reloadDataWithheaderViewStateRefresh];
+    [self reloadDataDerectly];
 
     
     }
@@ -305,7 +305,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     [self setupOtherlabelColorWith:1];
     [self getshaidanData];
     
-    [self reloadDataWithheaderViewStateRefresh];
+    [self reloadDataDerectly];
 
     
 }
@@ -323,7 +323,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     [self setupOtherlabelColorWith:2];
     [self getjingyanData];
     
-    [self reloadDataWithheaderViewStateRefresh];
+    [self reloadDataDerectly];
     
 }
 - (void)clickbaoliao
@@ -339,7 +339,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     [label4 setTextColor:mRGBToColor(0xff4001)];
     [self setupOtherlabelColorWith:3];
     [self getbaoliaoDataWithtype:@"m02"];
-    [self reloadDataWithheaderViewStateRefresh];
+    [self reloadDataDerectly];
 }
 - (void)setupOtherlabelColorWith:(int)num
 {
@@ -544,7 +544,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     configModel.removeBackToTopBtn=YES;
     
 //    configModel.refreshControlType = LTConfigModelRefreshControlTypeBottomRefreshOnly;
-     configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*2/3;
+     configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*3/4;
     //配置完毕
     self.configModel=configModel;
     }
@@ -590,7 +590,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     configModel.removeBackToTopBtn=YES;
     
     //    configModel.refreshControlType = LTConfigModelRefreshControlTypeBottomRefreshOnly;
-    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*2/3;
+    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*3/4;
     //配置完毕
     self.configModel=configModel;
     
@@ -636,7 +636,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     configModel.removeBackToTopBtn=YES;
     
     //    configModel.refreshControlType = LTConfigModelRefreshControlTypeBottomRefreshOnly;
-    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*2/3;
+    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*3/4;
     //配置完毕
     self.configModel=configModel;
 
@@ -663,7 +663,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     //模型类
     configModel.ModelClass=[GoodsModel class];
     //    //cell类
-    configModel.ViewForCellClass=[ShareOrderCell class];
+    configModel.ViewForCellClass=[ArticleTableCell class];
     //标识
     configModel.lid=NSStringFromClass(self.class);
     //pageName第几页的参数名
@@ -682,7 +682,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     configModel.removeBackToTopBtn=YES;
     
     //    configModel.refreshControlType = LTConfigModelRefreshControlTypeBottomRefreshOnly;
-    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*2/3;
+    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*3/4;
     //配置完毕
     self.configModel=configModel;
     

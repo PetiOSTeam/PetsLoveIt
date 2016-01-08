@@ -230,7 +230,7 @@ CGFloat const deltaValue=40.0f;
         case CoreHeaderViewRefreshStateSuccessedResultDataShowing://刷新中->刷新成功，数据展示中
             if(oldState==CoreHeaderViewRefreshStateRefreshing) [self stateSuccessedResultDataShowing];
             break;
-            
+      
         default:
             break;
     }
@@ -270,10 +270,10 @@ CGFloat const deltaValue=40.0f;
         
         // 1.增加滚动区域
 //        CGFloat top = self.scrollView.contentInset.top + CoreRefreshHeaderViewH;
-//        CGFloat top =  CoreRefreshHeaderViewH;
-//        self.scrollView.mj_contentInsetTop = top;
+        CGFloat top =  CoreRefreshHeaderViewH;
+        self.scrollView.mj_contentInsetTop = top;
         // 2.设置滚动位置
-//        self.scrollView.mj_contentOffsetY = - top;
+        self.scrollView.mj_contentOffsetY = - top;
     } completion:^(BOOL finished) {
         //更新界面
         [self updateInterFaceForStatusWithMessage:@"正在刷新中"];
@@ -287,7 +287,32 @@ CGFloat const deltaValue=40.0f;
 
 
 }
+-(void)stateRefreshingDirectly{
+    // 执行动画
+    [UIView animateWithDuration:.3f animations:^{
+        
+        //动画曲线
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        
+        // 1.增加滚动区域
+        //        CGFloat top = self.scrollView.contentInset.top + CoreRefreshHeaderViewH;
+        CGFloat top =  CoreRefreshHeaderViewH;
+        self.scrollView.mj_contentInsetTop = top;
+        // 2.设置滚动位置
+        self.scrollView.mj_contentOffsetY = - top;
+    } completion:^(BOOL finished) {
+        //更新界面
+        [self updateInterFaceForStatusWithMessage:@"正在刷新中"];
+        
+        //通知showView开始刷新
+        self.showView.refreshing=YES;
+        
+        //回调方法
+        [self beginRefreshing];
+    }];
 
+    
+}
 
 
 
