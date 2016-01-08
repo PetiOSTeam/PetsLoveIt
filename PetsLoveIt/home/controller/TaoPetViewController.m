@@ -108,6 +108,7 @@
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.goodsId = model.prodId;
     [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 /**

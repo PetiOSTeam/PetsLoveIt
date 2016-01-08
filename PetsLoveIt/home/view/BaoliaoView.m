@@ -1,20 +1,24 @@
 //
-//  BaoliaoTableViewCell.m
+//  BaoliaoView.m
 //  PetsLoveIt
 //
 //  Created by 123 on 16/1/6.
 //  Copyright © 2016年 kongjun. All rights reserved.
 //
-
-#import "BaoliaoTableViewCell.h"
-@interface BaoliaoTableViewCell ()
+typedef NS_ENUM(NSUInteger, Buttontype) {
+    youhui = 0,
+    haitao,
+    taochong,
+};
+#import "BaoliaoView.h"
+@interface BaoliaoView ()
 - (IBAction)youhuiButtonClick:(id)sender;
 - (IBAction)HaitaoButtonClick:(id)sender;
 - (IBAction)TaochongButtonClick:(id)sender;
-
+@property (assign,nonatomic) Buttontype buttontype;
 @end
 
-@implementation BaoliaoTableViewCell
+@implementation BaoliaoView
 
 - (void)awakeFromNib {
     self.menuView.layer.cornerRadius = 5;
@@ -27,7 +31,16 @@
     [self.youhuiButton setBackgroundImage:buttonImage forState:UIControlStateSelected];
     [self.haitaoButton setBackgroundImage:buttonImage forState:UIControlStateSelected];
     [self.taochongButton setBackgroundImage:buttonImage forState:UIControlStateSelected];
-
+    [self addBottomBorderWithColor:mRGBToColor(0xcccccc) andWidth:0.5];
+     self.youhuiButton.selected = YES;
+//    if (self.buttontype == youhui) {
+//        self.youhuiButton.selected = YES;
+//    }else if (self.buttontype == haitao){
+//        self.haitaoButton.selected = YES;
+//    }else if (self.buttontype == taochong){
+//        self.taochongButton.selected = YES;
+//    }
+    
 }
 - (UIImage *)buttonImageFromColor:(UIColor *)color{
     CGRect rect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
@@ -39,16 +52,14 @@
     UIGraphicsEndImageContext();
     return img;
 }
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 
 - (IBAction)youhuiButtonClick:(UIButton *)sender {
     self.youhuiButton.selected = YES;
     self.haitaoButton.selected = NO;
     self.taochongButton.selected = NO;
+    if ([self.delegate respondsToSelector:@selector(clickButtonWithtype:)]) {
+        [self.delegate clickButtonWithtype:@"m02"];
+    }
     
 }
 
@@ -56,11 +67,17 @@
     self.haitaoButton.selected = YES;
     self.youhuiButton.selected = NO;
     self.taochongButton.selected = NO;
+    if ([self.delegate respondsToSelector:@selector(clickButtonWithtype:)]) {
+        [self.delegate clickButtonWithtype:@"m03"];
+    }
 }
 
 - (IBAction)TaochongButtonClick:(UIButton *)sender {
     self.taochongButton.selected = YES;
     self.haitaoButton.selected = NO;
     self.youhuiButton.selected = NO;
+    if ([self.delegate respondsToSelector:@selector(clickButtonWithtype:)]) {
+        [self.delegate clickButtonWithtype:@"m04"];
+    }
 }
 @end

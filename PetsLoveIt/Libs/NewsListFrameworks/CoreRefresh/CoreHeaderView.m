@@ -270,10 +270,10 @@ CGFloat const deltaValue=40.0f;
         
         // 1.增加滚动区域
 //        CGFloat top = self.scrollView.contentInset.top + CoreRefreshHeaderViewH;
-        CGFloat top =  CoreRefreshHeaderViewH;
-        self.scrollView.mj_contentInsetTop = top;
+//        CGFloat top =  CoreRefreshHeaderViewH;
+//        self.scrollView.mj_contentInsetTop = top;
         // 2.设置滚动位置
-        self.scrollView.mj_contentOffsetY = - top;
+//        self.scrollView.mj_contentOffsetY = - top;
     } completion:^(BOOL finished) {
         //更新界面
         [self updateInterFaceForStatusWithMessage:@"正在刷新中"];

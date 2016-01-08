@@ -6,7 +6,7 @@
 //  Copyright © 2016年 kongjun. All rights reserved.
 //
 typedef NS_ENUM(NSUInteger, Modeltype) {
-    pinglun = 1,
+    pinglun = 0,
     shaidan,
     jingyan,
     baoliao
@@ -17,9 +17,13 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
 #import "GoodsDetailViewController.h"
 #import "CommentModel.h"
 #import "MyCommentCell.h"
-#import "BaoliaoTableViewCell.h"
-#import "MJRefresh.h"
-@interface UserpageViewController ()<UITableViewDataSource,UITableViewDelegate,MyCommentCellDelegate>
+#import "BaoliaoView.h"
+#import "CoreRefreshEntry.h"
+#import "GoodsModel.h"
+#import "GoodsCell.h"
+#import "ShareOrderCell.h"
+#import "ArticleTableCell.h"
+@interface UserpageViewController ()<MyCommentCellDelegate,GoodsCellDelegate,BaoliaoViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *userIocn;
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic)  YYLabel *usersex;
@@ -35,13 +39,12 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
 @property (weak,nonatomic) UIView *jingyan2;
 @property (weak,nonatomic) UIView *baoliao2;
 @property (weak,nonatomic) UIView *menuview2;
-@property (weak,nonatomic) UITableView *tableview;
 @property (assign,nonatomic) Modeltype modeltype;
 @property (strong,nonatomic) NSObject *DataModel;
 @property (strong,nonatomic) NSMutableArray *DataModelArray;
 @property (strong,nonatomic) UserpageModel *pageModel;
-
-
+@property (strong,nonatomic) UIView *mainview;
+@property (strong,nonatomic) BaoliaoView *baoliaoview;
 
 
 - (IBAction)blackButton;
@@ -52,40 +55,59 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
 {
     int pageIndex;
 }
+- (BaoliaoView *)baoliaoview
+{
+    if (!_baoliaoview) {
+        _baoliaoview = [[[NSBundle mainBundle]loadNibNamed:@"BaoliaoView" owner:self options:nil]firstObject];
+
+        _baoliaoview.delegate = self;
+    }
+    return _baoliaoview;
+}
 - (void)viewDidLoad {
-    pageIndex = 1;
-    self.userIocn.layer.cornerRadius = 30;
+   
     [super viewDidLoad];
-    YYLabel *usersex = [YYLabel new];
-    self.usersex =usersex;
-    self.usersex.font = [UIFont systemFontOfSize:12];
-    self.usersex.textColor = [UIColor whiteColor];
-    self.usersex.userInteractionEnabled = YES;
-    self.usersex.numberOfLines = 0;
-    [self.usersex setTextAlignment:NSTextAlignmentCenter];
-    self.usersex.frame = CGRectMake(8, self.username.bottom+6, mScreenWidth-16    ,20);
-    [self.headerView addSubview:self.usersex];
-    UITableView *tableview = [[UITableView alloc]initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+   
+    self.tableView.frame = [UIScreen mainScreen].bounds;
+    self.tableView.tableHeaderView = self.mainview;
     
-    [self.view addSubview:tableview];
     [self showNaviBarView];
    [self.view bringSubviewToFront:self.BlackButton];
-    self.tableview = tableview;
-    self.tableview.dataSource = self;
-    self.tableview.delegate = self;
-    self.tableview.tableHeaderView = self.headerView;
-    self.tableview.showsVerticalScrollIndicator = NO;//隐藏垂直滚动条
-    [self.tableview addFooterWithCallback:^{
-        [self footerRereshing];
-    }];
     
-    
+    NSLog(@"%@",self.mainview);
     self.navigationBarView.hidden = YES;
     if (self.uesrId) {
         [self getuesrDataWithuesrId:self.uesrId];
         
     }
     
+}
+- (UIView *)mainview
+{
+    if (!_mainview) {
+         self.userIocn.layer.cornerRadius = 30;
+        YYLabel *usersex = [YYLabel new];
+        self.usersex =usersex;
+        self.usersex.font = [UIFont systemFontOfSize:12];
+        self.usersex.textColor = [UIColor whiteColor];
+        self.usersex.userInteractionEnabled = YES;
+        self.usersex.numberOfLines = 0;
+        [self.usersex setTextAlignment:NSTextAlignmentCenter];
+        self.usersex.frame = CGRectMake(8, self.username.bottom+6, mScreenWidth-16    ,20);
+        [self.headerView addSubview:self.usersex];
+        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.headerView.height);
+        self.mainview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, mScreenWidth, self.headerView.height+50)];
+        [self.mainview addSubview:self.headerView];
+        [self addMenuViewButton];
+
+    }
+    return _mainview;
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+
 }
 #pragma mark 通过userId获取用户数据
 - (void)getuesrDataWithuesrId:(NSString *)userId
@@ -160,7 +182,18 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
                 [self setupnumLabelWithSuperview:self.baoliao1 andNum:usermodel.discloseNum];
                 [self setupnumLabelWithSuperview:self.baoliao2 andNum:usermodel.discloseNum];
             }
-            [self clickpinglun];
+            
+            UILabel *label1 = [[self.pinglun1 subviews] firstObject];
+            [label1 setTextColor:mRGBToColor(0xff4001)];
+            UILabel *label2 = [[self.pinglun1 subviews] lastObject];
+            [label2 setTextColor:mRGBToColor(0xff4001)];
+            [self setupOtherlabelColorWith:0];
+            UILabel *label3 = [[self.pinglun2 subviews] firstObject];
+            [label3 setTextColor:mRGBToColor(0xff4001)];
+            UILabel *label4 = [[self.pinglun2 subviews] lastObject];
+            [label4 setTextColor:mRGBToColor(0xff4001)];
+            [self setupOtherlabelColorWith:0];
+            [self getpinglunData];
             
         }else{
             mAlertAPIErrorInfo(error);
@@ -170,8 +203,11 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
 
 }
 #pragma mark - 添加四个导航按钮
-- (void)addMenuViewButtonWith
+- (void)addMenuViewButton
 {
+    UIView *menuview = [[UIView alloc]initWithFrame:CGRectMake(0, self.headerView.bottom, mScreenWidth, 50)];
+    
+    self.menuview1 = menuview;
     self.menuview1.backgroundColor = [UIColor whiteColor];
     self.menuview1.userInteractionEnabled = YES;
     [self.menuview1 addBottomBorderWithColor:mRGBToColor(0xdcdcdc) andWidth:.5];
@@ -194,6 +230,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     [self.menuview1 addSubview:shaidan];
     [self.menuview1 addSubview:jingyan];
     [self.menuview1 addSubview:baoliao];
+    [self.mainview addSubview:self.menuview1];
     
 }
 - (void)addRightBorderWithView:(UIView *)view andColor:(UIColor *)color andWidth:(CGFloat) borderWidth
@@ -250,7 +287,10 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     [self setupOtherlabelColorWith:0];
     [self getpinglunData];
     
-}
+    [self reloadDataWithheaderViewStateRefresh];
+
+    
+    }
 - (void)clickshaidan
 {
     self.modeltype = shaidan;
@@ -263,11 +303,15 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     UILabel *label4 = [[self.shaidan2 subviews] lastObject];
     [label4 setTextColor:mRGBToColor(0xff4001)];
     [self setupOtherlabelColorWith:1];
-   
+    [self getshaidanData];
+    
+    [self reloadDataWithheaderViewStateRefresh];
+
     
 }
 - (void)clickjingyan
 {
+    self.modeltype = jingyan;
     UILabel *label1 = [[self.jingyan1 subviews] firstObject];
     [label1 setTextColor:mRGBToColor(0xff4001)];
     UILabel *label2 = [[self.jingyan1 subviews] lastObject];
@@ -277,7 +321,9 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     UILabel *label4 = [[self.jingyan2 subviews] lastObject];
     [label4 setTextColor:mRGBToColor(0xff4001)];
     [self setupOtherlabelColorWith:2];
-//    [self getpinglunData];
+    [self getjingyanData];
+    
+    [self reloadDataWithheaderViewStateRefresh];
     
 }
 - (void)clickbaoliao
@@ -292,8 +338,8 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     UILabel *label4 = [[self.baoliao2 subviews] lastObject];
     [label4 setTextColor:mRGBToColor(0xff4001)];
     [self setupOtherlabelColorWith:3];
-    [self getbaoliaoData];
-    
+    [self getbaoliaoDataWithtype:@"m02"];
+    [self reloadDataWithheaderViewStateRefresh];
 }
 - (void)setupOtherlabelColorWith:(int)num
 {
@@ -315,66 +361,63 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
 }
 #pragma mark -
 #pragma mark - TableViewDataSource
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (self.modeltype == baoliao) {
+       
+        return self.baoliaoview;
+    }
+    return nil;
+
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    if (self.modeltype == baoliao) {
+        return 50;
+    }
+    return 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (self.modeltype == pinglun) {
-        CommentModel *model = [self.DataModelArray objectAtIndex:indexPath.row];
-        CGFloat height = [MyCommentCell heightForSentCellWithObject:model];
+    if (self.modeltype != pinglun) {
         
-        return height;
-    }else if (self.modeltype == baoliao)
-    {
-        if (indexPath.row == 0) {
-            return 50;
-        }
+        return self.configModel.rowHeight;
+    }else{
+    CommentModel *model = [self.dataList objectAtIndex:indexPath.row];
+    CGFloat height = [MyCommentCell heightForSentCellWithObject:model];
+    
+    return height;
     }
-    return 45;
+   
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.modeltype == pinglun) {
-        MyCommentCell *cell = [MyCommentCell cellWithTableView:tableView];
-        //数据传递
-        cell.indexPath=indexPath;
-        //模型传递
-        cell.model=self.DataModelArray[indexPath.row];
-        cell.userIcon = self.pageModel.userIcon;
-        cell.isSentComment = YES;
-        cell.delegate = self;
+    if (self.modeltype == baoliao) {
+
+        GoodsCell * cell =(GoodsCell *) [super tableView:tableView cellForRowAtIndexPath:indexPath];
+       
+     
         return cell;
-    }else if (self.modeltype == baoliao)
-    {
-        if (indexPath.row == 0) {
-            BaoliaoTableViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:@"BaoliaoTableViewCell" owner:self options:nil] firstObject];
-            return cell;
-        }
+    }else if (self.modeltype == shaidan){
+        ShareOrderCell * cell =(ShareOrderCell *) [super tableView:tableView cellForRowAtIndexPath:indexPath];
+       
+       
+        return cell;
+    }else if (self.modeltype == jingyan){
+        ArticleTableCell * cell =(ArticleTableCell *) [super tableView:tableView cellForRowAtIndexPath:indexPath];
+        return cell;
     }
+    else{
     
-    UITableViewCell *cell = [[UITableViewCell alloc]init];
+    MyCommentCell * cell =(MyCommentCell *) [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    cell.userIcon = self.pageModel.userIcon;
+    
+    cell.isSentComment = YES;
+    cell.delegate = self;
     return cell;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (self.modeltype == 0) {
-        UIView *menuview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, mScreenWidth, 50)];
-        
-        self.menuview1 = menuview;
-        [self addMenuViewButtonWith];
     }
-    
-   
-    return self.menuview1;
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (self.modeltype == pinglun) {
-        return self.DataModelArray.count;
-    }
-    return 30;
-}
+
 #pragma mark - TableViewDelegate
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -385,6 +428,36 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
      self.navigationBarView.hidden = YES;
     }
 
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.modeltype == shaidan) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
+        GoodsDetailViewController *vc = [GoodsDetailViewController new];
+        vc.pageType = RelatedPersonType;
+        vc.isShareOrder = YES;
+        
+        vc.goodsId = model.prodId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else if (self.modeltype == jingyan){
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        GoodsDetailViewController *vc = [GoodsDetailViewController new];
+        vc.pageType = RelatedPersonType;
+        vc.isShareOrder = YES;
+        GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
+        vc.goodsId = model.prodId;
+        [self.navigationController pushViewController:vc animated:YES];
+
+        
+    }else if (self.modeltype == baoliao){
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
+        GoodsDetailViewController *vc = [GoodsDetailViewController new];
+        vc.goodsId = model.prodId;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
 }
 -(void)showNaviBarView{
     if (!self.navigationBarView) {
@@ -437,62 +510,184 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
 #pragma mark - 获取用户详细数据
 #pragma mark 1 获取评论
 - (void)getpinglunData{
-       NSDictionary *parameter = @{@"uid": @"getMyComment",
-                                @"pageIndex": @"1",
-                                @"pageSize": @"10",
-                                @"userId":self.uesrId
-                                };
-    [APIOperation GET:@"common.action"
-           parameters:parameter
-         onCompletion:^(id responseData, NSError *error) {
-             
-             if (responseData) {
-                 int page_flag = [[[responseData objectForKey:@"rows"] objectForKey:@"page_flag"]intValue];
-                 if (page_flag <= 10) {
-                     [self.tableview removeFooter];
-                 }
-                 NSArray *jsondataArray = [[responseData objectForKey:@"rows"]objectForKey:@"rows"];
-                 NSMutableArray *tempArray = [NSMutableArray array];
-                 for (NSDictionary *tempdic in jsondataArray) {
-                     CommentModel *tempmodel = [[CommentModel alloc]initWithDictionary:[NSMutableDictionary dictionaryWithDictionary:tempdic]];
-                     [tempArray addObject:tempmodel];
-                     
-                 }
-                 self.DataModelArray = tempArray;
-                 [self.tableview reloadData];
-             }else {
-                 
-             }
-         }];
+    LTConfigModel *configModel=[[LTConfigModel alloc] init];
+    //url,分为公告和话题
+    
+    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"common.action"];
+    
+    //请求方式
+    configModel.httpMethod=LTConfigModelHTTPMethodGET;
+    configModel.params = @{
+                           @"uid":@"getMyComment",
+                           @"userId":self.uesrId
+                           
+                           };
+    //模型类
+    configModel.ModelClass=[CommentModel class];
+    //    //cell类
+    configModel.ViewForCellClass=[MyCommentCell class];
+    //标识
+    configModel.lid=NSStringFromClass(self.class);
+    //pageName第几页的参数名
+    configModel.pageName=@"pageIndex";
+    
+    //pageSizeName
+    configModel.pageSizeName=@"pageSize";
+    //pageSize
+    configModel.pageSize = 10;
+    //起始页码
+    configModel.pageStartValue=1;
+    //行高
+    configModel.rowHeight=110;
+    
+    //移除返回顶部:(默认开启)
+    configModel.removeBackToTopBtn=YES;
+    
+//    configModel.refreshControlType = LTConfigModelRefreshControlTypeBottomRefreshOnly;
+     configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*2/3;
+    //配置完毕
+    self.configModel=configModel;
+    }
+#pragma mark 2 获取爆料数据
+- (void)getbaoliaoDataWithtype:(NSString *)apptype
+{
+    LTConfigModel *configModel=[[LTConfigModel alloc] init];
+    //url,分为公告和话题
+    
+    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getCoreSv.action"];
+    
+    //请求方式
+    configModel.httpMethod=LTConfigModelHTTPMethodGET;
+        configModel.params = @{
+                               @"uid":@"queryShareProdByUid",
+                               @"appType":apptype,
+                               @"shareUId":self.uesrId
+    
+                               };
+//    configModel.params = @{
+//                           @"uid":@"getProductByType",
+//                           @"appType":apptype
+//                           };
+    //模型类
+    configModel.ModelClass=[GoodsModel class];
+    //    //cell类
+    configModel.ViewForCellClass=[GoodsCell class];
+    //标识
+    configModel.lid=NSStringFromClass(self.class);
+    //pageName第几页的参数名
+    configModel.pageName=@"startNum";
+    
+    //pageSizeName
+    configModel.pageSizeName=@"limit";
+    //pageSize
+    configModel.pageSize = 10;
+    //起始页码
+    configModel.pageStartValue=0;
+    //行高
+    configModel.rowHeight=110;
+    
+    //移除返回顶部:(默认开启)
+    configModel.removeBackToTopBtn=YES;
+    
+    //    configModel.refreshControlType = LTConfigModelRefreshControlTypeBottomRefreshOnly;
+    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*2/3;
+    //配置完毕
+    self.configModel=configModel;
+    
+    
+}
+#pragma mark 3 获取晒单数据
+- (void)getshaidanData{
+    LTConfigModel *configModel=[[LTConfigModel alloc] init];
+    //url,分为公告和话题
+    
+    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getCoreSv.action"];
+    
+    //请求方式
+    configModel.httpMethod=LTConfigModelHTTPMethodGET;
+    configModel.params = @{
+                           @"uid":@"querySunProdByUid",
+                           @"shareUId":self.uesrId
+                           };
+    //    configModel.params = @{
+    //                           @"uid":@"getProductByType",
+    //                           @"appType":apptype
+    //                           };
+   
+    //模型类
+    configModel.ModelClass=[GoodsModel class];
+    //    //cell类
+    configModel.ViewForCellClass=[ShareOrderCell class];
+    //标识
+    configModel.lid=NSStringFromClass(self.class);
+    //pageName第几页的参数名
+    configModel.pageName=@"startNum";
+    
+    //pageSizeName
+    configModel.pageSizeName=@"limit";
+    //pageSize
+    configModel.pageSize = 10;
+    //起始页码
+    configModel.pageStartValue=0;
+    //行高
+    configModel.rowHeight=255;
+    
+    //移除返回顶部:(默认开启)
+    configModel.removeBackToTopBtn=YES;
+    
+    //    configModel.refreshControlType = LTConfigModelRefreshControlTypeBottomRefreshOnly;
+    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*2/3;
+    //配置完毕
+    self.configModel=configModel;
 
 }
-#pragma mark 2 获取爆料数据
-- (void)getbaoliaoData
-{
+#pragma mark 4 获取经验数据
+- (void)getjingyanData{
+   
+    LTConfigModel *configModel=[[LTConfigModel alloc] init];
+    //url,分为公告和话题
     
-    NSDictionary *parameter = @{@"uid": @"getShareInfoList",
-                                @"type":@"1" ,
-                                @"userId":self.uesrId
-                                };
-    [APIOperation GET:@"common.action"
-           parameters:parameter
-         onCompletion:^(id responseData, NSError *error) {
-             if (responseData) {
-                
-                 NSArray *jsondataArray = [[responseData objectForKey:@"rows"]objectForKey:@"rows"];
-                 NSMutableArray *tempArray = [NSMutableArray array];
-                 for (NSDictionary *tempdic in jsondataArray) {
-                     CommentModel *tempmodel = [[CommentModel alloc]initWithDictionary:[NSMutableDictionary dictionaryWithDictionary:tempdic]];
-                     [tempArray addObject:tempmodel];
-                     
-                 }
-                 self.DataModelArray = tempArray;
-                 [self.tableview reloadData];
-             }else {
-                 
-             }
-         }];
+    configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"getCoreSv.action"];
+    
+    //请求方式
+    configModel.httpMethod=LTConfigModelHTTPMethodGET;
+    configModel.params = @{
+                           @"uid":@"queryExperienceProdByUid",
+                           @"shareUId":self.uesrId
+                           };
+    //    configModel.params = @{
+    //                           @"uid":@"getProductByType",
+    //                           @"appType":apptype
+    //                           };
+    
+    //模型类
+    configModel.ModelClass=[GoodsModel class];
+    //    //cell类
+    configModel.ViewForCellClass=[ShareOrderCell class];
+    //标识
+    configModel.lid=NSStringFromClass(self.class);
+    //pageName第几页的参数名
+    configModel.pageName=@"startNum";
+    
+    //pageSizeName
+    configModel.pageSizeName=@"limit";
+    //pageSize
+    configModel.pageSize = 10;
+    //起始页码
+    configModel.pageStartValue=0;
+    //行高
+    configModel.rowHeight=136;
+    
+    //移除返回顶部:(默认开启)
+    configModel.removeBackToTopBtn=YES;
+    
+    //    configModel.refreshControlType = LTConfigModelRefreshControlTypeBottomRefreshOnly;
+    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*2/3;
+    //配置完毕
+    self.configModel=configModel;
+    
 }
+
 #pragma mark - MyCommentCellDelegate
 -(void)showProductVC:(NSString *)proId{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
@@ -501,45 +696,13 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     
 }
 
-#pragma mark - 下拉刷新
-- (void)footerRereshing
+#pragma mark - baoliaoview delegate
+- (void)clickButtonWithtype:(NSString *)apptype
 {
-    
-    if (self.modeltype == pinglun) {
-        pageIndex++;
-        
-        NSDictionary *parameter = @{@"uid": @"getMyComment",
-                                    @"pageIndex": [NSString stringWithFormat:@"%i",pageIndex],
-                                    @"pageSize": @"10",
-                                    @"userId":self.uesrId
-                                    };
-        [APIOperation GET:@"common.action"
-               parameters:parameter
-             onCompletion:^(id responseData, NSError *error) {
-                 
-                 if (responseData) {
-                     
-                     NSArray *jsondataArray = [[responseData objectForKey:@"rows"]objectForKey:@"rows"];
-                     
-                     for (NSDictionary *tempdic in jsondataArray) {
-                         CommentModel *tempmodel = [[CommentModel alloc]initWithDictionary:[NSMutableDictionary dictionaryWithDictionary:tempdic]];
-                         [self.DataModelArray addObject:tempmodel];
-                         
-                     }
-                     
-                     
-                     [self.tableview reloadData];
-                      [self.tableview footerEndRefreshing];                   
-                 }else {
-                     
-                 }
-             }];
-        
+    [self getbaoliaoDataWithtype:apptype];
+    [self reloadDataWithheaderViewStateRefresh];
 
-    }
-    
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -589,8 +589,8 @@
 		9D5C90971C3BD7F8007161D3 /* UserpageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D5C90961C3BD7F8007161D3 /* UserpageModel.m */; };
 		9DFC24E71C2D173C00936CC0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DFC24E61C2D173C00936CC0 /* AudioToolbox.framework */; };
 		9DFC24EB1C2D202300936CC0 /* YLLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFC24EA1C2D202300936CC0 /* YLLabel.m */; };
-		9DFF5C1E1C3D161E007E15B2 /* BaoliaoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF5C1D1C3D161E007E15B2 /* BaoliaoTableViewCell.m */; };
-		9DFF5C201C3D163C007E15B2 /* BaoliaoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DFF5C1F1C3D163C007E15B2 /* BaoliaoTableViewCell.xib */; };
+		9DFF5C1E1C3D161E007E15B2 /* BaoliaoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9DFF5C1D1C3D161E007E15B2 /* BaoliaoView.m */; };
+		9DFF5C201C3D163C007E15B2 /* BaoliaoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DFF5C1F1C3D163C007E15B2 /* BaoliaoView.xib */; };
 		F91BA2C51C15B08C00B1C2E9 /* XRZAlertControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */; };
 		F91BA2C91C15B65A00B1C2E9 /* GradePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C81C15B65A00B1C2E9 /* GradePopView.m */; };
 		F91BA2CB1C15B66C00B1C2E9 /* GradePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91BA2CA1C15B66C00B1C2E9 /* GradePopView.xib */; };
@@ -1661,9 +1661,9 @@
 		9DFC24E61C2D173C00936CC0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		9DFC24E91C2D202300936CC0 /* YLLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YLLabel.h; sourceTree = "<group>"; };
 		9DFC24EA1C2D202300936CC0 /* YLLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YLLabel.m; sourceTree = "<group>"; };
-		9DFF5C1C1C3D161E007E15B2 /* BaoliaoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoliaoTableViewCell.h; sourceTree = "<group>"; };
-		9DFF5C1D1C3D161E007E15B2 /* BaoliaoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoliaoTableViewCell.m; sourceTree = "<group>"; };
-		9DFF5C1F1C3D163C007E15B2 /* BaoliaoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaoliaoTableViewCell.xib; sourceTree = "<group>"; };
+		9DFF5C1C1C3D161E007E15B2 /* BaoliaoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaoliaoView.h; sourceTree = "<group>"; };
+		9DFF5C1D1C3D161E007E15B2 /* BaoliaoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaoliaoView.m; sourceTree = "<group>"; };
+		9DFF5C1F1C3D163C007E15B2 /* BaoliaoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaoliaoView.xib; sourceTree = "<group>"; };
 		F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XRZAlertControl.swift; sourceTree = "<group>"; };
 		F91BA2C61C15B16700B1C2E9 /* PetsLoveIt-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PetsLoveIt-Header.h"; sourceTree = "<group>"; };
 		F91BA2C71C15B65A00B1C2E9 /* GradePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradePopView.h; sourceTree = "<group>"; };
@@ -3301,9 +3301,9 @@
 				9D4FF05F1C3E3FCD00C053E4 /* Shaidanauthor.xib */,
 				9D4FF05A1C3E3D7200C053E4 /* Shaidanauthor.h */,
 				9D4FF05B1C3E3D7300C053E4 /* Shaidanauthor.m */,
-				9DFF5C1C1C3D161E007E15B2 /* BaoliaoTableViewCell.h */,
-				9DFF5C1D1C3D161E007E15B2 /* BaoliaoTableViewCell.m */,
-				9DFF5C1F1C3D163C007E15B2 /* BaoliaoTableViewCell.xib */,
+				9DFF5C1C1C3D161E007E15B2 /* BaoliaoView.h */,
+				9DFF5C1D1C3D161E007E15B2 /* BaoliaoView.m */,
+				9DFF5C1F1C3D163C007E15B2 /* BaoliaoView.xib */,
 				18F633BE1BF88E6400FD98B1 /* KMDetailsPageView.h */,
 				18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */,
 				186AEBDC1C2ED3330092F289 /* CheapTableView.h */,
@@ -4209,7 +4209,7 @@
 				189446121BEB0774006249F0 /* e_56@2x.png in Resources */,
 				189446221BEB0774006249F0 /* e_70@2x.png in Resources */,
 				18F633A81BF883C800FD98B1 /* UMSocialSDKResourcesNew.bundle in Resources */,
-				9DFF5C201C3D163C007E15B2 /* BaoliaoTableViewCell.xib in Resources */,
+				9DFF5C201C3D163C007E15B2 /* BaoliaoView.xib in Resources */,
 				1894460A1BEB0774006249F0 /* e_49@2x.png in Resources */,
 				1894460C1BEB0774006249F0 /* e_50@2x.png in Resources */,
 				18F633A21BF883C800FD98B1 /* UMSCommentInputControlleriPad.xib in Resources */,
@@ -4307,7 +4307,7 @@
 				189445CD1BEB0774006249F0 /* PSTCollectionView.m in Sources */,
 				F9BE499D1C133758002E47CC /* GradeModel.m in Sources */,
 				18E21EE41C01CC53007059F3 /* RegViewController.m in Sources */,
-				9DFF5C1E1C3D161E007E15B2 /* BaoliaoTableViewCell.m in Sources */,
+				9DFF5C1E1C3D161E007E15B2 /* BaoliaoView.m in Sources */,
 				189445DF1BEB0774006249F0 /* DXFaceView.m in Sources */,
 				189445B91BEB0774006249F0 /* UIView+MJExtension.m in Sources */,
 				1894466B1BEB0774006249F0 /* XHMessageTextView.m in Sources */,

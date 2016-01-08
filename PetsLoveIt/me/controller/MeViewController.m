@@ -618,7 +618,7 @@
     UIFont *font = [UIFont systemFontOfSize:12];
     NSMutableAttributedString *attachment = nil;
     int grade = [userInfo.userGrade intValue];
-    grade = 2;
+
     int kingNum = grade/64;
     int sunNum = grade%64==0?0:grade%64/16;
     int moonNum = (grade%64==0||grade%16==0)?0:grade%16/4;

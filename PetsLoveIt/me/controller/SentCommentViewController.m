@@ -24,6 +24,7 @@
 
 - (void)prepareViewAndData{
     [self config];
+    
     self.tableView.width = mScreenWidth;
     self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH;
 }
@@ -95,6 +96,7 @@
     //配置完毕
     self.configModel=configModel;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

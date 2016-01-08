@@ -1,5 +1,5 @@
 //
-//  BaoliaoTableViewCell.h
+//  BaoliaoView.h
 //  PetsLoveIt
 //
 //  Created by 123 on 16/1/6.
@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol BaoliaoViewDelegate <NSObject>
 
-@interface BaoliaoTableViewCell : UITableViewCell
+@optional
+- (void) clickButtonWithtype:(NSString *)apptype;
+
+@end
+
+@interface BaoliaoView : UIView
+@property (nonatomic,weak) id<BaoliaoViewDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIView *menuView;
 @property (weak, nonatomic) IBOutlet UIButton *youhuiButton;
 @property (weak, nonatomic) IBOutlet UIButton *haitaoButton;
