@@ -62,7 +62,18 @@ typedef NS_ENUM(NSUInteger, Buttontype) {
     }
     
 }
-
+-(void)setDetailsNums:(NSArray *)detailsNums
+{
+    _detailsNums = detailsNums;
+    if (detailsNums.count==3) {
+        [self.youhuiButton setTitle:[NSString stringWithFormat:@"优惠(%@)",detailsNums[0]] forState:UIControlStateNormal];
+        [self.haitaoButton setTitle:[NSString stringWithFormat:@"海淘(%@)",detailsNums[1]] forState:UIControlStateNormal];
+        [self.taochongButton setTitle:[NSString stringWithFormat:@"淘宠(%@)",detailsNums[2]] forState:UIControlStateNormal];
+        
+    }
+   
+    
+}
 - (IBAction)HaitaoButtonClick:(UIButton *)sender {
     self.haitaoButton.selected = YES;
     self.youhuiButton.selected = NO;

@@ -59,7 +59,8 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
 {
     if (!_baoliaoview) {
         _baoliaoview = [[[NSBundle mainBundle]loadNibNamed:@"BaoliaoView" owner:self options:nil]firstObject];
-
+        NSArray *numsarray = [NSArray arrayWithObjects:self.pageModel.m02Num,self.pageModel.m03Num,self.pageModel.m04Num,nil];
+        _baoliaoview.detailsNums = numsarray;
         _baoliaoview.delegate = self;
     }
     return _baoliaoview;

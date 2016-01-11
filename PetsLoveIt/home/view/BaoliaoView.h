@@ -20,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *youhuiButton;
 @property (weak, nonatomic) IBOutlet UIButton *haitaoButton;
 @property (weak, nonatomic) IBOutlet UIButton *taochongButton;
+@property (strong,nonatomic) NSArray *detailsNums;
 
 @end
