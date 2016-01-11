@@ -52,7 +52,7 @@
         if ([self.goods.appType isEqualToString:@"m100"]) {
             _typename =@"白菜";
         }
-        if (!_typename) {
+        if (!_typename.length) {
            _typename = @"商品";
         }
     }

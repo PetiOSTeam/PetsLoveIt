@@ -592,7 +592,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     configModel.removeBackToTopBtn=YES;
     
     //    configModel.refreshControlType = LTConfigModelRefreshControlTypeBottomRefreshOnly;
-    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*3/4;
+    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*3/4 + 15;
     //配置完毕
     self.configModel=configModel;
     
