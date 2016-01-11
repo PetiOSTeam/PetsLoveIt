@@ -39,9 +39,7 @@
     
     YYLabel *usersex = [YYLabel new];
     self.usersex =usersex;
-    self.usersex.font = [UIFont systemFontOfSize:12];
-    self.usersex.textColor = [UIColor whiteColor];
-    self.usersex.userInteractionEnabled = YES;
+    self.usersex.font = [UIFont systemFontOfSize:15];
     self.usersex.numberOfLines = 0;
     [self.usersex setTextAlignment:NSTextAlignmentRight];
     self.usersex.frame = CGRectMake(85+15, 30, mScreenWidth-155   ,20);
@@ -103,8 +101,11 @@
                 UserpageModel *usermodel = [[UserpageModel alloc]initWithDictionary:userdata];
                 self.pageModel = usermodel;
                 [self.iconImage sd_setImageWithURL:[NSURL URLWithString:usermodel.userIcon] placeholderImage:kDefaultHeadImage];
-                NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@  ",usermodel.nickName]];
-                UIFont *font = [UIFont systemFontOfSize:12];
+                NSDictionary *attrsDic = @{NSForegroundColorAttributeName: mRGBToColor(0x666666)
+                                                                      };
+                NSMutableAttributedString *text = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@  ",usermodel.nickName] attributes:attrsDic];
+                
+                UIFont *font = [UIFont systemFontOfSize:14];
                 NSMutableAttributedString *attachment = nil;
                 int grade = [usermodel.userGrade intValue];
                 
@@ -176,7 +177,7 @@
     if (self.pageModel) {
         UserpageViewController *vc = [[UserpageViewController alloc]init];
         vc.uesrId = self.uesrId;
-        
+        vc.pageModel = self.pageModel;
         [self.viewController.navigationController pushViewController:vc animated:YES];
     }
     

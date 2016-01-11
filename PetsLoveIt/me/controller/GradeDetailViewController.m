@@ -32,23 +32,6 @@
 
 @implementation GradeDetailViewController
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    if (!self.isPushOldExchange) {
-//        [self.navigationController setNavigationBarHidden:NO animated:YES];
-//    }
-//    self.isPushOldExchange = NO;
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//    if (!self.isPushOldExchange) {
-//        [self.navigationController setNavigationBarHidden:YES animated:YES];
-//    }
-//}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -61,6 +44,7 @@
     self.webView.height = height+20;
      //contentsize是内容的宽和高
     self.scrollView.contentSize = CGSizeMake(mScreenWidth, self.webView.bottom);
+    self.scrollView.showsVerticalScrollIndicator = NO;
 }
 - (void)configUI
 {

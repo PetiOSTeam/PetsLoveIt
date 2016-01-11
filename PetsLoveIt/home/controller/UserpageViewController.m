@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
 @property (assign,nonatomic) Modeltype modeltype;
 @property (strong,nonatomic) NSObject *DataModel;
 @property (strong,nonatomic) NSMutableArray *DataModelArray;
-@property (strong,nonatomic) UserpageModel *pageModel;
+
 @property (strong,nonatomic) UIView *mainview;
 @property (strong,nonatomic) BaoliaoView *baoliaoview;
 
@@ -77,9 +77,11 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     
     NSLog(@"%@",self.mainview);
     self.navigationBarView.hidden = YES;
-    if (self.uesrId) {
+    if ((self.uesrId)&&(!self.pageModel)) {
         [self getuesrDataWithuesrId:self.uesrId];
         
+    }else{
+        [self fillintheData];
     }
     
 }
@@ -90,10 +92,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
         YYLabel *usersex = [YYLabel new];
         self.usersex =usersex;
         self.usersex.font = [UIFont systemFontOfSize:12];
-        self.usersex.textColor = [UIColor whiteColor];
-        self.usersex.userInteractionEnabled = YES;
         self.usersex.numberOfLines = 0;
-        [self.usersex setTextAlignment:NSTextAlignmentCenter];
         self.usersex.frame = CGRectMake(8, self.username.bottom+6, mScreenWidth-16    ,20);
         [self.headerView addSubview:self.usersex];
         self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.headerView.height);
@@ -104,12 +103,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     }
     return _mainview;
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
 
-}
 #pragma mark 通过userId获取用户数据
 - (void)getuesrDataWithuesrId:(NSString *)userId
 {
@@ -123,84 +117,91 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
             NSMutableDictionary *userdata = [NSMutableDictionary dictionaryWithDictionary:jsondata];
             UserpageModel *usermodel = [[UserpageModel alloc]initWithDictionary:userdata];
             self.pageModel = usermodel;
-            [self.userIocn sd_setImageWithURL:[NSURL URLWithString:usermodel.userIcon] placeholderImage:kDefaultHeadImage];
-            self.username.text = usermodel.nickName;
-            NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"等级: "];
-            UIFont *font = [UIFont systemFontOfSize:12];
-            NSMutableAttributedString *attachment = nil;
-            int grade = [usermodel.userGrade intValue];
-            int kingNum = grade/64;
-            int sunNum = grade%64==0?0:grade%64/16;
-            int moonNum = (grade%64==0||grade%16==0)?0:grade%16/4;
-            int starNum = (grade%64==0||grade%16==0||grade%4==0)?0:grade%4;
-            //如果等级为0，显示一个星星
-            if (starNum == 0&&grade ==0) {
-                starNum = 1;
-            }
-            for (int i=0; i<kingNum; i++) {
-                UIImage *image = [UIImage imageNamed:@"kingIcon"];
-                attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
-                [text appendAttributedString: attachment];
-            }
-            for (int i=0; i<sunNum; i++) {
-                UIImage *image = [UIImage imageNamed:@"sunIcon"];
-                attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
-                [text appendAttributedString: attachment];
-            }
-            for (int i=0; i<moonNum; i++) {
-                UIImage *image = [UIImage imageNamed:@"moonIcon"];
-                attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
-                [text appendAttributedString: attachment];
-            }
-            for (int i=0; i<starNum; i++) {
-                // UIImage attachment
-                UIImage *image = [UIImage imageNamed:@"starIcon"];
-                attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
-                [text appendAttributedString: attachment];
-            }
-       
-            [self.usersex setTextAlignment:NSTextAlignmentCenter];
-            self.usersex.attributedText = text;
-            CGSize size = CGSizeMake(mScreenWidth-16, 20);
-            YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:text];
-            self.usersex.width = layout.textBoundingSize.width;
-            self.usersex.center  = CGPointMake(mScreenWidth/2, self.usersex.center.y);
+            [self fillintheData];
             
-            
-            if (usermodel.commentnum) {
-                [self setupnumLabelWithSuperview:self.pinglun1 andNum:usermodel.commentnum];
-                [self setupnumLabelWithSuperview:self.pinglun2 andNum:usermodel.commentnum];
-            }
-            if (usermodel.experienceNum) {
-                [self setupnumLabelWithSuperview:self.jingyan1 andNum:usermodel.experienceNum];
-                [self setupnumLabelWithSuperview:self.jingyan2 andNum:usermodel.experienceNum];
-            }
-            if (usermodel.shareNum) {
-                [self setupnumLabelWithSuperview:self.shaidan1 andNum:usermodel.shareNum];
-                [self setupnumLabelWithSuperview:self.shaidan2 andNum:usermodel.shareNum];
-            }
-            if (usermodel.discloseNum) {
-                [self setupnumLabelWithSuperview:self.baoliao1 andNum:usermodel.discloseNum];
-                [self setupnumLabelWithSuperview:self.baoliao2 andNum:usermodel.discloseNum];
-            }
-            
-            UILabel *label1 = [[self.pinglun1 subviews] firstObject];
-            [label1 setTextColor:mRGBToColor(0xff4001)];
-            UILabel *label2 = [[self.pinglun1 subviews] lastObject];
-            [label2 setTextColor:mRGBToColor(0xff4001)];
-            [self setupOtherlabelColorWith:0];
-            UILabel *label3 = [[self.pinglun2 subviews] firstObject];
-            [label3 setTextColor:mRGBToColor(0xff4001)];
-            UILabel *label4 = [[self.pinglun2 subviews] lastObject];
-            [label4 setTextColor:mRGBToColor(0xff4001)];
-            [self setupOtherlabelColorWith:0];
-            [self getpinglunData];
             
         }else{
             mAlertAPIErrorInfo(error);
             
         }}];
     
+
+}
+- (void)fillintheData
+{
+    [self.userIocn sd_setImageWithURL:[NSURL URLWithString: self.pageModel.userIcon] placeholderImage:kDefaultHeadImage];
+    self.username.text = self.pageModel.nickName;
+    NSDictionary *attrsDic = @{NSForegroundColorAttributeName:[UIColor whiteColor]
+                               };
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc]initWithString:@"等级: " attributes:attrsDic];
+    UIFont *font = [UIFont systemFontOfSize:12];
+    NSMutableAttributedString *attachment = nil;
+    int grade = [self.pageModel.userGrade intValue];
+    int kingNum = grade/64;
+    int sunNum = grade%64==0?0:grade%64/16;
+    int moonNum = (grade%64==0||grade%16==0)?0:grade%16/4;
+    int starNum = (grade%64==0||grade%16==0||grade%4==0)?0:grade%4;
+    //如果等级为0，显示一个星星
+    if (starNum == 0&&grade ==0) {
+        starNum = 1;
+    }
+    for (int i=0; i<kingNum; i++) {
+        UIImage *image = [UIImage imageNamed:@"kingIcon"];
+        attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        [text appendAttributedString: attachment];
+    }
+    for (int i=0; i<sunNum; i++) {
+        UIImage *image = [UIImage imageNamed:@"sunIcon"];
+        attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        [text appendAttributedString: attachment];
+    }
+    for (int i=0; i<moonNum; i++) {
+        UIImage *image = [UIImage imageNamed:@"moonIcon"];
+        attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        [text appendAttributedString: attachment];
+    }
+    for (int i=0; i<starNum; i++) {
+        // UIImage attachment
+        UIImage *image = [UIImage imageNamed:@"starIcon"];
+        attachment = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        [text appendAttributedString: attachment];
+    }
+    
+    [self.usersex setTextAlignment:NSTextAlignmentCenter];
+    self.usersex.attributedText = text;
+    CGSize size = CGSizeMake(mScreenWidth-16, 20);
+    YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:size text:text];
+    self.usersex.width = layout.textBoundingSize.width;
+    self.usersex.center  = CGPointMake(mScreenWidth/2, self.usersex.center.y);
+    
+    
+    if (self.pageModel.commentnum) {
+        [self setupnumLabelWithSuperview:self.pinglun1 andNum:self.pageModel.commentnum];
+        [self setupnumLabelWithSuperview:self.pinglun2 andNum:self.pageModel.commentnum];
+    }
+    if (self.pageModel.experienceNum) {
+        [self setupnumLabelWithSuperview:self.jingyan1 andNum:self.pageModel.experienceNum];
+        [self setupnumLabelWithSuperview:self.jingyan2 andNum:self.pageModel.experienceNum];
+    }
+    if (self.pageModel.shareNum) {
+        [self setupnumLabelWithSuperview:self.shaidan1 andNum:self.pageModel.shareNum];
+        [self setupnumLabelWithSuperview:self.shaidan2 andNum:self.pageModel.shareNum];
+    }
+    if (self.pageModel.discloseNum) {
+        [self setupnumLabelWithSuperview:self.baoliao1 andNum:self.pageModel.discloseNum];
+        [self setupnumLabelWithSuperview:self.baoliao2 andNum:self.pageModel.discloseNum];
+    }
+    UILabel *label1 = [[self.pinglun1 subviews] firstObject];
+    [label1 setTextColor:mRGBToColor(0xff4001)];
+    UILabel *label2 = [[self.pinglun1 subviews] lastObject];
+    [label2 setTextColor:mRGBToColor(0xff4001)];
+    [self setupOtherlabelColorWith:0];
+    UILabel *label3 = [[self.pinglun2 subviews] firstObject];
+    [label3 setTextColor:mRGBToColor(0xff4001)];
+    UILabel *label4 = [[self.pinglun2 subviews] lastObject];
+    [label4 setTextColor:mRGBToColor(0xff4001)];
+    [self setupOtherlabelColorWith:0];
+    [self getpinglunData];
 
 }
 #pragma mark - 添加四个导航按钮

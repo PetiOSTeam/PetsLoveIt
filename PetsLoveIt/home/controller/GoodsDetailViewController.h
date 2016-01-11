@@ -17,6 +17,6 @@
 @property (nonatomic,assign) BOOL isCheapProduct;
 @property (nonatomic,assign) BOOL isShareOrder;
 
-@property (strong, nonatomic)  KMDetailsPageView * detailsPageView;
+
 
 @end

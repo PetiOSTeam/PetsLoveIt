@@ -31,7 +31,7 @@
 
 @property (nonatomic,strong) BottomMenuView *menuView;
 
-
+@property (strong, nonatomic)  KMDetailsPageView * detailsPageView;
 @property (assign) CGPoint scrollViewDragPoint;
 @property (nonatomic, strong) KMNetworkLoadingViewController* networkLoadingViewController;
 
