@@ -44,6 +44,8 @@
 @property (nonatomic,strong) GoodsModel *limittedTimeProduct;//限时优惠
 @property (nonatomic,strong) GoodsModel *jdProduct;//尖端产品
 @property (nonatomic , strong) NSArray *cheapProductArray;
+///** 网络状态*/
+//@property (nonatomic,strong) AFNetworkReachabilityManager *mgr;
 @end
 
 @implementation CarefulSelectViewController{
@@ -52,6 +54,31 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    __weak AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
+    
+    // 开始监控
+    [mgr startMonitoring];
+    
+    // 当网络状态改变了，就会调用
+    [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        switch (status) {
+            case AFNetworkReachabilityStatusUnknown: // 未知网络
+            case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
+                self.tableView.tableHeaderView.hidden = YES;
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
+                self.tableView.tableHeaderView.hidden = NO;
+                [mgr stopMonitoring];
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
+                self.tableView.tableHeaderView.hidden = NO;
+                [mgr stopMonitoring];
+                break;
+        }
+    }];
+    
 
     // Do any additional setup after loading the view.
     if (!self.isCollect) {
@@ -232,10 +259,10 @@
     }
     return cell;
 }
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     
-    [super viewDidAppear:animated];
 }
 /**
  *  模型配置
@@ -287,6 +314,7 @@
     
     //配置完毕
     self.configModel=configModel;
+   
 }
 
 -(UIView *)tableHeaderView{

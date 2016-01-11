@@ -272,7 +272,7 @@
             }
             
         }else{
-            mAlertAPIErrorInfo(error);
+//            mAlertAPIErrorInfo(error);
         }
     }];
 }
@@ -349,7 +349,7 @@
                              @"uid":@"getProductByType",
                              @"appType":apptype,
                              @"startNum":@"0",
-                             @"limit":@"5"
+                             @"limit":@"6"
                              };
     //如果是白菜价，则猜你喜欢取白菜价列表接口
     if (self.isCheapProduct) {
@@ -392,8 +392,12 @@
             [self getRelatedInfoByappType:self.goods.appType];
             
         }else{
-            [self hideLoadingView];
-            mAlertAPIErrorInfo(error);
+            
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+               
+                 [self.navigationController popViewControllerAnimated:YES];
+            });
         }
     }];
 }

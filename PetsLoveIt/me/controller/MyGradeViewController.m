@@ -38,13 +38,15 @@
 {
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"我的积分";
+    [self refreshtheintegral];
     LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
     if (self.Integralstr) {
         self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",self.Integralstr];
         self.gradeListView.userintegral = self.Integralstr;
     }else
     {
-        [self refreshtheintegral];
+        self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",userInfo.userIntegral];
+       
     }
     
    

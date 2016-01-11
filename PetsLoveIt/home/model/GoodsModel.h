@@ -12,6 +12,13 @@ typedef NS_ENUM(NSUInteger, Userpopularity) {
     ISclick = 1,
     NOclick
 };
+typedef NS_ENUM(NSUInteger, AppType) {
+    Typebaicai,
+    Typetaochong,
+    Typeshaidan,
+    Typejingyan,
+    Typeqita,
+};
 @interface GoodsModel : CoreListCommonModel
 @property (nonatomic,strong) NSString *appMall;
 @property (nonatomic,strong) NSString *appMinpic;
@@ -56,5 +63,7 @@ typedef NS_ENUM(NSUInteger, Userpopularity) {
 @property (nonatomic, copy) NSString* popularitystr;
 /**用户对产品是否评价*/
 @property (assign,nonatomic)  Userpopularity isclick;
+/**产品的类型*/
+@property (assign,nonatomic)  AppType apptypename;
 
 @end

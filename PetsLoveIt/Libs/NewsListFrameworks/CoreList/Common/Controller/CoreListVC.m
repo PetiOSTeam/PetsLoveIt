@@ -597,6 +597,7 @@ typedef enum{
     //界面指示(仅限网络错误)
 
     if(!_hasData){
+        
         [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:kNoNetWorkTip subMsg:@"点击屏幕重新加载" offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
             
             //使用当前的请求方式，再次请求

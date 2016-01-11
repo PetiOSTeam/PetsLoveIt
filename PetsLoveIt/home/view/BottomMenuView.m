@@ -154,7 +154,7 @@
 
 
 - (void) didClickOnMenu1{
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"喜欢", @"不喜欢", nil];
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"爱", @"不爱", nil];
     [sheet showInView:[UIApplication sharedApplication].keyWindow];
 }
 

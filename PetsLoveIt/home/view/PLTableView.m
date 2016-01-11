@@ -49,14 +49,14 @@
     return self;
 }
 
--(instancetype)initWithFrame:(CGRect)frame isShareOrder:(BOOL)isShareOrder{
+-(instancetype)initWithFrame:(CGRect)frame Withtypename:(AppType)apptypename{
     self = [super initWithFrame:frame];
     if (self) {
         self.dataSource = self;
         self.delegate = self;
         self.tableFooterView = [UIView new];
         sectionTitle1 = @"猜你喜欢";
-        self.isShareOrder = isShareOrder;
+        self.apptypename = apptypename;
         [self setContentSize:CGSizeMake(mScreenWidth, self.dataArray1.count*rowHeight1)];
     }
     
@@ -105,10 +105,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.isShareOrder) {
+    if (self.apptypename == Typeshaidan) {
         return [self shareOrderCell:tableView cellForRowAtIndexPath:indexPath];
-    }else
+    }else if (self.apptypename == Typejingyan)
+    {
+         return [self articleCell:tableView cellForRowAtIndexPath:indexPath];
+    }else{
         return  [self goodsCell:tableView cellForRowAtIndexPath:indexPath];
+    }
 
 }
 
@@ -156,7 +160,6 @@
     if ([good.appType isEqualToString:@"m100"]) {
         vc.isCheapProduct = YES;
     }else if (([good.appType isEqualToString:@"m05"])||([good.appType isEqualToString:@"m06"])){
-        vc.isShareOrder = YES;
          vc.pageType = RelatedPersonType;
     }else if ([good.appType isEqualToString:@"m07"]){
         vc.pageType = NewsType;

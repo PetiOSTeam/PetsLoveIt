@@ -22,7 +22,6 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGQ-oJ-Ijo" customClass="KMActivityIndicator">
                                         <rect key="frame" x="132" y="229" width="56" height="56"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="56" id="CJT-9I-LoQ"/>
@@ -31,7 +30,6 @@
                                     </view>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFb-8R-HqW" userLabel="Loading Label">
                                         <rect key="frame" x="78" y="293" width="165" height="18"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="165" id="Bzp-Xj-DEe"/>
                                             <constraint firstAttribute="height" constant="18" id="ZCf-3Y-5zG"/>
@@ -41,7 +39,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="XGQ-oJ-Ijo" secondAttribute="centerX" id="ALm-lM-7ah"/>
@@ -55,7 +52,6 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NBa-cN-chL" userLabel="RefreshButton">
                                         <rect key="frame" x="135" y="233" width="50" height="48"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="aNf-OW-ktS"/>
                                             <constraint firstAttribute="height" constant="48" id="taf-ND-uYA"/>
@@ -69,7 +65,6 @@
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Retry!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fH6-59-B6s" userLabel="Error Label">
                                         <rect key="frame" x="121" y="293" width="78" height="18"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="58w-Lt-UtO"/>
                                             <constraint firstAttribute="width" constant="78" id="DTy-8C-JKh"/>
@@ -79,7 +74,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="NBa-cN-chL" secondAttribute="centerX" id="bjA-e8-IL1"/>
@@ -93,7 +87,6 @@
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Sorry, there are no shots around you yet. Go out and take some! \o/" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="213" translatesAutoresizingMaskIntoConstraints="NO" id="PMl-kR-ZyC" userLabel="No content Label">
                                         <rect key="frame" x="54" y="256" width="213" height="61"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="61" id="XFL-Ii-qYp"/>
                                             <constraint firstAttribute="width" constant="213" id="cEr-sg-f6V"/>
@@ -104,14 +97,12 @@
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yD8-q6-HIc">
                                         <rect key="frame" x="135" y="206" width="50" height="50"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="2r8-Gb-uf4"/>
                                             <constraint firstAttribute="height" constant="50" id="gRA-kh-PwF"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="yD8-q6-HIc" secondAttribute="centerX" id="EXk-kI-cPU"/>
@@ -121,7 +112,6 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Ycj-jH-Z3A" secondAttribute="trailing" id="4tY-g5-Cel"/>
@@ -156,6 +146,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="refresh_button" width="160" height="48"/>
+        <image name="refresh_button" width="48" height="48"/>
     </resources>
 </document>

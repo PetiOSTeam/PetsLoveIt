@@ -55,7 +55,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *menuImageView6;
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 /** 积分实时数据 */
-@property (copy, nonatomic) NSString *integralstr;
+@property (strong, nonatomic) NSString *integralstr;
 
 @property (strong, nonatomic)  UIView *navigationBarView;
 @property (strong, nonatomic)  UILabel *navBarTitleLabel;
@@ -652,7 +652,9 @@
     }
     //积分
     NSMutableAttributedString *userIntegral;
-    
+    if (!self.integralstr) {
+        self.integralstr = userInfo.userIntegral;
+    }
     userIntegral = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  积分: %@",self.integralstr]];
    
     

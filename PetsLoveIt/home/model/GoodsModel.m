@@ -19,6 +19,20 @@
     }
 
 }
+- (AppType)_apptypename{
+    if ([self.appType isEqualToString:@"m100"]) {
+        _apptypename = Typebaicai;
+    }else if ([self.appType isEqualToString:@"m05"]) {
+        _apptypename = Typeshaidan;
+    }else if ([self.appType isEqualToString:@"m06"]) {
+        _apptypename = Typejingyan;
+    }else if ([self.appType isEqualToString:@"m04"]) {
+        _apptypename = Typetaochong;
+    }else{
+        _apptypename = Typeqita;
+    }
+    return _apptypename;
+}
 - (NSString *)popularitystr
 {
     if (!_popularitystr) {
