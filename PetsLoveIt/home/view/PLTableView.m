@@ -168,6 +168,9 @@
         if (self.apptypename == TypeShareOrder) {
             return 255;
         }
+        if ((self.apptypename == TypeExperience)||(self.apptypename == TypeNews)) {
+            return 136;
+        }
         return rowHeight1;
     }else{
         return rowHeight2;
