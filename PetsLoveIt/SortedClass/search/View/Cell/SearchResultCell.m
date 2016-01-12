@@ -44,7 +44,7 @@
 - (void)setProductModel:( GoodsModel *)productModel
 {
     _productModel = productModel;
-    if ([_productModel.typeName isEqualToString:@"淘宠"]) {
+    if ([_productModel.appType isEqualToString:@"m04"]) {
         self.collectNumLabel.hidden = NO;
         self.collecticon.hidden =NO;
     }else{

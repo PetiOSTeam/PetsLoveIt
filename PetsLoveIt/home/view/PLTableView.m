@@ -61,19 +61,7 @@
     
     return self;
 }
--(instancetype)initWithFrame:(CGRect)frame isShareOrder:(BOOL)isShareOrder{
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.dataSource = self;
-        self.delegate = self;
-        self.tableFooterView = [UIView new];
-        sectionTitle1 = @"猜你喜欢";
-        self.isShareOrder = isShareOrder;
-        [self setContentSize:CGSizeMake(mScreenWidth, self.dataArray1.count*rowHeight1)];
-    }
-    
-    return self;
-}
+
 
 
 -(NSMutableArray *)dataArray1{
@@ -119,7 +107,7 @@
 {
     if (self.apptypename == TypeShareOrder) {
         return [self shareOrderCell:tableView cellForRowAtIndexPath:indexPath];
-    }else if (self.apptypename == TypeExperience){
+    }else if ((self.apptypename == TypeExperience)||(self.apptypename == TypeNews)){
         return [self articleCell:tableView cellForRowAtIndexPath:indexPath];
     }
     else

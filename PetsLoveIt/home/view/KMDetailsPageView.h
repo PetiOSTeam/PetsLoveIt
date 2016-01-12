@@ -38,10 +38,8 @@
 ///-------------------------------
 
 @interface KMDetailsPageView : UIView
-@property (nonatomic,assign) BOOL isCheapProduct;
-@property (nonatomic,assign) BOOL isShareOrder;
+
 - (id)initWithFrame:(CGRect)frame Withtype:(Menutype)type;
-- (id)initWithFrame:(CGRect)frame isCheapProduct:(BOOL)isCheapProduct isShareOrder:(BOOL)isShareOrder;
 
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) CheapTableView *cheapTable;

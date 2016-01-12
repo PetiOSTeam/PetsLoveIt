@@ -14,8 +14,6 @@
 @property (nonatomic,strong) NSString *goodsId;
 @property (nonatomic,strong) GoodsModel *goods;
 
-@property (nonatomic,assign) BOOL isCheapProduct;
-@property (nonatomic,assign) BOOL isShareOrder;
 
 
 

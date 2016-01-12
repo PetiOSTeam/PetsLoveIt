@@ -20,7 +20,7 @@ typedef enum : NSUInteger {
 
 #define kCellHeight 110
 
-static NSString *CellIdentifier = @"SearchResultCellIdentifier";
+static NSString *CellIdentifier = @"SearchResultCell";
 
 @interface SearchResultsViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 {
@@ -250,8 +250,13 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
-                                                             forIndexPath:indexPath];
+    
+    SearchResultCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (!cell) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"SearchResultCell" owner:self options:nil] firstObject];
+    }
+
+
     GoodsModel *model = self.dataSource[indexPath.row];
     cell.productModel = model;
     return cell;
@@ -300,9 +305,10 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
                                                   style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        [_tableView registerNib:[UINib nibWithNibName:@"SearchResultCell"
-                                               bundle:nil]
-         forCellReuseIdentifier:CellIdentifier];
+//        [_tableView registerNib:[UINib nibWithNibName:@"SearchResultCell"
+//                                               bundle:nil]
+//         forCellReuseIdentifier:CellIdentifier];
+//       
         _tableView.emptyDataSetSource = self;
         _tableView.emptyDataSetDelegate = self;
         [self.view addSubview:_tableView];
