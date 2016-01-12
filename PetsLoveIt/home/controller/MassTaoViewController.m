@@ -79,6 +79,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
+    vc.apptypename = TypeMassTao;
     vc.goodsId = model.prodId;
     [self.navigationController pushViewController:vc animated:YES];
 }

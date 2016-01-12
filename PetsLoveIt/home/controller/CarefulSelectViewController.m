@@ -70,11 +70,14 @@
             case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
                 self.tableView.tableHeaderView.hidden = NO;
                 [mgr stopMonitoring];
+                [self reloadDataDerectly];
                 break;
                 
             case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
-                self.tableView.tableHeaderView.hidden = NO;
+                
                 [mgr stopMonitoring];
+                [self reloadDataDerectly];
+                self.tableView.tableHeaderView.hidden = NO;
                 break;
         }
     }];
@@ -355,9 +358,9 @@
         
         _displayView2 = [[UIView alloc] initWithFrame:CGRectMake(_displayView1.right, 0, mScreenWidth/2, _displayView.height/2)];
         if (mIsiP5|mRetina) {
-            _urlImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 80, _descLabel2.bottom+5, 70, 60)];
+            _urlImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 80, _descLabel2.bottom+10, 70, 60)];
         }else{
-            _urlImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 100, _descLabel2.bottom+5, 90, 60)];
+            _urlImageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 100, _descLabel2.bottom+10, 90, 60)];
         }
                 
         _titleLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, _displayView2.width-_urlImageView2.width-20, 18)];
@@ -381,9 +384,9 @@
         
         _displayView3 = [[UIView alloc] initWithFrame:CGRectMake(_displayView1.right, _displayView2.bottom, mScreenWidth/2, _displayView.height/2)];
         if (mIsiP5|mRetina) {
-            _urlImageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 80, _descLabel3.bottom+5, 70, 60)];
+            _urlImageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 80, _descLabel3.bottom+10, 70, 60)];
         }else{
-            _urlImageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 100, _descLabel3.bottom+5, 90, 60)];
+            _urlImageView3 = [[UIImageView alloc] initWithFrame:CGRectMake(_displayView2.width - 100, _descLabel3.bottom+10, 90, 60)];
         }
         
         _titleLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, _displayView3.width-_urlImageView3.width-20, 18)];

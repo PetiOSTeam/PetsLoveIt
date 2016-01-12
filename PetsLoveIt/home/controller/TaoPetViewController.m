@@ -107,6 +107,7 @@
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.goodsId = model.prodId;
+    vc.apptypename = TypeTaoPet;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

@@ -78,7 +78,7 @@
         [self hideLoadingView];
         [self loadViewAndData];
         //获取猜你喜欢数据
-        [self getRelatedInfoByappType:self.goods.appType];
+        [self getRelatedInfoByModel:self.goods];
     }
     
     
@@ -349,30 +349,47 @@
 
 }
 
-- (void) getRelatedInfoByappType:(NSString *)apptype{
+- (void) getRelatedInfoByModel:(GoodsModel *)goods{
+   
+
     NSDictionary *params = @{
                              @"uid":@"getProductByType",
-                             @"appType":apptype,
+                             @"appType":goods.appType,
                              @"startNum":@"0",
                              @"limit":@"6"
                              };
+
+    if ((self.apptypename == TypeDiscount)||(self.apptypename == TypeMassTao)) {
+                  params = @{
+                                 @"uid":@"getProductsBySort",
+                                 @"minSortId":goods.appSort,
+                                 @"startNum":@"0",
+                                 @"limit":@"6"
+                                 };
+
+    }
+    
     //如果是白菜价，则猜你喜欢取白菜价列表接口
     if (self.apptypename == TypeCheap) {
         params = @{@"uid":@"getCheapProductList",
-                   @"startNum":@"12",
-                   @"limit":@"10"
+                   @"startNum":@"1",
+                   @"limit":@"11"
                    };
     }
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
+            
             NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+          
             [jsonArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
                 GoodsModel *goods = [[GoodsModel alloc] initWithDictionary:obj];
                 if (![self.goods.prodId isEqualToString:goods.prodId]) {
                     [self.detailsPageView.tableView2.dataArray1 addObject:goods];
                 }
                 
             }];
+            
             [self.detailsPageView.tableView2 reloadData];
         }else{
             //mAlertAPIErrorInfo(error);
@@ -394,12 +411,12 @@
             self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.typename];
             [self loadViewAndData];
             //获取猜你喜欢数据
-            [self getRelatedInfoByappType:self.goods.appType];
+            [self getRelatedInfoByModel:self.goods];
             
         }else{
             
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                
                  [self.navigationController popViewControllerAnimated:YES];
             });

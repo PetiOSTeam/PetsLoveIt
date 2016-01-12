@@ -290,7 +290,7 @@
 -(void)getCheapProductOnCompletion:(void (^)())completionBlock{
     NSDictionary *params = @{@"uid":@"getCheapProductList",
                              @"startNum":@"0",
-                             @"limit":@"10"
+                             @"limit":@"11"
                              };
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
