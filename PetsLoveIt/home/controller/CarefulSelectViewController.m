@@ -426,7 +426,7 @@
 
 - (void)tapOnImageView1{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.isCheapProduct = YES;
+    vc.apptypename = TypeCheap;
     vc.goodsId = _cheapProduct.prodId;
     
     

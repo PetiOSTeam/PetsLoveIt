@@ -48,15 +48,27 @@
     
     return self;
 }
-
--(instancetype)initWithFrame:(CGRect)frame Withtypename:(AppType)apptypename{
+- (instancetype)initWithFrame:(CGRect)frame Withtype:(Menutype)type{
     self = [super initWithFrame:frame];
     if (self) {
         self.dataSource = self;
         self.delegate = self;
         self.tableFooterView = [UIView new];
         sectionTitle1 = @"猜你喜欢";
-        self.apptypename = apptypename;
+        self.apptypename = type;
+        [self setContentSize:CGSizeMake(mScreenWidth, self.dataArray1.count*rowHeight1)];
+    }
+    
+    return self;
+}
+-(instancetype)initWithFrame:(CGRect)frame isShareOrder:(BOOL)isShareOrder{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.dataSource = self;
+        self.delegate = self;
+        self.tableFooterView = [UIView new];
+        sectionTitle1 = @"猜你喜欢";
+        self.isShareOrder = isShareOrder;
         [self setContentSize:CGSizeMake(mScreenWidth, self.dataArray1.count*rowHeight1)];
     }
     
@@ -105,14 +117,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.apptypename == Typeshaidan) {
+    if (self.apptypename == TypeShareOrder) {
         return [self shareOrderCell:tableView cellForRowAtIndexPath:indexPath];
-    }else if (self.apptypename == Typejingyan)
-    {
-         return [self articleCell:tableView cellForRowAtIndexPath:indexPath];
-    }else{
-        return  [self goodsCell:tableView cellForRowAtIndexPath:indexPath];
+    }else if (self.apptypename == TypeExperience){
+        return [self articleCell:tableView cellForRowAtIndexPath:indexPath];
     }
+    else
+        return  [self goodsCell:tableView cellForRowAtIndexPath:indexPath];
 
 }
 
@@ -134,7 +145,7 @@
     if (!cell) {
         cell = [[[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil] firstObject];
     }
-    GoodsModel *article = self.dataArray2[indexPath.row];
+    GoodsModel *article = self.dataArray1[indexPath.row];
     [cell loadCellWithModel:article];
     return cell;
 }
@@ -157,20 +168,16 @@
     GoodsModel *good = self.dataArray1[indexPath.row];
     UIViewController *parentVC = [self viewController];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    if ([good.appType isEqualToString:@"m100"]) {
-        vc.isCheapProduct = YES;
-    }else if (([good.appType isEqualToString:@"m05"])||([good.appType isEqualToString:@"m06"])){
-         vc.pageType = RelatedPersonType;
-    }else if ([good.appType isEqualToString:@"m07"]){
-        vc.pageType = NewsType;
-    }
+  
+        vc.apptypename = good.apptypename;
+     
     vc.goods = good;
     [parentVC.navigationController pushViewController:vc animated:YES];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        if (self.isShareOrder) {
+        if (self.apptypename == TypeShareOrder) {
             return 255;
         }
         return rowHeight1;

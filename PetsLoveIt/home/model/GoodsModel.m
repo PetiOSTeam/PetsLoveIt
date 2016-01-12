@@ -19,17 +19,19 @@
     }
 
 }
-- (AppType)_apptypename{
+- (Menutype)apptypename{
     if ([self.appType isEqualToString:@"m100"]) {
-        _apptypename = Typebaicai;
+        _apptypename = TypeCheap;
     }else if ([self.appType isEqualToString:@"m05"]) {
-        _apptypename = Typeshaidan;
+        _apptypename = TypeShareOrder;
     }else if ([self.appType isEqualToString:@"m06"]) {
-        _apptypename = Typejingyan;
+        _apptypename = TypeExperience;
     }else if ([self.appType isEqualToString:@"m04"]) {
-        _apptypename = Typetaochong;
+        _apptypename = TypeTaoPet;
+    }else if ([self.appType isEqualToString:@"m07"]) {
+        _apptypename = TypeNews;
     }else{
-        _apptypename = Typeqita;
+        _apptypename = TypeDiscount;
     }
     return _apptypename;
 }

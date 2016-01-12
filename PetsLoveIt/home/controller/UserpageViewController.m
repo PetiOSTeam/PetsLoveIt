@@ -437,18 +437,17 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
         GoodsDetailViewController *vc = [GoodsDetailViewController new];
-        vc.pageType = RelatedPersonType;
-        vc.isShareOrder = YES;
+        vc.apptypename = model.apptypename;
         
         vc.goodsId = model.prodId;
         [self.navigationController pushViewController:vc animated:YES];
     }else if (self.modeltype == jingyan){
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         GoodsDetailViewController *vc = [GoodsDetailViewController new];
-        vc.pageType = RelatedPersonType;
-        vc.isShareOrder = YES;
+   
         GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
         vc.goodsId = model.prodId;
+        vc.apptypename = model.apptypename;
         [self.navigationController pushViewController:vc animated:YES];
 
         
@@ -457,6 +456,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
         GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
         GoodsDetailViewController *vc = [GoodsDetailViewController new];
         vc.goodsId = model.prodId;
+        vc.apptypename = model.apptypename;
         [self.navigationController pushViewController:vc animated:YES];
         
     }

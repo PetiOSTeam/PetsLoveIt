@@ -46,7 +46,7 @@
 - (void)loadInfo:(GoodsModel *)good{
     
     [self.goodImageView sd_setImageWithURL:[NSURL URLWithString:good.appMinpic] placeholderImage:kImagePlaceHolder ];
-    if ([good.appType isEqualToString:@"m100"]) {
+    if (good.apptypename == TypeCheap) {
         good.typeName = @"白菜";
     }
     if ([good.mallName length]>0)
@@ -55,7 +55,7 @@
     }else{
        self.nameLabel.text = [NSString stringWithFormat:@"%@",good.typeName];
     }
-    if ([good.appType isEqualToString:@"m04"]) {
+    if (good.apptypename == TypeTaoPet) {
         self.collectionView.hidden = NO;
         self.collectionLabel.text = good.collectnum;
         self.collectionImage.image = [UIImage imageNamed:@"collectIcon"];

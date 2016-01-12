@@ -80,8 +80,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.pageType = RelatedPersonType;
-    vc.isShareOrder = YES;
+    vc.apptypename = TypeExperience;
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
     vc.goodsId = model.prodId;
     [self.navigationController pushViewController:vc animated:YES];

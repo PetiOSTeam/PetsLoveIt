@@ -13,7 +13,7 @@
 @interface GoodsDetailViewController : CommonViewController
 @property (nonatomic,strong) NSString *goodsId;
 @property (nonatomic,strong) GoodsModel *goods;
-@property (nonatomic,assign) DetailPageType pageType;
+
 @property (nonatomic,assign) BOOL isCheapProduct;
 @property (nonatomic,assign) BOOL isShareOrder;
 

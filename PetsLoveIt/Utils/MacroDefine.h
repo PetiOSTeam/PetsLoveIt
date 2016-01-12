@@ -96,8 +96,18 @@ otherButtonTitles:nil]; \
 #define ERRORMSG @"errorMsg"
 #define ERRORCODE @"errorCode"
 
-
-
+/**
+ 菜单的类型
+ */
+typedef NS_ENUM(NSInteger, Menutype) {
+    TypeDiscount,
+    TypeMassTao,
+    TypeTaoPet,
+    TypeShareOrder,
+    TypeExperience,
+    TypeNews,
+    TypeCheap
+};
 //----------页面设计相关-------
 /** 
   导航栏高度

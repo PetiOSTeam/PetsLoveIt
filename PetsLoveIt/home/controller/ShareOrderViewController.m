@@ -82,8 +82,9 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
-    vc.pageType = RelatedPersonType;
-    vc.isShareOrder = YES;
+   
+    vc.apptypename = TypeShareOrder;
+   
     
     vc.goodsId = model.prodId;
     NSLog(@"%@",model);

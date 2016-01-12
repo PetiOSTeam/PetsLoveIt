@@ -12,7 +12,7 @@
 
 @optional
 - (void) showPersonInfoVC;
-- (void) lastMenuAction:(DetailPageType) type;
+- (void) lastMenuAction:(Menutype) type;
 - (void) showCommentVC;
 - (void) showLoginVC;
 - (void) praiseProduct:(BOOL)praiseFlag;
@@ -27,7 +27,7 @@
 @property (strong, nonatomic)  UIButton *menuButton4;
 
 @property (nonatomic,weak) id<BottomMenuViewDelegate> delegate;
--(instancetype)initWithFrame:(CGRect)frame menuType:(DetailPageType)type;
+-(instancetype)initWithFrame:(CGRect)frame menuType:(Menutype)type;
 @property (nonatomic,strong) NSString *avatarUrl;
 
 - (void) loadAvatarImage:(NSString *)avatar;

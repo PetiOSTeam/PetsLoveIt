@@ -16,12 +16,12 @@
 @property (strong, nonatomic)  UIButton *menuButton5;
 
 @property (nonatomic, strong) UIImageView *headerImageView;
-@property (nonatomic, assign) DetailPageType detailType;
+@property (nonatomic, assign) Menutype detailType;
 @end
 
 @implementation BottomMenuView
 
--(instancetype)initWithFrame:(CGRect)frame menuType:(DetailPageType)type{
+-(instancetype)initWithFrame:(CGRect)frame menuType:(Menutype)type{
     self = [super initWithFrame:frame];
     
     self.detailType = type;
@@ -110,13 +110,17 @@
     
     if (self) {
         switch (type) {
-            case GoodsType:
+            case TypeDiscount:
+            case TypeMassTao:
+            case TypeTaoPet:
+            case TypeCheap:
             {
                 [self.menuButton5 setBackgroundColor:mRGBToColor(0xff4401)];
                 [self.menuButton5 setTitle:@"特快直达" forState:UIControlStateNormal];
             }
                 break;
-            case RelatedPersonType:
+            case TypeShareOrder:
+            case TypeExperience:
             {
                 _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(mScreenWidth-55+15, 15, 24, 24)];
                 _headerImageView.userInteractionEnabled = YES;
@@ -135,7 +139,7 @@
 
             }
                 break;
-            case NewsType:
+            case TypeNews:
             {
                 [self.menuButton5 setBackgroundColor:mRGBToColor(0xff4401)];
                 [self.menuButton5 setTitle:@"资讯中心" forState:UIControlStateNormal];

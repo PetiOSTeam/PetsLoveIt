@@ -5,7 +5,6 @@
 //  Created by Kevin Mindeguia on 04/02/2014.
 //  Copyright (c) 2014 iKode Ltd. All rights reserved.
 //
-
 #import "KMDetailsPageView.h"
 #import "Shaidanauthor.h"
 #define kDefaultImagePagerHeight 210.0f
@@ -24,6 +23,7 @@
 @property (nonatomic, strong) UILabel *label2;
 @property (nonatomic, strong) UILabel *label3;
 @property (nonatomic,strong) Shaidanauthor *shaidanview;
+@property (assign,nonatomic)  Menutype apptypename;
 @end
 
 @implementation KMDetailsPageView
@@ -66,7 +66,16 @@
     }
     return self;
 }
-
+- (id)initWithFrame:(CGRect)frame Withtype:(Menutype)type
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.apptypename = type;
+       
+        [self initialize];
+    }
+    return self;
+}
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -94,7 +103,7 @@
     if (!self.tableView)
         [self setupTableView];
     
-    if (!self.tableView.tableHeaderView && !self.isCheapProduct)
+    if (!self.tableView.tableHeaderView && (self.apptypename != TypeCheap))
         [self setupTableViewHeader];
     
     if (self.backgroundColor)
@@ -106,7 +115,7 @@
 
 -(PLTableView *)tableView2{
     if (!_tableView2) {
-        _tableView2 = [[PLTableView alloc] initWithFrame:CGRectMake(0, _tableView.bottom, mScreenWidth, mScreenHeight-49) isShareOrder:self.isShareOrder];
+        _tableView2 = [[PLTableView alloc] initWithFrame:CGRectMake(0, _tableView.bottom, mScreenWidth, mScreenHeight-49) Withtype:self.apptypename];
     }
     return _tableView2;
 }
@@ -134,9 +143,9 @@
         [_headerView addSubview:self.label3];
         [_headerView addSubview:self.webView];
         
-        if (self.isCheapProduct) {
+        if (self.apptypename == TypeCheap) {
             [_headerView addSubview:self.cheapTable];
-        }if (self.isShareOrder) {
+        }if ((self.apptypename == TypeShareOrder)||(self.apptypename == TypeExperience)) {
          
             [_headerView addSubview:self.shaidanview];
         }
@@ -245,7 +254,7 @@
     CGFloat height = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight"] floatValue];
     self.webView.height = height+10;
 
-    if (self.isCheapProduct) {
+    if (self.apptypename == TypeCheap) {
         [self getCheapProductOnCompletion:^{
             self.cheapTable.top = self.webView.bottom+30;
             self.cheapTable.height = self.cheapTable.dataArray.count * 150;
@@ -257,11 +266,11 @@
             }
         }];
         
-    }else if (self.isShareOrder)
+    }else if ((self.apptypename == TypeShareOrder)||(self.apptypename == TypeExperience))
     {
         self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom+45+250) ;
         self.shaidanview.frame = CGRectMake(0, self.webView.bottom, mScreenWidth, 250);
-        
+     
         self.shaidanview.uesrId = self.goods.userId ;
 //        [self.headerView addSubview:self.shaidanview];
         

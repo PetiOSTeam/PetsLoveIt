@@ -209,17 +209,8 @@ static NSString *CellIdentifier = @"SearchResultCellIdentifier";
 
     GoodsDetailViewController *goodsDetailVC = [[GoodsDetailViewController alloc] init];
     goodsDetailVC.goods = model;
+    goodsDetailVC.apptypename = model.apptypename;
    
-    if ([goodsDetailVC.goods.appType isEqualToString:@"m100"]) {
-        goodsDetailVC.isCheapProduct =YES;
-    }
-    else if(([goodsDetailVC.goods.appType isEqualToString:@"m05"])||([goodsDetailVC.goods.appType isEqualToString:@"m06"])){
-        goodsDetailVC.isShareOrder = YES;
-        goodsDetailVC.pageType = RelatedPersonType;
-    }else if ([goodsDetailVC.goods.appType isEqualToString:@"m07"]){
-        goodsDetailVC.pageType = NewsType;
-    }
-
 
     
 

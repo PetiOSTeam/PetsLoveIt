@@ -55,6 +55,7 @@
         if (!_typename.length) {
            _typename = @"商品";
         }
+        self.goods.typeName = _typename;
     }
     return _typename;
 }
@@ -100,7 +101,7 @@
 
 -(BottomMenuView *)menuView{
     if (!_menuView) {
-        _menuView = [[BottomMenuView alloc] initWithFrame:CGRectMake(0, mScreenHeight-49, mScreenWidth, 49) menuType:self.pageType];
+        _menuView = [[BottomMenuView alloc] initWithFrame:CGRectMake(0, mScreenHeight-49, mScreenWidth, 49) menuType:self.apptypename];
         
         _menuView.delegate = self;
     }
@@ -291,9 +292,12 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)lastMenuAction:(DetailPageType)type{
+-(void)lastMenuAction:(Menutype)type{
     switch (type) {
-        case GoodsType:
+        case TypeDiscount:
+        case TypeMassTao:
+        case TypeTaoPet:
+        case TypeCheap:
         {
             PetWebViewController *vc = [PetWebViewController new];
 //            vc.isProduct = YES;
@@ -305,11 +309,12 @@
             [self presentViewController:navi animated:YES completion:NULL];
         }
             break;
-        case RelatedPersonType:{
+        case TypeShareOrder:
+        case TypeExperience:{
             
             break;
         }
-        case NewsType:{
+        case TypeNews:{
             [self.navigationController popViewControllerAnimated:YES];
             break;
         }
@@ -352,7 +357,7 @@
                              @"limit":@"6"
                              };
     //如果是白菜价，则猜你喜欢取白菜价列表接口
-    if (self.isCheapProduct) {
+    if (self.apptypename == TypeCheap) {
         params = @{@"uid":@"getCheapProductList",
                    @"startNum":@"12",
                    @"limit":@"10"
@@ -414,7 +419,7 @@
                              @"</body></html>"];
     [self.detailsPageView loadHtmlString:desc];
     
-    if (self.pageType == RelatedPersonType) {
+    if ((self.apptypename == TypeExperience)||(self.apptypename == TypeShareOrder)) {
         [_menuView loadAvatarImage:self.goods.publisherIcon];
     }
     [self.menuView.menuButton1 setTitle:self.goods.popularitystr forState:UIControlStateNormal];
@@ -481,7 +486,7 @@
 }
 -(KMDetailsPageView *)detailsPageView{
     if (!_detailsPageView) {
-        _detailsPageView = [[KMDetailsPageView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, mScreenHeight) isCheapProduct:self.isCheapProduct isShareOrder:self.isShareOrder];
+        _detailsPageView = [[KMDetailsPageView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, mScreenHeight) Withtype:self.apptypename];
     }
     return _detailsPageView;
 }

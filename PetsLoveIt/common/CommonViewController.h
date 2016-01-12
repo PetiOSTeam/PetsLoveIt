@@ -23,7 +23,7 @@ typedef NS_ENUM(NSInteger, TWBarbuttonItemStyle) {
 };
 
 @interface CommonViewController : UIViewController
-
+@property (nonatomic, assign) Menutype apptypename;
 @property (nonatomic, assign) BOOL isOpenPopView;
 
 /**

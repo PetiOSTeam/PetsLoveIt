@@ -43,7 +43,7 @@
 -(void)showGoodsDetailVC:(GoodsModel *)goods{
     GoodsDetailViewController *vc =[GoodsDetailViewController new];
     vc.goods = goods;
-    vc.isCheapProduct = YES;
+    vc.apptypename = TypeCheap;
     [[self viewController].navigationController pushViewController:vc animated:YES];
 }
 
@@ -80,7 +80,7 @@
     GoodsModel *goods = self.dataArray[indexPath.row];
     
     PetWebViewController *vc = [PetWebViewController new];
-    vc.isProduct = YES;
+    vc.apptypename = goods.apptypename;;
     vc.htmlUrl = goods.goUrl;
     if(vc.htmlUrl.length == 0){
         return;

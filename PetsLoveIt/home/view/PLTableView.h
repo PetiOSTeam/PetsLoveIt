@@ -14,8 +14,8 @@
 @property (nonatomic,strong) NSMutableArray *dataArray2;
 @property (nonatomic,assign) BOOL hiddenSection;
 @property (nonatomic,assign) BOOL isShareOrder;
-
+@property (nonatomic,assign) Menutype apptypename;
 -(instancetype)initWithFrame:(CGRect)frame hiddenSection:(BOOL)hiddenSection;
 -(instancetype)initWithFrame:(CGRect)frame isShareOrder:(BOOL)isShareOrder;
-
+- (id)initWithFrame:(CGRect)frame Withtype:(Menutype)type;
 @end
