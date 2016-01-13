@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SigninbubbleButton : UIButton
-- (instancetype)initWithframe:(CGRect)frame andSigninData:(id)signinData;
+- (instancetype)initWithframe:(CGRect)frame andSigninNum:(NSString *)signinnum;
 @end

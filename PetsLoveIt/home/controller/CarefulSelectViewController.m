@@ -70,13 +70,13 @@
             case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
                 self.tableView.tableHeaderView.hidden = NO;
                 [mgr stopMonitoring];
-                [self reloadDataDerectly];
+                
                 break;
                 
             case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
                 
                 [mgr stopMonitoring];
-                [self reloadDataDerectly];
+                
                 self.tableView.tableHeaderView.hidden = NO;
                 break;
         }

@@ -56,7 +56,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 /** 积分实时数据 */
 @property (strong, nonatomic) NSString *integralstr;
-
+@property (strong, nonatomic) NSString *signinnum;
 @property (strong, nonatomic)  UIView *navigationBarView;
 @property (strong, nonatomic)  UILabel *navBarTitleLabel;
 
@@ -584,17 +584,21 @@
 // 查询是否签到
 - (void)isSignin
 {
+    if (self.signinnum.length>0) {
+        [self.signButton setTitle:[NSString stringWithFormat:@"已连续签到%i天",[self.signinnum intValue]+1] forState:UIControlStateNormal];
+    }else{
    
     NSDictionary *parameter = @{@"uid": @"getUserSign"};
     [APIOperation GET:@"common.action"
            parameters:parameter
          onCompletion:^(id responseData, NSError *error) {
              if (responseData) {
+                
                  NSDictionary *data =  [responseData objectForKey:@"beans"];
+                 NSString *continuousSign = data[@"continuousSign"];
                  NSString *issignin = data[@"isSign"];
                  if ([issignin isEqualToString:@"1"]) {
-                    
-                     [self.signButton setTitle:@"已签到" forState:UIControlStateNormal];
+                     [self.signButton setTitle:[NSString stringWithFormat:@"已连续签到%i天",[continuousSign intValue]+1] forState:UIControlStateNormal];
                  }else
                  {
                      [self.signButton setTitle:@"签到送积分" forState:UIControlStateNormal];
@@ -607,6 +611,7 @@
                  [self.signButton setTitle:@"签到送积分" forState:UIControlStateNormal];
                  [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];             }
          }];
+    }
     
     
 }
@@ -716,9 +721,12 @@
                              };
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
-            SigninbubbleButton *signbubble = [[SigninbubbleButton alloc]initWithframe:self.signButton.frame andSigninData:responseData];
+            NSString *signinnum = [[responseData objectForKey:@"bean"] objectForKey:@"addIntegral"];
+            NSLog(@"%@",responseData);
+            self.signinnum = [[responseData objectForKey:@"bean"] objectForKey:@"continuousSign"];
+            SigninbubbleButton *signbubble = [[SigninbubbleButton alloc]initWithframe:self.signButton.frame andSigninNum:signinnum];
             [self.signButton.superview addSubview:signbubble];
-            [self.signButton setTitle:@"已签到" forState:UIControlStateNormal];
+            [self.signButton setTitle:[NSString stringWithFormat:@"已连续签到%i天",[self.signinnum intValue]+1] forState:UIControlStateNormal];
             [self refreshtheintegral];
             [self.signButton removeTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
             [self refreshtheintegral];

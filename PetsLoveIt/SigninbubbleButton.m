@@ -18,13 +18,12 @@
     // Drawing code
 }
 */
-- (instancetype)initWithframe:(CGRect)frame andSigninData:(id)signinData
+- (instancetype)initWithframe:(CGRect)frame andSigninNum:(NSString *)signinnum
 {
     if (self =[super init]) {
         NSString *btntitle;
-        if (signinData) {
-            NSString *typestr = [self toobtaintitleWithSigninData:signinData];
-           btntitle = [NSString stringWithFormat:@"+%@",typestr];
+        if (signinnum.length>0) {
+           btntitle = [NSString stringWithFormat:@"+%@",signinnum];
         }else{
 //            static int i = 0;
 //            if (i == 7) {
@@ -61,11 +60,5 @@
     }
     return self;
 }
-- (NSString *)toobtaintitleWithSigninData:(id)signinData
-{
-   
-        NSString *str = [[signinData objectForKey:@"bean"] objectForKey:@"addIntegral"];
-        return str;
-    
-}
+
 @end

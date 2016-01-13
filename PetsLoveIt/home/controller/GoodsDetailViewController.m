@@ -36,7 +36,7 @@
 @property (nonatomic, strong) KMNetworkLoadingViewController* networkLoadingViewController;
 
 @property (nonatomic,strong) NSMutableArray *dataArray;
-@property (nonatomic,copy) NSString *typename;
+
 
 @end
 
@@ -45,20 +45,7 @@
     [super viewDidLoad];
     [self prepareViewsAndData];
 }
-- (NSString *)typename
-{
-    if (!_typename) {
-        _typename = [NSString stringWithString:self.goods.typeName];
-        if ([self.goods.appType isEqualToString:@"m100"]) {
-            _typename =@"白菜";
-        }
-        if (!_typename.length) {
-           _typename = @"商品";
-        }
-        self.goods.typeName = _typename;
-    }
-    return _typename;
-}
+
 -(void)prepareViewsAndData{
     
     [self setupDetailsPageView];
@@ -74,7 +61,7 @@
     }else if (self.goods){
         
         self.goodsId = self.goods.prodId;
-        self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.typename];
+        self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.goods.typeName];
         [self hideLoadingView];
         [self loadViewAndData];
         //获取猜你喜欢数据
@@ -273,8 +260,7 @@
             }
             
         }else{
-//            mAlertAPIErrorInfo(error);
-        }
+                    }
     }];
 }
 #pragma mark - BottomMenuViewDelegate
@@ -349,32 +335,36 @@
 
 }
 
-- (void) getRelatedInfoByModel:(GoodsModel *)goods{
+- (void) getRelatedInfoByModel:(GoodsModel *)good{
    
 
     NSDictionary *params = @{
                              @"uid":@"getProductByType",
-                             @"appType":goods.appType,
+                             @"appType":good.appType,
                              @"startNum":@"0",
-                             @"limit":@"6"
+                             @"limit":@"5",
+                             @"order":@"4"
                              };
 
     if ((self.apptypename == TypeDiscount)||(self.apptypename == TypeMassTao)) {
+        
                   params = @{
                                  @"uid":@"getProductsBySort",
-                                 @"minSortId":goods.appSort,
+                                 @"minSortId":good.appSort,
                                  @"startNum":@"0",
-                                 @"limit":@"6"
+                                 @"limit":@"5",
+                                @"order":@"4"
                                  };
 
-    }
-    
-    //如果是白菜价，则猜你喜欢取白菜价列表接口
-    if (self.apptypename == TypeCheap) {
+    }else if (self.apptypename == TypeCheap) {
+        
         params = @{@"uid":@"getCheapProductList",
                    @"startNum":@"1",
-                   @"limit":@"11"
+                   @"limit":@"11",
                    };
+    
+    //如果是白菜价，则猜你喜欢取白菜价列表接口
+    
     }
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
@@ -384,15 +374,14 @@
             [jsonArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 GoodsModel *goods = [[GoodsModel alloc] initWithDictionary:obj];
-                if (![self.goods.prodId isEqualToString:goods.prodId]) {
                     [self.detailsPageView.tableView2.dataArray1 addObject:goods];
-                }
+                
                 
             }];
             
             [self.detailsPageView.tableView2 reloadData];
         }else{
-            //mAlertAPIErrorInfo(error);
+           
         }
     }];
 }
@@ -408,7 +397,7 @@
            
             self.goods = [[GoodsModel alloc] initWithDictionary:[responseData objectForKey:@"data"]] ;
              self.goodsId =self.goods.prodId;
-            self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.typename];
+            self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.goods.typeName];
             [self loadViewAndData];
             //获取猜你喜欢数据
             [self getRelatedInfoByModel:self.goods];
@@ -417,7 +406,8 @@
             
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-               
+                mAlertAPIErrorInfo(error);
+
                  [self.navigationController popViewControllerAnimated:YES];
             });
         }
@@ -445,8 +435,9 @@
     
     [self.menuView.menuButton2 setTitle:self.goods.collectnum forState:UIControlStateNormal];
     [self.menuView.menuButton4 setTitle:self.goods.commentNum forState:UIControlStateNormal];
+   
     if ([self.goods.usercollectnum isEqualToString:@"1"]) {
-    
+       
         self.menuView.menuButton2.selected = YES;
     }
     

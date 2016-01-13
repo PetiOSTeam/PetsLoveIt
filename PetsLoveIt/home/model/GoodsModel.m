@@ -35,6 +35,21 @@
     }
     return _apptypename;
 }
+- (NSString *)typeName
+{
+    
+    
+        if ([self.appType isEqualToString:@"m100"]) {
+            _typeName =@"白菜";
+        }
+        if (!_typeName.length) {
+            _typeName = @"商品";
+        }
+    
+   
+    return _typeName;
+
+}
 - (NSString *)popularitystr
 {
     if (!_popularitystr) {
