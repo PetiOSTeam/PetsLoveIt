@@ -20,6 +20,7 @@
 #import "CommentCell.h"
 #import "CommentGoodsViewController.h"
 #import "UserpageViewController.h"
+#import "CoreViewNetWorkStausManager.h"
 #define sectionHeaderHeight 47
 
 @interface GoodsDetailViewController ()<UIWebViewDelegate,UITableViewDataSource, UITableViewDelegate,  KMNetworkLoadingViewDelegate, KMDetailsPageDelegate,BottomMenuViewDelegate,CheapProductCellDelegate>
@@ -380,7 +381,13 @@
         if (!error) {
             
             NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
-          
+            if (jsonArray.count == 0) {
+                
+                [CoreViewNetWorkStausManager show:self.detailsPageView.tableView2 type:CMTypeError msg:kNoContentTip  subMsg:kNoContentSubTip offsetY:0 failClickBlock:^{
+                    
+                }];
+            }
+
             [jsonArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
                 GoodsModel *goods = [[GoodsModel alloc] initWithDictionary:obj];

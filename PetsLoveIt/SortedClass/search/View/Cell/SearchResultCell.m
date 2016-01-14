@@ -58,7 +58,12 @@
     [self.productImageView sd_setImageWithURL:[NSURL URLWithString:productModel.appMinpic]
                              placeholderImage:[UIImage imageNamed:@"timeline_image_loading"]];
     self.productTitleLabel.text = productModel.name;
-    self.fromWebName.text = productModel.typeName;
+    if ([productModel.mallName length]>0)
+    {
+        self.fromWebName.text = [NSString stringWithFormat:@"%@-%@",productModel.typeName,productModel.mallName];
+    }else{
+        self.fromWebName.text = [NSString stringWithFormat:@"%@",productModel.typeName];
+    }
     NSDate *date = [[NSDate alloc] convertStringToDate:productModel.dateTime format:@"yyyy-MM-dd HH:mm:ss"];
     self.timeLabel.text = [date convertDateToStringWithFormat:@"MM-dd"];
     self.priceLabel.text = [NSString stringWithFormat:@"%@", productModel.desc];

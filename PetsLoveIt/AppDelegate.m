@@ -37,7 +37,7 @@
     [self setupUmengSDK];
     
     [self configJPush:launchOptions];
-       return YES;
+          return YES;
 }
 
 - (void)loadMainViews{
