@@ -423,12 +423,13 @@
         }
     }];
 }
+
 #pragma mark - 加载HTML页面数据，并进行图文混排
 -(void) loadViewAndData{
     [self.detailsPageView loadGoodsInfo:self.goods];
     NSString *html = self.goods.prodDetail;
     CGFloat viewwidth = [UIScreen mainScreen].bounds.size.width - 24;
-    NSString *css = [NSString stringWithFormat:@"<html><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><body width=%f style=\"word-wrap:break-word;ext-align: justify; font-family:Arial\"><style>img{max-width:%f;height:auto;}</style>",viewwidth,viewwidth-16];
+    NSString *css = [NSString stringWithFormat:@"<html><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><body width=%f style=\"word-wrap:break-word;ext-align: justify; font-family:Arial\"><style>img{max-width:%f;height:auto !important;}</style>",viewwidth,viewwidth-16];
     
     NSMutableString *desc = [NSMutableString stringWithFormat:@"%@%@%@",
                              css,

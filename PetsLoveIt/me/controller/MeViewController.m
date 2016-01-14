@@ -584,10 +584,7 @@
 // 查询是否签到
 - (void)isSignin
 {
-    if (self.signinnum.length>0) {
-        [self.signButton setTitle:[NSString stringWithFormat:@"已连续签到%i天",[self.signinnum intValue]+1] forState:UIControlStateNormal];
-    }else{
-   
+    
     NSDictionary *parameter = @{@"uid": @"getUserSign"};
     [APIOperation GET:@"common.action"
            parameters:parameter
@@ -611,7 +608,7 @@
                  [self.signButton setTitle:@"签到送积分" forState:UIControlStateNormal];
                  [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];             }
          }];
-    }
+    
     
     
 }
