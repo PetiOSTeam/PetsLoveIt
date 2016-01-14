@@ -55,9 +55,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     __weak AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
-    
-    // 开始监控
-    [mgr startMonitoring];
+    //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
+        [mgr startMonitoring];
     
     // 当网络状态改变了，就会调用
     [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
@@ -93,9 +92,9 @@
     [self prepareViewsAndData];
 }
 
-//#pragma mark -  同过网络判断是否显示tableHeaderView
-//
-//#pragma mark -
+
+
+#pragma mark -
 - (NSArray *)cheapProductArray
 {
     if (_cheapProductArray == nil) {

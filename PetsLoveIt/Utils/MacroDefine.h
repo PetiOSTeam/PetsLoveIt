@@ -84,8 +84,8 @@
 #define mRGBToColor(rgb) [UIColor colorWithRed:((float)((rgb & 0xFF0000) >> 16))/255.0 green:((float)((rgb & 0xFF00) >> 8))/255.0 blue:((float)(rgb & 0xFF))/255.0 alpha:1.0]
 
 #define kCellSeparatorColor mRGBToColor(0xe5e5e5)
-
-
+//推送消息的标识
+#define productID @"productID"
 //简单的以AlertView显示提示信息
 #define mAlertView(title, msg) \
 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil \

@@ -32,14 +32,12 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-   
     [self loadMainViews];
     //[self setupNavigationStyle];
     [self setupUmengSDK];
     
     [self configJPush:launchOptions];
-   
-    return YES;
+       return YES;
 }
 
 - (void)loadMainViews{
@@ -262,6 +260,7 @@
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     // Required
     [APService handleRemoteNotification:userInfo];
+    
     
 }
 

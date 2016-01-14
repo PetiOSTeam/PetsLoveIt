@@ -65,7 +65,7 @@
                 [label setFont:[UIFont systemFontOfSize:13]];
                 [label setTextAlignment:NSTextAlignmentRight];
                 [label setText:@"已绑定"];
-                label.right = mScreenWidth - 10;
+                label.right = mScreenWidth - 34;
                 label.center = CGPointMake(label.center.x, 27);
                 [cell.contentView addSubview:label];
             }else{

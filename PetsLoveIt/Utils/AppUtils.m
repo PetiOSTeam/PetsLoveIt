@@ -191,7 +191,7 @@
     hud.margin = 10.f;
     hud.yOffset = IS_IPHONE_5?20.f:20.f;
     hud.removeFromSuperViewOnHide = YES;
-    [hud hide:YES afterDelay:2];
+    [hud hide:YES afterDelay:1];
 }
 
 - (void)hideHint{

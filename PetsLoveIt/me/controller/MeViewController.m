@@ -596,6 +596,7 @@
                  NSString *issignin = data[@"isSign"];
                  if ([issignin isEqualToString:@"1"]) {
                      [self.signButton setTitle:[NSString stringWithFormat:@"已连续签到%i天",[continuousSign intValue]+1] forState:UIControlStateNormal];
+                      [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
                  }else
                  {
                      [self.signButton setTitle:@"签到送积分" forState:UIControlStateNormal];
@@ -719,7 +720,12 @@
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             NSString *signinnum = [[responseData objectForKey:@"bean"] objectForKey:@"addIntegral"];
-            NSLog(@"%@",responseData);
+            NSString *rtnCode = [responseData objectForKey:@"rtnCode"];
+            
+            if ([rtnCode isEqualToString:@"0"]) {
+                [mAppUtils showHint:@"今天已经签到过了!"];
+                return ;
+            }
             self.signinnum = [[responseData objectForKey:@"bean"] objectForKey:@"continuousSign"];
             SigninbubbleButton *signbubble = [[SigninbubbleButton alloc]initWithframe:self.signButton.frame andSigninNum:signinnum];
             [self.signButton.superview addSubview:signbubble];
@@ -731,19 +737,10 @@
             userInfo.todaySigned = @"1";
             mAppDelegate.loginUser = userInfo;
             [AppCache cacheObject:userInfo forKey:HLocalUserInfo];
-            
+           
             
         }else{
-            mAlertAPIErrorInfo(error);
-            if ([[error.userInfo objectForKey:ERRORMSG] isEqualToString:@"今天已经签过到."]) {
-                [self.signButton setTitle:@"已签到" forState:UIControlStateNormal];
-                [self.signButton removeTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
-
-                LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
-                userInfo.todaySigned = @"1";
-                mAppDelegate.loginUser = userInfo;
-                [AppCache cacheObject:userInfo forKey:HLocalUserInfo];
-            }
+            [mAppUtils showHint:@"今天已经签到过啦!"];
         }
     }];
 }
