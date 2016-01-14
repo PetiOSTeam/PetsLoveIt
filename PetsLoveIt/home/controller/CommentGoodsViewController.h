@@ -11,4 +11,5 @@
 @interface CommentGoodsViewController : CoreLTVC
 @property (nonatomic,strong) NSString *goodsId;
 
+
 @end

@@ -229,9 +229,9 @@
 {
     
     GradeExchangeModel *model = [[GradeExchangeModel alloc] initWithJson:resp];
-    GradePopView *popView = [[NSBundle mainBundle] loadNibNamed:@"GradePopView"
-                                                          owner:self
-                                                        options:nil][0];
+    GradePopView *popView = [[GradePopView alloc]initWithFrame:CGRectMake(0, 0, 240, 176)];
+    popView.backgroundColor = [UIColor whiteColor];
+    
     popView.model = model;
     WEAKSELF
     XRZAlertControl *alertControl = [[XRZAlertControl alloc] initWithContentView:popView];

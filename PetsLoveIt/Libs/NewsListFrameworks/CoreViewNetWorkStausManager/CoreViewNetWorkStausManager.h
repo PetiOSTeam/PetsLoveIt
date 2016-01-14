@@ -33,7 +33,7 @@ typedef enum{
 
 
 +(void)show:(UIView *)view type:(CMType)type msg:(NSString *)msg subMsg:(NSString *)subMsg offsetY:(CGFloat)offsetY failClickBlock:(void(^)())failClickBlock;
-
++(void)showWithViewController:(UIViewController *)viewcontroller type:(CMType)type msg:(NSString *)msg subMsg:(NSString *)subMsg offsetY:(CGFloat)offsetY failClickBlock:(void(^)())failClickBlock;
 
 +(void)dismiss:(UIView *)view;
 

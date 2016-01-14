@@ -188,7 +188,7 @@
 
 
 - (IBAction)btnClick:(id)sender {
-    
+    [self.superview endEditing:YES];
     if(CMTypeError == _type && _failClickBlock!=nil) _failClickBlock();
 }
 

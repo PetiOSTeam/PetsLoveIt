@@ -41,15 +41,15 @@
     self.tableView.top = 64;
     
     [self prepareViewAndData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow) name:UIKeyboardWillShowNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow) name:UIKeyboardDidShowNotification object:nil];
 }
-- (void)keyboardWillShow{
-    [self.view bringSubviewToFront:self.editToolBar];
-}
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
+//- (void)keyboardWillShow{
+//    [self.view bringSubviewToFront:self.editToolBar];
+//}
+//- (void)dealloc
+//{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//}
 - (void)prepareViewAndData{
     
     
@@ -260,11 +260,18 @@
     [[DXPopover sharedView] dismiss];
     [mAppUtils showHint:@"举报成功"];
 }
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
     [self.view endEditing:YES];
 }
-
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    self.DidScrollNum++;
+//    if (self.DidScrollNum >=2) {
+//        self.editToolBar.userInteractionEnabled = YES;
+//        [self.view endEditing:YES];
+//    }
+//    
+//}
 #pragma mark - 发表评论
 -(void)didSendText:(NSString *)text{
     if (![AppCache getUserInfo]) {

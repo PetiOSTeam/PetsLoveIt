@@ -19,6 +19,7 @@
     {
        self.changeIntegral  = [json objectForKey:@"changeIntegral"];
  self.discountId  = [json objectForKey:@"discountId"];
+        self.awardCode = [json objectForKey:@"awardCode"];
  
     }
     }
@@ -29,6 +30,7 @@
 {
     [aCoder encodeObject:self.changeIntegral forKey:@"zx_changeIntegral"];
 [aCoder encodeObject:self.discountId forKey:@"zx_discountId"];
+    [aCoder encodeObject:self.awardCode forKey:@"zx_awardCode"];
 
 }
 
@@ -40,6 +42,7 @@
     {
         self.changeIntegral = [aDecoder decodeObjectForKey:@"zx_changeIntegral"];
  self.discountId = [aDecoder decodeObjectForKey:@"zx_discountId"];
+        self.awardCode = [aDecoder decodeObjectForKey:@"zx_awardCode"];
  
     }
     return self;
@@ -50,6 +53,7 @@
     NSString *result = @"";
     result = [result stringByAppendingFormat:@"changeIntegral : %@\n",self.changeIntegral];
 result = [result stringByAppendingFormat:@"discountId : %@\n",self.discountId];
+    result = [result stringByAppendingFormat:@"awardCode : %@\n",self.awardCode];
 
     return result;
 }

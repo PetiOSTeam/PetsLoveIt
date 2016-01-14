@@ -22,6 +22,7 @@
 #import "APService.h"
 #import "ZWIntroductionViewController.h"
 
+
 #define kSignAlarm 1112
 
 @interface AppDelegate ()
@@ -31,12 +32,13 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
+   
     [self loadMainViews];
     //[self setupNavigationStyle];
     [self setupUmengSDK];
-    [self configJPush:launchOptions];
     
+    [self configJPush:launchOptions];
+   
     return YES;
 }
 
@@ -260,6 +262,7 @@
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     // Required
     [APService handleRemoteNotification:userInfo];
+    
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {

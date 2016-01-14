@@ -593,7 +593,6 @@
 		9DFF5C201C3D163C007E15B2 /* BaoliaoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DFF5C1F1C3D163C007E15B2 /* BaoliaoView.xib */; };
 		F91BA2C51C15B08C00B1C2E9 /* XRZAlertControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C41C15B08C00B1C2E9 /* XRZAlertControl.swift */; };
 		F91BA2C91C15B65A00B1C2E9 /* GradePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2C81C15B65A00B1C2E9 /* GradePopView.m */; };
-		F91BA2CB1C15B66C00B1C2E9 /* GradePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91BA2CA1C15B66C00B1C2E9 /* GradePopView.xib */; };
 		F91BA2D01C15B70800B1C2E9 /* BeanEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2CD1C15B70800B1C2E9 /* BeanEntity.m */; };
 		F91BA2D11C15B70800B1C2E9 /* GradeExchangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F91BA2CF1C15B70800B1C2E9 /* GradeExchangeModel.m */; };
 		F92EE5261C0068DA00DEC5D0 /* KeywordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F92EE5251C0068DA00DEC5D0 /* KeywordsModel.m */; };
@@ -1668,7 +1667,6 @@
 		F91BA2C61C15B16700B1C2E9 /* PetsLoveIt-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PetsLoveIt-Header.h"; sourceTree = "<group>"; };
 		F91BA2C71C15B65A00B1C2E9 /* GradePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradePopView.h; sourceTree = "<group>"; };
 		F91BA2C81C15B65A00B1C2E9 /* GradePopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradePopView.m; sourceTree = "<group>"; };
-		F91BA2CA1C15B66C00B1C2E9 /* GradePopView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GradePopView.xib; sourceTree = "<group>"; };
 		F91BA2CC1C15B70800B1C2E9 /* BeanEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeanEntity.h; path = Model/BeanEntity.h; sourceTree = "<group>"; };
 		F91BA2CD1C15B70800B1C2E9 /* BeanEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeanEntity.m; path = Model/BeanEntity.m; sourceTree = "<group>"; };
 		F91BA2CE1C15B70800B1C2E9 /* GradeExchangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradeExchangeModel.h; path = Model/GradeExchangeModel.h; sourceTree = "<group>"; };
@@ -3835,7 +3833,6 @@
 				186EA8821C148C73009876BD /* GradeDetailHeaderView.xib */,
 				F91BA2C71C15B65A00B1C2E9 /* GradePopView.h */,
 				F91BA2C81C15B65A00B1C2E9 /* GradePopView.m */,
-				F91BA2CA1C15B66C00B1C2E9 /* GradePopView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -4000,7 +3997,7 @@
 				TargetAttributes = {
 					189442531BE9DEC3006249F0 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 5D9DJCAP6A;
+						DevelopmentTeam = HSNXF846Q2;
 					};
 				};
 			};
@@ -4179,7 +4176,6 @@
 				18F633B11BF883C800FD98B1 /* ios-social-sdk-comment-quick.html in Resources */,
 				F9EAB7921BF75A1B00BD0D6B /* StoreFooterView.xib in Resources */,
 				189446331BEB0774006249F0 /* e_86@2x.png in Resources */,
-				F91BA2CB1C15B66C00B1C2E9 /* GradePopView.xib in Resources */,
 				1894463A1BEB0774006249F0 /* faceDelete@2x.png in Resources */,
 				1894462B1BEB0774006249F0 /* e_79@2x.png in Resources */,
 				189446061BEB0774006249F0 /* e_45@2x.png in Resources */,
@@ -4688,8 +4684,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: He Guo (89H2BJMZ69)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: He Guo (89H2BJMZ69)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -4711,7 +4707,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "aad201d6-d4c4-44fd-b862-f2282c9712fa";
+				PROVISIONING_PROFILE = "634045b7-b09b-416f-864e-e3f28c516086";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -4733,8 +4729,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: He Guo (89H2BJMZ69)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: He Guo (89H2BJMZ69)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -4749,7 +4745,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "aad201d6-d4c4-44fd-b862-f2282c9712fa";
+				PROVISIONING_PROFILE = "634045b7-b09b-416f-864e-e3f28c516086";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4761,8 +4757,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: He Guo (89H2BJMZ69)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: He Guo (89H2BJMZ69)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4802,7 +4798,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.cwaizg.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aad201d6-d4c4-44fd-b862-f2282c9712fa";
+				PROVISIONING_PROFILE = "634045b7-b09b-416f-864e-e3f28c516086";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "PetsLoveIt/PetsLoveIt-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -4816,8 +4812,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: He Guo (89H2BJMZ69)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: He Guo (89H2BJMZ69)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4857,7 +4853,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.cwaizg.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aad201d6-d4c4-44fd-b862-f2282c9712fa";
+				PROVISIONING_PROFILE = "634045b7-b09b-416f-864e-e3f28c516086";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "PetsLoveIt/PetsLoveIt-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

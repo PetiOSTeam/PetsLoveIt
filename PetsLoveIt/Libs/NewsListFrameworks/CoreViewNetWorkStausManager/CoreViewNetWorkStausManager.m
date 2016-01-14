@@ -8,7 +8,8 @@
 
 #import "CoreViewNetWorkStausManager.h"
 #import "CMView.h"
-
+#import "CommentGoodsViewController.h"
+#import "RichEditView.h"
 @implementation CoreViewNetWorkStausManager
 
 
@@ -29,8 +30,11 @@
         }else{
             return ;
         }
+        
         view.width = mScreenWidth;
         [view addSubview:myCmView];
+       
+       
         myCmView.alpha=0;
         [UIView animateWithDuration:.25f animations:^{
             myCmView.alpha=1.0f;
@@ -38,7 +42,43 @@
     });
     
 }
-
++(void)showWithViewController:(UIViewController *)viewcontroller type:(CMType)type msg:(NSString *)msg subMsg:(NSString *)subMsg offsetY:(CGFloat)offsetY failClickBlock:(void(^)())failClickBlock{
+    
+    //先移除一次
+    [self dismiss:viewcontroller.view];
+    //创建CMView
+   
+    
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        CMView *myCmView=[CMView cmViewWithType:type msg:msg subMsg:subMsg offsetY:offsetY failClickBlock:failClickBlock];
+        
+        if ([msg isEqualToString:kNoNetWorkTip]) {
+            myCmView.imageView.image = [UIImage imageNamed:@"noNetWorkIcon"];
+        }else if ([msg isEqualToString:kNoContentTip]||[msg isEqualToString:kNoBLTip]){
+            myCmView.imageView.image = [UIImage imageNamed:@"noContentIcon"];
+        }else{
+            return ;
+        }
+        
+        viewcontroller.view.width = mScreenWidth;
+        [viewcontroller.view addSubview:myCmView];
+        if ([viewcontroller isKindOfClass:[CommentGoodsViewController class]]) {
+            for (UIView *vw in [viewcontroller.view subviews]) {
+                if ([vw isKindOfClass:[RichEditToolBar class]]) {
+                    [viewcontroller.view insertSubview:myCmView belowSubview:vw];
+                }
+            }
+            
+        }
+        myCmView.alpha=0;
+        [UIView animateWithDuration:.25f animations:^{
+            myCmView.alpha=1.0f;
+        }];
+    });
+    
+}
 
 
 +(void)dismiss:(UIView *)view{

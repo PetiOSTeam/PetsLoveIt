@@ -14,6 +14,7 @@
 
 @property (nonatomic,strong) NSString *changeIntegral;
 @property (nonatomic,strong) NSString *discountId;
+@property (nonatomic,strong) NSString *awardCode;
  
 
 

@@ -209,7 +209,13 @@
         [paremssec setObject:[AppCache getToken] forKey:@"userToken"];
     }
     [paremssec setObject:@"getUserPraiseAndNoPraiseNum" forKey:@"uid"];
-    [paremssec setObject:self.goods.prodId forKey:@"prodId"];
+    if (self.goods.prodId.length > 0) {
+        [paremssec setObject:self.goods.prodId forKey:@"prodId"];
+    }else
+    {
+        return;
+    }
+    
     [APIOperation GET:@"common.action" parameters:paremssec onCompletion:^(id responseData, NSError *error) {
         if (!error) {
            
@@ -338,6 +344,10 @@
 - (void) getRelatedInfoByModel:(GoodsModel *)good{
    
 
+    if (good.appType == nil) {
+       [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
     NSDictionary *params = @{
                              @"uid":@"getProductByType",
                              @"appType":good.appType,
@@ -396,7 +406,7 @@
         if (!error) {
            
             self.goods = [[GoodsModel alloc] initWithDictionary:[responseData objectForKey:@"data"]] ;
-             self.goodsId =self.goods.prodId;
+             
             self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.goods.typeName];
             [self loadViewAndData];
             //获取猜你喜欢数据

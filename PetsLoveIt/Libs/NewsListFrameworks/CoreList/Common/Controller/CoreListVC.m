@@ -136,6 +136,7 @@ typedef enum{
     
     //模型配置正确。框架开始运作。
     [self workBegin];
+    
 }
 
 
@@ -205,7 +206,8 @@ typedef enum{
         NSString *msg =_configModel.hiddenNetWorkStausManager?@"":@"数据加载中";
         NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"请稍等，即将努力请求数据哦";
         CMType type = _configModel.hiddenNetWorkStausManager?CMTypeNormalMsgWithImage :CMTypeLoadingWithImage;
-        [CoreViewNetWorkStausManager show:self.view type:type msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:nil];
+        [CoreViewNetWorkStausManager showWithViewController:self type:type msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:nil];
+//        [CoreViewNetWorkStausManager show:self.view type:type msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:nil];
     }
 
 }
@@ -251,7 +253,8 @@ typedef enum{
         NSString *msg =_configModel.hiddenNetWorkStausManager?@"":@"数据加载中";
         NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"请稍等，即将努力请求数据哦";
         CMType type = _configModel.hiddenNetWorkStausManager?CMTypeNormalMsgWithImage :CMTypeLoadingWithImage;
-        [CoreViewNetWorkStausManager show:self.view type:type msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:nil];
+        [CoreViewNetWorkStausManager showWithViewController:self type:type msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:nil];
+//        [CoreViewNetWorkStausManager show:self.view type:type msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:nil];
     }
     
     //归位前做一个记录,假如一会顶部刷新没有数据也可恢复数据。
@@ -372,12 +375,18 @@ typedef enum{
         if (_configModel.customNoResultSubMsg&&!_configModel.hiddenNetWorkStausManager) {
             subMsg = _configModel.customNoResultSubMsg;
         }
-        [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
+        [CoreViewNetWorkStausManager showWithViewController:self type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
             if (!_configModel.hiddenNetWorkStausManager) {
                 [self reloadDataWithheaderViewStateRefresh];
-
+                
             }
         }];
+//        [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
+//            if (!_configModel.hiddenNetWorkStausManager) {
+//                [self reloadDataWithheaderViewStateRefresh];
+//
+//            }
+//        }];
         return;
     }
     
@@ -404,7 +413,8 @@ typedef enum{
                 if (_configModel.customNoResultSubMsg&&!_configModel.hiddenNetWorkStausManager) {
                     subMsg = _configModel.customNoResultSubMsg;
                 }
-                [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
+                
+                [CoreViewNetWorkStausManager showWithViewController:self type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
                     if (!_configModel.hiddenNetWorkStausManager) {
                         [self reloadDataWithheaderViewStateRefresh];
                         
@@ -598,7 +608,7 @@ typedef enum{
 
     if(!_hasData){
         
-        [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:kNoNetWorkTip subMsg:@"点击屏幕重新加载" offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
+        [CoreViewNetWorkStausManager showWithViewController:self type:CMTypeError msg:kNoNetWorkTip subMsg:@"点击屏幕重新加载" offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
             
             //使用当前的请求方式，再次请求
             [self requestWithRequestType:requestType];
@@ -609,7 +619,7 @@ typedef enum{
                 NSString *msg =_configModel.hiddenNetWorkStausManager?@"":@"数据加载中";
                 NSString *subMsg= _configModel.hiddenNetWorkStausManager?@"":@"请稍等，即将努力请求数据哦";
                 CMType type = _configModel.hiddenNetWorkStausManager?CMTypeNormalMsgWithImage :CMTypeLoadingWithImage;
-                [CoreViewNetWorkStausManager show:self.view type:type msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:nil];
+                [CoreViewNetWorkStausManager showWithViewController:self type:type msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:nil];
             }
             
         }];

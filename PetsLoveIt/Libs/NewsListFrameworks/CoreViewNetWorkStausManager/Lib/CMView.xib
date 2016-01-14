@@ -64,6 +64,7 @@
                 <outlet property="imageView" destination="y69-E2-e13" id="Nj1-kN-hOe"/>
                 <outlet property="msgLabel" destination="NEk-UZ-8Sy" id="QUR-mc-99a"/>
                 <outlet property="msgLabelMarginConstraint" destination="Ed2-7B-4OH" id="UcI-ae-wAa"/>
+                <outlet property="mskButton" destination="A3p-cg-R0e" id="4Ab-kr-M0u"/>
                 <outlet property="subMsgLabel" destination="0AP-IZ-e9n" id="qsb-aL-THT"/>
                 <outlet property="subMsgMarginConstraint" destination="L8A-7i-2z1" id="LyZ-DV-ZyN"/>
             </connections>
