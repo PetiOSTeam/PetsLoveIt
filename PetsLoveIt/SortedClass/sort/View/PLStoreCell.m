@@ -29,7 +29,7 @@
 - (void)setModel:(StoreModel *)model
 {
     _model = model;
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.mallIcon] placeholderImage:[UIImage imageNamed:@"timeline_image_loading"]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.mallIcon] placeholderImage:nil];
 }
 
 - (void)setIsBottom:(BOOL)isBottom

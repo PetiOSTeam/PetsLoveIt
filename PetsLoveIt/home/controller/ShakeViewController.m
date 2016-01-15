@@ -164,7 +164,18 @@
                                 shareToSnsNames:@[UMShareToWechatSession,UMShareToQQ,UMShareToQzone,UMShareToWechatTimeline,UMShareToSina]
                                        delegate:self];
 }
-
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
+{
+    
+    //根据`responseCode`得到发送结果,如果分享成功
+    if(response.responseCode == UMSResponseCodeSuccess)
+    {
+        //得到分享到的微博平台名
+        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
+        //shareNum 加1
+        [self updateShareNum];
+    }
+}
 - (void)cancelAction{
     [self hidePopView];
 }
@@ -246,24 +257,21 @@
     return _goodsView;
 }
 
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
-{
-    //根据`responseCode`得到发送结果,如果分享成功
-    if(response.responseCode == UMSResponseCodeSuccess)
-    {
-        //得到分享到的微博平台名
-        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
-        //shareNum 加1
-        [self updateShareNum];
-    }
-}
+
 
 - (void)updateShareNum{
     NSDictionary *params = @{
                              @"uid":@"updShareNum"
                              };
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-        
+        NSInteger canShareNum = [[[responseData objectForKey:@"bean"]  objectForKey:@"sharenum"] integerValue];
+        if (canShareNum >=5) {
+            [self showNoShareNumView];
+           
+            return ;
+        }
+
+
     }];
 }
 
@@ -293,17 +301,10 @@
             //只允许摇3次,code为0表示不能再摇了
             NSString *code = [responseData objectForKey:@"rtnCode"];
             //只允许分享5次
-            NSInteger canShareNum = [[[responseData objectForKey:@"data"]  objectForKey:@"sharenum"] integerValue];
-            if ([code isEqualToString:@"0"] && canShareNum<5) {
+            if ([code isEqualToString:@"0"]) {
                 [self showNoOpView];
 //                [self showGoodsView:nil];
 
-                return ;
-            }
-            else if (canShareNum >=5) {
-                [self showNoShareNumView];
-//                [self setupintegralViewWithintegral:canShareNum];//测试
-//                [self showNoOpView];//测试
                 return ;
             }
             

@@ -27,6 +27,7 @@
 
 @interface AppDelegate ()
 @property (nonatomic, strong) ZWIntroductionViewController *introductionView;
+@property (nonatomic,copy) NSString *pushid;
 @end
 
 @implementation AppDelegate
@@ -37,6 +38,20 @@
     [self setupUmengSDK];
     
     [self configJPush:launchOptions];
+    if (launchOptions) {
+        NSDictionary * remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        //这个判断是在程序没有运行的情况下收到通知，点击通知跳转页面
+        if (remoteNotification) {
+            NSString *productid = remoteNotification[productID];
+            NSUserDefaults * setting = [NSUserDefaults standardUserDefaults];
+            NSString * key = productID;
+            [setting setObject:productid forKey:key];
+            [setting synchronize];
+            
+        }
+       
+       
+    }
           return YES;
 }
 
@@ -103,6 +118,7 @@
     [application setStatusBarStyle:UIStatusBarStyleLightContent];  //tabbar线条
     
 }
+
 
 - (void)loadIntroduceView{
     NSArray *backgroundImageNames = @[@"guideImage01", @"guideImage02", @"guideImage03",@"guideImage04",@"guideImage05"];
@@ -261,21 +277,35 @@
     // Required
     [APService handleRemoteNotification:userInfo];
     
-    
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    
+    if (userInfo) {
+       
+        NSString *productid = userInfo[productID];
+        
+        if (productid.length > 0) {
+            if (application.applicationState != UIApplicationStateActive) {
+                NSNotification * notice = [NSNotification notificationWithName:@"presentview" object:nil userInfo:userInfo];
+                //发送消息
+                [[NSNotificationCenter defaultCenter]postNotification:notice];
+            }
+        
+            
+        }
+      
+    }
+   
     
     // IOS 7 Support Required
     [APService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);
 }
+
 //本地提醒
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     NSLog(@"Local Notification Body: %@", notification.alertBody);
     NSLog(@"Local Notification UserInfo: %@", notification.userInfo);
-    
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     if (application.applicationState == UIApplicationStateInactive) {
 
@@ -322,7 +352,10 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+   
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+ 
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
