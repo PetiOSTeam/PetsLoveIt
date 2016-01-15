@@ -258,7 +258,6 @@
 }
 
 
-
 - (void)updateShareNum{
     NSDictionary *params = @{
                              @"uid":@"updShareNum"
@@ -267,7 +266,7 @@
         NSInteger canShareNum = [[[responseData objectForKey:@"bean"]  objectForKey:@"sharenum"] integerValue];
         if (canShareNum >=5) {
             [self showNoShareNumView];
-           
+          
             return ;
         }
 
