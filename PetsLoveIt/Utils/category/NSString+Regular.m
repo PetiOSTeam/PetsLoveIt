@@ -63,7 +63,7 @@
 - (BOOL)isPhoneNumber{
 //    NSString * MOBILE = @"((\\+86)|(86))?(1)\\d{10}$";
     
-    NSString * MOBILE = @"1[3458]([0-9]){9}";
+    NSString * MOBILE = @"1[23456789]([0-9]){9}";
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
     if (([regextestmobile evaluateWithObject:self] == YES)) {
         return YES;

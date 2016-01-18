@@ -39,7 +39,7 @@
 
 @interface KMDetailsPageView : UIView
 
-- (id)initWithFrame:(CGRect)frame Withtype:(Menutype)type;
+- (id)initWithFrame:(CGRect)frame Withtype:(Menutype)type ;
 
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, strong) CheapTableView *cheapTable;

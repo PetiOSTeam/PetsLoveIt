@@ -289,8 +289,13 @@
                 NSNotification * notice = [NSNotification notificationWithName:@"presentview" object:nil userInfo:userInfo];
                 //发送消息
                 [[NSNotificationCenter defaultCenter]postNotification:notice];
-            }
-        
+            }else{
+                UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+                localNotification.userInfo = userInfo;
+                localNotification.soundName = UILocalNotificationDefaultSoundName;
+                localNotification.alertBody = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+                localNotification.fireDate = [NSDate date];
+                [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];            }
             
         }
       
@@ -304,15 +309,28 @@
 
 //本地提醒
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    NSLog(@"Local Notification Body: %@", notification.alertBody);
-    NSLog(@"Local Notification UserInfo: %@", notification.userInfo);
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    if (application.applicationState == UIApplicationStateInactive) {
+    NSString *productid = notification.userInfo[productID];
+    
+    if (productid.length > 0) {
+        if (application.applicationState != UIApplicationStateActive) {
+            NSNotification * notice = [NSNotification notificationWithName:@"presentview" object:nil userInfo: notification.userInfo];
+            //发送消息
+            [[NSNotificationCenter defaultCenter]postNotification:notice];
+        }
+        
+    }else{
 
-    } else if (application.applicationState == UIApplicationStateActive){
-        [self showSignAlarm:notification];
+         NSLog(@"Local Notification Body: %@", notification.alertBody);
+         NSLog(@"Local Notification UserInfo: %@", notification.userInfo);
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        if (application.applicationState == UIApplicationStateInactive) {
+
+        } else if (application.applicationState == UIApplicationStateActive){
+            [self showSignAlarm:notification];
+        }
+        [self signAlarmTomorrow:notification];
     }
-    [self signAlarmTomorrow:notification];
+    
 
 }
 - (void)showSignAlarm:(UILocalNotification *)notification{
