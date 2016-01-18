@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong) NSString *commentId;
 @property (nonatomic,strong) NSString *parentId;
+@property (nonatomic,strong) NSString *parentIds;
 @property (nonatomic,strong) NSString *userId;
 @property (nonatomic,strong) NSString *nickName;
 @property (nonatomic,strong) NSString *userName;
@@ -29,7 +30,7 @@
 @property (nonatomic,strong) NSString *praiseFlag;
 @property (nonatomic,strong) NSString *stepNum;
 @property (nonatomic,strong) NSString *stepFlag;
-@property (nonatomic,strong) id parent_data;
+@property (nonatomic,strong) id subComments;
 
 @property (nonatomic,strong) NSString *otherContent;
 @property (nonatomic,strong) NSString *otherNickName;

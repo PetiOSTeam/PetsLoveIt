@@ -349,11 +349,11 @@
     //url,分为公告和话题
     
     configModel.url=[NSString stringWithFormat:@"%@%@",kBaseURL,@"common.action"];
-   //uid=getUsercollect&appType=m10&limit=5&startNum=0&userToken
+   //http:61.155.210.60:9090/petweb/actions/common.action?uid=getCommentByProductNew&limit=5&productId=&startNum=0
     //请求方式
     configModel.httpMethod=LTConfigModelHTTPMethodGET;
     configModel.params = @{
-                           @"uid":@"getCommentByProduct",
+                           @"uid":@"getCommentByProductNew",
                            @"productId":self.goodsId,
                            @"userId":[AppCache getUserId]
                            };
@@ -364,14 +364,14 @@
     //标识
     configModel.lid=NSStringFromClass(self.class);
     //pageName第几页的参数名
-    configModel.pageName=@"pageIndex";
+    configModel.pageName=@"startNum";
     
     //pageSizeName
-    configModel.pageSizeName=@"pageSize";
+    configModel.pageSizeName=@"limit";
     //pageSize
-    configModel.pageSize = 10;
+    configModel.pageSize = 5;
     //起始页码
-    configModel.pageStartValue=1;
+    configModel.pageStartValue=0;
     //行高
     configModel.rowHeight=210;
     configModel.hiddenNetWorkStausManager = NO;

@@ -18,6 +18,7 @@
     _commentLabel.backgroundColor = [UIColor clearColor];
     _commentLabel.isNeedAtAndPoundSign = YES;
     _commentLabel.numberOfLines = 0;
+
     _commentLabel.lineBreakMode = NSLineBreakByWordWrapping;
     _commentLabel.customEmojiRegex = kEmojiReg;
     _commentLabel.customEmojiPlistName = @"expression.plist";
@@ -31,9 +32,10 @@
     
     
     NSString *commentStr = [NSString stringWithFormat:@"%@：%@",comment.nickName,comment.content];
+//    NSString *commentStr = [NSString stringWithFormat:@"%@",comment.content];
     NSMutableAttributedString *commentContent=[[NSMutableAttributedString alloc] initWithString:commentStr];
     NSString *userNameAndBlankCharStr = [NSString stringWithFormat:@"%@:",comment.nickName];
-    
+//
     NSRange allRange = {0,[commentStr length]};
     NSRange selectedRange = {0, [userNameAndBlankCharStr length]};
     NSRange selectedRange2 = {[userNameAndBlankCharStr length],[comment.content length]};
@@ -44,13 +46,18 @@
     [commentContent addAttribute:NSForegroundColorAttributeName
                        value:mRGBToColor(0x666666) // 添加颜色
                        range:selectedRange2];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
     
-    _commentLabel.emojiText = commentStr;
-    _commentLabel.attributedText = commentContent;
-
+    [paragraphStyle setLineSpacing:6];
+    
+    [commentContent addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, commentContent.length)];
+    
+    _commentLabel.text = commentContent;
+    CGSize rSize = [_commentLabel preferredSizeWithMaxWidth:mScreenWidth-12-25-56-10];
+    _commentLabel.height = rSize.height;
     //[_commentLabel setEmojiAddAttri:NSForegroundColorAttributeName value:mRGBToColor(0x44ff01) rang:selectedRange];
     [self.commentLabel setWidth:(mScreenWidth-56-12-25-10)];
-    [self.commentLabel sizeToFit];
+    
     _floorLabel.text = comment.orderNo;
 }
 
@@ -59,6 +66,7 @@
     MLEmojiLabel *_textLabel = [[MLEmojiLabel alloc]init];
     _textLabel.font = [UIFont systemFontOfSize:14];
     _textLabel.customEmojiRegex = kEmojiReg;
+    _textLabel.lineSpacing = 6;
     _textLabel.customEmojiPlistName = @"expression.plist";
     [_textLabel setEmojiText:[NSString stringWithFormat:@"%@：%@",object.nickName,object.content]];
     _textLabel.backgroundColor = [UIColor clearColor];
@@ -67,7 +75,7 @@
     _textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     CGSize rSize = [_textLabel preferredSizeWithMaxWidth:mScreenWidth-12-25-56-10];
     
-    return rSize.height + 20 ;
+    return rSize.height + 26;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

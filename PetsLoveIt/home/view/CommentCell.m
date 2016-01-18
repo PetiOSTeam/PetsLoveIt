@@ -81,9 +81,9 @@
     //显示parent评论
     
     
-    if (comment.parent_data) {
+    if (comment.subComments) {
         [self.tableView.dataArray removeAllObjects];
-        [comment.parent_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [comment.subComments enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [self.tableView.dataArray  addObject:[[CommentModel alloc] initWithDictionary:obj]];
         }];
         //按orderNO排序
@@ -127,11 +127,12 @@
     
    __block CGFloat tableHeight = 0;
 
-    if (object.parent_data) {
-        [object.parent_data enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    if (object.subComments) {
+        [object.subComments enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             CommentModel *parentComment = [[CommentModel alloc] initWithDictionary:obj];
             MLEmojiLabel *_textLabel = [[MLEmojiLabel alloc]init];
             _textLabel.font = [UIFont systemFontOfSize:14];
+            _textLabel.lineSpacing = 6;
             _textLabel.customEmojiRegex = kEmojiReg;
             _textLabel.customEmojiPlistName = @"expression.plist";
             [_textLabel setEmojiText:[NSString stringWithFormat:@"%@：%@",parentComment.nickName,parentComment.content]];
@@ -140,7 +141,7 @@
             _textLabel.numberOfLines = 0;
             _textLabel.lineBreakMode = NSLineBreakByWordWrapping;
             CGSize rSize = [_textLabel preferredSizeWithMaxWidth:mScreenWidth-56-12-25-10];
-            tableHeight+=rSize.height+20;
+            tableHeight+=rSize.height+26;
         }];
     }
     

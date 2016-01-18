@@ -590,7 +590,7 @@
            parameters:parameter
          onCompletion:^(id responseData, NSError *error) {
              if (responseData) {
-                
+//                 NSLog(@"%@",responseData);
                  NSDictionary *data =  [responseData objectForKey:@"beans"];
                  NSString *continuousSign = data[@"continuousSign"];
                  NSString *issignin = data[@"isSign"];
