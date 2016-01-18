@@ -13,6 +13,7 @@
 @interface GoodsDetailViewController : CommonViewController
 @property (nonatomic,strong) NSString *goodsId;
 @property (nonatomic,strong) GoodsModel *goods;
+@property (nonatomic,strong) NSString *goodsuid;
 
 
 

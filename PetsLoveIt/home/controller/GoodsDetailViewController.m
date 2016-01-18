@@ -512,7 +512,7 @@
 }
 -(KMDetailsPageView *)detailsPageView{
     if (!_detailsPageView) {
-        _detailsPageView = [[KMDetailsPageView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, mScreenHeight) Withtype:self.apptypename];
+        _detailsPageView = [[KMDetailsPageView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, mScreenHeight) Withtype:self.apptypename andAuthor:self.goodsuid];
     }
     return _detailsPageView;
 }

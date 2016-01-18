@@ -84,7 +84,7 @@
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
    
     vc.apptypename = TypeShareOrder;
-   
+    vc.goodsuid = model.userId;
     
     vc.goodsId = model.prodId;
     NSLog(@"%@",model);

@@ -158,7 +158,7 @@
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
   
         vc.apptypename = good.apptypename;
-     
+    vc.goodsuid = good.userId;
     vc.goods = good;
     [parentVC.navigationController pushViewController:vc animated:YES];
 }

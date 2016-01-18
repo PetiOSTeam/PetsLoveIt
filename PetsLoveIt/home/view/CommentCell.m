@@ -154,11 +154,11 @@
 }
 
 - (IBAction)clickIocn {
-//        CommentModel *comment = (CommentModel *)self.model;
-//    NSLog(@"clickIocn%@",comment.userName);
-//    UserpageViewController *vc = [[UserpageViewController alloc]init];
-//    vc.uesrId = comment.userId;
-//    
-//    [self.viewController.navigationController pushViewController:vc animated:YES];
+        CommentModel *comment = (CommentModel *)self.model;
+    NSLog(@"clickIocn%@",comment.userName);
+    UserpageViewController *vc = [[UserpageViewController alloc]init];
+    vc.uesrId = comment.userId;
+    
+    [self.viewController.navigationController pushViewController:vc animated:YES];
 }
 @end

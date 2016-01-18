@@ -210,7 +210,7 @@ static NSString *CellIdentifier = @"SearchResultCell";
     GoodsDetailViewController *goodsDetailVC = [[GoodsDetailViewController alloc] init];
     goodsDetailVC.goods = model;
     goodsDetailVC.apptypename = model.apptypename;
-   
+    goodsDetailVC.goodsuid = model.userId;
 
     
 

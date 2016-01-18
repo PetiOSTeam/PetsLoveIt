@@ -83,6 +83,7 @@
     vc.apptypename = TypeExperience;
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
     vc.goodsId = model.prodId;
+    vc.goodsuid = model.userId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
