@@ -30,11 +30,14 @@
 @property (nonatomic,strong) NSString *praiseFlag;
 @property (nonatomic,strong) NSString *stepNum;
 @property (nonatomic,strong) NSString *stepFlag;
-@property (nonatomic,strong) id subComments;
+@property (nonatomic,strong) NSArray *subComments;
 
 @property (nonatomic,strong) NSString *otherContent;
 @property (nonatomic,strong) NSString *otherNickName;
 @property (nonatomic,strong) NSString *otherUserName;
 @property (nonatomic,strong) NSString *prodName;
+@property (nonatomic,strong) NSString *rootId;
+@property (nonatomic,strong) NSString *maxOrderNo;
+@property (nonatomic,assign) BOOL loadallFlag;
 
 @end

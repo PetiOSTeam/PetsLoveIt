@@ -36,20 +36,29 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self showNaviBarView];
+    
     // Do any additional setup after loading the view from its nib.
     self.navBarTitleLabel.text = @"所有评论";
     self.tableView.top = 64;
     
     [self prepareViewAndData];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow) name:UIKeyboardDidShowNotification object:nil];
+    //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshcommentcell) name:@"refreshcommentcell" object:nil];
+
 }
-//- (void)keyboardWillShow{
-//    [self.view bringSubviewToFront:self.editToolBar];
-//}
-//- (void)dealloc
-//{
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//}
+- (void)refreshcommentcell
+{
+    [self.tableView reloadData];
+}
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+- (void)refreshcommentcell:(NSNotificationCenter *)NotificationCenter
+{
+    NSIndexPath *indexPath=[NSIndexPath indexPathForRow:1 inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+}
 - (void)prepareViewAndData{
     
     
@@ -335,6 +344,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentModel *model = [self.dataList objectAtIndex:indexPath.row];
+    
     CGFloat height = [CommentCell heightForCellWithObject:model];
     
     return height;

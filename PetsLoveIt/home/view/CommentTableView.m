@@ -9,8 +9,9 @@
 #import "CommentTableView.h"
 #import "CommentSubCell.h"
 #import "CommentModel.h"
-
+#import "CommentCell.h"
 @interface CommentTableView()
+@property (nonatomic,assign) BOOL loadallFlag;
 @end
 
 @implementation CommentTableView
@@ -31,18 +32,71 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.dataArray.count <= 6) {
+    if (([self.rootModel.maxOrderNo intValue] <= 6)||(self.rootModel.loadallFlag == YES)) {
         return self.dataArray.count;
     }else{
-        return 6;
+        return 7;
     }
     
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (self.dataArray.count<=4) {
-    
-        NSString *identifier = @"CommentSubCell";
+   static NSString *identifier = @"CommentSubCell";
+    if (self.rootModel.loadallFlag == NO) {
+        if ([self.rootModel.maxOrderNo intValue] <= 6) {
+            
+            CommentSubCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            if (!cell) {
+                cell = [[[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil] firstObject];
+            }
+            CommentModel *model = [self.dataArray objectAtIndex:indexPath.row];
+            [cell loadCellWithModel:model];
+            
+            return cell;
+        }else{
+            CommentModel *model;
+            if (indexPath.row != 5) {
+                if (indexPath.row < 5) {
+                    model = [self.dataArray objectAtIndex:indexPath.row];
+                }
+                else if (indexPath.row == 6)
+                {
+                    model = [self.dataArray lastObject];
+                }
+                CommentSubCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+                if (!cell) {
+                    cell = [[[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil] firstObject];
+                }
+                
+                [cell loadCellWithModel:model];
+                
+                return cell;
+            }
+            
+            
+            else{
+                UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:nil];
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickbutton)];
+                [cell addGestureRecognizer:tap];
+                cell.backgroundColor = mRGBToColor(0xf5f5f5);
+               
+                UIButton *clickButton = [[UIButton alloc]initWithFrame:cell.bounds];
+                clickButton.width = self.width;
+                [cell addSubview:clickButton];
+                [clickButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+                [clickButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+                [clickButton setTitle:@"显示隐藏楼层" forState:UIControlStateNormal];
+                [clickButton addTarget:self action:@selector(clickbutton) forControlEvents:UIControlEventTouchUpInside];
+//                [clickButton setBackgroundColor:mRGBToColor(0xf5f5f5)];
+//                clickButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+                
+                return cell;
+            }
+            
+            
+        }
+
+    }else{
         CommentSubCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (!cell) {
             cell = [[[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil] firstObject];
@@ -51,62 +105,82 @@
         [cell loadCellWithModel:model];
         
         return cell;
-//    }else{
-//        CommentModel *model;
-//        if (indexPath.row != 4) {
-//            if (indexPath.row < 4) {
-//                model = [self.dataArray objectAtIndex:indexPath.row];
-//            }
-//                else if (indexPath.row == 5)
-//            {
-//                model = [self.dataArray lastObject];
-//            }
-//            NSString *identifier = @"CommentSubCell";
-//            CommentSubCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//            if (!cell) {
-//                cell = [[[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil] firstObject];
-//            }
-//            
-//            [cell loadCellWithModel:model];
-//           
-//            return cell;
-//        }
-//       
-//        
-//        else{
-//            UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:nil];
-//            cell.textLabel.text = @"点击加载更多";
-//            
-//            return cell;
-//        }
-//       
-//      
-//    }
+ 
+    }
+    
+}
+- (void)clickbutton
+{
+   
+    [self.dataArray removeAllObjects];
+   // http:61.155.210.60:9090/petweb/actions/common.action?uid=getSubCommentByPId&commentId=1679
+    NSDictionary *params = @{
+                             @"uid": @"getSubCommentByPId",
+                             @"commentId":self.rootModel.commentId,
+                             };
+    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            NSArray *tmpeArray = [[responseData objectForKey:@"rows"]objectForKey:@"rows"];
+            for (NSMutableDictionary *tmpedict in tmpeArray) {
+                CommentModel *model = [[CommentModel alloc]initWithDictionary:tmpedict];
+                [self.dataArray addObject:model];
+            }
+            
+            CommentModel *model = (CommentModel *)self.supercell.model;
+            model.subComments = tmpeArray;
+            model.loadallFlag = YES;
+            self.supercell.model = model;
+//            self.superview.height = self.contentSize.height - self.height + self.superview.height;
+//            self.height = self.contentSize.height;
+
+
+            //创建一个消息对象
+            NSNotification * notice = [NSNotification notificationWithName:@"refreshcommentcell" object:nil userInfo:nil];
+            //发送消息
+            [[NSNotificationCenter defaultCenter]postNotification:notice];
+        }
+    }];
+    
    
 }
-
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if (indexPath.row == 5) {
-//        CommentModel *model = [self.dataArray lastObject];
-//        CGFloat height = [CommentSubCell heightForCellWithObject:model];
-//        return height;
-//    }
-    CommentModel *model = [self.dataArray objectAtIndex:indexPath.row];
-    CGFloat height = [CommentSubCell heightForCellWithObject:model];
+    if (([self.rootModel.maxOrderNo intValue] > 6)&&(self.rootModel.loadallFlag == NO)) {
+        if (indexPath.row == 5) {
+            
+            return 43;
+        }
+        if (indexPath.row == 6) {
+            
+            CommentModel *model = [self.dataArray lastObject];
+            CGFloat height = [CommentSubCell heightForCellWithObject:model];
+            
+            return height;
+        }
+
+    }
+        CommentModel *model = [self.dataArray objectAtIndex:indexPath.row];
+        CGFloat height = [CommentSubCell heightForCellWithObject:model];
+        
+        return height;
     
-    return height;
 }
 
 - (void)tableView:(UITableView*)tableView
   willDisplayCell:(UITableViewCell*)cell
 forRowAtIndexPath:(NSIndexPath*)indexPath
 {
+    
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsZero];
     }
-    
+
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
         [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
+        
+        [cell setPreservesSuperviewLayoutMargins:NO];
+        
     }
     
 }

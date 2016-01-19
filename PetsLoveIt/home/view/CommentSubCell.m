@@ -48,7 +48,7 @@
                        range:selectedRange2];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
     
-    [paragraphStyle setLineSpacing:6];
+    [paragraphStyle setLineSpacing:6.5];
     
     [commentContent addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, commentContent.length)];
     
@@ -66,7 +66,7 @@
     MLEmojiLabel *_textLabel = [[MLEmojiLabel alloc]init];
     _textLabel.font = [UIFont systemFontOfSize:14];
     _textLabel.customEmojiRegex = kEmojiReg;
-    _textLabel.lineSpacing = 6;
+//    _textLabel.lineSpacing = 6;
     _textLabel.customEmojiPlistName = @"expression.plist";
     [_textLabel setEmojiText:[NSString stringWithFormat:@"%@：%@",object.nickName,object.content]];
     _textLabel.backgroundColor = [UIColor clearColor];
@@ -75,7 +75,7 @@
     _textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     CGSize rSize = [_textLabel preferredSizeWithMaxWidth:mScreenWidth-12-25-56-10];
     
-    return rSize.height + 26;
+    return rSize.height + 20;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
