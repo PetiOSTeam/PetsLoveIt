@@ -365,8 +365,7 @@
     configModel.params = @{
                            @"uid":@"getCommentByProductNew",
                            @"productId":self.goodsId,
-                           @"userId":[AppCache getUserId]
-                           };
+                          };
     //模型类
     configModel.ModelClass=[CommentModel class];
     //cell类
@@ -379,7 +378,7 @@
     //pageSizeName
     configModel.pageSizeName=@"limit";
     //pageSize
-    configModel.pageSize = 5;
+    configModel.pageSize = 10;
     //起始页码
     configModel.pageStartValue=0;
     //行高

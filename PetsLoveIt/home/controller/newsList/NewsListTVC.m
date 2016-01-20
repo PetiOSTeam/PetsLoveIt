@@ -65,7 +65,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NewsListModel *newsModel = self.dataList[indexPath.row];
+   
 }
 
 -(void)dealWithResponseData:(id)obj{

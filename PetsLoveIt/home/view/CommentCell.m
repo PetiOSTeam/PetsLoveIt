@@ -89,12 +89,12 @@
         [comment.subComments enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [self.tableView.dataArray  addObject:[[CommentModel alloc] initWithDictionary:obj]];
         }];
-        //按orderNO排序
-        [self.tableView.dataArray sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            CommentModel *model1 = obj1;
-            CommentModel *model2 = obj2;
-            return [model1.orderNo intValue]>[model2.orderNo intValue];
-        }];
+//        //按orderNO排序
+//        [self.tableView.dataArray sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+//            CommentModel *model1 = obj1;
+//            CommentModel *model2 = obj2;
+//            return [model1.orderNo intValue]<[model2.orderNo intValue];
+//        }];
         [self.tableView reloadData];
         self.tableView.height = self.tableView.contentSize.height;
     }else{

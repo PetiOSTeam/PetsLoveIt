@@ -38,7 +38,7 @@
         self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight-self.tabBarController.tabBar.height - CorePagesBarViewH - 5;
         
     }
-    
+    [super viewWillAppear:animated];
 }
 
 - (void)prepareViewsAndData{

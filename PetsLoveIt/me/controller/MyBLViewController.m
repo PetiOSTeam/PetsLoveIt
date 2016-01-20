@@ -42,7 +42,7 @@
     self.tableView.top = mNavBarHeight + mStatusBarHeight;
     self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight ;
     [self.view bringSubviewToFront:self.blBtn];
-
+    [super viewWillAppear:animated];
 }
 
 - (void)prepareViewAndData{
