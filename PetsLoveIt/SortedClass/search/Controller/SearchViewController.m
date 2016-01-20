@@ -131,6 +131,8 @@
 }
 
 #pragma mark - *** delegate && dataSource ****
+
+
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
 {
     [self.searchBar endEditing:YES];

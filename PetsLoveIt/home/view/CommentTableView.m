@@ -76,8 +76,7 @@
             
             else{
                 UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:nil];
-                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickbutton)];
-                [cell addGestureRecognizer:tap];
+
                 cell.backgroundColor = mRGBToColor(0xf5f5f5);
                
                 UIButton *clickButton = [[UIButton alloc]initWithFrame:cell.bounds];
@@ -87,8 +86,6 @@
                 [clickButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
                 [clickButton setTitle:@"显示隐藏楼层" forState:UIControlStateNormal];
                 [clickButton addTarget:self action:@selector(clickbutton) forControlEvents:UIControlEventTouchUpInside];
-//                [clickButton setBackgroundColor:mRGBToColor(0xf5f5f5)];
-//                clickButton.titleLabel.textAlignment = NSTextAlignmentCenter;
                 
                 return cell;
             }

@@ -62,7 +62,7 @@ static void *__s_image_picker_key;
             AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
             if (authStatus == AVAuthorizationStatusRestricted || authStatus ==AVAuthorizationStatusDenied)  //无权限
             {
-                showAlertBox(@"邮币财富没有获得使用相机的权限，请前往设置->隐私->相机->打开邮币财富的权限。", nil);
+                showAlertBox(@"宠物爱这个没有获得使用相机的权限，请前往设置->隐私->相机->打开宠物爱这个的权限。", nil);
                 return;
             }
         }

@@ -78,14 +78,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     GoodsModel *goods = self.dataArray[indexPath.row];
-    
+
     PetWebViewController *vc = [PetWebViewController new];
-    vc.apptypename = goods.apptypename;;
+    //            vc.isProduct = YES;
     vc.htmlUrl = goods.goUrl;
     if(vc.htmlUrl.length == 0){
         return;
     }
-    [[self viewController].navigationController pushViewController:vc animated:YES];
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+    [[self viewController] presentViewController:navi animated:YES completion:NULL];
 }
 
 
