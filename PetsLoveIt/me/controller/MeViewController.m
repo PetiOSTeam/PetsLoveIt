@@ -596,22 +596,27 @@
                  NSString *issignin = data[@"isSign"];
                  if ([issignin isEqualToString:@"1"]) {
                      [self.signButton setTitle:[NSString stringWithFormat:@"已连续签到%i天",[continuousSign intValue]+1] forState:UIControlStateNormal];
-                      [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
+                     [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
+                     
                  }else
                  {
                      [self.signButton setTitle:@"签到送积分" forState:UIControlStateNormal];
-                     [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
+                    [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
 
                  }
                  
                  
              }else {
-                 [self.signButton setTitle:@"签到送积分" forState:UIControlStateNormal];
-                 [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];             }
+                 
+                [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
+                             }
+
          }];
-    
-    
-    
+ 
+}
+- (void)signremindAction
+{
+    [mAppUtils showHint:@"今天已经签到过了!"];
 }
 // 加载等级和积分
 - (void)loadingIntegralandrankWithData:(LocalUserInfoModelClass *)userInfo
@@ -740,7 +745,7 @@
            
             
         }else{
-            [mAppUtils showHint:@"今天已经签到过啦!"];
+            [mAppUtils showHint:@"今天已经签到过了!"];
         }
     }];
 }

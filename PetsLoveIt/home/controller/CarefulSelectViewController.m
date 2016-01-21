@@ -54,39 +54,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    __weak AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
+  
 //    //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(presentview:) name:@"presentview" object:nil];
-        [mgr startMonitoring];
-    
-    // 当网络状态改变了，就会调用
-    [mgr setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        switch (status) {
-            case AFNetworkReachabilityStatusUnknown: // 未知网络
-            case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
-                self.tableView.tableHeaderView.hidden = YES;
-                break;
-                
-            case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
-                self.tableView.tableHeaderView.hidden = NO;
-                [mgr stopMonitoring];
-                
-                break;
-                
-            case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
-                
-                [mgr stopMonitoring];
-                
-                self.tableView.tableHeaderView.hidden = NO;
-                break;
-        }
-    }];
-    
-
-    // Do any additional setup after loading the view.
+    [self tableHeaderView];
     if (!self.isCollect) {
         self.tableView.tableHeaderView = self.tableHeaderView;
-        
+        self.tableView.tableHeaderView.hidden = YES;
     }
     
      self.tableView.top = 5;
@@ -226,20 +200,17 @@
 }
 
 -(void)dealWithResponseData:(id)obj{
+    
     if (obj) {
-        if (!self.isCollect) {
-            self.tableView.tableHeaderView = self.tableHeaderView;
-            
-        }
-        
-    }
+
     if (!self.isCollect) {
         [self getAdData];
         [self getCheapProduct];
         [self getLimittedTimeProduct];
         [self getJdProduct];
     }
-    
+    }
+ 
 }
 
 #pragma mark - GoodsCell delegate
@@ -258,6 +229,12 @@
     if ([self.delegate respondsToSelector:@selector(selectAllCollect:)]) {
         [self.delegate selectAllCollect:isAllSelect];
     }
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.dataList.count > 0) {
+        self.tableView.tableHeaderView.hidden = NO;
+    }
+    return self.dataList.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

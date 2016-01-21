@@ -10,6 +10,7 @@
 #import "CMView.h"
 #import "CommentGoodsViewController.h"
 #import "RichEditView.h"
+#import "CarefulSelectViewController.h"
 @implementation CoreViewNetWorkStausManager
 
 
@@ -32,6 +33,8 @@
         }
         
         view.width = mScreenWidth;
+       
+       
         [view addSubview:myCmView];
        
        
@@ -63,7 +66,9 @@
         }
         
         viewcontroller.view.width = mScreenWidth;
+        
         [viewcontroller.view addSubview:myCmView];
+       
         if ([viewcontroller isKindOfClass:[CommentGoodsViewController class]]) {
             for (UIView *vw in [viewcontroller.view subviews]) {
                 if ([vw isKindOfClass:[RichEditToolBar class]]) {
@@ -72,6 +77,7 @@
             }
             
         }
+       
         myCmView.alpha=0;
         [UIView animateWithDuration:.25f animations:^{
             myCmView.alpha=1.0f;

@@ -19,7 +19,7 @@
 //JPush
 #define JPush_APPKEY                @"8002c114b46259afedc5f914"
 
-static NSString *const iVersioniOSAppStoreURLFormat = @"https://itunes.apple.com/us/app/xxxx/id1071760062?mt=8";
+static NSString *const iVersioniOSAppStoreURLFormat = @"https://itunes.apple.com/us/app/chong-wu-ai-zhe-ge/id1071760062?mt=8";
 static NSString *const appStoreID = @"1071760062";
 
 #define QQSDKAppID @"1104902660"

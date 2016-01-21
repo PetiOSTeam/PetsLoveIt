@@ -80,20 +80,22 @@
             break;
         case 1:
         {
+             cell.textLabel.text = @"设置收货地址";
+             UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+             arrow.image = [UIImage imageNamed:@"rightArrowIcon"];
+             arrow.right = mScreenWidth - 10;
+             arrow.center = CGPointMake(arrow.center.x, 27);
+            [cell.contentView addSubview:arrow];
             NSDictionary *params = @{
                                      @"uid":@"getDeliveryaddressByUserId"
                                      };
             [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
                 if (!error) {
                     NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
-                    cell.textLabel.text = @"设置收货地址";
+                   
                     //            cell.detailTextLabel.text = @"用于积分商品的兑换";
                     
-                    UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
-                    arrow.image = [UIImage imageNamed:@"rightArrowIcon"];
-                    arrow.right = mScreenWidth - 10;
-                    arrow.center = CGPointMake(arrow.center.x, 27);
-                    [cell.contentView addSubview:arrow];
+                   
                     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,150, 15)];
                     label.right = mScreenWidth - 10-24;
                     [label setTextColor:mRGBToColor(0x999999)];

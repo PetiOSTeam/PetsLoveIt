@@ -122,8 +122,7 @@ onCompletion:(void (^)(id responseData, NSError* error))completionBlock
     } failure:^(id operation, NSError* error) {
         
         if (![mAppUtils hasConnectivity]) {
-            [mAppUtils showHint:kNetWorkUnReachableDesc];
-            if (completionBlock) {
+                       if (completionBlock) {
                 completionBlock(nil,error);
             }
             return ;

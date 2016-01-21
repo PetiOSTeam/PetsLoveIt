@@ -66,7 +66,7 @@
 //字符常量
 #define kUnSyncTaskStatusString @"同步..."
 #define kUnSyncTaskStatus @"UnSyncStatus"
-#define kNetWorkUnReachableDesc  @"服务出错或者当前网络连接失败"
+#define kNetWorkUnReachableDesc  @"当前网络连接失败"
 
 
 #define kShakeNumKey @"ShakeNumKey"

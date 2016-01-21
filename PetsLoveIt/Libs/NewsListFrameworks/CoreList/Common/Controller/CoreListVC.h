@@ -66,7 +66,6 @@
 -(void)dealWithResponseData:(id)obj;
 
 
-
 /**
  *  刷新获取最新数据：此方法会触发顶部刷新控件，并且scrollView会回到顶部
  */

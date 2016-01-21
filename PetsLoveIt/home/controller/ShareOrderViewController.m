@@ -91,10 +91,6 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
--(void)dealWithResponseData:(id)obj{
-    
-}
-
 /**
  *  模型配置
  */

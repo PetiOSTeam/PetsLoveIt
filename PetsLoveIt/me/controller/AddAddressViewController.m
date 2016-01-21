@@ -73,6 +73,7 @@
 
 - (IBAction)okAction:(id)sender {
     [self.view endEditing:YES];
+    NSString *clues = @"设置收货地址成功";
     NSString *address = self.addressTextField.text;
     NSString *zipcode = self.zipCodeTextField.text;
     NSString *msgcode = self.codeTextField.text;
@@ -107,7 +108,7 @@
                              @"receiveAddress":address,
                              @"zipCode":zipcode
                              };
-    if (self.isUpdateAddress) {
+    if (self.address) {
         params = @{
                    @"uid":@"updatedeliveryaddress",
                    @"addressId":self.address.addressId,
@@ -117,12 +118,13 @@
                    @"receiveAddress":address,
                    @"zipCode":zipcode
                    };
+        clues = @"修改收货地址成功";
     }
     [SVProgressHUD showWithStatus:@"请稍后..." maskType:SVProgressHUDMaskTypeNone];
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             [self.navigationController popViewControllerAnimated:YES];
-            [mAppUtils showHint:@"设置收货地址成功"];
+            [mAppUtils showHint:clues];
         }else{
             [SVProgressHUD dismiss];
             mAlertAPIErrorInfo(error);

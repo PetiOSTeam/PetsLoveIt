@@ -422,9 +422,10 @@
         }else{
             
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                mAlertAPIErrorInfo(error);
-
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+               
+                    [mAppUtils showHint:kNetWorkUnReachableDesc];
+                
                  [self.navigationController popViewControllerAnimated:YES];
             });
         }

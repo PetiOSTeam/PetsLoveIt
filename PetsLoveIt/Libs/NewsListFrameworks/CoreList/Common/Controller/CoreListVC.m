@@ -375,18 +375,12 @@ typedef enum{
         if (_configModel.customNoResultSubMsg&&!_configModel.hiddenNetWorkStausManager) {
             subMsg = _configModel.customNoResultSubMsg;
         }
-        [CoreViewNetWorkStausManager showWithViewController:self type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
+               [CoreViewNetWorkStausManager showWithViewController:self type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
             if (!_configModel.hiddenNetWorkStausManager) {
                 [self reloadDataWithheaderViewStateRefresh];
                 
             }
         }];
-//        [CoreViewNetWorkStausManager show:self.view type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
-//            if (!_configModel.hiddenNetWorkStausManager) {
-//                [self reloadDataWithheaderViewStateRefresh];
-//
-//            }
-//        }];
         return;
     }
     
@@ -404,6 +398,7 @@ typedef enum{
             [self.scrollView headerSetState:CoreHeaderViewRefreshStateSuccessedResultNoMoreData];
             NSLog(@"顶部刷新没有任何数据，可能是列表没有任何数据或者page起始页设置有问题。");
             if (!_configModel.hiddenNetWorkStausManager) {
+              
                 //第一次来就没有数据：提示没有数据
                 NSString *msg =_configModel.hiddenNetWorkStausManager?@"":kNoContentTip;
                 if (_configModel.customNoResultMsg&&!_configModel.hiddenNetWorkStausManager) {
@@ -416,6 +411,7 @@ typedef enum{
                 
                 [CoreViewNetWorkStausManager showWithViewController:self type:CMTypeError msg:msg subMsg:subMsg offsetY:_configModel.CoreViewNetWorkStausManagerOffsetY failClickBlock:^{
                     if (!_configModel.hiddenNetWorkStausManager) {
+
                         [self reloadDataWithheaderViewStateRefresh];
                         
                     }
@@ -600,8 +596,7 @@ typedef enum{
  *  处理失败
  */
 -(void)error:(CoreHttpErrorType)errorType requestType:(CoreLTVCRequestType)requestType{
-    
-    //如果是下拉刷新，页面已经自增，但是数据没有回来，所以页码要回退
+       //如果是下拉刷新，页面已经自增，但是数据没有回来，所以页码要回退
     if(CoreLTVCRequestTypeFooterRefresh == requestType) _page--;
     
     //界面指示(仅限网络错误)
@@ -706,8 +701,7 @@ typedef enum{
  *  刷新获取最新数据：此方法不会触发顶部刷新控件，scrollView不会回到顶部
  */
 -(void)reloadDataDerectly{
-    
-    [self requestWithRequestType:CoreLTVCRequestTypeHeaderRefresh];
+      [self requestWithRequestType:CoreLTVCRequestTypeHeaderRefresh];
 }
 
 

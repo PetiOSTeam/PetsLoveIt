@@ -94,6 +94,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="0.26666666666666666" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="签到送积分"/>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoIcon" id="vUF-4R-lz2">
                             <rect key="frame" x="175" y="112" width="15" height="15"/>
