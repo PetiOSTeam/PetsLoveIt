@@ -232,7 +232,7 @@
 {
     //如果明确知道加载出错或已经没有更多数据，直接返回
     //此代码放在这里性能更好，避免无效计算
-    if(self.state==CoreFooterViewRefreshStateSuccessedResultNoMoreData) return;
+//    if(self.state==CoreFooterViewRefreshStateSuccessedResultNoMoreData) return;
     
     // 当前的contentOffset
     CGFloat currentOffsetY = self.scrollView.mj_contentOffsetY;
