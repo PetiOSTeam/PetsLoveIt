@@ -7,7 +7,7 @@
 //
 
 #import "BaseTabBarViewController.h"
-
+#import "GoodsDetailViewController.h"
 @interface BaseTabBarViewController ()
 
 @end
@@ -18,6 +18,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    //    //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(presentview:) name:@"presentview" object:nil];
+    
+}
+
+- (void)presentview:(NSNotification *)notification{
+    NSString *productid = notification.userInfo[productID];
+    GoodsDetailViewController *vc = [[GoodsDetailViewController alloc]init];
+    vc.goodsId = productid;
+    vc.ispresent = YES;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

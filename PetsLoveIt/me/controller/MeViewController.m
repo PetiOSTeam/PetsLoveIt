@@ -28,7 +28,8 @@
 #import "SigninbubbleButton.h"
 #import "CAAnimation+CoreRefresh.h"
 #import "ShakeremindView.h"
-@interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate,UITabBarControllerDelegate>
+#import "GoodsDetailViewController.h"
+@interface MeViewController ()<UITableViewDataSource,UITableViewDelegate,UIPickerViewDataSource,UIPickerViewDelegate,UIActionSheetDelegate,TWImagePickerDelegate,UINavigationBarDelegate>
 @property (weak, nonatomic) IBOutlet UIView *headerContainerView;
 @property (weak, nonatomic) IBOutlet UIView *menuContainerView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -60,6 +61,7 @@
 @property (strong, nonatomic)  UIView *navigationBarView;
 @property (strong, nonatomic)  UILabel *navBarTitleLabel;
 
+
 @property (nonatomic,strong) UIPickerView *imageQualityPickerView;
 @property (nonatomic,strong) UIView *pickerView;
 
@@ -75,6 +77,7 @@
 @implementation MeViewController{
     UIImageView *dotImage;
     UIImageView *dotOnMsgImage;
+    UIImageView *dotOnCommentImage;
 }
 
 - (void)viewDidLoad {
@@ -84,17 +87,8 @@
     [self prepareViewAndData];
     //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshtheintegral) name:@"refreshtheintegral" object:nil];
-  
-    self.tabBarController.delegate = self;
 }
-/** 取消了点击我的刷新功能，积分已做刷新判断不需刷新整个界面*/
-//- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UINavigationController *)viewController{
-//     UIViewController *vc = [viewController.viewControllers firstObject];
-//    if ([vc isKindOfClass:[MeViewController class]]) {
-//        NSLog( @"点击了我的");
-//        [self loadUserInfoViewAndData];
-//    }
-//}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self refreshtheintegral];
@@ -106,30 +100,41 @@
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (void) showRedDotView{
-    if (!dotImage) {
-        dotImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redDotIcon"]];
-        
-        dotImage.backgroundColor = [UIColor clearColor];
-        CGRect tabFrame = self.tabBarController.tabBar.frame;
-        
-        CGFloat x = ceilf(0.86 * tabFrame.size.width);
-        
-        CGFloat y = ceilf(0.2 * tabFrame.size.height);
-        dotImage.frame = CGRectMake(x, y, 6, 6);
-        
+- (void) showRedDotViewWithmenuViewNum:(int)num{
+      if (!dotOnMsgImage) {
         dotOnMsgImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redDotIcon"]];
         dotOnMsgImage.backgroundColor = [UIColor clearColor];
         dotOnMsgImage.frame = CGRectMake((mScreenWidth/12)*3 , 15, 6, 6);
         
     }
-    [self.menuView6 addSubview:dotOnMsgImage];
-    [self.tabBarController.tabBar addSubview:dotImage];
+    if (!dotOnCommentImage) {
+        dotOnCommentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redDotIcon"]];
+        dotOnCommentImage.backgroundColor = [UIColor clearColor];
+        dotOnCommentImage.frame = CGRectMake((mScreenWidth/12)*3 , 15, 6, 6);
+        
+    }
+    if (num == 1) {
+        [self.menuView1 addSubview:dotOnCommentImage];
+        return;
+    }
+    if (num == 6) {
+        [self.menuView6 addSubview:dotOnMsgImage];
+        return;
+    }
+    
+   
 }
 
-- (void) hideRedDotView{
-    [dotImage removeFromSuperview];
-    [dotOnMsgImage removeFromSuperview];
+- (void) hideRedDotViewWithmenuViewNum:(int)num{
+    if (num == 1) {
+        [dotOnCommentImage removeFromSuperview];
+        return;
+    }
+    if (num == 6) {
+       [dotOnMsgImage removeFromSuperview];
+        return;
+    }
+
 }
 
 - (void) prepareViewAndData{
@@ -451,6 +456,7 @@
 }
 
 - (void) getNewMsg{
+    
     __block NSDictionary *params =@{@"uid":@"getUserSystemMsg",
                             @"msgType":@"2"
                             };
@@ -464,15 +470,31 @@
                 if (!error) {
                     int kNewUserMsgCount = [[[responseData objectForKey:@"beans"] objectForKey:@"newNumber"] intValue];
                     if (kNewSysMsgCount + kNewUserMsgCount >0) {
-                        [self showRedDotView];
+                        [self showRedDotViewWithmenuViewNum:6];
                     }else{
-                        [self hideRedDotView];
+                        [self hideRedDotViewWithmenuViewNum:6];
+                        
                     }
                 }
             }];
         }
     }];
+  
+           NSDictionary *params2 =@{@"uid":@"getNew2MeComment",
+                    };
+    [APIOperation GET:@"common.action" parameters:params2 onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+           
+                [self showRedDotViewWithmenuViewNum:1];
+          
+           
+        }else{
+            [self hideRedDotViewWithmenuViewNum:1];
+            
+        }
+    }];
     
+    [self refreshremind];
 }
 
 - (void) getUserInfoFromServer{
@@ -1030,7 +1052,55 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark - 刷新当前界面的积分
+#pragma mark - 通知中心
+- (void)refreshremind
+{
+    NSDictionary *parameter = @{@"uid": @"getUserNewMsgCommentNum"};
+    [APIOperation GET:@"common.action"
+           parameters:parameter
+         onCompletion:^(id responseData, NSError *error) {
+             if (responseData) {
+                 
+                 NSString *newMsgNum = [[responseData objectForKey:@"bean"]objectForKey:@"newMsgNum"];
+                 if ([newMsgNum intValue]> 0) {
+                         if (!dotImage) {
+                             dotImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redDotIcon"]];
+                     
+                             dotImage.backgroundColor = [UIColor clearColor];
+                             CGRect tabFrame = self.tabBarController.tabBar.frame;
+                     
+                             CGFloat x = ceilf(0.86 * tabFrame.size.width);
+                     
+                             CGFloat y = ceilf(0.2 * tabFrame.size.height);
+                             dotImage.frame = CGRectMake(x, y, 6, 6);
+                         }
+                          [self.tabBarController.tabBar addSubview:dotImage];
+                     self.NewMsgFlag = YES;
+                     
+                 }else {
+                     [dotImage removeFromSuperview];
+                     self.NewMsgFlag = NO;
+                 }
+             }
+             
+         }];
+}
+- (void)refreshremindWithTimer
+{
+    // 利用定时器获得用户的未读数
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(getMsgWithTimer) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
+}
+- (void)getMsgWithTimer
+{
+
+    
+    if (self.NewMsgFlag == YES) {
+        return;
+    }
+    [self refreshremind];
+}
+
 - (void)refreshtheintegral{
     
     NSDictionary *parameter = @{@"uid": @"getLoginInfo"};

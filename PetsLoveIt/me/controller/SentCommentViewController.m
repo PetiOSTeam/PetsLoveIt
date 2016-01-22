@@ -18,6 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.top = 5;
+    self.view.backgroundColor = mRGBColor(245, 245, 245);
     // Do any additional setup after loading the view.
     [self prepareViewAndData];
 }
@@ -97,6 +99,14 @@
     self.configModel=configModel;
 }
 
+-(void)dealWithResponseData:(id)obj{
+    if ([[[obj objectForKey:@"rows"] objectForKey:@"rows"] count]>0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.scrollView addTopBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+        });
+        
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

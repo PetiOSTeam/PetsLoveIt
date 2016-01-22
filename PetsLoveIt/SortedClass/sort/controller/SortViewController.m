@@ -12,7 +12,7 @@
 #import "ScreenSoretedView.h"
 #import "SearchViewController.h"
 #import "BaseNavigationController.h"
-
+#import "GoodsDetailViewController.h"
 @interface SortViewController ()<XLSlideBarDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) UIButton *searchButton;
@@ -36,7 +36,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 }
+
 
 - (void)setupNavigationUI
 {

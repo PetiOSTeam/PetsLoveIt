@@ -437,7 +437,7 @@
     [self.detailsPageView loadGoodsInfo:self.goods];
     NSString *html = self.goods.prodDetail;
     CGFloat viewwidth = [UIScreen mainScreen].bounds.size.width - 24;
-    NSString *css = [NSString stringWithFormat:@"<html><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><body width=%f style=\"word-wrap:break-word;ext-align: justify; font-family:Arial\"><style>img{max-width:%f !important;}</style>",viewwidth,viewwidth -16];
+    NSString *css = [NSString stringWithFormat:@"<html></body><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><body width=%f style=\"word-wrap:break-word;ext-align: justify; font-family:Arial\"><style>img{max-width:%f !important;}</style>",viewwidth,viewwidth -16];
     
     NSMutableString *desc = [NSMutableString stringWithFormat:@"%@%@%@",
                              css,
@@ -703,7 +703,12 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
 
 - (void)popViewController:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.ispresent == YES) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }else{
+      [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 

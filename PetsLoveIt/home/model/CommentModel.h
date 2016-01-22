@@ -38,6 +38,7 @@
 @property (nonatomic,strong) NSString *prodName;
 @property (nonatomic,strong) NSString *rootId;
 @property (nonatomic,strong) NSString *maxOrderNo;
+@property (nonatomic,strong) NSString *hasread;
 @property (nonatomic,assign) BOOL loadallFlag;
 
 @end

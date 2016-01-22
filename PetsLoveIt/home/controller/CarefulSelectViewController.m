@@ -55,8 +55,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
   
-//    //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(presentview:) name:@"presentview" object:nil];
+
     [self tableHeaderView];
     if (!self.isCollect) {
         self.tableView.tableHeaderView = self.tableHeaderView;
@@ -67,17 +66,6 @@
     [self prepareViewsAndData];
 }
 
-- (void)presentview:(NSNotification *)notification{
-    NSString *productid = notification.userInfo[productID];
-    GoodsDetailViewController *vc = [[GoodsDetailViewController alloc]init];
-    vc.goodsId = productid;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-         
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 #pragma mark -
 - (NSArray *)cheapProductArray
 {
@@ -252,18 +240,18 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    NSUserDefaults * settings = [NSUserDefaults standardUserDefaults];
-    NSString *key = productID;
-    
-    NSString *value = [settings objectForKey:key];
-    if (value.length > 0) {
-        
-        
-        GoodsDetailViewController *vc = [[GoodsDetailViewController alloc]init];
-        vc.goodsId = value;
-        [self.navigationController pushViewController:vc animated:YES];
-        [settings removeObjectForKey:productID];
-    }
+//    NSUserDefaults * settings = [NSUserDefaults standardUserDefaults];
+//    NSString *key = productID;
+//    
+//    NSString *value = [settings objectForKey:key];
+//    if (value.length > 0) {
+//        
+//        
+//        GoodsDetailViewController *vc = [[GoodsDetailViewController alloc]init];
+//        vc.goodsId = value;
+//        [self.navigationController pushViewController:vc animated:YES];
+//        [settings removeObjectForKey:productID];
+//    }
 }
 /**
  *  模型配置

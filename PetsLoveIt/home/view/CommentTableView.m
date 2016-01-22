@@ -82,9 +82,10 @@
                 UIButton *clickButton = [[UIButton alloc]initWithFrame:cell.bounds];
                 clickButton.width = self.width;
                 [cell addSubview:clickButton];
-                [clickButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-                [clickButton setTitleColor:[UIColor blueColor] forState:UIControlStateHighlighted];
+                [clickButton setTitleColor:mRGBToColor(0x999999) forState:UIControlStateNormal];
+//                [clickButton setTitleColor:mRGBToColor(0x666666) forState:UIControlStateHighlighted];
                 [clickButton setTitle:@"显示隐藏楼层" forState:UIControlStateNormal];
+                clickButton.titleLabel.font = [UIFont systemFontOfSize:14];
                 [clickButton addTarget:self action:@selector(clickbutton) forControlEvents:UIControlEventTouchUpInside];
                 
                 return cell;

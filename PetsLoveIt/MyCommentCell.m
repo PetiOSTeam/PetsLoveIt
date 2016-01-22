@@ -52,14 +52,26 @@
     self.originalProductView.width = mScreenWidth - 66;
     self.originalProductView.layer.borderColor = mRGBToColor(0xd8d6c9).CGColor;
     self.originalProductView.layer.borderWidth = 0.5;
-
+    
+   UIImageView *dotOnCommentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redDotIcon"]];
+    dotOnCommentImage.backgroundColor = [UIColor clearColor];
+    dotOnCommentImage.frame = CGRectMake(self.avatarImageView.center.x - 3 , self.avatarImageView.bottom + 10, 6, 6);
+    [self.contentView addSubview:dotOnCommentImage];
+    self.dotOnCommentImage = dotOnCommentImage;
+    self.dotOnCommentImage.hidden = YES;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     
 }
 
 -(void)dataFill{
-    CommentModel *comment = (CommentModel *)self.model;
     
+    CommentModel *comment = (CommentModel *)self.model;
+    if (self.isSentComment == NO) {
+        if ([comment.hasread isEqualToString:@"0"]) {
+            self.dotOnCommentImage.hidden = NO;
+        }
+    }
+   
     self.nameLabel.text = self.isSentComment==NO?comment.otherNickName:@"发出评论";
     self.dateLabel.text = comment.timeFlag;
     

@@ -27,6 +27,7 @@
 - (void)prepareViewAndData{
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"我的评论";
+    
     [self setPageViews];
     
 }
@@ -53,7 +54,6 @@
     [self.view addSubview:self.pagesView];
     
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

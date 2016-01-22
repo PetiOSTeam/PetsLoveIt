@@ -21,7 +21,7 @@
 #import "SearchViewController.h"
 #import "BaseNavigationController.h"
 #import "LoginViewController.h"
-
+#import "GoodsDetailViewController.h"
 @interface HomePageViewController ()
 @property (nonatomic,strong) CorePagesView *pagesView;
 @property (nonatomic,strong) UIView *headerView;
@@ -35,9 +35,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self loadViewsAndData];
-    
 }
-
 
 - (void)loadViewsAndData{
     [self.view addSubview:self.headerView];

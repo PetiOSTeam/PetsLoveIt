@@ -39,16 +39,16 @@
     
     [self configJPush:launchOptions];
     if (launchOptions) {
-        NSDictionary * remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-        //这个判断是在程序没有运行的情况下收到通知，点击通知跳转页面
-        if (remoteNotification) {
-            NSString *productid = remoteNotification[productID];
-            NSUserDefaults * setting = [NSUserDefaults standardUserDefaults];
-            NSString * key = productID;
-            [setting setObject:productid forKey:key];
-            [setting synchronize];
-            
-        }
+//        NSDictionary * remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+//        //这个判断是在程序没有运行的情况下收到通知，点击通知跳转页面
+//        if (remoteNotification) {
+//            NSString *productid = remoteNotification[productID];
+//            NSUserDefaults * setting = [NSUserDefaults standardUserDefaults];
+//            NSString * key = productID;
+//            [setting setObject:productid forKey:key];
+//            [setting synchronize];
+//            
+//        }
        
        
     }
@@ -76,6 +76,7 @@
     [navi1.navigationBar setHidden:YES];
     
     
+    
     SortViewController *c2=[[SortViewController alloc]init];
     c2.tabBarItem.title=@"分类";
     c2.tabBarItem.image=[UIImage imageNamed:@"sortTabIcon"];
@@ -87,7 +88,7 @@
     c3.tabBarItem.image=[UIImage imageNamed:@"meTabIcon"];
     c3.tabBarItem.selectedImage = [UIImage imageNamed:@"meTabIcon_highlighted"];
     BaseNavigationController *navi3 = [[BaseNavigationController alloc] initWithRootViewController:c3];
-    [c3 getNewMsg];
+    [c3 refreshremindWithTimer];
     navi3.navigationBarHidden = YES;
     
     tabVC.viewControllers = @[navi1,navi2,navi3];

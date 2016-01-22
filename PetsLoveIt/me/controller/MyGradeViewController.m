@@ -86,7 +86,7 @@
     }
     return _gradeListView;
 }
-#pragma mark - 刷新当前页面积分
+#pragma mark - 通知中心的调用方法
 - (void)refreshtheintegral{
     NSDictionary *parameter = @{@"uid": @"getLoginInfo"};
     [APIOperation GET:@"getCoreSv.action"
@@ -108,6 +108,7 @@
          }];
     
 }
+
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

@@ -32,10 +32,28 @@
     [self prepareViewAndData];
     self.tableView.delegate = self;
     
+    
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
+        [self setCommentRead];
+    }
+    
+}
+- (void)setCommentRead{
+    NSDictionary *params = @{@"uid":@"saveUserReadComment",
+                            };
+    [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
+        if (!error) {
+            
+        }
+    }];
+}
 - (void)prepareViewAndData{
     [self config];
+    self.tableView.top = 5;
+     self.view.backgroundColor = mRGBColor(245, 245, 245);
     self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH ;
 
     
@@ -95,6 +113,7 @@
                            @"userId":[AppCache getUserId]
                         
                            };
+    
     //模型类
     configModel.ModelClass=[CommentModel class];
 //    //cell类
@@ -184,6 +203,14 @@
     NSLog(@"toHeight%f",toHeight);
     [UIView commitAnimations];
 
+}
+-(void)dealWithResponseData:(id)obj{
+    if ([[[obj objectForKey:@"rows"] objectForKey:@"rows"] count]>0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.scrollView addTopBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+        });
+        
+    }
 }
 
 /*

@@ -12,5 +12,7 @@
 //{
 //    NSNotificationCenter *center; 
 //}
-- (void) getNewMsg;
+- (void) refreshremindWithTimer;
+/** 是否显示新的消息*/
+@property (assign,nonatomic) BOOL NewMsgFlag;
 @end

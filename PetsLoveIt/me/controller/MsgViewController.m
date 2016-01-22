@@ -19,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+     self.tableView.top = 5;
+    self.view.backgroundColor = mRGBColor(245, 245, 245);
     [self prepareViewAndData];
     
 }
