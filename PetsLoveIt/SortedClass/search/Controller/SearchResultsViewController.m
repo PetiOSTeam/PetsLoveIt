@@ -71,7 +71,7 @@ static NSString *CellIdentifier = @"SearchResultCell";
     _page = 0;
     self.view.backgroundColor = [UIColor whiteColor];
     [self searchRequest:NO];
-    
+     self.tableView.showsVerticalScrollIndicator = NO;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -111,7 +111,7 @@ static NSString *CellIdentifier = @"SearchResultCell";
         saveArrayToDocument(@"hotwords.plist", tempArray);
         parameters = @{@"uid": @"queryProduct",
                                      @"startNum": @(_page),
-                                     @"limit": @"15",
+                                     @"limit": @"10",
                                      @"keywords": self.searchText,
                                      @"order": order
                        };
@@ -121,16 +121,16 @@ static NSString *CellIdentifier = @"SearchResultCell";
     if (self.resyltStyle == ResultStyle_Sift) {
         parameters = @{@"uid": @"getProductsBySort",
                                      @"startNum":@"0",
-                                     @"limit": @"15",
+                                     @"limit": @"10",
                                      @"minSortId": self.sortId,
                                      @"order": order
                                      };
     }
-//    http://www.cwaizg.cn/petweb/actions/getCoreSv.action?uid=getProductsByMall&limit=5&prodMallId=&startNum=0&userToken=userToken_84ae594bd8004a80bc7b8e741782b87e
+
     if (self.resyltStyle == ResultStyle_Mall) {
         parameters = @{@"uid": @"getProductsByMall",
                        @"startNum":@"0",
-                       @"limit": @"5",
+                       @"limit": @"10",
                        @"prodMallId": self.sortId,
                        @"order": order  
                        };
@@ -167,7 +167,7 @@ static NSString *CellIdentifier = @"SearchResultCell";
         self.resultsStyle = SearchResultsStyleNotData;
         [self.tableView reloadEmptyDataSet];
     }else {
-        if (data.count < 15) {
+        if (data.count < 10) {
             if (self.tableView.footer) {
                 [self.tableView.footer removeFromSuperview];
                 self.tableView.footer = nil;
@@ -201,7 +201,11 @@ static NSString *CellIdentifier = @"SearchResultCell";
 }
 
 #pragma mark - *** tableView Delegate && DataSource ***
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // tableview滑动时候键盘失去第一响应着
+    [self.searchBar endEditing:YES];
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

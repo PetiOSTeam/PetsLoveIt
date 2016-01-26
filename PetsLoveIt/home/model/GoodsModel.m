@@ -60,7 +60,7 @@
 }
 - (NSString *)commentNum
 {
-//    _commentNum = @"2000";
+//    _commentNum = @"22000";
     _commentNum = [self stringAbidebytherules:_commentNum];
     return _commentNum;
 }

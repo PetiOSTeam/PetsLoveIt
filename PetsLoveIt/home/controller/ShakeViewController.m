@@ -147,7 +147,7 @@
 - (void)shareAction{
     [self hidePopView];
     //点击分享查看详情url
-    NSString *detailUrl = iVersioniOSAppStoreURLFormat;
+    NSString *detailUrl = sharelink;
     [UMSocialData defaultData].extConfig.qqData.url = detailUrl;
     [UMSocialData defaultData].extConfig.wechatSessionData.url = detailUrl;
     [UMSocialData defaultData].extConfig.wechatTimelineData.url = detailUrl;

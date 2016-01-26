@@ -382,7 +382,7 @@
     //起始页码
     configModel.pageStartValue=0;
     //行高
-    configModel.rowHeight=210;
+    configModel.rowHeight=103;
     configModel.hiddenNetWorkStausManager = NO;
     
   

@@ -21,7 +21,8 @@
 
 static NSString *const iVersioniOSAppStoreURLFormat = @"https://itunes.apple.com/us/app/chong-wu-ai-zhe-ge/id1071760062?mt=8";
 static NSString *const appStoreID = @"1071760062";
-
+/** 安卓iOS通用链接*/
+#define sharelink @"http://a.app.qq.com/o/simple.jsp?pkgname=chongle.mc.piclovethis"
 #define QQSDKAppID @"1104902660"
 #define QQAppKey   @"DE1hR1uJxDpFAQ9c"
 
