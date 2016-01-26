@@ -64,8 +64,8 @@
     }else{
         self.fromWebName.text = [NSString stringWithFormat:@"%@",productModel.typeName];
     }
-    NSDate *date = [[NSDate alloc] convertStringToDate:productModel.dateTime format:@"yyyy-MM-dd HH:mm:ss"];
-    self.timeLabel.text = [date convertDateToStringWithFormat:@"MM-dd"];
+    
+    self.timeLabel.text = productModel.dateTime;
     self.priceLabel.text = [NSString stringWithFormat:@"%@", productModel.desc];
     self.commentNumLabel.text = productModel.commentNum;
     self.likesNumLabel.text = productModel.popularitystr;
