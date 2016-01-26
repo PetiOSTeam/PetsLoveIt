@@ -15,6 +15,7 @@
 @property (nonatomic,strong) UIView *tableHeaderView;
 @property (nonatomic,strong) UIButton *cityButton;
 @property (nonatomic,strong) UIButton *regionButton;
+
 @end
 
 @implementation TaoPetViewController
@@ -59,17 +60,22 @@
         _tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, mScreenWidth, 31)];
         _tableHeaderView.backgroundColor = mRGBToColor(0xffffff);
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 150, 31)];
+        
         [label setFont:[UIFont systemFontOfSize:12]];
         [label setTextColor:mRGBToColor(0xff4401)];
         [label setText:@"目前仅支持上海地区"];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosecity)];
+        [_tableHeaderView addGestureRecognizer:tap];
         _tableHeaderView.layer.borderColor = kLayerBorderColor.CGColor;
         _tableHeaderView.layer.borderWidth = kLayerBorderWidth;
         [_tableHeaderView addSubview:label];
     }
     return _tableHeaderView;
 }
-
-
+- (void)choosecity
+{
+    [mAppUtils showHint:@"目前仅支持上海地区"];
+}
 #pragma mark - GoodsCell delegate
 -(void)selectCollect:(NSString *)proId isSelect:(BOOL)isSelect{
     if (isSelect) {
@@ -100,7 +106,12 @@
     }
     return cell;
 }
-
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return _tableHeaderView;
+    }return nil;
+}
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

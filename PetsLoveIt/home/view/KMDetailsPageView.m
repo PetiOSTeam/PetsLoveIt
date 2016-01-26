@@ -137,10 +137,10 @@
         if (self.apptypename == TypeCheap) {
             [_headerView addSubview:self.cheapTable];
         }
-//        if (((self.apptypename == TypeShareOrder)||(self.apptypename == TypeExperience))&&((![self.goodsuid isEqualToString:@"0"])&&(self.goodsuid))) {
-//         
-//            [_headerView addSubview:self.shaidanview];
-//        }
+        if (((self.apptypename == TypeShareOrder)||(self.apptypename == TypeExperience))&&((![self.goodsuid isEqualToString:@"0"])&&(self.goodsuid))) {
+         
+            [_headerView addSubview:self.shaidanview];
+        }
         _headerView.clipsToBounds = YES;
     }
     return _headerView;
@@ -260,21 +260,21 @@
         }];
         
     }
-//    else if (((self.apptypename == TypeShareOrder)||(self.apptypename == TypeExperience))&&((![self.goodsuid isEqualToString:@"0"])&&(self.goodsuid)))
-//    {
-//        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom+45+250) ;
-//        self.shaidanview.frame = CGRectMake(0, self.webView.bottom, mScreenWidth, 250);
-//     
-//        self.shaidanview.uesrId = self.goods.userId ;
-////        [self.headerView addSubview:self.shaidanview];
-//        
-//        [self setupTableViewHeader];
-//        self.tableView.tableHeaderView.height = self.headerView.height;
-//        if ([self.delegate respondsToSelector:@selector(detailWebViewDidFinishLoad)]) {
-//            [self.delegate detailWebViewDidFinishLoad];
-//        }
-//
-//    }
+    else if (((self.apptypename == TypeShareOrder)||(self.apptypename == TypeExperience))&&((![self.goodsuid isEqualToString:@"0"])&&(self.goodsuid)))
+    {
+        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom+45+250) ;
+        self.shaidanview.frame = CGRectMake(0, self.webView.bottom, mScreenWidth, 250);
+     
+        self.shaidanview.uesrId = self.goods.userId ;
+//        [self.headerView addSubview:self.shaidanview];
+        
+        [self setupTableViewHeader];
+        self.tableView.tableHeaderView.height = self.headerView.height;
+        if ([self.delegate respondsToSelector:@selector(detailWebViewDidFinishLoad)]) {
+            [self.delegate detailWebViewDidFinishLoad];
+        }
+
+    }
     else{
         self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom +30) ;
         [self setupTableViewHeader];

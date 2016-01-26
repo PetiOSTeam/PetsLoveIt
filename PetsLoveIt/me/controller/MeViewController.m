@@ -928,7 +928,7 @@
         [APService setTags:[NSSet setWithObject:@"m01"] alias:@"" callbackSelector:nil object:nil];
     }else{
         [mUserDefaults setObject:@"0" forKey:kCareSelectPushSwitch];
-        [APService setTags:nil alias:@"" callbackSelector:nil object:nil];
+        [APService setTags:[NSSet set] alias:@"" callbackSelector:nil object:nil];
     }
     [mUserDefaults synchronize];
     
@@ -998,7 +998,9 @@
     
     switch (indexPath.row) {
         case 0:
+        {
             
+        }
             break;
         case 1:
         {
@@ -1052,7 +1054,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-#pragma mark - 通知中心
+#pragma mark - 定时器刷新最新消息
 - (void)refreshremind
 {
     NSDictionary *parameter = @{@"uid": @"getUserNewMsgCommentNum"};
@@ -1100,6 +1102,7 @@
     }
     [self refreshremind];
 }
+#pragma mark - 通知中心
 
 - (void)refreshtheintegral{
     
