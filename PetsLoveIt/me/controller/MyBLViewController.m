@@ -89,7 +89,7 @@
     //起始页码
     configModel.pageStartValue=1;
     //行高
-    configModel.rowHeight=224;
+    configModel.rowHeight=273;
     configModel.CoreViewNetWorkStausManagerOffsetY = 64;
     configModel.customNoResultMsg = kNoBLTip;
     configModel.customNoResultSubMsg = @"快去爆料吧";

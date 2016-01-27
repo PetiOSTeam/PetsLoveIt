@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *placeHolderLabel;
 @property (weak, nonatomic) IBOutlet UIButton *okButton;
 @property (weak, nonatomic) IBOutlet UILabel *BLinstructions;
+@property (weak, nonatomic) IBOutlet UIView *LineView;
 
 @end
 
@@ -30,12 +31,11 @@
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"我的爆料";
     self.linkView.width = mScreenWidth - 40;
-    [self.linkView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     self.textView.delegate = self;
     self.okButton.layer.borderColor = mRGBToColor(0xc2c2c2).CGColor;
     self.okButton.layer.borderWidth = 1;
     self.okButton.layer.cornerRadius = 23;
-    
+    self.LineView.height = 0.5f;
     NSString *labelText = self.BLinstructions.text;
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -49,10 +49,32 @@
 }
 
 -(void)textViewDidChange:(UITextView *)textView{
+    static CGFloat changeheight = 0 ;
+    CGRect frame = textView.frame;
     if ([textView.text length]==0) {
         self.placeHolderLabel.hidden = NO;
-    }else
+        frame.size.height = 60;
+        changeheight = frame.size.height - textView.height;
+        textView.frame = frame;
+        
+        self.linkView.height = textView.height;
+    }else{
         self.placeHolderLabel.hidden = YES;
+        frame.size.height = textView.contentSize.height;
+        changeheight = frame.size.height - textView.height;
+        textView.frame = frame;
+        
+        self.linkView.height = textView.height;
+    }
+    
+    if (changeheight != 0) {
+        self.okButton.top = self.okButton.top + changeheight;
+        self.BLinstructions.top = self.BLinstructions.top + changeheight;
+    }
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.textView endEditing:YES];
 }
 - (IBAction)okAction:(id)sender {
     [self.view endEditing:YES];

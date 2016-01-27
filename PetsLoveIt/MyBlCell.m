@@ -7,18 +7,38 @@
 //
 
 #import "MyBlCell.h"
-
+#import "PetWebViewController.h"
 @implementation MyBlCell
 
 - (void)awakeFromNib {
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+
 }
 // 增加了未审核的状态
 -(void)dataFill{
     BLModel *model = (BLModel *)self.model;
     self.sourceTitle.text = model.title;
-    self.sourceReason.text = model.shareReason;
+//    model.shareReason = self.sourceTitleview.text;
+    
+    CGSize Reasonsize = [self getframeWithTitle:model.shareReason andTitleFont:[UIFont systemFontOfSize:15]];
+    self.sourceTitleview.text = model.shareReason;
+    [self.sourceTitleview setContentOffset:CGPointMake(0,0) animated:NO];
+    [self.sourceTitleview setContentInset:UIEdgeInsetsMake(-10, -5, -15, -5)];//设置UITextView的内边距
+    [self.sourceTitleview setTextAlignment:NSTextAlignmentLeft];//并设置左对齐
+    if (Reasonsize.height < self.sourceTitleview.height) {
+        CGFloat height = self.sourceTitleview.height - Reasonsize.height;
+        self.height = self.height - height;
+        self.statename.top = self.statename.top - height;
+        self.stateLabel.top = self.stateLabel.top - height;
+        self.sourceTitleview.height = Reasonsize.height;
+        
+    }else{
+       [self.sourceTitleview flashScrollIndicators];
+    }
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ClicksourceTitle)];
+    [self.sourceTitle addGestureRecognizer:tap];
     if ([model.status intValue] == 1) {
         self.stateLabel.text = @"已通过";
  
@@ -31,10 +51,32 @@
     }
 }
 
+- (void)ClicksourceTitle{
+    BLModel *model = (BLModel *)self.model;
+    PetWebViewController *vc = [PetWebViewController new];
+    vc.htmlUrl = model.sourceLink;
+    if(vc.htmlUrl.length == 0){
+        return;
+    }
+    UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self.viewController presentViewController:navi animated:YES completion:NULL];
+}
+// 根据文字计算标签的高度
+- (CGSize)getframeWithTitle:(NSString *)title andTitleFont:(UIFont *)titlefont
+{
+    CGFloat maxW = mScreenWidth-40;
+    CGSize maxSize = CGSizeMake(maxW, MAXFLOAT);
+    CGSize textSize = [title sizeWithFont:titlefont constrainedToSize:maxSize];
+    
+    return textSize;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
-
+//- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+//    return NO;
+//}
 @end

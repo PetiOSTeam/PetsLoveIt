@@ -225,7 +225,7 @@
     self.label3.frame = (CGRect){{20, _label2.bottom +10}, lablesize3};
    
 
-    self.webView.frame = CGRectMake(12,_label3.bottom+20, mScreenWidth - 24 , 300);
+    self.webView.frame = CGRectMake(12,_label3.bottom+20, mScreenWidth - 24 , 1);
 //    }
    }
 // 根据文字计算标签的高度
@@ -244,12 +244,13 @@
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
 
-    CGFloat height = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
-    self.webView.height = height+10;
-
+    CGFloat height1 = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
+    
+    self.webView.height = height1+10;
+    [webView sizeToFit];
     if (self.apptypename == TypeCheap) {
         [self getCheapProductOnCompletion:^{
-            self.cheapTable.top = self.webView.bottom+30;
+            self.cheapTable.top = self.webView.bottom+45;
             self.cheapTable.height = self.cheapTable.dataArray.count * 150;
             self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.cheapTable.bottom+45) ;
             [self setupTableViewHeader];
@@ -265,7 +266,7 @@
         self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom+45+250) ;
         self.shaidanview.frame = CGRectMake(0, self.webView.bottom, mScreenWidth, 250);
      
-        self.shaidanview.uesrId = self.goods.userId ;
+        self.shaidanview.uesrId = self.goodsuid ;
 //        [self.headerView addSubview:self.shaidanview];
         
         [self setupTableViewHeader];
@@ -275,8 +276,9 @@
         }
 
     }
+    
     else{
-        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom +30) ;
+        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom +45) ;
         [self setupTableViewHeader];
         
         self.tableView.tableHeaderView.height = self.headerView.height;
@@ -285,7 +287,14 @@
             [self.delegate detailWebViewDidFinishLoad];
         }
     }
-   
+    if ([self.goods.isUserShare  isEqual: @"1"]) {
+        UILabel *publisher = [[UILabel alloc]initWithFrame:CGRectMake(20, self.webView.bottom, mScreenWidth - 40, 12)];
+        publisher.textAlignment = NSTextAlignmentRight;
+        publisher.textColor = mRGBToColor(0x999999);
+        publisher.font = [UIFont systemFontOfSize:12];
+        publisher.text = [NSString stringWithFormat:@"爆料人:%@",self.goods.publisher];
+        [self.tableView.tableHeaderView addSubview:publisher];
+    }
    
 }
 

@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BLLinkViewController">
             <connections>
                 <outlet property="BLinstructions" destination="l87-la-qTd" id="wcH-xe-pGr"/>
+                <outlet property="LineView" destination="jBE-Ef-5wR" id="YUU-fH-FgA"/>
                 <outlet property="linkView" destination="tzd-HH-qeB" id="gWV-3n-e7U"/>
                 <outlet property="okButton" destination="lEH-YS-0GP" id="sNu-vK-Vhb"/>
                 <outlet property="placeHolderLabel" destination="Oxv-pu-qtA" id="CyE-Xi-n3a"/>
@@ -45,6 +46,11 @@
                             <color key="textColor" red="0.74117647058823533" green="0.74117647058823533" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" id="jBE-Ef-5wR">
+                            <rect key="frame" x="0.0" y="60" width="281" height="1"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>

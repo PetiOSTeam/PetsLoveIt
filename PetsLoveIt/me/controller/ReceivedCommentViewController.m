@@ -181,7 +181,7 @@
        _menuview.isReply = NO;
         if (!error) {
             self.page = 1;
-            self.dataList = nil;
+            
             [self reloadDataWithheaderViewStateRefresh];
         }else{
             mAlertAPIErrorInfo(error);

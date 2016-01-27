@@ -9,11 +9,11 @@
 #import "FillBLViewController.h"
 #import "ProductSortModel.h"
 
-@interface FillBLViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate>
+@interface FillBLViewController ()<UIPickerViewDataSource,UIPickerViewDelegate,UITextFieldDelegate,UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *titleView;
-@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@property (weak, nonatomic) IBOutlet UITextView *titleTextField;
 @property (weak, nonatomic) IBOutlet UIView *nameView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UIView *priceView;
@@ -21,8 +21,9 @@
 @property (weak, nonatomic) IBOutlet UIView *sortView;
 @property (weak, nonatomic) IBOutlet UITextField *sortTextField;
 @property (weak, nonatomic) IBOutlet UIView *reasonView;
-@property (weak, nonatomic) IBOutlet UITextField *reasonTextField;
 @property (weak, nonatomic) IBOutlet UIButton *okBtn;
+@property (weak, nonatomic) IBOutlet UITextView *reasonTextField;
+@property (weak, nonatomic) IBOutlet UIView *reasonLineView;
 
 
 @property (nonatomic,strong) UIPickerView *dataPickerView;
@@ -37,10 +38,13 @@
 @end
 
 @implementation FillBLViewController
-
+{
+     CGFloat changeheight ;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self showNaviBarView];
+    self.reasonTextField.delegate = self;
     self.navBarTitleLabel.text = @"我的爆料";
     self.dict = [NSMutableDictionary new];
     self.pickerArray = @[];
@@ -67,12 +71,16 @@
     self.sortTextField.delegate = self;
     
     self.titleView.width = self.nameView.width = self.priceView.width = self.sortView.width  = self.reasonView.width = mScreenWidth-40;
-    
-    [self.titleView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
-    [self.nameView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
-    [self.priceView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
-    [self.sortView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
-    [self.reasonView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+    [self addBottomBorderWithView:self.titleView];
+    [self addBottomBorderWithView:self.nameView];
+    [self addBottomBorderWithView:self.priceView];
+    [self addBottomBorderWithView:self.sortView];
+    self.reasonLineView.height = 0.5f;
+//    [self.titleView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+//    [self.nameView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+//    [self.priceView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+//    [self.sortView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
+//    [self.reasonView addBottomBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
     
     self.sortTextField.enabled = NO;
     UITapGestureRecognizer *tapOnSort = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapOnSortView)];
@@ -83,8 +91,21 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShowOrHide:) name:UIKeyboardWillHideNotification object:nil];
-}
 
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+- (void)addBottomBorderWithView:(UIView *)mainview
+{
+    UIView *lineview = [[UIView alloc]initWithFrame:CGRectMake(0, mainview.height - kLayerBorderWidth, mainview.width, kLayerBorderWidth)];
+    lineview.backgroundColor = kLayerBorderColor;
+    [mainview addSubview:lineview];
+}
 -(void)tapOnSortView{
     [self.view endEditing:YES];
     [self showPickerView];
@@ -116,13 +137,15 @@
 
 -(UIView *)pickerView{
     if (!_pickerView) {
-        _pickerView = [[UIView alloc] initWithFrame:CGRectMake(0, mScreenHeight, mScreenWidth, 170)];
+        _pickerView = [[UIView alloc] initWithFrame:CGRectMake(0, mScreenHeight, mScreenWidth, 219)];
         [_pickerView setBackgroundColor:[UIColor whiteColor]];
         _dataPickerView = [[UIPickerView alloc] init];
         _dataPickerView.top = 0;
         _dataPickerView.width = mScreenWidth;
+        _dataPickerView.height = 219 ;
         _dataPickerView.dataSource = self;
         _dataPickerView.delegate = self;
+        
         [_dataPickerView reloadAllComponents];
         [_pickerView addSubview:_dataPickerView];
         
@@ -155,7 +178,7 @@
 
 -(void)showPickerView{
     [UIView animateWithDuration:0.3 animations:^{
-        _pickerView.top = mScreenHeight - _pickerView.height - 49;
+        _pickerView.top = mScreenHeight - _pickerView.height ;
     }];
 }
 
@@ -199,7 +222,6 @@
     if (component == 0) {
         
         self.subPickerArray= [_dict objectForKey:[self.pickerArray objectAtIndex:row]];
-        NSLog(@"%@",self.subPickerArray);
         //[pickerView selectedRowInComponent:1];
         [pickerView reloadComponent:1];
         self.selectedProduct =nil;
@@ -288,8 +310,10 @@
         [UIView animateWithDuration:duration delay:0 options:animationOptions animations:^{
             
             //scrollView高度
+          
+           
             self.scrollView.height = self.view.frame.size.height - keyboardHeight;
-            
+    
         } completion:nil];
         
     } else {
@@ -301,7 +325,31 @@
     
 }
 
+#pragma mark - textview的代理
+-(void)textViewDidChange:(UITextView *)textView{
 
+    CGRect frame = textView.frame;
+    frame.size.height = textView.contentSize.height;
+    changeheight = frame.size.height - textView.height;
+    textView.frame = frame;
+        
+    
+   
+    
+    if (changeheight != 0) {
+        self.reasonView.height = self.reasonView.height + changeheight;
+        self.okBtn.top = self.okBtn.top + changeheight;
+        CGSize scrollViewsize = self.scrollView.contentSize;
+        scrollViewsize.height = scrollViewsize.height + changeheight;
+        self.scrollView.contentSize = scrollViewsize;
+        CGFloat height = self.scrollView.contentOffset.y + changeheight;
+         [self.scrollView setContentOffset:CGPointMake(0,height) animated:NO];
+    }
+}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+//{
+//    [self.textView endEditing:YES];
+//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
