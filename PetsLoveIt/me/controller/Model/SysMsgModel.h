@@ -21,6 +21,7 @@
 
 @property (nonatomic,strong) NSString *productId;
 @property (nonatomic,strong) NSString *prodName;
+@property (nonatomic,strong) NSString *hasread;
 
 
 @end

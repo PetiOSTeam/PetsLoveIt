@@ -17,4 +17,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;
 @property (weak, nonatomic) IBOutlet UITextView *sourceTitleview;
+@property (weak, nonatomic) IBOutlet UIView *maskView;
++(CGFloat)heightForCellWithObject:(BLModel *)object;
 @end

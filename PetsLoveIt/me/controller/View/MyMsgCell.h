@@ -23,5 +23,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *productLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak,nonatomic) id<MyMsgCellDelegate> delegate;
+@property (weak,nonatomic) UIImageView *dotOnCommentImage;
 +(CGFloat)heightForCellWithObject:(SysMsgModel *)object;
 @end

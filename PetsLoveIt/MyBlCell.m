@@ -19,24 +19,25 @@
 -(void)dataFill{
     BLModel *model = (BLModel *)self.model;
     self.sourceTitle.text = model.title;
-//    model.shareReason = self.sourceTitleview.text;
-    
     CGSize Reasonsize = [self getframeWithTitle:model.shareReason andTitleFont:[UIFont systemFontOfSize:15]];
     self.sourceTitleview.text = model.shareReason;
     [self.sourceTitleview setContentOffset:CGPointMake(0,0) animated:NO];
-    [self.sourceTitleview setContentInset:UIEdgeInsetsMake(-10, -5, -15, -5)];//设置UITextView的内边距
+    [self.sourceTitleview setTextContainerInset:UIEdgeInsetsMake(-2.5, 3, -2.5, 0)];//设置UITextView的内边距
+    
     [self.sourceTitleview setTextAlignment:NSTextAlignmentLeft];//并设置左对齐
     if (Reasonsize.height < self.sourceTitleview.height) {
-        CGFloat height = self.sourceTitleview.height - Reasonsize.height;
-        self.height = self.height - height;
+        CGFloat height = self.sourceTitleview.height - Reasonsize.height +8;
+//        self.height = self.height - height;
         self.statename.top = self.statename.top - height;
         self.stateLabel.top = self.stateLabel.top - height;
-        self.sourceTitleview.height = Reasonsize.height;
-        
+        self.sourceTitleview.height = Reasonsize.height -5;
+        self.sourceTitleview.showsVerticalScrollIndicator = NO;
+        self.sourceTitleview.scrollEnabled = NO;
     }else{
        [self.sourceTitleview flashScrollIndicators];
     }
-    
+    self.maskView.layer.cornerRadius = 5;
+    self.maskView.frame = CGRectMake(self.sourceTitleview.frame.origin.x, self.sourceTitleview.top - 8 , self.sourceTitleview.width, self.sourceTitleview.height + 16);
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ClicksourceTitle)];
     [self.sourceTitle addGestureRecognizer:tap];
     if ([model.status intValue] == 1) {
@@ -61,10 +62,23 @@
     UINavigationController *navi = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.viewController presentViewController:navi animated:YES completion:NULL];
 }
++(CGFloat)heightForCellWithObject:(BLModel *)object{
+    CGFloat maxW = mScreenWidth-53;
+    CGSize maxSize = CGSizeMake(maxW, MAXFLOAT);
+    CGSize textSize = [object.shareReason sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:maxSize];
+    if (textSize.height < 86) {
+        return 261 - 86 + textSize.height - 8 ;
+        
+    }else
+    {
+        return 261;
+    }
+    
+}
 // 根据文字计算标签的高度
 - (CGSize)getframeWithTitle:(NSString *)title andTitleFont:(UIFont *)titlefont
 {
-    CGFloat maxW = mScreenWidth-40;
+    CGFloat maxW = mScreenWidth-53;
     CGSize maxSize = CGSizeMake(maxW, MAXFLOAT);
     CGSize textSize = [title sizeWithFont:titlefont constrainedToSize:maxSize];
     

@@ -19,6 +19,13 @@
     self.productView.width = mScreenWidth - 66;
     self.productView.layer.borderColor = mRGBToColor(0xd8d6c9).CGColor;
     self.productView.layer.borderWidth = 0.5;
+    UIImageView *dotOnCommentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redDotIcon"]];
+    dotOnCommentImage.backgroundColor = [UIColor clearColor];
+    dotOnCommentImage.frame = CGRectMake(8 , 25, 6, 6);
+    self.dotOnCommentImage = dotOnCommentImage;
+    self.dotOnCommentImage.hidden = YES;
+    [self addSubview:dotOnCommentImage];
+
 }
 
 - (void)tapOnProductView{
@@ -30,6 +37,9 @@
 
 -(void)dataFill{
     SysMsgModel *msg = (SysMsgModel *)self.model;
+    if ([msg.hasread isEqualToString:@"0"]) {
+        self.dotOnCommentImage.hidden = NO;
+    }
     self.titleLabel.text = msg.msgcontent;
     [self.titleLabel setWidth:mScreenWidth-40];
     [self.titleLabel sizeToFit];

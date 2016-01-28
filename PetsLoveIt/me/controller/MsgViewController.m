@@ -27,7 +27,7 @@
 
 - (void)prepareViewAndData{
     [self config];
-    [self setMsgRead];
+
 }
 
 - (void)setMsgRead{
@@ -40,7 +40,13 @@
         }
     }];
 }
-
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
+        [self setMsgRead];
+    }
+   [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    
+}
 -(void)showProductVC:(NSString *)proId{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.goodsId = proId;

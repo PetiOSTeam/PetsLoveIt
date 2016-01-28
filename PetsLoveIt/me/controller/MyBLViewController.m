@@ -11,7 +11,7 @@
 #import "MyBlCell.h"
 #import "BLModel.h"
 
-@interface MyBLViewController ()
+@interface MyBLViewController ()<UITableViewDataSource>
 @property (nonatomic, strong)  UIButton *blBtn;
 
 @end
@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = mRGBColor(245, 245, 245);
     [self prepareViewAndData];
    
 }
@@ -39,8 +40,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    self.tableView.top = mNavBarHeight + mStatusBarHeight;
-    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight ;
+   
     [self.view bringSubviewToFront:self.blBtn];
     [super viewWillAppear:animated];
 }
@@ -48,6 +48,9 @@
 - (void)prepareViewAndData{
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"我的爆料";
+    self.tableView.top = mNavBarHeight + mStatusBarHeight;
+    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight ;
+    self.tableView.dataSource = self;
     [self.view addSubview:self.blBtn];
     [self config];
 }
@@ -55,7 +58,13 @@
     BLLinkViewController *vc = [BLLinkViewController new];
     [self.navigationController pushViewController:vc animated:YES];
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    BLModel *model = [self.dataList objectAtIndex:indexPath.row];
+    CGFloat height = [MyBlCell heightForCellWithObject:model];
+    
+    return height;
 
+}
 /**
  *  模型配置
  */
@@ -85,11 +94,11 @@
     //pageSizeName
     configModel.pageSizeName=@"pageSize";
     //pageSize
-    configModel.pageSize = 10;
+    configModel.pageSize = 5;
     //起始页码
     configModel.pageStartValue=1;
     //行高
-    configModel.rowHeight=273;
+    configModel.rowHeight=185;
     configModel.CoreViewNetWorkStausManagerOffsetY = 64;
     configModel.customNoResultMsg = kNoBLTip;
     configModel.customNoResultSubMsg = @"快去爆料吧";

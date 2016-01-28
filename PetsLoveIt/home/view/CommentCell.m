@@ -110,6 +110,9 @@
     }
     
     [self.avatarImageView sd_setImageWithURL:[NSURL URLWithString:comment.userIcon] placeholderImage:kDefaultHeadImage];
+    CGFloat maxW = mScreenWidth-50;
+    CGSize maxSize = CGSizeMake(maxW, MAXFLOAT);
+    CGSize textSize = [comment.nickName sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:maxSize];
     self.nameLabel.text = comment.nickName;
     self.dateLabel.text = comment.timeFlag;
     self.floorLabel.text = [NSString stringWithFormat:@"%@楼",comment.orderNo];
@@ -164,11 +167,11 @@
 }
 
 - (IBAction)clickIocn {
-        CommentModel *comment = (CommentModel *)self.model;
-    NSLog(@"clickIocn%@",comment.userName);
-    UserpageViewController *vc = [[UserpageViewController alloc]init];
-    vc.uesrId = comment.userId;
-    
-    [self.viewController.navigationController pushViewController:vc animated:YES];
+//        CommentModel *comment = (CommentModel *)self.model;
+//    NSLog(@"clickIocn%@",comment.userName);
+//    UserpageViewController *vc = [[UserpageViewController alloc]init];
+//    vc.uesrId = comment.userId;
+//    
+//    [self.viewController.navigationController pushViewController:vc animated:YES];
 }
 @end

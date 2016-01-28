@@ -55,7 +55,8 @@
     
    UIImageView *dotOnCommentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redDotIcon"]];
     dotOnCommentImage.backgroundColor = [UIColor clearColor];
-    dotOnCommentImage.frame = CGRectMake(self.avatarImageView.center.x - 3 , self.avatarImageView.bottom + 10, 6, 6);
+    
+//    dotOnCommentImage.frame = CGRectMake(self.avatarImageView.center.x - 3 , self.avatarImageView.bottom + 10, 6, 6);
     [self.contentView addSubview:dotOnCommentImage];
     self.dotOnCommentImage = dotOnCommentImage;
     self.dotOnCommentImage.hidden = YES;
@@ -66,6 +67,11 @@
 -(void)dataFill{
     
     CommentModel *comment = (CommentModel *)self.model;
+    CGFloat maxH = self.nameLabel.height;
+    CGSize maxSize = CGSizeMake(mScreenWidth, maxH);
+    CGSize textSize = [comment.otherNickName sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:maxSize];
+    self.nameLabel.width = textSize.width;
+    self.dotOnCommentImage.frame = CGRectMake(self.nameLabel.right + 2, self.nameLabel.top - 2, 6, 6);
     if (self.isSentComment == NO) {
         if ([comment.hasread isEqualToString:@"0"]) {
             self.dotOnCommentImage.hidden = NO;

@@ -318,12 +318,12 @@
 }
 -(void)ClickShaidanauthor
 {
-     if((![self.goods.userId isEqualToString:@"0"])&&(self.goods.userId))  {
-        UserpageViewController *vc = [[UserpageViewController alloc]init];
-        vc.uesrId = self.goods.userId;
-        
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+//     if((![self.goods.userId isEqualToString:@"0"])&&(self.goods.userId))  {
+//        UserpageViewController *vc = [[UserpageViewController alloc]init];
+//        vc.uesrId = self.goods.userId;
+//        
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
 }
 
 
@@ -437,7 +437,7 @@
     [self.detailsPageView loadGoodsInfo:self.goods];
     NSString *html = self.goods.prodDetail;
     CGFloat viewwidth = [UIScreen mainScreen].bounds.size.width - 24;
-    NSString *css = [NSString stringWithFormat:@"<html></body><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><body width=%f style=\"word-wrap:break-word;ext-align: justify; font-family:Arial\"><style>img{max-width:%f !important; height:auto !important;}</style>",viewwidth,viewwidth -16];
+    NSString *css = [NSString stringWithFormat:@"<html></body><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><body width=%f !important;style=\"word-wrap:break-word;ext-align: justify; font-family:Arial\"><style>img{max-width:%f !important; height:auto !important;}</style>",viewwidth,viewwidth -16];
     
     NSMutableString *desc = [NSMutableString stringWithFormat:@"%@%@%@",
                              css,

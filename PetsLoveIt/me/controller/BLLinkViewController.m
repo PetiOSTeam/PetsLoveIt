@@ -46,6 +46,7 @@
     self.BLinstructions.attributedText = attributedString;
     
     [self.BLinstructions sizeToFit];
+//    [self.textView setContentInset:UIEdgeInsetsMake(-5, 0, 0, 0)];
 }
 
 -(void)textViewDidChange:(UITextView *)textView{

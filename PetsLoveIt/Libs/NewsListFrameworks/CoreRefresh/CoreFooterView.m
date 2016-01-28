@@ -51,7 +51,7 @@
     CALayer *layer=self.contentView.layer;
     
     //边框线宽
-    layer.borderWidth=0.2f;
+    layer.borderWidth=0.5f;
     //颜色
     layer.borderColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f].CGColor;
     //圆角

@@ -11,11 +11,19 @@
 @interface SysMsgCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-
+@property (weak,nonatomic) UIImageView *dotOnCommentImage;
 @end
 
 @implementation SysMsgCell
-
+- (void)awakeFromNib
+{
+    UIImageView *dotOnCommentImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"redDotIcon"]];
+    dotOnCommentImage.backgroundColor = [UIColor clearColor];
+    dotOnCommentImage.frame = CGRectMake(8 , 20, 6, 6);
+    self.dotOnCommentImage = dotOnCommentImage;
+    self.dotOnCommentImage.hidden = YES;
+    [self addSubview:dotOnCommentImage];
+}
 -(void)dataFill{
     SysMsgModel *good = (SysMsgModel *)self.model;
     [self configUIWithModel:good];
@@ -23,6 +31,9 @@
 
 - (void)configUIWithModel:(SysMsgModel *)model
 {
+    if ([model.hasread isEqualToString:@"0"]) {
+        self.dotOnCommentImage.hidden = NO;
+    }
     self.contentLabel.width = mScreenWidth-40;
     self.contentLabel.numberOfLines = 0;
     [self.contentLabel setFont:[UIFont systemFontOfSize:15]];

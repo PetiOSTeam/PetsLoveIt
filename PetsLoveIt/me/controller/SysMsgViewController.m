@@ -20,7 +20,7 @@
      self.tableView.top = 5;
      self.view.backgroundColor = mRGBColor(245, 245, 245);
     [self config];
-    [self setMsgRead];
+
 }
 
 - (void)setMsgRead{
@@ -43,6 +43,10 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+        if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
+            [self setMsgRead];
+        }
+    [super tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (IOS_VERSION_8_OR_ABOVE) {
         tableView.layoutMargins = UIEdgeInsetsZero;
