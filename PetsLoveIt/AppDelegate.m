@@ -21,7 +21,7 @@
 #import "MeViewController.h"
 #import "APService.h"
 #import "ZWIntroductionViewController.h"
-
+#import "SDImageCache.h"
 
 #define kSignAlarm 1112
 
@@ -36,20 +36,10 @@
     [self loadMainViews];
     //[self setupNavigationStyle];
     [self setupUmengSDK];
-    
+//    [SDImageCache sharedImageCache ].maxCacheSize=1024*1024*8;
     [self configJPush:launchOptions];
     if (launchOptions) {
-//        NSDictionary * remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-//        //这个判断是在程序没有运行的情况下收到通知，点击通知跳转页面
-//        if (remoteNotification) {
-//            NSString *productid = remoteNotification[productID];
-//            NSUserDefaults * setting = [NSUserDefaults standardUserDefaults];
-//            NSString * key = productID;
-//            [setting setObject:productid forKey:key];
-//            [setting synchronize];
-//            
-//        }
-       
+
        
     }
           return YES;

@@ -39,6 +39,7 @@
 -(instancetype)initWithFrame:(CGRect)frame hiddenSection:(BOOL)hiddenSection{
     self = [super initWithFrame:frame];
     if (self) {
+        self.showsVerticalScrollIndicator = NO;
         self.dataSource = self;
         self.delegate = self;
         self.tableFooterView = [UIView new];

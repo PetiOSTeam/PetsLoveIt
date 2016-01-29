@@ -264,6 +264,7 @@
         mAlertView(@"提示", @"推荐理由不能为空");
         return;
     }
+   
     NSDictionary *params = @{
                              @"uid":@"saveShareInfo",
                              @"userId":[AppCache getUserId],

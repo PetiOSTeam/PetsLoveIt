@@ -618,7 +618,7 @@
                  NSString *issignin = data[@"isSign"];
                  if ([issignin isEqualToString:@"1"]) {
                      [self.signButton setTitle:[NSString stringWithFormat:@"已连续签到%i天",[continuousSign intValue]+1] forState:UIControlStateNormal];
-                     [self.signButton addTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
+                     [self.signButton addTarget:self action:@selector(signremindAction) forControlEvents:UIControlEventTouchUpInside];
                      
                  }else
                  {
@@ -757,8 +757,6 @@
             SigninbubbleButton *signbubble = [[SigninbubbleButton alloc]initWithframe:self.signButton.frame andSigninNum:signinnum];
             [self.signButton.superview addSubview:signbubble];
             [self.signButton setTitle:[NSString stringWithFormat:@"已连续签到%i天",[self.signinnum intValue]+1] forState:UIControlStateNormal];
-            [self refreshtheintegral];
-            [self.signButton removeTarget:self action:@selector(signAction) forControlEvents:UIControlEventTouchUpInside];
             [self refreshtheintegral];
             LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
             userInfo.todaySigned = @"1";
@@ -987,7 +985,7 @@
     [mAppUtils showHint:clearCacheName];
     
     [[SDImageCache sharedImageCache] clearDisk];
-    
+   
     _sdImageCacheSize = @"0.00K";
     [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
 }

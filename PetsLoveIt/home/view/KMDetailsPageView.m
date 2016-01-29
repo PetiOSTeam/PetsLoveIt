@@ -137,6 +137,7 @@
         if (self.apptypename == TypeCheap) {
             [_headerView addSubview:self.cheapTable];
         }
+        #pragma mark - 晒单经验页面作者详情，现在先注释掉后期需要用。
 //        if (((self.apptypename == TypeShareOrder)||(self.apptypename == TypeExperience))&&((![self.goodsuid isEqualToString:@"0"])&&(self.goodsuid))) {
 //         
 //            [_headerView addSubview:self.shaidanview];
@@ -214,8 +215,7 @@
     
     // label1
     CGSize lablesize1 = [self getframeWithTitle:self.label1.text andTitleFont:self.label1.font];
-    self.label1.frame = (CGRect){{20,_imageView.bottom + 10}, lablesize1};
-    
+    self.label1.frame = (CGRect){{17,_imageView.bottom + 10}, lablesize1};
     // label2
     CGSize lablesize2 = [self getframeWithTitle:self.label2.text andTitleFont:self.label2.font];
     self.label2.frame = (CGRect){{20, _label1.bottom + 15}, lablesize2};
@@ -242,6 +242,8 @@
 - (void) loadHtmlString:(NSString *)html{
     [self.webView loadHTMLString:html baseURL:nil];
 }
+#pragma mark - webViewDelegate
+
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
 
     CGFloat height1 = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
@@ -261,6 +263,7 @@
         }];
         
     }
+#pragma mark - 晒单经验页面作者详情，现在先注释掉后期需要用。
 //    else if (((self.apptypename == TypeShareOrder)||(self.apptypename == TypeExperience))&&((![self.goodsuid isEqualToString:@"0"])&&(self.goodsuid)))
 //    {
 //        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom+45+250) ;
@@ -295,7 +298,7 @@
         publisher.text = [NSString stringWithFormat:@"爆料人:%@",self.goods.publisher];
         [self.tableView.tableHeaderView addSubview:publisher];
     }
-   
+      
 }
 
 -(void)getCheapProductOnCompletion:(void (^)())completionBlock{

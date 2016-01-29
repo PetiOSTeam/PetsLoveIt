@@ -167,6 +167,7 @@
 }
 
 - (IBAction)clickIocn {
+#pragma mark 点击跳转到他人主页，此功能暂时注释掉
 //        CommentModel *comment = (CommentModel *)self.model;
 //    NSLog(@"clickIocn%@",comment.userName);
 //    UserpageViewController *vc = [[UserpageViewController alloc]init];
