@@ -3997,7 +3997,7 @@
 				TargetAttributes = {
 					189442531BE9DEC3006249F0 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = HSNXF846Q2;
+						DevelopmentTeam = 5D9DJCAP6A;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -4689,8 +4689,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: He Guo (89H2BJMZ69)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: He Guo (89H2BJMZ69)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -4712,7 +4712,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "634045b7-b09b-416f-864e-e3f28c516086";
+				PROVISIONING_PROFILE = "794edc03-1155-4c7b-bfbe-f980c153c551";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -4734,8 +4734,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: He Guo (89H2BJMZ69)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: He Guo (89H2BJMZ69)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -4750,7 +4750,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "634045b7-b09b-416f-864e-e3f28c516086";
+				PROVISIONING_PROFILE = "794edc03-1155-4c7b-bfbe-f980c153c551";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4762,8 +4762,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: He Guo (89H2BJMZ69)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: He Guo (89H2BJMZ69)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4803,7 +4803,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.cwaizg.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "634045b7-b09b-416f-864e-e3f28c516086";
+				PROVISIONING_PROFILE = "794edc03-1155-4c7b-bfbe-f980c153c551";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "PetsLoveIt/PetsLoveIt-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -4817,8 +4817,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: He Guo (89H2BJMZ69)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: He Guo (89H2BJMZ69)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Suzhou Chongle Network Technology Co. Ltd (5D9DJCAP6A)";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4858,7 +4858,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cn.cwaizg.PetsLoveIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "634045b7-b09b-416f-864e-e3f28c516086";
+				PROVISIONING_PROFILE = "794edc03-1155-4c7b-bfbe-f980c153c551";
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "PetsLoveIt/PetsLoveIt-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

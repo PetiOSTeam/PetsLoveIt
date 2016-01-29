@@ -30,7 +30,7 @@
 //        self.height = self.height - height;
         self.statename.top = self.statename.top - height;
         self.stateLabel.top = self.stateLabel.top - height;
-        self.sourceTitleview.height = Reasonsize.height -5;
+        self.sourceTitleview.height = Reasonsize.height -3.5;
         self.sourceTitleview.showsVerticalScrollIndicator = NO;
         self.sourceTitleview.scrollEnabled = NO;
     }else{
