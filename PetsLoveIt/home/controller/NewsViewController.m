@@ -67,7 +67,10 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ArticleTableCell * cell =(ArticleTableCell *) [super tableView:tableView cellForRowAtIndexPath:indexPath];
     [cell showSelectView:self.showSelect];
-    GoodsModel *goods = [self.dataList objectAtIndex:indexPath.row];
+    GoodsModel *goods;
+    if (indexPath.row < self.dataList.count) {
+        goods = [self.dataList objectAtIndex:indexPath.row];
+    }
     cell.delegate = self;
     if ([self.seletedArray containsObject:goods.collectId]) {
         cell.selectBtn.selected = YES;

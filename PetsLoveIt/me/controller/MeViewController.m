@@ -850,20 +850,6 @@
             
         }
             break;
-//        case 3:
-//        {
-//            cell.textLabel.text = @"移动网络图片质量";
-//            cell.imageView.image= [UIImage imageNamed:@"tpzl_my_icon"];
-//            UILabel *imageQualityLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 30, 15)];
-//            [imageQualityLabel setTextColor:mRGBToColor(0x497fbf)];
-//            [imageQualityLabel setFont:[UIFont systemFontOfSize:13]];
-//            [imageQualityLabel setTextAlignment:NSTextAlignmentRight];
-//            [imageQualityLabel setText:_imageQualityStr];
-//            imageQualityLabel.right = mScreenWidth - 10;
-//            imageQualityLabel.center = CGPointMake(imageQualityLabel.center.x, 22);
-//            [cell.contentView addSubview:imageQualityLabel];
-//        }
-            break;
         case 3:
         {
             cell.textLabel.text = @"清除缓存";

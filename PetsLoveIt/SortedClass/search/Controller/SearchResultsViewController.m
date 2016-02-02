@@ -11,7 +11,7 @@
 #import "SiftSectionView.h"
 #import "MJRefresh.h"
 #import "GoodsDetailViewController.h"
-
+#import "CMView.h"
 typedef enum : NSUInteger {
     SearchResultsStyleNone,
     SearchResultsStyleFail,
@@ -39,7 +39,7 @@ static NSString *CellIdentifier = @"SearchResultCell";
 
 @property (nonatomic, strong) SiftSectionView *siftSectionView;
 
-
+@property (nonatomic,strong) CMView *myCmView;
 @end
 
 @implementation SearchResultsViewController
@@ -120,7 +120,7 @@ static NSString *CellIdentifier = @"SearchResultCell";
     
     if (self.resyltStyle == ResultStyle_Sift) {
         parameters = @{@"uid": @"getProductsBySort",
-                                     @"startNum":@"0",
+                                     @"startNum":@(_page),
                                      @"limit": @"10",
                                      @"minSortId": self.sortId,
                                      @"order": order
@@ -129,7 +129,7 @@ static NSString *CellIdentifier = @"SearchResultCell";
 
     if (self.resyltStyle == ResultStyle_Mall) {
         parameters = @{@"uid": @"getProductsByMall",
-                       @"startNum":@"0",
+                       @"startNum":@(_page),
                        @"limit": @"10",
                        @"prodMallId": self.sortId,
                        @"order": order  
@@ -155,6 +155,7 @@ static NSString *CellIdentifier = @"SearchResultCell";
                  if (weakSelf.dataSource.count == 0) {
                      weakSelf.resultsStyle = SearchResultsStyleFail;
                      [weakSelf.tableView reloadEmptyDataSet];
+           
                  }
              }
              [weakSelf.tableView footerEndRefreshing];
@@ -163,10 +164,17 @@ static NSString *CellIdentifier = @"SearchResultCell";
 
 - (void)handerSearchResultsFromDatas:(NSArray *)data more:(BOOL)isMore
 {
-    if (self.dataSource.count == 0 && data.count == 0) {
+    [self.myCmView removeFromSuperview];
+
+    if ( (data.count == 0)&&(isMore == NO)) {
         self.resultsStyle = SearchResultsStyleNotData;
+        self.tableView.hidden = YES;
         [self.tableView reloadEmptyDataSet];
+        self.myCmView = [CMView cmViewWithType:CMTypeError msg:kNoSearchResultsTip subMsg:@"换个关键词试试吧" offsetY:mScreenHeight*0.2 failClickBlock:nil];
+         self.myCmView.imageView.image = [UIImage imageNamed:@"noContentIcon"];
+        [self.view addSubview:self.myCmView];
     }else {
+               self.tableView.hidden = NO;
         if (data.count < 10) {
             if (self.tableView.footer) {
                 [self.tableView.footer removeFromSuperview];
@@ -296,7 +304,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
     NSString *alertString = @"";
     switch (self.resultsStyle) {
         case SearchResultsStyleNotData:
-            alertString = @"没有搜索到商品";
+//            alertString = @"没有搜索到商品";
             break;
         case SearchResultsStyleFail:
             alertString = @"点击屏幕，重新加载";

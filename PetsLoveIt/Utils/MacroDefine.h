@@ -232,7 +232,7 @@ UIKIT_STATIC_INLINE AppDelegate *appDelegate()
 #define kNoContentTip @"这里什么都没有"
 #define kNoContentSubTip @"去看看别的吧"
 #define kNoBLTip @"还没有任何爆料"
-
+#define kNoSearchResultsTip @"没有搜索到商品"
 //详情页类型
 typedef NS_ENUM(NSInteger, DetailPageType) {
     GoodsType,

@@ -228,8 +228,10 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GoodsCell * cell =(GoodsCell *) [super tableView:tableView cellForRowAtIndexPath:indexPath];
     [cell showSelectView:self.showSelect];
-    if (indexPath.row < self.dataList.count) {
-        GoodsModel *goods = [self.dataList objectAtIndex:indexPath.row];
+        GoodsModel *goods;
+        if (indexPath.row < self.dataList.count) {
+            goods = [self.dataList objectAtIndex:indexPath.row];
+        }
         cell.delegate = self;
         if ([self.seletedArray containsObject:goods.collectId]) {
             cell.selectBtn.selected = YES;
@@ -237,7 +239,6 @@
             cell.selectBtn.selected = NO;
         }
 
-    }
         return cell;
 }
 -(void)viewDidAppear:(BOOL)animated
