@@ -143,7 +143,6 @@
     if (!_imageQualityStr) {
         _imageQualityStr = @"标清";
     }
-
     _levelLabel = [YYLabel new];
     _levelLabel.font = [UIFont systemFontOfSize:12];
     _levelLabel.textColor = mRGBToColor(0x333333);

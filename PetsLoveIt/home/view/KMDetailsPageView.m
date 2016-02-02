@@ -13,7 +13,7 @@
 #define kDefaultImageAlpha 500.0f
 #define kDefaultImageScalingFactor 300.0f
 
-@interface KMDetailsPageView ()<UIWebViewDelegate>
+@interface KMDetailsPageView ()<UIWebViewDelegate,UIActionSheetDelegate>
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIButton* imageButton;
@@ -25,6 +25,7 @@
 @property (nonatomic,strong) Shaidanauthor *shaidanview;
 @property (nonatomic,strong) NSString *goodsuid;
 @property (assign,nonatomic)  Menutype apptypename;
+@property (nonatomic,copy) NSString *imgURL;
 @end
 
 @implementation KMDetailsPageView
@@ -246,6 +247,22 @@
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
 
+    /** js函数用来获得点击事件以及点击的位置 */
+    static NSString* const kTouchJavaScriptString=
+    @"document.ontouchstart=function(event){\
+    x=event.targetTouches[0].clientX;\
+    y=event.targetTouches[0].clientY;\
+    document.location=\"myweb:touch:start:\"+x+\":\"+y;};\
+    document.ontouchmove=function(event){\
+    x=event.targetTouches[0].clientX;\
+    y=event.targetTouches[0].clientY;\
+    document.location=\"myweb:touch:move:\"+x+\":\"+y;};\
+    document.ontouchcancel=function(event){\
+    document.location=\"myweb:touch:cancel\";};\
+    document.ontouchend=function(event){\
+    document.location=\"myweb:touch:end\";};";
+    // 添加函数到webview
+    [self.webView stringByEvaluatingJavaScriptFromString:kTouchJavaScriptString];
     CGFloat height1 = [[webView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue];
     
     self.webView.height = height1+10;
@@ -262,7 +279,8 @@
             }
         }];
         
-    }
+      }
+
 #pragma mark - 晒单经验页面作者详情，现在先注释掉后期需要用。
 //    else if (((self.apptypename == TypeShareOrder)||(self.apptypename == TypeExperience))&&((![self.goodsuid isEqualToString:@"0"])&&(self.goodsuid)))
 //    {
@@ -300,7 +318,91 @@
     }
       
 }
+// 拦截webview的点击事件
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)_request navigationType:(UIWebViewNavigationType)navigationType {
+   static BOOL isMoveWeb = NO;
+   static BOOL isClickWeb = NO;
+    NSString *requestString = [[_request URL] absoluteString];
+    NSArray *components = [requestString componentsSeparatedByString:@":"];
+    if ([components count] > 1 && [(NSString *)[components objectAtIndex:0]
+                                   isEqualToString:@"myweb"]) {
+        if([(NSString *)[components objectAtIndex:1] isEqualToString:@"touch"])
+        {
+            //NSLog(@"you are touching!");
+            //NSTimeInterval delaytime = Delaytime;
+            if ([(NSString *)[components objectAtIndex:2] isEqualToString:@"start"])
+            {
+                /*
+                 @需延时判断是否响应页面内的js...
+                 */
+                isClickWeb = YES;
+                NSLog(@"touch start!");
+                
+                float ptX = [[components objectAtIndex:3]floatValue];
+                float ptY = [[components objectAtIndex:4]floatValue];
+                NSLog(@"touch point (%f, %f)", ptX, ptY);
+                
+                NSString *js = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).tagName", ptX, ptY];
+                NSString * tagName = [self.webView stringByEvaluatingJavaScriptFromString:js];
+                if ([tagName isEqualToString:@"IMG"]) {
+                    _imgURL = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src", ptX, ptY];
+                }else{
+                    _imgURL = nil;
+                }
+            }
+            else if ([(NSString *)[components objectAtIndex:2] isEqualToString:@"move"])
+            {
+                isMoveWeb = YES;
+                NSLog(@"you are move");
+                 
+            }
+        else if ([(NSString*)[components objectAtIndex:2]isEqualToString:@"end"]) {
+            NSLog(@"touch end");
+            // 如果仅仅是点击且没有滑动则调用图片的点击事件
+            if ((isMoveWeb == NO)&&(isClickWeb = YES)) {
+                if (_imgURL != nil) {
+                    [self savedtolocal];
+                }
+                
+            }
+            isClickWeb = NO;
+            isMoveWeb = NO;
+        }
+                }
+    return NO;
+}
+return YES;
+}
 
+- (void)savedtolocal{
+    UIActionSheet* sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存图片", nil];
+   
+    [sheet showInView:[UIApplication sharedApplication].keyWindow];
+}
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+        if (buttonIndex == 0) {
+            NSString *urlToSave = [self.webView stringByEvaluatingJavaScriptFromString:_imgURL];
+            NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlToSave]];
+            UIImage* image = [UIImage imageWithData:data];
+            // 此方法可以把图片保存到本地相册
+            UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+       
+        }else{
+            return;
+        }
+}
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError*)error contextInfo:(void*)contextInfo
+{
+            if (error){
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"保存失败" message:@"请确认应用程序已获得访问相册的权限" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定",nil];
+                [alert show];
+            }else {
+              
+                 [mAppUtils showHint:@"保存成功"];
+            }
+}
+#pragma mark - 白菜价的接口
 -(void)getCheapProductOnCompletion:(void (^)())completionBlock{
     NSDictionary *params = @{@"uid":@"getCheapProductList",
                              @"startNum":@"0",

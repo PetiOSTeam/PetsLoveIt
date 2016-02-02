@@ -181,7 +181,6 @@ static int const kOpenUDIDRedundancySlots = 100;
         CC_MD5( cStr, (CC_LONG)strlen(cStr), result );
         CFRelease(uuid);
         CFRelease(cfstring);
-
         _openUDID = [NSString stringWithFormat:
                 @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%08lx",
                 result[0], result[1], result[2], result[3], 

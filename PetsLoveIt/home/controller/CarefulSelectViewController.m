@@ -228,14 +228,17 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GoodsCell * cell =(GoodsCell *) [super tableView:tableView cellForRowAtIndexPath:indexPath];
     [cell showSelectView:self.showSelect];
-    GoodsModel *goods = [self.dataList objectAtIndex:indexPath.row];
-    cell.delegate = self;
-    if ([self.seletedArray containsObject:goods.collectId]) {
-        cell.selectBtn.selected = YES;
-    }else{
-        cell.selectBtn.selected = NO;
+    if (indexPath.row < self.dataList.count) {
+        GoodsModel *goods = [self.dataList objectAtIndex:indexPath.row];
+        cell.delegate = self;
+        if ([self.seletedArray containsObject:goods.collectId]) {
+            cell.selectBtn.selected = YES;
+        }else{
+            cell.selectBtn.selected = NO;
+        }
+
     }
-    return cell;
+        return cell;
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -438,11 +441,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+      if (indexPath.row < self.dataList.count) {
     GoodsModel *model = [self.dataList objectAtIndex:indexPath.row];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.goodsId = model.prodId;
     [self.navigationController pushViewController:vc animated:YES];
-}
+      }
+    }
 
 
 - (void)didReceiveMemoryWarning {

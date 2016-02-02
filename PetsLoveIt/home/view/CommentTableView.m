@@ -99,8 +99,11 @@
         if (!cell) {
             cell = [[[NSBundle mainBundle] loadNibNamed:identifier owner:self options:nil] firstObject];
         }
-        CommentModel *model = [self.dataArray objectAtIndex:indexPath.row];
-        [cell loadCellWithModel:model];
+        if (indexPath.row < self.dataArray.count) {
+            CommentModel *model = [self.dataArray objectAtIndex:indexPath.row];
+            [cell loadCellWithModel:model];
+            
+        }
         
         return cell;
  
@@ -156,7 +159,10 @@
         }
 
     }
-        CommentModel *model = [self.dataArray objectAtIndex:indexPath.row];
+    CommentModel *model; if (indexPath.row < self.dataArray.count) {
+        model = [self.dataArray objectAtIndex:indexPath.row];
+        
+    }
         CGFloat height = [CommentSubCell heightForCellWithObject:model];
         
         return height;
