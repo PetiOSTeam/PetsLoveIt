@@ -72,6 +72,7 @@ static NSString *CellIdentifier = @"SearchResultCell";
     self.view.backgroundColor = [UIColor whiteColor];
     [self searchRequest:NO];
      self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.hidden = YES;
     // Do any additional setup after loading the view from its nib.
 }
 

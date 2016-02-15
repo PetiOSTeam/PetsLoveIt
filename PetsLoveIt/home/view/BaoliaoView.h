@@ -20,6 +20,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *youhuiButton;
 @property (weak, nonatomic) IBOutlet UIButton *haitaoButton;
 @property (weak, nonatomic) IBOutlet UIButton *taochongButton;
+/**
+ *  爆料详情数目具体以数字形式展现，一次是优惠，海淘，淘宠
+ */
 @property (strong,nonatomic) NSArray *detailsNums;
 
 @end

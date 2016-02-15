@@ -316,7 +316,7 @@
             break;
     }
 }
-#pragma mark - 晒单经验页面作者详情，现在先注释掉后期需要用。
+ #warning  点击头像跳转到他人主页功能，暂时注释掉后期需要用。
 -(void)ClickShaidanauthor
 {
 //     if((![self.goods.userId isEqualToString:@"0"])&&(self.goods.userId))  {

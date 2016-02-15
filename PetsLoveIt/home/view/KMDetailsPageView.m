@@ -138,7 +138,7 @@
         if (self.apptypename == TypeCheap) {
             [_headerView addSubview:self.cheapTable];
         }
-        #pragma mark - 晒单经验页面作者详情，现在先注释掉后期需要用。
+        #warning  晒单经验页面作者详情，现在先注释掉后期需要用。
 //        if (((self.apptypename == TypeShareOrder)||(self.apptypename == TypeExperience))&&((![self.goodsuid isEqualToString:@"0"])&&(self.goodsuid))) {
 //         
 //            [_headerView addSubview:self.shaidanview];
@@ -281,7 +281,7 @@
         
       }
 
-#pragma mark - 晒单经验页面作者详情，现在先注释掉后期需要用。
+ #warning  晒单经验页面作者详情，现在先注释掉后期需要用。
 //    else if (((self.apptypename == TypeShareOrder)||(self.apptypename == TypeExperience))&&((![self.goodsuid isEqualToString:@"0"])&&(self.goodsuid)))
 //    {
 //        self.headerView.frame = CGRectMake(0, 0, mScreenWidth, self.webView.bottom+45+250) ;

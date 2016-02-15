@@ -15,12 +15,16 @@ typedef NS_ENUM(NSUInteger, Buttontype) {
 - (IBAction)youhuiButtonClick:(id)sender;
 - (IBAction)HaitaoButtonClick:(id)sender;
 - (IBAction)TaochongButtonClick:(id)sender;
+/**
+ *  按钮类型
+ */
 @property (assign,nonatomic) Buttontype buttontype;
 @end
 
 @implementation BaoliaoView
 
 - (void)awakeFromNib {
+    
     self.menuView.layer.cornerRadius = 5;
     UIImage *buttonImage = [self buttonImageFromColor:mRGBToColor(0xcccccc)];
     [self.youhuiButton addLeftBorderWithColor:mRGBToColor(0xcccccc) andWidth:0.5];
@@ -28,19 +32,12 @@ typedef NS_ENUM(NSUInteger, Buttontype) {
     [self.taochongButton addLeftBorderWithColor:mRGBToColor(0xcccccc) andWidth:0.5];
     self.menuView.layer.borderWidth = 0.5;
     self.menuView.layer.borderColor = mRGBToColor(0xcccccc).CGColor;
+    
     [self.youhuiButton setBackgroundImage:buttonImage forState:UIControlStateSelected];
     [self.haitaoButton setBackgroundImage:buttonImage forState:UIControlStateSelected];
     [self.taochongButton setBackgroundImage:buttonImage forState:UIControlStateSelected];
     [self addBottomBorderWithColor:mRGBToColor(0xcccccc) andWidth:0.5];
      self.youhuiButton.selected = YES;
-//    if (self.buttontype == youhui) {
-//        self.youhuiButton.selected = YES;
-//    }else if (self.buttontype == haitao){
-//        self.haitaoButton.selected = YES;
-//    }else if (self.buttontype == taochong){
-//        self.taochongButton.selected = YES;
-//    }
-    
 }
 - (UIImage *)buttonImageFromColor:(UIColor *)color{
     CGRect rect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);

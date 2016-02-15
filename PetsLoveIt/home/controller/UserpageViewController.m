@@ -39,11 +39,17 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
 @property (weak,nonatomic) UIView *jingyan2;
 @property (weak,nonatomic) UIView *baoliao2;
 @property (weak,nonatomic) UIView *menuview2;
+/**
+ *  产品详情页的模型
+ */
 @property (assign,nonatomic) Modeltype modeltype;
-@property (strong,nonatomic) NSObject *DataModel;
-@property (strong,nonatomic) NSMutableArray *DataModelArray;
-
+/**
+ *  table的顶部
+ */
 @property (strong,nonatomic) UIView *mainview;
+/**
+ *  爆料页面的子菜单
+ */
 @property (strong,nonatomic) BaoliaoView *baoliaoview;
 
 
@@ -592,7 +598,7 @@ typedef NS_ENUM(NSUInteger, Modeltype) {
     configModel.removeBackToTopBtn=YES;
     
     //    configModel.refreshControlType = LTConfigModelRefreshControlTypeBottomRefreshOnly;
-    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*3/4 + 15;
+    configModel.CoreViewNetWorkStausManagerOffsetY = mScreenHeight*3/4 + 65;
     //配置完毕
     self.configModel=configModel;
     

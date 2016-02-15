@@ -44,8 +44,7 @@
 @property (nonatomic,strong) GoodsModel *limittedTimeProduct;//限时优惠
 @property (nonatomic,strong) GoodsModel *jdProduct;//尖端产品
 @property (nonatomic , strong) NSArray *cheapProductArray;
-///** 网络状态*/
-//@property (nonatomic,strong) AFNetworkReachabilityManager *mgr;
+
 @end
 
 @implementation CarefulSelectViewController{
@@ -244,18 +243,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    NSUserDefaults * settings = [NSUserDefaults standardUserDefaults];
-//    NSString *key = productID;
-//    
-//    NSString *value = [settings objectForKey:key];
-//    if (value.length > 0) {
-//        
-//        
-//        GoodsDetailViewController *vc = [[GoodsDetailViewController alloc]init];
-//        vc.goodsId = value;
-//        [self.navigationController pushViewController:vc animated:YES];
-//        [settings removeObjectForKey:productID];
-//    }
+
 }
 /**
  *  模型配置
