@@ -42,7 +42,9 @@
 
        
     }
+    
           return YES;
+   
 }
 
 - (void)loadMainViews{
@@ -231,7 +233,7 @@
 - (void)umengTrack {
     
     [MobClick setLogEnabled:NO];  // 打开友盟sdk调试，注意Release发布时需要注释掉此行,减少io消耗
-    [MobClick setAppVersion:XcodeAppVersion]; 
+    [MobClick setAppVersion:XcodeAppVersion];
     [MobClick startWithAppkey:UMENG_APPKEY reportPolicy:(ReportPolicy) REALTIME channelId:nil];
     
     [MobClick updateOnlineConfig];  //在线参数配置

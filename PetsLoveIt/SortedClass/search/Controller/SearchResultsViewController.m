@@ -89,7 +89,6 @@ static NSString *CellIdentifier = @"SearchResultCell";
 
 - (void)searchRequest:(BOOL)isMore
 {
-    
     [self.searchBar resignFirstResponder];
     WEAKSELF
     [self.tableView addFooterWithCallback:^{

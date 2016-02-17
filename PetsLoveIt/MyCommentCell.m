@@ -67,17 +67,18 @@
 -(void)dataFill{
     
     CommentModel *comment = (CommentModel *)self.model;
-    CGFloat maxH = self.nameLabel.height;
-    CGSize maxSize = CGSizeMake(mScreenWidth, maxH);
-    CGSize textSize = [comment.otherNickName sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:maxSize];
-    self.nameLabel.width = textSize.width;
-    self.dotOnCommentImage.frame = CGRectMake(self.nameLabel.right + 2, self.nameLabel.top - 2, 6, 6);
+    
     if (self.isSentComment == NO) {
+        CGFloat maxH = self.nameLabel.height;
+        CGSize maxSize = CGSizeMake(mScreenWidth, maxH);
+        CGSize textSize = [comment.otherNickName sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:maxSize];
+        self.nameLabel.width = textSize.width;
+        self.dotOnCommentImage.frame = CGRectMake(self.nameLabel.right + 2, self.nameLabel.top - 2, 6, 6);
         if ([comment.hasread isEqualToString:@"0"]) {
             self.dotOnCommentImage.hidden = NO;
         }
+        
     }
-   
     self.nameLabel.text = self.isSentComment==NO?comment.otherNickName:@"发出评论";
     self.dateLabel.text = comment.timeFlag;
     

@@ -42,6 +42,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentModel *model = [self.dataList objectAtIndex:indexPath.row];
+    
     CGFloat height = [MyCommentCell heightForSentCellWithObject:model];
     
     return height;

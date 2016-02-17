@@ -383,8 +383,8 @@ return YES;
 {
         if (buttonIndex == 0) {
             NSString *urlToSave = [self.webView stringByEvaluatingJavaScriptFromString:_imgURL];
-            NSData* data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlToSave]];
-            UIImage* image = [UIImage imageWithData:data];
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlToSave]];
+            UIImage *image = [UIImage imageWithData:data];
             // 此方法可以把图片保存到本地相册
             UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
        

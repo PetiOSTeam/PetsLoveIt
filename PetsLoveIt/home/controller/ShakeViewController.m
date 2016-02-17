@@ -263,13 +263,7 @@
                              @"uid":@"updShareNum"
                              };
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-        NSInteger canShareNum = [[[responseData objectForKey:@"bean"]  objectForKey:@"sharenum"] integerValue];
-        if (canShareNum >=5) {
-            [self showNoShareNumView];
-          
-            return ;
-        }
-
+       
 
     }];
 }
@@ -299,8 +293,14 @@
             NSLog(@"%@",responseData);
             //只允许摇3次,code为0表示不能再摇了
             NSString *code = [responseData objectForKey:@"rtnCode"];
+            NSString *sharenum = [[responseData objectForKey:@"data"]objectForKey:@"sharenum"];
             //只允许分享5次
             if ([code isEqualToString:@"0"]) {
+                if ([sharenum isEqualToString:@"5"]) {
+                    [self showNoShareNumView];
+                    
+                    return ;
+                }
                 [self showNoOpView];
 //                [self showGoodsView:nil];
 
@@ -402,7 +402,7 @@
     ShakeremindView *shakeview = [[ShakeremindView alloc]initWithFrame:CGRectMake(0, 0, 230, 160)];
     shakeview.center = CGPointMake(mScreenWidth/2, mScreenHeight/2);
     shakeview.lable1.text = @"机会用光啦";
-    shakeview.lable2.text = @"分享可在获得一次机会";
+    shakeview.lable2.text = @"分享可再获得一次机会";
     shakeview.lable1.font = [UIFont systemFontOfSize:16];
     [shakeview.lelftButton setTitle:@"立即分享" forState:UIControlStateNormal];
     [shakeview.lelftButton addTarget:self  action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
