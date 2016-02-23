@@ -350,6 +350,7 @@
        [self.navigationController popViewControllerAnimated:YES];
         return;
     }
+    self.apptypename = good.apptypename;
     NSDictionary *params = @{
                              @"uid":@"getProductByType",
                              @"appType":good.appType,
@@ -380,7 +381,7 @@
     }
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
-            
+            NSLog(@"%@",responseData);
             NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
             if (jsonArray.count == 0) {
                 

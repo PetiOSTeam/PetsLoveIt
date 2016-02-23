@@ -272,6 +272,7 @@
     [self hidePopView];
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.goodsId = self.goodsId;
+    vc.apptypename = self.apptypename;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -414,6 +415,7 @@
 }
 // 摇到商品
 - (void)showGoodsView:(GoodsModel *)goods{
+    self.apptypename = goods.apptypename;
     self.showPopViewFlag = YES;
 
     self.maskView.alpha = 0;

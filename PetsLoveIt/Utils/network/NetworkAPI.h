@@ -9,12 +9,12 @@
 #ifndef iOSAppFramework_NetworkAPI_h
 #define iOSAppFramework_NetworkAPI_h
 /** 测试版*/
-#define kBaseURL                    @"http://61.155.210.60:9090/petweb/actions/"
+//#define kBaseURL                    @"http://61.155.210.60:9090/petweb/actions/"
 /** 正式版*/
-//#define kBaseURL                    @"http://www.cwaizg.cn/petweb/actions/"
+#define kBaseURL                    @"http://www.cwaizg.cn/petweb/actions/"
 
-#define UMENG_APPKEY                @"56484222e0f55ad4db009b90"
-#define UMENG_channelId             @"petiOSAppStore"
+#define UMENG_APPKEY                @"5684f5e5e0f55acb5c002a48"
+#define UMENG_channelId             @""
 
 //JPush
 #define JPush_APPKEY                @"8002c114b46259afedc5f914"
@@ -35,7 +35,6 @@ static NSString *const appStoreID = @"1071760062";
 
 #define testUrl  @"getPraiseInfo"
 #define FeaturedTopicsList @""
-
 
 /**
  *  默认接口参数
