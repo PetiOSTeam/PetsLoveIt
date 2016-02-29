@@ -7,7 +7,7 @@
 //
 
 #import "CommentModel.h"
-
+#import "TWEmojHelper.h"
 @implementation CommentModel
 
 +(NSArray *)modelPrepare:(id)obj{
@@ -20,5 +20,12 @@
         return obj[@"rows"][@"rows"];
     }
 }
-
+- (NSString *)content{
+        _content = [TWEmojHelper encodeEmojChineseToCodeWithText:_content];
+    return _content;
+}
+- (NSString *)otherContent{
+    _otherContent = [TWEmojHelper encodeEmojChineseToCodeWithText:_otherContent];
+    return _otherContent;
+}
 @end

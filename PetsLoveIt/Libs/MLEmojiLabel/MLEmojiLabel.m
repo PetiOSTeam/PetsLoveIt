@@ -526,6 +526,7 @@ static inline CGFloat TTTFlushFactorForTextAlignment(NSTextAlignment textAlignme
     if (attributes) {
         NSMutableAttributedString *mutableAttributedString = [self.attributedText mutableCopy];
         [mutableAttributedString addAttribute:attributes value:value range:range];
+        
         self.attributedText = mutableAttributedString;
         [self setNeedsDisplay];
     }
@@ -535,6 +536,7 @@ static inline CGFloat TTTFlushFactorForTextAlignment(NSTextAlignment textAlignme
 
 - (void)setEmojiText:(NSString*)emojiText
 {
+    
     _emojiText = emojiText;
     if (!emojiText||emojiText.length<=0) {
         [super setText:nil];

@@ -6,11 +6,11 @@
 //  Copyright © 2015年 kongjun. All rights reserved.
 //
 
-#import "MoreMenuContainerView.h"
+#import "MoreMenuView.h"
 #import "DXPopover.h"
 
 #define kPlaceHolderTip @"请输入评论内容"
-@implementation MoreMenuContainerView
+@implementation MoreMenuView
 
 -(instancetype)initWithFrame:(CGRect)frame
 {
@@ -32,6 +32,7 @@
     [self addSubview:_popButton1];
     [self addSubview:_popButton2];
    
+   
     return self;
 }
 //回复
@@ -39,6 +40,7 @@
 {
     self.editToolBar.hidden = NO;
         self.isReply = YES;
+    self.isAt = NO;
         [[DXPopover sharedView] dismiss];
     self.editToolBar.inputTextView.text = @"";
     self.editToolBar.inputTextView.placeHolder = [NSString stringWithFormat:@"回复 \"%@\"",self.selectedComment.nickName==nil?self.selectedComment.otherNickName:self.selectedComment.nickName];
@@ -52,7 +54,10 @@
     self.editToolBar.hidden = NO;
     [[DXPopover sharedView] dismiss];
     self.isReply = YES;
-    self.editToolBar.inputTextView.text = [NSString stringWithFormat:@"@%@ ",self.selectedComment.nickName==nil?self.selectedComment.otherNickName:self.selectedComment.nickName];
+    self.isAt = YES;
+    self.editToolBar.inputTextView.text = @"";
+    self.editToolBar.inputTextView.placeHolder = [NSString stringWithFormat:@"@%@ ",self.selectedComment.nickName==nil?self.selectedComment.otherNickName:self.selectedComment.nickName];
+    
     [self.editToolBar.inputTextView becomeFirstResponder];
 }
 

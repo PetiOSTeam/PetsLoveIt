@@ -15,7 +15,7 @@
     _commentLabel.font = [UIFont systemFontOfSize:14];
     _commentLabel.textColor = mRGBToColor(0x666666);
     _commentLabel.disableEmoji = NO;
-    _commentLabel.backgroundColor = [UIColor clearColor];
+//    _commentLabel.backgroundColor = [UIColor redColor];
     _commentLabel.isNeedAtAndPoundSign = YES;
     _commentLabel.numberOfLines = 0;
 
@@ -32,32 +32,18 @@
     
     
     NSString *commentStr = [NSString stringWithFormat:@"%@：%@",comment.nickName,comment.content];
-//    NSString *commentStr = [NSString stringWithFormat:@"%@",comment.content];
-    NSMutableAttributedString *commentContent=[[NSMutableAttributedString alloc] initWithString:commentStr];
+    _commentLabel.emojiText = commentStr;
     NSString *userNameAndBlankCharStr = [NSString stringWithFormat:@"%@:",comment.nickName];
-//
-    NSRange allRange = {0,[commentStr length]};
+   
     NSRange selectedRange = {0, [userNameAndBlankCharStr length]};
-    NSRange selectedRange2 = {[userNameAndBlankCharStr length],[comment.content length]};
-    [commentContent addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:allRange];
-    [commentContent addAttribute:NSForegroundColorAttributeName
-                       value:mRGBToColor(0x333333) // 添加颜色
-                       range:selectedRange];
-    [commentContent addAttribute:NSForegroundColorAttributeName
-                       value:mRGBToColor(0x666666) // 添加颜色
-                       range:selectedRange2];
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
-    
-    [paragraphStyle setLineSpacing:6.5];
-    
-    [commentContent addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, commentContent.length)];
-    
-    _commentLabel.text = commentContent;
+ 
     CGSize rSize = [_commentLabel preferredSizeWithMaxWidth:mScreenWidth-12-25-56-10];
     _commentLabel.height = rSize.height;
-    //[_commentLabel setEmojiAddAttri:NSForegroundColorAttributeName value:mRGBToColor(0x44ff01) rang:selectedRange];
-    [self.commentLabel setWidth:(mScreenWidth-56-12-25-10)];
     
+    [_commentLabel setEmojiAddAttri:(NSString *)kCTForegroundColorAttributeName value:mRGBToColor(0x333333) rang:selectedRange];
+    
+    [self.commentLabel setWidth:(mScreenWidth-56-12-25-10)];
+   
     _floorLabel.text = comment.orderNo;
 }
 

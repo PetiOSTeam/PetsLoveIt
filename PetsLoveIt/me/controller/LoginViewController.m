@@ -132,6 +132,11 @@
 
 - (void)bindUserAccount{
     [SVProgressHUD showWithStatus:@"请稍后" maskType:SVProgressHUDMaskTypeNone];
+    if (self.otherAccount == nil) {
+        [SVProgressHUD dismiss];
+        mAlertView(@"提示", @"获取登陆信息失败请重试");
+        return;
+    }
     NSDictionary *params = @{
                              @"uid":@"isBindOtherUser",
                              @"othertype":self.otherType,

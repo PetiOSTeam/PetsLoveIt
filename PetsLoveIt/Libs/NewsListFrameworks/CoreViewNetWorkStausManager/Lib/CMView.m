@@ -188,7 +188,10 @@
 
 
 - (IBAction)btnClick:(id)sender {
-    [self.superview endEditing:YES];
+    //创建一个消息对象
+    NSNotification * notice = [NSNotification notificationWithName:@"HiddeneditToolBar" object:nil userInfo:nil];
+    //发送消息
+    [[NSNotificationCenter defaultCenter]postNotification:notice];
     if(CMTypeError == _type && _failClickBlock!=nil) _failClickBlock();
 }
 

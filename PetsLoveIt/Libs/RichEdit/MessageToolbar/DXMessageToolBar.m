@@ -274,7 +274,7 @@
     if (chatText.length > 0) {
         if ([self.delegate respondsToSelector:@selector(didSendText:)]) {
             NSString *sendMsg = chatText;   // 处理AtFriend
-            sendMsg = [TWEmojHelper encodeEmojChineseToCodeWithText:sendMsg];                           // 处理表情
+//            sendMsg = [TWEmojHelper encodeEmojChineseToCodeWithText:sendMsg];                           // 处理表情
             [self.delegate didSendText:sendMsg];
             self.inputTextView.text = @"";
           

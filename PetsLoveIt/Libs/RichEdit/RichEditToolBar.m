@@ -147,7 +147,7 @@
 {
     if (_toolbarView == nil) {
         _toolbarView = [[UIView alloc] init];
-        _toolbarView.backgroundColor = [UIColor clearColor];
+        _toolbarView.backgroundColor = mRGBColor(247, 247, 247);
     }
     
     return _toolbarView;
@@ -231,12 +231,12 @@
     
     self.activityButtomView = nil;
     self.isShowButtomView = NO;
-    self.backgroundImageView.image = [[UIImage imageNamed:@"messageToolbarBg"] stretchableImageWithLeftCapWidth:0.5 topCapHeight:10];
-    [self addSubview:self.backgroundImageView];
+//    self.backgroundImageView.image = [[UIImage imageNamed:@"messageToolbarBg"] stretchableImageWithLeftCapWidth:0.5 topCapHeight:10];
+//    [self addSubview:self.backgroundImageView];
     
     self.toolbarView.frame = CGRectMake(0, 0, self.frame.size.width, kVerticalPadding * 2 + kInputTextViewMinHeight);
-    self.toolbarBackgroundImageView.frame = self.toolbarView.bounds;
-    [self.toolbarView addSubview:self.toolbarBackgroundImageView];
+//    self.toolbarBackgroundImageView.frame = self.toolbarView.bounds;
+//    [self.toolbarView addSubview:self.toolbarBackgroundImageView];
     [self addSubview:self.toolbarView];
    
     
@@ -269,37 +269,52 @@
 - (void)setupSubviews
 {
     CGFloat allButtonWidth = 0.0;
-    CGFloat textViewLeftMargin = 6.0;
+    CGFloat textViewLeftMargin = 5.0;
     self.backgroundColor = [UIColor clearColor];
     if (self.hideFaceBtn) {
         self.sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         self.sendBtn.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
-        self.sendBtn.frame = CGRectMake(CGRectGetWidth(self.bounds) - 2*kHorizontalPadding - kInputTextViewMinHeight+5, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight);
+        self.sendBtn.frame = CGRectMake(CGRectGetWidth(self.bounds) - kHorizontalPadding - kInputTextViewMinHeight, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight);
         [self.sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+        self.sendBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self.sendBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
         [self.sendBtn setTitleColor:mRGBToColor(0xff4401) forState:UIControlStateNormal];
         [self.sendBtn addTarget:self action:@selector(sendBtnAction) forControlEvents:UIControlEventTouchUpInside];
         [self.toolbarView addSubview:self.sendBtn];
-
-        allButtonWidth += CGRectGetWidth(self.sendBtn.frame) + kHorizontalPadding * 1.5;
+        
+        allButtonWidth += CGRectGetWidth(self.sendBtn.frame) + kHorizontalPadding ;
     }else{
+        
+        self.sendBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.sendBtn.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
+        self.sendBtn.frame = CGRectMake(CGRectGetWidth(self.bounds) - kHorizontalPadding - kInputTextViewMinHeight, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight);
+        [self.sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+        self.sendBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [self.sendBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
+        [self.sendBtn setTitleColor:mRGBToColor(0xff4401) forState:UIControlStateNormal];
+        [self.sendBtn addTarget:self action:@selector(sendBtnAction) forControlEvents:UIControlEventTouchUpInside];
+        [self.toolbarView addSubview:self.sendBtn];
+    
+        allButtonWidth += CGRectGetWidth(self.sendBtn.frame) + kHorizontalPadding ;
         //表情
-        self.faceButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - 2*kHorizontalPadding - kInputTextViewMinHeight, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight)];
+        self.faceButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.bounds) - 2 *allButtonWidth, kVerticalPadding, kInputTextViewMinHeight, kInputTextViewMinHeight)];
         self.faceButton.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin;
         [self.faceButton setImage:[UIImage imageNamed:@"chatBar_face"] forState:UIControlStateNormal];
         [self.faceButton setImage:[UIImage imageNamed:@"chatBar_faceSelected"] forState:UIControlStateHighlighted];
         [self.faceButton setImage:[UIImage imageNamed:@"chatBar_keyboard"] forState:UIControlStateSelected];
         [self.faceButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
         self.faceButton.tag = 1;
-        allButtonWidth += CGRectGetWidth(self.faceButton.frame) + kHorizontalPadding * 1.5;
+        allButtonWidth += allButtonWidth;
+         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(SetfaceButtonselected) name:UIKeyboardDidShowNotification object:nil];
         [self.toolbarView addSubview:self.faceButton];
+    
 
     }
     
     
     
     // 输入框的高度和宽度
-    CGFloat width = CGRectGetWidth(self.bounds) - (allButtonWidth ? allButtonWidth : (textViewLeftMargin * 2)) -kHorizontalPadding*2;
+    CGFloat width = CGRectGetWidth(self.bounds) - (allButtonWidth ? allButtonWidth : (textViewLeftMargin * 2)) -2 * kHorizontalPadding;
     // 初始化输入框
     self.inputTextView = [[XHMessageTextView  alloc] initWithFrame:CGRectMake(textViewLeftMargin, kVerticalPadding, width, kInputTextViewMinHeight)];
     self.inputTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -319,12 +334,13 @@
     
     
     if (!self.faceView) {
-        self.faceView = [[DXFaceView alloc] initWithFrame:CGRectMake(0, (kVerticalPadding * 2 + kInputTextViewMinHeight), self.frame.size.width, 200)];
+        self.faceView = [[DXFaceView alloc] initWithFrame:CGRectMake(0, (kVerticalPadding * 2 + kInputTextViewMinHeight), mScreenWidth, 200)];
         self.faceView.hiddenSendButton = self.hiddenSendButton;
         [self.faceView setDelegate:self];
         [self.faceView addTopBorderWithColor:kLayerBorderColor andWidth:kLayerBorderWidth];
         self.faceView.backgroundColor = mRGBColor(247, 247, 247);
         self.faceView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+        
     }
     
     
@@ -333,14 +349,16 @@
    //判断是否隐藏文本输入框
     self.inputTextView.hidden = self.hideInputView;
 }
-
+- (void)SetfaceButtonselected{
+    self.faceButton.selected = NO;
+}
 -(void)sendBtnAction{
 
     NSString *chatText = self.inputTextView.text;
     if (chatText.length > 0) {
         if ([self.delegate respondsToSelector:@selector(didSendText:)]) {
             NSString *sendMsg = chatText;   // 处理AtFriend
-            sendMsg = [TWEmojHelper encodeEmojChineseToCodeWithText:sendMsg];                           // 处理表情
+//            sendMsg = [TWEmojHelper encodeEmojChineseToCodeWithText:sendMsg];                           // 处理表情
             [self.delegate didSendText:sendMsg];
             self.inputTextView.text = @"";
             
@@ -400,7 +418,7 @@
     if (chatText.length > 0) {
         if ([self.delegate respondsToSelector:@selector(didSendText:)]) {
             NSString *sendMsg = chatText;   // 处理AtFriend
-            sendMsg = [TWEmojHelper encodeEmojChineseToCodeWithText:sendMsg];                           // 处理表情
+//            sendMsg = [TWEmojHelper encodeEmojChineseToCodeWithText:sendMsg];                           // 处理表情
             [self.delegate didSendText:sendMsg];
             self.inputTextView.text = @"";
             
@@ -601,7 +619,7 @@
 
 - (void)buttonAction:(id)sender
 {
-    _isSelectFace = YES;
+//    _isSelectFace = YES;
     UIButton *button = (UIButton *)sender;
     button.selected = !button.selected;
     NSInteger tag = button.tag;

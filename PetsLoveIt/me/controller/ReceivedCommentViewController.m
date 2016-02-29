@@ -10,15 +10,15 @@
 #import "CommentModel.h"
 #import "MyCommentCell.h"
 #import "GoodsDetailViewController.h"
-#import "MoreMenuContainerView.h"
+#import "MoreMenuView.h"
 #import "RichEditView.h"
 #import "DXPopover.h"
-#import "MoreMenuContainerView.h"
+#import "MoreMenuView.h"
 #define kPlaceHolderTip @"请输入评论内容"
 
 @interface ReceivedCommentViewController ()<MyCommentCellDelegate,UITabBarDelegate,RichEditViewDelegate,DXMessageToolBarDelegate>
 @property (nonatomic,strong) RichEditToolBar *editToolBar;
-@property (nonatomic,strong) MoreMenuContainerView *menuview;
+@property (nonatomic,strong) MoreMenuView *menuview;
 
 @end
 
@@ -55,25 +55,29 @@
     [self config];
     self.tableView.top = 5;
      self.view.backgroundColor = mRGBColor(245, 245, 245);
-    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH ;
+    self.tableView.height = mScreenHeight-mStatusBarHeight-mNavBarHeight- CorePagesBarViewH - 5 ;
 
     
-    _editToolBar =[[RichEditToolBar alloc] initWithFrame:CGRectMake(0, mScreenHeight -mStatusBarHeight-mNavBarHeight- [RichEditToolBar defaultHeight], mScreenWidth, [RichEditToolBar defaultHeight]) hideFaceBtn:YES];
-    //_editToolBar.top = self.tableView.bottom;
-    _editToolBar.hidden = YES;
+    _editToolBar =[[RichEditToolBar alloc] initWithFrame:CGRectMake(0, self.tableView.bottom, mScreenWidth, [RichEditToolBar defaultHeight]) hideFaceBtn:NO];
+    _editToolBar.top = self.tableView.bottom;
     _editToolBar.userInteractionEnabled = YES;
     _editToolBar.delegate = self;
     _editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
     [self.view addSubview:_editToolBar];
     _editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
-    _menuview = [[MoreMenuContainerView alloc]init];
+     _menuview = [[MoreMenuView alloc]init];
     _menuview.editToolBar = _editToolBar;
-   
+//    _menuview.hidden = YES;
     
 }
+
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
-    self.editToolBar.hidden = YES;
+    [UIView animateWithDuration:0.25 animations:^{
+        _editToolBar.top = self.tableView.bottom;
+    } completion:^(BOOL finished) {
+    }];
+
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -84,6 +88,8 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentModel *model = [self.dataList objectAtIndex:indexPath.row];
+           
+    
     CGFloat height = [MyCommentCell heightForCellWithObject:model];
     
     return height;
@@ -149,8 +155,16 @@
 # pragma mark - tableview代理
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   
+
+//    MoreMenuView *tempmenuview = self.menuview;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.view endEditing:YES];
+    [UIView animateWithDuration:0.25 animations:^{
+        _editToolBar.top = self.tableView.bottom;
+    } completion:^(BOOL finished) {
+    }];
+
     [self.editToolBar.inputTextView resignFirstResponder];
     self.editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
     MyCommentCell *cell =(MyCommentCell *) [tableView cellForRowAtIndexPath:indexPath];
@@ -163,13 +177,22 @@
 -(void)didSendText:(NSString *)text{
     
     [self.view endEditing:YES];
+    [UIView animateWithDuration:0.25 animations:^{
+        _editToolBar.top = self.tableView.bottom;
+    } completion:^(BOOL finished) {
+    }];
+
     [self.editToolBar.inputTextView resignFirstResponder];
     self.editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
+    
     if ([text length]==0) {
         mAlertView(@"提示", @"评论内容不能为空");
         return;
     }
-    
+    if (self.menuview.isAt == YES) {
+        text = [NSString stringWithFormat:@"@%@ %@",selectedComment.nickName==nil?selectedComment.otherNickName:selectedComment.nickName,text];
+    }
+     
     NSDictionary *params = @{
                    @"uid": @"saveCommentInfo",
                    @"productId":selectedComment.productId,
@@ -179,13 +202,15 @@
                    };
     
     [APIOperation POST:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
-       _menuview.isReply = NO;
+       self.menuview.isReply = NO;
+        self.menuview.isAt = NO;
         if (!error) {
             self.page = 1;
             
             [self reloadDataWithheaderViewStateRefresh];
         }else{
-            mAlertAPIErrorInfo(error);
+            self.menuview.isAt = NO;
+//            mAlertAPIErrorInfo(error);
         }
     }];
     
@@ -194,14 +219,13 @@
 #pragma mark editToolBarDelegate
 - (void)didChangeFrameToHeight:(CGFloat)toHeight keyboardInfo:(NSDictionary *)userInfo{
     NSInteger cuver = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
     [UIView beginAnimations:@"" context:nil];
     [UIView setAnimationCurve:cuver];
     [UIView setAnimationDuration:[userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]];
-    CGRect rect = self.tableView.frame;
-    rect.size.height = mScreenHeight - toHeight-mNavBarHeight-mStatusBarHeight ;
-    self.tableView.frame = rect;
-    self.editToolBar.top = mScreenHeight - toHeight-mNavBarHeight-mStatusBarHeight - [RichEditToolBar defaultHeight];
-    NSLog(@"toHeight%f",toHeight);
+    self.editToolBar.top = self.tableView.bottom - toHeight ;
+
+//    NSLog(@"toHeight%f",toHeight);
     [UIView commitAnimations];
 
 }

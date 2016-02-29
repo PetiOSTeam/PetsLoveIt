@@ -91,7 +91,10 @@
 
 @optional
 
-
+/**
+ *  隐藏表情键盘以及文子键盘
+ */
+- (void)HiddeneditToolBar;
 /**
  *  文字输入框开始编辑
  *

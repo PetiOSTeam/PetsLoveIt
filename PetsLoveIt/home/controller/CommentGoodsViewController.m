@@ -20,6 +20,7 @@
 @end
 
 @implementation CommentGoodsViewController{
+    BOOL isAt;
     BOOL isReply;//纪录是回复评论
     UIView *moreMenuContainerView;
     UIButton *popButton1;
@@ -44,6 +45,8 @@
     [self prepareViewAndData];
     //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshcommentcell) name:@"refreshcommentcell" object:nil];
+       [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(HiddeneditToolBar) name:@"HiddeneditToolBar" object:nil];
+    
 
 }
 - (void)refreshcommentcell
@@ -52,6 +55,7 @@
 }
 - (void)dealloc
 {
+    [moreMenuContainerView removeFromSuperview];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 - (void)refreshcommentcell:(NSNotificationCenter *)NotificationCenter
@@ -65,11 +69,13 @@
     [self config];
     self.tableView.height = mScreenHeight -mStatusBarHeight-mNavBarHeight- [RichEditToolBar defaultHeight];
     
-    _editToolBar =[[RichEditToolBar alloc] initWithFrame:CGRectMake(0, mScreenHeight -mStatusBarHeight-mNavBarHeight- [RichEditToolBar defaultHeight], mScreenWidth, [RichEditToolBar defaultHeight]) hideFaceBtn:YES];
-    _editToolBar.top = self.tableView.bottom;
+    _editToolBar =[[RichEditToolBar alloc] initWithFrame:CGRectMake(0, self.tableView.bottom, mScreenWidth, [RichEditToolBar defaultHeight]) hideFaceBtn:NO];
+    
+//    _editToolBar.top = self.tableView.bottom;
     _editToolBar.userInteractionEnabled = YES;
     _editToolBar.delegate = self;
     _editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
+//    _editToolBar.hideFaceBtn = NO;
     [self.view addSubview:_editToolBar];
     _editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
     
@@ -132,7 +138,9 @@
 
 -(void)replyAction{
     isReply = YES;
+    isAt = NO;
     [[DXPopover sharedView] dismiss];
+     self.editToolBar.inputTextView.text = @"";
     self.editToolBar.inputTextView.placeHolder = [NSString stringWithFormat:@"回复 \"%@\"",selectedComment.nickName];
     [self.editToolBar.inputTextView becomeFirstResponder];
     
@@ -142,8 +150,9 @@
     
     [[DXPopover sharedView] dismiss];
     isReply = YES;
-    [[DXPopover sharedView] dismiss];
-    self.editToolBar.inputTextView.text = [NSString stringWithFormat:@"@%@ ",selectedComment.nickName];
+    isAt = YES;
+    self.editToolBar.inputTextView.text = @"";
+    self.editToolBar.inputTextView.placeHolder = [NSString stringWithFormat:@"@%@ ",selectedComment.nickName];
     [self.editToolBar.inputTextView becomeFirstResponder];
 }
 -(void)copyAction{
@@ -272,6 +281,25 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.view endEditing:YES];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.editToolBar.faceView.top =  mScreenHeight ;
+        self.editToolBar.top = mScreenHeight - self.editToolBar.inputTextView.height - 10;
+    } completion:^(BOOL finished) {
+    }];
+
+    
+}
+- (void)HiddeneditToolBar
+{
+    [self.view endEditing:YES];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.editToolBar.faceView.top =  mScreenHeight ;
+        self.editToolBar.top = mScreenHeight - self.editToolBar.inputTextView.height - 10;
+    } completion:^(BOOL finished) {
+    }];
+    
+    
+
 }
 //-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 //    self.DidScrollNum++;
@@ -283,18 +311,20 @@
 //}
 #pragma mark - 发表评论
 -(void)didSendText:(NSString *)text{
+    [self HiddeneditToolBar];
     if (![AppCache getUserInfo]) {
         [self showLoginVC];
         return;
     }
-    [self.view endEditing:YES];
     [self.editToolBar.inputTextView resignFirstResponder];
     self.editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
     if ([text length]==0) {
         mAlertView(@"提示", @"评论内容不能为空");
         return;
     }
-    
+    if (isAt == YES) {
+        text = [NSString stringWithFormat:@"@%@ %@",selectedComment.nickName,text];
+    }
     NSDictionary *params = @{
                              @"uid": @"saveCommentInfo",
                              @"productId":self.goodsId,
@@ -318,8 +348,12 @@
             
            // [self reloadData];
             [self reloadDataWithheaderViewStateRefresh];
+            isAt = NO;
+            isReply = NO;
         }else{
             mAlertAPIErrorInfo(error);
+            isAt = NO;
+            isReply = NO;
         }
     }];
     
@@ -327,12 +361,14 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.view endEditing:YES];
+    isReply = NO;
+    isAt = NO;
+    [self HiddeneditToolBar];
     [self.editToolBar.inputTextView resignFirstResponder];
     self.editToolBar.inputTextView.placeHolder = kPlaceHolderTip;
     CommentCell *cell =(CommentCell *) [tableView cellForRowAtIndexPath:indexPath];
     selectedComment = [self.dataList objectAtIndex:indexPath.row];
-    [DXPopover showAtView:cell  atViewOffsetX:cell.center.x atViewOffsetY:cell.top+cell.commentLabel.top popoverPostion:DXPopoverPositionDown withContentView:moreMenuContainerView inView:self.tableView ];
+    [DXPopover showAtView:cell  atViewOffsetX:cell.center.x atViewOffsetY:cell.top+cell.commentLabel.top+5 popoverPostion:DXPopoverPositionDown withContentView:moreMenuContainerView inView:self.tableView ];
     [self getUserISpraiseandnopraisenum];
     NSString *zancount = [[NSString alloc]initWithFormat:@"赞(%@)",selectedComment.praiseNum?selectedComment.praiseNum:@"0" ];
     [popButton4 setTitle:zancount forState:UIControlStateNormal];
@@ -403,9 +439,8 @@
     [UIView beginAnimations:@"" context:nil];
     [UIView setAnimationCurve:cuver];
     [UIView setAnimationDuration:[userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue]];
-    CGRect rect = self.tableView.frame;
-    rect.size.height = self.view.frame.size.height - toHeight-mNavBarHeight-mStatusBarHeight;
-    self.tableView.frame = rect;
+
+    self.editToolBar.top = self.tableView.bottom - toHeight + [RichEditToolBar defaultHeight];
     [UIView commitAnimations];
 }
 

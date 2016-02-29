@@ -107,6 +107,10 @@
         self.otherCommentLabel.emojiText = comment.content;
 
     }
+    NSString *userNameAndBlankCharStr = [NSString stringWithFormat:@"%@:",[AppCache getUserName]];
+    
+    NSRange selectedRange = {0, [userNameAndBlankCharStr length]};
+    [ self.myCommentLabel setEmojiAddAttri:(NSString *)kCTForegroundColorAttributeName value:mRGBToColor(0x333333) rang:selectedRange];
     //自适应titleLabel的高度
     [self.otherCommentLabel setWidth:(mScreenWidth-self.otherCommentLabel.left-10)];
     [self.otherCommentLabel sizeToFit];

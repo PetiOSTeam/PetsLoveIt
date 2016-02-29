@@ -25,14 +25,17 @@
         [self addTopBorderWithColor:[UIColor lightGrayColor] andWidth:.5f];
         
         UIButton *defFaceButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        defFaceButton.backgroundColor = [UIColor lightGrayColor];
+//        defFaceButton.backgroundColor = [UIColor lightGrayColor];
         [defFaceButton setImage:[UIImage imageNamed:@"EmotionsEmojiHL"]
                        forState:UIControlStateNormal];
-        defFaceButton.width = self.width / 6;
-        defFaceButton.height = self.height;
-        defFaceButton.left = 0;
-        defFaceButton.top = 0;
-        [self addSubview:defFaceButton];
+        defFaceButton.width = 30;
+        defFaceButton.height = 30;
+        defFaceButton.left = 5;
+        defFaceButton.top = 2.5;
+        if (defFaceButton.imageView.image != nil) {
+            [self addSubview:defFaceButton];
+        }
+        
         
         UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *normalImage = [UIImage imageNamed:@"EmotionsSendBtnBlue"];

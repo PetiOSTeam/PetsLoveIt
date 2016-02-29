@@ -49,5 +49,5 @@ typedef NS_OPTIONS(NSUInteger, MLEmojiLabelLinkType) {
 
 - (CGSize)preferredSizeWithMaxWidth:(CGFloat)maxWidth;
 - (void)setEmojiAddAttri:(NSString *)attributes value:(id)value rang:(NSRange) range;
-
+- (NSMutableAttributedString*)mutableAttributeStringWithEmojiText:(NSString*)emojiText;
 @end
