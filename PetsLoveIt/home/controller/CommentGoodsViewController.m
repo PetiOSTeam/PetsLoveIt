@@ -351,7 +351,8 @@
             isAt = NO;
             isReply = NO;
         }else{
-            mAlertAPIErrorInfo(error);
+            
+            
             isAt = NO;
             isReply = NO;
         }

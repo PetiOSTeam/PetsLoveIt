@@ -63,7 +63,6 @@
         
         self.goodsId = self.goods.prodId;
         self.navBarTitleLabel.text = [NSString stringWithFormat:@"%@详情",self.goods.typeName];
-        [self hideLoadingView];
         [self loadViewAndData];
         //获取猜你喜欢数据
         [self getRelatedInfoByModel:self.goods];
@@ -382,19 +381,26 @@
     [APIOperation GET:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             NSLog(@"%@",responseData);
-            NSArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
+            NSMutableArray *jsonArray = [[responseData objectForKey:@"beans"] objectForKey:@"beans"];
             if (jsonArray.count == 0) {
-                
                 [CoreViewNetWorkStausManager show:self.detailsPageView.tableView2 type:CMTypeError msg:kNoContentTip  subMsg:kNoContentSubTip offsetY:0 failClickBlock:^{
                     
                 }];
+                return ;
             }
-
+            
             [jsonArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
-                GoodsModel *goods = [[GoodsModel alloc] initWithDictionary:obj];
-                    [self.detailsPageView.tableView2.dataArray1 addObject:goods];
-                
+                GoodsModel *tempgoods = [[GoodsModel alloc] initWithDictionary:obj];
+                if ((tempgoods.prodId != good.prodId)&&(idx < 10)) {
+                    [self.detailsPageView.tableView2.dataArray1 addObject:tempgoods];
+                }
+                if (self.detailsPageView.tableView2.dataArray1.count == 0) {
+                    [CoreViewNetWorkStausManager show:self.detailsPageView.tableView2 type:CMTypeError msg:kNoContentTip  subMsg:kNoContentSubTip offsetY:0 failClickBlock:^{
+                        
+                    }];
+                    return ;
+                }
                 
             }];
             
@@ -424,7 +430,7 @@
         }else{
             
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                
                     [mAppUtils showHint:kNetWorkUnReachableDesc];
                 
@@ -433,13 +439,13 @@
         }
     }];
 }
-
 #pragma mark - 加载HTML页面数据，并进行图文混排
 -(void) loadViewAndData{
     [self.detailsPageView loadGoodsInfo:self.goods];
     NSString *html = self.goods.prodDetail;
+   
     CGFloat viewwidth = [UIScreen mainScreen].bounds.size.width - 24;
-    NSString *css = [NSString stringWithFormat:@"<html><meta name=\"viewport\" content=\"width=%f, initial-scale=1, maximum-scale=1\" /><body  style=\"word-wrap:break-word !important;white-space: normal !important; font-family:Arial\"><style>img{max-width:%f !important; height:auto !important;}</style>",viewwidth,viewwidth -16];
+    NSString *css = [NSString stringWithFormat:@"<html><meta name=\"viewport\" content=\" initial-scale=1, maximum-scale=1\" /><body width=%f !important;style=\"word-wrap:break-word !important; font-family:Arial\"><style>img{max-width:%f !important; height:auto !important;}</style>",viewwidth,viewwidth -16];
     
     NSMutableString *desc = [NSMutableString stringWithFormat:@"%@%@%@",
                              css,
