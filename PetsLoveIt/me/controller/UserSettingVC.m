@@ -10,7 +10,7 @@
 #import "BindEmailViewController.h"
 #import "BindMobileViewController.h"
 #import "AddAddressViewController.h"
-
+#import "Nickname ViewController.h"
 @interface UserSettingVC ()<UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,strong) AddressModel *addmodel;
@@ -38,7 +38,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 2;
+    return 3;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -118,8 +118,27 @@
             }];
                    }
             break;
+            case 2:
+        {
+            cell.textLabel.text = @"修改昵称";
+            UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+            arrow.image = [UIImage imageNamed:@"rightArrowIcon"];
+            arrow.right = mScreenWidth - 10;
+            arrow.center = CGPointMake(arrow.center.x, 27);
+            [cell.contentView addSubview:arrow];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,150, 15)];
+            label.right = mScreenWidth - 10-24;
+            [label setTextColor:mRGBToColor(0x999999)];
+            [label setFont:[UIFont systemFontOfSize:13]];
+            [label setTextAlignment:NSTextAlignmentRight];
             
+            label.center = CGPointMake(label.center.x, 27);
             
+            [cell.contentView addSubview:label];
+            label.text = [AppCache getUserName];;
+
+        }
+            break;
         default:
             break;
     }
@@ -140,6 +159,9 @@
         AddAddressViewController *vc = [AddAddressViewController new];
         [self.navigationController pushViewController:vc animated:YES];
         vc.address = self.addmodel;
+    }else if (indexPath.row == 2){
+        Nickname_ViewController *vc = [[Nickname_ViewController alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

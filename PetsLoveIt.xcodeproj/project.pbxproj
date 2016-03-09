@@ -578,6 +578,7 @@
 		18F633BC1BF8898000FD98B1 /* libSocialSina.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F633BA1BF8898000FD98B1 /* libSocialSina.a */; };
 		18F633BF1BF88E6400FD98B1 /* KMDetailsPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F633BD1BF88E6400FD98B1 /* KMDetailsPageView.m */; };
 		76AF7FED1BEF7F1F0066659E /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AF7FEC1BEF7F1F0066659E /* OrderModel.m */; };
+		9D0221871C8FD2D50053EB45 /* Nickname ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0221861C8FD2D50053EB45 /* Nickname ViewController.m */; };
 		9D1B32141C303A1A00CF12CF /* MoreMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B32131C303A1A00CF12CF /* MoreMenuView.m */; };
 		9D1D3AE41C28F9C500155E6D /* ShakeremindView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1D3AE31C28F9C500155E6D /* ShakeremindView.m */; };
 		9D1D3B341C297DC300155E6D /* AdviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D1D3B331C297DC300155E6D /* AdviceViewController.xib */; };
@@ -1643,6 +1644,8 @@
 		18F633BE1BF88E6400FD98B1 /* KMDetailsPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KMDetailsPageView.h; sourceTree = "<group>"; };
 		76AF7FEB1BEF7F1F0066659E /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		76AF7FEC1BEF7F1F0066659E /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		9D0221851C8FD2D50053EB45 /* Nickname ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Nickname ViewController.h"; sourceTree = "<group>"; };
+		9D0221861C8FD2D50053EB45 /* Nickname ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Nickname ViewController.m"; sourceTree = "<group>"; };
 		9D1B32121C303A1A00CF12CF /* MoreMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreMenuView.h; path = PetsLoveIt/home/controller/MoreMenuView.h; sourceTree = SOURCE_ROOT; };
 		9D1B32131C303A1A00CF12CF /* MoreMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreMenuView.m; path = PetsLoveIt/home/controller/MoreMenuView.m; sourceTree = SOURCE_ROOT; };
 		9D1D3AE21C28F9C500155E6D /* ShakeremindView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShakeremindView.h; sourceTree = "<group>"; };
@@ -1905,6 +1908,8 @@
 				1802A1E91C0C4451009BC2F8 /* BindMobileViewController.h */,
 				1802A1EA1C0C4451009BC2F8 /* BindMobileViewController.m */,
 				1802A1EB1C0C4451009BC2F8 /* BindMobileViewController.xib */,
+				9D0221851C8FD2D50053EB45 /* Nickname ViewController.h */,
+				9D0221861C8FD2D50053EB45 /* Nickname ViewController.m */,
 			);
 			name = userSetting;
 			sourceTree = "<group>";
@@ -4308,6 +4313,7 @@
 				189445C61BEB0774006249F0 /* NSObject+MJProperty.m in Sources */,
 				18DB0D841BF03442003F3743 /* TaoPetViewController.m in Sources */,
 				18E21EBC1C00229C007059F3 /* YYTextContainerView.m in Sources */,
+				9D0221871C8FD2D50053EB45 /* Nickname ViewController.m in Sources */,
 				189445B01BEB0774006249F0 /* CoreHeaderShowView.m in Sources */,
 				189445CD1BEB0774006249F0 /* PSTCollectionView.m in Sources */,
 				F9BE499D1C133758002E47CC /* GradeModel.m in Sources */,

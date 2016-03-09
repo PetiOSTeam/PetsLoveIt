@@ -839,7 +839,7 @@
             [label setTextColor:[UIColor lightGrayColor]];
             [label setFont:[UIFont systemFontOfSize:12]];
 
-            [label setText:@"(每日10点提醒)"];
+            [label setText:@" (每日10点提醒)"];
             [cell.contentView addSubview:label];
             
             NSString *switchBtnFlag = [mUserDefaults objectForKey:kSignAlarmSwitch];

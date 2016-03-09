@@ -445,7 +445,7 @@
     NSString *html = self.goods.prodDetail;
    
     CGFloat viewwidth = [UIScreen mainScreen].bounds.size.width - 24;
-    NSString *css = [NSString stringWithFormat:@"<html><meta name=\"viewport\" content=\" initial-scale=1, maximum-scale=1\" /><body width=%f !important;style=\"word-wrap:break-word !important; font-family:Arial\"><style>img{max-width:%f !important; height:auto !important;}</style>",viewwidth,viewwidth -16];
+    NSString *css = [NSString stringWithFormat:@"<html><meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\" /><body width=%f style=\"word-wrap:break-word; font-family:Arial\"><style>img{max-width:%f !important; height:auto !important;}</style>",viewwidth,viewwidth -16];
     
     NSMutableString *desc = [NSMutableString stringWithFormat:@"%@%@%@",
                              css,

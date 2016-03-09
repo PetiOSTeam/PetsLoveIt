@@ -204,7 +204,7 @@
            parameters:parameter
          onCompletion:^(id responseData, NSError *error) {
              
-             if (responseData) {
+             if (!error) {
                  NSDictionary *defaultDict = @{NSFontAttributeName: [UIFont systemFontOfSize:12],
                                                NSForegroundColorAttributeName: mRGBToColor(0x9E9E9E)};
                  NSDictionary *attributes = @{NSForegroundColorAttributeName: mRGBToColor(0xF52E0A),
