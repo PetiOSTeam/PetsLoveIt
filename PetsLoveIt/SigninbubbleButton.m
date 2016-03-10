@@ -3,7 +3,7 @@
 //  ceshi
 //
 //  Created by 123 on 15/12/15.
-//  Copyright © 2015年 123. All rights reserved.
+//  Copyright © 2015年 liubingyang. All rights reserved.
 //
 
 #import "SigninbubbleButton.h"

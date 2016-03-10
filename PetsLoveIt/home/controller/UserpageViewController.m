@@ -3,7 +3,7 @@
 //  PetsLoveIt
 //
 //  Created by 123 on 16/1/5.
-//  Copyright © 2016年 kongjun. All rights reserved.
+//  Copyright © 2016年 liubingyang. All rights reserved.
 //
 typedef NS_ENUM(NSUInteger, Modeltype) {
     pinglun = 0,

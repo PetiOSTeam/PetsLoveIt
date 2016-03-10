@@ -2,8 +2,8 @@
 //  MeViewController.h
 //  PetsLoveIt
 //
-//  Created by kongjun on 15/11/21.
-//  Copyright © 2015年 kongjun. All rights reserved.
+//  Created by liubingyang on 15/11/21.
+//  Copyright © 2015年 liubingyang. All rights reserved.
 //
 
 #import "CommonViewController.h"

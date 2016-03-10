@@ -2,8 +2,8 @@
 //  CommentGoodsViewController.m
 //  PetsLoveIt
 //
-//  Created by kongjun on 15/12/5.
-//  Copyright © 2015年 kongjun. All rights reserved.
+//  Created by liubingyang on 15/12/5.
+//  Copyright © 2015年 liubingyang. All rights reserved.
 //
 
 #import "CommentGoodsViewController.h"

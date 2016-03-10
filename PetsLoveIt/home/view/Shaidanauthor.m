@@ -3,7 +3,7 @@
 //  viewview
 //
 //  Created by 123 on 16/1/7.
-//  Copyright © 2016年 123. All rights reserved.
+//  Copyright © 2016年 liubingyang. All rights reserved.
 //
 
 #import "Shaidanauthor.h"

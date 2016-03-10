@@ -3,7 +3,7 @@
 //  PetsLoveIt
 //
 //  Created by 123 on 15/12/27.
-//  Copyright © 2015年 kongjun. All rights reserved.
+//  Copyright © 2015年 liubingyang. All rights reserved.
 //
 
 #import "MoreMenuView.h"

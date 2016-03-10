@@ -3,7 +3,7 @@
 //  PetsLoveIt
 //
 //  Created by 廖先龙 on 15/12/5.
-//  Copyright © 2015年 kongjun. All rights reserved.
+//  Copyright © 2015年 liubingyang. All rights reserved.
 //
 
 #import "GradeCell.h"

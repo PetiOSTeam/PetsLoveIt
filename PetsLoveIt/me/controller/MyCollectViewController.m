@@ -2,8 +2,8 @@
 //  MyCollectViewController.m
 //  PetsLoveIt
 //
-//  Created by kongjun on 15/11/24.
-//  Copyright © 2015年 kongjun. All rights reserved.
+//  Created by liubingyang on 15/11/24.
+//  Copyright © 2015年 liubingyang. All rights reserved.
 //
 
 #import "MyCollectViewController.h"
