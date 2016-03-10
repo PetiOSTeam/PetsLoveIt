@@ -26,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalPagesLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *residuePagesLabel;
+@property (weak, nonatomic) IBOutlet UIButton *exchangeButton;
 
 @property (strong, nonatomic) GradeDetailHeaderView *headerView;
 @end
@@ -36,7 +37,7 @@
 {
     [super viewDidLoad];
     [self configUI];
-   
+    [self refreshnumberforgoods];
 }
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView{
@@ -158,7 +159,7 @@
 - (IBAction)exchangeAction:(id)sender
 {
 
-    if ([self.userintegral intValue]<[self.gradeModel.integral intValue]) {
+    if ([[AppCache getUserInfo].userIntegral intValue]<[self.gradeModel.integral intValue]) {
         [mAppUtils showHint:@"亲，您的积分不够，快去赚积分吧。"];
         return;
     }
@@ -211,6 +212,11 @@
                                               NSFontAttributeName: [UIFont systemFontOfSize:16]};
                  NSDictionary *refreshdic = [responseData objectForKey:@"bean"];
                  NSString *residueStr = [NSString stringWithFormat:@"剩余：%@ 张", refreshdic[@"remainingNum"]];
+                 self.gradeModel.remainingNum = refreshdic[@"remainingNum"];
+                 if ([self.gradeModel.remainingNum intValue] <= 0) {
+                     [self.exchangeButton setBackgroundColor: mRGBToColor(0xcccccc)];
+                     self.exchangeButton.enabled = NO;
+                 }
                  NSMutableAttributedString *attributedStr1 = [[NSMutableAttributedString alloc] initWithString:residueStr
                                                                                                     attributes:defaultDict];
                  NSRange  totalRange1 = NSMakeRange(3, self.gradeModel.remainingNum.length);
@@ -250,10 +256,8 @@
             [weakSelf.navigationController pushViewController:userSetVC animated:YES];
         }
     };
-    //创建一个消息对象
-    NSNotification * notice = [NSNotification notificationWithName:@"refreshtheintegral" object:nil userInfo:nil];
-    //发送消息
-    [[NSNotificationCenter defaultCenter]postNotification:notice];
+
+   
 }
 
 #pragma mark - *** getter ***

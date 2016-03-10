@@ -124,7 +124,6 @@ static NSString * CellIdentifier = @"GradientCell";
          GradeDetailViewController *gradeVC = [[GradeDetailViewController alloc] initWithNibName:@"GradeDetailViewController"
                                                                                           bundle:nil];
          gradeVC.gradeModel = gradeModel;
-         gradeVC.userintegral = self.userintegral;
          [weakSelf.navigation pushViewController:gradeVC animated:YES];
      }];
     return cell;

@@ -27,10 +27,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view from its nib.
-    [self refreshtheintegral];
     [self prepareViewAndData];
-     //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshtheintegral) name:@"refreshtheintegral" object:nil];
     
 }
 
@@ -38,22 +35,19 @@
 {
     [self showNaviBarView];
     self.navBarTitleLabel.text = @"我的积分";
-    [self refreshtheintegral];
     LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
-    if (self.Integralstr) {
-        self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",self.Integralstr];
-        self.gradeListView.userintegral = self.Integralstr;
-    }else
-    {
-        self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",userInfo.userIntegral];
-       
-    }
+    self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",userInfo.userIntegral];
     
-   
     [self gradeListView];
     
 }
-
+- (void)viewWillAppear:(BOOL)animated
+{
+     LocalUserInfoModelClass *userInfo = [AppCache getUserInfo];
+    self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",userInfo.userIntegral];
+    [super viewWillAppear:animated];
+    
+}
 - (IBAction)historyAction:(id)sender
 {
     MyHistoryGradeViewController *myHistoryVC = [[MyHistoryGradeViewController alloc] init];
@@ -86,33 +80,7 @@
     }
     return _gradeListView;
 }
-#pragma mark - 通知中心的调用方法
-- (void)refreshtheintegral{
-    NSDictionary *parameter = @{@"uid": @"getLoginInfo"};
-    [APIOperation GET:@"getCoreSv.action"
-           parameters:parameter
-         onCompletion:^(id responseData, NSError *error) {
-             if (responseData) {
-                 NSDictionary *userInfo = [responseData objectForKey:@"bean"];
-                 if (userInfo.count > 0 ) {
-                     NSString *realtimeintegral = userInfo[@"userIntegral"];
-                     self.gradeLabel.text = [NSString stringWithFormat:@"积分: %@",realtimeintegral];
-                     self.Integralstr = realtimeintegral;
-                     self.gradeListView.userintegral = self.Integralstr;
-                     NSLog(@"realtimeintegral%@",self.gradeLabel.text);
-                     }
-    
-                }else {
-                                 
-             }
-         }];
-    
-}
 
--(void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 /*
 #pragma mark - Navigation
 

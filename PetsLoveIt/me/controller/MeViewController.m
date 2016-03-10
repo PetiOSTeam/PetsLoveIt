@@ -83,7 +83,6 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self refreshtheintegral];
     [self prepareViewAndData];
     //添加当前类对象为一个观察者，name和object设置为nil，表示接收一切通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshtheintegral) name:@"refreshtheintegral" object:nil];
@@ -91,7 +90,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self refreshtheintegral];
     [self loadUserInfoViewAndData];
     
     float tmpSize = [[SDImageCache sharedImageCache] checkTmpSize];
@@ -682,11 +680,7 @@
         [text appendAttributedString: attachment];
     }
     //积分
-    NSMutableAttributedString *userIntegral;
-    if (!self.integralstr) {
-        self.integralstr = userInfo.userIntegral;
-    }
-    userIntegral = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  积分: %@",self.integralstr]];
+    NSMutableAttributedString *userIntegral = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"  积分: %@",userInfo.userIntegral]];
    
     
     [text appendAttributedString:userIntegral];
@@ -748,12 +742,7 @@
     [APIOperation GET:@"common.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         if (!error) {
             NSString *signinnum = [[responseData objectForKey:@"bean"] objectForKey:@"addIntegral"];
-            NSString *rtnCode = [responseData objectForKey:@"rtnCode"];
             
-            if ([rtnCode isEqualToString:@"0"]) {
-                [mAppUtils showHint:@"今天已经签到过了!"];
-                return ;
-            }
             self.signinnum = [[responseData objectForKey:@"bean"] objectForKey:@"continuousSign"];
             SigninbubbleButton *signbubble = [[SigninbubbleButton alloc]initWithframe:self.signButton.frame andSigninNum:signinnum];
             [self.signButton.superview addSubview:signbubble];
@@ -1102,8 +1091,10 @@
                      NSString *realtimeintegral = userdic[@"userIntegral"];
                      
                      if (realtimeintegral) {
-                         _integralstr = [[NSString alloc]initWithString:realtimeintegral];
+                        userInfo.userIntegral = realtimeintegral;
+                         [AppCache cacheObject:userInfo forKey:HLocalUserInfo];
                      }
+                     
                      
                      [self loadingIntegralandrankWithData:userInfo];
                  }

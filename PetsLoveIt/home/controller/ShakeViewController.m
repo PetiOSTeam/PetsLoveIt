@@ -290,13 +290,13 @@
                              };
     [APIOperation GET_2:@"getCoreSv.action" parameters:params onCompletion:^(id responseData, NSError *error) {
         [SVProgressHUD dismiss];
-        if (!error) {
+        if (responseData) {
             NSLog(@"%@",responseData);
             //只允许摇3次,code为0表示不能再摇了
             NSString *code = [responseData objectForKey:@"rtnCode"];
             NSString *sharenum = [[responseData objectForKey:@"data"]objectForKey:@"sharenum"];
             //只允许分享5次
-            if ([code isEqualToString:@"0"]) {
+            if (([code isEqualToString:@"0"])&&(sharenum != nil)) {
                 if ([sharenum isEqualToString:@"5"]) {
                     [self showNoShareNumView];
                     
@@ -307,14 +307,17 @@
 
                 return ;
             }
-            
             NSMutableDictionary  *jsonDict = [responseData objectForKey:@"data"];
             if (jsonDict.count > 1) {
                 GoodsModel *goods = [[GoodsModel alloc] initWithDictionary:jsonDict];
                 self.goodsId = goods.prodId;
                 [self showGoodsView:goods];
                 
-            }else{
+            }else if (([code isEqualToString:@"0"])&&(sharenum == nil)){
+                [self setupintegralViewWithintegral:0];
+            }
+
+            else{
                  NSInteger jifen = [[responseData objectForKey:@"rtnMsg"] integerValue];
                 //
                 [self setupintegralViewWithintegral:jifen];

@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GradeDetailViewController">
             <connections>
                 <outlet property="bottomView" destination="NJj-mw-ZIk" id="VPq-FF-hhH"/>
+                <outlet property="exchangeButton" destination="B0T-FI-vbU" id="ndn-jP-Ufi"/>
                 <outlet property="residuePagesLabel" destination="RMG-RM-lM1" id="6oh-gR-qRw"/>
                 <outlet property="scrollView" destination="jwf-bf-cEs" id="m7d-RB-D3n"/>
                 <outlet property="totalPagesLabel" destination="44H-Mf-lTK" id="mvZ-8z-nuc"/>

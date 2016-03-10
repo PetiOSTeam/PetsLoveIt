@@ -11,6 +11,6 @@
 @interface GradeDetailViewController : UIViewController
 
 @property (nonatomic, strong) GradeModel *gradeModel;
-@property (nonatomic,copy) NSString *userintegral;
+
 
 @end
