@@ -409,7 +409,9 @@
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.apptypename = TypeCheap;
     vc.goodsId = _cheapProduct.prodId;
-    
+    if (vc.goodsId.length == 0) {
+        return;
+    }
     
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -417,14 +419,20 @@
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.goodsId = _limittedTimeProduct.prodId;
 //    vc.goods = _limittedTimeProduct;
-
+    if (vc.goodsId.length == 0) {
+        return;
+    }
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)tapOnImageView3{
     GoodsDetailViewController *vc = [GoodsDetailViewController new];
     vc.goodsId = _jdProduct.prodId;
 //    vc.goods = _jdProduct;
-
+    if (vc.goodsId.length == 0) {
+        return;
+    }
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
