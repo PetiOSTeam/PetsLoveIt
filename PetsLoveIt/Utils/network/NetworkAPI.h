@@ -9,10 +9,10 @@
 #ifndef iOSAppFramework_NetworkAPI_h
 #define iOSAppFramework_NetworkAPI_h
 /** 测试版*/
-//#define kBaseURL                    @"http://61.155.210.60:9090/petweb/actions/"
+#define kBaseURL                    @"http://61.155.210.60:9090/petweb/actions/"
 #define UMENG_APPKEY                @"56cd79e067e58e631200221d"
 /** 正式版*/
-#define kBaseURL                    @"http://www.cwaizg.cn/petweb/actions/"
+//#define kBaseURL                    @"http://www.cwaizg.cn/petweb/actions/"
 //#define UMENG_APPKEY                @"5684f5e5e0f55acb5c002a48"
 
 #define UMENG_channelId             @""
